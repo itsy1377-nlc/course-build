@@ -98,7 +98,7 @@ code, and they are what makes the "no incompletes" policy defensible.
 | `harness-working` | Day 50, the first day of the final block | The final block: a student whose harness never produced results |
 
 Both are generated from the worked solution overlay that ships in the
-instructor repository at `labs/solution/`. The procedure:
+instructor repository at `solution/`. The procedure:
 
 1. Start from a clean checkout of the student repository at the tag or commit
    students received.
@@ -171,7 +171,7 @@ The `-L` code matters beyond the gate: it is the timestamped record that every
 student made at least one real API request, which is the mitigation for the
 thinness of outcome 1's direct evidence. Do not let it lapse.
 
-To verify one submission, from the `labs/` directory:
+To verify one submission, from the lab repository root:
 
 ```
 LAB_TERM_SALT=<the term salt> LAB_STUDENT_ID=<the student id> python -m common.canary
@@ -328,6 +328,11 @@ Thin-evidence analysis: blueprint section 3.7.
 
 Framework churn and maintenance: blueprint sections 6.1, 6.3, and 7.
 
-Lab implementation referenced on this page: `labs/common/canary.py`,
-`labs/verify_env.py`, `labs/demo/apply_solution.py`, and `labs/solution/`.
+Lab implementation referenced on this page: `common/canary.py`,
+`verify_env.py`, `demo/apply_solution.py`, and `solution/`.
+
+Every path on this page is relative to the lab repository root. In your working
+copy that is the `labs/` directory; in the repository students receive, it is
+the top level, and `demo/`, `solution/`, `reference/` and `scripts/` are not
+there at all.
 :::

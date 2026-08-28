@@ -55,7 +55,11 @@ MAX_SENTENCE_WORDS = 15.0
 WORD_BUDGET = {
     "orientation": 450,   # Start Here pages. Scanned, not read.
     "overview":    400,   # a week's front page
-    "wrapup":      400,
+    # 550, not 400. A wrap-up carries what you learned, what you did, a
+    # self-check WITH its answers, and what is next. The answers were the thing
+    # that broke the earlier number, and cutting them would have meant an
+    # asynchronous course with self-checks a student cannot check.
+    "wrapup":      550,
     "content":    1400,   # the week's actual lesson, the one place length earns itself
     "assignment":  700,
     "discussion":  500,

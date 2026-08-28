@@ -64,7 +64,7 @@ should approve that before any such handout exists.
 |---|---|
 | 3, 4 | AML.T0053 AI Agent Tool Invocation |
 | 5 | AML.T0051 LLM Prompt Injection, with .000 Direct, .001 Indirect, .002 Triggered; AML.T0056 Extract LLM System Prompt |
-| 6 | AML.T0086 Exfiltration via AI Agent Tool Invocation; AML.T0085.001 AI Agent Tools; AML.T0080 AI Agent Context Poisoning |
+| 6 | AML.T0086 Exfiltration via AI Agent Tool Invocation; AML.T0085.001 AI Agent Tools; AML.T0070 RAG Poisoning |
 | 7 | AML.T0067 LLM Trusted Output Components Manipulation; AML.T0054 LLM Jailbreak |
 | Final block | Mitigation mapping across the above |
 

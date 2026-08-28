@@ -80,7 +80,7 @@ pages: about fifty minutes of reading before anybody touched anything.
 | Orientation, in Start Here | 450 | Scanned, not read. A student wants one fact and leaves |
 | Rules of Engagement | 900 | The one exception. A policy document has to be citable |
 | Week Overview | 400 | A front page, not a lesson |
-| Week Wrap-up | 400 | |
+| Week Wrap-up | 550 | It carries a self-check and its answers |
 | Week Content | 1400 | The one place length earns itself |
 | Assignment | 700 | If it needs more, the assignment is too big |
 | Discussion | 500 | |
@@ -172,7 +172,12 @@ ages and first languages.
 6. **Pin versions.** OWASP LLM Top 10 **2026**, OWASP Top 10 for Agentic
    Applications **2026**, MITRE ATLAS release **2026.07**.
 7. **Time estimates must be honest**, in a `callout time` on every Overview
-   page. The whole course budgets 19 to 21 hours per week including reading.
+   page, itemized and totalled. The assigned work is about 5 to 9 hours a week.
+   Every estimate also says that students new to programming commonly take two
+   to three times as long on the coding, which puts a realistic week between
+   about 10 and 20 hours. Do not quote the old 19 to 21 figure: it was the
+   arithmetic for three credit hours compressed into seven weeks, not a
+   measurement of the work, and every Overview page contradicted it.
 8. **Grading tables must add up** to the points in `content/course.yaml`.
 9. **Placeholders are forbidden.** No `[bracketed text]`, no TODO, no
    `#fbeeb8`. The build asserts zero of these.

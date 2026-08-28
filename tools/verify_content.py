@@ -191,6 +191,8 @@ NAMED_ONLY = {
     "LLM04:2026": "Supply chain, taught as why dependencies are pinned.",
     "LLM08:2026": "Hidden context exposure. Named in the alignment table only.",
     "LLM10:2026": "Improper output handling. Named in the alignment table only.",
+    "ASI10": "Not a claim. The alignment page says the agentic list runs ASI01 "
+             "through ASI10, which is a fact about the publication's length.",
 }
 
 
