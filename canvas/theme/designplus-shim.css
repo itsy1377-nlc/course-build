@@ -98,6 +98,8 @@
   --dp-k-b5:          #6a3d8c;
   --dp-k-b6:          #0d6182;
   --dp-k-b7:          #2f4858;
+  --dp-k-b8:          #8a4f12;
+  --dp-k-b9:          #1f5e5b;
 
   /* callouts: background / rule / ink */
   --dp-note-bg:       #eaf2fa;  --dp-note-rule:  #1f5c8f;  --dp-note-ink:  #12324c;
@@ -160,6 +162,8 @@
     --dp-k-b5:         #bb8ce0;
     --dp-k-b6:         #3fadd6;
     --dp-k-b7:         #8aa9bd;
+    --dp-k-b8:         #d9a066;
+    --dp-k-b9:         #6fb3ab;
 
     --dp-note-bg:     #152430;  --dp-note-rule: #5aa6da;  --dp-note-ink: #d9e8f6;
     --dp-tip-bg:      #132218;  --dp-tip-rule:  #54c184;  --dp-tip-ink:  #d8efe0;
@@ -239,6 +243,8 @@
   --dp-k-b5:         #6a3d8c;
   --dp-k-b6:         #0d6182;
   --dp-k-b7:         #2f4858;
+  --dp-k-b8:         #8a4f12;
+  --dp-k-b9:         #1f5e5b;
   --dp-note-bg: #eaf2fa; --dp-note-rule: #1f5c8f; --dp-note-ink: #12324c;
   --dp-tip-bg:  #e9f5ee; --dp-tip-rule:  #1c6b3d; --dp-tip-ink:  #12331f;
   --dp-time-bg: #eff0f6; --dp-time-rule: #454a72; --dp-time-ink: #23253c;
@@ -1097,9 +1103,14 @@
    enough to find on a phone. Course pages get read on phones.
    ------------------------------------------------------------------------- */
 
+.dp-wrapper .dp-content-block.kl_custom_block_8,
 .dp-content-block.dp-keyfacts {
-  border-left: 5px solid var(--dp-accent, #1F5E5B);
-  background: var(--dp-surface-2, #EDEFE8);
+  border-left-color: var(--dp-k-b8, #8a4f12);
+  background: var(--dp-surface-2, #eceff4);
+}
+.dp-wrapper .dp-content-block.kl_custom_block_9,
+.dp-content-block.dp-steps {
+  border-left-color: var(--dp-k-b9, #1f5e5b);
 }
 .dp-keyfacts table { margin: 0; }
 .dp-keyfacts table th[scope="row"] {
@@ -1131,8 +1142,8 @@
   width: 2rem;
   height: 2rem;
   border-radius: 50%;
-  background: var(--dp-accent, #1F5E5B);
-  color: #fff;
+  background: var(--dp-k-b9, #1f5e5b);
+  color: var(--dp-ink-invert, #fff);
   font-weight: 700;
   font-variant-numeric: tabular-nums;
   display: flex;

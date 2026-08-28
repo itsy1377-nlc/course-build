@@ -2,11 +2,11 @@
 | | |
 |---|---|
 | AI on coding | Permitted, on all of it |
-| Also permitted on | The final exam, which is open book |
+| Also permitted on | The final exam (open book) |
 | You must declare it | Wherever a submission asks |
 | Project 1 must include | `AI-USE.md`, with one suggestion you rejected |
 | Never send a model | An API key, or anyone's personal information |
-| Detection | None is used. No submission is scanned |
+| Detection | None. No submission is scanned |
 | Breaking a condition | An academic integrity violation |
 :::
 
@@ -22,25 +22,25 @@ use. That outcome is graded.
 To grade it, you have to produce AI-generated code and then judge it. **A course
 that bans AI cannot assess that skill.** It can only assert it.
 
-You will work beside these tools for your whole career. Learning to check their
-output is the job.
+You will work beside these tools all your career. Checking their output is the
+job.
 :::
 
 ::: section | The four conditions
 **1. Declare it where you are asked.** Say which tool and what for. One or two
 sentences.
 
-**2. Project 1 needs an `AI-USE.md` file.** It lists the tools you used, what
-you used them for, and **at least one suggestion you rejected, and why.** Paste
-the suggestion, then say what was wrong with it. A file that says you accepted
-everything does not meet the requirement.
+**2. Project 1 needs an `AI-USE.md` file.** It lists your tools, what you used
+them for, and **at least one suggestion you rejected, and why.** Paste the
+suggestion, then say what was wrong with it. A file that accepted everything
+does not meet the requirement.
 
 **3. Never paste a key or personal information into a model.** A key in a prompt
 is a leaked key: turn it off at the provider and make a new one. A free hosted
 model may use what you send it to improve the provider's products.
 
 **4. You own what you submit.** "The model wrote it" is not a defense. If the
-code is wrong, you are wrong. That is how every engineering job works.
+code is wrong, you are wrong. Every engineering job works this way.
 :::
 
 ::: section | What is actually assessed
@@ -79,6 +79,6 @@ use is still a violation.
 :::
 
 ::: next
-Next is the Rules of Engagement. It is the page you take a quiz on before Week 2
+Next is the Rules of Engagement, the page you take a quiz on before Week 2
 opens.
 :::
