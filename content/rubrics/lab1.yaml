@@ -60,9 +60,13 @@ criteria:
     ratings:
       - {points: 3, description: "Declared, or plainly not used"}
       - {points: 0, description: Not declared}
-  - description: Submitted on time and in the right format
+  - description: Submitted in the right format
+    long_description: >
+      One file, markdown or plain text, named the way the assignment asks.
+      Lateness is not scored here. Weeks 1 to 7 accept late work until day 51,
+      and the Course Policies page is where that rule lives.
     points: 3
     ratings:
-      - {points: 3, description: "On time, one file named as asked, or one text entry"}
-      - {points: 2, description: "Late, or the file name, type, or count is wrong"}
+      - {points: 3, description: "One file named as asked, or one text entry"}
+      - {points: 2, description: "Your answers, but the file name, type, or count is wrong"}
       - {points: 0, description: Missing}

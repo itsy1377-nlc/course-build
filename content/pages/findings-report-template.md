@@ -38,7 +38,8 @@ What each heading is for:
 2. **Authorization basis.** Which clause of the Rules of Engagement allowed
    this, and the exact target address you tested. One or two sentences.
 3. **Evidence.** A side effect, a canary token, or an audit row. Pasted, not
-   described. Never what the model said.
+   described. Never the model's account of what it did. A canary counts
+   wherever it turns up, including in the agent's own reply.
 4. **Framework identifiers.** The OWASP entries and the MITRE ATLAS techniques,
    copied from the case file or from your harness output.
 5. **Severity.** One rating from the table below, plus the reason you chose it.

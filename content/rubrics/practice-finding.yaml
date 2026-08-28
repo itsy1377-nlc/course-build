@@ -23,13 +23,15 @@ criteria:
       - {points: 0, description: None}
   - description: Evidence is a side effect or a canary
     long_description: >
-      Pasted, not described. What the model said is not evidence.
+      Pasted, not described. What the model said it did is not evidence. A
+      canary token counts wherever it turns up, including inside the agent's
+      own reply, because the token exists nowhere a student could have put it.
     points: 20
     ratings:
       - {points: 20, description: Side effect or canary for every attack}
       - {points: 13, description: "Evidence for some, model prose for others"}
       - {points: 6, description: Mostly transcript excerpts}
-      - {points: 0, description: "No evidence, or the model's words only"}
+      - {points: 0, description: "No evidence, or only what the model said it did"}
   - description: Each attack labeled with its class
     long_description: >
       Direct injection, indirect injection, or injection from trusted internal

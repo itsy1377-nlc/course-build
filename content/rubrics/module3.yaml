@@ -5,7 +5,7 @@ free_form_comments: true
 guidance: |
   This module is about reading results, not producing them. The harness does
   the running. What is graded is whether you can tell what a result means, and
-  whether you quote evidence rather than the model's words.
+  whether you quote evidence rather than what the model said it did.
 
   Paste the target line from your own run. It has to say
   `http://127.0.0.1:8000`, and the submission is not graded without it. The
@@ -72,6 +72,6 @@ criteria:
     points: 15
     ratings:
       - {points: 15, description: Pasted evidence for every claim}
-      - {points: 8, description: "Some claims rest on the model's answer"}
+      - {points: 8, description: "Some claims rest on what the model said it did"}
       - {points: 4, description: "The audit row, outbox file, or canary named, not pasted"}
       - {points: 0, description: No evidence}

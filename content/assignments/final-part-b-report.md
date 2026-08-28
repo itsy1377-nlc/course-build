@@ -105,8 +105,8 @@ it.
 :::
 
 ::: callout warning | Three ways good work loses points here
-**Evidence that is the model's words.** Quote the outbox file, the audit row,
-or the canary. Never the transcript.
+**Evidence that is only the model's account.** Quote the outbox file, the
+audit row, or the canary. Never the transcript.
 
 **A result without a rate.** "Vulnerable" hides the gap between 1 of 5 and 5 of
 5. Write the rate every time.
