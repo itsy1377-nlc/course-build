@@ -1,21 +1,11 @@
 ::: intro
-This page takes the agent loop apart. You will see how the message list grows,
-how a tool name becomes a function call, and what happens when a tool fails.
-Then you trace the whole thing on paper before you touch code.
-:::
+This page takes the agent loop apart: how the message list grows, how a tool
+name becomes a function call, and what happens when a tool fails. Then you
+trace it on paper.
 
-::: section | The loop is four steps
-`agent/loop.py` describes itself in four lines:
-
-```
-1. Send the conversation to the model.
-2. If the model asked for a tool, run it and put the result in the
-   conversation.
-3. Go back to step 1.
-4. Stop when the model answers in words, or when we hit the step limit.
-```
-
-You read that file last week. This week you take each step apart.
+The loop itself is four steps. Send the conversation, run any tool the model
+asked for, repeat, and stop when the model answers in words or hits the step
+limit.
 :::
 
 ::: section | The bound: why the loop counts
@@ -37,7 +27,7 @@ When the loop runs out, the `else` on the `for` runs and `stopped` becomes
 :::
 
 ::: section | Message accumulation: the list only grows
-The conversation is a Python list. It starts with two entries.
+The conversation is a Python list, and it starts with two entries.
 
 ```python
     messages: list[dict[str, Any]] = [
@@ -46,10 +36,9 @@ The conversation is a Python list. It starts with two entries.
     ]
 ```
 
-Tool calls and tool results are appended. Nothing is ever removed, and the
-model sees the whole list on every pass.
-
-Here is a real run. The user asked the agent to summarize ticket T-503.
+Tool calls and tool results are appended, nothing is removed, and the model
+sees the whole list on every pass. Here is a real run, from a request to
+summarize ticket T-503.
 
 | Point in the run | What `messages` holds |
 |---|---|
@@ -93,8 +82,8 @@ Inside `call_tool`, three things happen before your function runs:
     fn: ToolFn = TOOLS[name]["fn"]
 ```
 
-1. Is the name in `TOOLS`? That is the registry, mapping a name to a schema and
-   a function.
+1. Is the name in `TOOLS`, the registry that maps a name to a schema and a
+   function?
 2. Is the name in `allowed_tools` in your config file? A tool can exist and
    still be switched off.
 3. Get the function out of the registry and call it.
@@ -103,17 +92,17 @@ Inside `call_tool`, three things happen before your function runs:
 including one you never offered, because a tool call is only text the model
 produced. Nothing stops it asking. The allowlist check stops the call running.
 
-Not offering a tool is still worth doing, and it is the cheapest measure in the
-system. It just is not what enforces the rule.
+Not offering a tool is still worth doing, and it is the cheapest measure in
+the system. It just is not what enforces the rule.
 
-So Module 2 asks you to edit two files. Register your tool in `TOOLS` in
-`agent/tools.py`, then add its name to `agent.allowed_tools` in
-`config/lab.config.yaml`. Miss the second and your tool never runs.
+So Module 2 has you edit two files: `TOOLS` in `agent/tools.py`, and
+`agent.allowed_tools` in `config/lab.config.yaml`. Miss the second and your
+tool never runs.
 :::
 
 ::: section | What happens when a tool errors
-Tools fail. The target app is not running. A customer ID does not exist. None
-of that is unusual.
+Tools fail, and that is ordinary. The target app is not running. A customer ID
+does not exist.
 
 ```python
 try:
@@ -135,8 +124,8 @@ successful call with an empty result, appends it, and moves on.
 The model now believes the record is blank, and tells the user so. Nothing in
 the ledger says anything went wrong, because as far as it knows, nothing did.
 
-**A tool that returns an empty string on failure is worse than a tool that is
-missing.** A missing tool is obvious. A silent one produces confident wrong
+**A tool that returns an empty string on failure is worse than a missing
+tool.** A missing tool is obvious. A silent one produces confident wrong
 answers, and your log agrees with them.
 
 That is why Module 2 grades your error path as heavily as your success path.
@@ -145,13 +134,13 @@ That is why Module 2 grades your error path as heavily as your success path.
 ::: section | The activity: trace the loop on paper
 Do this before you write code this week. It takes about 30 minutes.
 
-1. Get a sheet of paper. Draw a column down the left and label it `messages`.
-2. Write the two starting entries: system, then user. Use the request
+1. Draw a column down the left of a sheet of paper. Label it `messages`.
+2. Write the two starting entries, system and user, for the request
    `summarize ticket T-503`.
 3. Open `agent/loop.py` and start reading at the `for step` line.
 4. Walk one pass by hand. Every time the code appends to `messages`, write a
-   new row and note which step you are on.
-5. Stop at a `break`, or when you have written six passes.
+   new row and note the step.
+5. Stop at a `break`, or after six passes.
 6. Now run it for real. Start the target app:
 
 ```
@@ -172,15 +161,15 @@ point. Bring one disagreement to the Q and A board if you cannot explain it.
 :::
 
 ::: callout warning | The tool you add this week has no authorization check
-`get_customer` asks the target app for a customer record. It never asks whether
-the person running the agent may see that customer. There is no such check in
-the tool, none in the loop, and none in the target app.
+`get_customer` asks the target app for a customer record. It never asks
+whether the caller may see that customer. There is no such check in the tool,
+the loop, or the target app.
 
 **Your own tool will not have one either.** The assignment does not ask for
 one, and you should not add one.
 
-In Week 6 you point a harness at your own agent and find this yourself, in code
-you wrote. That teaches more than being told about it now.
+In Week 6 you point a harness at your own agent and find this in code you
+wrote. That teaches more than being told now.
 
 Write the tool. Leave the gap. Week 6 is where you close it.
 :::
@@ -193,30 +182,29 @@ action does not have to be permanent to count. A reversible action that nobody
 approved is still excessive agency.
 
 Your agent is about to have more capability. Every tool you register widens
-what the model can ask for. Your tools run with whatever access the program
-has, which is usually all of it. And `before_tool_call` still says yes to
-everything.
+what the model can ask for, your tools run with whatever access the program
+has, and `before_tool_call` still says yes to everything.
 
 Week 6 gives you the full list of missing controls and a name for each one.
 :::
 
 ::: reading | Reading: the chat completions response shape
 **What it is.** The vendor reference for the format your agent uses. It is
-written for working engineers, so it is dense.
+dense, and written for working engineers.
 
 **What to read.** The request section, specifically the message with the role
 `tool`. That is what your loop builds after a tool runs. About 20 minutes.
 
-**What to look for.** Week 2 showed you the reply that asks for a tool. Now
-look at the other direction: the message carrying a result back. Find which
-fields it must have.
+**What to look for.** Week 2 showed the reply that asks for a tool. Now look at
+the other direction, the message carrying a result back, and find which fields
+it must have.
 
 **One warning.** Do not read the newer function calling guide instead. It
-documents a different interface than your labs use.
+documents a different interface.
 
-**One question to answer while you read**, on the quiz later: a tool result
-message carries a field tying it to the request that asked for it. Name that
-field, then find the line in `agent/loop.py` that sets it.
+**One question to answer while you read**, on the quiz later: name the field
+that ties a tool result to the request that asked for it, then find the line in
+`agent/loop.py` that sets it.
 
 The link is on the Course Material page.
 :::
@@ -234,13 +222,12 @@ Answer these before you start Module 2.
 
 ::: sources
 OWASP Top 10 for Large Language Model Applications 2026, entry LLM03:2026
-Excessive Agency. Licensed CC BY-SA 4.0. Linked, not reproduced.
+Excessive Agency. Licensed CC BY-SA 4.0. Linked only.
 
 OWASP Top 10 for Agentic Applications 2026, entry ASI02 Tool Misuse. Licensed
 CC BY-SA 4.0.
 
-The chat completions API reference is vendor documentation, linked on the
-Course Material page.
+The chat completions API reference is vendor documentation, linked only.
 
 All code quoted here comes from the lab repository, which is
 instructor-authored.
