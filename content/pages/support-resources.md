@@ -1,166 +1,79 @@
-::: intro
-Northeast Lakeview College runs free services for every student, online
-students included. This page says what each one does and how to reach it. Use
-them early, not in week seven.
+::: keyfacts
+| | |
+|---|---|
+| To find any service | Search the college website for the office name below |
+| Direct links | Canvas course navigation, under Syllabus |
+| Accommodations | Student Accessibility Services. Apply in week 1 |
+| Lab code problems | Q and A Discussion Board, not tutoring |
+| Before you drop a course | Talk to an advisor first |
 :::
 
-::: section | How to reach any of these
-Every service below has its own page on the Northeast Lakeview College website,
-with current hours, contact details, and a way to book time. Those pages are
-kept up to date. A phone number printed inside a course shell is not.
+::: intro
+Northeast Lakeview College runs these services free for every student, online
+students included. Use them early, not in week seven.
+:::
 
-So this page gives you the search, not the number. Three systems hold all of it.
-
-1. **The college website.** Search the term in the last column below.
-2. **ACES.** Your student portal. Several of these tools launch from inside it.
-3. **The Canvas course navigation**, on the left of this page.
-
+::: section | Where each thing goes
 | What you need | Which system | Search for, or click |
 |---|---|---|
 | An accommodation | College website | Student Accessibility Services |
-| An advisor, or a degree plan question | College website | Academic Advising |
+| An advisor, or a degree plan | College website | Academic Advising |
 | To book an advising appointment | ACES, or the college website | Navigate |
 | Tutoring online, at any hour | ACES, or this course's navigation | Brainfuse |
 | Tutoring in person or over Zoom | College website | Tutoring |
-| A counselor | College website | Counseling |
-| Research help, or a database | College website | Library |
+| Free short-term or crisis counseling | College website | Counseling |
+| Research help, a database, or citation help | College website | Library |
 | Veterans benefits paperwork | College website | Veterans Center |
 | Admissions, registration, or aid | ACES, or the college website | Admissions, or Financial Aid |
 | Help with the lab code | Canvas course navigation | Q and A Discussion Board |
+| Canvas, a login, or a password | Canvas Help menu | See the Canvas and Tech Support page |
+| A grade or a deadline | Canvas Inbox | Your instructor |
 
-Each term in that last column is the name of an office. Look for the result
-named for that office on the Northeast Lakeview College site. If you land
-somewhere else, add Northeast Lakeview to your search.
-
-If you do not know which office you need, ask your advisor. Sorting that out is
-part of what advising does.
+Each term in the last column is the name of an office. If a search lands
+somewhere else, add Northeast Lakeview to it.
 :::
 
-::: callout note | Where the direct links live
-Your instructor puts a direct link to every service above into the Canvas
-syllabus, and checks those links at the start of each session.
+::: callout note | Why no phone numbers are printed here
+Numbers and hours change, and a number typed into a course shell goes stale
+without anyone noticing. Each office's own page is kept current, so this page
+gives you the search instead.
 
-They live there instead of here for one reason. A course page like this one is
-copied forward from session to session and nobody reopens it, so a link on it
-rots quietly. The syllabus is rewritten for each session, so it is the one
-place a link gets looked at again.
+Your instructor puts a direct link to every service into the Canvas syllabus and
+checks those links each session. The syllabus is rewritten every session. This
+page is copied forward.
 
-Open **Syllabus** in the course navigation on the left. If a link there is
-dead, post it on the Q and A board. Then it gets fixed for everyone, not just
-for you.
+Open **Syllabus** in the course navigation. If a link there is dead, post it on
+the Q and A board so it gets fixed for everyone.
 :::
 
-::: section | Academic Advising
-Advisors help with your schedule, registration, degree plan, and transferring
-to another college.
+::: callout warning | Accommodations: ask in week 1, not week 5
+The term is short and the course moves fast. **An accommodation approved in week
+five cannot fix week two.** Register with Student Accessibility Services now if
+you think you may need one.
 
-Every current student has an assigned advisor. You can book an appointment
-through the Navigate platform, or contact the NLC Advising Department. Advisors
-also hold virtual drop-in hours.
+Two things to say when you apply:
 
-Talk to an advisor before you drop a course. A withdrawal can affect financial
-aid and your degree plan, and the deadline to withdraw sits near day 39 to 43
-of this term.
+1. **This course involves code.** Much of the work is reading code and terminal
+   output. Say so if you use a screen reader, a magnifier, or extra time.
+2. **Dual credit students:** accommodations from your high school do **not**
+   transfer. You have to register with the college office.
 :::
 
-::: section | Tutoring
-NLC offers tutoring three ways.
+::: section | Three things students get wrong
+**Tutoring is for study skills, writing, and math.** Nobody there has seen this
+lab. Lab problems go to the Q and A board, where the answer comes from someone
+who has.
 
-1. **In person**, in the campus academic support labs.
-2. **Over Zoom**, with the same tutors.
-3. **Online, at any hour**, through Brainfuse.
+**Talk to an advisor before you drop.** A withdrawal can affect financial aid
+and your degree plan. The deadline sits near day 39 to 43.
 
-Brainfuse launches from inside ACES or from your Canvas course. It has two
-parts. **Live Help** is for a quick question and runs about 30 minutes.
-**Writing Lab** reviews a paper and returns comments within about a day. Your
-account includes a set number of hours, and the tool shows you how many you
-have used.
+**Counseling is not only for a crisis.** Course stress counts. If a hard week is
+affecting your work, tell your instructor too. No medical details needed.
 
-**Tutoring is for study skills, writing, and math.** It is not the place to
-debug your agent. Nobody at the tutoring center has seen this lab. For lab
-problems, post on the Q and A Discussion Board, where the answer comes from
-someone who has.
-:::
-
-::: section | Student Accessibility Services
-If you need an accommodation, you request it through the NLC Student
-Accessibility Services office. Apply through the office's website, or call or
-email to set up an appointment.
-
-**Find it today.** Search the college website for Student Accessibility
-Services, or open Syllabus in the course navigation and use the direct link
-there. Both take about a minute.
-
-Two things about this course specifically.
-
-**Ask early.** The course moves fast and the term is short. An accommodation
-approved in week five cannot fix week two.
-
-**Say that the course involves code.** Much of your work is reading code and
-terminal output. If you use a screen reader, a magnifier, or extra time, say so
-when you apply, so the accommodation fits the work you actually do.
-
-**Dual credit students:** accommodations from your high school do **not**
-transfer. You have to register with the NLC accessibility office to receive
-accommodations in a college course.
-:::
-
-::: section | Mental Health Counseling
-A licensed counselor offers free short-term and crisis counseling to NLC
-students. If you need longer-term care, the counselor refers you to outside
-services.
-
-You do not have to be in crisis to use it. Course stress counts.
-
-If you are struggling and it is affecting your work, tell your instructor as
-well. Nobody needs your medical details. A short message saying you are having
-a hard week is enough to start a conversation about your options.
-:::
-
-::: section | The Library
-The NLC library gives you research help, instruction, and access to databases
-and other sources you cannot reach for free on your own.
-
-Librarians answer questions online, and they are the right people to ask about
-citing a source correctly. That matters here: your findings report cites
-framework documents, and a clean citation is part of the grade.
-:::
-
-::: section | Veterans Center
-The Veterans Center helps eligible veterans get information about Texas and
-federal veterans benefits, and helps with the paperwork.
-
-Always check with your education service office before you start any voluntary
-education activity.
-:::
-
-::: section | Admissions, aid, and everything else
-Every one of the five Alamo Colleges runs the same core services: admissions
-and aid, advising, tutoring, the library, accessibility services, counseling,
-and veterans support.
-
-If you are enrolled at another Alamo college, you can use that college's
-services too. The support list on each college website says what is offered
-where.
-:::
-
-::: callout tip | Which door to knock on
-Use the right service and you get an answer in a day. Use the wrong one and you
-lose a week.
-
-| Your problem | Where it goes |
-|---|---|
-| The lab will not run, or an error you cannot read | Q and A Discussion Board |
-| A grade, a deadline, or a private question | Canvas Inbox to your instructor |
-| Canvas will not load, or a password is broken | Canvas and Tech Support page |
-| Writing, study skills, or math | Tutoring |
-| Citing a source, or finding research | The library |
-| Registration, dropping, or your degree plan | Academic Advising |
-| An accommodation | Student Accessibility Services |
-| Stress, or anything harder than stress | Counseling |
+You can also use another Alamo college's services if you are enrolled there.
 :::
 
 ::: next
-Next is the Canvas and Tech Support page, which covers logins, browsers, and
-what to do when Canvas itself is the problem.
+Next is Canvas and Tech Support, which covers logins, browsers, and what to do
+when Canvas itself is the problem.
 :::

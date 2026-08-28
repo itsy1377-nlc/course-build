@@ -52,8 +52,12 @@ Available blocks and where each belongs:
 | `next` | Overview and Wrap-up pages | What's Next |
 | `sources` | Content pages | Sources |
 
-**Page anatomy, fixed by the template.** Every week has exactly four parts:
+**Page anatomy, fixed by the template.** Every week has at least four parts:
 an Overview page, a Content page, the graded Assignments, and a Wrap-up page.
+Three weeks carry a fifth: week 3 the annotated skeleton, week 6 the
+authorization walkthrough, week 7 the poisoned results exercise. Each is a
+single long read the week is built around, and folding it into the Content
+page would bury it.
 
 - **Overview** = `intro`, `objectives`, `scope` (if the week involves attacks),
   `tasks` table, a `callout time` with an honest time estimate, `next`.

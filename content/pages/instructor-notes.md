@@ -215,7 +215,6 @@ syllabus, where you can fix one when it moves. The accessibility office link
 matters most: an accommodation approved in week 5 cannot repair week 2.
 
 **3. Decide two grading rules the design leaves open.** The general late-work
-penalty, and which items count as a "lab" for the dropped lowest lab. The
 content works around both rather than inventing them, so both currently read as
 vague to a student. Neither takes long to settle and both are visible.
 

@@ -1,123 +1,66 @@
+::: keyfacts
+| | |
+|---|---|
+| The course lives in | **Modules**, in the course menu |
+| To move through a week | Click **Next** at the page bottom |
+| To message your instructor | **Inbox**, in the gray menu |
+| To see your scores | **Grades**, in the course menu |
+| For lab work | A laptop or desktop, never the mobile app |
+:::
+
 ::: intro
-Canvas is where this whole course lives. This page shows you the few buttons you
-actually use each week, and how this course is laid out inside them.
+Canvas is the Alamo Colleges learning platform. This whole course lives in it.
 :::
 
-::: section | What Canvas is
-Canvas is the learning platform used by the Alamo Colleges. Think of it as your
-classroom. Every page, assignment, quiz, and grade in this course is in it.
+::: section | The two menus
+The gray menu on the far left holds Dashboard, Courses, Calendar, Inbox, and
+Help. Canvas messages may never reach your email.
 
-If you have never used Canvas, start with the **Student Quick Guide** in the
-gray menu on the left. It is a short walkthrough built for new students, and it
-takes about fifteen minutes.
+The course menu next to it holds the syllabus, your grades, and the discussions.
+The syllabus carries the full college and district policy.
 :::
 
-::: section | The gray menu on the far left
-That menu follows you everywhere in Canvas. Five items matter.
-
-1. **Dashboard.** Every course you are enrolled in.
-2. **Courses.** The same list, as a menu.
-3. **Calendar.** Every due date you have, across all courses.
-4. **Inbox.** Canvas messages. This is how you reach your instructor.
-5. **Help.** Canvas guides, live chat, and a phone line.
-
-Check the Inbox on a schedule. Canvas messages do not always reach your email,
-depending on how your notifications are set.
-:::
-
-::: section | The course menu
-Inside this course, a second menu appears next to the first one. It holds the
-syllabus, your grades, the discussions, and the Instructor Information page.
-
-Your instructor's name, photo, and contact details are on that Instructor
-Information page.
-
-The syllabus link holds the full college and district policy, the course
-schedule, and the outcomes. The pages in this module are the short version. The
-syllabus is the complete one.
-:::
-
-::: section | Modules are how you move
-This course is organized into modules, and modules are the only path you need.
-
+::: steps | How to work through a week
 1. Open **Modules** from the course menu.
-2. Open the first item in the module you are on.
-3. Read it, then click **Next** at the bottom right of the page.
-4. Keep clicking Next. It walks you through the week in order.
+2. Open the first item in your module.
+3. Read it, then click **Next** at the bottom right.
+4. Keep clicking Next. It walks the week in order.
 
-Two things about modules in this course:
-
-**Modules unlock by day.** A future week that looks closed is not broken. It
-opens on its own.
-
-**Week 2 stays locked until you pass the Module 0 Gate.** The Gate needs a
-perfect score, and you get unlimited attempts. Nothing else in the course gates
-you like this.
+Modules unlock by day, so a closed future week is not broken. Week 2 waits on
+the Module 0 Gate.
 :::
 
-::: section | The four pages in every week
-Every week is built the same way, so you always know where you are.
-
+::: section | The pages in every week
 | Page | What it is for |
 |---|---|
-| Overview | What the week covers, what is due, and how long it takes |
+| Overview | What is due, and how long it takes |
 | Content | The lesson. Read it before you open the lab |
 | Assignments | The graded work |
 | Wrap-up | A review and a short self-check |
 
-If you feel lost, go back to the week's Overview page. It is written to be the
-map.
+Every week has at least four pages: weeks 3, 6, and 7 add a fifth. Lost? Go
+back to the Overview.
 :::
 
-::: section | Turning in work
-Most assignments here ask you to upload a file. A few ask you to type into a
-box, and one asks for a recording.
+::: steps | Turning in work
+1. Open the assignment and read **How to Submit**.
+2. Click **Start Assignment**, then upload your file.
+3. Reopen the submission and confirm the right file arrived.
 
-1. Open the assignment and read the **How to Submit** section.
-2. Click **Start Assignment** or **Submit Assignment**.
-3. Upload the file, then click submit.
-4. **Check the confirmation.** Canvas shows what it received and when.
-
-Always reopen the submission afterward and confirm the file is the right one. An
-empty or wrong file is the most common avoidable zero in any online course.
-
-Canvas locks assignments after the deadline. Read the Course Policies page for
-what is accepted late and what is not.
+A wrong file is the most common avoidable zero. A dash in Grades means not
+graded yet.
 :::
 
-::: section | Grades
-Open **Grades** in the course menu to see every score.
+::: callout tip | Three settings worth five minutes in week one
+**Your profile.** Add a photo and the name you want used.
 
-Autograded work posts a score quickly. Work your instructor reads takes longer,
-and feedback arrives within one week of the due date.
+**Your notifications.** In your account settings, turn on announcements and due
+date reminders.
 
-A dash instead of a number means the item is not graded yet. It does not mean
-zero. If a score looks wrong, message your instructor through the Inbox and say
-which assignment and what you expected.
-:::
-
-::: section | Set up your profile and notifications
-Two settings are worth five minutes in week one.
-
-**Your profile.** Add a photo and the name you want people to use. In a course
-where nobody meets, a photo does real work.
-
-**Your notifications.** These live in your Canvas account settings, not in the
-course. Turn on announcements and due date reminders, and pick how often you
-want them. Set them once and they apply to every course you take.
-:::
-
-::: callout tip | Two features worth knowing
-**Immersive Reader.** Canvas includes the Microsoft Immersive Reader. It can
-change the font, split words into syllables, highlight one line at a time, and
-read the page aloud. Turn it on once and it works in all of your courses.
-
-**The mobile app.** It is good for reading a page, checking a grade, and getting
-a notification. It is not good for lab work or for a timed quiz. Use a laptop or
-a desktop for anything that counts.
+**Immersive Reader.** Canvas can change the font, split words, and read a page
+aloud.
 :::
 
 ::: next
-Next is the Glossary. Skim it now, then come back to it every time a word on a
-Content page does not land.
+Next is the Glossary. Skim it now, then return when a word does not land.
 :::

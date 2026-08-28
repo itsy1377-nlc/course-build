@@ -77,7 +77,6 @@ So every grade protection in this course is front-loaded. You already have all
 of it:
 
 1. Unlimited retakes on the Module 0 Gate.
-2. Your lowest lab score is dropped.
 3. Fallback branches your instructor published for every scaffold.
 4. A 90 percent late window on Project 2 Part A, open day 50, closed day 51.
 
