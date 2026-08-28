@@ -240,6 +240,17 @@ def _accessible_tables(body: str, block: Block) -> str:
         f'<table class="{TABLE_CLASSES}">\n'
         f'<caption class="dp-caption-t">{html.escape(caption)}</caption>',
     )
+    # A two-column table of facts has no column headings, only row ones, and
+    # markdown has no way to express that. Authors write an empty header row to
+    # get the table at all. Leaving it produces empty <th> cells, which every
+    # accessibility checker flags and which a screen reader announces as
+    # nothing. So an all-empty header row is dropped, and the row headers below
+    # carry the meaning on their own.
+    empty_head = re.search(r"<thead>\s*<tr>(?:\s*<th[^>]*>\s*</th>)+\s*</tr>\s*</thead>",
+                           body)
+    if empty_head:
+        body = body.replace(empty_head.group(0), "")
+
     # Header cells announce their column. Matching `<th` rather than `<th>`
     # because a markdown table with alignment colons emits
     # `<th style="text-align: right;">`, and a plain `<th>` pattern would skip

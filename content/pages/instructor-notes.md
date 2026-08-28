@@ -23,7 +23,7 @@ entire course is five hours.
 | 6 | Module 3 import, checkpoint 2, spot audit | 2.0 |
 | 7 | Module 4 import and exceptions, report rubric release | 1.9 |
 | Final block | Part B at 30 students by 7 minutes = 3.5; Part C at 30 by 2 minutes = 1.0; rubric entry 0.5; support 0.6; closeout packet 1.0 | 6.6 |
-| | **Total** | **22.7** |
+| **Total** | | **22.7** |
 
 The peak is the final block at 6.6 hours spread across six days. That is the
 week to protect on your own calendar. Everything else sits under 2.2 hours.

@@ -28,12 +28,11 @@ most.
 
 Take the bound away and think about what is left. A model that keeps asking for
 tools keeps getting them. Nothing in the model gets tired. Your quota does.
-Your target app does. Your bill does.
 
 A bounded loop is a control. It is the first control in this course written in
 code rather than words, and it is one number in a config file.
 
-When the loop runs out, the `else` on the `for` runs, and `stopped` is set to
+When the loop runs out, the `else` on the `for` runs and `stopped` becomes
 `"step_limit"`. That is a normal ending, not a crash.
 :::
 
@@ -66,15 +65,14 @@ model answers in words, the loop sets `final_text`, records a trace event, and
 breaks. It never appends that message.
 
 So the list ends at six entries, and the agent's own final answer is not one of
-them. You find that answer in `final_text` and in the trace file, not in
-`messages`.
+them. It lives in `final_text` and in the trace file.
 
 **Cost.** Every entry is sent again on every pass, so a long tool result is
 paid for on every step after it. That is why the loop cuts results off at
 `max_tool_result_chars`.
 
-**Trust.** By step 3, that list holds text a stranger typed into a support
-ticket. It sits beside your system prompt, in the same format.
+**Trust.** By step 3, that list holds text a stranger typed into a ticket. It
+sits beside your system prompt, in the same format.
 :::
 
 ::: section | Tool dispatch: how a name becomes a function
@@ -102,16 +100,15 @@ Inside `call_tool`, three things happen before your function runs:
 3. Get the function out of the registry and call it.
 
 **That second check is the control.** A model can write any tool name it likes,
-including one you never offered it, because a tool call is just text the model
-produced. Nothing stops it asking. The allowlist check is what stops the call
-from running.
+including one you never offered, because a tool call is only text the model
+produced. Nothing stops it asking. The allowlist check stops the call running.
 
 Not offering a tool is still worth doing, and it is the cheapest measure in the
-whole system. It just is not the thing that enforces the rule.
+system. It just is not what enforces the rule.
 
-This is why Module 2 asks you to edit two files. You register your tool in
-`TOOLS` in `agent/tools.py`. You add its name to `agent.allowed_tools` in
-`config/lab.config.yaml`. Miss the second one and your tool never runs.
+So Module 2 asks you to edit two files. Register your tool in `TOOLS` in
+`agent/tools.py`, then add its name to `agent.allowed_tools` in
+`config/lab.config.yaml`. Miss the second and your tool never runs.
 :::
 
 ::: section | What happens when a tool errors
@@ -129,16 +126,14 @@ except tools.ToolError as exc:
 ```
 
 The failure becomes text, the text goes back to the model as the tool result,
-and the loop keeps running. The model can try something else or tell the user
-what went wrong.
+and the loop keeps running.
 
-Now compare that with a tool that fails quietly. Say your `get_customer`
-returns an empty string when the customer does not exist. No error is raised.
-The loop sees a successful call with an empty result, appends it, and moves on.
+Now compare a tool that fails quietly. Say your `get_customer` returns an empty
+string when the customer does not exist. No error is raised. The loop sees a
+successful call with an empty result, appends it, and moves on.
 
-The model now believes the lookup worked and the record is blank. It tells the
-user the account has no details. Nothing in the ledger says anything went
-wrong, because as far as the ledger knows, nothing did.
+The model now believes the record is blank, and tells the user so. Nothing in
+the ledger says anything went wrong, because as far as it knows, nothing did.
 
 **A tool that returns an empty string on failure is worse than a tool that is
 missing.** A missing tool is obvious. A silent one produces confident wrong
@@ -148,7 +143,7 @@ That is why Module 2 grades your error path as heavily as your success path.
 :::
 
 ::: section | The activity: trace the loop on paper
-Do this before you write any code this week. It takes about 30 minutes.
+Do this before you write code this week. It takes about 30 minutes.
 
 1. Get a sheet of paper. Draw a column down the left and label it `messages`.
 2. Write the two starting entries: system, then user. Use the request
@@ -173,21 +168,19 @@ python -m agent.cli "summarize ticket T-503"
 8. Compare your paper to what printed and to `runs/ledger.jsonl`.
 
 Where the two disagree, your paper is probably wrong. Working out why is the
-point of the exercise. Bring one disagreement to the Q and A board if you
-cannot explain it.
+point. Bring one disagreement to the Q and A board if you cannot explain it.
 :::
 
 ::: callout warning | The tool you add this week has no authorization check
 `get_customer` asks the target app for a customer record. It never asks whether
-the person running the agent is allowed to see that customer. There is no such
-check in the tool, none in the loop, and none in the target app either.
+the person running the agent may see that customer. There is no such check in
+the tool, none in the loop, and none in the target app.
 
 **Your own tool will not have one either.** The assignment does not ask for
 one, and you should not add one.
 
-That is deliberate. In Week 6 you point a test harness at your own agent and
-find this yourself, in code you wrote. Finding it in your own work teaches more
-than being told about it now.
+In Week 6 you point a harness at your own agent and find this yourself, in code
+you wrote. That teaches more than being told about it now.
 
 Write the tool. Leave the gap. Week 6 is where you close it.
 :::
@@ -208,21 +201,18 @@ Week 6 gives you the full list of missing controls and a name for each one.
 :::
 
 ::: reading | Reading: the chat completions response shape
-**What it is.** The vendor reference for the request and response format your
-agent uses. It is written for working engineers, so it is dense. You are not
-expected to read all of it.
+**What it is.** The vendor reference for the format your agent uses. It is
+written for working engineers, so it is dense.
 
-**What to read.** The request section, and specifically the message with the
-role `tool`. That is the message your loop builds after a tool runs. About 20
-minutes.
+**What to read.** The request section, specifically the message with the role
+`tool`. That is what your loop builds after a tool runs. About 20 minutes.
 
-**What to look for.** Week 2 showed you the reply that asks for a tool. This
-week you look at the other direction: the message that carries a result back.
-Find which fields that message is required to have.
+**What to look for.** Week 2 showed you the reply that asks for a tool. Now
+look at the other direction: the message carrying a result back. Find which
+fields it must have.
 
-**One warning that will save you an evening.** Do not read the newer function
-calling guide instead of this reference. It documents a different interface
-than your labs use, and the shapes will not match.
+**One warning.** Do not read the newer function calling guide instead. It
+documents a different interface than your labs use.
 
 **One question to answer while you read**, on the quiz later: a tool result
 message carries a field tying it to the request that asked for it. Name that
