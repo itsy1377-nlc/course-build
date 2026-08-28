@@ -1,7 +1,7 @@
 ::: intro
-Last week you made the agent do something it should not. This week you ask a
-harder question: why did nothing stop it? You also meet the harness, which
-turns "it seemed to work" into a number.
+Last week you made the agent do something it should not. This week you ask why
+nothing stopped it, and you meet the harness that turns "it seemed to work"
+into a number.
 :::
 
 ::: objectives
@@ -51,8 +51,8 @@ That is a little over 6 hours of assigned work in total.
 If programming is new to you, the coding parts commonly take two to three
 times as long. That wider range is normal, not a sign of falling behind.
 
-Much of Module 3 is waiting. The harness pauses between trials so a free
-endpoint does not cut you off. Start it early.
+Much of Module 3 is waiting. The harness pauses between trials, so start it
+early.
 :::
 
 ::: next

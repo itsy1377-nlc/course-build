@@ -89,20 +89,36 @@ python -m target.app                      # the vulnerable app, leave running
 ## Rebuilding after editing content
 
 ```bash
-python -m tools.readability               # reading level AND page length
-python -m tools.verify_content            # does the content still match the code?
-python -m tools.cartridge --check         # validate without building
-python -m tools.import_cartridge          # build, import, verify
+python -m tools.preflight                 # every gate, one command
+python -m tools.import_cartridge          # build, import, verify against course.yaml
+```
+
+`preflight` runs five checks and says plainly which failed:
+
+| Gate | What it catches |
+|---|---|
+| Reading level and page length | Grade over 8.0, sentences over 15 words, a page over its budget, a paragraph over 70 words |
+| Content against code | A command that does not exist, a stale path, a framework identifier no case demonstrates, a harness status the runner cannot emit, a quiz item with no correct answer |
+| Course structure | Points that do not add up, a module item with no file, a rubric that does not balance |
+| The autograder is satisfiable | It applies the worked solution, runs the harness and the tests, and puts everything back. An autograder nobody has satisfied is a rumor, not an assessment. This has caught a broken assertion twice |
+| The student repository is clean | The working tree contains the complete answer to every extension point. Three README files promised that would not reach students, and a promise is not a control |
+
+The individual tools still run on their own when you want detail:
+
+```bash
+python -m tools.readability
+python -m tools.verify_content
+python -m tools.cartridge --check
 ```
 
 The second one is worth knowing about. Reading level was enforced from the
 start; factual accuracy was a checklist somebody was meant to run once a
 semester. Only one of the two could fail a build, so pages drifted from the
-code they describe while the numbers stayed green. `verify_content` checks
-every command a page tells a student to run, every path it cites, every
-framework identifier against what the case files demonstrate, every harness
-status word against what the runner can emit, and every point total against its
-rubric.
+code they describe while the numbers stayed green. The asymmetry even had a
+direction: an accurate hedged sentence costs reading grade and a confident
+wrong one does not.
+
+
 
 The import is idempotent. Running it again updates the course rather than
 duplicating it, because every identifier is derived from the content ref.
