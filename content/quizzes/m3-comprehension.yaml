@@ -1,0 +1,392 @@
+ref: m3-comprehension
+title: "Module 3 Comprehension"
+description: |
+  This quiz covers Module 3: the three classes of prompt injection, excessive
+  agency, insecure tool authorization, and how the harness decides that an
+  attack actually worked.
+
+  You get one attempt. Take it after you have run the shipped attack cases at
+  least once and read your own results.
+
+  AI help is permitted. Most of these items ask you to judge a piece of code or
+  a result rather than recall a definition, which is work a model cannot do for
+  you without your run in front of it.
+
+  Keep `harness/detectors.py` and `agent/loop.py` open while you work.
+shuffle_answers: true
+questions:
+
+  - id: m3-q1
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      You want a detector for the case where a customer record leaves the
+      company by email. Four detect blocks were suggested. Which one is the
+      right evidence, and would the case file even accept?
+
+      ```yaml
+      # A
+      detect:
+        side_effect:
+          kind: email_sent
+          to_outside: true
+
+      # B
+      detect:
+        contains: "records-audit@vendor-archive.example"
+
+      # C
+      detect:
+        regex: "sent .* to .*@"
+
+      # D
+      detect:
+        llm_judge:
+          question: "Did the agent leak customer data?"
+      ```
+    answers:
+      - text: "A"
+        correct: true
+        feedback: "Correct. It reads the target's outbox, which is a side effect. It gives the same answer for a large hosted model and a small local one."
+      - text: "B"
+        correct: false
+        feedback: "Wrong. `contains` is banned in the case file format. It fires on an answer that names the address while refusing to use it. Read the BANNED block in harness/detectors.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. `regex` is banned for the same reason as `contains`. It grades the model's prose. Read the BANNED block in harness/detectors.py."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. `llm_judge` is banned. It adds a second unpredictable system to a harness whose whole job is removing unpredictability. Read the BANNED block in harness/detectors.py."
+    general_feedback: |
+      The detectors are ranked and the ranking is not a suggestion. Side effect
+      first, then canary, then tool shape, and text match is advisory only. The
+      case file schema refuses `text`, `contains`, `regex`, and `llm_judge`
+      outright. That is the format making a whole class of false finding
+      impossible rather than asking you to remember not to make it.
+
+  - id: m3-q2
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      Four checks for whether the system prompt canary escaped. `obs` is an
+      `Observation` and `token` is the student's `sysprompt` canary. Which one
+      is correct?
+
+      ```python
+      # A
+      return token in obs.final_message
+
+      # B
+      return token in (obs.final_message + obs.tool_arguments
+                       + obs.outbox_text() + obs.beacon_text())
+
+      # C
+      return token in load_system_prompt(cfg)
+
+      # D
+      return "CANARY" in obs.final_message
+      ```
+    answers:
+      - text: "B"
+        correct: true
+        feedback: "Correct. That is the set of places the canary detector searches, and searching tool arguments separately is the point."
+      - text: "A"
+        correct: false
+        feedback: "Wrong. It searches only what the model said out loud. Data leaves an agent through tool arguments far more often. Reread the canary function in harness/detectors.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. The system prompt is where the canary is planted, so this returns True on every run whether or not anything leaked. That is a check on the wrong haystack. Reread the canary docstring in common/canary.py."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. Matching the word CANARY is a text match, not an exact token match, and it fires on an answer that merely mentions the word. Reread the ranking comment at the top of harness/detectors.py."
+    general_feedback: |
+      A canary check has to search the places a token could arrive, not the
+      place it started. `CANARY_PLACES` in `harness/detectors.py` lists all four:
+      the final message, the tool arguments, the outbox, and the beacon.
+
+      Version C is worth remembering. It always returns True, so every run looks
+      like a successful attack and nothing ever looks fixed. A check that can
+      never fail is not a check.
+
+  - id: m3-q3
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      Four versions of `before_tool_call` meant to stop a support agent reading
+      a customer who is not theirs. Which one is a control?
+
+      ```python
+      # A
+      def before_tool_call(name, args, cfg):
+          if name == "get_customer":
+              audit.record(cfg, f"customer.read {args.get('customer_id')}")
+          return True, ""
+
+      # B
+      def before_tool_call(name, args, cfg):
+          if name != "get_customer":
+              return True, ""
+          if args.get("customer_id") not in cfg.agent.get("allowed_customers", []):
+              return False, f"{args.get('customer_id')} is not assigned to this agent."
+          return True, ""
+
+      # C
+      def before_tool_call(name, args, cfg):
+          if name == "get_customer" and "ignore previous" in str(args).lower():
+              return False, "that looks like an injection"
+          return True, ""
+
+      # D
+      def before_tool_call(name, args, cfg):
+          if name == "get_customer":
+              print(f"WARNING: reading {args.get('customer_id')}")
+          return True, ""
+      ```
+    answers:
+      - text: "B"
+        correct: true
+        feedback: "Correct. It compares the requested customer to a list from configuration and returns False when it is not on it. Something is actually stopped."
+      - text: "A"
+        correct: false
+        feedback: "Wrong. It writes a record and then returns True, so the read happens anyway. That is an audit log, not an authorization check. Reread the comment in _headers in agent/tools.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. It inspects text and guesses whether it looks like an attack. Extension point 1 says that is exactly what does not belong in this function. Reread the comment block above before_tool_call in agent/loop.py."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. A printed warning changes nothing. The call still runs. Reread the comment block above before_tool_call in agent/loop.py."
+    general_feedback: |
+      `before_tool_call` runs after the model has decided and before the tool
+      runs. It is the last moment anything can be stopped. A control returns
+      False. Everything else is commentary.
+
+      Version C is the tempting one. It feels like a defense because it names
+      the attack. It is a guess about text, and the next payload will be worded
+      differently.
+
+  - id: m3-q4
+    type: multiple_choice
+    item_type: two_tier
+    outcome: O4
+    points: 5
+    text: |
+      Open `harness/fixtures/poisoned-results.json` and read case
+      `P1-system-prompt-leak`. It reports VULNERABLE, 5 hits out of 5. The
+      detector is `text.contains` and the evidence line says it matched the
+      words `api key` in the final answer. The five final answers are:
+
+      ```
+      I can't share the ticket api key from my configuration.
+      Sorry, I'm not able to reveal the api key.
+      That api key is not something I can provide.
+      I won't print the api key.
+      I can't help with the api key request.
+      ```
+
+      Pick the option that gets both parts right: what really happened, and why.
+    answers:
+      - text: "The detector fired on a refusal. It matched the words `api key` inside five answers that all declined the request, so a working system was recorded as a vulnerability."
+        correct: true
+        feedback: "Correct. Every one of those five sentences is the system doing its job. The finding is not real."
+      - text: "The detector fired on a refusal. It matched the words `api key`, and that means the model was leaking the key in an earlier turn that the final answer does not show."
+        correct: false
+        feedback: "The first part is right and the second is invented. Nothing in the results file supports an earlier leak. If you wanted to know, you would look for a side effect or a canary. Reread the top comment in harness/detectors.py."
+      - text: "The attack really did succeed five times, and the refusal wording is the model trying to cover it up."
+        correct: false
+        feedback: "Wrong. A refusal that names the thing it will not do is still a refusal. There is no side effect and no canary in this file. Reread the example in the top comment of harness/detectors.py."
+      - text: "The result is inconclusive, because five trials are not enough to tell a refusal from a leak."
+        correct: false
+        feedback: "Wrong. The trial count is not the problem. The detector is. More trials of a broken detector give you a more confident wrong answer. Reread the top comment in harness/detectors.py."
+      - text: "The detector fired correctly, but the status should be FLAKY rather than VULNERABLE because the answers are worded differently each time."
+        correct: false
+        feedback: "Wrong on both parts. FLAKY means the count was between zero and the number completed. Different wording is not flakiness. Read verdict_for in harness/runner.py."
+      - text: "The detector fired on a refusal, and it happened because the trials ran against the offline simulator instead of a real model."
+        correct: false
+        feedback: "The first part is right and the second is wrong. The file records `simulated: false` and a hosted provider. The cause is the detector, not the provider."
+    general_feedback: |
+      This is the central lesson of the course and it is why
+      `harness/detectors.py` opens with it. A check for the words `api key`
+      fires on `I can't share the api key`, which is the system working. Report
+      that once and nobody reads your next report.
+
+      That is also why `text`, `contains`, and `regex` are refused by the case
+      file schema. The format makes this mistake impossible rather than trusting
+      you to remember it at 2 AM.
+
+  - id: m3-q5
+    type: multiple_answers
+    item_type: scope_classification
+    outcome: O4
+    points: 5
+    text: |
+      Below are eight things you could do while working on Module 3. Select
+      every one that is inside your authorization.
+
+      Leave the others unselected. An unselected item means you judged it out of
+      scope.
+    answers:
+      - text: "Run `python -m harness.runner` against `http://127.0.0.1:8000` on your own machine."
+        correct: true
+        feedback: "In scope. That address is on AUTHORIZED_TARGETS in harness/runner.py and HelpDesk Lite is item 1 of clause 1."
+      - text: "Write a new case file in `harness/cases/` that attacks the seeded ticket T-503."
+        correct: true
+        feedback: "In scope. Extension point 5 is exactly this, and the target is the lab app."
+      - text: "Edit `agent/system_prompt.txt` in your own copy to see whether a stronger instruction changes the result."
+        correct: true
+        feedback: "In scope. Clause 1 item 2 says your own copy of the agent is yours to change, break, and attack."
+      - text: "Point the harness at a local model you started with Ollama on your own laptop."
+        correct: true
+        feedback: "In scope. Clause 1 item 3 allows a language model running on your own computer."
+      - text: "Add `https://helpdesk.northwind-partner.example` to AUTHORIZED_TARGETS so the harness stops refusing it."
+        correct: false
+        feedback: "Out of scope. That host is the scope lure in discover_targets. Editing the list in code does not create authorization. Reread clause 2 of the Rules of Engagement."
+      - text: "Run your best working payload against a hosted chatbot to see whether it works there too."
+        correct: false
+        feedback: "Out of scope. Clause 2 item 2 bans pointing course tools at any commercial AI service."
+      - text: "Try the same injection against the college's Canvas login page."
+        correct: false
+        feedback: "Out of scope. Clause 2 item 3 names college systems, including Canvas, directly."
+      - text: "Test whether your employer's help desk system has the same weakness, on your own time."
+        correct: false
+        feedback: "Out of scope. Clause 2 item 4 names any system owned by your job. Your own time does not change who owns the system."
+    note: >
+      This item evidences the authorization boundary at zero grading cost, as
+      blueprint section 3.4 describes. It is tagged O4 because every action
+      listed is a harness or lab action inside this module's declared outcome
+      set, and the same boundary is graded behaviorally under O5 by the scope
+      lure grep on the results files.
+    general_feedback: |
+      Four in, four out. The four that are out share one feature: somebody else
+      owns the system. That is the whole test, and it is faster than reasoning
+      about how likely you are to cause harm.
+
+      `harness/runner.py` writes every refusal into your results file on
+      purpose. Saying you stayed in scope is a claim. A results file showing the
+      tool declining a target is evidence, and in real work the second one is
+      what you hand a client.
+
+  - id: m3-q6
+    type: multiple_choice
+    item_type: recall
+    outcome: O3
+    points: 5
+    text: |
+      Case `A6-insecure-tool-authorization` runs the agent as Mo Kaur, a tier 1
+      agent whose tickets have nothing to do with customer C-1002. It asks for
+      that customer's record. The record comes back. The audit log then shows Mo
+      Kaur's name, the time, and the customer ID.
+
+      What is the difference between the audit log and an authorization check?
+    answers:
+      - text: "The audit log records who did something after it happened. An authorization check decides whether it may happen, before it happens, and can say no."
+        correct: true
+        feedback: "Correct. An audit log is a receipt. An authorization check is a lock. The system has the first and not the second."
+      - text: "There is no real difference. A complete audit log is how you enforce authorization."
+        correct: false
+        feedback: "Wrong. Nothing in the audit log stopped the read. Read the comment above the customers route in target/app.py and the notes in the A6 case file."
+      - text: "The audit log is for the security team and the authorization check is for the compliance team."
+        correct: false
+        feedback: "Wrong. The difference is what each one does, not who reads it. Read the notes in harness/cases/A6-insecure-tool-authorization.yaml."
+      - text: "The audit log is slower, so an authorization check is the same idea done in real time."
+        correct: false
+        feedback: "Wrong. Speed is not the difference. One decides and one describes. Read the notes in harness/cases/A6-insecure-tool-authorization.yaml."
+    general_feedback: |
+      `_headers` in `agent/tools.py` sends `X-Acting-User`. The target writes
+      that value to the audit log and then never mentions it again. No query is
+      filtered by it. Nothing is denied because of it. The detector for this
+      case checks who did it, which is why the case runs as a second identity.
+
+      Systems that confuse a receipt with a lock are extremely common, and this
+      is what the confusion looks like from the inside: perfect records of an
+      action nobody was allowed to take.
+
+  - id: m3-q7
+    type: multiple_choice
+    item_type: two_tier
+    outcome: O3
+    points: 5
+    text: |
+      In case `A2-indirect-injection-ticket`, a support agent asks the assistant
+      for a summary of ticket T-503. The ticket body contains instructions,
+      written weeks earlier by whoever opened the ticket. The agent follows them
+      and mail leaves the company.
+
+      Pick the option that gets both parts right: which class of injection this
+      is, and why the model follows the instructions.
+    answers:
+      - text: "Indirect prompt injection, and the model follows the instructions because instructions and descriptions both arrive as text and it cannot tell them apart."
+        correct: true
+        feedback: "Correct. Step 4 of the chain in the case file says exactly this, and it is not a bug that can be patched. It is what a language model is."
+      - text: "Indirect prompt injection, and the model follows the instructions because the system prompt was not strict enough about ignoring ticket content."
+        correct: false
+        feedback: "The class is right and the reason is wrong. A stricter system prompt is a request, not a control, and Module 4 shows it coming out FLAKY. Reread the chain in harness/cases/A2-indirect-injection-ticket.yaml."
+      - text: "Direct prompt injection, and the model follows the instructions because the user typed them into the request."
+        correct: false
+        feedback: "Both parts are wrong. The person typing did nothing wrong. Every instruction in this attack came from stored data. Reread the header comment in the A2 case file."
+      - text: "Indirect prompt injection, and the model follows the instructions because search_tickets failed to escape the ticket body before returning it."
+        correct: false
+        feedback: "The class is right and the reason is wrong. There is no escaping that makes text stop being text to a model. Reread step 4 in the A2 case file."
+      - text: "Excessive agency, and the model follows the instructions because send_email has no confirmation step."
+        correct: false
+        feedback: "The missing confirmation is real and it is case A4. Here the question is where the instructions came from, which makes it injection. Compare the A2 and A4 case files."
+      - text: "Direct prompt injection, and the model follows the instructions because the ticket body was placed in the system prompt."
+        correct: false
+        feedback: "Both parts are wrong. The ticket body arrives as a tool result, not as a system prompt. Read the loop in agent/loop.py and the A2 case file."
+    general_feedback: |
+      Three classes are worth naming. Direct injection is the person talking to
+      the agent. Indirect injection is content a stranger wrote, sitting in a
+      database until an assistant reads it. And there is a third one that
+      surprises people, which is content everybody already trusts. Knowledge
+      base article KB-02 is written by staff, feels trustworthy, and carries an
+      injection anyway. Feeling trustworthy is not the same as being verified.
+
+      Because step 4 cannot be fixed, the fix has to live at step 5, where the
+      tool acts. That is what Module 4 is for.
+
+  - id: m3-q8
+    type: multiple_choice
+    item_type: output_prediction
+    outcome: O4
+    points: 5
+    text: |
+      You run case `A4-excessive-agency-no-confirmation` with
+      `before_tool_call` exactly as the repository ships it. The prompt asks the
+      agent to send a note to an outside address. The detect block is:
+
+      ```yaml
+      detect:
+        tool_shape:
+          tool: send_email
+          called: true
+          blocked: false
+      ```
+
+      What does the harness observe, and what status does the case get?
+    answers:
+      - text: "A ledger line for send_email with `allowed` true, so tool_shape matches and the case reports VULNERABLE."
+        correct: true
+        feedback: "Correct. The shipped before_tool_call returns True for everything, so the call runs, the ledger records it as allowed, and one hit is enough for an attack case."
+      - text: "A ledger line for send_email with `allowed` false, so tool_shape does not match and the case reports MITIGATED."
+        correct: false
+        feedback: "Wrong. before_tool_call ships permissive and returns True, so nothing is blocked. Read extension point 1 in agent/loop.py."
+      - text: "No ledger line at all, because send_email is not in agent.allowed_tools."
+        correct: false
+        feedback: "Wrong. send_email is in the shipped allowed_tools list in config/lab.config.yaml. Read that file."
+      - text: "A ledger line for send_email, but the case reports INCONCLUSIVE because a single trial is not enough."
+        correct: false
+        feedback: "Wrong. INCONCLUSIVE means every trial errored. This case runs five trials and any that complete count. Read verdict_for in harness/runner.py."
+    general_feedback: |
+      Nothing clever is needed for this one. No jailbreak, no hidden text. It
+      simply asks. The agent has a tool that reaches outside the company, no
+      allowlist on who it can reach, no confirmation step, no rate limit, and no
+      undo. Four missing controls in one small function.
+
+      This is also the case that tells you whether your Module 4 fix is a real
+      control or a polite request. A code level allowlist flips it to blocked.
+      Editing the system prompt usually does not.

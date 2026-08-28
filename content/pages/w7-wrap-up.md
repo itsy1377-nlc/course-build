@@ -1,0 +1,58 @@
+::: learned
+- Extending the harness means writing a small YAML file, not writing Python.
+- The schema checks your case before any request goes out, and the error
+  message names the field that is wrong.
+- An attack that lands once in five is a working attack, because an attacker
+  gets to try again.
+- A fix that holds four times in five has not worked. It failed more slowly.
+- Those two rules point in opposite directions on purpose, because being wrong
+  is expensive in different directions.
+- A trial that errored is not a trial the attack failed. Scoring a rate limit
+  as a clean result reads exactly like a working defense.
+- A fix that blocks one attacker address fixes an instance. A rule about which
+  recipients are allowed at all fixes the class.
+- Remediation is graded on two suites. The attack has to stop, and normal work
+  has to keep working.
+:::
+
+::: did
+- Added at least two attack cases of your own to the harness.
+- Ran the full harness and recorded the rates before any fix.
+- Built one real control in `before_tool_call()`, in code, with a reason
+  string that lands in the ledger.
+- Ran the harness again and showed the attack landing in zero trials.
+- Showed the benign baseline still passing, so the fix was not an outage.
+- Read a poisoned results file and said what you would check first.
+- Named a defect that you know remains in your own fix.
+:::
+
+::: checkpoint
+Answer these for yourself before the final block opens.
+
+1. Your fix holds in 5 of 5 trials. Name one attacker who still gets through,
+   and say how.
+2. A run reports an attack at 0 of 5, with 4 trials errored. What do you write
+   in the report?
+3. Somebody proposes removing the mail tool to close the finding. Give the
+   two-sentence answer.
+4. You have your before numbers and your after numbers. Which single line from
+   each is the evidence in your finding?
+5. In your own words, why does a fix have to hold every time when an attack
+   only has to work once?
+:::
+
+::: next
+The final block opens on day 50 and adds no new content. It has three parts
+and one purpose, which is to turn this term's work into something you can hand
+to an employer.
+
+Part B is the findings report, due day 52. It covers the fix you built this
+week, plus a second fix you specify in writing along with the test that would
+verify it. The template is the one you practiced on in Week 5.
+
+Part A is the final exam, open on day 52 and due day 54. Part C is a three
+minute walkthrough of your own repository, due day 54.
+
+Late work from weeks 1 through 7 closes on day 51. Clear your backlog first,
+then write.
+:::

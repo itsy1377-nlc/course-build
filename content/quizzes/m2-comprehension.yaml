@@ -1,0 +1,400 @@
+ref: m2-comprehension
+title: "Module 2 Comprehension"
+description: |
+  This quiz covers what you built in Module 2: a tool schema, the tool-calling
+  loop, how a tool call is dispatched, and what happens when a tool fails.
+
+  You get one attempt. Take it after your Module 2 code passes its tests.
+
+  AI help is permitted and it is unprofitable here on purpose. One item asks for
+  a value out of your own `runs/ledger.jsonl`, and one depends on your own
+  settings in `config/lab.config.yaml`. A model cannot read either file.
+
+  Keep `agent/tools.py` and `agent/loop.py` open while you work.
+shuffle_answers: true
+questions:
+
+  - id: m2-q1
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      Extension point 2 says `get_customer` must ask the target for the record,
+      return a readable summary, and raise `ToolError` when there is no such
+      customer. Four versions came back from a coding assistant. Which one meets
+      all three?
+
+      ```python
+      # A
+      def get_customer(cfg, customer_id=""):
+          try:
+              row = _get(cfg, f"/api/customers/{customer_id}")
+          except ToolError:
+              return ""
+          return f"{row['id']} {row['name']} <{row['email']}> note={row['note']}"
+
+      # B
+      def get_customer(cfg, customer_id=""):
+          if not customer_id:
+              raise ToolError("get_customer needs a customer_id, for example C-1002.")
+          row = _get(cfg, f"/api/customers/{customer_id}")
+          return f"{row['id']} {row['name']} <{row['email']}> note={row['note']}"
+
+      # C
+      def get_customer(cfg, customer_id=""):
+          row = _get(cfg, f"/api/customers/{customer_id}")
+          return row
+
+      # D
+      def get_customer(cfg, customer_id=""):
+          try:
+              row = _get(cfg, f"/api/customers/{customer_id}")
+              return f"{row['id']} {row['name']}"
+          except Exception:
+              pass
+      ```
+    answers:
+      - text: "B"
+        correct: true
+        feedback: "Correct. _get already raises ToolError on a 404, and B adds a clear error for the missing argument case. The summary is a readable string."
+      - text: "A"
+        correct: false
+        feedback: "Wrong. It catches the 404 and returns an empty string, so the agent is told nothing went wrong. Extension point 2 says do not return an empty string on failure. Reread the comment block above get_customer in agent/tools.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. It returns the raw dictionary instead of a readable summary. call_tool will json.dumps it, so it works, but it fails requirement 2. Reread extension point 2 in agent/tools.py."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. `except Exception: pass` swallows every failure and returns None. That is the exact pattern extension point 2 tells you to avoid. Reread the comment block above get_customer."
+    general_feedback: |
+      Versions A and D fail the same way. Both turn a failure into silence. The
+      comment above `get_customer` says it in one line: a tool that fails
+      silently is worse than a tool that is missing. `_get` in `agent/tools.py`
+      already raises `ToolError` for a 404 and for anything at 400 or above, so
+      the correct version mostly gets out of its way.
+
+  - id: m2-q2
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      Someone rewrote the inner part of the loop in `agent/loop.py` like this.
+      The next request to the model comes back as an error saying the messages
+      are malformed.
+
+      ```python
+      1  tool_calls = message.get("tool_calls") or []
+      2  if not tool_calls:
+      3      final_text = message.get("content") or ""
+      4      break
+      5
+      6  for call in tool_calls:
+      7      args = json.loads(call["function"]["arguments"])
+      8      result = tools.call_tool(cfg, call["function"]["name"], args)
+      9      messages.append({"role": "tool", "tool_call_id": call["id"],
+      10                      "name": call["function"]["name"], "content": result})
+      ```
+
+      Which line is missing, and where does it belong?
+    answers:
+      - text: "The assistant's own tool-call message has to be appended to `messages` before line 6, or the tool results have nothing to attach to."
+        correct: true
+        feedback: "Correct. The shipped loop does `messages.append(message)` right after the tool_calls check, with a comment saying the request is malformed without it."
+      - text: "A `messages.append({\"role\": \"user\", ...})` line before line 6, so the model has something to answer."
+        correct: false
+        feedback: "Wrong. The user message was added before the loop started. What is missing is the assistant message. Reread the comment above messages.append(message) in agent/loop.py."
+      - text: "A `messages.append({\"role\": \"system\", ...})` line before line 6, to remind the model of its instructions."
+        correct: false
+        feedback: "Wrong. The system prompt is the first message and stays there. Reread how messages is built at the top of run() in agent/loop.py."
+      - text: "A `break` after line 9, so the loop only handles one tool call per step."
+        correct: false
+        feedback: "Wrong. A model can ask for more than one tool in a step and all of them need results. Reread the for loop in agent/loop.py."
+    general_feedback: |
+      The order is not decoration. A tool result message points back at a tool
+      call by its id, so the message holding that call has to be in the history
+      first. Get the order wrong and the endpoint rejects the whole request,
+      usually with an error that does not mention ordering at all.
+
+  - id: m2-q3
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O2
+    points: 5
+    text: |
+      You are adding a tool of your own at extension point 4. The function is:
+
+      ```python
+      def close_ticket(cfg, ticket_id="", reason=""):
+          ...
+      ```
+
+      The autograder calls your tool with arguments generated from your own
+      schema. Which schema will not break?
+
+      ```yaml
+      # A
+      required: ["ticket_id"]
+      properties:
+        ticket_id: {type: string, description: "The ticket ID, for example T-503."}
+        reason:    {type: string, description: "Why the ticket is being closed."}
+
+      # B
+      required: ["ticket_id", "reason", "closed_by"]
+      properties:
+        ticket_id: {type: string, description: "The ticket ID."}
+        reason:    {type: string, description: "Why the ticket is being closed."}
+        closed_by: {type: string, description: "Who closed it."}
+
+      # C
+      required: ["ticket_id"]
+      properties:
+        ticket_id: {type: integer, description: "The ticket number."}
+        reason:    {type: string, description: "Why the ticket is being closed."}
+
+      # D
+      required: []
+      properties: {}
+      ```
+    answers:
+      - text: "A"
+        correct: true
+        feedback: "Correct. Every property matches a real parameter, the types match, and the only required argument is the one the function cannot work without."
+      - text: "B"
+        correct: false
+        feedback: "Wrong. `closed_by` is not a parameter of the function. call_tool passes arguments with **args, so a TypeError is raised and turned into a ToolError. Reread call_tool at the bottom of agent/tools.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. Ticket IDs in this lab look like T-503, which is not an integer. A schema that lies about a type sends the model down the wrong path. Reread extension point 4 in agent/tools.py."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. An empty schema tells the model nothing, so it cannot supply ticket_id and the tool can never do its job. Reread extension point 4 in agent/tools.py."
+    general_feedback: |
+      The schema is the only description of your tool the model ever sees. That
+      makes it an interface, not a comment. Extension point 4 says the schema is
+      the graded part, not the Python, and this is why. A schema that names an
+      argument the function does not accept, or gives the wrong type, produces a
+      tool that fails every time the model tries to use it correctly.
+
+  - id: m2-q4
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      An assistant suggested wrapping the tool call in `agent/loop.py` like
+      this, saying it makes the agent more robust:
+
+      ```python
+      try:
+          result = tools.call_tool(cfg, name, args)
+          error = None
+      except Exception:
+          pass
+      ```
+
+      What actually happens the first time a tool fails?
+    answers:
+      - text: "`result` is never assigned, so the next line raises UnboundLocalError and the whole run dies, which is the opposite of robust."
+        correct: true
+        feedback: "Correct. Nothing sets result on the failure path, and the trace and message append that follow both use it."
+      - text: "The model is told the tool failed and picks a different tool."
+        correct: false
+        feedback: "Wrong. Nothing is appended to messages on this path, so the model is told nothing at all. Compare it to the shipped version in agent/loop.py, which sets result to a message the model can read."
+      - text: "The loop moves to the next step and the run finishes normally with a shorter answer."
+        correct: false
+        feedback: "Wrong. Execution continues to the very next line, which uses result. Read the four lines after the try block in agent/loop.py."
+      - text: "The tool result is recorded in the ledger as an error and the agent continues."
+        correct: false
+        feedback: "Wrong. The trace.tool_call line is after the try block and never runs. Reread agent/loop.py and agent/trace.py."
+    general_feedback: |
+      The shipped version catches `tools.ToolError` specifically, sets `result`
+      to a sentence the model can read, and keeps going. A tool failing is
+      normal. Telling the model and continuing is the design. `except Exception:
+      pass` is broader and quieter, and the quiet is the problem.
+
+  - id: m2-q5
+    type: multiple_choice
+    item_type: two_tier
+    outcome: O1
+    points: 5
+    text: |
+      The model asks for `send_email` with these arguments:
+
+      ```json
+      {"to": "dana@northwind.example", "body": "hello", "priority": "high"}
+      ```
+
+      `send_email` has no `priority` parameter.
+
+      Pick the option that gets both parts right: what happens, and why the
+      agent is built that way.
+    answers:
+      - text: "`call_tool` catches the TypeError and raises ToolError, the loop turns it into a tool message the model can read, and the run continues. It is built that way because a model inventing an argument is normal and the agent should recover instead of crashing."
+        correct: true
+        feedback: "Correct on both parts. The comment above that except block in agent/tools.py says exactly this."
+      - text: "`call_tool` catches the TypeError and raises ToolError, the loop turns it into a tool message the model can read, and the run continues. It is built that way so the harness can count the trial as ERRORED."
+        correct: false
+        feedback: "The first part is right and the second is wrong. ERRORED is only for transport failures such as a rate limit. A tool argument mistake is a completed trial. Reread the LLMTransportError docstring in agent/llm.py."
+      - text: "The extra argument is dropped silently and the email is sent with the two arguments that match. It is built that way to be forgiving of small model mistakes."
+        correct: false
+        feedback: "Both parts are wrong. call_tool uses fn(cfg, **args), which raises TypeError on an unexpected keyword. Read call_tool at the bottom of agent/tools.py."
+      - text: "The whole run stops with an unhandled TypeError. It is built that way so you notice the schema is wrong."
+        correct: false
+        feedback: "Both parts are wrong. The TypeError is caught in call_tool. Read the try and except in call_tool in agent/tools.py."
+      - text: "`before_tool_call` blocks it because the arguments do not match the schema. It is built that way so bad arguments never reach a tool."
+        correct: false
+        feedback: "Wrong. before_tool_call ships permissive and returns True for everything. Checking arguments against the schema is something you could add in Module 4, but it is not there now. Read extension point 1 in agent/loop.py."
+      - text: "`call_tool` catches the TypeError and raises ToolError, the loop turns it into a tool message the model can read, and the run continues. It is built that way so the ledger records the call as blocked."
+        correct: false
+        feedback: "The first part is right and the second is wrong. `allowed` is False only when before_tool_call blocked the call. A tool that ran and failed is recorded with allowed True and an error string. Read trace.tool_call in agent/trace.py."
+    general_feedback: |
+      Two different failures produce two different ledger rows, and telling them
+      apart matters from Week 6 on. A blocked call has `allowed` set to false
+      and a `reason`. A call that ran and failed has `allowed` set to true and an
+      `error`. Your remediation evidence in Module 4 is the first kind.
+
+  - id: m2-q6
+    type: short_answer
+    item_type: indexical
+    outcome: O2
+    points: 5
+    text: |
+      Open your own `runs/ledger.jsonl`. Go to line 3.
+
+      Enter the value of the `tool` field on that line, exactly as it appears,
+      without quotation marks.
+
+      If your ledger has fewer than three lines, run the agent again with a
+      request that needs at least two tool calls, then look.
+    accepted: ["search_tickets", "send_email", "get_customer", "search_kb"]
+    general_feedback: |
+      `runs/ledger.jsonl` holds one JSON line per tool call, appended across
+      every run. Each line carries `run_id`, `ts`, `step`, `tool`, `args`,
+      `allowed`, `reason`, `error`, and `result_chars`.
+
+      Two files come out of a run and they answer different questions. The trace
+      records what was said. The ledger records what was done. The harness reads
+      the ledger, because what the system did is the same every time and what
+      the model said is not.
+
+  - id: m2-q7
+    type: multiple_choice
+    item_type: recall
+    outcome: O2
+    points: 5
+    text: |
+      Extension point 2 warns you not to let `get_customer` return an empty
+      string when the lookup fails.
+
+      Why is a tool that returns an empty string on failure worse than a tool
+      that is not registered at all?
+    answers:
+      - text: "A missing tool is never offered, so the model works around it. A tool that returns an empty string looks like it worked and returned nothing, so the model treats the silence as an answer and reports it as fact."
+        correct: true
+        feedback: "Correct. The failure becomes indistinguishable from a real result, and it flows on into the model's answer as if it were true."
+      - text: "A missing tool raises a clear error, but an empty string uses up one of the six steps in the loop."
+        correct: false
+        feedback: "Wrong in the part that matters. Both use a step. The real difference is that one failure is visible and the other is not. Reread the comment above get_customer in agent/tools.py."
+      - text: "An empty string is not valid JSON, so the next request to the model is malformed."
+        correct: false
+        feedback: "Wrong. An empty string is a fine tool result as far as the request is concerned. That is exactly why it is dangerous. Reread the comment above get_customer."
+      - text: "A missing tool is caught by schemas_for, but an empty string is written to the ledger and inflates result_chars."
+        correct: false
+        feedback: "Wrong. An empty result makes result_chars zero, not larger, and that is not the reason anyway. Reread the comment above get_customer and read trace.tool_call in agent/trace.py."
+    general_feedback: |
+      This idea gets larger every week. A silent failure is worse than a loud
+      one because nothing downstream can tell it happened. In Module 1 that was
+      `except Exception: pass`. Here it is an empty return. In Week 7 it is a
+      harness trial scored as no hit when it actually errored. Same shape every
+      time: the system reports success and nobody finds out.
+
+  - id: m2-q8
+    type: multiple_choice
+    item_type: recall
+    outcome: O2
+    points: 5
+    text: |
+      `schemas_for` in `agent/tools.py` sends the model only the tools listed in
+      `agent.allowed_tools` in `config/lab.config.yaml`.
+
+      Why does the file call this the cheapest control in the whole system?
+    answers:
+      - text: "A tool the model is never told about is a tool the model cannot call, and it costs one line of configuration."
+        correct: true
+        feedback: "Correct. That is the sentence in the schemas_for docstring. Reducing what a system can do at all is cheaper than checking every request."
+      - text: "It saves tokens on every request, which lowers the cost of a run."
+        correct: false
+        feedback: "Wrong. Fewer schemas do mean fewer tokens, but that is a side benefit and not what the docstring means by cheap. Reread the schemas_for docstring in agent/tools.py."
+      - text: "It stops the model from hallucinating tool names."
+        correct: false
+        feedback: "Wrong. A model can still ask for a name that does not exist, and call_tool raises ToolError when it does. Reread schemas_for and call_tool in agent/tools.py."
+      - text: "It makes the model faster because it has fewer choices to consider."
+        correct: false
+        feedback: "Wrong. Speed is not the point. The point is that a capability that is not offered cannot be misused. Reread the schemas_for docstring."
+    general_feedback: |
+      `call_tool` checks `allowed_tools` a second time before running anything,
+      so a tool left out of the list is refused even if the model somehow names
+      it. Two checks, one list. The habit is worth keeping: before you write a
+      control that inspects a request, ask whether the capability needed to
+      exist in the first place.
+
+  - id: m2-q9
+    type: numerical
+    item_type: output_prediction
+    outcome: O1
+    points: 5
+    text: |
+      Open your own `config/lab.config.yaml` and read `agent.max_steps`.
+
+      Now suppose the model asks for exactly one tool call on every single step
+      and never gives a final answer in words. Nothing errors.
+
+      How many times does `run()` in `agent/loop.py` call `llm.chat`?
+
+      Enter a whole number. If you have not changed `max_steps`, use the value
+      the repository ships.
+    value: 6
+    tolerance: 0
+    note: >
+      Anchored to the student's own max_steps, which ships as 6. The loop is
+      `for step in range(1, max_steps + 1)` and llm.chat is the first statement
+      in the body, so the count equals max_steps exactly. A student who changed
+      the value enters their own number and the instructor regrades those few
+      against the submitted config.
+    general_feedback: |
+      The step limit matters more than it looks. Without it, a model that keeps
+      asking for tools runs until your quota is gone. When the limit is reached,
+      the `else` on the `for` loop runs and the agent answers that it stopped
+      after that many steps without finishing.
+
+      That is also a real symptom to recognize. An agent that always stops at
+      the step limit is usually stuck in a loop, not working hard.
+
+  - id: m2-q10
+    type: multiple_choice
+    item_type: recall
+    outcome: O2
+    points: 5
+    text: |
+      A run writes two files. Which statement about them is right?
+    answers:
+      - text: "`runs/traces/<run_id>.jsonl` records what was said and `runs/ledger.jsonl` records what was done, and the harness reads the ledger."
+        correct: true
+        feedback: "Correct. That is the split described at the top of agent/trace.py, and the reason is that the same model says things differently every time."
+      - text: "`runs/traces/<run_id>.jsonl` records what was done and `runs/ledger.jsonl` records what was said, and the harness reads the trace."
+        correct: false
+        feedback: "Wrong, both halves are swapped. Read the first paragraph of agent/trace.py."
+      - text: "Both files hold the same records, and the ledger is only a backup in case a run is killed."
+        correct: false
+        feedback: "Wrong. The trace holds every event; the ledger holds one line per tool call and is appended across runs. Read agent/trace.py."
+      - text: "The ledger is written only when a tool call is blocked, so an empty ledger means nothing went wrong."
+        correct: false
+        feedback: "Wrong. Every tool call gets a ledger line, allowed or blocked. A blocked call is recorded because that is the evidence a remediation needs. Read trace.tool_call in agent/trace.py."
+    general_feedback: |
+      Grading on what the model said is unreliable, because the same model says
+      it differently every time. Grading on what the system did gives the same
+      answer every time. That one sentence explains the design of the ledger,
+      the design of the detectors in Week 6, and the design of your findings
+      report in the final block.

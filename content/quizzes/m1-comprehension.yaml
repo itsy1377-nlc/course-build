@@ -1,0 +1,440 @@
+ref: m1-comprehension
+title: "Module 1 Comprehension"
+description: |
+  This quiz covers what you did in Module 1: the chat completions request and
+  response shape, retrying when the endpoint pushes back, and turning a model's
+  reply into a dictionary.
+
+  You get one attempt. Take it after your Module 1 code passes its tests, not
+  before.
+
+  AI help is permitted and it is declared unprofitable here on purpose. Several
+  items depend on your own settings in `config/lab.config.yaml` and on files
+  your own runs wrote into `runs/`. A model cannot read those.
+
+  Open `agent/llm.py` while you work. That is allowed and expected.
+shuffle_answers: true
+questions:
+
+  - id: m1-q1
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      A coding assistant offered you six versions of `should_retry`. Exactly one
+      of them follows the rule in the docstring in `agent/llm.py`. Which one?
+
+      ```python
+      # A
+      def should_retry(status_code: int) -> bool:
+          return status_code >= 400
+
+      # B
+      def should_retry(status_code: int) -> bool:
+          return status_code in {429, 500, 502, 503, 504}
+
+      # C
+      def should_retry(status_code: int) -> bool:
+          return status_code != 200
+
+      # D
+      def should_retry(status_code: int) -> bool:
+          return status_code in {400, 401, 403, 404, 429}
+
+      # E
+      def should_retry(status_code: int) -> bool:
+          return 400 <= status_code < 500
+
+      # F
+      def should_retry(status_code: int) -> bool:
+          return status_code >= 500
+      ```
+    answers:
+      - text: "B"
+        correct: true
+        feedback: "Correct. It retries the rate limit and the five server errors, and nothing else."
+      - text: "A"
+        correct: false
+        feedback: "Wrong. This retries 400, 401, 403, and 404. Sending a malformed or unauthorized request again changes nothing and burns your quota. Reread the docstring for should_retry in agent/llm.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. This retries every status except 200, which includes 401 and 404. Reread the Do NOT retry list in the should_retry docstring."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. This retries the exact codes the docstring says never to retry, and skips the 5xx codes it says to retry. Reread the should_retry docstring."
+      - text: "E"
+        correct: false
+        feedback: "Wrong. This retries only client errors and never retries a 500 or a 503, which are the ones that may work next time. Reread the should_retry docstring."
+      - text: "F"
+        correct: false
+        feedback: "Wrong. This misses 429, which is the one a free tier gives you constantly and the one waiting actually fixes. Reread the should_retry docstring."
+    general_feedback: |
+      A retry loop that retries on 4xx is one of the defects this course keeps
+      coming back to. It looks right, it passes a quick read, and it quietly
+      spends your whole daily quota on a request that can never succeed. The
+      test is simple. Ask whether waiting could change the answer. For 429 and
+      the 5xx codes it can. For 400, 401, 403, and 404 it cannot.
+
+  - id: m1-q2
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      Now the same question for `backoff_seconds`. The docstring says each wait
+      should be longer than the last, and that it has to be capped. `attempt`
+      counts from 1. Which version does both?
+
+      ```python
+      # A
+      def backoff_seconds(attempt: int) -> float:
+          return 1.0
+
+      # B
+      def backoff_seconds(attempt: int) -> float:
+          return min(2.0 ** max(0, attempt - 1), 30.0)
+
+      # C
+      def backoff_seconds(attempt: int) -> float:
+          return 2.0 ** attempt
+
+      # D
+      def backoff_seconds(attempt: int) -> float:
+          return 0.5 / attempt
+
+      # E
+      def backoff_seconds(attempt: int) -> float:
+          return min(1.0, attempt * 2.0)
+
+      # F
+      def backoff_seconds(attempt: int) -> float:
+          import random
+          return random.random()
+      ```
+    answers:
+      - text: "B"
+        correct: true
+        feedback: "Correct. It waits 1, then 2, then 4 seconds, and never more than 30."
+      - text: "A"
+        correct: false
+        feedback: "Wrong. This waits the same one second every time. The docstring says waiting the same short time over and over does not help a rate limit clear. Reread the backoff_seconds docstring in agent/llm.py."
+      - text: "C"
+        correct: false
+        feedback: "Wrong. It does grow, but nothing caps it, so a long run can hang for minutes with no output. Reread the last line of the backoff_seconds docstring."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. This waits less each time, which is backwards. Reread the backoff_seconds docstring."
+      - text: "E"
+        correct: false
+        feedback: "Wrong. min() with 1.0 caps it at one second from the very first attempt, so it never grows. Compare it to version B and reread the docstring."
+      - text: "F"
+        correct: false
+        feedback: "Wrong. A random wait under one second neither grows nor helps a rate limit clear. Reread the backoff_seconds docstring."
+    general_feedback: |
+      Two properties matter and both are easy to lose. The wait has to grow,
+      because a rate limit needs time to clear. The wait has to be capped,
+      because an uncapped doubling reaches four minutes by attempt nine and your
+      run looks frozen. Version E is the one worth staring at. It uses min(),
+      which looks like a cap, but the cap is below the first value so the wait
+      is flat.
+
+  - id: m1-q3
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      `parse_json_content` must return a dictionary for valid JSON, raise
+      `LLMError` with a message a human can act on when the text is not valid,
+      and never let a bare `json.JSONDecodeError` reach the caller.
+
+      Which version meets all three?
+
+      ```python
+      # A
+      def parse_json_content(text):
+          try:
+              return json.loads(text)
+          except Exception:
+              pass
+
+      # B
+      def parse_json_content(text):
+          return json.loads(text)
+
+      # C
+      def parse_json_content(text):
+          try:
+              parsed = json.loads(text)
+          except json.JSONDecodeError as exc:
+              raise LLMError(
+                  f"The model's reply was not valid JSON ({exc.msg} at "
+                  f"character {exc.pos}). First 200 characters: {text[:200]!r}"
+              ) from exc
+          if not isinstance(parsed, dict):
+              raise LLMError(f"Expected a JSON object, got a {type(parsed).__name__}.")
+          return parsed
+
+      # D
+      def parse_json_content(text):
+          try:
+              return json.loads(text)
+          except json.JSONDecodeError:
+              return {}
+      ```
+    answers:
+      - text: "C"
+        correct: true
+        feedback: "Correct. It parses, it raises LLMError with the reason and the start of the text, and it also catches the case where the JSON was valid but was a list."
+      - text: "A"
+        correct: false
+        feedback: "Wrong. `except Exception: pass` swallows the error and the function then returns None with no message at all. The caller crashes later, far from the real cause. Reread the parse_json_content docstring in agent/llm.py."
+      - text: "B"
+        correct: false
+        feedback: "Wrong. This lets a bare json.JSONDecodeError reach the caller, which requirement 3 forbids. Reread the parse_json_content docstring."
+      - text: "D"
+        correct: false
+        feedback: "Wrong. Returning an empty dictionary hides the failure. The caller sees a dictionary with nothing in it and cannot tell that anything went wrong. Reread requirement 2 in the docstring."
+    general_feedback: |
+      Versions A and D are the same mistake wearing different clothes. Both turn
+      a loud failure into a quiet one. `except Exception: pass` is on this
+      course's list of defects because language model reviewers approve it
+      constantly. When you read AI-written error handling, ask one question. If
+      this goes wrong, does anybody find out?
+
+  - id: m1-q4
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O6
+    points: 5
+    text: |
+      An assistant wrote this to pull the recipient out of a tool call. It
+      raises `TypeError: string indices must be integers`.
+
+      ```python
+      1  message = response["choices"][0]["message"]
+      2  call = message["tool_calls"][0]
+      3  args = call["function"]["arguments"]
+      4  recipient = args["to"]
+      5  print(recipient)
+      ```
+
+      Which line introduces the defect?
+    answers:
+      - text: "Line 3, because `arguments` is a string of JSON and has to be passed through json.loads() before it can be indexed by name."
+        correct: true
+        feedback: "Correct. That is the one line the header comment in agent/llm.py is about. `arguments` arrives as a string such as '{\"to\": \"someone@example.com\"}'."
+      - text: "Line 4, because `to` is not a required argument of send_email."
+        correct: false
+        feedback: "Wrong. `to` is required in the send_email schema in agent/tools.py. The error is about the type of `args`, not the name of the key. Reread the header comment in agent/llm.py."
+      - text: "Line 2, because tool_calls is a dictionary and cannot be indexed with 0."
+        correct: false
+        feedback: "Wrong. `tool_calls` is a list, so `[0]` is right. Reread the shape shown in the agent/llm.py header comment."
+      - text: "Line 1, because the message is under `choices[0][\"delta\"]` and not `choices[0][\"message\"]`."
+        correct: false
+        feedback: "Wrong. `delta` appears only in streaming responses, which these labs do not use. message_of() in agent/llm.py shows the shape this code targets."
+    general_feedback: |
+      This is the single most important line in Module 1, and Week 3 spends a
+      whole lab on it. Arguments arrive as text, and that text was shaped by
+      whatever the model just read. Somebody has to call `json.loads()` on it,
+      and in these labs that somebody is you, in `agent/loop.py`. That is also
+      where a poisoned ticket's instructions first become structured data.
+
+  - id: m1-q5
+    type: numerical
+    item_type: output_prediction
+    outcome: O1
+    points: 5
+    text: |
+      Open your own `config/lab.config.yaml` and read `model.max_retries`.
+
+      Now suppose your `should_retry` is finished and correct, your endpoint
+      answers HTTP 429 every single time, and nothing else goes wrong.
+
+      How many POST requests reach the endpoint before `chat()` in
+      `agent/llm.py` raises the exception?
+
+      Enter a whole number. If you have not changed `max_retries` from what the
+      repository ships, the shipped value is what to use.
+    value: 3
+    tolerance: 0
+    note: >
+      Anchored to the student's own max_retries. The shipped value is 3, and
+      chat() sets max_attempts = max(1, int(cfg.model.max_retries)) and loops
+      attempt in range(1, max_attempts + 1), so three requests go out and the
+      exception is raised after the loop ends. A student who raised the value in
+      their own config should enter their own number; the instructor regrades
+      those few by hand from the submitted config file.
+    general_feedback: |
+      Read the loop in `chat()`. `max_attempts` is `max_retries`, and the loop
+      runs `attempt` from 1 to `max_attempts`. Every pass sends one POST. There
+      is no extra request after the loop, only `raise last_error`.
+
+      This is why the name is worth arguing with. `max_retries: 3` gives you
+      three total requests, not one request plus three retries. If you change
+      that value, the cost of a rate limited run changes with it.
+
+  - id: m1-q6
+    type: short_answer
+    item_type: indexical
+    outcome: O1
+    points: 5
+    text: |
+      Run the agent once from your own lab folder:
+
+      ```
+      python -m agent.cli
+      ```
+
+      Ask it anything, then close it. Open the newest file in `runs/traces/`.
+      Find the first line, where `kind` is `run_start`. Enter the value of the
+      `provider` field on that line.
+    accepted: ["mock", "openai_compatible", "\"mock\"", "\"openai_compatible\""]
+    general_feedback: |
+      `agent/trace.py` writes one JSON line per event. The `run_start` line
+      records the provider, the model name, your message, and the tool names
+      that were offered.
+
+      Learning to read this file is worth more than it looks. From Week 5 on,
+      the trace is where you find out what actually happened in a run, and the
+      ledger is where you find out what the system actually did. Grading on
+      those two files instead of on the model's prose is the whole design of
+      this course.
+
+  - id: m1-q7
+    type: multiple_choice
+    item_type: two_tier
+    outcome: O1
+    points: 5
+    text: |
+      Your endpoint returns HTTP 401 because your key is wrong. Your
+      `should_retry` is the buggy version A from earlier, the one that returns
+      `status_code >= 400`. Your `max_retries` is the shipped value of 3.
+
+      Pick the option that gets both parts right: what happens, and why it
+      matters.
+    answers:
+      - text: "Three requests go out instead of one, and it matters because retrying a 401 can never succeed, so the extra requests only spend quota and time."
+        correct: true
+        feedback: "Correct on both parts. The status will be 401 every time, so the loop runs to its limit and then raises."
+      - text: "Three requests go out instead of one, and it matters because the third one usually succeeds once the key finishes propagating."
+        correct: false
+        feedback: "The first part is right and the second is wrong. A 401 means the key is wrong or not allowed. Waiting does not change that. Reread the Do NOT retry list in the should_retry docstring."
+      - text: "One request goes out, and it matters because the client gives up too early on an error that a retry would fix."
+        correct: false
+        feedback: "Both parts are wrong. With this version should_retry(401) returns True, so the loop retries. And a 401 is not fixed by retrying. Reread the loop in chat() in agent/llm.py."
+      - text: "Three requests go out instead of one, and it matters because the endpoint may ban your key for sending the same bad request repeatedly."
+        correct: false
+        feedback: "The first part is right. The second is not what the docstring warns about, and it is not what happens in practice. The real cost is quota. Reread the should_retry docstring."
+      - text: "No requests go out, and it matters because the client should validate the key before sending anything."
+        correct: false
+        feedback: "Both parts are wrong. The 401 comes back from the endpoint, so a request was already sent. Reread the loop in chat() in agent/llm.py."
+      - text: "Three requests go out instead of one, and it matters because LLMTransportError is raised instead of LLMError, which hides the real problem."
+        correct: false
+        feedback: "The first part is right. The second half is close but not the point. The type is a separate design choice explained in the LLMTransportError docstring; the cost here is wasted quota."
+    general_feedback: |
+      Notice how small the mistake is and how expensive it gets. One comparison
+      operator turns a single failed request into three, and on a free tier
+      those three come out of the same daily budget your attack harness needs
+      later. When you evaluate AI-written retry code, check the condition first
+      and the wait second.
+
+  - id: m1-q8
+    type: multiple_choice
+    item_type: recall
+    outcome: O1
+    points: 5
+    text: |
+      `message_of` in `agent/llm.py` pulls the assistant's message out of a chat
+      completions response. Which expression does it use?
+    answers:
+      - text: "`response[\"choices\"][0][\"message\"]`"
+        correct: true
+        feedback: "Correct. That is the shape, and message_of is kept tiny so the shape stays visible."
+      - text: "`response[\"message\"]`"
+        correct: false
+        feedback: "Wrong. There is no top level message key. Open message_of in agent/llm.py and read the four lines in the try block."
+      - text: "`response[\"choices\"][\"message\"][0]`"
+        correct: false
+        feedback: "Wrong. `choices` is a list, so the index comes first, and `message` is a dictionary, not a list. Read message_of in agent/llm.py."
+      - text: "`response[\"output\"][0][\"content\"]`"
+        correct: false
+        feedback: "Wrong. That is a different API shape. These labs use the chat completions shape only. Read message_of in agent/llm.py."
+    general_feedback: |
+      `chat()` hands the reply back exactly as it arrived, with nothing
+      unpacked. `loop.py` does the unpacking so every step is visible. That is
+      also why these labs use `requests` directly instead of a vendor SDK. An
+      SDK hides the wire format, and the wire format is where the security
+      lesson lives.
+
+  - id: m1-q9
+    type: multiple_answers
+    item_type: recall
+    outcome: O1
+    points: 5
+    text: |
+      Select every status code that `should_retry` should return True for,
+      according to the docstring in `agent/llm.py`.
+    answers:
+      - text: "429"
+        correct: true
+        feedback: "Correct. Too Many Requests. You went too fast, and waiting fixes it."
+      - text: "500"
+        correct: true
+        feedback: "Correct. The server had a problem. It may not next time."
+      - text: "503"
+        correct: true
+        feedback: "Correct. Another server side error worth one more try."
+      - text: "400"
+        correct: false
+        feedback: "Wrong. Your request was malformed. Sending it again changes nothing. Reread the Do NOT retry list."
+      - text: "401"
+        correct: false
+        feedback: "Wrong. Your key is wrong or not allowed. Retrying just burns quota. Reread the Do NOT retry list."
+      - text: "404"
+        correct: false
+        feedback: "Wrong. Wrong URL. Retrying the same wrong URL gives the same answer. Reread the Do NOT retry list."
+    general_feedback: |
+      The docstring names 429 plus 500, 502, 503, and 504 as retryable, and 400,
+      401, 403, and 404 as not. The sorting rule underneath is worth carrying
+      with you: retry what time can fix, and never retry what only a code change
+      can fix.
+
+  - id: m1-q10
+    type: multiple_choice
+    item_type: two_tier
+    outcome: O1
+    points: 5
+    text: |
+      `agent/llm.py` defines two exception types. `LLMError` is the general one.
+      `LLMTransportError` is separate, and it is used for rate limits, server
+      errors, and timeouts.
+
+      Pick the option that gets both parts right: what the split is for, and
+      what goes wrong without it.
+    answers:
+      - text: "It lets the harness count those trials as ERRORED instead of FAILED, and without it a rate limited trial is recorded as the attack not landing, which reads exactly like a working defense."
+        correct: true
+        feedback: "Correct on both parts. That is what the LLMTransportError docstring says, and the harness relies on it."
+      - text: "It lets the harness count those trials as ERRORED instead of FAILED, and without it the harness would crash instead of finishing the run."
+        correct: false
+        feedback: "The first part is right and the second is wrong. The run would finish; it would just report a comfortable and untrue number. Reread the LLMTransportError docstring in agent/llm.py."
+      - text: "It lets the client decide which errors to retry, and without it every error would be retried the same number of times."
+        correct: false
+        feedback: "Both parts are wrong. Retry decisions come from should_retry and the status code, not from the exception type. Reread the LLMTransportError docstring."
+      - text: "It tells the student which errors are their fault, and without it debugging would be slower."
+        correct: false
+        feedback: "Both parts are wrong. The split exists for the harness arithmetic, not for debugging convenience. Reread the LLMTransportError docstring."
+      - text: "It keeps the API key out of the error message, and without it the key could end up in a trace file."
+        correct: false
+        feedback: "Both parts are wrong. Neither exception type includes the key. Reread the LLMTransportError docstring."
+      - text: "It lets the harness count those trials as ERRORED instead of FAILED, and without it the report would overstate how many vulnerabilities were found."
+        correct: false
+        feedback: "The first part is right and the second has the direction backwards. Counting an errored trial as no hit understates vulnerabilities, not overstates them. Reread the LLMTransportError docstring."
+    general_feedback: |
+      This is the first place in the course where an error handling choice is
+      also a reporting choice. If a 429 is scored as the attack did not land,
+      your report says the system is safe when you never actually tested it.
+      Week 7 comes back to this as the difference between ERRORED and FAILED,
+      and it is the single most common way a free tier harness quietly lies.

@@ -1,3 +1,9 @@
 # Instructor build tooling only. Students never install this.
-# Regenerate pins with: pip install --only-binary=:all: textstat && pip freeze
-textstat==0.7.13
+#
+#   pip install -r tools/requirements.txt
+#
+# Kept separate on purpose: textstat pulls in nltk, pyphen, and several more,
+# and students should not install a readability toolchain to do a lab.
+
+textstat==0.7.13      # the reading-level check
+Markdown==3.10        # turns authored pages into Canvas HTML

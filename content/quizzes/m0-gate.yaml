@@ -1,0 +1,490 @@
+ref: m0-gate
+title: "Module 0 Gate: Rules of Engagement and Environment Check"
+description: |
+  This quiz does three jobs at once. It records that you are here, which is how
+  the college certifies attendance. It records that you read and accepted the
+  Rules of Engagement. It proves your lab environment works.
+
+  You may take it as many times as you like. Your highest score is kept. You
+  need 100 percent to unlock Week 2, so keep going until every item is right.
+
+  Before you start, run this in your lab folder:
+
+      python verify_env.py
+
+  It prints a short code. You will need it for the first question.
+
+  Read the Rules of Engagement page first. Every scenario item asks you to name
+  the clause. AI help is allowed here and will not help much, because the code
+  comes from your own machine and the clause numbers come from your own course.
+shuffle_answers: true
+questions:
+
+  - id: m0-q1
+    type: short_answer
+    item_type: indexical
+    outcome: O1
+    points: 4
+    text: |
+      Run `python verify_env.py` in your lab folder. When every check passes it
+      prints a line like this:
+
+      ```
+      Your Module 0 Gate code:
+          M0-XXXXX-XXXXX-M
+      ```
+
+      Paste your code below, exactly as it printed, including the letter at the
+      end.
+
+      The first ten characters after `M0-` are hexadecimal. The last letter is
+      `M` if you ran the offline check and `L` if you ran it with `--live`
+      against a real model. Either one is accepted now. Once you have an API
+      key in Week 2, run it again with `--live` and submit the `L` code.
+    accepted: []
+    note: >
+      This item has no fixed key on purpose. The code comes from
+      common/canary.py gate_code(), which is an HMAC of the term salt over
+      "gate0:<student id>". Every student gets a different code, so no accepted
+      list can exist. The instructor recomputes the expected value from the
+      roster student ID and the term salt, which takes seconds for the whole
+      section and stores nothing. The generator must emit this item as
+      ungraded-until-reviewed so Canvas does not mark a correct code wrong.
+      The trailing letter also tells the instructor whether the student has
+      made a real model request yet, which is the timestamped O1 evidence the
+      blueprint asks for in section 3.7. One consequence the generator has to
+      handle: three items on this quiz are not auto-scored (this one and the two
+      free-text items, 16 of the 40 points), so the mastery_required value of
+      100 in course.yaml has to be evaluated against the auto-scored items and
+      the manual points released on review. Otherwise no student can ever unlock
+      Week 2.
+    general_feedback: |
+      Your instructor checks this code against your student ID. If
+      `verify_env.py` did not print a code, one of the nine checks failed. Read
+      what it printed under the failing line. It tells you what to do. If you
+      are stuck for more than 20 minutes, post the whole output on the Q and A
+      board. Never post your API key.
+
+  - id: m0-q2
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      Your roommate wrote a Discord bot. You want to point your harness at it
+      to see whether it has the same problem as HelpDesk Lite. Your roommate
+      says it is fine with them.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 2 says you may never point a tool from this course at a system owned by your friends or family."
+        correct: true
+        feedback: "Correct. Clause 2 item 4 names friends and family directly. A verbal yes from a friend is not authorization."
+      - text: "Yes, because the owner gave permission."
+        correct: false
+        feedback: "Wrong. Clause 1 is a closed list of three things and the bot is not on it. Reread clause 1 and clause 2 item 4."
+      - text: "Yes, because a Discord bot is not a commercial AI service."
+        correct: false
+        feedback: "Wrong. Clause 2 bans far more than commercial AI services. Item 1 covers any system not on the clause 1 list. Reread clause 2."
+      - text: "Yes, if you stop as soon as you find something."
+        correct: false
+        feedback: "Wrong. The page says plainly that trying it once is not a defense. Reread the last line of clause 2."
+    general_feedback: |
+      Clause 1 is a list of exactly three things. If a target is not on that
+      list, the answer is no. It does not matter who said yes, because your
+      authorization for this course comes from this page, not from a friend.
+
+  - id: m0-q3
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      A classmate posts a prompt injection on the Q and A board that works
+      against a public chatbot. It looks interesting. You want to try it
+      yourself against that same chatbot.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 2 bans pointing course tools at any commercial AI service."
+        correct: true
+        feedback: "Correct. Clause 2 item 2 names hosted models directly, and the warning callout explains that you can lose the key you need for this course."
+      - text: "Yes, because your classmate already published it, so the harm is done."
+        correct: false
+        feedback: "Wrong. Someone else breaking a rule does not move the line for you. Reread clause 2 and the warning callout under it."
+      - text: "Yes, because you are only reproducing published research."
+        correct: false
+        feedback: "Wrong. Google's policy has no research exception at all. Reread the warning callout in the Rules of Engagement."
+      - text: "Yes, as long as you do not save the output."
+        correct: false
+        feedback: "Wrong. Nothing in clause 2 depends on whether you keep the output. Reread clause 2."
+    general_feedback: |
+      Every commercial provider bans adversarial testing in its terms of use.
+      Breaking those terms can close your account, and then you have no key for
+      the course. That is why every attack lab here points at HelpDesk Lite.
+      You attack the application's trust boundary, not a model's safety filter.
+
+  - id: m0-q4
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      At your job you notice that an internal login page accepts any password.
+      You are sure it is a real problem.
+
+      What does clause 6 tell you to do?
+    answers:
+      - text: "Stop testing, write down what you saw with the time and date, tell one person who can act, do not post it publicly, and do not use it."
+        correct: true
+        feedback: "Correct. Those are the five steps in clause 6, in order."
+      - text: "Test it a few more times to be sure, then report it."
+        correct: false
+        feedback: "Wrong. Step 1 is stop. Looking is one thing and poking is another. Reread clause 6."
+      - text: "Log in with a wrong password once so you have proof, then tell your manager."
+        correct: false
+        feedback: "Wrong. Step 5 says do not use it, even to prove it is real. Reread clause 6."
+      - text: "Post it on the Q and A board so the class can learn from a real example."
+        correct: false
+        feedback: "Wrong. Step 4 says do not post it publicly, and a class board is public. Reread clause 6 step 4."
+    general_feedback: |
+      Reporting is the skill. Exploiting is not. The five steps protect you as
+      much as they protect the system owner. A written record with a time and a
+      date, handed to one person who can act, is what a professional does.
+
+  - id: m0-q5
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      Your API key stopped working an hour before a lab is due. A classmate
+      offers to let you use theirs so you can finish.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 3 says you use your own key, not a shared one and not anyone else's."
+        correct: true
+        feedback: "Correct. Clause 3 item 1 says exactly that, with no exception for a deadline."
+      - text: "Yes, for one run, because a deadline is a good reason."
+        correct: false
+        feedback: "Wrong. Clause 3 has no deadline exception. Ask for an extension instead. Reread clause 3 item 1."
+      - text: "Yes, if you put their key in your own .env file so it stays out of git."
+        correct: false
+        feedback: "Wrong. Keeping a borrowed key out of git does not make it yours. Reread clause 3 item 1."
+      - text: "Yes, because the labs run offline anyway."
+        correct: false
+        feedback: "Wrong. The offline simulator needs no key at all, so borrowing one is never the fix. Reread clause 3 and the provider block in config/lab.config.yaml."
+    general_feedback: |
+      If your key stops working, the offline simulator still runs every lab in
+      Modules 1 and 2. Set `provider: mock` in `config/lab.config.yaml` and keep
+      working. Then message your instructor. A missing key is a normal problem
+      with a normal fix.
+
+  - id: m0-q6
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      You cannot get your key to load. Somebody online suggests pasting it
+      straight into `config/lab.config.yaml` so the code can find it.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 3 says the key lives in .env, and never in lab.config.yaml."
+        correct: true
+        feedback: "Correct. Clause 3 items 2 and 3 say this. The file is committed to the repository, so a key in it becomes public."
+      - text: "Yes, because lab.config.yaml is on your own computer."
+        correct: false
+        feedback: "Wrong. That file is tracked by git and gets pushed. Reread clause 3 item 2 and the comment at the top of config/lab.config.yaml."
+      - text: "Yes, as long as you delete it before you submit."
+        correct: false
+        feedback: "Wrong. Once a key is committed it stays in the history even after you delete the line. Reread clause 3 item 3."
+      - text: "Yes, because the lab code checks for a key and would stop you if it mattered."
+        correct: false
+        feedback: "Wrong. Clause 3 says that check is a safety net, not permission to be careless. Reread the last paragraph of clause 3."
+    general_feedback: |
+      `config/lab.config.yaml` holds the NAME of the environment variable, not
+      the key. That is what `api_key_env: LAB_API_KEY` means. The value goes in
+      `.env`, which is never committed. `verify_env.py` runs a check called
+      "No key in the tracked settings file" for exactly this reason.
+
+  - id: m0-q7
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      You are stuck and want help on the Q and A board. You take a screenshot
+      of your whole terminal window and post it. Your key is visible in the
+      scrollback.
+
+      What went wrong, and what do you do now?
+    answers:
+      - text: "Clause 3 was broken. Turn the key off at the provider, make a new one, and tell your instructor."
+        correct: true
+        feedback: "Correct. Clause 3 item 3 bans a key in a screenshot, and item 4 gives the recovery steps."
+      - text: "Nothing went wrong, because a screenshot is an image and not text."
+        correct: false
+        feedback: "Wrong. Clause 3 item 3 names screenshots directly. A key in an image is still a key. Reread clause 3 item 3."
+      - text: "Delete the post and carry on, because nobody had time to read it."
+        correct: false
+        feedback: "Wrong. Deleting a post does not undo exposure. Clause 3 item 4 says turn the key off and make a new one. Reread clause 3 item 4."
+      - text: "Say nothing, because reporting it will get you in trouble."
+        correct: false
+        feedback: "Wrong. Clause 3 item 4 says plainly that nobody is in trouble for reporting this quickly. Reread clause 3 item 4."
+    general_feedback: |
+      Turning a key off is called revoking it, and it takes about a minute at
+      any provider. Reporting fast is the professional move, and the Rules of
+      Engagement protect you for doing it. Hiding a leak is what turns a small
+      problem into a large one.
+
+  - id: m0-q8
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      You want your lab work to feel realistic. You copy a real support ticket
+      from your job into HelpDesk Lite, including the customer's name and email
+      address.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 4 says you may not add real data to the lab, including a real name, address, or ticket from a job."
+        correct: true
+        feedback: "Correct. Clause 4 lists all four of those in one sentence."
+      - text: "Yes, because the lab runs only on your own computer."
+        correct: false
+        feedback: "Wrong. Clause 4 does not depend on where the lab runs. Reread clause 4."
+      - text: "Yes, if you change the customer's last name first."
+        correct: false
+        feedback: "Wrong. A partly changed real record is still real data. Reread clause 4."
+      - text: "Yes, because the attack labs need realistic content to work."
+        correct: false
+        feedback: "Wrong. The seeded tickets T-501 through T-506 already carry everything the attacks need. Reread clause 4."
+    general_feedback: |
+      Everything in HelpDesk Lite is invented. The addresses use domains that
+      cannot receive mail, and the secrets are canary tokens built from your
+      student ID. That is what makes the lab safe to break. Real data would put
+      a real person at risk for no teaching benefit at all.
+
+  - id: m0-q9
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      You get an injection working against HelpDesk Lite. You realize the same
+      wording would probably work against your college's Canvas. You write it
+      up and post it on the Q and A board so classmates can see the idea.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 5 says you may not share a working attack aimed at any system outside clause 1, and clause 2 covers college systems."
+        correct: true
+        feedback: "Correct. Clause 5 bans sharing it and clause 2 item 3 names college systems including Canvas."
+      - text: "Yes, because you only wrote about it and never ran it."
+        correct: false
+        feedback: "Wrong. Clause 5 bans sharing the attack, not only running it. Reread the second list in clause 5."
+      - text: "Yes, because the Q and A board is only visible to your class."
+        correct: false
+        feedback: "Wrong. Clause 5 makes no exception for a small audience. Reread clause 5."
+      - text: "Yes, because discussing how attacks work is how the field learns."
+        correct: false
+        feedback: "Wrong. Clause 5 allows discussing how an attack works, but not publishing a working attack against an out of scope system. Reread both lists in clause 5."
+    general_feedback: |
+      Clause 5 draws a line between an idea and a weapon. You may explain how
+      indirect injection works. You may not hand the class a tested payload
+      pointed at a system nobody authorized. If you truly believe Canvas has a
+      problem, clause 6 tells you what to do instead.
+
+  - id: m0-q10
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      A classmate explains on the Q and A board how they got ticket T-503 to
+      make the agent send mail. You use their explanation, run the attack in
+      your own lab, and submit your own trace and canary token as evidence.
+
+      Is that permitted?
+    answers:
+      - text: "Yes. Clause 5 allows talking about how an attack works, and your evidence is your own."
+        correct: true
+        feedback: "Correct. Clause 5 says a classmate can hand you a payload but cannot hand you your proof, because your canary comes from your student ID."
+      - text: "No, because using a classmate's idea is academic dishonesty."
+        correct: false
+        feedback: "Wrong. Clause 5 says discussing how an attack works is how the field learns. Reread the last paragraph of clause 5."
+      - text: "No, because the payload was not yours."
+        correct: false
+        feedback: "Wrong. Clause 5 says a classmate can hand you a payload. What has to be yours is the evidence. Reread clause 5."
+      - text: "Yes, and you may also submit their trace, since you both ran the same attack."
+        correct: false
+        feedback: "Wrong. Their trace holds their canary, not yours, so it is not evidence about your system. Reread clause 5."
+    general_feedback: |
+      Your three canary tokens are built from your student ID, so they differ
+      from everyone else's. That is why sharing ideas is safe here. A shared
+      payload proves nothing on its own. Your own trace, holding your own
+      token, is the proof.
+
+  - id: m0-q11
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      You install Ollama on your laptop, start a small model, and spend an
+      evening trying to make it ignore its instructions. Nothing leaves your
+      machine.
+
+      Is that permitted?
+    answers:
+      - text: "Yes. Clause 1 item 3 allows a language model running on your own computer."
+        correct: true
+        feedback: "Correct. A local model is the third item on the clause 1 list."
+      - text: "No, because attacking any model is banned."
+        correct: false
+        feedback: "Wrong. Clause 2 bans hosted commercial services. A model on your own machine is on the clause 1 allowed list. Reread clause 1 item 3."
+      - text: "No, unless your instructor approves it first."
+        correct: false
+        feedback: "Wrong. Clause 1 is standing permission and needs no extra approval. Reread clause 1."
+      - text: "Yes, but only during the weeks that have an attack lab."
+        correct: false
+        feedback: "Wrong. Clause 1 sets no time window. Reread clause 1."
+    general_feedback: |
+      Clause 1 is a short list, and everything on it is either yours or was
+      built to be broken. A model you started yourself with Ollama is yours.
+      That is why the local provider profile is in `config/lab.config.yaml`.
+
+  - id: m0-q12
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      You run the harness and it prints this before it starts:
+
+      ```
+      OUT OF SCOPE, not testing: https://helpdesk.northwind-partner.example
+      ```
+
+      You look it up and it seems to be a real partner system. You want to add
+      it to `AUTHORIZED_TARGETS` in `harness/runner.py` so the harness will test
+      it too.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 2 covers any system not on the clause 1 list, and editing the list in code does not create authorization."
+        correct: true
+        feedback: "Correct. The authorized list in harness/runner.py is the Rules of Engagement written where a program can read it. Editing it does not change who said yes."
+      - text: "Yes, because the harness found it, so it must be in scope."
+        correct: false
+        feedback: "Wrong. The docstring in discover_targets says that finding something is not the same as being allowed to touch it. Reread clause 2 item 5."
+      - text: "Yes, because the address ends in .example and cannot be real."
+        correct: false
+        feedback: "Wrong. Whether a host answers is not the question. Authorization is. Reread clause 2 item 1."
+      - text: "Yes, if you only send one request to check."
+        correct: false
+        feedback: "Wrong. The page says trying it once is not a defense. Reread the last line of clause 2."
+    general_feedback: |
+      `discover_targets` in `harness/runner.py` returns one host on purpose that
+      you are not allowed to test. The refusal line is written into your results
+      file. That refusal is evidence that you stayed in scope, and in real work
+      that file is what you hand a client.
+
+  - id: m0-q13
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O5
+    points: 2
+    text: |
+      Suppose a student does point a course tool at a system outside clause 1.
+
+      What does clause 7 say happens?
+    answers:
+      - text: "A zero on the work involved and a referral to the Dean of Student Success, and possibly more depending on what happened."
+        correct: true
+        feedback: "Correct. Clause 7 states both of those, and notes it may also break state or federal law."
+      - text: "A warning the first time, then a zero if it happens again."
+        correct: false
+        feedback: "Wrong. Clause 7 describes no warning step. Reread clause 7."
+      - text: "Nothing, as long as no damage was done."
+        correct: false
+        feedback: "Wrong. Clause 7 does not depend on damage, and clause 2 says it was already broken is not a defense. Reread clause 7."
+      - text: "A grade reduction only, since a course cannot refer a student anywhere."
+        correct: false
+        feedback: "Wrong. Clause 7 names a referral to the Dean of Student Success directly. Reread clause 7."
+    general_feedback: |
+      Clause 7 exists so nobody can say they did not know. It is also why the
+      lab was built the way it was. Everything you need to learn this material
+      is inside clause 1, so there is never a reason to step outside it.
+
+  - id: m0-q14
+    type: essay
+    item_type: scope_classification
+    outcome: O5
+    points: 6
+    text: |
+      This is your signature. Type the block below into the answer box, filling
+      in your own name and the date you are taking this quiz. Type it out
+      yourself rather than copying and pasting.
+
+      ```
+      I have read the Rules of Engagement page in full.
+
+      I understand that I may attack only three things: the HelpDesk Lite app
+      in my lab repository, my own copy of the agent, and a language model
+      running on my own computer.
+
+      I understand that I may never point any tool from this course at any
+      other system, including commercial AI services, college systems, and
+      systems belonging to my job, my friends, or my family.
+
+      I understand that breaking these rules means a zero on the work involved
+      and a referral to the Dean of Student Success, and that it may also break
+      state or federal law.
+
+      Name:
+      Date:
+      ```
+    note: >
+      Essay is required here because this is a signed acknowledgment and a
+      typed signature is the artifact. A multiple choice item cannot produce
+      one. Hand-reading cost is near zero: the instructor scans for the name
+      and date and moves on, about five seconds per student, roughly three
+      minutes for a section of 30. It is included in the five hour hand-reading
+      budget under the Module 0 line of blueprint section 3.6.
+    general_feedback: |
+      Keep a copy of what you typed. If a question about scope comes up later
+      in the term, this is the document you and your instructor both point at.
+      In a real engagement the signed rules of engagement play exactly this
+      role.
+
+  - id: m0-q15
+    type: essay
+    item_type: scope_classification
+    outcome: O5
+    points: 6
+    text: |
+      In your own words, in two or three sentences, write the one thing you may
+      never do in this course.
+
+      Do not copy a sentence from the Rules of Engagement page. Write it the way
+      you would say it to a friend who asked what this course lets you do.
+    note: >
+      Essay is required because the whole point is the student's own wording. A
+      keyword match would grade the phrasing, and a multiple choice item would
+      hand them the answer. This is also the anchor for a final exam item: the
+      student's own sentence is quoted back to them in Final Part A and they are
+      asked to apply it to a new scenario, which is why it must be free text and
+      must be stored. Hand-reading cost is about ten seconds per student, five
+      minutes for a section of 30. Budgeted under the Module 0 line of blueprint
+      section 3.6.
+    general_feedback: |
+      Your sentence is saved. It comes back to you in the final exam, where you
+      are asked to apply your own wording to a situation you have not seen yet.
+      Students who write something short and concrete now find that item easy.
+      Students who write something vague find it hard.

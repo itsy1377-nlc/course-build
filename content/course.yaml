@@ -1,0 +1,424 @@
+# ITSY 1377 course structure.
+#
+# This file is the single source of truth for what exists in Canvas: modules,
+# their order, the pages and assignments inside them, points, weights, and due
+# dates. The cartridge generator and the API population script both read it.
+# Nothing about the course structure is written twice.
+#
+# DATES ARE RELATIVE. Six of eight Flex sessions run Monday to Saturday across
+# 55 days, but both Spring Flex I sessions start on a Tuesday and run 61 days
+# with Spring Break inside. So everything here is a day offset from day 1, and
+# tools/dates.py turns offsets into real dates for a chosen session.
+
+course:
+  code: ITSY 1377
+  number: "1377"
+  title: Agentic AI and Security Operations
+  credit_hours: 3
+  contact_hours: 64          # 2 lecture + 2 lab; 3.80 workload units
+  institution: Northeast Lakeview College
+  district: Alamo Colleges District
+  program: A.A.S. Cyber Defense
+  session: 8-week Flex
+  modality: Fully online, fully asynchronous
+  max_enrollment: 30
+  timezone: America/Chicago
+  deadline_time: "23:59"
+  license: >
+    Instructor-authored content is released CC BY 4.0. External framework
+    documents are linked, not reproduced. See content/pages/course-material.md.
+
+outcomes:
+  - id: O1
+    text: >
+      Automate interaction with language model APIs using scripts, including
+      request construction, response parsing, and error handling.
+  - id: O2
+    text: >
+      Configure and extend an agentic system that integrates a language model
+      with external tools.
+  - id: O3
+    text: >
+      Identify security weaknesses in agentic systems, including prompt
+      injection, excessive agency, and insecure tool authorization.
+  - id: O4
+    text: >
+      Execute and extend a structured test harness against an agentic system
+      and interpret the results.
+  - id: O5
+    text: >
+      Document security findings and apply remediations within defined
+      authorization boundaries.
+  - id: O6
+    text: Evaluate AI-generated code and output for correctness before use.
+
+# Canvas assignment groups. The template ships two groups at weight 0.0, so the
+# weighting scheme has to be set explicitly; it is not inherited.
+#
+# Points inside each group are the intended percentage multiplied by ten, so
+# the group total always divides cleanly.
+assignment_groups:
+  - id: foundations
+    title: Foundations
+    weight: 15
+  - id: project1
+    title: "Project 1: Extend the Agent"
+    weight: 30
+  - id: project2
+    title: "Project 2: Attack, Harness, Report"
+    weight: 55
+
+modules:
+
+  - id: m00
+    title: "Start Here"
+    unlock_day: 1
+    items:
+      - {type: page, ref: welcome-start-here}
+      - {type: page, ref: meet-your-instructor}
+      - {type: page, ref: course-material}
+      - {type: page, ref: course-policies}
+      - {type: page, ref: academic-integrity}
+      - {type: page, ref: ai-use-policy}
+      - {type: page, ref: rules-of-engagement}
+      - {type: page, ref: support-resources}
+      - {type: page, ref: canvas-and-tech-support}
+      - {type: page, ref: communicating-online}
+      - {type: page, ref: tips-for-success}
+      - {type: page, ref: how-to-navigate-canvas}
+      - {type: page, ref: glossary}
+      - {type: page, ref: course-schedule}
+      - {type: discussion, ref: qa-board}
+      - {type: discussion, ref: introduce-yourself}
+      - {type: quiz, ref: m0-gate}
+
+  - id: m01
+    title: "Week 1: Agents, Scope, and Setup"
+    unlock_day: 1
+    week: 1
+    days: [1, 7]
+    focus: >
+      What an agentic system is and why it fails differently. Authorization and
+      scope before technique. Python part one.
+    outcomes: [O5, O1]
+    frameworks: ["NIST AI RMF GOVERN 4.3"]
+    items:
+      - {type: page, ref: w1-overview}
+      - {type: page, ref: w1-content}
+      - {type: assignment, ref: lab1-python-foundations}
+      - {type: page, ref: w1-wrap-up}
+
+  - id: m02
+    title: "Week 2: Talk to the Model"
+    unlock_day: 8
+    week: 2
+    days: [8, 14]
+    focus: >
+      Loops, conditionals, and functions. The chat completions request and
+      response shape. Pulling a field out of a nested dictionary.
+    outcomes: [O1, O6]
+    frameworks: ["OWASP LLM04:2026 Supply Chain"]
+    items:
+      - {type: page, ref: w2-overview}
+      - {type: page, ref: w2-content}
+      - {type: assignment, ref: module1-talk-to-the-model}
+      - {type: quiz, ref: m1-comprehension}
+      - {type: page, ref: w2-wrap-up}
+
+  - id: m03
+    title: "Week 3: Tools and the Agent Loop"
+    unlock_day: 15
+    week: 3
+    days: [15, 21]
+    focus: >
+      Error handling. What a JSON tool schema is. A guided read of the agent
+      skeleton, and the inversion from calling the model to the model calling
+      you.
+    outcomes: [O1, O2, O6]
+    frameworks: ["OWASP ASI02 Tool Misuse", "MITRE ATLAS AML.T0053"]
+    items:
+      - {type: page, ref: w3-overview}
+      - {type: page, ref: w3-content}
+      - {type: page, ref: w3-annotated-skeleton}
+      - {type: assignment, ref: checkpoint1}
+      - {type: page, ref: w3-wrap-up}
+
+  - id: m04
+    title: "Week 4: Give It Hands"
+    unlock_day: 22
+    week: 4
+    days: [22, 28]
+    focus: >
+      The bounded loop, message accumulation, tool dispatch, and what happens
+      when a tool errors. Designing a tool of your own.
+    outcomes: [O2, O1, O6]
+    frameworks: ["OWASP LLM03:2026 Excessive Agency", "OWASP ASI02"]
+    items:
+      - {type: page, ref: w4-overview}
+      - {type: page, ref: w4-content}
+      - {type: assignment, ref: module2-give-it-hands}
+      - {type: quiz, ref: m2-comprehension}
+      - {type: page, ref: w4-wrap-up}
+
+  - id: m05
+    title: "Week 5: Prompt Injection"
+    unlock_day: 29
+    week: 5
+    days: [29, 35]
+    focus: >
+      Direct injection, indirect injection from untrusted content, and indirect
+      injection from content everybody already trusts. Why prompt-level
+      defenses are probabilistic.
+    outcomes: [O3, O5, O6]
+    frameworks:
+      - "OWASP LLM01:2026 Prompt Injection"
+      - "OWASP LLM08:2026 Hidden Context Exposure"
+      - "OWASP ASI01 Agent Goal Hijack"
+      - "MITRE ATLAS AML.T0051, AML.T0056"
+    items:
+      - {type: page, ref: w5-overview}
+      - {type: page, ref: w5-content}
+      - {type: page, ref: findings-report-template}
+      - {type: assignment, ref: attack-lab-1}
+      - {type: page, ref: w5-wrap-up}
+
+  - id: m06
+    title: "Week 6: Excessive Agency and Tool Authorization"
+    unlock_day: 36
+    week: 6
+    days: [36, 42]
+    focus: >
+      Irreversible actions with nobody approving them. The tool that never asks
+      who is calling. How a harness decides an attack succeeded.
+    outcomes: [O3, O4]
+    frameworks:
+      - "OWASP LLM03:2026 Excessive Agency"
+      - "OWASP LLM02:2026 Sensitive Information Disclosure"
+      - "OWASP ASI02, ASI03"
+      - "MITRE ATLAS AML.T0086, AML.T0085.001"
+    items:
+      - {type: page, ref: w6-overview}
+      - {type: page, ref: w6-content}
+      - {type: page, ref: w6-authorization-walkthrough}
+      - {type: assignment, ref: module3-break-it}
+      - {type: quiz, ref: m3-comprehension}
+      - {type: assignment, ref: checkpoint2}
+      - {type: page, ref: w6-wrap-up}
+
+  - id: m07
+    title: "Week 7: Test, Interpret, Fix"
+    unlock_day: 43
+    week: 7
+    days: [43, 49]
+    focus: >
+      Adding attack cases. What a 3 of 5 result means. Telling pass from fail
+      from inconclusive. Fixing the class of bug rather than the instance.
+    outcomes: [O4, O5, O3]
+    frameworks:
+      - "OWASP LLM10:2026 Improper Output Handling"
+      - "NIST AI RMF MEASURE 2.1, MEASURE 2.7"
+    items:
+      - {type: page, ref: w7-overview}
+      - {type: page, ref: w7-content}
+      - {type: page, ref: w7-reading-results}
+      - {type: assignment, ref: module4-fix-it}
+      - {type: quiz, ref: m4-comprehension}
+      - {type: page, ref: w7-wrap-up}
+
+  - id: m08
+    title: "Final Block"
+    unlock_day: 50
+    days: [50, 55]
+    focus: >
+      No new content. The findings report, the final exam, and a short
+      walkthrough of your own work.
+    outcomes: [O3, O4, O5, O6]
+    items:
+      - {type: page, ref: final-overview}
+      - {type: page, ref: exam-review}
+      - {type: assignment, ref: final-part-b-report}
+      - {type: quiz, ref: final-part-a-exam}
+      - {type: assignment, ref: final-part-c-walkthrough}
+      - {type: page, ref: final-wrap-up}
+
+  - id: m09
+    title: "Where To Go Next"
+    unlock_day: 1
+    items:
+      - {type: page, ref: where-to-go-next}
+
+  - id: m99
+    title: "Instructor Resources DO NOT PUBLISH"
+    published: false
+    items:
+      - {type: page, ref: framework-alignment}
+      - {type: page, ref: instructor-notes}
+
+assignments:
+
+  - ref: lab1-python-foundations
+    title: "Lab 1: Python Foundations"
+    group: foundations
+    points: 30
+    due_day: 7
+    submission_types: [online_upload, online_text_entry]
+    outcomes: [O1, O6]
+
+  - ref: attack-lab-1
+    title: "Attack Lab 1 and Practice Finding"
+    group: foundations
+    points: 80
+    due_day: 35
+    submission_types: [online_upload, online_text_entry]
+    outcomes: [O3, O5, O6]
+    rubric: practice-finding
+
+  - ref: checkpoint1
+    title: "Project 1 Checkpoint"
+    group: project1
+    points: 20
+    due_day: 21
+    grading_type: pass_fail
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O1, O2]
+
+  - ref: module1-talk-to-the-model
+    title: "Module 1: Talk to the Model"
+    group: project1
+    points: 90
+    due_day: 14
+    submission_types: [online_upload]
+    outcomes: [O1, O6]
+    note: "Paired with the Module 1 comprehension quiz, 50 points, same deadline."
+
+  - ref: module2-give-it-hands
+    title: "Module 2: Give It Hands (Project 1)"
+    group: project1
+    points: 90
+    due_day: 28
+    submission_types: [online_upload]
+    outcomes: [O2, O1, O6]
+    rubric: project1
+
+  - ref: checkpoint2
+    title: "Project 2 Checkpoint"
+    group: project2
+    points: 20
+    due_day: 42
+    grading_type: pass_fail
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O3, O4]
+
+  - ref: module3-break-it
+    title: "Module 3: Break It"
+    group: project2
+    points: 80
+    due_day: 42
+    submission_types: [online_upload]
+    outcomes: [O3, O4, O6]
+
+  - ref: module4-fix-it
+    title: "Module 4: Fix It (Project 2 Part A)"
+    group: project2
+    points: 90
+    due_day: 49
+    submission_types: [online_upload]
+    outcomes: [O5, O3, O4]
+    rubric: remediation
+
+  - ref: final-part-b-report
+    title: "Final Part B: Security Assessment Report"
+    group: project2
+    points: 120
+    due_day: 52
+    submission_types: [online_upload, online_text_entry]
+    outcomes: [O5, O3, O4]
+    rubric: findings-report
+    word_cap: 900
+
+  - ref: final-part-c-walkthrough
+    title: "Final Part C: Three-Minute Walkthrough"
+    group: project2
+    points: 30
+    due_day: 54
+    submission_types: [media_recording, online_url]
+    outcomes: [O1, O2, O6]
+    rubric: walkthrough
+
+quizzes:
+
+  - ref: m0-gate
+    title: "Module 0 Gate: Rules of Engagement and Environment Check"
+    group: foundations
+    points: 40
+    due_day: 3
+    allowed_attempts: -1
+    scoring_policy: keep_highest
+    mastery_required: 100
+    outcomes: [O5, O1]
+    note: >
+      Attendance verification for census, the graded Rules of Engagement
+      acknowledgment, and proof of a working environment, in one instrument.
+
+  - ref: m1-comprehension
+    title: "Module 1 Comprehension"
+    group: project1
+    points: 50
+    due_day: 14
+    allowed_attempts: 1
+    outcomes: [O1, O6]
+
+  - ref: m2-comprehension
+    title: "Module 2 Comprehension"
+    group: project1
+    points: 50
+    due_day: 28
+    allowed_attempts: 1
+    outcomes: [O2, O1, O6]
+
+  - ref: m3-comprehension
+    title: "Module 3 Comprehension"
+    group: project2
+    points: 40
+    due_day: 42
+    allowed_attempts: 1
+    outcomes: [O3, O4, O6]
+
+  - ref: m4-comprehension
+    title: "Module 4 Comprehension"
+    group: project2
+    points: 50
+    due_day: 49
+    allowed_attempts: 1
+    outcomes: [O5, O3, O4]
+
+  - ref: final-part-a-exam
+    title: "Final Part A: Comprehensive Exam"
+    group: project2
+    points: 120
+    unlock_day: 52
+    due_day: 54
+    time_limit_minutes: 180
+    allowed_attempts: 1
+    shuffle_answers: true
+    outcomes: [O1, O2, O3, O4, O5, O6]
+    note: >
+      Open book. AI use permitted and must be declared. Item-level outcome tags
+      make the export the per-student, per-outcome score matrix that program
+      assessment asks for.
+
+discussions:
+  - ref: qa-board
+    title: "Q and A Discussion Board"
+    pinned: true
+    graded: false
+  - ref: introduce-yourself
+    title: "Introduce Yourself"
+    graded: true
+    points: 1
+    threaded: true
+    due_day: 7
+    omit_from_final_grade: true
+    note: >
+      Required by the NLC template. Kept out of the final grade so the
+      weighting in the blueprint holds exactly.
