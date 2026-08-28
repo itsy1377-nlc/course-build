@@ -35,14 +35,14 @@ questions:
               row = _get(cfg, f"/api/customers/{customer_id}")
           except ToolError:
               return ""
-          return f"{row['id']} {row['name']} <{row['email']}> note={row['note']}"
+          return f"{row['id']} {row['name']} <{row['email']}> note={row['account_note']}"
 
       # B
       def get_customer(cfg, customer_id=""):
           if not customer_id:
               raise ToolError("get_customer needs a customer_id, for example C-1002.")
           row = _get(cfg, f"/api/customers/{customer_id}")
-          return f"{row['id']} {row['name']} <{row['email']}> note={row['note']}"
+          return f"{row['id']} {row['name']} <{row['email']}> note={row['account_note']}"
 
       # C
       def get_customer(cfg, customer_id=""):
@@ -60,7 +60,7 @@ questions:
     answers:
       - text: "B: raises ToolError for a missing customer_id and returns a readable summary"
         correct: true
-        feedback: "Correct. _get already raises ToolError on a 404, and B adds a clear error for the missing argument case. The summary is a readable string."
+        feedback: "Correct. _get already raises ToolError on a 404, and B adds a clear error for the missing argument case. The summary is a readable string, and it reads the column the target actually returns, which is account_note."
       - text: "A: catches the ToolError and returns an empty string instead"
         correct: false
         feedback: "Wrong. It catches the 404 and returns an empty string, so the agent is told nothing went wrong. Extension point 2 says do not return an empty string on failure. Reread the comment block above get_customer in agent/tools.py."
@@ -76,6 +76,12 @@ questions:
       silently is worse than a tool that is missing. `_get` in `agent/tools.py`
       already raises `ToolError` for a 404 and for anything at 400 or above, so
       the correct version mostly gets out of its way.
+
+      One detail to copy into your own version. The customer route in
+      `target/app.py` selects `id, name, email, phone, address, plan,
+      account_note`. The column is `account_note`, not `note`, so `row['note']`
+      raises `KeyError` on the very first lookup. Read the route and the seed
+      file `target/seed/customers.json` before you name a key.
 
   - id: m2-q2
     type: multiple_choice
@@ -126,10 +132,12 @@ questions:
     outcome: O2
     points: 5
     text: |
-      You are adding a tool of your own at extension point 4. The function is:
+      You are adding a tool of your own at extension point 4. You picked one of
+      the ideas the comment lists: find every ticket belonging to one customer.
+      The function is:
 
       ```python
-      def close_ticket(cfg, ticket_id="", reason=""):
+      def list_customer_tickets(cfg, customer_id="", limit=5):
           ...
       ```
 
@@ -138,47 +146,55 @@ questions:
 
       ```yaml
       # A
-      required: ["ticket_id"]
+      required: ["customer_id"]
       properties:
-        ticket_id: {type: string, description: "The ticket ID, for example T-503."}
-        reason:    {type: string, description: "Why the ticket is being closed."}
+        customer_id: {type: string, description: "The customer ID, for example C-1002."}
+        limit:       {type: integer, description: "How many tickets to return at most."}
 
       # B
-      required: ["ticket_id", "reason", "closed_by"]
+      required: ["customer_id", "limit", "assigned_to"]
       properties:
-        ticket_id: {type: string, description: "The ticket ID."}
-        reason:    {type: string, description: "Why the ticket is being closed."}
-        closed_by: {type: string, description: "Who closed it."}
+        customer_id: {type: string, description: "The customer ID."}
+        limit:       {type: integer, description: "How many tickets to return at most."}
+        assigned_to: {type: string, description: "The agent the tickets are assigned to."}
 
       # C
-      required: ["ticket_id"]
+      required: ["customer_id"]
       properties:
-        ticket_id: {type: integer, description: "The ticket number."}
-        reason:    {type: string, description: "Why the ticket is being closed."}
+        customer_id: {type: integer, description: "The customer number."}
+        limit:       {type: integer, description: "How many tickets to return at most."}
 
       # D
       required: []
       properties: {}
       ```
     answers:
-      - text: "A: a string ticket_id and a string reason, with only ticket_id required"
+      - text: "A: a string customer_id and an integer limit, with only customer_id required"
         correct: true
         feedback: "Correct. Every property matches a real parameter, the types match, and the only required argument is the one the function cannot work without."
-      - text: "B: requires closed_by, which is not a parameter of the function"
+      - text: "B: requires assigned_to, which is not a parameter of the function"
         correct: false
-        feedback: "Wrong. `closed_by` is not a parameter of the function. call_tool passes arguments with **args, so a TypeError is raised and turned into a ToolError. Reread call_tool at the bottom of agent/tools.py."
-      - text: "C: declares ticket_id as an integer"
+        feedback: "Wrong. `assigned_to` is a real column on a ticket, but it is not a parameter of this function. call_tool passes arguments with **args, so a TypeError is raised and turned into a ToolError. Reread call_tool at the bottom of agent/tools.py."
+      - text: "C: declares customer_id as an integer"
         correct: false
-        feedback: "Wrong. Ticket IDs in this lab look like T-503, which is not an integer. A schema that lies about a type sends the model down the wrong path. Reread extension point 4 in agent/tools.py."
+        feedback: "Wrong. Customer IDs in this lab look like C-1002, which is not an integer. A schema that lies about a type sends the model down the wrong path. Reread extension point 4 in agent/tools.py."
       - text: "D: an empty schema with no properties and nothing required"
         correct: false
-        feedback: "Wrong. An empty schema tells the model nothing, so it cannot supply ticket_id and the tool can never do its job. Reread extension point 4 in agent/tools.py."
+        feedback: "Wrong. An empty schema tells the model nothing, so it cannot supply customer_id and the tool can never do its job. Reread extension point 4 in agent/tools.py."
     general_feedback: |
       The schema is the only description of your tool the model ever sees. That
       makes it an interface, not a comment. Extension point 4 says the schema is
       the graded part, not the Python, and this is why. A schema that names an
       argument the function does not accept, or gives the wrong type, produces a
       tool that fails every time the model tries to use it correctly.
+
+      Pick the idea before you write the schema, and pick one the target can
+      actually serve. Extension point 4 says it plainly: the target has no route
+      for writing to a ticket, so a tool that closes one cannot work. Read the
+      routes in `target/app.py`. The ideas the comment lists all read something
+      that is already there: count how many tickets are still open, find every
+      ticket belonging to one customer, list what is sitting in the outbox, or
+      summarize the audit log for one support agent.
 
   - id: m2-q4
     type: multiple_choice
@@ -251,12 +267,20 @@ questions:
         feedback: "Wrong. before_tool_call ships permissive and returns True for everything. Checking arguments against the schema is something you could add in Module 4, but it is not there now. Read extension point 1 in agent/loop.py."
       - text: "`call_tool` catches the TypeError and raises ToolError, the loop turns it into a tool message the model can read, and the run continues. It is built that way so the ledger records the call as blocked."
         correct: false
-        feedback: "The first part is right and the second is wrong. `allowed` is False only when before_tool_call blocked the call. A tool that ran and failed is recorded with allowed True and an error string. Read trace.tool_call in agent/trace.py."
+        feedback: "The first part is right and the second is wrong. A tool that ran and failed is recorded with `allowed` True and an `error` string. `allowed` is False on three paths, and none of them is this one: before_tool_call returned False, the arguments could not be parsed as a JSON object, or before_tool_call itself raised and the loop failed closed. Read the argument parsing and the guard block in agent/loop.py, then trace.tool_call in agent/trace.py."
     general_feedback: |
       Two different failures produce two different ledger rows, and telling them
-      apart matters from Week 6 on. A blocked call has `allowed` set to false
-      and a `reason`. A call that ran and failed has `allowed` set to true and an
-      `error`. Your remediation evidence in Module 4 is the first kind.
+      apart matters from Week 6 on. A call that ran and failed has `allowed` set
+      to true and an `error`. A call that never ran has `allowed` set to false
+      and a `reason`. Your remediation evidence in Module 4 is the second kind.
+
+      Read `agent/loop.py` for the three ways `allowed` ends up false, because
+      only one of them is your guard saying no. The loop also writes false when
+      the arguments could not be parsed as a JSON object, and when
+      `before_tool_call` raised an exception, in which case the loop fails
+      closed and puts the exception in the reason. That last one is the most
+      common mistake in Module 4: writing `return True` where `return True, ""`
+      was wanted.
 
   - id: m2-q6
     type: short_answer

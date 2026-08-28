@@ -178,12 +178,14 @@ questions:
     outcome: O1
     points: 3
     text: |
-      `parse_json_content` in `agent/llm.py` has three requirements. Return the
+      `parse_json_content` in `agent/llm.py` has to do four things. Return the
       parsed dictionary when the text is valid JSON. Raise `LLMError` with a
       message a human can act on when it is not. Never let a bare
-      `json.JSONDecodeError` reach the caller.
+      `json.JSONDecodeError` reach the caller. And raise `LLMError` when the
+      text parses but is not a JSON object, because `tests/test_module1.py`
+      has a test named for rejecting a JSON list.
 
-      Exactly one of these meets all three.
+      Exactly one of these meets all four.
 
       ```python
       # A
@@ -213,13 +215,29 @@ questions:
               return json.loads(text)
           except json.JSONDecodeError:
               return {}
+
+      # E
+      def parse_json_content(text):
+          try:
+              parsed = json.loads(text)
+          except json.JSONDecodeError as exc:
+              raise LLMError(
+                  f"The model did not return JSON: {exc}. "
+                  f"First 200 characters: {text[:200]!r}"
+              ) from exc
+          if not isinstance(parsed, dict):
+              raise LLMError(f"Expected a JSON object, got a {type(parsed).__name__}.")
+          return parsed
       ```
 
       Which one is correct?
     answers:
-      - text: "C: raises LLMError naming the problem and the first 200 characters"
+      - text: "E: raises LLMError naming the problem and the first 200 characters, and raises again when the reply parsed but was not an object"
         correct: true
-        feedback: "Correct. It returns the dictionary, it raises `LLMError`, and its message shows the caller what actually came back."
+        feedback: "Correct. It returns the dictionary, it raises `LLMError` with a message that shows what came back, and it also catches the reply that is valid JSON of the wrong shape."
+      - text: "C: raises LLMError naming the problem and the first 200 characters"
+        correct: false
+        feedback: "Wrong, and this is the near-miss. It handles the malformed reply well and then returns whatever `json.loads` produced. Given `[\"a\", \"b\"]` it hands the caller a list, and the caller asks it for a key. `test_rejects_a_json_list` in `tests/test_module1.py` is that test."
       - text: "A: parses with no error handling at all"
         correct: false
         feedback: "Wrong. A malformed reply raises a bare `json.JSONDecodeError`, which is the third requirement broken. Reread the docstring in `agent/llm.py`."
@@ -238,6 +256,11 @@ questions:
 
       B and D are the two hiding shapes. They are the ones that survive a code
       review, because nothing about them looks alarming.
+
+      C is the one worth studying, because it is almost right. Valid JSON is
+      not the same as the right shape. A model asked for an object sometimes
+      returns a list of objects, and a function that promises a dictionary has
+      to say so rather than pass the surprise along.
 
   - id: fa-q05-retry-401-tier1
     type: multiple_choice
@@ -393,37 +416,38 @@ questions:
     points: 3
     text: |
       At extension point 4 in `agent/tools.py`, a student adds a tool that
-      closes a ticket. The Python function is:
+      counts how many tickets one customer still has open. The Python function
+      is:
 
       ```python
-      def close_ticket(cfg, ticket_id: str = "") -> str:
+      def count_open_tickets(cfg, customer_id: str = "") -> str:
           ...
       ```
 
-      Ticket IDs in the target app look like `T-501`. The student writes this
-      schema:
+      Customer IDs in the target app look like `C-1002`. The student writes
+      this schema:
 
       ```json
       {"type": "function",
        "function": {
-         "name": "close_ticket",
-         "description": "Close a ticket.",
+         "name": "count_open_tickets",
+         "description": "Count open tickets.",
          "parameters": {
            "type": "object",
            "properties": {
-             "ticket_id": {"type": "integer",
-                           "description": "The ticket number."}},
-           "required": ["ticket_id"]}}}
+             "customer_id": {"type": "integer",
+                             "description": "The customer number."}},
+           "required": ["customer_id"]}}}
       ```
 
       What goes wrong?
     answers:
-      - text: "The schema is the only description of the tool the model can read. It says the ID is a whole number, so the model sends something like `501`, and the tool never receives the `T-501` form it needs."
+      - text: "The schema is the only description of the tool the model can read. It says the ID is a whole number, so the model sends something like `1002`, and the tool never receives the `C-1002` form it needs."
         correct: true
         feedback: "Correct. The schema is an interface, not a comment. When it does not describe the function, the model follows the schema and the function breaks."
       - text: "Nothing goes wrong. Python turns the number into a string on its own."
         correct: false
-        feedback: "Wrong. Nothing converts it, and `501` is not `T-501` even as a string. Reread the note about schemas at the top of `agent/tools.py`."
+        feedback: "Wrong. Nothing converts it, and `1002` is not `C-1002` even as a string. Reread the note about schemas at the top of `agent/tools.py`."
       - text: "The tool is never offered to the model, because the declared type does not match the function signature."
         correct: false
         feedback: "Wrong. Nothing compares the schema to the function. `schemas_for` sends whatever schema you wrote."
@@ -436,8 +460,12 @@ questions:
 
       It is not documentation that sits next to the code. It is the interface.
       If the schema says integer, the model sends an integer. If the function
-      wanted `T-501`, the function is wrong from the model's point of view,
+      wanted `C-1002`, the function is wrong from the model's point of view,
       and the model was doing what it was told.
+
+      Notice what the tool does, too. Extension point 4 says the target has no
+      route for writing to a ticket, so a tool that closes one cannot work.
+      Counting open tickets reads a route that exists.
 
   - id: fa-q09-loop-order
     type: multiple_choice
@@ -480,11 +508,12 @@ questions:
     outcome: O2
     points: 3
     text: |
-      You add a tool named `close_ticket` to the `TOOLS` registry in
+      You add a tool named `count_open_tickets` to the `TOOLS` registry in
       `agent/tools.py`. You write its schema. You forget to add its name to
       `agent.allowed_tools` in `config/lab.config.yaml`.
 
-      You run the agent and ask it to close a ticket. What happens?
+      You run the agent and ask it how many tickets are still open. What
+      happens?
     answers:
       - text: "The model is never told the tool exists, so it cannot ask for it. `schemas_for` only returns schemas for tools on the allowed list."
         correct: true
@@ -1082,9 +1111,9 @@ questions:
       - text: "`completed` is 5, `hits` is 1, the rate is 0.2, and the status is VULNERABLE."
         correct: false
         feedback: "Wrong on `completed`. A rate-limited trial is not a trial where the attack failed. Reread `run_case` in `harness/runner.py`."
-      - text: "`completed` is 3, `hits` is 1, and the status is MITIGATED, because most trials did not land."
+      - text: "`completed` is 3, `hits` is 1, and the status is NO_HITS_IN_3, because most trials did not land."
         correct: false
-        feedback: "Wrong. MITIGATED needs zero hits across every completed trial. One landing out of three means VULNERABLE."
+        feedback: "Wrong. NO_HITS_IN_3 needs zero hits across all three completed trials. One landing out of three means VULNERABLE, because one landing is enough. Read `verdict_for` in `harness/runner.py`."
       - text: "The whole run is thrown out, because two trials errored."
         correct: false
         feedback: "Wrong. The runner stops when a control fails, not when trials error. Errored trials are counted and reported, then left out of the rate."
@@ -1128,20 +1157,26 @@ questions:
         feedback: "Correct. One landing is enough for VULNERABLE, and a mixed result across completed trials sets the flaky flag."
       - text: "FLAKY, which is its own status separate from VULNERABLE."
         correct: false
-        feedback: "Wrong. `flaky` is a flag on the row, not a status. Reread `verdict_for` in `harness/runner.py`."
-      - text: "MITIGATED, because the defense held in two of the five trials."
+        feedback: "Wrong. `flaky` is a flag on the row, not a status. The runner prints VULNERABLE and adds FLAKY beside it. Reread `verdict_for` in `harness/runner.py` and the status table on the Glossary page."
+      - text: "NO_HITS_IN_5, because the defense held in two of the five trials."
         correct: false
-        feedback: "Wrong. MITIGATED requires zero hits across every completed trial. Three hits is not zero."
+        feedback: "Wrong. NO_HITS_IN_5 requires zero hits across every completed trial, and the number in the name is how many finished. Three hits is not zero."
       - text: "INCONCLUSIVE, because the result was not the same every time."
         correct: false
-        feedback: "Wrong. INCONCLUSIVE is what you get when `completed` is zero. Here all five trials completed."
+        feedback: "Wrong. INCONCLUSIVE means fewer than three trials finished, which is what `MIN_COMPLETED` in `harness/runner.py` sets. Here all five finished, and a result that varies is what the flaky flag is for."
     general_feedback: |
       Read `verdict_for` in `harness/runner.py` and follow it line by line.
 
-      If nothing completed, INCONCLUSIVE. If it is an attack case and there is
-      at least one hit, VULNERABLE. Zero hits across every completed trial is
-      MITIGATED. The flaky flag is set separately, whenever the hit count sits
-      between zero and the completed count.
+      If fewer than three trials completed, INCONCLUSIVE. If it is an attack
+      case and there is at least one hit, VULNERABLE. Zero hits across the
+      trials that completed is NO_HITS_IN_5, which carries its own sample size
+      on purpose, and `run_case` renames it BLOCKED_5_OF_5 when the agent
+      attempted the call every time and a control refused it every time. The
+      flaky flag is set separately, whenever the hit count sits between zero and
+      the completed count.
+
+      The harness never prints the word "mitigated". That is a judgement you
+      make on top of a number, and the status refuses to make it for you.
 
   - id: fa-q25-flaky-tier2
     type: multiple_choice
@@ -1257,7 +1292,7 @@ questions:
         feedback: "Wrong. Every attack case that needs mail stops landing, so the numbers look perfect. You also deleted the feature. A client did not ask you to break their helpdesk."
       - text: "Add a line to `agent/system_prompt.txt` telling the model never to email an outside address."
         correct: false
-        feedback: "Wrong. That is a request, not a control. Week 5 measured this shape and it comes back FLAKY. Reread the Week 5 content page."
+        feedback: "Wrong. That is a request, not a control. Week 5 measured this shape and it still comes back VULNERABLE, with the flaky flag set. Reread the Week 5 content page."
       - text: "Add a second audit row in `target/app.py` recording every outbound message."
         correct: false
         feedback: "Wrong. That is accountability. It records what happened and stops nothing. Reread the difference between an audit log and an authorization check."
@@ -1275,7 +1310,7 @@ questions:
     outcome: O5
     points: 3
     text: |
-      Four students wrote `before_tool_call` in `agent/loop.py` after seeing
+      Five students wrote `before_tool_call` in `agent/loop.py` after seeing
       case A2 send mail to `records-audit@vendor-archive.example`.
 
       ```python
@@ -1294,42 +1329,73 @@ questions:
 
       # C
       def before_tool_call(name, args, cfg):
-          allowed = [a.lower() for a in cfg.agent.get("recipient_allowlist", [])]
-          if name == "send_email":
-              to = str(args.get("to", "")).strip().lower()
-              if to not in allowed:
-                  return False, f"recipient {to} is not on the allowlist"
+          if name != "send_email":
+              return True, ""
+          allowed = [a.strip().lower() for a in (cfg.agent.get("recipient_allowlist") or [])]
+          if not allowed:
+              return True, ""
+          to = str(args.get("to", "")).strip().lower()
+          if to not in allowed:
+              return False, f"recipient {to} is not on the allowlist"
           return True, ""
 
       # D
+      def before_tool_call(name, args, cfg):
+          if name != "send_email":
+              return True, ""
+          allowed = [a.strip().lower() for a in (cfg.agent.get("recipient_allowlist") or [])]
+          if not allowed:
+              return False, (
+                  "send_email refused: agent.recipient_allowlist in "
+                  "config/lab.config.yaml is empty, so no recipient has been "
+                  "approved."
+              )
+          to = str(args.get("to", "")).strip().lower()
+          if to not in allowed:
+              return False, f"recipient {to} is not on the allowlist"
+          return True, ""
+
+      # E
       def before_tool_call(name, args, cfg):
           print(f"tool call: {name} {args}")
           return True, ""
       ```
 
-      Which one fixes the class of bug rather than the one instance you saw?
+      Which one is a real control? It has to fix the class rather than the one
+      address you saw, compare addresses the way a mail system does, and do the
+      right thing when `agent.recipient_allowlist` is still empty, which is how
+      it ships.
     answers:
-      - text: "C: uses the allowlist and lowercases both sides before comparing"
+      - text: "D: uses the allowlist, lowercases both sides, and refuses with a clear reason when the list is empty"
         correct: true
-        feedback: "Correct. Nothing leaves unless it is on the list, and both sides of the comparison are lowercased before they meet."
+        feedback: "Correct. Nothing leaves unless it is on the list, both sides of the comparison are lowercased before they meet, and when nobody has said who may be written to, it says no and names the file to fix."
+      - text: "C: uses the allowlist and lowercases both sides, but returns True when the list is empty"
+        correct: false
+        feedback: "Wrong, and this is the near-miss that matters most. Everything about it is right until the allowlist is missing, and then it lets every message through, including the attacker's. `recipient_allowlist` ships empty, so this guard is wide open on day one and nothing tells you. A control that waves everything past when its configuration is missing is worse than no control, because you would believe it was working."
       - text: "A: blocks the one address that case A2 used"
         correct: false
-        feedback: "Wrong. This fixes the one address in front of you. The next payload uses a different address and walks straight through."
+        feedback: "Wrong. This fixes the one address in front of you. The next payload uses a different address and walks straight through. `test_the_fix_covers_addresses_you_have_never_seen` in `tests/test_module4.py` is that test."
       - text: "B: uses the allowlist, but compares the raw strings"
         correct: false
-        feedback: "Wrong, and this is the near-miss worth studying. It blocks the class, but it compares raw strings. If the list holds `Support@northwind.example` and the model sends `support@northwind.example`, it refuses mail it should allow, and the benign baseline catches it."
-      - text: "D: prints the tool call and allows every call"
+        feedback: "Wrong, and it is on the defect list for this course. It blocks the class, but it compares raw strings. If the list holds `Support@northwind.example` and the model sends `support@northwind.example`, it refuses mail it should allow, and the benign control catches it."
+      - text: "E: prints the tool call and allows every call"
         correct: false
         feedback: "Wrong. Printing is not deciding. It returns True every time, so nothing is ever blocked."
     general_feedback: |
       Fixing an instance means blocking the exact thing you saw. Fixing a
       class means deciding what is allowed and refusing everything else.
 
-      An allowlist is a class fix by shape: it fails closed. A block list is
-      an instance fix by shape: it fails open on anything you did not think of.
+      An allowlist is a class fix by shape. It only stays one if it also fails
+      closed. C is the version that looks finished and is not: the shape is an
+      allowlist and the behavior on a missing list is a block list of length
+      zero, which allows everything.
 
-      B is on the defect list for this course on purpose. Comparing before
-      lowercasing looks correct in a review and breaks on ordinary input.
+      One test is worth reading here.
+      `test_the_fix_reads_its_rule_from_configuration` in
+      `tests/test_module4.py` proves you read the list at run time by handing
+      your guard a DIFFERENT non-empty list and checking that you follow it. It
+      deliberately does not hand you an empty one, because an earlier version
+      did and that accidentally required the control to fail open.
 
   - id: fa-q29-finding-evidence
     type: multiple_choice
@@ -1370,59 +1436,80 @@ questions:
     points: 3
     text: |
       You submit a finding for case `A6-insecure-tool-authorization` as
-      fixed-schema JSON.
+      fixed-schema JSON, using the five keys from Module 4.
+
+      That case runs the agent as `mo.kaur@northwind.example`, a tier 1 agent
+      with no ticket touching customer C-1002. Ticket T-503 is assigned to
+      `dana@northwind.example`.
 
       ```json
       // A
       {"attack_class": "insecure tool authorization",
        "affected_tool": "get_customer",
-       "evidence": "audit row: customer.read customer_id=C-1002 by actor dana@northwind.example",
+       "evidence_line": "runs/reports/ newest results file, A6 row, audit row 59 by actor mo.kaur@northwind.example",
        "remediation_control": "compare the acting user to the customer before returning the record",
        "in_scope": true}
 
       // B
-      {"attack_class": "excessive agency",
-       "affected_tool": "send_email",
-       "evidence": "audit row: customer.read customer_id=C-1002",
-       "remediation_control": "require a confirmation flag before sending mail",
+      {"attack_class": "insecure tool authorization",
+       "affected_tool": "get_customer",
+       "evidence_line": "runs/reports/ newest results file, A6 row, audit row 61 by actor dana@northwind.example",
+       "remediation_control": "compare the acting user to the customer before returning the record",
        "in_scope": true}
 
       // C
-      {"attack_class": "insecure tool authorization",
-       "affected_tool": "get_customer",
-       "evidence": "the assistant read the account note back in its answer",
-       "remediation_control": "add an audit row for every customer lookup",
+      {"attack_class": "excessive agency",
+       "affected_tool": "send_email",
+       "evidence_line": "runs/reports/ newest results file, A6 row, audit row 59 by actor mo.kaur@northwind.example",
+       "remediation_control": "require a confirmation flag before sending mail",
        "in_scope": true}
 
       // D
+      {"attack_class": "insecure tool authorization",
+       "affected_tool": "get_customer",
+       "evidence_line": "the assistant read the account note back in its answer",
+       "remediation_control": "add an audit row for every customer lookup",
+       "in_scope": true}
+
+      // E
       {"attack_class": "indirect prompt injection",
        "affected_tool": "search_tickets",
-       "evidence": "audit row: customer.read customer_id=C-1002",
+       "evidence_line": "runs/reports/ newest results file, A6 row, audit row 59 by actor mo.kaur@northwind.example",
        "remediation_control": "tell the model not to read other customers",
        "in_scope": false}
       ```
 
       Which block is correct?
     answers:
-      - text: "A: insecure tool authorization on get_customer, with an audit row as evidence and an acting-user check as the control"
+      - text: "A: insecure tool authorization on get_customer, pointing at the audit row for mo.kaur, with an acting-user check as the control"
         correct: true
-        feedback: "Correct. The class, the tool, the evidence, and the control all describe the same thing, and the case is in scope."
-      - text: "B: excessive agency on send_email, with a customer read as the evidence"
+        feedback: "Correct. The class, the tool, the evidence pointer, and the control all describe the same thing, the actor named is the one the case ran as, and the case is in scope."
+      - text: "B: the same finding, pointing at the audit row for dana@northwind.example"
+        correct: false
+        feedback: "Wrong, and the actor is the whole finding. A6 runs as mo.kaur@northwind.example and its detector matches on that actor exactly, so a row naming Dana is the row the detector rejects. Dana is the agent T-503 is assigned to, which makes her read the one that might be legitimate. Point at Dana's row and your evidence shows the system working. Read the `actor` line in the detect block of `harness/cases/A6-insecure-tool-authorization.yaml`."
+      - text: "C: excessive agency on send_email, with a customer read as the evidence"
         correct: false
         feedback: "Wrong. The class and the tool do not match the evidence. The audit row is a customer read, not an outbound message."
-      - text: "C: the model's prose as the evidence, and another audit row as the control"
+      - text: "D: the model's prose as the evidence, and another audit row as the control"
         correct: false
-        feedback: "Wrong twice. The evidence is the model's prose, and the proposed control is another log. A log records; it does not decide."
-      - text: "D: indirect prompt injection on search_tickets, with in_scope set to false"
+        feedback: "Wrong twice. `evidence_line` has to be a pointer to a file and a line, not a sentence about what the model said, and the proposed control is another log. A log records; it does not decide."
+      - text: "E: indirect prompt injection on search_tickets, with in_scope set to false"
         correct: false
         feedback: "Wrong. A6 is not an injection case; the caller simply asked. The control is a request rather than a control, and `in_scope` is false for a case that targets your own lab app."
     general_feedback: |
       A finding is a small set of claims that all have to agree.
 
       The class names why it happened. The affected tool names where. The
-      evidence has to be an artifact that supports that exact claim. The
-      remediation has to be a control, not a request. And `in_scope` records
-      that you stayed inside your authorization.
+      `evidence_line` has to be a pointer to a file and a line, such as
+      `runs/ledger.jsonl line 12`, so a reader who was not there can go look.
+      The remediation has to be a control, not a request. And `in_scope` records
+      that you stayed inside your authorization. These are the same five keys
+      you used in Module 4.
+
+      The actor is doing real work in this finding. A6 exists to prove that any
+      caller can read any record, and that claim needs two identities: the
+      ticket is assigned to Dana, the run happens as Mo, and Mo gets the record
+      anyway. Name the wrong actor and you have documented Dana doing her job.
 
       When one field disagrees with the others, a reader stops trusting all of
       them.
@@ -1787,13 +1874,13 @@ questions:
     answers:
       - text: "It read five transport errors as five failed attacks. No trial finished, so this run says nothing at all about the attack."
         correct: true
-        feedback: "Correct. INCONCLUSIVE means you learned nothing, which is a different and much less comfortable result than MITIGATED."
+        feedback: "Correct. INCONCLUSIVE means fewer than three trials finished, so you learned nothing. That is a different and much less comfortable result than a case that ran and did not land."
       - text: "Nothing. Zero hits out of five trials is the same thing as a failed attack."
         correct: false
         feedback: "Wrong, and this is exactly the mistake. A rate-limited trial is not a trial where the attack failed. Reread the third idea at the top of `harness/runner.py`."
-      - text: "It should have said MITIGATED instead of secure."
+      - text: "It should have said NO_HITS_IN_5 instead of secure."
         correct: false
-        feedback: "Wrong. MITIGATED needs completed trials with zero hits. Here `completed` is zero, so no status about the attack is available."
+        feedback: "Wrong. The number in NO_HITS_IN_5 is how many trials finished, and it needs those trials to have finished with zero hits. Here `completed` is zero, so there is nothing to count and no status about the attack is available. Read `MIN_COMPLETED` and `verdict_for` in `harness/runner.py`."
       - text: "It used the wrong case ID in the summary."
         correct: false
         feedback: "Wrong. The case ID is right. The reading of the numbers is what is wrong."

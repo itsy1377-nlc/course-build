@@ -123,8 +123,12 @@ questions:
         - tier2@northwind.example
       ```
 
-      The model asks to send to `Dana@Northwind.Example`. Which version of
-      `before_tool_call` handles that correctly?
+      Your guard has to get two things right. The model sometimes asks to send
+      to `Dana@Northwind.Example`, which is the same mailbox written
+      differently. And a teammate may later comment the list out and leave it
+      empty, which is how it ships.
+
+      Which version of `before_tool_call` handles both?
 
       ```python
       # A
@@ -156,28 +160,60 @@ questions:
           if args.get("to") not in allowlist:
               return False, "recipient not on the allowlist"
           return True, ""
+
+      # D
+      def before_tool_call(name, args, cfg):
+          if name != "send_email":
+              return True, ""
+          allowlist = [a.strip().lower() for a in (cfg.agent.get("recipient_allowlist") or [])]
+          if not allowlist:
+              return False, (
+                  "send_email refused: agent.recipient_allowlist in "
+                  "config/lab.config.yaml is empty, so no recipient has been "
+                  "approved. Add the addresses support is allowed to write to."
+              )
+          to = str(args.get("to", "")).strip().lower()
+          if to not in allowlist:
+              return False, f"send_email refused: {to} is not on the recipient allowlist."
+          return True, ""
       ```
     answers:
-      - text: "B: lowercases both the address and the list before comparing them"
+      - text: "D: lowercases both sides, and refuses with a clear reason when the allowlist is empty"
         correct: true
-        feedback: "Correct. It lowercases both sides before comparing, so a difference in capitalization does not change the decision."
+        feedback: "Correct. It normalizes both sides before comparing, and when nobody has said who may be written to, it says no and explains what to fix."
+      - text: "B: lowercases both sides, but returns True when the allowlist is empty"
+        correct: false
+        feedback: "Wrong, and this is the near-miss worth studying. It handles capitalization correctly and then fails open: with the shipped empty list it lets every message through, including the attacker's. A control that waves everything past when its configuration is missing is worse than no control, because you would believe it was working. Compare version D."
       - text: "A: compares the raw address to the raw list, with no lowercasing"
         correct: false
-        feedback: "Wrong. It compares the raw address to the raw list, so `Dana@Northwind.Example` is blocked even though it is the same mailbox. Compare version B, which lowercases both sides."
+        feedback: "Wrong. It compares the raw address to the raw list, so `Dana@Northwind.Example` is blocked even though it is the same mailbox. Compare version D, which lowercases both sides."
       - text: "C: lowercases the list but not the address"
         correct: false
-        feedback: "Wrong. It lowercases the list but not the address, so the comparison still fails. This is the harder one to spot, because it looks like it handled case already. Compare version B, which lowercases both sides."
+        feedback: "Wrong. It lowercases the list but not the address, so the comparison still fails. This is the harder one to spot, because it looks like it handled case already. Compare version D, which lowercases both sides."
       - text: "A and C are both correct, because email addresses are case sensitive."
         correct: false
         feedback: "Wrong. The domain part of an address is not case sensitive, and a control that treats one mailbox as two addresses is not doing its job. Reread extension point 1 in agent/loop.py."
     general_feedback: |
-      A recipient allowlist that compares before lowercasing is on this course's
-      list of defects because it fails in both directions. Here it blocks mail
-      that should go through. Change the list and the same bug lets mail out
-      that should have been stopped.
+      Two defects, and both are on this course's list.
 
-      Whenever you compare a string to a list of allowed values, normalize both
-      sides first, in the same way, in one place.
+      A recipient allowlist that compares before lowercasing fails in both
+      directions. Here it blocks mail that should go through. Change the list
+      and the same bug lets mail out that should have been stopped. Whenever you
+      compare a string to a list of allowed values, normalize both sides first,
+      in the same way, in one place.
+
+      A guard that returns True when its list is empty fails open. The shipped
+      `recipient_allowlist` is empty, so version B is wide open until somebody
+      remembers to fill it in, and nothing tells you it is wide open. Fail
+      closed, and say in the reason what is missing, so the ledger records a
+      configuration problem instead of silence.
+
+      One test is worth reading before you write this.
+      `test_the_fix_reads_its_rule_from_configuration` in
+      `tests/test_module4.py` proves you read the list at run time by handing
+      your guard a DIFFERENT non-empty list and checking that you follow it. It
+      does not hand you an empty one. An earlier version did, and it accidentally
+      required the control to fail open. The test docstring says so.
 
   - id: m4-q4
     type: multiple_choice
@@ -201,9 +237,9 @@ questions:
       - text: "It fixes one instance and leaves the class open. Any other outside address still goes through, and it never reads recipient_allowlist, so changing the configuration changes nothing."
         correct: true
         feedback: "Correct. The control has to come from the allowlist in configuration, or you have written a filter for exactly one payload."
-      - text: "Nothing is wrong with it. The case reports 0 of 5, which is what MITIGATED means."
+      - text: "Nothing is wrong with it. The case reports BLOCKED_5_OF_5, and a blocked attack is a fixed attack."
         correct: false
-        feedback: "Wrong. A case passing is not the same as a weakness being fixed. Reread the recipient_allowlist comment in config/lab.config.yaml."
+        feedback: "Wrong twice. A case passing is not the same as a weakness being fixed, and BLOCKED_5_OF_5 does not say the attack failed. It says the agent still asked every single time and one line of code stopped it at the last moment, so the injection still works and the weakness is still there behind the control. Read the status table on the Glossary page and the recipient_allowlist comment in config/lab.config.yaml."
       - text: "It is too slow, because a string comparison runs on every tool call."
         correct: false
         feedback: "Wrong. Speed is not the issue at this scale. The issue is that the rule covers one address. Reread extension point 1 in agent/loop.py."
@@ -227,7 +263,9 @@ questions:
     outcome: O5
     points: 5
     text: |
-      Another student writes this fix. Every attack case now reports 0 of 5.
+      Another student writes this fix, runs one attack case on its own with
+      `python -m harness.runner --case A2-indirect-injection-ticket`, and sees
+      0 hits out of 5.
 
       ```python
       def before_tool_call(name, args, cfg):
@@ -236,18 +274,21 @@ questions:
           return True, ""
       ```
 
-      What does the harness report, and why is this not an acceptable
-      remediation?
+      Then they run the whole suite. What does the harness report, and why is
+      this not an acceptable remediation?
     answers:
-      - text: "The attack cases go to MITIGATED, but the benign baseline fails, because normal support work such as replying to a customer inside the company is now blocked too."
+      - text: "`control-benign-escalation-works` reports CONTROL_FAILED and the run stops there, because a legitimate escalation to tier2@northwind.example no longer goes out. `control-benign-baseline` still passes."
         correct: true
-        feedback: "Correct. A control that breaks support to stop a leak is a trade nobody agreed to, and the benign suite is there to catch exactly this."
-      - text: "Everything reports MITIGATED and the fix is accepted, because the attack suite is what the grade is based on."
+        feedback: "Correct. The escalation control is the half that catches a fix that is really a deletion. A control that breaks support to stop a leak is a trade nobody agreed to, and the runner stops on a failed control because the attack numbers below it would be noise."
+      - text: "`control-benign-baseline` reports CONTROL_FAILED, because that is the case that proves normal use still works."
         correct: false
-        feedback: "Wrong. A fix passes only when every attack case stops producing its side effect AND every benign test still passes. Read the docstring at the top of harness/runner.py."
+        feedback: "Wrong. Read the header comment in harness/cases/control-benign-baseline.yaml. It asks for a plain ticket summary and expects no mail, so deleting send_email passes it too. It says so itself. The case that fails is control-benign-escalation-works, which requires a message that should go out to actually go out."
+      - text: "Every attack case reports NO_HITS_IN_5 and the fix is accepted, because the attack suite is what the grade is based on."
+        correct: false
+        feedback: "Wrong twice. The status is BLOCKED_5_OF_5, not NO_HITS_IN_5: the agent still asked and a control refused every time, and run_case renames the status when that happens. And a fix passes only when every attack case stops producing its side effect AND every benign case still passes. Read run_case in harness/runner.py and the docstring at the top of tests/test_module4.py."
       - text: "The attack cases report INCONCLUSIVE, because no tool call completed."
         correct: false
-        feedback: "Wrong. INCONCLUSIVE means every trial errored. A blocked call is a completed trial with no hit. Read verdict_for in harness/runner.py."
+        feedback: "Wrong. INCONCLUSIVE means fewer than three trials finished, which is what MIN_COMPLETED in harness/runner.py sets. A blocked call is a completed trial with no hit, not a trial that failed to finish. Read verdict_for in harness/runner.py."
       - text: "The harness stops before running anything, because a detector self-test fails."
         correct: false
         feedback: "Wrong. The self-test checks the detectors, not your guard. Read the self-test section of main() in harness/runner.py."
@@ -257,9 +298,16 @@ questions:
       leaves the company. That is a control with a scope, which is what a client
       can actually deploy.
 
-      Two controls run every time the harness runs: a detector self-test and a
-      benign baseline. If the baseline fails, the run stops and nothing else is
-      printed, because the attack numbers would be noise.
+      Read the two benign cases together, because they do different jobs.
+      `control-benign-baseline` asks for a plain ticket summary and expects no
+      mail, so deleting `send_email` passes it. Its own header comment says
+      exactly that. `control-benign-escalation-works` asks for a message that
+      SHOULD go out, to `tier2@northwind.example`, and fails when your control
+      is too wide. That is the half that catches a deletion dressed up as a fix.
+
+      Two things run before the attack cases every time: the detector self-test
+      and the controls. If a control fails, the run stops and the attack numbers
+      are never printed, because they would be noise.
 
   - id: m4-q6
     type: short_answer
@@ -386,30 +434,39 @@ questions:
       Pick the option that gets both parts right: what the harness calls each
       one, and why the threshold works this way.
     answers:
-      - text: "A2 is VULNERABLE and A4 is VULNERABLE and FLAKY. An attack counts once because an attacker gets to retry, and a fix counts only when it holds every time because a defense that works four times in five has failed more slowly."
+      - text: "Both are VULNERABLE, and the flaky flag is set on both. An attack counts once because an attacker gets to retry, and a fix counts only when it holds every time because a defense that works four times in five has failed more slowly."
         correct: true
-        feedback: "Correct on both parts. That asymmetry is the whole opinion of this harness, and it is stated in the runner docstring."
-      - text: "A2 is MITIGATED and A4 is VULNERABLE. A single hit is within normal variation for a language model, so one out of five is not evidence."
+        feedback: "Correct on both parts. One hit or more is VULNERABLE, and flaky is set whenever the hit count sits between zero and the number completed, which is true of 1 of 5 and of 4 of 5. That asymmetry is the whole opinion of this harness, and it is stated in the runner docstring."
+      - text: "A2 is NO_HITS_IN_5 and A4 is VULNERABLE. A single hit is within normal variation for a language model, so one out of five is not evidence."
         correct: false
-        feedback: "Both parts are wrong. verdict_for returns VULNERABLE when hits is one or more. Read the docstring at the top of harness/runner.py."
-      - text: "A2 is FLAKY and A4 is VULNERABLE. Anything that is neither zero nor five is FLAKY, and FLAKY is its own status."
+        feedback: "Both parts are wrong. NO_HITS_IN_5 requires zero hits, and A2 had one. verdict_for returns VULNERABLE when hits is one or more. Read the docstring at the top of harness/runner.py."
+      - text: "Both are FLAKY. Anything that is neither zero nor the completed count is FLAKY, and FLAKY is its own status."
         correct: false
-        feedback: "Close, but flaky is a separate flag, not a status. Both of these are VULNERABLE, and both are also flaky. Read verdict_for in harness/runner.py."
-      - text: "A2 is VULNERABLE and A4 is MITIGATED. Four out of five means the fix works most of the time, which is the practical standard."
+        feedback: "Close, and the first sentence describes the flag correctly. But flaky is a flag set alongside a status, not a status. The runner prints VULNERABLE for both of these and adds FLAKY next to it. Read verdict_for in harness/runner.py and the status table on the Glossary page."
+      - text: "Both are VULNERABLE, but only A4 is flagged flaky, because 4 of 5 is close to holding and 1 of 5 is not."
         correct: false
-        feedback: "The first part is right and the second is wrong. MITIGATED requires zero hits across every completed trial. Read verdict_for in harness/runner.py."
+        feedback: "The first part is right and the second is wrong. The flag is set whenever hits is greater than zero and less than the number completed, and that is true of 1 of 5 as well as 4 of 5. Nothing about the flag asks whether the number is close to anything. Read verdict_for in harness/runner.py."
       - text: "Both are INCONCLUSIVE, because a nondeterministic system cannot be tested this way."
         correct: false
-        feedback: "Wrong. INCONCLUSIVE means every trial errored. The N of M design exists precisely so a nondeterministic system can be tested. Read the docstring at the top of harness/runner.py."
-      - text: "A2 is VULNERABLE and A4 is VULNERABLE and FLAKY. The threshold works this way because five trials is the largest number a free tier quota allows."
+        feedback: "Wrong. INCONCLUSIVE means fewer than three trials finished, which is what MIN_COMPLETED in harness/runner.py sets. Here five finished. The N of M design exists precisely so a nondeterministic system can be tested. Read the docstring at the top of harness/runner.py."
+      - text: "Both are VULNERABLE and both are flagged flaky. The threshold works this way because five trials is the largest number a free tier quota allows."
         correct: false
         feedback: "The first part is right and the second is wrong. The trial count is a budget decision. The asymmetry is a judgment about what an attacker and a defender each get. Read the docstring at the top of harness/runner.py."
     general_feedback: |
       The numbers are there so nobody has to take the argument on faith. A
       student who fixes injection by adding a sentence to the system prompt sees
-      3 of 5 and FLAKY. A student who adds an allowlist in code sees 0 of 5 and
-      MITIGATED. Same effort, very different result, and the report says which
-      is which without anyone arguing about it.
+      3 of 5 and the flaky flag. A student who adds an allowlist in code sees
+      the agent still asking every time and the guard refusing every time, which
+      prints as BLOCKED_5_OF_5. Same effort, very different result, and the
+      report says which is which without anyone arguing about it.
+
+      Two vocabulary points that are easy to get wrong. FLAKY is a flag, not a
+      status, so a case is never "FLAKY instead of VULNERABLE". And the harness
+      never prints the word "mitigated" for you. Zero hits with nothing tried is
+      NO_HITS_IN_5. Zero hits because your control refused every attempt is
+      BLOCKED_5_OF_5. If you want to write "mitigated" in a report, that is a
+      judgement you are making on top of the number, and you have to say what it
+      rests on.
 
       Carry the asymmetry with you. Attackers need one success. Defenders need
       every one.

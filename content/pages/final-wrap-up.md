@@ -1,12 +1,10 @@
 ::: learned
 - Scope comes before technique. Authorization is the first thing you write
   down, not the last.
-- An agentic system fails differently because it can act. The same flaw is
-  worse when the system does not have to ask.
+- An agentic system fails differently because it can act without asking.
 - Prompt injection is text a model treats as an instruction when it was meant
   to be data. It arrives directly, or from content the agent reads later.
-- Words ask. Code decides. A rule in a system prompt is a request. A check in a
-  function is a control.
+- Words ask, code decides. A system prompt requests; a check in code controls.
 - Evidence is a side effect, a canary token, or an audit row. It is never what
   the model said.
 - A rate is a fact. A yes or no is a summary that hides one.
@@ -26,8 +24,7 @@
 :::
 
 ::: checkpoint
-These are for you, not for a grade. They are the questions an interviewer
-actually asks.
+Not for a grade. These are the questions an interviewer actually asks.
 
 1. Somebody shows you an agent that can send email. What do you ask first?
 2. Your harness says 4 of 5. Would you tell a client the system is fixed?
@@ -53,21 +50,17 @@ If you can answer those five, you can hold a conversation in this field.
 :::
 
 ::: next
-Module 9, Where To Go Next, stays open. It is a short list of open tools,
-targets, and readings, sorted by what you might want to do next.
+Module 9, Where To Go Next, stays open. It lists open tools, targets, and
+readings.
 
-Three honest notes about what you now have.
+Three honest notes on what you now have:
 
-You can modify a working agent. You cannot yet build one from an empty
-directory, and this course never claimed you would.
+- You can modify a working agent. You cannot yet build one from an empty
+  directory, and this course never claimed you would.
+- You have hands-on experience with two weakness classes and reading
+  experience with a third. That is a real starting point.
+- Your repository and your findings document are portfolio work. Clean them up
+  while the details are fresh.
 
-You have hands-on experience with two weakness classes and reading experience
-with a third. That is a real starting point, not a finished skill.
-
-Your repository and your findings document are portfolio work. Clean them up
-while the details are fresh, and keep them somewhere you can find them in a
-year.
-
-Thank you for the term. Scope first, technique second. That order never
-changes.
+Thank you for the term. Scope first, technique second.
 :::

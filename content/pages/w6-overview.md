@@ -36,8 +36,7 @@ The harness prints the address it is pointed at, every run. Read that line.
 | Project 2 Checkpoint | 6.3 | Sunday 11:59 PM |
 | Module 3 comprehension quiz | 6.1, 6.2, 6.4 | Sunday 11:59 PM |
 
-The four walkthrough questions are part of the Module 3 file. They are not a
-separate upload.
+The four walkthrough questions go in the Module 3 file, not a separate upload.
 :::
 
 ::: callout time | About how long this takes

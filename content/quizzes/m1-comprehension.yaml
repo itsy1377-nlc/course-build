@@ -95,7 +95,7 @@ questions:
 
       # B
       def backoff_seconds(attempt: int) -> float:
-          return min(2.0 ** max(0, attempt - 1), 30.0)
+          return min(2.0 ** max(0, attempt - 1), 60.0)
 
       # C
       def backoff_seconds(attempt: int) -> float:
@@ -115,9 +115,9 @@ questions:
           return random.random()
       ```
     answers:
-      - text: "B: doubles the wait each attempt and stops it at 30 seconds"
+      - text: "B: doubles the wait each attempt and stops it at 60 seconds"
         correct: true
-        feedback: "Correct. It waits 1, then 2, then 4 seconds, and never more than 30."
+        feedback: "Correct. It waits 1, then 2, then 4 seconds, and never more than 60. Sixty seconds is the cap the backoff_seconds docstring names, and tests/test_module1.py checks it with backoff_seconds(20) <= 60."
       - text: "A: waits one second every time, so the wait never grows"
         correct: false
         feedback: "Wrong. This waits the same one second every time. The docstring says waiting the same short time over and over does not help a rate limit clear. Reread the backoff_seconds docstring in agent/llm.py."
@@ -135,11 +135,16 @@ questions:
         feedback: "Wrong. A random wait under one second neither grows nor helps a rate limit clear. Reread the backoff_seconds docstring."
     general_feedback: |
       Two properties matter and both are easy to lose. The wait has to grow,
-      because a rate limit needs time to clear. The wait has to be capped,
-      because an uncapped doubling reaches four minutes by attempt nine and your
-      run looks frozen. Version E is the one worth staring at. It uses min(),
-      which looks like a cap, but the cap is below the first value so the wait
-      is flat.
+      because a rate limit needs time to clear. The wait has to be capped at 60
+      seconds, because an uncapped doubling reaches four minutes by attempt nine
+      and your run looks frozen. Version E is the one worth staring at. It uses
+      min(), which looks like a cap, but the cap is below the first value so the
+      wait is flat.
+
+      The number 60 is not a style choice. `agent/llm.py` says "never more than
+      60" in the docstring, and `tests/test_module1.py` asserts
+      `backoff_seconds(20) <= 60`. When a docstring and a test agree on a
+      number, that number is the requirement.
 
   - id: m1-q3
     type: multiple_choice

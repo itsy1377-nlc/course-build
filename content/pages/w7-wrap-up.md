@@ -55,17 +55,8 @@ Answer these for yourself before the final block opens.
 :::
 
 ::: next
-The final block opens on day 50 and adds no new content. It has three parts
-and one purpose, which is to turn this term's work into something you can hand
-to an employer.
-
-Part B is the findings report, due day 52. It covers the fix you built this
-week, plus a second fix you specify in writing along with the test that would
-verify it. The template is the one you practiced on in Week 5.
-
-Part A is the final exam, open on day 52 and due day 54. Part C is a three
-minute walkthrough of your own repository, due day 54.
-
-Late work from weeks 1 through 7 closes on day 51. Clear your backlog first,
-then write.
+The final block opens on day 50 and adds no new content: the findings report
+due day 52, the exam due day 54, and a three minute walkthrough of your own
+repository. Late work from weeks 1 through 7 closes on day 51, so clear your
+backlog first.
 :::

@@ -12,53 +12,53 @@ this at anything else. Read clause 1 of the Rules of Engagement again.
 
 ::: section | Why you read this one instead of attacking it
 The other weaknesses in this course are hands-on. This one is a reading
-exercise, and you should know that up front.
+exercise.
 
-An eight week term does not fit everything. Building a second full attack lab
-for insecure tool authorization would cost a week the calendar does not have.
-So the course trades the exploitation practice for a close read of the code
-that causes it.
+An eight week term does not fit everything. A second full attack lab would cost
+a week the calendar does not have, so the course trades that practice for a
+close read of the code.
 
-You still run the case. You still collect the evidence. What you skip is
-inventing the attack yourself.
+You still run the case and collect the evidence. You skip inventing the attack
+yourself.
 
-Read the code slowly. This weakness is boring to look at and expensive in
-practice, which is exactly why people miss it.
+Read slowly. This weakness is boring to look at and expensive in practice,
+which is exactly why people miss it.
 :::
 
 ::: section | Exhibit A: the route that returns a customer
-This is from `labs/target/app.py`. The docstring is long, so it is left out
-here and quoted further down.
+This is from `target/app.py`. The long docstring is left out here and quoted
+further down.
 
 ```python
-def acting_user() -> str | None:
-    return request.headers.get("X-Acting-User")
+    def acting_user() -> str | None:
+        return request.headers.get("X-Acting-User")
 ```
 
 ```python
-@app.get("/api/customers/<customer_id>")
-def get_customer(customer_id: str):
-    """Return one customer record."""
-    actor = acting_user()
-    audit.record(connection, actor, "customer.read", f"customer_id={customer_id}")
-
-    row = connection.execute(
-        "SELECT id, name, email, phone, address, plan, account_note "
-        "FROM customers WHERE id = ?",
-        (customer_id,),
-    ).fetchone()
-    if row is None:
-        return jsonify({"error": f"No customer with id {customer_id}"}), 404
-    return jsonify(dict(row))
+    @app.get("/api/customers/<customer_id>")
+    def get_customer(customer_id: str):
+        actor = acting_user()
+        rows = db.query(
+            connection,
+            "SELECT id, name, email, phone, address, plan, account_note "
+            "FROM customers WHERE id = ?",
+            (customer_id,),
+        )
+        audit.record(connection, actor, "customer.read", f"customer_id={customer_id}",
+                     outcome="ok" if rows else "not_found")
+        if not rows:
+            return jsonify({"error": f"No customer with id {customer_id}"}), 404
+        return jsonify(rows[0])
 ```
 
-Read the query. It takes one value: the customer ID from the web address.
+Read the query. It takes one value, the customer ID from the web address.
 
-Now look for `actor` below the line that logs it. It is not there.
+Now read the order. `actor` is set, the query runs, then `actor` is written to
+the audit log. The record is in hand before anyone is named.
 :::
 
 ::: section | Exhibit B: the header the agent sends
-This is from `labs/agent/tools.py`. It is quoted in full, comment included.
+This is from `agent/tools.py`, quoted in full, comment included.
 
 ```python
 def _headers(cfg: Config) -> dict[str, str]:
@@ -74,53 +74,49 @@ def _headers(cfg: Config) -> dict[str, str]:
     }
 ```
 
-Your agent is honest. On every request it says who it is acting as. The value
-comes from `target.acting_user` in `config/lab.config.yaml`, and by default it
-is a tier 1 support agent.
+Your agent is honest. Every request says who it is acting as, from
+`target.acting_user` in `config/lab.config.yaml`.
 :::
 
 ::: section | Follow the value through
 The header has a short life. Three steps, and then it stops mattering.
 
-1. **It is read.** The `acting_user()` function pulls it off the request.
-2. **It is written down.** The audit call stores it with the action and the
-   customer ID.
-3. **It is dropped.** The query that follows filters on the customer ID and
-   nothing else.
+1. **It is read.** `acting_user()` pulls it off the request.
+2. **It is not used.** The query filters on the customer ID and nothing else.
+   `actor` never reaches it.
+3. **It is written down.** The audit call records it afterward, with the
+   action, the customer ID, and whether the row was found.
 
-There is no comparison between the caller and the record. There is no role.
-There is no ownership column. There is no allowlist. There is no denial path
-at all, other than the record not existing.
+There is no comparison between caller and record. No role. No ownership column.
+No denial path at all, other than the record not existing.
 
-So the answer to "may this caller see this customer?" is never asked. The only
+So the question "may this caller see this customer?" is never asked. The only
 question asked is "does this customer exist?"
 :::
 
 ::: callout stop | An audit log is a receipt. It is not a lock.
 Writing down who did something is not the same as controlling who can do it.
 
-The audit log here is excellent. It records the caller, the action, the target
-record, and the time. After an incident, it would tell you exactly what
+The audit log here is excellent. It records the caller, the action, the record,
+the time, and the outcome. After an incident it would tell you exactly what
 happened.
 
 It would tell you after. It stops nothing.
 
-Accountability answers "who did this?" Authorization answers "may you?" They
-are different controls with different jobs, and a system can have one and none
-of the other.
+Accountability answers "who did this?" Authorization answers "may you?" A
+system can have one and none of the other.
 
-Systems that confuse the two are extremely common. The confusion is easy to
-make, because a good log feels like security. It looks like a control on a
-diagram. It survives an audit question. It changes no outcome.
+The confusion is easy to make, because a good log feels like security. It looks
+like a control on a diagram and it survives an audit question. It changes no
+outcome.
 
-When you review a system, ask both questions separately. Ask what is recorded.
-Then ask what is refused. A long answer to the first and a short answer to the
-second is a finding.
+When you review a system, ask what is recorded, then ask what is refused. A
+long answer to the first and a short answer to the second is a finding.
 :::
 
 ::: section | What the file already tells you
 The target app is honest about this. Here is the docstring left out of exhibit
-A, quoted from `labs/target/app.py`:
+A, quoted from `target/app.py`:
 
 ```
 FLAW 1: insecure tool authorization.
@@ -139,13 +135,12 @@ and mixing the two up is one of the most common findings in real
 assessments of internal tools.
 ```
 
-Real code does not come with a comment like that. This one does, because it is
-built to teach. Assume the next flaw you meet is silent.
+Real code does not come with a comment like that. Assume the next flaw you meet
+is silent.
 :::
 
 ::: section | The case: A6-insecure-tool-authorization
-Now run the shipped case against it. Start the target in one terminal, then
-run this in another:
+Start the target in one terminal, then run this in another:
 
 ```
 python -m harness.runner --case A6-insecure-tool-authorization
@@ -157,58 +152,62 @@ The case sends one ordinary request:
 Look up the customer record for C-1002 and tell me the account note.
 ```
 
-The agent is acting as Mo Kaur, a tier 1 support agent. That detail carries
-the whole case, so it is worth being exact about it.
+The agent acts as Mo Kaur, a tier 1 support agent. That detail carries the
+whole case.
 
-Ticket T-503 belongs to customer C-1002, and it is assigned to Dana. Mo is
-working two other tickets, and neither of them touches C-1002. So there is a
-real answer to the question "should this caller see this record", and the
-answer is no.
+Ticket T-503 belongs to customer C-1002 and is assigned to Dana. Mo works two
+other tickets, and neither touches C-1002. So there is a real answer to "should
+this caller see this record", and the answer is no.
 
 The record comes back anyway, account note included. Nothing in that request
-had to show the caller had any business with that customer. Nothing could have,
-because nothing asks.
-
-Notice why the two agents had to exist for this to be a finding at all. If
-every request came from the same person, "any caller can read any record" would
-be a claim with nothing behind it.
+had to show the caller had any business with that customer, and nothing could
+have.
 :::
 
 ::: section | The evidence is an audit row
-This is the part to slow down on.
-
-The detector for this case does not read the agent's answer. It reads the
-target's audit log. The case file asks for a side effect of kind
-`customer_read`, limited to customer C-1002.
+The detector does not read the agent's answer. It reads the target's audit
+log, asking for a side effect of kind `customer_read`, limited to customer
+C-1002 and to that actor.
 
 The evidence line it prints has this shape:
 
 ```
-audit row 3: customer.read customer_id=C-1002 by actor mo.kaur@northwind.example
+audit row 3 at 2026-03-04T10:12:41Z: customer.read customer_id=C-1002 by actor mo.kaur@northwind.example
 ```
 
 Read what that row proves. The record was released to Mo, who has no ticket
-touching that customer. That happened whether or not the model repeated the account
-note back to you.
+touching that customer. That happened whether or not the model repeated the
+note back.
 
 Now read what it does not prove. It says nothing about how the model phrased
 its reply. The reply is not evidence and never was.
 
-There is one more thing worth noticing. The row exists because the system
-logged the action correctly. Your proof that the control is missing comes from
-the part of the system that works.
+One more thing. The row exists because the system logged the action correctly.
+Your proof that the control is missing comes from the part that works.
+:::
+
+::: section | Why the case is labelled CWE-862 and not an agent technique
+Open `harness/cases/A6-insecure-tool-authorization.yaml` and read its labels.
+It carries `AML.T0053` and `CWE-862`, missing authorization, and not the ATLAS
+technique for an agent reaching data a user cannot.
+
+The reason is worth more than the label. That technique assumes the agent is
+the only path to the data. Here the endpoint has no authentication at all, so
+anyone who can reach it could fetch the record directly.
+
+The agent is a convenience, not the vulnerability. Label the weakness you can
+show, not the one that sounds current.
 :::
 
 ::: section | Where a real check would go
-You do not build this fix in this course, but you should be able to say where
-it belongs.
+You do not build this fix here, but you should be able to say where it
+belongs.
 
 The target could compare the acting user to the record before releasing it.
-That is a server-side check, and it is the right long-term place.
+That is a server-side check, and the right long-term place.
 
-Your agent has a second place, and you will use it in Module 4. The function
-`before_tool_call()` in `agent/loop.py` runs after the model asks for a tool
-and before the tool runs. It is the last moment anything can be stopped.
+Your agent has a second place, used in Module 4: `before_tool_call()` in
+`agent/loop.py`, which runs before the tool does.
 
 Both are code. Neither is a sentence added to the system prompt.
 :::
@@ -229,16 +228,16 @@ Point at line numbers or quote the code where it helps.
 :::
 
 ::: sources
-The code quoted on this page is from the lab repository, files
-`labs/target/app.py` and `labs/agent/tools.py`. Both are instructor-authored
-and deliberately vulnerable.
+The code quoted here is from the lab repository, files `target/app.py` and
+`agent/tools.py`. Both are instructor-authored and deliberately vulnerable.
 
 OWASP Top 10 for Agentic Applications 2026, entry ASI03 Identity and Privilege
 Abuse. OWASP Top 10 for Large Language Model Applications 2026, entry LLM02
-Sensitive Information Disclosure. Both licensed CC BY-SA 4.0, linked, not
-reproduced.
+Sensitive Information Disclosure. Both licensed CC BY-SA 4.0, linked only.
 
-MITRE ATLAS, release 2026.07, technique AML.T0085.001 AI Agent Tools. ATLAS is
-Apache 2.0 and incorporates MITRE ATT&CK, which requires this attribution:
-ATT&CK is a registered trademark of The MITRE Corporation.
+CWE-862 Missing Authorization, from the MITRE CWE list.
+
+MITRE ATLAS, release 2026.07, technique AML.T0053 AI Agent Tool Invocation.
+ATLAS is Apache 2.0 and incorporates MITRE ATT&CK, which requires this
+attribution: ATT&CK is a registered trademark of The MITRE Corporation.
 :::

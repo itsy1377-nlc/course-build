@@ -56,16 +56,7 @@ Answer these before Week 3 opens.
 :::
 
 ::: next
-Week 3 turns everything around.
-
-Until now, your script calls the model and waits. Next week the model calls your
-functions. You give it a list of tools, it picks one, and your code runs it.
-
-That inversion is the hardest idea in this course, and Week 3 is built entirely
-around it. You get an annotated, line by line read of the agent skeleton, and
-the graded work is a pass or fail checkpoint rather than a project.
-
-You also learn what a JSON tool schema is. The short version: the description
-you write in a schema is read by the model, not by a person. That makes it an
-interface, and it makes it an attack surface.
+Week 3 turns everything around: the model calls your functions. That inversion
+is the hardest idea in the course, and the whole week is built around it, with
+a pass or fail checkpoint instead of a project.
 :::

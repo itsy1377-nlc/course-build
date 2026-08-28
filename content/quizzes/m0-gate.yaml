@@ -49,21 +49,27 @@ questions:
     outcome: O1
     points: 4
     text: |
-      Run `python verify_env.py` in your lab folder. When every check passes it
-      prints a line like this:
+      Run `python verify_env.py` in your lab folder. It prints a line like
+      this:
 
       ```
       Your Module 0 Gate code:
           M0-XXXXX-XXXXX-M
       ```
 
-      Paste your code below, exactly as it printed, including the letter at the
-      end.
+      Paste your code below, exactly as it printed, including everything after
+      the last hyphen.
 
-      The first ten characters after `M0-` are hexadecimal. The last letter is
-      `M` if you ran the offline check and `L` if you ran it with `--live`
-      against a real model. Either one is accepted now. Once you have an API
-      key in Week 2, run it again with `--live` and submit the `L` code.
+      Reading the code. After `M0-` there are five hexadecimal characters, then
+      a hyphen, then five more hexadecimal characters. Then the letter: `M` if
+      you ran the offline check and `L` if you ran it with `--live` against a
+      real model. Either letter is accepted now. Once you have an API key in
+      Week 2, run it again with `--live` and submit the `L` code.
+
+      The code prints whether or not the checks pass. If some checks failed,
+      the code ends with `-F` and the number that failed, like
+      `M0-XXXXX-XXXXX-M-F2`. Submit that. It is accepted here, it counts for
+      attendance, and it tells your instructor exactly what to help you with.
     accepted: []
     note: >
       This item has no fixed key on purpose. The code comes from
@@ -82,11 +88,14 @@ questions:
       the manual points released on review. Otherwise no student can ever unlock
       Week 2.
     general_feedback: |
-      Your instructor checks this code against your student ID. If
-      `verify_env.py` did not print a code, one of the nine checks failed. Read
-      what it printed under the failing line. It tells you what to do. If you
-      are stuck for more than 20 minutes, post the whole output on the Q and A
-      board. Never post your API key.
+      Your instructor checks this code against your student ID.
+
+      `verify_env.py` runs nine checks offline, and a tenth when you add
+      `--live`. It prints your code at the end either way. A code ending in
+      `-F1` or `-F2` is still a valid code. It just says how many checks did
+      not pass, so read what the script printed under each failing line. It
+      tells you what to do. If you are stuck for more than 20 minutes, post the
+      whole output on the Q and A board. Never post your API key.
 
   - id: m0-q2
     type: multiple_choice
