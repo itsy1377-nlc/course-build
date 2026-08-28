@@ -203,6 +203,7 @@ modules:
       - {type: assignment, ref: module3-break-it}
       - {type: quiz, ref: m3-comprehension}
       - {type: assignment, ref: checkpoint2}
+      - {type: discussion, ref: evidence-review}
       - {type: page, ref: w6-wrap-up}
 
   - id: m07
@@ -263,6 +264,7 @@ assignments:
     due_day: 7
     submission_types: [online_upload, online_text_entry]
     outcomes: [O1, O6]
+    rubric: lab1
 
   - ref: attack-lab-1
     title: "Attack Lab 1 and Practice Finding"
@@ -281,6 +283,7 @@ assignments:
     grading_type: pass_fail
     submission_types: [online_text_entry, online_upload]
     outcomes: [O1, O2]
+    rubric: checkpoint1
 
   - ref: module1-talk-to-the-model
     title: "Module 1: Talk to the Model"
@@ -289,6 +292,7 @@ assignments:
     due_day: 14
     submission_types: [online_upload]
     outcomes: [O1, O6]
+    rubric: module1
     note: "Paired with the Module 1 comprehension quiz, 50 points, same deadline."
 
   - ref: module2-give-it-hands
@@ -304,10 +308,18 @@ assignments:
     title: "Project 2 Checkpoint"
     group: project2
     points: 20
-    due_day: 42
+    # Friday, not Sunday, and this is the only deadline in the course that is
+    # not a Sunday. A checkpoint whose whole job is "prove you are not stuck"
+    # cannot do that job when it lands on the same day as the work it is
+    # supposed to protect. Checkpoint 1 is placed correctly, seven days ahead
+    # of its module; this one was due the same day as Module 3. Two days is
+    # the most week 6 has to give, and two days of warning is worth more than
+    # a consistent day of the week.
+    due_day: 40
     grading_type: pass_fail
     submission_types: [online_text_entry, online_upload]
     outcomes: [O3, O4]
+    rubric: checkpoint2
 
   - ref: module3-break-it
     title: "Module 3: Break It"
@@ -316,6 +328,7 @@ assignments:
     due_day: 42
     submission_types: [online_upload]
     outcomes: [O3, O4, O6]
+    rubric: module3
 
   - ref: module4-fix-it
     title: "Module 4: Fix It (Project 2 Part A)"
@@ -341,7 +354,11 @@ assignments:
     group: project2
     points: 30
     due_day: 54
-    submission_types: [media_recording, online_url]
+    # online_upload is not optional here. The written walkthrough is a
+    # full-credit option and it is the path for any student who cannot or will
+    # not record audio and video, so leaving upload off made the one submission
+    # route with an accessibility function the one that did not work.
+    submission_types: [media_recording, online_url, online_upload]
     outcomes: [O1, O2, O6]
     rubric: walkthrough
 
@@ -412,6 +429,33 @@ discussions:
     title: "Q and A Discussion Board"
     pinned: true
     graded: false
+  - ref: evidence-review
+    title: "Would That Evidence Convince You?"
+    graded: true
+    points: 15
+    threaded: true
+    group: project2
+    due_day: 42
+    outcomes: [O3, O5]
+    note: >
+      The one required peer interaction in the security half of the course, and
+      it is here for two reasons rather than one.
+
+      A fully asynchronous course that requires no learner-to-learner work
+      fails a Quality Matters essential standard, and this course had exactly
+      one peer task, in week one, worth a point that was then excluded from the
+      grade. That is not a defensible position and no amount of workload
+      argument makes it one.
+
+      The second reason is the better one. Judging whether somebody else's
+      evidence supports their claim is the skill the entire harness design
+      exists to teach. A finding is not true because the person writing it
+      believes it. Students spend six weeks learning to grade the world rather
+      than the prose, and then never once apply that to another person's work.
+
+      Graded complete or incomplete against a two-line checklist, so it costs
+      roughly ten minutes of instructor time for a section of thirty.
+
   - ref: introduce-yourself
     title: "Introduce Yourself"
     graded: true

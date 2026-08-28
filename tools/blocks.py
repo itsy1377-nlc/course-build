@@ -55,6 +55,16 @@ BLOCKS = {
     "scope":      {"cls": "kl_custom_block_7", "icon": "fas fa-user-shield",        "title": "Authorization and Scope"},
 }
 
+# Read aloud by a screen reader, invisible on screen. The wording says what the
+# reader should do with the block, not what colour it is.
+CALLOUT_SEVERITY = {
+    "warning": "Warning.",
+    "stop":    "Stop. Read this before going further.",
+    "note":    "Note.",
+    "tip":     "Tip.",
+    "time":    "How long this takes.",
+}
+
 CALLOUT_ICONS = {
     "warning": "fas fa-exclamation-triangle",
     "note":    "fas fa-info-circle",
@@ -153,6 +163,7 @@ def render_block(block: Block) -> str:
     icon = spec["icon"]
     title = block.title or spec["title"]
 
+    severity = ""
     if block.name == "callout":
         flavor = (block.arg or "note").strip()
         if flavor not in CALLOUT_ICONS:
@@ -162,11 +173,25 @@ def render_block(block: Block) -> str:
             )
         icon = CALLOUT_ICONS[flavor]
         cls = f"kl_custom_block_4 dp-callout dp-callout-{flavor}"
+        # How urgent this is has to live in the HTML, not in a stylesheet.
+        #
+        # A callout carries its severity three ways: colour, an icon, and a
+        # generated text label. The icon is aria-hidden, and the label comes
+        # from the local demo stylesheet. In production the styling comes from
+        # the college's DesignPLUS licence, which may not supply that label at
+        # all. A screen reader user would then get the heading and no sense of
+        # whether it was a warning or a tip.
+        #
+        # So the word goes in the markup, visually hidden, and survives
+        # whatever stylesheet is in front of it.
+        severity = CALLOUT_SEVERITY[flavor]
 
     body = markdown_lib.markdown(block.body, extensions=MD_EXTENSIONS)
     body = _accessible_tables(body, block)
 
     parts = [f'<div class="dp-content-block {cls}">']
+    if severity:
+        parts.append(f'<span class="dp-sr-only">{severity}</span>')
     if title:
         parts.append(_heading(icon, title))
     parts.append(body)
@@ -191,20 +216,30 @@ def _accessible_tables(body: str, block: Block) -> str:
       - scope="row" on the first cell of every body row, so each row announces
         what it is about before reading its values
 
-    The caption text comes from the block's heading, or from a `caption:` line
-    an author can put as the first line of the block.
+    The caption text is the block's heading, or the block kind's default
+    heading when it has none. Every block that contains a table in this course
+    has a title, so the "Table" fallback never fires in practice.
     """
     if "<table>" not in body:
         return body
 
     caption = block.title or BLOCKS[block.name]["title"] or "Table"
+    if body.count("<table>") > 1:
+        raise BlockError(
+            f"line {block.line}: this block has more than one table, and they would "
+            f"share a caption.\n"
+            f"  Split it into one ::: block per table, each with its own heading."
+        )
     body = body.replace(
         "<table>",
         f'<table class="{TABLE_CLASSES}">\n'
         f'<caption class="dp-caption-t">{html.escape(caption)}</caption>',
     )
-    # Header cells announce their column.
-    body = re.sub(r"<th>", '<th scope="col">', body)
+    # Header cells announce their column. Matching `<th` rather than `<th>`
+    # because a markdown table with alignment colons emits
+    # `<th style="text-align: right;">`, and a plain `<th>` pattern would skip
+    # it and silently drop the scope.
+    body = re.sub(r"<th(\s|>)", r'<th scope="col"\1', body)
 
     # The first cell of each body row announces the row.
     def row_header(match: re.Match) -> str:
@@ -213,8 +248,9 @@ def _accessible_tables(body: str, block: Block) -> str:
         # loses its header. Caught by counting the scope attributes in the
         # output rather than by reading the code.
         inner = match.group(1)
-        return re.sub(r"<td>(.*?)</td>", r'<th scope="row">\1</th>', inner, count=1,
-                      flags=re.DOTALL)
+        return re.sub(r"<td(\s[^>]*)?>(.*?)</td>",
+                      lambda m: f'<th scope="row"{m.group(1) or ""}>{m.group(2)}</th>',
+                      inner, count=1, flags=re.DOTALL)
 
     head, sep, rest = body.partition("<tbody>")
     if sep:
@@ -243,7 +279,7 @@ def render_document(text: str, page_title: str, source: str = "<page>") -> str:
     """A complete standalone HTML file, as a Common Cartridge carries it."""
     body = render_page(text, page_title, source)
     return (
-        '<html>\n<head>\n'
+        '<html lang="en">\n<head>\n'
         '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
         f'<title>{html.escape(page_title)}</title>\n'
         '<meta name="editing_roles" content="teachers"/>\n'

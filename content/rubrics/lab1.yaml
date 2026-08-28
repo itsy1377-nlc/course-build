@@ -1,0 +1,56 @@
+ref: lab1
+title: "Lab 1: Python Foundations"
+points: 30
+free_form_comments: true
+guidance: >
+  Lab 1 is not a programming test. Nothing here asks you to write code from
+  nothing. You run one command, read code that already works, predict what it
+  does, and then check whether you were right. Being wrong and saying why you
+  were wrong is worth full credit. Guessing right and not knowing why is not.
+criteria:
+  - description: The environment check ran
+    long_description: >
+      You ran the checker and submitted the code it printed. A code ending in
+      F and a number still counts: it means something failed and your
+      instructor now knows what.
+    points: 6
+    ratings:
+      - {points: 6, description: Ran, code submitted}
+      - {points: 3, description: Ran, code not submitted}
+      - {points: 0, description: Not run}
+  - description: Read-and-predict answers
+    long_description: >
+      For each snippet you said what you expected, then what actually
+      happened. Where they differed you said what you had misunderstood.
+    points: 10
+    ratings:
+      - {points: 10, description: All answered, with the prediction written before the result}
+      - {points: 6, description: All answered, but only after running the code}
+      - {points: 3, description: Some answered}
+      - {points: 0, description: Missing}
+  - description: The dictionary lookup questions
+    points: 5
+    ratings:
+      - {points: 5, description: All three correct}
+      - {points: 3, description: Two correct}
+      - {points: 1, description: One correct}
+      - {points: 0, description: None correct}
+  - description: You said where you got stuck
+    long_description: >
+      One honest sentence. "I did not get stuck" is a valid answer. This is
+      how your instructor finds people in week 1 rather than week 5.
+    points: 3
+    ratings:
+      - {points: 3, description: Specific}
+      - {points: 1, description: Present but vague}
+      - {points: 0, description: Missing}
+  - description: Work is your own, and AI use is declared where you used it
+    points: 3
+    ratings:
+      - {points: 3, description: Declared, or plainly not used}
+      - {points: 0, description: Not declared}
+  - description: Submitted on time and in the right format
+    points: 3
+    ratings:
+      - {points: 3, description: Yes}
+      - {points: 0, description: No}

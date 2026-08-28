@@ -1,0 +1,44 @@
+# Pass or fail, and the bar is deliberately low. Its only job is to prove you
+# are unblocked. It is not judged on quality, elegance, or completeness.
+ref: checkpoint2
+title: "Project 2 Checkpoint"
+points: 20
+free_form_comments: true
+guidance: >
+  Same low bar as the first checkpoint, and the same reason for it. One
+  payload you wrote yourself, one genuine transcript excerpt, and a target
+  address that is in scope. A documented near-miss with a correct class label
+  passes. This is due two days before Module 3 on purpose, so that "I am
+  stuck" still leaves time to be unstuck.
+criteria:
+  - description: One payload you wrote yourself
+    long_description: >
+      Its ID and its text, word for word. Not one of the six that ship.
+    points: 8
+    ratings:
+      - {points: 8, description: Original, quoted in full}
+      - {points: 0, description: Missing, or copied from a shipped case}
+  - description: A transcript excerpt, fifteen lines or fewer
+    long_description: >
+      The target doing something it should not, or your closest near-miss. A
+      near-miss with the right weakness class named is a pass.
+    points: 4
+    ratings:
+      - {points: 4, description: Present and genuine}
+      - {points: 0, description: Missing}
+  - description: Your target address, pasted from your settings file
+    long_description: >
+      It has to be your own machine. This is clause 1 of the Rules of
+      Engagement, checked rather than assumed.
+    points: 4
+    ratings:
+      - {points: 4, description: In scope}
+      - {points: 0, description: Missing, or out of scope}
+  - description: The blocker sentence
+    long_description: >
+      Either "I am stuck on ___" or "I am not stuck." Both pass. This sentence
+      is how your instructor finds you before it costs you a grade.
+    points: 4
+    ratings:
+      - {points: 4, description: Present}
+      - {points: 0, description: Missing}

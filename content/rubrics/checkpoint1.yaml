@@ -1,0 +1,37 @@
+# Pass or fail, and the bar is deliberately low. Its only job is to prove you
+# are unblocked. It is not judged on quality, elegance, or completeness.
+ref: checkpoint1
+title: "Project 1 Checkpoint"
+points: 20
+free_form_comments: true
+guidance: >
+  Read the bar before you worry about this one. One real tool call, with a
+  real tool name, from your own run. That is it. If you cannot get your own
+  run working, pull the `agent-working` branch your instructor published on
+  day 18, say that you did, and you still pass. Saying you are stuck is a pass.
+  Saying nothing is the only way to fail.
+criteria:
+  - description: One real tool call from your own log
+    points: 8
+    ratings:
+      - {points: 8, description: Pasted unedited, with its timestamp}
+      - {points: 8, description: From the fallback branch, and you said so}
+      - {points: 0, description: Missing or invented}
+  - description: The tool's JSON schema, as registered
+    points: 4
+    ratings:
+      - {points: 4, description: Present}
+      - {points: 0, description: Missing}
+  - description: One sentence on what the tool does and what it refuses to do
+    points: 4
+    ratings:
+      - {points: 4, description: Present}
+      - {points: 0, description: Missing}
+  - description: The blocker sentence
+    long_description: >
+      Either "I am stuck on ___" or "I am not stuck." Both pass. This sentence
+      is how your instructor finds you before it costs you a grade.
+    points: 4
+    ratings:
+      - {points: 4, description: Present}
+      - {points: 0, description: Missing}

@@ -1,0 +1,53 @@
+ref: module3
+title: "Module 3: Break It"
+points: 80
+free_form_comments: true
+guidance: >
+  This module is about reading results, not producing them. The harness does
+  the running. What is graded is whether you can tell what a result means, and
+  whether you quote evidence rather than the model's words.
+criteria:
+  - description: The harness ran, and the report is attached
+    long_description: >
+      A results file from your own run, with the detector self-test passing
+      and both benign controls passing.
+    points: 15
+    ratings:
+      - {points: 15, description: A complete run, controls passing}
+      - {points: 9, description: A run that stopped on a control, with an explanation}
+      - {points: 0, description: No run}
+  - description: Rates reported, never a yes or no
+    long_description: >
+      Every result given as hits out of completed trials. "Vulnerable" hides
+      the difference between one time in five and five times in five.
+    points: 15
+    ratings:
+      - {points: 15, description: Every case reported with its rate}
+      - {points: 8, description: Some rates given}
+      - {points: 0, description: Reported as pass or fail}
+  - description: You read a result you did not expect
+    long_description: >
+      At least one case in your run will report something surprising, most
+      often a case that did not reproduce. Say which, and what you checked
+      before concluding the system was safe.
+    points: 15
+    ratings:
+      - {points: 15, description: Names the case and what was checked}
+      - {points: 8, description: Notices it without investigating}
+      - {points: 0, description: Takes every result at face value}
+  - description: The four walkthrough questions
+    long_description: >
+      From the insecure tool authorization walkthrough. Two or three sentences
+      each, pointing at code where it helps.
+    points: 20
+    ratings:
+      - {points: 20, description: All four answered, and the audit-log question distinguishes a record from a control}
+      - {points: 14, description: All four answered, one shallow}
+      - {points: 7, description: Two or three answered}
+      - {points: 0, description: Missing}
+  - description: Evidence is a side effect, a canary, or an audit row
+    points: 15
+    ratings:
+      - {points: 15, description: Pasted evidence for every claim}
+      - {points: 8, description: Some claims rest on the model's answer}
+      - {points: 0, description: No evidence}

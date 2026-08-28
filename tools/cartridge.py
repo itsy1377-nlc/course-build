@@ -24,7 +24,7 @@ is written down twice.
 from __future__ import annotations
 
 import argparse
-import json
+import re
 import shutil
 import sys
 import zipfile
@@ -102,8 +102,9 @@ def _title_from_ref(ref: str) -> str:
 # ---------------------------------------------------------------------------
 
 
-def check(course: dict) -> list[str]:
+def check(course: dict, notes: list[str] | None = None) -> list[str]:
     problems: list[str] = []
+    notes = notes if notes is not None else []
     titles = _titles(course)
 
     by_ref = {row["ref"]: row for group in ("assignments", "quizzes", "discussions")
@@ -115,17 +116,33 @@ def check(course: dict) -> list[str]:
     if total_weight != 100:
         problems.append(f"assignment group weights add to {total_weight}, not 100")
 
-    # Points inside a group have to be proportional to the intended weight,
-    # because Canvas computes a group score as earned over possible.
+    # Canvas computes a group score as points earned over points possible, then
+    # applies the group weight. So what has to be true is not that a group hits
+    # a particular point total, but that every item's share of its group is the
+    # share the design intended.
+    #
+    # The convention here is points equal to weight times ten, which makes an
+    # item's point value readable directly as a percentage of the course. When
+    # a group drifts off that, nothing is broken; every item in it is just
+    # worth slightly more or less than its number suggests. That is worth
+    # saying out loud rather than failing on, because the alternative is
+    # refusing to add a fifteen point activity to a course that needs one.
     for group in course["assignment_groups"]:
         members = [r for r in by_ref.values()
                    if r.get("group") == group["id"] and not r.get("omit_from_final_grade")]
         points = sum(r.get("points", 0) for r in members)
         if points and points != group["weight"] * 10:
-            problems.append(
-                f"group '{group['id']}' is weighted {group['weight']}% and its items "
-                f"add to {points} points. The convention here is weight times ten, "
-                f"so that should be {group['weight'] * 10}.")
+            drift = points - group["weight"] * 10
+            note = (f"group '{group['id']}' is weighted {group['weight']}% across "
+                    f"{points} points, {drift:+d} from the weight-times-ten "
+                    f"convention. Every item in it is worth "
+                    f"{group['weight'] * 10 / points:.3f} of its face value as a "
+                    f"share of the course.")
+            if abs(drift) > group["weight"] * 10 * 0.1:
+                problems.append(note + " That is more than ten percent adrift, "
+                                       "which is far enough to be an accident.")
+            else:
+                notes.append(note)
 
     # Every module item has to resolve to something on disk.
     for module in course["modules"]:
@@ -202,10 +219,14 @@ def _xml(tag: str, value: Any) -> str:
 
 def build(out_path: Path, session: str = "fall-flex-2", quiet: bool = False) -> Path:
     course = load_course()
-    problems = check(course)
+    notes: list[str] = []
+    problems = check(course, notes)
     if problems:
         raise BuildError("\n".join(["The course does not validate:"] +
                                    [f"  - {p}" for p in problems]))
+    if not quiet:
+        for note in notes:
+            print(f"note: {note}")
 
     dates = DateMap(session)
     titles = _titles(course)
@@ -435,16 +456,36 @@ def _with_rubric(markdown_text: str, row: dict, course: dict) -> str:
     if not ref:
         return markdown_text
     rubric = yaml.safe_load((CONTENT / "rubrics" / f"{ref}.yaml").read_text(encoding="utf-8"))
-    lines = ["", "::: grading | How this is scored",
-             f"The rubric below is attached to this assignment in Canvas as well. "
-             f"It totals {rubric['points']} points.", "",
-             "| Criterion | Points | What full credit looks like |", "|---|---|---|"]
+
+    lines = ["::: grading | How this is scored",
+             f"This is the rubric your instructor grades against, and it is attached "
+             f"to the assignment in Canvas as well, so you can open it before you "
+             f"submit. It totals {rubric['points']} points.", ""]
+    if rubric.get("guidance"):
+        lines += [rubric["guidance"].strip(), ""]
+    lines += ["| Criterion | Points | What full credit looks like |", "|---|---|---|"]
     for criterion in rubric["criteria"]:
         best = max(criterion["ratings"], key=lambda r: r["points"])
         lines.append(f"| {criterion['description']} | {criterion['points']} | "
                      f"{best.get('long_description') or best['description']} |")
     lines.append(":::")
-    return markdown_text.rstrip() + "\n" + "\n".join(lines) + "\n"
+    block = "\n".join(lines)
+
+    # REPLACE the authored grading block rather than appending after it.
+    #
+    # Appending produced two grading tables on the same page that decomposed
+    # the same total differently, and a student had no way to tell which one
+    # counted. Worse, they could drift apart silently: the Module 4 page told
+    # students a config setting was optional while the rubric docked eight
+    # points for not using it.
+    #
+    # One table, generated from the rubric, which is also what Canvas attaches.
+    # Anything the authored block said that the rubric does not is moved into
+    # the rubric's `guidance` field, so it survives.
+    pattern = re.compile(r"^::: grading.*?^:::\s*$", re.MULTILINE | re.DOTALL)
+    if pattern.search(markdown_text):
+        return pattern.sub(lambda _: block, markdown_text, count=1)
+    return markdown_text.rstrip() + "\n\n" + block + "\n"
 
 
 def _assignment_settings(rid: str, row: dict, title: str, slug: str,
@@ -852,13 +893,16 @@ def main(argv: list[str] | None = None) -> int:
     args = parser.parse_args(argv)
 
     course = load_course()
-    problems = check(course)
+    notes: list[str] = []
+    problems = check(course, notes)
     if problems:
         print("The course does not validate:\n")
         for problem in problems:
             print(f"  - {problem}")
         print()
         return 1
+    for note in notes:
+        print(f"note: {note}")
     if args.check:
         print("Everything validates. Nothing was built.")
         return 0

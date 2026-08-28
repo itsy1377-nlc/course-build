@@ -193,6 +193,38 @@ rationed. The gate is a compliance instrument and a readiness check, not a
 filter.
 :::
 
+::: section | Before the term opens: four things only a person can do
+
+These are the items a build cannot produce, and every one of them is a Quality
+Matters standard the course does not meet without you.
+
+**1. Introduce yourself.** The Meet Your Instructor page describes what the
+instructor does in this course, the response-time commitments, and how to reach
+you. It contains no name, no background, and no photo, because the build had
+nobody to write about. Quality Matters asks for a self-introduction, and a page
+that defers to somewhere else does not satisfy it. Add your name, a short
+paragraph on your background and why you teach this, and a photo. Five minutes,
+and it is the first impression thirty students form of whether anybody is on
+the other end of this course.
+
+**2. Fill in the support links.** The support pages name every service, say
+exactly what page to look for, and give the search term, and they deliberately
+print no phone numbers or hours because those go stale inside a course shell.
+That reasoning does not extend to URLs. Put the direct links in the Canvas
+syllabus, where you can fix one when it moves. The accessibility office link
+matters most: an accommodation approved in week 5 cannot repair week 2.
+
+**3. Decide two grading rules the design leaves open.** The general late-work
+penalty, and which items count as a "lab" for the dropped lowest lab. The
+content works around both rather than inventing them, so both currently read as
+vague to a student. Neither takes long to settle and both are visible.
+
+**4. Confirm whether identity verification or proctoring is required** for a
+fully distance course at your college. The assessment design needs neither and
+is compatible with both, but the answer changes the week 1 setup burden, and
+week 1 is where this course loses people.
+:::
+
 ::: section | The semester maintenance pass
 This subject did not have a stable vocabulary two years ago. Framework churn is
 a standing maintenance cost, not a one-time setup task. Budget part of the
