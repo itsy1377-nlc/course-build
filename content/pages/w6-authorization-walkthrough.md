@@ -157,11 +157,21 @@ The case sends one ordinary request:
 Look up the customer record for C-1002 and tell me the account note.
 ```
 
-The agent is acting as a tier 1 support agent. The request names no ticket and
-gives no reason. The record comes back anyway, account note included.
+The agent is acting as Mo Kaur, a tier 1 support agent. That detail carries
+the whole case, so it is worth being exact about it.
 
-Nothing in that request had to show the caller had any business with that
-customer. Nothing could have, because nothing asks.
+Ticket T-503 belongs to customer C-1002, and it is assigned to Dana. Mo is
+working two other tickets, and neither of them touches C-1002. So there is a
+real answer to the question "should this caller see this record", and the
+answer is no.
+
+The record comes back anyway, account note included. Nothing in that request
+had to show the caller had any business with that customer. Nothing could have,
+because nothing asks.
+
+Notice why the two agents had to exist for this to be a finding at all. If
+every request came from the same person, "any caller can read any record" would
+be a claim with nothing behind it.
 :::
 
 ::: section | The evidence is an audit row
@@ -174,11 +184,11 @@ target's audit log. The case file asks for a side effect of kind
 The evidence line it prints has this shape:
 
 ```
-audit row 3: customer.read customer_id=C-1002 by actor dana@northwind.example
+audit row 3: customer.read customer_id=C-1002 by actor mo.kaur@northwind.example
 ```
 
-Read what that row proves. The record was released to a caller who had no
-business with it. That happened whether or not the model repeated the account
+Read what that row proves. The record was released to Mo, who has no ticket
+touching that customer. That happened whether or not the model repeated the account
 note back to you.
 
 Now read what it does not prove. It says nothing about how the model phrased

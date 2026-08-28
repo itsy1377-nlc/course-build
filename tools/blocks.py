@@ -120,15 +120,31 @@ def parse_blocks(text: str, source: str = "<page>") -> list[Block]:
 
 
 def _icon_html(icon: str) -> str:
+    """An icon that carries no meaning, and says so.
+
+    aria-hidden is correct here only because the icon is always next to a text
+    heading that says the same thing. An icon is never the only carrier of
+    meaning on these pages, which is what keeps this from being a WCAG failure.
+    """
     return (f'<i class="{icon} dp-i-size-small" aria-hidden="true">'
             f'<span class="dp-icon-content" style="display: none;">&nbsp;</span></i>')
 
 
 def _heading(icon: str | None, title: str) -> str:
+    """A heading with no inline font size.
+
+    The NLC template's pages carry `style="font-size: 14pt;"` on every heading,
+    which are artifacts of the rich text editor rather than anything DesignPLUS
+    needs. They are dropped here for two reasons. A fixed point size ignores a
+    reader who has set a larger default font, which is a real accessibility
+    problem for a real part of this audience. And the class names are what make
+    a page drop-in compatible with the college's DesignPLUS, not the inline
+    styles, so nothing is lost by leaving sizing to the stylesheet.
+    """
+    label = html.escape(title)
     if icon:
-        return (f'<h3 class="dp-has-icon">{_icon_html(icon)}'
-                f'<span style="font-size: 14pt;"> {html.escape(title)}</span></h3>')
-    return f'<h3><span style="font-size: 14pt;">{html.escape(title)}</span></h3>'
+        return f'<h3 class="dp-has-icon">{_icon_html(icon)}<span> {label}</span></h3>'
+    return f"<h3>{label}</h3>"
 
 
 def render_block(block: Block) -> str:
@@ -148,8 +164,7 @@ def render_block(block: Block) -> str:
         cls = f"kl_custom_block_4 dp-callout dp-callout-{flavor}"
 
     body = markdown_lib.markdown(block.body, extensions=MD_EXTENSIONS)
-    body = body.replace("<table>", '<table class="ic-Table table-bordered ic-Table--striped '
-                                   'ic-Table--hover-row ic-Table--condensed">')
+    body = _accessible_tables(body, block)
 
     parts = [f'<div class="dp-content-block {cls}">']
     if title:
@@ -157,6 +172,56 @@ def render_block(block: Block) -> str:
     parts.append(body)
     parts.append("</div>")
     return "\n".join(parts)
+
+
+TABLE_CLASSES = ("ic-Table table-bordered ic-Table--striped "
+                 "ic-Table--hover-row ic-Table--condensed")
+
+
+def _accessible_tables(body: str, block: Block) -> str:
+    """Make every generated table readable by a screen reader.
+
+    Markdown produces a bare `<table>` with `<th>` cells and nothing else. A
+    screen reader then has no way to tell which header belongs to which cell,
+    which turns a comparison table into a flat list of words. Three additions
+    fix it, and the NLC template's own tables do all three:
+
+      - a <caption>, so the table announces what it is
+      - scope="col" on every header cell in the head
+      - scope="row" on the first cell of every body row, so each row announces
+        what it is about before reading its values
+
+    The caption text comes from the block's heading, or from a `caption:` line
+    an author can put as the first line of the block.
+    """
+    if "<table>" not in body:
+        return body
+
+    caption = block.title or BLOCKS[block.name]["title"] or "Table"
+    body = body.replace(
+        "<table>",
+        f'<table class="{TABLE_CLASSES}">\n'
+        f'<caption class="dp-caption-t">{html.escape(caption)}</caption>',
+    )
+    # Header cells announce their column.
+    body = re.sub(r"<th>", '<th scope="col">', body)
+
+    # The first cell of each body row announces the row.
+    def row_header(match: re.Match) -> str:
+        # Not anchored with ^. Markdown puts a newline after <tr>, so an
+        # anchored pattern silently matches nothing and every row quietly
+        # loses its header. Caught by counting the scope attributes in the
+        # output rather than by reading the code.
+        inner = match.group(1)
+        return re.sub(r"<td>(.*?)</td>", r'<th scope="row">\1</th>', inner, count=1,
+                      flags=re.DOTALL)
+
+    head, sep, rest = body.partition("<tbody>")
+    if sep:
+        rest = re.sub(r"<tr>(.*?)</tr>", lambda m: f"<tr>{row_header(m)}</tr>", rest,
+                      flags=re.DOTALL)
+        body = head + sep + rest
+    return body
 
 
 def render_page(text: str, page_title: str, source: str = "<page>") -> str:
@@ -167,8 +232,7 @@ def render_page(text: str, page_title: str, source: str = "<page>") -> str:
     return (
         f'<div id="dp-wrapper" class="dp-wrapper dp-basic-bar">'
         f'<header class="dp-header dp-basic-bar ">\n'
-        f'<h2 class="dp-heading"><span class="dp-header-title" style="font-size: 18pt;">'
-        f'{escaped}</span></h2>\n'
+        f'<h2 class="dp-heading"><span class="dp-header-title">{escaped}</span></h2>\n'
         f'</header>\n'
         f'{inner}\n'
         f'</div>'
