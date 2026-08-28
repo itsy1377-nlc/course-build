@@ -1,7 +1,10 @@
 ref: module3
 title: "Module 3: Break It"
 points: 80
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   This module is about reading results, not producing them. The harness does
   the running. What is graded is whether you can tell what a result means, and

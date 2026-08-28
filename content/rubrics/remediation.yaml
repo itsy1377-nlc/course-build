@@ -2,7 +2,10 @@
 ref: remediation
 title: "Module 4: Fix It"
 points: 90
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Record your before numbers first. Run the whole harness once before you touch
   any code, and save that results file. You cannot get those numbers back after

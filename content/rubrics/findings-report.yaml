@@ -8,7 +8,10 @@
 ref: findings-report
 title: "Final Part B: Security Assessment Report"
 points: 120
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: >
   Finding accuracy and remediation adequacy carry 70 of the 120 points. They
   are read by your instructor, not scored by a script. Spend your time there.

@@ -3,7 +3,10 @@
 ref: checkpoint1
 title: "Project 1 Checkpoint"
 points: 20
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Read the bar before you worry about this one. One real tool call, with a
   real tool name, from your own run. That is it. If you cannot get your own

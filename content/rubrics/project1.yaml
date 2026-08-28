@@ -4,7 +4,10 @@
 ref: project1
 title: "Module 2: Give It Hands"
 points: 90
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   The first three rows are checked by `python -m pytest tests/test_module2.py
   -q`. Run it as often as you like before the deadline. It is the same tool

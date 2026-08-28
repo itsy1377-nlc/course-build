@@ -1,7 +1,10 @@
 ref: lab1
 title: "Lab 1: Python Foundations"
 points: 30
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Lab 1 is not a programming test. Nothing here asks you to write code from
   nothing. You run one command, read code that already works, predict what it

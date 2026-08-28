@@ -4,7 +4,10 @@
 ref: practice-finding
 title: "Attack Lab 1: Practice Finding"
 points: 80
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Paste the line from your config that shows your target address. It has to say
   `http://127.0.0.1:8000`, and the submission is not graded without it. That is

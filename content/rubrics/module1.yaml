@@ -1,7 +1,10 @@
 ref: module1
 title: "Module 1: Talk to the Model"
 points: 90
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Every row below is checked by a test you can run yourself, as many times as
   you like, before the deadline. Run `python -m pytest tests/test_module1.py -q`

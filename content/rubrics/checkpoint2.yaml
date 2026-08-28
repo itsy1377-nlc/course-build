@@ -3,7 +3,10 @@
 ref: checkpoint2
 title: "Project 2 Checkpoint"
 points: 20
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Same low bar as the first checkpoint, and the same reason for it. One
   payload you wrote yourself, one genuine transcript excerpt, and a target

@@ -3,7 +3,10 @@
 ref: walkthrough
 title: "Final Part C: Three-Minute Walkthrough"
 points: 30
-free_form_comments: true
+# Canvas hides every rating level when this is true and shows a bare
+# comment box instead, so the ladder below reaches nobody: not the
+# student deciding what to submit, not the grader choosing a score.
+free_form_comments: false
 guidance: |
   Stay inside three minutes, or 600 words if you take the written option.
   Nothing past the limit is watched or read.
