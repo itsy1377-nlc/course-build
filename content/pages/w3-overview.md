@@ -1,28 +1,17 @@
 ::: intro
-This week you meet the idea the rest of the course rests on. Until now, your
-script called the model. Starting now, the model calls your function. That flip
-is harder than it sounds, so this page tells you how the week protects you.
+This week the direction flips. Until now your script called the model, and from
+here the model calls your function.
 :::
 
-::: callout stop | Read this part before anything else
-This is the hardest week in the course. That is a design fact, not a scare.
+::: callout stop | The hardest week, and it is built so you cannot fall out
+Four protections are already in place. Read them before you start.
 
-Four things are built into the week so that a stuck student still finishes on
-time.
-
-1. **The checkpoint is pass/fail, and it has a fallback path.** A student who
-   cannot get their own code running still passes. You still start Week 4 on
-   time, with your grade intact.
-2. **A working version is published for you on day 18.** Your instructor
-   releases a branch called `agent-working`. It arrives three days before the
-   deadline, not on it.
-3. **Required reading is capped at 45 minutes.** All of it is one page in this
-   course, the Annotated Skeleton. Nothing else is assigned this week.
-4. **Nothing due on day 21 needs working code except the checkpoint.** And the
-   checkpoint has the fallback in point 1.
-
-You cannot fall out of this course in Week 3. The week is built so that it does
-not happen.
+| Protection | What it means |
+|---|---|
+| The checkpoint is pass or fail | A student whose own code will not run still passes, on time, with the grade intact |
+| A working branch on day 18 | Your instructor publishes `agent-working` three days before the deadline, not on it |
+| Reading capped at 45 minutes | The Annotated Skeleton page. Nothing else is assigned |
+| Nothing else due day 21 needs working code | Only the checkpoint, and it has the fallback above |
 :::
 
 ::: objectives
@@ -30,8 +19,8 @@ By the end of this week, you will be able to:
 
 - 3.1. Describe the difference between a script that calls a model and a model
   that calls your function.
-- 3.2. Explain what a JSON tool schema is, and what a model can learn about a
-  tool by reading one.
+- 3.2. Explain what a JSON tool schema is, and what a model learns by reading
+  one.
 - 3.3. Apply try, except, a timeout, and a retry to code in the lab scaffold.
 - 3.4. Walk through the agent loop in `agent/loop.py` and say what each part
   does.
@@ -48,15 +37,9 @@ an agent with tools), and O6 (checking AI-written code).
 | Add error handling to the scaffold and get one tool call to run | 3.3 | Friday |
 | Project 1 Checkpoint, pass/fail, 20 points | 3.2, 3.4 | Sunday 11:59 PM, day 21 |
 
-The checkpoint is the only graded item this week.
-:::
-
-::: callout note | The pinned errors thread
-On day 15, before anyone has hit them, a thread called "Top 10 Week 3 Errors"
-is pinned on the Q and A board.
-
-Read it the moment something breaks. Most of the time your error is already on
-it, with the fix. Post there when it is not.
+The checkpoint is the only graded item this week. A thread called "Top 10 Week
+3 Errors" is pinned on the Q and A board from day 15. Read it the moment
+something breaks.
 :::
 
 ::: callout time | About how long this takes
@@ -65,23 +48,18 @@ The Annotated Skeleton reading: 45 minutes, and it is capped there.
 Hands-on work in the lab: about 4 hours.
 The checkpoint write-up: about 30 minutes.
 
-That is about 6 hours of assigned work in total.
-
-This is the hardest week in the course, and it is not the longest. Week 4 and
-Week 7 both assign more hours than this one.
+That is about 6 hours of assigned work in total. This is the hardest week in
+the course, and it is not the longest. Week 4 and Week 7 both assign more
+hours.
 
 If programming is new to you, the coding parts commonly take two to three
 times as long. That wider range is normal, not a sign of falling behind.
 
-If you pass 6 hours of lab work and the agent still does not run, stop. Use the
-`agent-working` branch and submit the checkpoint. That branch exists for this
-exact moment.
+Past 6 hours of lab work with the agent still not running? Use the
+`agent-working` branch and submit the checkpoint.
 :::
 
 ::: next
-Week 4 takes the loop apart, one step at a time. You trace it on paper first,
-then you add a tool of your own design.
-
-That work is Project 1. It is the largest single grade in the first half of the
-course, and this week is what makes it possible.
+Week 4 takes the loop apart one step at a time. You trace it on paper, then you
+design a tool of your own, which is Project 1.
 :::

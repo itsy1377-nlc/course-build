@@ -2,13 +2,15 @@
 This page takes the agent loop apart: how the message list grows, how a tool
 name becomes a function call, and what happens when a tool fails. Then you
 trace it on paper.
-
-The loop itself is four steps. Send the conversation, run any tool the model
-asked for, repeat, and stop when the model answers in words or hits the step
-limit.
 :::
 
-::: section | The bound: why the loop counts
+::: section | Four steps, and a bound on how many
+Send the conversation to the model. Run any tool it asked for, and put the
+result back in the conversation. Repeat. Stop when the model answers in words,
+or when the step limit is reached.
+
+That limit is one line:
+
 ```python
 for step in range(1, max_steps + 1):
 ```
@@ -16,11 +18,11 @@ for step in range(1, max_steps + 1):
 `max_steps` is 6 in `config/lab.config.yaml`, so the loop runs six times at
 most.
 
-Take the bound away and think about what is left. A model that keeps asking for
-tools keeps getting them. Nothing in the model gets tired. Your quota does.
+Take the bound away and see what is left. A model that keeps asking for tools
+keeps getting them. Nothing in the model gets tired. Your quota does.
 
-A bounded loop is a control. It is the first control in this course written in
-code rather than words, and it is one number in a config file.
+A bounded loop is a control, the first one in this course written in code
+rather than words. It is one number in a config file.
 
 When the loop runs out, the `else` on the `for` runs and `stopped` becomes
 `"step_limit"`. That is a normal ending, not a crash.
@@ -36,9 +38,9 @@ The conversation is a Python list, and it starts with two entries.
     ]
 ```
 
-Tool calls and tool results are appended, nothing is removed, and the model
-sees the whole list on every pass. Here is a real run, from a request to
-summarize ticket T-503.
+Tool calls and results are appended, nothing is removed, and the model sees
+the whole list every pass. Here is a real run, from a request to summarize
+ticket T-503.
 
 | Point in the run | What `messages` holds |
 |---|---|
@@ -53,19 +55,19 @@ Read that last row again, because it surprises people. On the step where the
 model answers in words, the loop sets `final_text`, records a trace event, and
 breaks. It never appends that message.
 
-So the list ends at six entries, and the agent's own final answer is not one of
+So the list ends at six entries, and the agent's final answer is not one of
 them. It lives in `final_text` and in the trace file.
 
 **Cost.** Every entry is sent again on every pass, so a long tool result is
-paid for on every step after it. That is why the loop cuts results off at
+paid for on every later step. That is why the loop cuts results off at
 `max_tool_result_chars`.
 
-**Trust.** By step 3, that list holds text a stranger typed into a ticket. It
-sits beside your system prompt, in the same format.
+**Trust.** By step 3 that list holds text a stranger typed into a ticket, next
+to your system prompt, in the same format.
 :::
 
 ::: section | Tool dispatch: how a name becomes a function
-The model sent a name. Something has to turn that name into running code.
+The model sent a name. Something turns that name into running code.
 
 ```python
 result = tools.call_tool(cfg, name, args)
@@ -88,12 +90,12 @@ Inside `call_tool`, three things happen before your function runs:
    still be switched off.
 3. Get the function out of the registry and call it.
 
-**That second check is the control.** A model can write any tool name it likes,
-including one you never offered, because a tool call is only text the model
-produced. Nothing stops it asking. The allowlist check stops the call running.
+**That second check is the control.** A model can write any tool name it
+likes, including one you never offered, because a tool call is only text.
+Nothing stops it asking. The allowlist check stops the call running.
 
-Not offering a tool is still worth doing, and it is the cheapest measure in
-the system. It just is not what enforces the rule.
+Not offering a tool is still worth doing, and it is the cheapest measure here.
+It just is not what enforces the rule.
 
 So Module 2 has you edit two files: `TOOLS` in `agent/tools.py`, and
 `agent.allowed_tools` in `config/lab.config.yaml`. Miss the second and your
@@ -101,8 +103,8 @@ tool never runs.
 :::
 
 ::: section | What happens when a tool errors
-Tools fail, and that is ordinary. The target app is not running. A customer ID
-does not exist.
+Tools fail, and that is ordinary. The target app is down. A customer ID does
+not exist.
 
 ```python
 try:
@@ -114,30 +116,30 @@ except tools.ToolError as exc:
     error = str(exc)
 ```
 
-The failure becomes text, the text goes back to the model as the tool result,
-and the loop keeps running.
+The failure becomes text, goes back to the model as the tool result, and the
+loop keeps running.
 
-Now compare a tool that fails quietly. Say your `get_customer` returns an empty
-string when the customer does not exist. No error is raised. The loop sees a
-successful call with an empty result, appends it, and moves on.
+Now compare a tool that fails quietly. Say your `get_customer` returns an
+empty string when the customer does not exist. No error is raised, so the loop
+appends an empty result and moves on.
 
 The model now believes the record is blank, and tells the user so. Nothing in
-the ledger says anything went wrong, because as far as it knows, nothing did.
+the ledger says anything went wrong, because nothing did.
 
 **A tool that returns an empty string on failure is worse than a missing
 tool.** A missing tool is obvious. A silent one produces confident wrong
-answers, and your log agrees with them.
+answers, and your log agrees.
 
-That is why Module 2 grades your error path as heavily as your success path.
+So Module 2 grades your error path as heavily as your success path.
 :::
 
 ::: section | The activity: trace the loop on paper
-Do this before you write code this week. It takes about 30 minutes.
+Do this before you write code. It takes about 30 minutes.
 
-1. Draw a column down the left of a sheet of paper. Label it `messages`.
+1. Draw a column down a sheet of paper. Label it `messages`.
 2. Write the two starting entries, system and user, for the request
    `summarize ticket T-503`.
-3. Open `agent/loop.py` and start reading at the `for step` line.
+3. Open `agent/loop.py` and read from the `for step` line.
 4. Walk one pass by hand. Every time the code appends to `messages`, write a
    new row and note the step.
 5. Stop at a `break`, or after six passes.
@@ -156,8 +158,8 @@ python -m agent.cli "summarize ticket T-503"
 
 8. Compare your paper to what printed and to `runs/ledger.jsonl`.
 
-Where the two disagree, your paper is probably wrong. Working out why is the
-point. Bring one disagreement to the Q and A board if you cannot explain it.
+Where they disagree, your paper is probably wrong, and working out why is the
+point. Bring one to the Q and A board if you cannot explain it.
 :::
 
 ::: callout warning | The tool you add this week has no authorization check
@@ -169,35 +171,33 @@ the loop, or the target app.
 one, and you should not add one.
 
 In Week 6 you point a harness at your own agent and find this in code you
-wrote. That teaches more than being told now.
-
-Write the tool. Leave the gap. Week 6 is where you close it.
+wrote. That teaches more than being told now. Write the tool, leave the gap,
+and Week 6 is where you close it.
 :::
 
 ::: section | The name for that gap
 OWASP calls this risk LLM03:2026 Excessive Agency.
 
 **Excessive agency is capability granted without a control on its use.** The
-action does not have to be permanent to count. A reversible action that nobody
-approved is still excessive agency.
+action need not be permanent. A reversible action nobody approved is still
+excessive agency.
 
 Your agent is about to have more capability. Every tool you register widens
 what the model can ask for, your tools run with whatever access the program
 has, and `before_tool_call` still says yes to everything.
 
-Week 6 gives you the full list of missing controls and a name for each one.
+Week 6 gives you the full list of missing controls, with a name for each.
 :::
 
 ::: reading | Reading: the chat completions response shape
 **What it is.** The vendor reference for the format your agent uses. It is
-dense, and written for working engineers.
+dense, and written for engineers.
 
-**What to read.** The request section, specifically the message with the role
+**What to read.** The request section, specifically the message with role
 `tool`. That is what your loop builds after a tool runs. About 20 minutes.
 
-**What to look for.** Week 2 showed the reply that asks for a tool. Now look at
-the other direction, the message carrying a result back, and find which fields
-it must have.
+**What to look for.** Week 2 showed the reply that asks for a tool. Now look
+at the message carrying a result back, and find which fields it must have.
 
 **One warning.** Do not read the newer function calling guide instead. It
 documents a different interface.
@@ -213,11 +213,11 @@ The link is on the Course Material page.
 Answer these before you start Module 2.
 
 1. Your agent ran three steps and answered in words. How many entries are in
-   `messages` at the end, and where is the final answer?
+   `messages`, and where is the final answer?
 2. You register a tool in `TOOLS` and stop there. What happens when you ask the
    agent to use it?
 3. A tool raises `ToolError`. Does the run stop? Say what happens instead.
-4. Name one thing your new tool will not check, and name the week you fix it.
+4. Name one thing your new tool will not check, and the week you fix it.
 :::
 
 ::: sources
@@ -229,6 +229,5 @@ CC BY-SA 4.0.
 
 The chat completions API reference is vendor documentation, linked only.
 
-All code quoted here comes from the lab repository, which is
-instructor-authored.
+All code quoted here is from the lab repository, which is instructor-authored.
 :::

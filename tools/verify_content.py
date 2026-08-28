@@ -61,6 +61,18 @@ def _pages() -> list[Path]:
     return out
 
 
+def _all_authored() -> list[Path]:
+    """Pages AND quizzes.
+
+    The first version of this checker scanned pages only, and a later review
+    found eleven quiz items with wrong keyed answers, several of which are
+    exactly the drift this file exists to catch: a status the runner cannot
+    emit, a technique no case demonstrates, a path with a stale prefix. A quiz
+    item is content. It is graded content, which makes it worse when it rots.
+    """
+    return _pages() + sorted((CONTENT / "quizzes").glob("*.yaml"))
+
+
 def _fenced(text: str) -> str:
     """Only the code blocks, where commands and paths live."""
     return "\n".join(re.findall(r"```[a-z]*\n(.*?)```", text, re.DOTALL))
@@ -91,7 +103,7 @@ STUDENT_CREATES = {
 
 
 def check_commands(findings: list[Finding]) -> None:
-    for path in _pages():
+    for path in _all_authored():
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
         for module in set(MODULE_RE.findall(text)):
@@ -122,7 +134,7 @@ PATH_RE = re.compile(r"`([a-zA-Z0-9_][a-zA-Z0-9_./-]*\.(?:py|yaml|yml|json|txt|j
 
 
 def check_paths(findings: list[Finding]) -> None:
-    for path in _pages():
+    for path in _all_authored():
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
         for cited in set(PATH_RE.findall(text)):
@@ -198,7 +210,7 @@ NAMED_ONLY = {
 
 def check_frameworks(findings: list[Finding]) -> None:
     atlas, llm, asi, cwe = _allowed_identifiers()
-    for path in _pages():
+    for path in _all_authored():
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
         for found, allowed, label in (
@@ -225,16 +237,57 @@ STATUS_RE = re.compile(r"\b(VULNERABLE|MITIGATED|FLAKY|INCONCLUSIVE|CONTROL_FAIL
 
 
 def _runner_statuses() -> set[str]:
+    """The statuses the runner can actually produce.
+
+    Parsed from the syntax tree, not from the text. A first version grepped the
+    source, which matched the word MITIGATED inside a comment that explained
+    why MITIGATED had been removed, and then cheerfully told every page it was
+    still a valid status. A checker that reads prose has the same problem as
+    the content it is checking.
+    """
+    import ast
+
     source = (LABS / "harness" / "runner.py").read_text(encoding="utf-8")
-    literal = set(re.findall(r'return \("?([A-Z_]{2,})"?', source))
-    literal |= set(re.findall(r'"([A-Z][A-Z_]{2,})"', source))
-    literal |= set(re.findall(r'f"([A-Z_]+)_?\{', source))
-    return {s for s in literal if s.isupper()}
+    tree = ast.parse(source)
+    found: set[str] = set()
+
+    # Only inside the function whose whole job is to decide a status, plus the
+    # one place a status is promoted afterwards. Walking the whole module picks
+    # up environment variable names and HTTP verbs.
+    sources = [n for n in ast.walk(tree)
+               if isinstance(n, ast.FunctionDef)
+               and n.name in ("verdict_for", "run_case")]
+
+    for function in sources:
+        for node in ast.walk(function):
+            if isinstance(node, ast.Constant) and isinstance(node.value, str):
+                word = node.value.strip()
+                if word.isupper() and word.replace("_", "").isalnum() and len(word) > 2:
+                    found.add(word)
+            if isinstance(node, ast.JoinedStr):
+                # Only the FIRST literal chunk. f"BLOCKED_{n}_OF_{n}" also
+                # contains "_OF_", which is not a status.
+                first = next((v.value for v in node.values
+                              if isinstance(v, ast.Constant) and isinstance(v.value, str)), "")
+                root = first.strip().rstrip("_")
+                if root and root.replace("_", "").isalnum() and root.isupper():
+                    found.add(root)
+
+    # The matcher strips the trial counts before comparing, so the roots are
+    # what has to be here. ERRORED, OK and FLAKY come from elsewhere in the
+    # runner and the report, so they are added rather than parsed.
+    # ast.walk visits the literal chunks of an f-string as Constants too, so
+    # f"BLOCKED_{n}_OF_{n}" contributes "BLOCKED_" and "_OF_" as well as the
+    # root. Fragments start or end with an underscore; statuses do not.
+    roots = {re.sub(r"_IN$", "", s.strip("_")) for s in found}
+    roots = {s for s in roots
+             if len(s) > 2 and not s.startswith("_") and not s.endswith("_")}
+    return (roots - {"HIT"}) | {"ERRORED", "OK", "FLAKY"}
 
 
 def check_statuses(findings: list[Finding]) -> None:
     known = _runner_statuses() | {"ERRORED", "FLAKY", "OK", "NO_HITS", "BLOCKED"}
-    for path in _pages():
+    for path in _all_authored():
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
         for status in sorted(set(STATUS_RE.findall(text))):
@@ -315,7 +368,7 @@ def check_lab_data(findings: list[Finding]) -> None:
                          .read_text(encoding="utf-8"))
     ticket_ids = {t["id"] for t in tickets}
 
-    for path in _pages() + [CONTENT / "AUTHORING.md", CONTENT / "QUIZZES.md"]:
+    for path in _all_authored() + [CONTENT / "AUTHORING.md", CONTENT / "QUIZZES.md"]:
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
         for cid in sorted(set(re.findall(r"\bC-\d{4}\b", text))):
@@ -329,6 +382,53 @@ def check_lab_data(findings: list[Finding]) -> None:
                     where, f"refers to ticket {tid}, which is not in the seed data"))
 
 
+def check_quiz_answers(findings: list[Finding]) -> None:
+    """Every scored item needs exactly one right answer and feedback on all of them.
+
+    An item with no correct option cannot be answered. An item with two is a
+    trick. Both have shipped here before, so both are checked.
+    """
+    for path in sorted((CONTENT / "quizzes").glob("*.yaml")):
+        quiz = yaml.safe_load(path.read_text(encoding="utf-8"))
+        where = path.relative_to(ROOT).as_posix()
+        for question in quiz.get("questions") or []:
+            qid = question.get("id", "?")
+            kind = question.get("type")
+            answers = question.get("answers") or []
+            if kind in ("multiple_choice", "true_false"):
+                correct = [a for a in answers if a.get("correct")]
+                if len(correct) != 1:
+                    findings.append(Finding(
+                        where, f"{qid} has {len(correct)} correct answers, needs exactly 1"))
+            if kind == "multiple_answers" and not any(a.get("correct") for a in answers):
+                findings.append(Finding(where, f"{qid} has no correct answer"))
+            for answer in answers:
+                if not answer.get("feedback"):
+                    findings.append(Finding(
+                        where, f"{qid} has an answer with no feedback",
+                        "In an asynchronous course, feedback is the only teaching a "
+                        "student gets after answering wrong."))
+                    break
+            if not question.get("outcome"):
+                findings.append(Finding(where, f"{qid} carries no outcome tag"))
+
+
+def check_quiz_points(findings: list[Finding]) -> None:
+    course = yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
+    for row in course.get("quizzes", []):
+        path = CONTENT / "quizzes" / f"{row['ref']}.yaml"
+        if not path.exists():
+            findings.append(Finding("content/course.yaml",
+                                    f"quiz {row['ref']} has no YAML file"))
+            continue
+        quiz = yaml.safe_load(path.read_text(encoding="utf-8"))
+        total = sum(float(q.get("points", 0)) for q in quiz.get("questions") or [])
+        if abs(total - row["points"]) > 0.01:
+            findings.append(Finding(
+                path.relative_to(ROOT).as_posix(),
+                f"items add to {total:g} points, course.yaml says {row['points']}"))
+
+
 CHECKS = [
     ("commands students are told to run", check_commands),
     ("file paths cited in the content", check_paths),
@@ -337,6 +437,8 @@ CHECKS = [
     ("case file field names", check_case_fields),
     ("points, rubrics, and grading blocks", check_points),
     ("lab data the content asserts", check_lab_data),
+    ("quiz answers and feedback", check_quiz_answers),
+    ("quiz point totals", check_quiz_points),
 ]
 
 
