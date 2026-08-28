@@ -1,0 +1,3 @@
+# Instructor build tooling only. Students never install this.
+# Regenerate pins with: pip install --only-binary=:all: textstat && pip freeze
+textstat==0.7.13

@@ -1,0 +1,23 @@
+# Canvas LMS is cloned locally, never vendored into this repo (AGPL-3.0, 723MB)
+canvas/canvas-lms/
+
+# Institutional reference material, not ours to redistribute
+NLC Online Course Template/
+
+# The lab repository is a separate git repo (students clone only that)
+labs/
+
+# Build output
+build/
+*.imscc
+.readability-report.json
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Local
+.env
+.DS_Store

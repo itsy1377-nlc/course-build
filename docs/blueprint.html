@@ -1,0 +1,915 @@
+<title>ITSY 1377 Blueprint</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F1;
+  --surface:#FFFFFF;
+  --surface-2:#EDEFE8;
+  --ink:#16202B;
+  --ink-2:#3D4A55;
+  --ink-3:#68737D;
+  --rule:#D6DACE;
+  --rule-2:#C2C7B9;
+  --accent:#1F5E5B;
+  --accent-soft:#DDE8E5;
+  --flag:#A8571B;
+  --flag-soft:#F4E6D6;
+  --alert:#8C2F2F;
+  --alert-soft:#F2E0DE;
+  --ok:#2F5D3A;
+  --ok-soft:#E0EADF;
+
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+
+  --measure:68ch;
+  --s1:.35rem; --s2:.7rem; --s3:1.1rem; --s4:1.7rem; --s5:2.6rem; --s6:4rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12171A;
+    --surface:#181E21;
+    --surface-2:#1F2629;
+    --ink:#E4E8DF;
+    --ink-2:#B3BCB4;
+    --ink-3:#87948B;
+    --rule:#2B3438;
+    --rule-2:#3A4549;
+    --accent:#69B5AC;
+    --accent-soft:#1B302E;
+    --flag:#D9924F;
+    --flag-soft:#33261A;
+    --alert:#D97B75;
+    --alert-soft:#33201F;
+    --ok:#7FB088;
+    --ok-soft:#1D2A20;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12171A;
+  --surface:#181E21;
+  --surface-2:#1F2629;
+  --ink:#E4E8DF;
+  --ink-2:#B3BCB4;
+  --ink-3:#87948B;
+  --rule:#2B3438;
+  --rule-2:#3A4549;
+  --accent:#69B5AC;
+  --accent-soft:#1B302E;
+  --flag:#D9924F;
+  --flag-soft:#33261A;
+  --alert:#D97B75;
+  --alert-soft:#33201F;
+  --ok:#7FB088;
+  --ok-soft:#1D2A20;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:1240px;margin:0 auto;padding:0 var(--s4) var(--s6);}
+
+/* ---------- masthead ---------- */
+.masthead{padding:var(--s5) 0 var(--s4);border-bottom:2px solid var(--ink);}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  font-weight:600;color:var(--accent);margin:0 0 var(--s3);
+}
+.masthead h1{
+  font-family:var(--f-display);font-weight:600;
+  font-size:clamp(2.1rem,5.2vw,3.4rem);line-height:1.08;
+  margin:0 0 var(--s2);letter-spacing:-.012em;text-wrap:balance;
+}
+.deck{
+  font-family:var(--f-display);font-size:clamp(1.05rem,2.2vw,1.4rem);
+  color:var(--ink-2);margin:0 0 var(--s4);max-width:46ch;line-height:1.4;
+}
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:var(--s3) var(--s4);border-top:1px solid var(--rule);padding-top:var(--s3);
+}
+.meta div{display:flex;flex-direction:column;gap:2px;}
+.meta dt,.meta .k{
+  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;
+}
+.meta .v{font-size:.9rem;color:var(--ink);font-weight:500;}
+
+/* ---------- status banner ---------- */
+.status-bar{
+  margin-top:var(--s4);background:var(--accent-soft);
+  border-left:4px solid var(--accent);padding:var(--s3) var(--s4);
+  border-radius:0 3px 3px 0;
+}
+.status-bar p{margin:0;font-size:.94rem;color:var(--ink);}
+.status-bar strong{color:var(--accent);}
+
+/* ---------- decisions hero ---------- */
+.decisions{margin:var(--s6) 0 var(--s5);}
+.decisions > h2{
+  font-family:var(--f-display);font-size:1.9rem;font-weight:600;
+  margin:0 0 var(--s2);letter-spacing:-.01em;
+}
+.decisions > .lede{color:var(--ink-2);margin:0 0 var(--s4);max-width:var(--measure);}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:var(--s3);}
+.dcard{
+  background:var(--surface);border:1px solid var(--rule);
+  border-top:3px solid var(--flag);border-radius:3px;
+  padding:var(--s3) var(--s3) var(--s3);display:flex;flex-direction:column;gap:var(--s2);
+}
+.dcard.blocking{border-top-color:var(--alert);}
+.dcard .num{
+  font-family:var(--f-mono);font-size:.7rem;font-weight:500;
+  color:var(--ink-3);letter-spacing:.04em;
+}
+.dcard h3{font-size:.98rem;font-weight:700;margin:0;line-height:1.34;}
+.dcard p{margin:0;font-size:.86rem;color:var(--ink-2);line-height:1.5;}
+.dcard .why{
+  font-size:.78rem;color:var(--ink-3);border-top:1px solid var(--rule);
+  padding-top:var(--s2);margin-top:auto;
+}
+
+/* ---------- layout ---------- */
+.shell{display:grid;grid-template-columns:216px minmax(0,1fr);gap:var(--s6);align-items:start;}
+@media(max-width:980px){.shell{grid-template-columns:1fr;gap:var(--s4);}}
+
+nav.toc{position:sticky;top:var(--s3);max-height:calc(100vh - 2rem);overflow-y:auto;padding-right:var(--s2);}
+@media(max-width:980px){
+  nav.toc{position:static;max-height:none;border:1px solid var(--rule);
+    background:var(--surface);padding:var(--s3);border-radius:3px;}
+}
+nav.toc .toc-h{
+  font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700;margin:0 0 var(--s2);
+  padding-bottom:var(--s1);border-bottom:1px solid var(--rule);
+}
+nav.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;}
+nav.toc a{
+  display:grid;grid-template-columns:1.6rem 1fr;gap:.4rem;
+  padding:.3rem .35rem;text-decoration:none;color:var(--ink-2);
+  font-size:.79rem;line-height:1.3;border-radius:2px;border-left:2px solid transparent;
+}
+nav.toc a:hover{background:var(--surface-2);color:var(--ink);}
+nav.toc a.active{color:var(--accent);font-weight:600;border-left-color:var(--accent);background:var(--accent-soft);}
+nav.toc a .n{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);}
+nav.toc a.active .n{color:var(--accent);}
+nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+
+main{min-width:0;max-width:var(--measure);}
+
+/* ---------- sections ---------- */
+section{scroll-margin-top:var(--s3);padding-top:var(--s5);}
+section + section{border-top:1px solid var(--rule);}
+h2.sec{
+  font-family:var(--f-display);font-weight:600;font-size:clamp(1.55rem,3.4vw,2.15rem);
+  line-height:1.16;margin:0 0 var(--s3);letter-spacing:-.012em;text-wrap:balance;
+  display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:baseline;
+}
+h2.sec .snum{
+  font-family:var(--f-mono);font-size:.82rem;font-weight:500;color:var(--accent);
+  letter-spacing:.02em;
+}
+h3{
+  font-family:var(--f-body);font-weight:700;font-size:1.06rem;line-height:1.35;
+  margin:var(--s5) 0 var(--s2);text-wrap:balance;
+}
+h3 .hn{font-family:var(--f-mono);font-size:.78rem;color:var(--ink-3);margin-right:.45rem;font-weight:500;}
+h4{font-family:var(--f-body);font-weight:700;font-size:.94rem;margin:var(--s4) 0 var(--s2);color:var(--ink);}
+p{margin:0 0 var(--s3);}
+ul,ol{margin:0 0 var(--s3);padding-left:1.25rem;}
+li{margin-bottom:.4rem;}
+li::marker{color:var(--ink-3);}
+strong{font-weight:700;}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px;}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px;}
+code{
+  font-family:var(--f-mono);font-size:.845em;background:var(--surface-2);
+  padding:.1em .34em;border-radius:2px;color:var(--ink);
+  overflow-wrap:break-word;
+}
+hr{border:0;border-top:1px solid var(--rule);margin:var(--s4) 0;}
+
+/* ---------- chips ---------- */
+.chip{
+  display:inline-block;font-family:var(--f-body);font-size:.63rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;padding:.2em .55em;border-radius:2px;
+  vertical-align:.14em;margin-right:.45rem;white-space:nowrap;
+}
+.chip.correction{background:var(--alert-soft);color:var(--alert);}
+.chip.decision{background:var(--flag-soft);color:var(--flag);}
+.chip.unverified{background:var(--surface-2);color:var(--ink-3);}
+.chip.deviation{background:var(--accent-soft);color:var(--accent);}
+.chip.ok{background:var(--ok-soft);color:var(--ok);}
+
+/* ---------- callouts ---------- */
+.note{
+  background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--ink-3);
+  padding:var(--s3);border-radius:0 3px 3px 0;margin:0 0 var(--s3);
+}
+.note p:last-child{margin-bottom:0;}
+.note.warn{border-left-color:var(--flag);background:var(--flag-soft);}
+.note.stop{border-left-color:var(--alert);background:var(--alert-soft);}
+.note.good{border-left-color:var(--ok);background:var(--ok-soft);}
+.note .nh{
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--ink-3);margin:0 0 var(--s2);display:block;
+}
+.note.warn .nh{color:var(--flag);}
+.note.stop .nh{color:var(--alert);}
+.note.good .nh{color:var(--ok);}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:0 0 var(--s3);border:1px solid var(--rule);border-radius:3px;background:var(--surface);}
+table{border-collapse:collapse;width:100%;font-size:.83rem;min-width:480px;}
+caption{
+  text-align:left;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700;padding:var(--s2) var(--s3);border-bottom:1px solid var(--rule);
+}
+th,td{padding:.5rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule);}
+thead th{
+  background:var(--surface-2);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:700;white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0;}
+td code{font-size:.79em;background:transparent;padding:0;color:var(--ink-2);}
+.num-col{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+th.num-col{text-align:right;}
+tbody tr.hi td{background:var(--flag-soft);}
+tbody tr.hi2 td{background:var(--accent-soft);}
+
+/* week table */
+.wk{margin:0 0 var(--s3);}
+.wk .tw{margin-bottom:0;}
+.wk table{min-width:0;}
+.wk th{width:8.5rem;background:var(--surface-2);}
+
+/* outcome list */
+.outcomes{display:flex;flex-direction:column;gap:var(--s2);margin:0 0 var(--s3);padding:0;list-style:none;}
+.outcomes li{
+  display:grid;grid-template-columns:2.6rem 1fr;gap:var(--s2);margin:0;
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:var(--s2) var(--s3);
+}
+.outcomes .oid{
+  font-family:var(--f-mono);font-weight:500;font-size:.82rem;color:var(--accent);
+}
+.outcomes .otext{font-size:.9rem;}
+
+footer.end{
+  margin-top:var(--s6);padding-top:var(--s3);border-top:2px solid var(--ink);
+  font-size:.82rem;color:var(--ink-3);
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;}}
+html{scroll-behavior:smooth;}
+</style>
+
+<div class="page">
+
+<header class="masthead">
+  <p class="eyebrow">Northeast Lakeview College &middot; Alamo Colleges District &middot; Cyber Defense, A.A.S.</p>
+  <h1>ITSY 1377: Agentic AI and Security Operations</h1>
+  <p class="deck">Course blueprint for review by the program manager and curriculum committee.</p>
+  <div class="meta">
+    <div><span class="k">Format</span><span class="v">8-week Flex, fully online, asynchronous</span></div>
+    <div><span class="k">Term shape</span><span class="v">7 instructional weeks + 6-day final block</span></div>
+    <div><span class="k">Credit</span><span class="v">3 SCH, Local Need</span></div>
+    <div><span class="k">Contact hours</span><span class="v">2 lecture + 2 lab = 64 (3.80 workload units)</span></div>
+    <div><span class="k">Enrollment</span><span class="v">30 students maximum</span></div>
+    <div><span class="k">Course shell</span><span class="v">NLC Online Course Template</span></div>
+    <div><span class="k">Reading level</span><span class="v">7th grade, automated check</span></div>
+    <div><span class="k">Instructor load</span><span class="v">22.7 hours per term</span></div>
+  </div>
+  <div class="status-bar">
+    <p><strong>Status: draft for review.</strong> Nothing has been built yet. No Canvas scaffolding, no course content, no lab code. The NLC template was read but not modified and not imported. Awaiting approval or revision before Phase 2.</p>
+  </div>
+</header>
+
+<div class="decisions">
+  <h2>The blocking decision is resolved</h2>
+  <p class="lede">The previous draft flagged one blocker: removing COSC 1436 while pursuing AICyber. That is now resolved, and the constraint that replaces it is a program decision that does not change this course's build.</p>
+  <div class="dgrid">
+    <div class="dcard" style="border-top-color:var(--ok);">
+      <span class="num">RESOLVED &middot; SECTION 0.6</span>
+      <h3>The scripting knowledge unit does not live in this course, and does not need a new one</h3>
+      <p>COSC 1436 is retained. Basic Scripting and Programming is carried jointly by <strong>COSC 1436 + DSAI 1373 + ITSC 1316</strong> at 77.8 percent, rising to 88.9 with one free objective revision. <strong>ITSE 1359 is not needed.</strong></p>
+      <p class="why">ITSY 1377 carries AI for Security Assessment, Defensive Applications of AI, and the legal half of AI Governance instead. Two of those three have no other home in the catalog.</p>
+    </div>
+    <div class="dcard blocking">
+      <span class="num">PROGRAM DECISION &middot; NOT A BUILD BLOCKER</span>
+      <h3>The degree is already exactly full at 60 SCH</h3>
+      <p>Sixty is the statutory Texas ceiling under SB 497 (2013), and exceeding it needs a THECB exemption justified by accreditation or licensure. <strong>Adding this course requires removing 3 credit hours.</strong></p>
+      <p class="why">Three concrete 60-hour plans are in the companion document, which recommends assembling a sibling program of study rather than deleting forensics and incident response. <strong>ITSY 1377 is the same course in every scenario, so Phase 2 can proceed.</strong></p>
+    </div>
+  </div>
+</div>
+
+<div class="decisions" style="margin-top:0;">
+  <h2 style="font-size:1.35rem;">Settled, and folded into this draft</h2>
+  <div class="tw"><table>
+  <thead><tr><th>Decision</th><th>Consequence</th></tr></thead>
+  <tbody>
+  <tr><td><strong>Course will be required</strong>, not elective</td><td>KU alignment gate cleared</td></tr>
+  <tr><td><strong>CAE-CD already held</strong>; AICyber is the goal</td><td>Eligibility gate cleared, and the conflict above becomes urgent</td></tr>
+  <tr><td><strong>Provider risk accepted</strong> for the proof of concept</td><td>Labs still scoped to the application trust boundary, because that is better pedagogy independent of risk</td></tr>
+  <tr><td><strong>Common Cartridge</strong> as primary Canvas artifact</td><td>Deliverable D changes accordingly</td></tr>
+  <tr><td><strong>COSC 1436 being removed</strong></td><td>Creates the conflict above</td></tr>
+  <tr class="hi"><td><strong>3 SCH, max 3.9 workload hours</strong></td><td>2 lecture + 4 lab is <strong>5.60 units</strong> and not available. Recommend <strong>2 + 2 = 3.80</strong></td></tr>
+  <tr class="hi"><td><strong>8-week Flex, Sunday deadlines, final exam</strong></td><td>Session is 55 days: <strong>7 instructional weeks plus a 6-day final block</strong>, not 8 weeks</td></tr>
+  </tbody></table></div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Contents">
+  <p class="toc-h">Contents</p>
+  <ol>
+    <li><a href="#s0"><span class="n">0</span><span>Corrections and constraints</span></a></li>
+    <li><a href="#s1"><span class="n">1</span><span>The six outcomes</span></a></li>
+    <li><a href="#s2"><span class="n">2</span><span>Week by week</span></a></li>
+    <li><a href="#s3"><span class="n">3</span><span>Assessment architecture</span></a></li>
+    <li><a href="#s4"><span class="n">4</span><span>The two projects</span></a></li>
+    <li><a href="#s5"><span class="n">5</span><span>Technical design and template</span></a></li>
+    <li><a href="#s6"><span class="n">6</span><span>Resources and licenses</span></a></li>
+    <li><a href="#s7"><span class="n">7</span><span>Framework and KU alignment</span></a></li>
+    <li><a href="#s8"><span class="n">8</span><span>Where scope does not fit</span></a></li>
+    <li><a href="#s9"><span class="n">9</span><span>Assumed and unverified</span></a></li>
+    <li><a href="#s10"><span class="n">10</span><span>Decisions and open items</span></a></li>
+    <li><a href="#sa"><span class="n">A</span><span>Deviations appendix</span></a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="s0">
+<h2 class="sec"><span class="snum">00</span><span>Corrections and structural constraints</span></h2>
+<p>Every external claim in this blueprint was verified against primary sources, and several claims in the original brief turned out to be wrong or incomplete. This section carries those corrections plus three structural constraints that arrived with the program's decisions and that reshape the course.</p>
+
+<h3><span class="hn">0.1</span><span class="chip correction">Correction</span>There is no "OWASP Agentic AI Top 10"</h3>
+<p>The real document is <strong>OWASP Top 10 for Agentic Applications 2026</strong> (December 2025), with ASI-prefixed risk IDs: <code>ASI01</code> Agent Goal Hijack, <code>ASI02</code> Tool Misuse, <code>ASI03</code> Identity and Privilege Abuse. A separate document, <strong>Agentic AI: Threats and Mitigations</strong> v1.1, also exists. The Top 10 is the ranked risk list; Threats and Mitigations is the underlying threat model. The course must not conflate them.</p>
+
+<h3><span class="hn">0.2</span><span class="chip correction">Correction</span>The current OWASP LLM list is the 2026 edition</h3>
+<p>Published 4 August 2026, renumbering the 2025 list. <code>LLM01</code> Prompt Injection, <code>LLM02</code> Sensitive Information Disclosure, <code>LLM03</code> Excessive Agency, <code>LLM08</code> Hidden Context Exposure (new), <code>LLM10</code> Improper Output Handling.</p>
+<div class="note warn"><span class="nh">Live inconsistency to handle</span><p>OWASP's own per-risk web pages still render 2025 numbering while the PDF is 2026. Students who click a link will see different numbers than the assigned reading. Cite the 2026 PDF as authoritative and label the web pages as the 2025 text where used.</p></div>
+
+<h3><span class="hn">0.3</span><span class="chip ok">Cleared</span>Both NSA gates are now satisfied</h3>
+<p>Two gates previously blocked the KU claim, and the program's decisions clear both. <strong>Eligibility:</strong> CyberAI validation is open only to institutions already holding CAE-CD or CAE-CO, and the program holds <strong>CAE-CD</strong> with <strong>AICyber</strong> as the target track. <strong>The elective disqualifier:</strong> KU-aligned courses must be mandatory for all students, and ITSY 1377 <strong>will be required</strong>.</p>
+<p>Two corrections to how the KUs were described in the brief. They are not peers: "AI for Security Assessment" is a <strong>required core</strong> AICyber KU, while "Offensive Applications of AI" is one of two <strong>optional</strong> KUs of which one must be adopted. And a course cannot carry validation, which attaches to a Program of Study; correct committee language is that the course is <em>proposed to align to</em> named KUs.</p>
+<p>The mapping burden is lighter than expected: KU outcomes are "listing only, no assessment of outcomes," and topics are "recommended and not required." Each aligned course supplies a syllabus plus guidelines for one hands-on lab.</p>
+
+<h3><span class="hn">0.4</span><span class="chip ok">Confirmed</span>The WECM number is well formed, and the Local Need test has three criteria</h3>
+<p>ITSY 1377 decodes correctly: 1 is introductory, 3 is three semester credit hours, and <strong>a 7 in the third digit designates a Local Need course</strong>. No statewide WECM course can carry that number, because the block is reserved for institution-specific courses. <strong>The number is fit for purpose.</strong></p>
+<p>Two corrections: GIPWE was replaced by the THECB "Career and Technical Education Guidelines," effective 1 April 2025; and "no equivalent course exists" is one of three approval criteria. The Guidelines separately require that "evidence of need for the course should be substantiated by support from business and industry in the local geographical area."</p>
+<div class="note warn"><span class="nh">Two things with lead time</span>
+<p><strong>Industry letters.</strong> Someone needs to gather them. That is not a writing task.</p>
+<p><strong>Equivalence risk.</strong> Houston Community College holds <code>ITAI 1372</code>, "Artificial Intelligence (AI) in Cybersecurity," still active and itself a Local Need number. Whether a Local Need course at another institution counts against this proposal is unresolved: the rule bars approval where an equivalent is "in the WECM database," while the Guidelines say Local Need courses are <em>not</em> in that database. Ask THECB directly. The distinguishing argument is strong: ITAI 1372 applies AI to cyber defense; ITSY 1377 secures agentic AI, the opposite direction.</p></div>
+
+<h3><span class="hn">0.5</span><span class="chip decision">Changed</span>The degree currently requires programming, and that is changing</h3>
+<p>Verified against the 2026-2027 catalog: <code>COSC 1436</code> Programming Fundamentals I is currently required in Semester II, and has been in the plan since at least 2023-2024. <strong>The program has confirmed it is being removed and ITSY 1377 added in its place.</strong></p>
+<p><strong>Recommended committee wording, valid after the change:</strong> "The Cyber Defense A.A.S. does not require a programming course. ITSY 1377 assumes no prior programming and teaches Python inside the course, scoped narrowly to calling an API." That is accurate, and it is a claim the program should make deliberately rather than by accident.</p>
+
+<h3><span class="hn">0.6</span><span class="chip ok">Resolved</span>The programming knowledge unit does not live in this course</h3>
+<p>This was the blocking finding in the previous draft. Full treatment is in the companion document, <a href="https://claude.ai/code/artifact/dade81ca-659b-412d-bba8-35e5d858ea5b">Programming KU Coverage</a>. The summary:</p>
+<p><strong>ITSY 1377 cannot carry the NSA Basic Scripting and Programming knowledge unit</strong>, for four independent reasons: it defensibly covers 9 of 18 topic elements (50 percent against a required 75); it cannot defend two of the unit's six outcomes at all (system administration automation, and regular expressions); closing the gap needs roughly 26 instructional hours in a 64-hour course, and every combination of cuts that frees them damages at least three of this course's own outcomes; and, decisively, <strong>this course must permit AI assistance to assess its own outcome 6, while the knowledge unit requires unassisted "write and execute" evidence.</strong> One syllabus cannot hold both positions.</p>
+<div class="note good"><span class="nh">The resolution uses courses the college already owns</span><p>COSC 1436 is retained. The unit is carried jointly by <strong>COSC 1436 plus DSAI 1373 Computing Foundations plus ITSC 1316</strong>, reaching 77.8 percent, or 88.9 percent once ITSC 1316's local objectives are revised. <strong>No new scripting course is required.</strong> One verification item decides it: whether DSAI 1373's syllabus teaches regular expressions and documents Python execution on both Windows and Linux. DSAI 1373 is a Local Need course, so the college owns those outcomes and can insert them if absent.</p></div>
+<p><strong>What ITSY 1377 carries instead:</strong> AI for Security Assessment as lead, Defensive Applications of AI as co-lead, and the legal and regulatory half of AI Governance as a supporting carrier. Three knowledge units is the ceiling for a 3 SCH course and this sits exactly on it. <strong>Two of the three have no other possible home in the catalog</strong>, which is the strongest available justification for the course. It must not be listed as a scripting-unit carrier.</p>
+<div class="note warn"><span class="nh">One consequence the committee should see plainly</span><p>The Cyber Defense A.A.S. is exactly 60 semester credit hours, and 60 is the statutory Texas ceiling under SB 497 (2013). <strong>Adding this course means removing 3 credit hours from the existing plan.</strong> The companion document gives concrete 60-hour plans and recommends assembling a separate "AI Cyber Defense" program of study from existing Cyber Defense and DSAI courses, rather than deleting forensics and incident response from a degree whose identity depends on them.</p></div>
+
+<h3><span class="hn">0.7</span><span class="chip correction">Structural</span>The 8-week Flex session is seven instructional weeks</h3>
+<p>Confirmed against both official district calendar PDFs. <strong>Six of the eight published Flex sessions run Monday to Saturday and span exactly 55 inclusive days</strong>, which is 7 full weeks plus 6 days.</p>
+<p>With work due Sundays at 11:59 PM Central, the session contains exactly <strong>seven Sunday deadlines</strong> (days 7, 14, 21, 28, 35, 42, 49), followed by a <strong>six-day final block</strong> (days 50 to 55). An eighth Sunday would fall on day 56, after the session closes. Week 8 has no Sunday in it.</p>
+<p><strong>And the final exam is carved out of that block, not added to it.</strong> Every Flex session has a separately printed exam window that sits inside the last week. It opens on day 1, 2, or 3 of week 8 and runs to the end of the session. No extra time is granted.</p>
+<div class="tw"><table>
+<tbody>
+<tr><th>Session length</th><td>55 days (7 weeks, 6 days)</td></tr>
+<tr><th>Sunday deadlines available</th><td><strong>7</strong></td></tr>
+<tr><th>Final block</th><td>6 days, Monday to Saturday, no Sunday</td></tr>
+<tr><th>Exam window</th><td>Carved out of the final block, opening day 1 to 3 of week 8</td></tr>
+<tr><th>Census date</th><td><strong>Day 8</strong> in seven of eight sessions</td></tr>
+<tr><th>Last day to withdraw</th><td>Roughly day 39 to 43</td></tr>
+</tbody></table></div>
+<p><strong>Two scheduling traps the build must handle.</strong> First, the exam window moved between academic years: AY2025-26 runs Flex finals <strong>Wednesday to Saturday</strong>, AY2026-27 runs them <strong>Monday to Friday</strong>. The safe intersection is <strong>Wednesday to Friday</strong>, compliant in both, and that is what section 2 uses. Second, <strong>both Spring Flex I sessions break the model entirely</strong>: they start Tuesday because MLK Day takes the Monday, and span 61 days with a 7-day Spring Break inside. Build to relative day offsets and publish a per-session date map.</p>
+<div class="note"><span class="nh">Two compliance requirements that follow</span>
+<p><strong>Census is day 8, so gradeable evidence of participation must exist inside week 1.</strong> Alamo requires fully online courses to assign an attendance verification activity completed by the third class day. The Module 0 gate is that activity, which is why it is due day 3.</p>
+<p><strong>A final exam is expected.</strong> The SPC student handbook states a "comprehensive final evaluation, not to exceed three hours in length, shall be given at the end of each course," and the NLC Faculty Handbook closeout requires submitting the exam with an answer key. Both are college-level rather than confirmed district policy, so verify, but design to them.</p></div>
+
+<h3><span class="hn">0.8</span><span class="chip decision">Decided</span>2 lecture + 4 lab is not available under the workload cap</h3>
+<p><strong>Direct answer: 2 lecture + 4 lab comes to 5.60 workload units.</strong> It is not close, and it is not viable under any weighting convention found anywhere in Texas.</p>
+<p>Alamo procedure <strong>D.5.1.2, Faculty Teaching Loads</strong> states the formula verbatim: "A workload unit is defined as one faculty lecture hour." Lecture counts at <strong>1.0 unit per lecture hour</strong>; laboratory at <strong>0.80 unit per contact hour</strong>, with a footnote that "Effective, January 1, 2026, the lab loading will be <strong>0.90</strong>." The document's own worked example confirms it: a 3-3-2 course is 3 + (2 &times; 0.80) = 4.60.</p>
+<p>So: <strong>workload units = lecture hours + (lab hours &times; 0.90)</strong>.</p>
+<div class="tw"><table>
+<thead><tr><th>WECM split</th><th class="num-col">Contact hrs</th><th class="num-col">Workload units</th><th>Under 3.9?</th></tr></thead>
+<tbody>
+<tr><td>3 lecture + 0 lab</td><td class="num-col">48</td><td class="num-col">3.00</td><td>Yes, but no lab designation</td></tr>
+<tr class="hi2"><td><strong>2 lecture + 2 lab</strong></td><td class="num-col">64</td><td class="num-col"><strong>3.80</strong></td><td><strong>Yes, recommended</strong></td></tr>
+<tr><td>3 lecture + 1 lab</td><td class="num-col">64</td><td class="num-col">3.90</td><td>Exactly at the cap, no headroom</td></tr>
+<tr><td>2 lecture + 3 lab</td><td class="num-col">80</td><td class="num-col">4.70</td><td>No</td></tr>
+<tr><td>1 lecture + 4 lab</td><td class="num-col">80</td><td class="num-col">4.60</td><td>No</td></tr>
+<tr class="hi"><td>2 lecture + 4 lab</td><td class="num-col">96</td><td class="num-col"><strong>5.60</strong></td><td><strong>No</strong></td></tr>
+</tbody></table></div>
+<p><strong>Recommendation: 2 lecture + 2 lab, 64 contact hours, 3.80 workload units.</strong> It stays under the cap with real headroom, unlike 3 + 1 which lands exactly on it. It is a THECB <em>preferred</em> combination, inside both the 48 to 96 band and the 16 to 176 Local Need band. It preserves a <strong>formal laboratory designation</strong>, which matters because THECB defines lab as "skill development, application, and practice of knowledge" (an accurate description of weeks 3 through 7) and because a lab designation strengthens the hands-on lab evidence a KU submission requires. And it keeps the course at 3 SCH, so the 4 SCH non-starter never arises.</p>
+<p><strong>On the number 3.9 itself.</strong> D.5.1.2 never states it. It does state that "full-time faculty includes all faculty teaching 12 or more workload units" and that "adjunct faculty will be assigned fewer than 12." Three courses at 3.9 is 11.7, just under 12; three at 4.0 would trip full-time classification. That derivation is an inference, but it explains the constraint, and both TRS membership rules and the Affordable Care Act are documented drivers of adjunct caps across Texas.</p>
+
+<h3><span class="hn">0.9</span><span class="chip correction">Correction</span>Two smaller factual items</h3>
+<ul>
+<li><strong>Location.</strong> Every official NLC page gives the city as Universal City, Texas 78148. No official source names Live Oak. Remove it.</li>
+<li><strong>Degree name.</strong> The catalog prints <strong>"Cyber Defense, A.A.S."</strong> Sibling colleges use different names; only NLC uses this one.</li>
+</ul>
+</section>
+
+<section id="s1">
+<h2 class="sec"><span class="snum">01</span><span>The six learning outcomes</span></h2>
+<p>Fixed and reproduced verbatim. Every module traces to at least one.</p>
+<ul class="outcomes">
+<li><span class="oid">O1</span><span class="otext">Automate interaction with language model APIs using scripts, including request construction, response parsing, and error handling.</span></li>
+<li><span class="oid">O2</span><span class="otext">Configure and extend an agentic system that integrates a language model with external tools.</span></li>
+<li><span class="oid">O3</span><span class="otext">Identify security weaknesses in agentic systems, including prompt injection, excessive agency, and insecure tool authorization.</span></li>
+<li><span class="oid">O4</span><span class="otext">Execute and extend a structured test harness against an agentic system and interpret the results.</span></li>
+<li><span class="oid">O5</span><span class="otext">Document security findings and apply remediations within defined authorization boundaries.</span></li>
+<li><span class="oid">O6</span><span class="otext">Evaluate AI-generated code and output for correctness before use.</span></li>
+</ul>
+<p>Section 8.1 states where two of these over-reach what the calendar can deliver, and how the assessment design compensates without rewording them.</p>
+</section>
+
+<section id="s2">
+<h2 class="sec"><span class="snum">02</span><span>Week by week</span></h2>
+<p><strong>The calendar is seven instructional weeks plus a six-day final block.</strong> Weeks run Monday to Sunday with work due Sunday 11:59 PM Central. Every weekly module is built to the NLC template's four-part anatomy: Overview page, Content page, Assignments, Wrap-up page.</p>
+<p><strong>Build to relative day offsets, not fixed dates.</strong> Six of eight Flex sessions are the 55-day shape, but both Spring Flex I sessions start Tuesday and run 61 days with Spring Break inside.</p>
+
+<div class="tw"><table>
+<caption>The schedule at a glance</caption>
+<thead><tr><th>Wk</th><th>Days</th><th>Focus</th><th>Graded deliverable</th><th>Due</th><th>Outcomes</th></tr></thead>
+<tbody>
+<tr><td><strong>1</strong></td><td>1 to 7</td><td>Orientation, rules of engagement, environment, Python part 1</td><td><strong>Module 0 Gate</strong> + Lab 1</td><td>day 3, day 7</td><td>O5, O1</td></tr>
+<tr><td><strong>2</strong></td><td>8 to 14</td><td>Python part 2, first model calls, response parsing</td><td><strong>M1: Talk to the Model</strong></td><td>day 14</td><td>O1, O6</td></tr>
+<tr class="hi"><td><strong>3</strong></td><td>15 to 21</td><td>Error handling, tool schemas, reading the agent skeleton</td><td><strong>Project 1 checkpoint</strong> (pass/fail)</td><td>day 21</td><td>O1, O2, O6</td></tr>
+<tr><td><strong>4</strong></td><td>22 to 28</td><td>The agent loop, adding a tool</td><td><strong>M2: Give It Hands</strong> (Project 1)</td><td>day 28</td><td>O2, O1, O6</td></tr>
+<tr><td><strong>5</strong></td><td>29 to 35</td><td>Direct and indirect prompt injection</td><td>Attack Lab 1 + practice finding</td><td>day 35</td><td>O3, O5, O6</td></tr>
+<tr><td><strong>6</strong></td><td>36 to 42</td><td>Excessive agency, insecure tool authorization, harness intro</td><td><strong>M3: Break It</strong> + <strong>Project 2 checkpoint</strong></td><td>day 42</td><td>O3, O4</td></tr>
+<tr><td><strong>7</strong></td><td>43 to 49</td><td>Extending the harness, interpreting results, remediation</td><td><strong>M4: Fix It</strong> (Project 2 Part A)</td><td>day 49</td><td>O4, O5, O3</td></tr>
+<tr class="hi2"><td><strong>F</strong></td><td>50 to 55</td><td>Findings report and final assessment</td><td><strong>Part B report</strong> + <strong>Final Exam</strong></td><td>day 52, day 54</td><td>O3, O4, O5, O6</td></tr>
+</tbody></table></div>
+<p>Weeks 1 through 4 protect Python. Weeks 5 through 7 are the security arc. The final block adds no new content.</p>
+
+<h3>Week 1 and the Module 0 Gate</h3>
+<p>Python part 1 (variables, types, strings, lists, dictionaries), plus what an agentic system is and why it fails differently, plus authorization and scope before technique.</p>
+<div class="note good"><span class="nh">The day-3 deadline is a compliance requirement, not a preference</span><p>Census falls on day 8, and Alamo requires fully online courses to assign an attendance verification activity completed by the third class day. The Module 0 Gate does three jobs at once: it satisfies attendance verification, it produces the graded Rules of Engagement acknowledgment the brief requires in week 1, and it proves the student has a working environment before any content depends on it.</p></div>
+<p>The Rules of Engagement are course content, not a legal disclaimer. Twelve scenario items, not definitions ("You want to run your harness against your roommate's Discord bot. Permitted? Cite the clause."). Two required free-text fields: a typed signature block, and "in my own words, the one thing I may never do in this course." That paragraph is quoted back in the final exam.</p>
+<p>The entry diagnostic is <strong>deliberately ungraded</strong>. Grading it would make students optimize it with AI and destroy the only clean baseline in the course.</p>
+
+<h3>Week 3 is now the break point</h3>
+<p>It absorbs the tail of the old week 2 and all of the old week 3, it carries the hardest abstraction in the course (the inversion from "my script calls the model" to "the model calls my function"), it holds the Project 1 checkpoint, and it sits immediately after census, so students who should have dropped are still enrolled.</p>
+<div class="note warn"><span class="nh">Mitigations, all cheap and all specified</span>
+<p>The checkpoint is pass/fail with a fallback path, so a stuck student still passes and still advances. The <code>agent-working</code> branch publishes on day 18, before the deadline rather than at it. Required reading is capped at 45 minutes and spent entirely on the annotated skeleton. A "Top 10 Week 3 Errors" thread is pinned on day 15, before anyone has hit them. Nothing due day 21 requires working code except the checkpoint, which has the fallback. The week cannot cascade.</p></div>
+<p><strong>MCP is named here, and only named.</strong> Students meet the Model Context Protocol the moment they touch a real agent, so the Content page explains it in one section: a standard way to hand an agent a package of tools, often written by someone else. That lands the security point the week is already making. ATLAS carries <code>AML.T0110</code> AI Agent Tool Poisoning, whose description explicitly covers MCP servers. Students do not build or attack one here; that is Module 9.</p>
+<p><span class="chip correction">Correction</span>ATLAS renamed <code>AML.T0053</code> from "LLM Plugin Compromise" to "AI Agent Tool Invocation." Any source citing the old name is superseded.</p>
+
+<h3>Week 4: the tool must be student-designed</h3>
+<p>The autograder requires a <strong>student-designed</strong> tool with a <strong>student-authored</strong> schema, verified by invoking it with generated arguments. That converts "filled in the registry" into "designed an interface," which is what outcome 2's verb actually asks. Do not drop it under time pressure.</p>
+
+<h3>Week 6 carries the biggest deliberate cut</h3>
+<p>Insecure tool authorization is no longer a hands-on exploitation lab; it is a guided walkthrough of an annotated exploit that students read and answer questions about. Section 8.3 states the cost plainly. Moving the harness introduction here, rather than into week 7, is what makes week 7 extension-only.</p>
+
+<h3>Week 7: remediation is graded on two suites</h3>
+<p>The attack suite must go from succeeding to failing, <strong>and</strong> the benign functionality suite must still pass. Without the second clause, deleting the tool would "remediate" everything. With it, the student must produce a scoped fix rather than a lobotomy.</p>
+<p>The poisoned-results exercise also lands here: every student receives a results file in which all payloads report SUCCESS, because the detector matches the payload string anywhere in the transcript, including inside refusals. "What would you conclude, and what is the first thing you would check?" Auto-gradeable by keyword, and it targets the exact failure mode that ruins real security reports.</p>
+
+<h3>The final block: days 50 to 55</h3>
+<div class="tw"><table>
+<thead><tr><th>Day</th><th>What happens</th><th>Due</th></tr></thead>
+<tbody>
+<tr><td>50 (Mon)</td><td>Exam review released. <strong>No new content.</strong> Late window opens on Part A at 90% credit</td><td></td></tr>
+<tr><td>51 (Tue)</td><td>Backlog day. <strong>Hard close on all late work from weeks 1 to 7</strong></td><td>Late work, 11:59 PM</td></tr>
+<tr><td>52 (Wed)</td><td><strong>Project 2 Part B due. Final exam opens</strong></td><td>Part B, 11:59 PM</td></tr>
+<tr><td>53 (Thu)</td><td>Exam window open</td><td></td></tr>
+<tr><td>54 (Fri)</td><td><strong>Final exam due, hard</strong></td><td>Exam, 11:59 PM</td></tr>
+<tr><td>55 (Sat)</td><td>No student deliverable. Instructor grading and submission</td><td></td></tr>
+</tbody></table></div>
+<p><strong>Why Wednesday to Friday.</strong> The published exam window is Wed to Sat in AY2025-26 and Mon to Fri in AY2026-27. Wed to Fri is the intersection, so the same shell is compliant in either year with no re-dating.</p>
+<div class="note good"><span class="nh">How a student who is behind still finishes</span><p>Every scaffold-dependent artifact has an instructor-published fallback branch. A student whose harness never ran pulls <code>harness-working</code> on Monday and does the analysis, remediation, and exam against it. That caps the artifact at 80 percent, but it is not a zero and not a blocker. The exam is graded against whatever the student submitted, fallback branches included. Monday and Tuesday exist so backlog clears <em>before</em> the exam window opens.</p></div>
+<p>Because there is no recovery room after day 54, every grade-protection mechanism is front-loaded: unlimited gate retakes, a dropped lowest lab, fallback branches, and a 90 percent late window on Part A. No incompletes, no post-exam make-up work. Stated in week 1 and repeated on day 50.</p>
+<p><strong>Severity rating uses a simplified table derived from OWASP AIVSS.</strong> AIVSS extends CVSS with the idea that agentic capability <em>amplifies</em> a vulnerability: the same flaw is worse when the system can act without asking. That is what weeks 5 through 7 teach. <span class="chip unverified">Caveat</span>AIVSS is at v0.8, still in development, with its calculator on a personal domain. The course pins v0.8, ships a four-row table derived from it, and does not require students to compute a full score.</p>
+</section>
+
+<section id="s3">
+<h2 class="sec"><span class="snum">03</span><span>Assessment architecture</span></h2>
+<p>Rebuilt against a constraint that arrived with the program's decisions: <strong>this course is taught by an adjunct</strong>, so instructor time is the binding resource. The earlier design came in around 41 hours per term. This one comes in at <strong>22.7</strong>, with 73 percent auto-scored, and evidences every outcome at least four ways.</p>
+<div class="note good"><span class="nh">The lever that does the work</span><p>AI-resistance in an asynchronous course comes from <strong>anchoring a question to the student's own run artifacts</strong>, not from the answer being prose. Once that is understood, the expensive hand-read instruments convert to auto-scored items with no loss of rigor.</p></div>
+<div class="tw"><table>
+<thead><tr><th>Question</th><th>Mechanism</th><th class="num-col">Cost per student</th></tr></thead>
+<tbody>
+<tr><td>Does the code work?</td><td>pytest autograder, deterministic, unlimited attempts before deadline</td><td class="num-col">0 min</td></tr>
+<tr><td>Does the student understand it?</td><td>seeded auto-scored items anchored to their own run artifacts</td><td class="num-col">0 min</td></tr>
+<tr><td>Can they produce a professional deliverable?</td><td>one human-read report, hard word cap</td><td class="num-col">7 min</td></tr>
+</tbody></table></div>
+
+<h3><span class="hn">3.1</span>Points and weighting</h3>
+<div class="tw"><table>
+<thead><tr><th>Component</th><th>Due</th><th class="num-col">Weight</th></tr></thead>
+<tbody>
+<tr><td><strong>Module 0 Gate</strong>: attendance verification, environment check, RoE mastery quiz</td><td>day 3</td><td class="num-col">4%</td></tr>
+<tr><td>Lab 1, Python foundations</td><td>day 7</td><td class="num-col">3%</td></tr>
+<tr><td><strong>M1</strong> Talk to the Model (code 9 + comprehension 5)</td><td>day 14</td><td class="num-col">14%</td></tr>
+<tr><td><strong>Project 1 checkpoint</strong> (pass/fail)</td><td>day 21</td><td class="num-col">2%</td></tr>
+<tr><td><strong>M2</strong> Give It Hands, <em>Project 1</em> (code 9 + comprehension 5)</td><td>day 28</td><td class="num-col">14%</td></tr>
+<tr><td>Attack Lab 1 + practice finding</td><td>day 35</td><td class="num-col">8%</td></tr>
+<tr class="hi2"><td><strong>Project 2 checkpoint</strong> (pass/fail)</td><td>day 42</td><td class="num-col">2%</td></tr>
+<tr class="hi2"><td><strong>M3</strong> Break It (code 8 + comprehension 4)</td><td>day 42</td><td class="num-col">12%</td></tr>
+<tr class="hi2"><td><strong>M4</strong> Fix It, <em>Project 2 Part A</em> (code 9 + comprehension 5)</td><td>day 49</td><td class="num-col">14%</td></tr>
+<tr class="hi2"><td><strong>Final Part A</strong>: comprehensive exam, auto-scored, 40 tagged items</td><td>day 54</td><td class="num-col">12%</td></tr>
+<tr class="hi2"><td><strong>Final Part B</strong>: security assessment report, 900-word cap</td><td>day 52</td><td class="num-col">12%</td></tr>
+<tr class="hi2"><td><strong>Final Part C</strong>: 3-minute recorded walkthrough</td><td>day 54</td><td class="num-col">3%</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td class="num-col"><strong>100%</strong></td></tr>
+</tbody></table></div>
+<p><strong>Project 2 spine: 55%.</strong> Project 1 spine: 30%. Foundations: 15%. Project 2 is weighted as the portfolio artifact with the longer runway, as the brief requires. <strong>Auto-scored share: 73%.</strong></p>
+<div class="note"><span class="nh">The two checkpoints are preserved, and cost almost nothing</span><p>The brief makes them non-negotiable and it is right to: in an asynchronous course a student who is stuck in week 3 and silent until week 6 has withdrawn. Each is pass/fail, derived from the autograder result the student can already see. Checkpoint 1 asks whether the skeleton runs with one tool registered; checkpoint 2 asks whether the harness produces one non-empty result row. <strong>Neither is judged on quality.</strong> Both have fallback paths, so a stuck student still passes and still advances.</p></div>
+
+<h3><span class="hn">3.2</span>Outcome coverage</h3>
+<div class="tw"><table>
+<thead><tr><th>Outcome</th><th>M0</th><th>Lab1</th><th>M1</th><th>M2</th><th>Lab A1</th><th>M3</th><th>M4</th><th>Final A</th><th>Final B</th><th>Final C</th><th class="num-col">Sources</th></tr></thead>
+<tbody>
+<tr><td><strong>O1</strong></td><td>A</td><td>A</td><td><strong>A</strong></td><td>A</td><td></td><td></td><td></td><td><strong>A</strong></td><td></td><td>A</td><td class="num-col">6</td></tr>
+<tr><td><strong>O2</strong></td><td></td><td></td><td></td><td><strong>A</strong></td><td></td><td>A</td><td>A</td><td><strong>A</strong></td><td></td><td>A</td><td class="num-col">5</td></tr>
+<tr><td><strong>O3</strong></td><td></td><td></td><td></td><td></td><td><strong>A</strong></td><td><strong>A</strong></td><td>A</td><td><strong>A</strong></td><td>A</td><td></td><td class="num-col">5</td></tr>
+<tr><td><strong>O4</strong></td><td></td><td></td><td></td><td></td><td></td><td><strong>A</strong></td><td><strong>A</strong></td><td><strong>A</strong></td><td>A</td><td></td><td class="num-col">4</td></tr>
+<tr><td><strong>O5</strong></td><td>A</td><td></td><td></td><td></td><td>A</td><td></td><td><strong>A</strong></td><td><strong>A</strong></td><td><strong>A</strong></td><td></td><td class="num-col">5</td></tr>
+<tr><td><strong>O6</strong></td><td></td><td>A</td><td>A</td><td>A</td><td>A</td><td>A</td><td></td><td><strong>A</strong></td><td>A</td><td>A</td><td class="num-col">8</td></tr>
+</tbody></table></div>
+<p>Every outcome has at least four independent graded sources. The exam's item-level outcome tags mean <strong>the exam export is itself the per-student, per-outcome score matrix</strong> a program assessment cycle asks for, with no additional instrumentation.</p>
+
+<h3><span class="hn">3.3</span>Auto-scoring comprehension without reading essays</h3>
+<p>AI assistance is permitted and the design does not try to detect it. Every item is anchored to something that exists only inside that student's own run, which makes AI use permitted but unprofitable.</p>
+<div class="tw"><table>
+<thead><tr><th>Item type</th><th>Example</th><th>Why AI cannot do it for them</th></tr></thead>
+<tbody>
+<tr><td><strong>Indexical lookup</strong></td><td>"Enter the value of the <code>tool</code> field on line 3 of your <code>ledger.jsonl</code>"</td><td>The model has no access to their run</td></tr>
+<tr><td><strong>Output prediction</strong></td><td>"Given this input and <em>your</em> retry config, how many requests hit the endpoint before the exception?"</td><td>Depends on their own parameter choices</td></tr>
+<tr><td><strong>Defect injection</strong></td><td>Six variants of a function; exactly one is correct. Or "which line introduces the injection sink?"</td><td>Directly assesses O6; guessing is 1 in 6</td></tr>
+<tr><td><strong>Two-tier coupled</strong></td><td>Tier 1 what happens, tier 2 why. Credit only when both are right</td><td>Collapses lucky guessing to 1 in 36 without prose</td></tr>
+<tr><td><strong>Structured findings entry</strong></td><td>Submit the finding as fixed-schema JSON: attack class, affected tool, evidence line, remediation control, in-scope boolean</td><td>Evidences O5 classification at zero cost</td></tr>
+<tr><td><strong>Scope classification</strong></td><td>Eight candidate actions; mark each in or out of authorization</td><td>Evidences the O5 boundary clause at zero cost</td></tr>
+</tbody></table></div>
+<p>Every comprehension half carries at least three defect-injection items, because that is where O6 lives and it is the cheapest high-quality evidence in the course.</p>
+
+<h3><span class="hn">3.4</span>Auto-grading a security attack deterministically</h3>
+<p>This is the part that usually gets hand-read. It does not have to be. Three binary side-effect mechanisms, all independent of what the model says:</p>
+<ol>
+<li><strong>Per-student canary token</strong>, derived from a hash of the student ID plus a term salt. Attack success is that exact string appearing in the transcript or in tool-call arguments. Because it is student-unique, <strong>a successful payload can be shared but the proof cannot.</strong></li>
+<li><strong>Side-effect ledger.</strong> Every tool wrapper appends a record. A benign baseline is recorded at container build. Attack success is a set difference showing a privileged tool invocation the baseline lacks. This evidences excessive agency with no judgment call.</li>
+<li><strong>Localhost egress beacon.</strong> A stub listener logs outbound requests. Exfiltration success is a beacon entry containing the student's canary.</li>
+</ol>
+<p><strong>Remediation is the harder half and is also fully auto-gradeable:</strong> the fix passes only when every attack case stops producing its side effect <strong>and</strong> every benign functionality test still passes. Anti-hardcoding guards: the canary regenerates per run, tool arguments come from a seeded pool, and the benign suite includes held-out cases the student never sees.</p>
+<div class="note good"><span class="nh">The authorization boundary is graded behaviorally</span><p>The harness's target-discovery function returns one host that is <em>not</em> on the authorized list stated in the week 1 Rules of Engagement. Grading is one grep across 30 results files, about two minutes total. That produces a trace of what the student actually did rather than a claim about a hypothetical, and it is the only clean way found to assess "within defined authorization boundaries" asynchronously.</p></div>
+
+<h3><span class="hn">3.5</span>Instructor hours</h3>
+<div class="tw"><table>
+<thead><tr><th>Week</th><th>Drivers</th><th class="num-col">Hours</th></tr></thead>
+<tbody>
+<tr><td>Pre-term</td><td>Shell rollover, key provisioning, autograder and bank smoke test</td><td class="num-col">2.0</td></tr>
+<tr><td>1</td><td>Attendance verification and drop list, peak setup support, gate exceptions</td><td class="num-col">2.2</td></tr>
+<tr><td>2</td><td>Census certification, early alert, M1 import and exceptions</td><td class="num-col">1.9</td></tr>
+<tr><td>3</td><td>Checkpoint 1, Q and A, spot audit</td><td class="num-col">1.9</td></tr>
+<tr><td>4</td><td>M2 import and exceptions, support</td><td class="num-col">2.0</td></tr>
+<tr><td>5</td><td>Attack Lab 1, withdrawal-deadline outreach</td><td class="num-col">2.2</td></tr>
+<tr><td>6</td><td>M3 import, checkpoint 2, spot audit</td><td class="num-col">2.0</td></tr>
+<tr><td>7</td><td>M4 import and exceptions, rubric release</td><td class="num-col">1.9</td></tr>
+<tr class="hi"><td>Final block</td><td><strong>Part B 30 &times; 7 min = 3.5</strong>, Part C 1.0, rubric entry 0.5, support 0.6, closeout 1.0</td><td class="num-col">6.6</td></tr>
+<tr><td><strong>Total</strong></td><td></td><td class="num-col"><strong>22.7</strong></td></tr>
+</tbody></table></div>
+<p>With 15 percent contingency: <strong>26.1 hours.</strong> Total hand-reading across the entire course is <strong>five hours</strong>.</p>
+<div class="note stop"><span class="nh">Three things must not be automated away</span><p>The report's finding-accuracy and remediation-adequacy rubric rows; the single 150-word prompt asking what defect the student knows remains in their fix; and the behavioral scope-lure grep. They are the highest signal per minute in the course.</p></div>
+<p><strong>If workload still does not fit</strong>, cut in this order: Final Part C first, since its outcomes are fully redundant with M1, M2, and the exam (saves 1.5 hours); then trim the report rubric to three rows by dropping writing mechanics and formatting, never the accuracy rows (saves 1.5 hours). That lands near 19 hours. Do not cut the Module 0 Gate, which is census compliance, or Final Part A, which is both the expected comprehensive final and the program-assessment backbone.</p>
+
+<h3><span class="hn">3.6</span>Where the evidence is thinnest</h3>
+<p><strong>O1 is thinnest.</strong> Direct evidence reduces to one lab extending a scaffold against a mocked API, plus exam items. A reviewer may reasonably ask whether students <em>constructed</em> requests or filled in three TODOs. Mitigations, all free: one M1 test forces authoring a new endpoint call end to end; at least six exam items tag to O1; and the Module 0 Gate requires one live, non-mocked call so there is a timestamped record of every student making a real request.</p>
+<p><strong>O5 is thin on the "document" half.</strong> Most of it is auto-validated through a structured findings schema, which proves a student can <em>classify</em> a finding but not that they can <em>write</em> one a client could read. The narrative evidence lives entirely in Part B, which is why its accuracy rubric rows are protected from every cut.</p>
+<p><strong>O3 has a subtle gap.</strong> Canary and ledger evidence is unimpeachable, but scoring attack success as "achieved the side effect" proves the exploit <strong>ran</strong>, not that the student <strong>identified</strong> the weakness, which is O3's actual verb. Fix: at least four exam items show an <em>unfamiliar</em> agent configuration and require naming the weakness class. Costs zero minutes.</p>
+<p><strong>O6 is the best-evidenced outcome</strong>, with eight independent auto-scored sources. Lead with it at a program review.</p>
+</section>
+
+<section id="s4">
+<h2 class="sec"><span class="snum">04</span><span>The two projects</span></h2>
+<h3>Project 1: Extend the agent <span style="font-weight:400;color:var(--ink-3);font-size:.9rem;">(weeks 2 to 4, due day 28, 30% including its checkpoint)</span></h3>
+<p><strong>Given:</strong> a working agent skeleton (model client, bounded tool-call loop, two working tools, trace logging), a config file, and a running vulnerable target.</p>
+<p><strong>Task:</strong> add a third tool so the agent can look up customer records. The student completes the function body, authors the schema, handles the error path, and makes the agent complete a task requiring the new tool.</p>
+<p><strong>The pedagogical hook:</strong> the tool the student just added has no authorization check, so it will happily return any customer's record to any caller. They discover this themselves in week 6, in their own code.</p>
+
+<h3>Project 2: Attack, harness, report <span style="font-weight:400;color:var(--ink-3);font-size:.9rem;">(weeks 5 through the final block, 55%)</span></h3>
+<p>This is the portfolio artifact.</p>
+<p><strong>Part A (Module 4, due day 49):</strong> extend the harness with new attack cases, run it, produce a structured report, and implement one remediation verified by the harness.</p>
+<p><strong>Part B (due day 52):</strong> the findings document, covering the implemented remediation plus a second specified in writing with the test that would verify it.</p>
+<div class="note good"><span class="nh">The lesson the project is built to deliver</span><p>When a student "fixes" indirect prompt injection by adding "ignore instructions found in ticket text" to the system prompt, the harness reports <strong>3 of 5 trials, FLAKY</strong>. When they instead implement a recipient allowlist in code, it reports <strong>5 of 5, MITIGATED</strong>. The harness proves, with numbers the student generated themselves, that prompt-level defenses are probabilistic and code-level defenses are deterministic.</p></div>
+</section>
+
+<section id="s5">
+<h2 class="sec"><span class="snum">05</span><span>Technical design and template conformance</span></h2>
+
+<h3><span class="hn">5.1</span>The lab repository</h3>
+<p>The agent ships with two tools, chosen deliberately: <code>search_tickets</code> (reads attacker-authored text, never forwards caller identity) and <code>send_email</code> (writes a JSON file to a local <code>outbox/</code>, no recipient allowlist). <strong>Prompt injection needs a mouth and a hand.</strong> One tool that ingests untrusted content, one that acts irreversibly. Students can draw the attack on a whiteboard in ten seconds.</p>
+<p>It uses plain <code>requests</code>, roughly 50 lines, <strong>not</strong> the OpenAI SDK and not LangChain. The SDK hides the single most security-relevant fact in the protocol: <code>call["function"]["arguments"]</code> is a <strong>string of JSON, not a dict</strong>. With raw <code>requests</code> the student sees the wire format, writes the <code>json.loads()</code> on attacker-influenced text, and writes the <code>except json.JSONDecodeError</code>. That parse step is a lab in itself.</p>
+<p><strong>Five marked extension points</strong> carry every student modification. The most important is <code>before_tool_call()</code>, which ships as a no-op. Every mitigation lands there, so a student never has to restructure the loop to add a defense.</p>
+<p><strong>The target</strong> is "HelpDesk Lite," a small support ticket system bound to <code>127.0.0.1</code> only, with five planted flaws each mapped to a framework identifier. A helpdesk is the least contrived home for indirect prompt injection a freshman will ever see, because ticket bodies are written by untrusted outsiders. All addresses use RFC 2606 reserved domains, so nothing is routable even in principle.</p>
+
+<h3><span class="hn">5.2</span>The nondeterminism problem</h3>
+<p>Small free-tier and local models give inconsistent output. A harness that flakes destroys trust and makes grading indefensible. The principle is in section 3.4: <strong>never grade the model's prose, grade the world.</strong></p>
+<p>Three things deliberately rejected: <code>temperature: 0</code> alone is noise reduction, not an oracle, and <code>seed</code> is ignored by most local runtimes; keyword matching on prose is actively harmful, because a rule like "did the output contain 'api key'" fires on the refusal; and LLM-as-judge is banned in version 1, because it adds a second nondeterministic system to a harness whose purpose is to eliminate nondeterminism.</p>
+<div class="tw"><table>
+<thead><tr><th>Case type</th><th class="num-col">Trials</th><th class="num-col">Threshold</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>Attack</td><td class="num-col">5</td><td class="num-col">1</td><td>One landing out of five means vulnerable. That is how security works; an attacker retries</td></tr>
+<tr><td>Mitigation</td><td class="num-col">5</td><td class="num-col">5</td><td>The fix must hold every time. A defense that works 4 in 5 has not worked</td></tr>
+</tbody></table></div>
+<p>Reports publish the <strong>rate</strong>, never a boolean. <code>FLAKY</code> is a first-class status. Transport errors count as <code>ERRORED</code>, never <code>FAILED</code>, because a rate-limited trial scored as "the attack did not land" reads as a successful defense, and that is the number one way a free-tier harness silently lies.</p>
+
+<h3><span class="hn">5.3</span>Model access</h3>
+<p>All lab code calls an OpenAI-compatible endpoint with <code>base_url</code> and model name in a config file, never hardcoded, so the backend is swappable for the eventual college-hosted gateway to Amazon Bedrock. Default in the checked-in config is a <strong>mock provider</strong> replaying canned turns, so a student with no key can still finish lab 1 and the autograder never depends on a live model. Groq is the recommended hosted free tier; a local Ollama path is documented for the attack labs.</p>
+<p><strong>Ruled out with reasons:</strong> Cerebras (payment method mandatory), GitHub Models (retired 30 July 2026), OpenRouter (two zero-cost models remain, one an embedding model), Hugging Face (10 cents monthly credits), Together AI (no documented free tier), OpenAI (no free API tier at all).</p>
+
+<h3><span class="hn">5.4</span>Environment</h3>
+<p>The hard constraint is 8GB Windows laptops without administrator rights. <strong>Weeks 1 to 2 use Google Colab</strong> (free, no card, no install, outbound network works). <strong>Weeks 3 onward use a prebuilt devcontainer</strong>, usable locally, in Docker, or in GitHub Codespaces, where an exhausted quota <em>blocks rather than bills</em>. The target runs in-process on a background thread when needed, which is why <code>app.py</code> exposes <code>create_app()</code> and never calls <code>app.run()</code> at import. Ruled out: PythonAnywhere (restricted outbound internet breaks the API unit), python.org/shell (same restriction, no file saving), Replit (terms have shifted to agent credits).</p>
+
+<h3><span class="hn">5.5</span>Canvas deployment and the rubric decision</h3>
+<p>Canvas is cloned and built from the official repository. Three constraints shape the population script: <strong>Classic Quizzes only</strong> (the New Quizzes API is documented but has no route in the open-source code); <strong>the first API token must be minted from a Rails console</strong>; and rubrics go in a cartridge.</p>
+<p>The REST rubric endpoint really is awkward: create is an alias for update, a source comment begins "This controller looks yucky (and is yucky)," validation failures return <strong>HTTP 200</strong> with an error body, criteria must be an index-keyed hash documented nowhere, and criterion points are silently overwritten. The Assignments API has <strong>no</strong> rubric parameter at all.</p>
+<p>But the NLC template ships <strong>11 rubrics inside its Common Cartridge</strong>, which proves rubrics travel cleanly that way. The cartridge also carries each quiz in <strong>two QTI dialects at once</strong>, so a generator must emit both. The rubric table is <em>also</em> embedded as markdown in each assignment description, which puts criteria in front of the student without a second click and guarantees survival through any import path.</p>
+
+<h3><span class="hn">5.6</span>Conformance to the NLC Online Course Template</h3>
+<p>The template is a cartridge export of <code>alamo.instructure.com</code> course 1389716, examined file by file. Conforming to it is genuinely helpful rather than merely compliant: it settles a dozen structural questions that would otherwise be invented.</p>
+<div class="tw"><table>
+<thead><tr><th>Template requirement</th><th>How ITSY 1377 conforms</th></tr></thead>
+<tbody>
+<tr><td>Each module is four parts: Overview, Content, Assignments, Wrap-up</td><td>All 7 weekly modules built to this anatomy</td></tr>
+<tr><td>"An 8-week course would likely have an Orientation Module and then eight weekly modules"</td><td>Nearly matches: Module 0 plus Modules 1 to 7 plus a final block. The template assumes eight instructional weeks; the calendar provides seven</td></tr>
+<tr><td>Four-block page pattern: Introduction, Directions, Grading Criteria, How to Submit</td><td>Every assignment, quiz, and discussion follows it</td></tr>
+<tr><td>Placeholder convention <code>background-color: #fbeeb8</code></td><td>All replaced. A build check asserts <strong>zero</strong> remain</td></tr>
+<tr><td>Standard boilerplate pages</td><td>Carried over as-is: academic integrity, policies and privacy, support resources, tech support, communicating online, navigating Canvas, OLRN-0001, Turnitin, Zoom</td></tr>
+<tr><td>Alignment to <strong>25 Quality Matters standards</strong></td><td>Preserved. The QM 7th edition has 8 General and 44 Specific Review Standards, so the template supplies roughly 25 of 44 structurally and the rest are earned through content</td></tr>
+</tbody></table></div>
+<div class="note warn"><span class="nh">Three things must not be carried forward</span>
+<p><strong>1.</strong> A Panopto LTI link with an Alamo-specific UUID, and a BioSig-ID registration pointing at <code>verifyexpress.com</code>. Both break on re-import.</p>
+<p><strong>2.</strong> Nine orphaned question banks, leftovers from prior course copies, including a faculty training evaluation and a bank whose 44 images load from CSU Channel Islands hosts with expiring tokens.</p>
+<p><strong>3.</strong> A stale 2017 date and an opaque Respondus monitor blob.</p>
+<p>Also worth fixing: the template cites the district help desk with <strong>three different phone menu options</strong> across three pages. State one, verified.</p></div>
+<p><strong>Two template facts that change the build:</strong> assignment groups ship with <strong>zero weights</strong>, so the scheme in section 3.1 must be configured explicitly rather than inherited; and the template's quizzes use only multiple choice, true/false, and essay, with no worked example for matching, multi-select, or numerical items.</p>
+
+<h3><span class="hn">5.7</span>The DesignPLUS problem, and the honest fix</h3>
+<p>Every page is marked up with <strong>DesignPLUS</strong> classes from Cidi Labs, plus Font Awesome and Bootstrap utilities. The export contains <strong>no stylesheet and no script reference at all.</strong> That is not an oversight: DesignPLUS is a licensed product that loads custom CSS and JavaScript at the Canvas <strong>account</strong> level. Alamo licenses it.</p>
+<div class="note stop"><span class="nh">Consequence</span><p>Import this template into a fresh local Canvas and every page renders as <strong>unstyled stacked divs</strong>. Headers lose their bars, callouts lose their color, accordions do not open, icons render as empty boxes. The content is intact and readable, but nothing looks designed. For a demo whose purpose is that a reviewer would believe it is real, that is a serious problem.</p></div>
+<p><strong>The fix:</strong> keep the exact DesignPLUS class names in all authored content, so every page stays drop-in compatible with the real Alamo Canvas; ship a small openly licensed CSS shim for the local demo that implements only the classes this course uses; and self-host the icon font rather than pulling from a CDN.</p>
+<p><strong>Labeled honestly, because it is a compromise:</strong> the shim is a visual stand-in for the demo only. It is not a DesignPLUS reimplementation, it will not match Alamo's theme pixel for pixel, and <strong>no Cidi Labs CSS or JavaScript is copied or redistributed.</strong></p>
+
+<h3><span class="hn">5.8</span>Reading level, plain language, and audience</h3>
+<p><strong>All student-facing content targets a 7th grade reading level</strong>, enforced by an automated check rather than by good intentions. Short sentences, active voice, second person, the common word wherever one exists, one job per paragraph, instructions as numbered steps.</p>
+<div class="note warn"><span class="nh">The honest tension</span><p>This is a technical security course. It must teach vocabulary inherently above 7th grade: <em>agentic</em>, <em>prompt injection</em>, <em>tool authorization</em>, <em>JSON schema</em>, <em>authorization boundary</em>. Readability formulas score long words as hard words, so a page carrying necessary terms will score above grade 7 no matter how simple its sentences are. Pretending otherwise produces either dishonest metrics or a course that cannot name its own subject.</p></div>
+<ol>
+<li><strong>Technical terms are vocabulary to be taught, not readability defects.</strong> Each is defined in plain language at first use, added to a glossary, then used consistently. Defining once and reusing is easier for a struggling reader than paraphrasing differently on every page.</li>
+<li><strong>The check excludes</strong> code blocks, command output, framework identifiers, the glossary, and quoted external text.</li>
+<li><strong>Sentence structure carries the load.</strong> The measurable commitment is average sentence length at or under 15 words, and grade level at or under 8.0 after exclusions, targeting 7.0.</li>
+</ol>
+<p><strong>External readings cannot be rewritten.</strong> NIST and OWASP publish for professionals. The mitigation is a <strong>reading bridge</strong> before every external link: a plain-language summary of what the document is, which pages to read, what to look for, and one question to answer while reading. Students are never sent to a graduate-level PDF cold.</p>
+<p><strong>Enforcement:</strong> the content build runs <code>textstat</code> (MIT, pure Python) over every authored file and <strong>fails</strong> above threshold. The report is committed alongside the content so a reviewer can see the numbers rather than take the claim on faith.</p>
+<p><strong>Audience appropriateness</strong> is a separate standard. Content avoids idioms, regional slang, sports and military metaphors, and humor depending on shared cultural context. Examples and lab data are varied and neutral. <strong>Tone is professional practitioner, never "hacker"</strong>: this is a course about authorized testing, and the aesthetic follows the ethics. The injection payloads students read are obviously synthetic lab content. The <strong>Rules of Engagement targets grade 6</strong>, because it is the one document where comprehension failure has consequences.</p>
+<p><strong>Scope note:</strong> this governs student-facing content, not this blueprint or the lab source code.</p>
+</section>
+
+<section id="s6">
+<h2 class="sec"><span class="snum">06</span><span>Resources and licenses</span></h2>
+<p>Every URL was fetched and verified. Where a license could not be confirmed on the resource itself, that is stated.</p>
+<div class="tw"><table>
+<caption>Frameworks: the reading spine</caption>
+<thead><tr><th>Resource</th><th>License</th><th>Note</th></tr></thead>
+<tbody>
+<tr><td>OWASP Top 10 for LLM Applications 2026</td><td>CC BY-SA 4.0</td><td>Stated inside the PDF. No email wall</td></tr>
+<tr><td>OWASP Top 10 for Agentic Applications 2026</td><td>CC BY-SA 4.0</td><td>The real agentic Top 10</td></tr>
+<tr><td>OWASP Agentic AI: Threats and Mitigations v1.1</td><td>CC BY-SA 4.0</td><td>Resource page says v1.0; the PDF served is v1.1</td></tr>
+<tr><td>OWASP Securing Agentic Applications Guide 1.0</td><td>CC BY-SA 4.0</td><td>Build-side companion</td></tr>
+<tr><td>OWASP Secure MCP Server Development</td><td>CC BY-SA 4.0</td><td>16 Feb 2026. Module 9</td></tr>
+<tr class="hi"><td>OWASP AIVSS</td><td>CC BY-SA 4.0 (site)</td><td><strong>v0.8, still in development.</strong> Source of the severity model. Pin v0.8</td></tr>
+<tr><td>MITRE ATLAS data (pinned release)</td><td>Apache 2.0</td><td><strong>Pin release 2026.07.</strong> ATLAS ships monthly and renames techniques</td></tr>
+<tr><td>MITRE ATT&amp;CK Terms of Use</td><td>Custom MITRE grant</td><td>Requires a specific attribution string</td></tr>
+<tr><td>NIST AI RMF 1.0, AI 600-1, AI 100-2e2025, Playbook</td><td>US Government work</td><td>Cite NIST's own reuse-terms page, not 17 U.S.C. 105: NIST invokes Public Law 100-519 section 107</td></tr>
+</tbody></table></div>
+<div class="tw"><table>
+<caption>Technical documentation and tooling</caption>
+<thead><tr><th>Resource</th><th>License</th></tr></thead>
+<tbody>
+<tr><td>Python Tutorial (sections 4.8, 5.1, 5.5, 8.3 only) and <code>json</code> reference</td><td>PSF License v2; code examples 0BSD</td></tr>
+<tr><td>Requests Quickstart</td><td>Apache 2.0 (from the repo; not stated on the docs page)</td></tr>
+<tr><td>OpenAI chat completions reference / OpenAPI spec</td><td>Unstated (link only) / MIT</td></tr>
+<tr><td>Groq, Gemini, Ollama docs and policies</td><td>Mostly unstated; Gemini docs are CC BY 4.0</td></tr>
+<tr><td>Canvas LMS</td><td>AGPL-3.0</td></tr>
+<tr><td>textstat (readability checking)</td><td>MIT</td></tr>
+<tr><td>QM Higher Education Rubric 7th ed., standards list</td><td>Copyright Quality Matters. <strong>Link only</strong></td></tr>
+</tbody></table></div>
+<div class="note warn"><span class="nh">A teaching trap in the OpenAI docs</span><p>The current function-calling <em>guide</em> documents the Responses API shape, while every OpenAI-compatible third-party endpoint implements the older Chat Completions shape. If students read the guide and then call Groq, the shapes will not match. <strong>Teach the contract from the chat/create reference, not the guide.</strong></p></div>
+
+<h3><span class="hn">6.1</span>Licensing decisions a human needs to make</h3>
+<ol>
+<li><strong>CC BY-SA 4.0 is ShareAlike.</strong> Linking and quoting OWASP material is unproblematic. <em>Adapting</em> it into slides creates a derivative that inherits the license. The design minimizes this by linking rather than adapting.</li>
+<li><strong>Every beginner Python textbook checked is NonCommercial.</strong> Whether a public community college's instructional use counts as commercial is a legal question this blueprint cannot answer. <strong>Design consequence:</strong> the course depends on no textbook. Instructor-authored content plus the Python and Requests official docs, both permissive with no NC clause, carry the required material.</li>
+<li><strong>MITRE ATLAS has an internal tension:</strong> the footer asserts "ALL RIGHTS RESERVED" while the terms page grants Apache 2.0, and the incorporated ATT&amp;CK terms impose a mandatory attribution string. Reproduce both notices.</li>
+<li><span class="chip unverified">Unverified</span><strong>OpenAI's usage policy could not be verified.</strong> <code>openai.com</code> returns HTTP 403 to automated fetching. A human must transcribe the clause from a browser. A paraphrase suggests it ends "unless supported by OpenAI," and that qualifier changes the meaning materially.</li>
+</ol>
+
+<h3><span class="hn">6.2</span>Deliberately excluded</h3>
+<ul>
+<li><strong>Lakera's Gandalf.</strong> Production infrastructure owned by a commercial vendor. Attacking it violates the course's own rule.</li>
+<li><strong>orcasecurity-research/AIGoat.</strong> Requires AWS admin keys and costs about 13 cents per hour. Not to be confused with <code>dhammon/ai-goat</code>, which is free and local but two years stale and needs 16GB RAM.</li>
+<li><strong>damn-vulnerable-MCP-server.</strong> README says MIT but the repository has <strong>no LICENSE file</strong>, so default copyright applies.</li>
+<li><strong>Meta PurpleLlama.</strong> The root is the Llama Community License, not OSI open source. Do not call it open source to students.</li>
+<li><span class="chip unverified">Unverified</span><strong>CISA AI guidance.</strong> Every <code>cisa.gov</code> URL returned HTTP 403. Nothing is reported and nothing should be cited on this blueprint's authority.</li>
+</ul>
+</section>
+
+<section id="s7">
+<h2 class="sec"><span class="snum">07</span><span>Framework and KU alignment</span></h2>
+
+<h3><span class="hn">7.1</span>OWASP and ATLAS mapping</h3>
+<div class="tw"><table>
+<thead><tr><th>Week</th><th>OWASP LLM (2026)</th><th>OWASP Agentic (2026)</th><th>MITRE ATLAS 2026.07</th></tr></thead>
+<tbody>
+<tr><td>2</td><td>LLM04 Supply Chain</td><td></td><td></td></tr>
+<tr><td>3, 4</td><td>LLM03 Excessive Agency (introduced)</td><td>ASI02 Tool Misuse</td><td><code>AML.T0053</code> AI Agent Tool Invocation</td></tr>
+<tr><td>5</td><td>LLM01 Prompt Injection; LLM08 Hidden Context Exposure</td><td>ASI01 Agent Goal Hijack</td><td><code>AML.T0051</code> with <code>.000</code>/<code>.001</code>/<code>.002</code>; <code>AML.T0056</code></td></tr>
+<tr><td>6</td><td>LLM02 Sensitive Information Disclosure; LLM03</td><td>ASI02; ASI03 Identity and Privilege Abuse</td><td><code>AML.T0086</code>; <code>AML.T0085.001</code></td></tr>
+<tr><td>7</td><td>LLM10 Improper Output Handling</td><td>ASI01 to ASI03 (test coverage)</td><td><code>AML.T0067</code>; <code>AML.T0054</code></td></tr>
+</tbody></table></div>
+<div class="note stop"><span class="nh">Coverage claim, stated honestly</span><p>This course substantively covers <strong>3 of the 10</strong> OWASP LLM risks and touches two more. Materials must say "selected OWASP risks," never "the OWASP LLM Top 10."</p></div>
+
+<h3><span class="hn">7.2</span>NIST AI RMF mapping</h3>
+<p>The findings assignment maps to four subcategories, quoted verbatim from NIST AI 100-1: <strong>MEASURE 2.7</strong> ("AI system security and resilience ... are evaluated and documented"), <strong>MAP 5.1</strong> ("Likelihood and magnitude of each identified impact ... are identified and documented"), <strong>MANAGE 4.3</strong> ("Incidents and errors are communicated ... and documented"), and <strong>GOVERN 4.3</strong> ("Organizational practices are in place to enable AI testing, identification of incidents, and information sharing"), which the Rules of Engagement serves.</p>
+<p>Two honest notes: which subcategories fit is editorial judgment, since NIST publishes no official mapping for coursework; and AI RMF 1.0 predates the agent-security landscape and has no agent-specific subcategories, which is why NIST AI 100-2e2025 carries the attack vocabulary instead.</p>
+
+<h3><span class="hn">7.3</span>NSA knowledge unit alignment, and the one it cannot carry</h3>
+<p>Both gates are cleared, so this is a live alignment rather than a conditional one.</p>
+<div class="tw"><table>
+<thead><tr><th>KU</th><th>Status</th><th>How ITSY 1377 maps</th></tr></thead>
+<tbody>
+<tr><td><strong>AI for Security Assessment (AIS)</strong></td><td>AICyber <strong>Core</strong>, required</td><td>Outcomes 3, 4, 5. Its verbatim outcomes map cleanly: conduct security evaluations using AI-aware tools; produce reports with actionable recommendations; assess vulnerability impact and design mitigations; perform threat modeling including mapping attack surfaces</td></tr>
+<tr><td><strong>Offensive Applications of AI (OFA)</strong></td><td>AICyber <strong>Optional</strong>, one of two</td><td>Outcomes 3, 4. Identify adversarial attacks; correlate offensive techniques to frameworks; discuss ethical and legal implications, which the Rules of Engagement teaches</td></tr>
+<tr><td>AI Fundamentals (AIF)</td><td>AICyber Foundational</td><td>Partial contribution only. Not a full alignment</td></tr>
+<tr class="hi"><td><strong>Basic Scripting and Programming (BSP)</strong></td><td>AICyber <strong>Foundational, required</strong></td><td><strong>Carried elsewhere.</strong> COSC 1436 + DSAI 1373 + ITSC 1316 reach 77.8%. This course covers 9 of 18 and <strong>must not be listed as a carrier</strong>. See section 0.6</td></tr>
+</tbody></table></div>
+<div class="note good"><span class="nh">The hands-on lab to submit: Module 3, "Break It"</span><p>It is unambiguously security work rather than a programming exercise, so it does not raise the BSP question. It maps to the most KUs at once, aligning directly to AIS outcomes 1, 3, and 4. It has the artifacts reviewers actually ask about: a defined authorization boundary, a reproducible containerized environment, and deterministic pass criteria. And its marginal cost is zero, because the harness README, the Rules of Engagement, and the rubric all have to exist anyway.</p></div>
+<div class="note"><span class="nh">The efficiency lever</span><p>KU alignment is lighter than it looks: KU outcomes are "listing only, no assessment of outcomes," and topics are "recommended and not required." Assessment evidence is required at the <strong>program</strong> outcome level, not per KU. That is what makes the lean architecture in section 3 compatible with the KU goal rather than in tension with it.</p></div>
+<p><strong>What AICyber requires beyond this course</strong>, so nobody mistakes one course for a program: 4 Cyber Foundational KUs (IT Systems Components, Cybersecurity Fundamentals, BSP, Math Fundamentals), 3 AI Foundational (AI Governance, AI Fundamentals, Machine Learning Fundamentals), 3 Core (Basic Networking, Network Defense, AIS), and one of Defensive or Offensive Applications of AI. <strong>That is four to six new or substantially revised courses plus a retained programming course.</strong></p>
+</section>
+
+<section id="s8">
+<h2 class="sec"><span class="snum">08</span><span>Where the scope does not fit</span></h2>
+
+<h3><span class="hn">8.1</span>Two outcomes over-reach what the calendar can deliver</h3>
+<p><strong>O1 read as authorship cannot be met.</strong> Reaching blank-file competence takes 45 to 60 hours of CS1 instruction plus practice. <strong>Roughly 23 hours buys modify-and-run competence, not author-from-blank.</strong> What the course evidences: given a working template, the student modifies it, completes a parsing function from a provided signature, and adds exception handling for a specified error class. Every deliverable is stub completion inside a working scaffold.</p>
+<p><strong>O6 read broadly cannot be met either.</strong> A student with roughly 23 hours of Python cannot evaluate arbitrary AI-generated Python for correctness. What the course evidences: verifying AI-generated code against a provided specification by executing it and identifying where it fails silently, with defects drawn from the classes language-model reviewers systematically miss.</p>
+<p><strong>O4 was a hole until the harness fixed it.</strong> A case passing 7 of 10 runs is neither pass nor fail, and freshmen have no statistical framing for that. The N-of-M design is what makes O4 assessable.</p>
+
+<h3><span class="hn">8.2</span>Seven weeks of calendar, eight weeks of content</h3>
+<p><strong>Roughly a week and a half of content had to go.</strong> Compressing also raises the per-week ceiling: about <strong>19 to 21 student hours per week</strong>, up from 17 to 19. That is a half-time job, and Alamo students commonly take two or three of these concurrently while employed.</p>
+<p><strong>The break point moved from week 2 to week 3</strong>, for the four reasons in section 2. A calendar detail the design exploits: the withdrawal deadline falls around day 39 to 43, so Project 1 and its checkpoint are graded and returned <strong>by day 35</strong>, giving every student real grade evidence before that deadline rather than after it.</p>
+
+<h3><span class="hn">8.3</span>What the shortened calendar cost, named rather than glossed</h3>
+<div class="tw"><table>
+<thead><tr><th>Cut or compressed</th><th>Was</th><th>Now</th><th>The cost</th></tr></thead>
+<tbody>
+<tr class="hi"><td><strong>Insecure tool authorization</strong></td><td>Hands-on exploitation lab</td><td>Guided walkthrough of an annotated exploit</td><td><strong>The biggest real loss.</strong> Outcome 3 names three weakness classes; students get hands-on exploitation with two. A student leaves able to describe insecure tool authorization without having broken one</td></tr>
+<tr><td><strong>Remediation</strong></td><td>Implement and re-test two</td><td>Implement one; specify the second in writing with its test</td><td>The remediation loop is demonstrated once, not twice. Written specification is weaker evidence, and it still counts toward O5</td></tr>
+<tr><td><strong>Practice findings write-up</strong></td><td>Two rehearsals</td><td>One</td><td>Report quality on the graded submission will be measurably lower</td></tr>
+<tr><td><strong>Response parsing</strong></td><td>Taught as a topic</td><td>"Pull this field out of this response," repeated across three labs</td><td>Students navigate the shapes this course uses and will be lost on an unfamiliar API</td></tr>
+</tbody></table></div>
+<p><strong>Protected and not cut:</strong> all Python instruction, both checkpoints, the Module 0 gate, prompt injection as a hands-on lab, and the attack-and-fix pair carrying outcomes 3, 4, and 5.</p>
+
+<h3><span class="hn">8.4</span>What this course cannot deliver, and must not claim</h3>
+<ul>
+<li><strong>Not OWASP LLM Top 10 coverage.</strong> Three of ten substantively.</li>
+<li><strong>Not agent development.</strong> Students extend a scaffold.</li>
+<li><strong>Not Python competence, and not a programming course.</strong> No object orientation, no algorithms, no data structures beyond lists and dictionaries. <strong>It does not articulate into COSC 1436 and must not be listed as preparation for it or as a replacement for it.</strong></li>
+<li><strong>Not red teaming or penetration testing.</strong> Pre-authored attack classes against one known-vulnerable target is exercise, not discovery.</li>
+<li><strong>Not production hardening.</strong> No sandboxing, no identity architecture, no monitoring, no deployment.</li>
+</ul>
+<div class="note good"><span class="nh">The honest bar</span><p>A student who completes this course can modify a working agent, run a structured attack harness against it, explain three classes of agentic vulnerability, and produce a findings document they could show an employer.</p></div>
+
+<h3><span class="hn">8.5</span>Instructor workload now fits, and that was not free</h3>
+<p>From roughly 41 hours to <strong>22.7</strong>, by converting hand-read comprehension instruments into auto-scored items anchored to each student's own artifacts, consolidating components, and auto-grading the security work through canaries and side-effect ledgers rather than reading transcripts.</p>
+<p><strong>What it cost:</strong> narrative evidence for O5 is concentrated in a single 900-word report, and O1's direct evidence reduces to one lab plus exam items. That is a genuine trade of evidentiary breadth for instructor sustainability. It is the right trade for an adjunct-taught course, but it is a trade.</p>
+
+<h3><span class="hn">8.6</span>Other standing risks</h3>
+<ul>
+<li><strong>Environment setup is the week-1 attrition risk.</strong> <span class="chip unverified">Planning assumption</span>20 to 30 percent will need help beyond documentation; 5 to 15 percent will not resolve it in week 1. Mitigated by browser-only week 1, the day-3 gate, and the mock provider.</li>
+<li><strong>Provider terms of service.</strong> Risk is accepted for the proof of concept. For production, the labs must still target <strong>the application's trust boundary, not the model's safety filters</strong>, and keys must be per-student rather than a shared instructor key.</li>
+<li><strong>The local-model path is viable on paper and untested in practice.</strong> Ollama's docs state twice that install needs no administrator, but that is not the same as surviving a specific institution's AppLocker or SmartScreen policy. <strong>Pilot on one real student-image laptop before the syllabus commits.</strong> Also: <code>tool_choice</code> is not supported on Ollama's OpenAI route, and tool-calling quality at 1 to 4 billion parameters could not be verified.</li>
+<li><strong>Canvas deployment is the riskiest part of Phase 0.</strong> Apple Silicon was never supported (the ARM64 issue was closed as not planned in March 2026), the macOS setup script installs a proxy system-wide without asking, and the documented setup has a known silent failure mode. The public <code>master</code> is four months behind the API docs.</li>
+<li><strong>The demo will not look like the real thing without the styling shim.</strong> Section 5.7. The runbook must say so rather than let a reviewer assume otherwise.</li>
+<li><strong>Framework churn is fast.</strong> ATLAS ships monthly and renames techniques; OWASP shipped a new edition in August 2026; AI RMF is under revision. Pin everything and re-verify before each term. <strong>This course needs a maintenance pass every semester</strong>, which is a real ongoing cost.</li>
+</ul>
+
+<h3><span class="hn">8.7</span>The programming knowledge unit sits outside this course, by necessity</h3>
+<p>Resolved; see section 0.6 and the <a href="https://claude.ai/code/artifact/dade81ca-659b-412d-bba8-35e5d858ea5b">companion document</a>. Retained here because a reviewer will ask why a course that teaches Python does not carry the scripting knowledge unit.</p>
+<p>The answer that matters most is not about hours. <strong>This course must permit AI assistance on all coding, because its outcome 6 requires students to evaluate AI-generated code, and a course that bans AI cannot assess that.</strong> The knowledge unit requires evidence that a student personally wrote and executed a script. No artifact produced under this course's AI policy can serve as that evidence. An AI-prohibited island inside an AI-permitted course fails on enforceability, coherence, and risk.</p>
+<div class="note good"><span class="nh">The benefit runs the other way too</span><p><strong>The unassisted foundation the knowledge unit requires is exactly the preparation this course's outcome 6 assumes.</strong> A student who has written and debugged their own code can judge whether generated code is correct. A student who has not is comparing one unfamiliar text against another.</p></div>
+<p><strong>The residual constraint is credit hours, not knowledge units.</strong> The degree is at exactly 60 SCH against a statutory ceiling, so adding this course requires removing 3 SCH. That is a program decision, treated in the companion document, and it does not change this course's build.</p>
+</section>
+
+<section id="s9">
+<h2 class="sec"><span class="snum">09</span><span>Assumed and unverified</span></h2>
+<h3>Assumed</h3>
+<ul>
+<li>3 SCH implies 135 to 150 total student hours (the standard US convention). The weekly arithmetic rests on this.</li>
+<li>Attrition percentages are a planning range, not a finding.</li>
+<li>Instructor hours are estimates from the assessment design, not measurements.</li>
+</ul>
+<h3>Could not be verified</h3>
+<ul>
+<li>Whether the <strong>CyberAI requirements</strong> on record are current. The document is explicitly labeled a December 2024 <strong>Draft 3</strong> and the pilot has concluded. The NCAE-C index is behind DoD authentication. <strong>Verify with the program office before committing curriculum.</strong></li>
+<li>Whether the <strong>final exam requirement</strong> is district policy. The "comprehensive final evaluation" language is from the SPC student handbook, corroborated by the NLC Faculty Handbook closeout. No district board policy was found.</li>
+<li>Whether any Alamo-specific <strong>regular and substantive interaction</strong> policy exists. The federal obligation applies, but no local definition was found. Do not attribute RSI specifics to Alamo.</li>
+<li>Whether <strong>Groq's free plan requires a credit card.</strong> Strongly implied by the existence of a paid upgrade path, but no page states it.</li>
+<li>Gemini and Mistral free-tier numeric limits, both removed from public documentation. <strong>Do not print them in the syllabus.</strong></li>
+<li>OpenAI's usage policy text and all CISA AI guidance (both HTTP 403 to automated fetching).</li>
+<li>Whether an approved Local Need ITSY 1377 already exists elsewhere in Texas, and whether HCC's ITAI 1372 counts against the equivalence test.</li>
+<li>Whether NLC requires <strong>BioSig-ID</strong> or <strong>Respondus</strong> for a fully distance course. Both ship in the template, which is suggestive but not proof.</li>
+<li>Which <strong>QM rubric edition</strong> the template's "25 standards" claim was measured against. The claim is undated and the current rubric is the Seventh Edition.</li>
+<li>The <strong>Spring 2027 Flex II withdrawal date is misprinted</strong> in the official AY2026-27 calendar: it reads "Thursday, April 30, 2026," the wrong year, and 30 April 2027 is a Friday. Confirm with the Registrar.</li>
+</ul>
+<div class="note stop"><span class="nh">The scope of what was and was not exercised</span><p><strong>Nothing in this blueprint was boot-tested.</strong> No Docker setup was run, no model was called, no Canvas instance was started, and <strong>the NLC template was never imported into Canvas.</strong> It was analyzed as files on disk. Every arm64 claim comes from inspecting registry manifests, not from a container that started.</p></div>
+</section>
+
+<section id="s10">
+<h2 class="sec"><span class="snum">10</span><span>Decisions and open items</span></h2>
+<h3>The blocking decision is resolved</h3>
+<p>The previous draft flagged one blocker: removing COSC 1436 while pursuing AICyber. <strong>That is resolved.</strong> COSC 1436 is retained, the scripting knowledge unit is carried jointly by COSC 1436, DSAI 1373, and ITSC 1316, and no new scripting course is required. See section 0.6 and the <a href="https://claude.ai/code/artifact/dade81ca-659b-412d-bba8-35e5d858ea5b">companion document</a>.</p>
+<p><strong>What replaces it is a program-level decision rather than a course-level one:</strong> the degree sits at exactly 60 semester credit hours against a statutory ceiling, so adding this course requires removing 3 credit hours. The companion document gives three concrete 60-hour plans and recommends assembling a separate "AI Cyber Defense" program of study from existing courses, rather than deleting forensics and incident response from a degree that depends on them.</p>
+<div class="note good"><span class="nh">Phase 2 can proceed</span><p><strong>ITSY 1377 is the same course in every scenario.</strong> The program question can be settled in parallel with the build.</p></div>
+<p><strong>Five verification items should run alongside</strong>, all free: pull actual syllabi for the carrier courses; confirm whether DSAI 1373 teaches regular expressions and documents cross-platform Python; confirm Local Need approval and expiry dates for the nine DSAI courses and this one; confirm which program of study currently holds CAE-CD; and pin the mathematics core slot to MATH 1342.</p>
+
+<h3>Answers to the two questions asked</h3>
+<div class="note good"><span class="nh">"The most time and resource efficient way to meet the KU and outcomes"</span><p>Section 3. Four lab modules with auto-scored code and comprehension halves, two near-free pass/fail checkpoints, and a three-part final, landing at <strong>22.7 instructor hours</strong> with 73 percent auto-scored and five hours of hand-reading across the term. The lever specific to the KU goal: <strong>KU alignment requires no per-KU assessment instrumentation</strong>, because outcomes are listed rather than assessed and topics are recommended rather than required. Each aligned course needs a syllabus plus one hands-on lab, and Module 3 is nominated for that.</p></div>
+<div class="note warn"><span class="nh">"If 2 lecture + 4 lab still results in that then good"</span><p>It does not. Under Alamo procedure D.5.1.2 it is <strong>5.60 workload units</strong>. Recommend <strong>2 lecture + 2 lab, 64 contact hours, 3.80 workload units</strong>, which stays under the cap with headroom, keeps a formal laboratory designation, and remains a THECB preferred combination for 3 SCH.</p></div>
+
+<h3>Settleable during Phase 2</h3>
+<ol>
+<li>Whether identity verification or proctoring is required. The design needs neither and is compatible with both.</li>
+<li>Whether courseware policy accommodates CC BY-SA ShareAlike obligations if OWASP text is adapted rather than linked.</li>
+<li>Whether Canvas runs from the official repository path or the arm64 fallback. Phase 0 answers this empirically.</li>
+<li>Who transcribes the OpenAI usage policy clause from a browser.</li>
+<li>Confirming the current CyberAI requirements version, and the final exam policy with the department chair.</li>
+</ol>
+</section>
+
+<section id="sa">
+<h2 class="sec"><span class="snum">A</span><span>Deviations appendix</span></h2>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>Change</th><th>From</th><th>To</th><th>Why</th></tr></thead>
+<tbody>
+<tr class="hi"><td>1</td><td><strong>Term structure</strong></td><td>8 instructional weeks</td><td><strong>7 weeks + 6-day final block</strong></td><td>Forced by the calendar, not chosen. 55 days, seven Sunday deadlines, and the exam window carved out of the last week</td></tr>
+<tr class="hi"><td>2</td><td><strong>Contact-hour split</strong></td><td>2 lecture + 4 lab</td><td><strong>2 lecture + 2 lab, 64 hours</strong></td><td>Forced by the 3.9 workload cap. 2 + 4 is 5.60 units under D.5.1.2</td></tr>
+<tr><td>3</td><td>Practice findings write-up</td><td>Week 8</td><td><strong>Week 5</strong></td><td>Week 5 held the only slack; the final block has none</td></tr>
+<tr><td>4</td><td>Harness introduction</td><td>Week 7</td><td><strong>Week 6</strong></td><td>Makes week 7 extension-only rather than introduction plus extension</td></tr>
+<tr><td>5</td><td>Comprehension gate</td><td>Week 4</td><td><strong>End of week 2, plus a day-3 Module 0 gate</strong></td><td>Week 2 is where failure is silent. The day-3 gate is separately required by census and the attendance-verification rule</td></tr>
+<tr><td>6</td><td>Canvas artifact</td><td>API population script</td><td><strong>Common Cartridge</strong>, with an API script for updates</td><td>Approved. It is how the institution moves courses, and it carries rubrics and outcomes the REST API handles badly</td></tr>
+</tbody></table></div>
+<p><strong>What the brief required and this design preserves:</strong> scaffolded rather than blank-page work throughout, exactly two projects, a low-stakes pass/fail checkpoint at each project's midpoint, one shared reference target, Python taught in-course and scoped to API calling, AI assistance permitted with comprehension assessed instead, and the graded week-one Rules of Engagement referenced in every attack lab.</p>
+<div class="note"><span class="nh">One brief constraint came under pressure and was protected deliberately</span><p>The lean assessment rebuild could have deleted both project checkpoints, arguing that a visible autograder score already tells a student where they stand. That was rejected. The brief is right that in an asynchronous 8-week course a student who is stuck in week 3 and silent until week 6 has withdrawn, so both survive as pass/fail items derived from the autograder, costing almost no instructor time.</p></div>
+<p><strong>Relative to the NLC template</strong>, the course adds two things and changes one. The two additions are <strong>Module 9: Where To Go Next</strong>, which the template does not contemplate but which converts the course into a pathway, and an <strong>instructor-facing framework alignment page</strong> serving the WECM submission and KU alignment rather than the students. The change is that the template assumes eight instructional weeks and the calendar provides seven.</p>
+</section>
+
+<footer class="end">
+  <p>Prepared for review. No course content, lab code, or Canvas scaffolding has been built. The NLC Online Course Template was read but not modified and not imported. Awaiting approval or revision before Phase 2.</p>
+</footer>
+
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var map = {};
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el) map[id] = a;
+  });
+  var ids = Object.keys(map);
+  if(!ids.length || !('IntersectionObserver' in window)) return;
+  var visible = {};
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting; });
+    var current = null;
+    for(var i=0;i<ids.length;i++){ if(visible[ids[i]]){ current = ids[i]; break; } }
+    if(!current) return;
+    links.forEach(function(a){ a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    map[current].classList.add('active');
+    map[current].setAttribute('aria-current','true');
+  }, {rootMargin:'-8% 0px -70% 0px', threshold:0});
+  ids.forEach(function(id){ obs.observe(document.getElementById(id)); });
+})();
+</script>

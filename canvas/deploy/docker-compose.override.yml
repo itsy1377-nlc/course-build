@@ -1,0 +1,100 @@
+# docker-compose.override.yml for the ITSY 1377 proof of concept.
+#
+# Derived from config/docker-compose.override.yml.example with three changes:
+#   1. the obsolete top-level `version` key is removed (Compose v2 warns on it)
+#   2. VIRTUAL_HOST / HTTPS_METHOD are removed, so no dinghy-http-proxy is needed
+#   3. the web service publishes port 3000 directly -> http://localhost:3000
+#
+# Rationale for 2 and 3: script/docker_dev_setup.sh installs dinghy-http-proxy
+# system-wide on macOS without asking, which is reported to break unrelated
+# Docker setups. Publishing a port avoids the proxy entirely.
+# See doc/docker/README.md or https://github.com/instructure/canvas-lms/tree/master/doc/docker
+# version key removed: obsolete in Compose v2
+services:
+  jobs: &BASE
+    build:
+      context: .
+    volumes:
+      - .:/usr/src/app
+      - api_docs:/usr/src/app/public/doc/api
+      - brandable_css_brands:/usr/src/app/app/stylesheets/brandable_css_brands
+      - bundler:/home/docker/.bundle/
+      - canvas-docker-gems:/home/docker/.gem/
+      - js-utils_es:/usr/src/app/packages/js-utils/es
+      - js-utils_lib:/usr/src/app/packages/js-utils/lib
+      - js-utils_node_modules:/usr/src/app/packages/js-utils/node_modules
+      - locales:/usr/src/app/config/locales/generated
+      - log:/usr/src/app/log
+      - node_modules:/usr/src/app/node_modules
+      - pacts:/usr/src/app/pacts
+      - public_dist:/usr/src/app/public/dist
+      - reports:/usr/src/app/reports
+      - styleguide:/usr/src/app/app/views/info
+      - tmp:/usr/src/app/tmp
+      - translations:/usr/src/app/public/javascripts/translations
+      - yardoc:/usr/src/app/.yardoc
+      - yarn-cache:/home/docker/.cache/yarn
+    environment: &BASE-ENV
+      ENCRYPTION_KEY: facdd3a131ddd8988b14f6e4e01039c93cfa0160
+      RAILS_ENV: development
+      INCLUDE_INTERNAL_API_DOCS: 'true'
+
+  webpack:
+    <<: *BASE
+    command: yarn run webpack
+    env_file:
+      - ./.env
+
+  web:
+    <<: *BASE
+    ports:
+      # Passenger/nginx listens on port 80 INSIDE the container, not 3000.
+      # Mapping 3000:3000 silently yields a dead port on the host.
+      - "3000:80"
+    environment:
+      <<: *BASE-ENV
+      # VIRTUAL_HOST removed: we publish port 3000 directly instead of
+      # using the dinghy-http-proxy, which docker_dev_setup.sh installs
+      # system-wide on macOS and which is known to disturb other Docker work.
+      # AR_QUERY_TRACE: 'true'
+      # AR_QUERY_TRACE_TYPE: 'all' # 'all', 'write', or 'read'
+      # AR_QUERY_TRACE_LINES: 10
+      # DISABLE_N_PLUS_ONE_DETECTION: 'false'
+
+  postgres:
+    volumes:
+      - pg_data:/var/lib/postgresql/data
+
+  githook_installer:
+    build:
+      context: .
+      dockerfile: 'Dockerfile.githook'
+    volumes:
+      - ./.git:/tmp/.git
+      - ./hooks:/tmp/hooks
+      - ./script:/tmp/script
+
+volumes:
+  api_docs: {}
+  brandable_css_brands: {}
+  bundler: {}
+  canvas-docker-gems: {}
+  i18nliner_node_modules: {}
+  js-utils_es: {}
+  js-utils_lib: {}
+  js-utils_node_modules: {}
+  k5uploader_es: {}
+  k5uploader_lib: {}
+  k5uploader_node_modules: {}
+  locales: {}
+  log: {}
+  node_modules: {}
+  pg_data: {}
+  pacts: {}
+  public_dist: {}
+  reports: {}
+  styleguide: {}
+  tmp: {}
+  translations: {}
+  yardoc: {}
+  yarn-cache: {}

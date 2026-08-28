@@ -1,0 +1,600 @@
+<title>Programming KU Coverage</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F1;
+  --surface:#FFFFFF;
+  --surface-2:#EDEFE8;
+  --ink:#16202B;
+  --ink-2:#3D4A55;
+  --ink-3:#68737D;
+  --rule:#D6DACE;
+  --rule-2:#C2C7B9;
+  --accent:#1F5E5B;
+  --accent-soft:#DDE8E5;
+  --flag:#A8571B;
+  --flag-soft:#F4E6D6;
+  --alert:#8C2F2F;
+  --alert-soft:#F2E0DE;
+  --ok:#2F5D3A;
+  --ok-soft:#E0EADF;
+
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+
+  --measure:68ch;
+  --s1:.35rem; --s2:.7rem; --s3:1.1rem; --s4:1.7rem; --s5:2.6rem; --s6:4rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12171A;
+    --surface:#181E21;
+    --surface-2:#1F2629;
+    --ink:#E4E8DF;
+    --ink-2:#B3BCB4;
+    --ink-3:#87948B;
+    --rule:#2B3438;
+    --rule-2:#3A4549;
+    --accent:#69B5AC;
+    --accent-soft:#1B302E;
+    --flag:#D9924F;
+    --flag-soft:#33261A;
+    --alert:#D97B75;
+    --alert-soft:#33201F;
+    --ok:#7FB088;
+    --ok-soft:#1D2A20;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12171A;
+  --surface:#181E21;
+  --surface-2:#1F2629;
+  --ink:#E4E8DF;
+  --ink-2:#B3BCB4;
+  --ink-3:#87948B;
+  --rule:#2B3438;
+  --rule-2:#3A4549;
+  --accent:#69B5AC;
+  --accent-soft:#1B302E;
+  --flag:#D9924F;
+  --flag-soft:#33261A;
+  --alert:#D97B75;
+  --alert-soft:#33201F;
+  --ok:#7FB088;
+  --ok-soft:#1D2A20;
+}
+
+*{box-sizing:border-box;}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--f-body);
+  font-size:16.5px;
+  line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.page{max-width:1240px;margin:0 auto;padding:0 var(--s4) var(--s6);}
+
+/* ---------- masthead ---------- */
+.masthead{padding:var(--s5) 0 var(--s4);border-bottom:2px solid var(--ink);}
+.eyebrow{
+  font-size:.72rem;letter-spacing:.13em;text-transform:uppercase;
+  font-weight:600;color:var(--accent);margin:0 0 var(--s3);
+}
+.masthead h1{
+  font-family:var(--f-display);font-weight:600;
+  font-size:clamp(2.1rem,5.2vw,3.4rem);line-height:1.08;
+  margin:0 0 var(--s2);letter-spacing:-.012em;text-wrap:balance;
+}
+.deck{
+  font-family:var(--f-display);font-size:clamp(1.05rem,2.2vw,1.4rem);
+  color:var(--ink-2);margin:0 0 var(--s4);max-width:46ch;line-height:1.4;
+}
+.meta{
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(168px,1fr));
+  gap:var(--s3) var(--s4);border-top:1px solid var(--rule);padding-top:var(--s3);
+}
+.meta div{display:flex;flex-direction:column;gap:2px;}
+.meta dt,.meta .k{
+  font-size:.66rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;
+}
+.meta .v{font-size:.9rem;color:var(--ink);font-weight:500;}
+
+/* ---------- status banner ---------- */
+.status-bar{
+  margin-top:var(--s4);background:var(--accent-soft);
+  border-left:4px solid var(--accent);padding:var(--s3) var(--s4);
+  border-radius:0 3px 3px 0;
+}
+.status-bar p{margin:0;font-size:.94rem;color:var(--ink);}
+.status-bar strong{color:var(--accent);}
+
+/* ---------- decisions hero ---------- */
+.decisions{margin:var(--s6) 0 var(--s5);}
+.decisions > h2{
+  font-family:var(--f-display);font-size:1.9rem;font-weight:600;
+  margin:0 0 var(--s2);letter-spacing:-.01em;
+}
+.decisions > .lede{color:var(--ink-2);margin:0 0 var(--s4);max-width:var(--measure);}
+.dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(258px,1fr));gap:var(--s3);}
+.dcard{
+  background:var(--surface);border:1px solid var(--rule);
+  border-top:3px solid var(--flag);border-radius:3px;
+  padding:var(--s3) var(--s3) var(--s3);display:flex;flex-direction:column;gap:var(--s2);
+}
+.dcard.blocking{border-top-color:var(--alert);}
+.dcard .num{
+  font-family:var(--f-mono);font-size:.7rem;font-weight:500;
+  color:var(--ink-3);letter-spacing:.04em;
+}
+.dcard h3{font-size:.98rem;font-weight:700;margin:0;line-height:1.34;}
+.dcard p{margin:0;font-size:.86rem;color:var(--ink-2);line-height:1.5;}
+.dcard .why{
+  font-size:.78rem;color:var(--ink-3);border-top:1px solid var(--rule);
+  padding-top:var(--s2);margin-top:auto;
+}
+
+/* ---------- layout ---------- */
+.shell{display:grid;grid-template-columns:216px minmax(0,1fr);gap:var(--s6);align-items:start;}
+@media(max-width:980px){.shell{grid-template-columns:1fr;gap:var(--s4);}}
+
+nav.toc{position:sticky;top:var(--s3);max-height:calc(100vh - 2rem);overflow-y:auto;padding-right:var(--s2);}
+@media(max-width:980px){
+  nav.toc{position:static;max-height:none;border:1px solid var(--rule);
+    background:var(--surface);padding:var(--s3);border-radius:3px;}
+}
+nav.toc .toc-h{
+  font-size:.64rem;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700;margin:0 0 var(--s2);
+  padding-bottom:var(--s1);border-bottom:1px solid var(--rule);
+}
+nav.toc ol{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:1px;}
+nav.toc a{
+  display:grid;grid-template-columns:1.6rem 1fr;gap:.4rem;
+  padding:.3rem .35rem;text-decoration:none;color:var(--ink-2);
+  font-size:.79rem;line-height:1.3;border-radius:2px;border-left:2px solid transparent;
+}
+nav.toc a:hover{background:var(--surface-2);color:var(--ink);}
+nav.toc a.active{color:var(--accent);font-weight:600;border-left-color:var(--accent);background:var(--accent-soft);}
+nav.toc a .n{font-family:var(--f-mono);font-size:.72rem;color:var(--ink-3);}
+nav.toc a.active .n{color:var(--accent);}
+nav.toc a:focus-visible{outline:2px solid var(--accent);outline-offset:1px;}
+
+main{min-width:0;max-width:var(--measure);}
+
+/* ---------- sections ---------- */
+section{scroll-margin-top:var(--s3);padding-top:var(--s5);}
+section + section{border-top:1px solid var(--rule);}
+h2.sec{
+  font-family:var(--f-display);font-weight:600;font-size:clamp(1.55rem,3.4vw,2.15rem);
+  line-height:1.16;margin:0 0 var(--s3);letter-spacing:-.012em;text-wrap:balance;
+  display:grid;grid-template-columns:auto 1fr;gap:.7rem;align-items:baseline;
+}
+h2.sec .snum{
+  font-family:var(--f-mono);font-size:.82rem;font-weight:500;color:var(--accent);
+  letter-spacing:.02em;
+}
+h3{
+  font-family:var(--f-body);font-weight:700;font-size:1.06rem;line-height:1.35;
+  margin:var(--s5) 0 var(--s2);text-wrap:balance;
+}
+h3 .hn{font-family:var(--f-mono);font-size:.78rem;color:var(--ink-3);margin-right:.45rem;font-weight:500;}
+h4{font-family:var(--f-body);font-weight:700;font-size:.94rem;margin:var(--s4) 0 var(--s2);color:var(--ink);}
+p{margin:0 0 var(--s3);}
+ul,ol{margin:0 0 var(--s3);padding-left:1.25rem;}
+li{margin-bottom:.4rem;}
+li::marker{color:var(--ink-3);}
+strong{font-weight:700;}
+a{color:var(--accent);text-decoration-thickness:1px;text-underline-offset:2px;}
+a:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px;}
+code{
+  font-family:var(--f-mono);font-size:.845em;background:var(--surface-2);
+  padding:.1em .34em;border-radius:2px;color:var(--ink);
+  overflow-wrap:break-word;
+}
+hr{border:0;border-top:1px solid var(--rule);margin:var(--s4) 0;}
+
+/* ---------- chips ---------- */
+.chip{
+  display:inline-block;font-family:var(--f-body);font-size:.63rem;font-weight:700;
+  letter-spacing:.09em;text-transform:uppercase;padding:.2em .55em;border-radius:2px;
+  vertical-align:.14em;margin-right:.45rem;white-space:nowrap;
+}
+.chip.correction{background:var(--alert-soft);color:var(--alert);}
+.chip.decision{background:var(--flag-soft);color:var(--flag);}
+.chip.unverified{background:var(--surface-2);color:var(--ink-3);}
+.chip.deviation{background:var(--accent-soft);color:var(--accent);}
+.chip.ok{background:var(--ok-soft);color:var(--ok);}
+
+/* ---------- callouts ---------- */
+.note{
+  background:var(--surface);border:1px solid var(--rule);border-left:3px solid var(--ink-3);
+  padding:var(--s3);border-radius:0 3px 3px 0;margin:0 0 var(--s3);
+}
+.note p:last-child{margin-bottom:0;}
+.note.warn{border-left-color:var(--flag);background:var(--flag-soft);}
+.note.stop{border-left-color:var(--alert);background:var(--alert-soft);}
+.note.good{border-left-color:var(--ok);background:var(--ok-soft);}
+.note .nh{
+  font-size:.68rem;letter-spacing:.1em;text-transform:uppercase;font-weight:700;
+  color:var(--ink-3);margin:0 0 var(--s2);display:block;
+}
+.note.warn .nh{color:var(--flag);}
+.note.stop .nh{color:var(--alert);}
+.note.good .nh{color:var(--ok);}
+
+/* ---------- tables ---------- */
+.tw{overflow-x:auto;margin:0 0 var(--s3);border:1px solid var(--rule);border-radius:3px;background:var(--surface);}
+table{border-collapse:collapse;width:100%;font-size:.83rem;min-width:480px;}
+caption{
+  text-align:left;font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:700;padding:var(--s2) var(--s3);border-bottom:1px solid var(--rule);
+}
+th,td{padding:.5rem .7rem;text-align:left;vertical-align:top;border-bottom:1px solid var(--rule);}
+thead th{
+  background:var(--surface-2);font-size:.68rem;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-2);font-weight:700;white-space:nowrap;
+}
+tbody tr:last-child td{border-bottom:0;}
+td code{font-size:.79em;background:transparent;padding:0;color:var(--ink-2);}
+.num-col{font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap;}
+th.num-col{text-align:right;}
+tbody tr.hi td{background:var(--flag-soft);}
+tbody tr.hi2 td{background:var(--accent-soft);}
+
+/* week table */
+.wk{margin:0 0 var(--s3);}
+.wk .tw{margin-bottom:0;}
+.wk table{min-width:0;}
+.wk th{width:8.5rem;background:var(--surface-2);}
+
+/* outcome list */
+.outcomes{display:flex;flex-direction:column;gap:var(--s2);margin:0 0 var(--s3);padding:0;list-style:none;}
+.outcomes li{
+  display:grid;grid-template-columns:2.6rem 1fr;gap:var(--s2);margin:0;
+  background:var(--surface);border:1px solid var(--rule);border-radius:3px;padding:var(--s2) var(--s3);
+}
+.outcomes .oid{
+  font-family:var(--f-mono);font-weight:500;font-size:.82rem;color:var(--accent);
+}
+.outcomes .otext{font-size:.9rem;}
+
+footer.end{
+  margin-top:var(--s6);padding-top:var(--s3);border-top:2px solid var(--ink);
+  font-size:.82rem;color:var(--ink-3);
+}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important;}}
+html{scroll-behavior:smooth;}
+</style>
+
+<div class="page">
+
+<header class="masthead">
+  <p class="eyebrow">Northeast Lakeview College &middot; Cyber Defense A.A.S. &middot; Companion to the ITSY 1377 blueprint</p>
+  <h1>Programming Knowledge Unit Coverage</h1>
+  <p class="deck">Why the scripting knowledge unit cannot live in ITSY 1377, and how to carry all eleven AICyber units against the proposed 2027-2028 degree plan.</p>
+  <div class="meta">
+    <div><span class="k">Prepared for</span><span class="v">Curriculum committee and CAE point of contact</span></div>
+    <div><span class="k">Question 1</span><span class="v">Can BSP fold into ITSY 1377?</span></div>
+    <div><span class="k">Question 2</span><span class="v">Can the 2027-2028 plan carry the KUs?</span></div>
+    <div><span class="k">Document date</span><span class="v">27 August 2026</span></div>
+  </div>
+  <div class="status-bar">
+    <p><strong>Headline.</strong> The proposed plan carries 11 of 11 units after <strong>one course substitution and one degree-plan pin</strong>. Without them it carries 10 at best and does not validate, because ITSY 1371 cannot simultaneously teach Python and machine learning. ITSE 1359 is still not needed; ITSC 1342 is the better answer.</p>
+  </div>
+</header>
+
+<div class="decisions">
+  <h2>The verdict on the proposed plan</h2>
+  <p class="lede">The 2027-2028 plan closes two gaps that previously had no home. It also removes the last programming course, which puts the scripting unit back in jeopardy. One substitution fixes it.</p>
+  <div class="dgrid">
+    <div class="dcard blocking">
+      <span class="num">AS WRITTEN</span>
+      <h3>5 of 11 units, or 10 with optimal local authoring. Either way it does not validate.</h3>
+      <p>The failure is not a content gap. It is a <strong>capacity collision</strong>: ITSY 1371 is structurally required to be two courses at once. If it must teach Python from zero to carry the scripting unit, that displaces the machine learning content it also has to carry.</p>
+      <p class="why">Whichever of BSP or MLF loses that contest fails, and both sit in blocks where every unit is required.</p>
+    </div>
+    <div class="dcard" style="border-top-color:var(--ok);">
+      <span class="num">THE FIX &middot; ONE SUBSTITUTION</span>
+      <h3>Swap ITSC 2325 Advanced Linux for ITSC 1342 Shell Programming: Scripting</h3>
+      <p>Zero credit-hour cost, no THECB approval (it is a statewide WECM course), and it puts authored scripting, debugging, conditionals, and loops into the <strong>state course record</strong> rather than a local syllabus. ITSC 2325 carries no unit that is not already covered elsewhere.</p>
+      <p class="why">Plus pin MATH 1314 by name. Result: <strong>11 of 11 units.</strong></p>
+    </div>
+    <div class="dcard">
+      <span class="num">STILL TRUE</span>
+      <h3>ITSY 1377 cannot carry the scripting unit</h3>
+      <p>Four independent arguments, unchanged. The decisive one: the course <strong>must permit AI assistance</strong> to assess its own outcome 6, while the unit requires unassisted "write and execute" evidence.</p>
+      <p class="why">Section 3. It now carries AIS, DFA, and the modern half of MLF instead.</p>
+    </div>
+  </div>
+</div>
+
+<div class="shell">
+
+<nav class="toc" aria-label="Contents">
+  <p class="toc-h">Contents</p>
+  <ol>
+    <li><a href="#k1"><span class="n">1</span><span>Summary of findings</span></a></li>
+    <li><a href="#k2"><span class="n">2</span><span>What was verified</span></a></li>
+    <li><a href="#k3"><span class="n">3</span><span>Why ITSY 1377 cannot carry BSP</span></a></li>
+    <li><a href="#k4"><span class="n">4</span><span>The 2027-2028 plan</span></a></li>
+    <li><a href="#k5"><span class="n">5</span><span>The capacity collision</span></a></li>
+    <li><a href="#k6"><span class="n">6</span><span>The smallest change</span></a></li>
+    <li><a href="#k7"><span class="n">7</span><span>Carrier map</span></a></li>
+    <li><a href="#k8"><span class="n">8</span><span>Local authoring</span></a></li>
+    <li><a href="#k9"><span class="n">9</span><span>Math and ML</span></a></li>
+    <li><a href="#k10"><span class="n">10</span><span>Verdict and open items</span></a></li>
+  </ol>
+</nav>
+
+<main>
+
+<section id="k1">
+<h2 class="sec"><span class="snum">01</span><span>Summary of findings</span></h2>
+<div class="tw"><table>
+<caption>Question 1: four independent arguments against folding BSP into ITSY 1377</caption>
+<thead><tr><th>#</th><th>Argument</th><th>The finding</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><strong>Arithmetic</strong></td><td>Defensibly covers <strong>9 of 18 topic elements, 50 percent</strong>, against a required <strong>75 percent</strong></td></tr>
+<tr><td>2</td><td><strong>Outcomes</strong></td><td>Two of six KU outcomes cannot be defended at all: system administration automation, and regular expressions</td></tr>
+<tr><td>3</td><td><strong>Displacement</strong></td><td>Closing the gap needs <strong>26 instructional hours in a 64-hour course</strong>, and every combination of cuts that frees them damages <strong>at least three of the course's six outcomes</strong></td></tr>
+<tr class="hi"><td>4</td><td><strong>Assessment integrity</strong></td><td>The course <strong>must permit AI assistance</strong> to assess outcome 6, while BSP requires unassisted "write and execute" evidence. <strong>One syllabus cannot hold both positions</strong></td></tr>
+</tbody></table></div>
+<p>Argument 4 is the strongest and the least obvious. It is not a scheduling problem and no redesign fixes it, because the AI policy BSP forbids is the same policy outcome 6 requires.</p>
+<p><strong>On question 2</strong>, the load-bearing points: BSP is carried jointly by three courses already in the plan once DSAI 1373 is included; the college already owns <strong>nine DSAI courses</strong> and a Data Science and Artificial Intelligence degree; four units already have strong carriers needing no action (IT Systems Components, Cybersecurity Fundamentals, Basic Networking, Network Defense); and the genuine gaps are Machine Learning Fundamentals, AI Governance, and AI for Security Assessment, the last of which is what ITSY 1377 exists to close.</p>
+</section>
+
+<section id="k2">
+<h2 class="sec"><span class="snum">02</span><span>What was verified</span></h2>
+<div class="note stop"><span class="nh">An evidence problem to start on now</span><p>Northeast Lakeview publishes <strong>no end-of-course outcomes for any course</strong>. Each catalog record carries a description, semester hours, a CIP code, and an "offered at" flag, and nothing more. Verified against the current 2026-2027 catalog.</p><p><strong>No knowledge unit mapping can be produced from the catalog alone.</strong> Collecting current syllabi for every course in the plan is a blocking prerequisite for any CAE submission, not a clerical task for the end. It is free, and it gates everything else in this document.</p></div>
+<p><strong>The standard being applied</strong>, quoted from the NSA knowledge unit document:</p>
+<div class="note"><p>"To complete each KU, an alignment to a minimum of <strong>75%</strong> of the topics and sub-topics is required."</p>
+<p>"While it is not required that every learning outcome be explicitly assessed as written, applicant schools should be able to defend their coverage of the learning outcomes."</p></div>
+<p>BSP presents 8 top-level topics, the eighth carrying 10 sub-topics, for <strong>18 elements</strong>. Seventy-five percent of 18 is 13.5, so the minimum is <strong>14 of 18</strong>.</p>
+<p><strong>Two further rules shape the recommendation.</strong> A unit may be covered by more than one course, but a course "should not be aligned to an excessive number of KUs," and four or more courses on one unit "may be more of an indication of week [sic] KU coverage than strength because it risks diluting the KU." <strong>Two to three co-carriers per unit is the safe band.</strong> And: "A KU should not be aligned to elective or optional course(s)" <strong>, so every carrier named here must be required for all students.</strong></p>
+</section>
+
+<section id="k3">
+<h2 class="sec"><span class="snum">03</span><span>Why ITSY 1377 cannot carry BSP</span></h2>
+
+<h3><span class="hn">3.1</span>Element-by-element coverage</h3>
+<p>Scored strictly: <strong>Partial counts as not aligned</strong>, because CAE alignment must be demonstrable in the syllabus, materials, and assessments, and incidental exposure is not defensible alignment.</p>
+<div class="tw"><table>
+<thead><tr><th>#</th><th>BSP topic element</th><th>Covered</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td>1</td><td>Basic security concepts</td><td><strong>Yes</strong></td><td>Outcomes 3 and 5 are wholly security objectives. The course's strongest BSP alignment</td></tr>
+<tr><td>2</td><td>Permissions, bounds checking, input validation, type checking</td><td>Partial</td><td>Input and tool-parameter validation appear as injection defenses. OS permission models, buffer bounds checking, and explicit type checking do not</td></tr>
+<tr class="hi"><td>3</td><td><strong>Regular expressions</strong></td><td><strong>No</strong></td><td>Response parsing is structured JSON deserialization, not text extraction. No instruction, practice, or assessment exists</td></tr>
+<tr><td>4</td><td>Data structures and algorithms</td><td>Partial</td><td>Students <em>consume</em> lists and dictionaries. They do not design structures, and no algorithmic content is taught</td></tr>
+<tr><td>5</td><td>Boolean logic including XOR</td><td>Partial</td><td>Compound conditions occur in retry logic, but Boolean operations are not taught as a topic</td></tr>
+<tr class="hi"><td>6</td><td><strong>Scripting on both Windows and Linux</strong></td><td><strong>No</strong></td><td>Single language, single environment. No Bash, no PowerShell, no second platform. The element says "both" explicitly</td></tr>
+<tr><td>7</td><td>IDE, compilers and interpreters</td><td>Partial</td><td>The tooling is used; the conceptual content is not taught</td></tr>
+<tr><td>8</td><td>Programming constructs (roll-up)</td><td>Partial</td><td>Cannot be claimed as written while 8c and 8h are unaligned</td></tr>
+<tr><td>8a</td><td>Variables and types</td><td><strong>Yes</strong></td><td>Every script assigns and manipulates typed values</td></tr>
+<tr><td>8b</td><td>Strings, arrays, structures</td><td><strong>Yes</strong></td><td>Prompt construction, message history lists, nested JSON payloads</td></tr>
+<tr><td>8c</td><td>Sequential and parallel execution</td><td>Partial</td><td>Sequential is pervasive. Concurrency is not taught</td></tr>
+<tr><td>8d</td><td>Assignments</td><td><strong>Yes</strong></td><td>Throughout</td></tr>
+<tr><td>8e</td><td>Decisions and branching</td><td><strong>Yes</strong></td><td>Error handling and harness result branching in student-written code</td></tr>
+<tr><td>8f</td><td>Loops</td><td><strong>Yes</strong></td><td>The agent loop, the retry loop, harness iteration</td></tr>
+<tr><td>8g</td><td>Functions, procedures, calls</td><td><strong>Yes</strong></td><td>Outcome 2 is literally function authoring with a signature and return contract</td></tr>
+<tr><td>8h</td><td>Debugging techniques</td><td>Partial</td><td>Students interpret results, but systematic debugging method is not taught</td></tr>
+<tr><td>8i</td><td>Console and file I/O</td><td><strong>Yes</strong></td><td>Console logging, config reading, findings and harness output</td></tr>
+<tr><td>8j</td><td>Libraries</td><td><strong>Yes</strong></td><td>HTTP, JSON, environment, and model libraries in nearly every assignment</td></tr>
+</tbody></table></div>
+<div class="tw"><table>
+<thead><tr><th>Basis</th><th class="num-col">Count</th><th class="num-col">Percent</th><th>Meets 75%</th></tr></thead>
+<tbody>
+<tr class="hi"><td><strong>Defensible, Yes only</strong></td><td class="num-col">9 of 18</td><td class="num-col"><strong>50.0</strong></td><td><strong>No, five elements short</strong></td></tr>
+<tr><td>Charitable, adding the three nearest Partials</td><td class="num-col">12 of 18</td><td class="num-col">66.7</td><td>No, two short</td></tr>
+<tr><td>Maximal, crediting every Partial</td><td class="num-col">16 of 18</td><td class="num-col">88.9</td><td>Fails anyway, see below</td></tr>
+</tbody></table></div>
+<div class="note warn"><span class="nh">On the maximal count</span><p>Even crediting every Partial, topics 3 and 6 remain absolute zeros and BSP outcomes 1 and 6 remain unmet. A maximal reading passes an arithmetic test while failing the unit, and it is the reading most likely to draw an audit finding. <strong>That risk is not confined to BSP: a finding that one unit was overclaimed puts the credibility of the program's entire mapping in question.</strong></p></div>
+
+<h3><span class="hn">3.2</span>The two outcomes that cannot be defended at all</h3>
+<div class="tw"><table>
+<thead><tr><th>BSP outcome</th><th>Defensible</th><th>Why</th></tr></thead>
+<tbody>
+<tr><td><strong>1.</strong> Write and execute simple scripts to automate <strong>system administration</strong> tasks</td><td><strong>No</strong></td><td>The course automates application-programming-interface interaction, not system administration. Nothing touches file-system maintenance, user or group management, permission changes, process control, service configuration, log handling, or scheduled tasks. Issuing an authenticated request to a model endpoint is not system administration. <strong>There is no partial claim available</strong></td></tr>
+<tr><td><strong>6.</strong> Conceptual understanding and practical use of <strong>regular expressions</strong></td><td><strong>No</strong></td><td>They appear nowhere. Worse, the one natural hook is a hook the course must teach <em>against</em>: outcome 3 requires students to understand that pattern-matching filters are an inadequate defense against prompt injection. Bolting regex on there teaches a technique in the single context where the course's own content says not to rely on it</td></tr>
+</tbody></table></div>
+
+<h3><span class="hn">3.3</span>The displacement argument</h3>
+<p>Closing the gap to a defensible standard, meaning taught plus practiced plus evidenced in a graded artifact, is estimated at <strong>26 instructional hours</strong>. Against a 64-hour course that is <strong>41 percent of the whole course</strong>, and available slack is zero because the course already cut content to fit seven instructional weeks.</p>
+<p>Taking the most favorable reading, in which 3 hours of already-compressed material counts as free, 21 hours must still come from the blocks carrying outcomes 2 through 6:</p>
+<div class="tw"><table>
+<thead><tr><th>Combination reaching 21 hours</th><th>Outcomes destroyed or reduced</th></tr></thead>
+<tbody>
+<tr><td>O3 (10.0) + O4 (9.0) = 19.0</td><td>Two destroyed, <strong>and still short</strong></td></tr>
+<tr><td>O3 + O4 + O6 = 23.0</td><td><strong>Three destroyed</strong></td></tr>
+<tr><td>O3 + O4 + O2 extension = 25.0</td><td>Two destroyed, one halved</td></tr>
+<tr><td>O5 (8.0) + O4 + O2 extension = 23.0</td><td><strong>Three damaged</strong></td></tr>
+<tr><td>Anything avoiding O3, O4 and O5</td><td>Caps at 14.0 hours. <strong>Fails</strong>, while already damaging three outcomes</td></tr>
+</tbody></table></div>
+<p><strong>Every combination that frees the required hours damages at least three of the six fixed outcomes. None reaching the requirement leaves all six intact.</strong> Two observations make it worse: reclaimed hours are credited one to one, which overstates the yield; and the largest block, the 11-hour Python foundation, is the block producing the 9 elements the course already covers, so spending it on BSP is net zero at best.</p>
+<p><strong>The course cannot simply be made larger either.</strong> At 2 lecture plus 2 lab it is 3.80 workload units. The contact hours required push it to 5.60 or 5.70, far outside the 3.9 ceiling, and enlarging it to 4 SCH raises a degree already at exactly 60 to 61.</p>
+
+<h3><span class="hn">3.4</span>The assessment-integrity argument, which no redesign fixes</h3>
+<p><strong>ITSY 1377 must permit AI assistance, for two reasons.</strong> The first is access: no programming prerequisite, and a blanket prohibition would fail most of a class that has never written code. The second is structural and stronger: <strong>outcome 6 requires students to evaluate AI-generated code for correctness before use.</strong> A course that forbids AI assistance cannot assess outcome 6, because outcome 6's object of study is AI-generated code. The permission is not a concession; it is load-bearing.</p>
+<p><strong>BSP requires the opposite posture.</strong> Four of its six outcomes begin "write and execute." An alignment review asks one question: which artifact demonstrates the student did this? In ITSY 1377 every code artifact is producible with AI assistance under an explicit policy. <strong>No artifact distinguishes a student who can write a loop from a student who can request a loop and run the result.</strong> Both are correctly assessed for this course's outcomes, which concern automating, extending, testing, documenting, and evaluating rather than authoring. The artifact is sound evidence for outcomes 1, 2, and 6. It is not evidence for BSP.</p>
+<div class="note stop"><span class="nh">An AI-prohibited island inside an AI-permitted course does not work</span><p>It fails on <strong>enforceability</strong>, because distinguishing assisted from unassisted work in a compressed asynchronous session needs proctoring the schedule cannot absorb. On <strong>coherence</strong>, because students would be told within one week to use AI for one assignment and not another, in a course whose premise is that AI assistance is normal, with the justification living in an accreditation document they never see. And on <strong>risk</strong>, because a policy that counterintuitive will leak, and the exposure is the credibility of the whole mapping.</p></div>
+<div class="note good"><span class="nh">The benefit runs the other way too</span><p><strong>The unassisted foundation BSP requires is precisely the preparation ITSY 1377's outcome 6 assumes.</strong> A student who has personally written and debugged code is equipped to judge whether AI-generated code is correct. A student who has not is comparing one unfamiliar text against another and calling it evaluation.</p></div>
+
+<h3><span class="hn">3.5</span>Conclusion, for a justification memo</h3>
+<div class="note"><p>ITSY 1377 covers 9 of the 18 topic elements in the NSA Basic Scripting and Programming knowledge unit, which is 50 percent against a required 75 percent, and it cannot demonstrate two of that unit's six required outcomes at all: automating system administration tasks, and regular expressions. Bringing the course to the required standard would take an estimated 26 additional instructional hours in a 64-hour course that has already cut content to fit a seven-week session, and every combination of cuts large enough to free that time destroys or materially reduces at least three of the course's own six required outcomes. There is also a problem that no amount of time fixes: ITSY 1377 permits AI assistance on all coding by design, because it has no programming prerequisite and because one of its outcomes requires students to evaluate AI-generated code, so nothing produced in the course can serve as evidence that a student personally wrote and executed a script, which is exactly what the knowledge unit requires. The Basic Scripting and Programming unit must therefore be carried by a course with a conventional programming pedagogy and a conventional AI policy.</p></div>
+</section>
+
+<section id="k4">
+<h2 class="sec"><span class="snum">04</span><span>Mapping against the proposed 2027-2028 plan</span></h2>
+<p>The plan changed substantially, and the analysis changes with it. What follows replaces the earlier mapping.</p>
+
+<h3><span class="hn">4.1</span>What the new plan does well</h3>
+<div class="note good"><span class="nh">Two of the three hardest gaps close outright</span><p>The earlier analysis flagged AI Governance and AI Fundamentals as units with no home anywhere in the catalog. The new plan creates purpose-built carriers for both: <strong>ITSY 2373 IT Governance, Regulation, and Compliance</strong> for AIG, which is the easiest win in the plan, and <strong>ITSY 1371 AI Fundamentals</strong> for AIF. Both are Local Need courses, so the college authors their outcomes.</p></div>
+<p><strong>The credit-hour problem is also solved.</strong> The plan totals exactly 60 SCH; COSC 1436 and the two-course Cisco sequence came out to make room. And <strong>ITSC 2325 is now required rather than an OR-option</strong>, which matters because an OR-option can never carry a knowledge unit.</p>
+
+<h3><span class="hn">4.2</span>What the new plan breaks</h3>
+<p><strong>There is no longer any programming or scripting course in the degree.</strong> COSC 1436 is gone and no DSAI course is present, so both carriers the previous analysis relied on are unavailable. That puts Basic Scripting and Programming back in jeopardy, and this time the Linux sequence cannot rescue it.</p>
+
+<h3><span class="hn">4.3</span>The Linux sequence cannot carry BSP, and the reason is precise</h3>
+<div class="note stop"><span class="nh">The decisive finding</span><p><strong>Across all eight WECM end-of-course outcomes for ITSC 1316 and ITSC 2325 combined, there is not one verb about writing, executing, or debugging a script.</strong> No "write," no "script," no "automate." Neither course's WECM description mentions scripting.</p></div>
+<div class="tw"><table>
+<thead><tr><th>Course</th><th>WECM end-of-course outcomes, verbatim</th></tr></thead>
+<tbody>
+<tr><td><strong>ITSC 1316</strong><br>Linux Installation and Configuration</td><td>(1) Install, administer, and manage a Linux system. (2) Demonstrate proficiency with Linux utilities, commands, and applications. (3) Identify and resolve security-based issues. (4) Integrate a Linux system into an existing network.</td></tr>
+<tr><td><strong>ITSC 2325</strong><br>Advanced Linux</td><td>(1) Install, administer, and manage advanced network environment using a Linux system. (2) Demonstrate advanced skills and proficiency with Linux utilities and configurations. (3) Deploy secure networks. (4) Integrate Linux networks with existing networks.</td></tr>
+</tbody></table></div>
+<p>Shell scripting, regular expressions, permissions, and cron <em>are</em> taught in these courses at most colleges. Blinn's ITSC 1316 schedule lists "Scripting" in weeks 13 and 14; the standard Eckert textbook has a "Shell Scripts" section; Laredo builds ITSC 2325 on Red Hat RH134, which teaches writing bash scripts. <strong>But none of it is in the state record.</strong> It is local syllabus content, which means a different instructor can drop all of it and remain fully WECM-compliant.</p>
+<p>That matters because the WECM Protocol Manual designates end-of-course outcomes as the "heart" of a course and the minimum "meant to be taught and measured." Resting a required knowledge unit on content below that line is exactly the weak position a reviewer probes.</p>
+<p><strong>Two BSP items are not covered even locally:</strong> input and parameter validation, and script debugging. Neither could be verified in any ITSC 1316 or ITSC 2325 syllabus.</p>
+<p><strong>And the Windows half is a confirmed negative.</strong> Neither ITNW 1308 nor ITNW 2405 covers PowerShell or authored Windows scripting at outcome level. ITNW 1308's five WECM outcomes never mention scripting or automation; the closest ITNW 2405 outcome is "Utilize various operating system utilities and commands," which is command usage, not authored scripting. BSP element 6 requires <strong>both</strong> platforms explicitly.</p>
+
+<h3><span class="hn">4.4</span>The fix already exists as a statewide WECM course</h3>
+<div class="note good"><span class="nh">ITSC 1342 Shell Programming: Scripting (3 SCH, statewide)</span><p>Its WECM description reads: <em>"Reading, writing, and debugging shell scripts. Development of scripts to automate frequently executed sequences of commands. Covers conditional logic, user interaction, loops, and menus to enhance the productivity and effectiveness of the user."</em></p><p>That single description puts <strong>authored scripting, debugging, automation of repeated command sequences, conditional logic, and loops</strong> into the state record. It is close to a purpose-written answer to BSP Outcome 1.</p></div>
+<p>Two adjacent statewide options if a different number suits: <strong>ITSC 1307 UNIX Operating System I</strong>, whose description includes "and writing script files," and <strong>ITSC 2337 UNIX Operating System II</strong>, whose description includes "scripting languages."</p>
+</section>
+
+<section id="k5">
+<h2 class="sec"><span class="snum">05</span><span>The capacity collision, which is the real blocker</span></h2>
+<p><strong>The plan as written fails validation, and not for the reason it looks like.</strong></p>
+<p>With optimal local authoring the plan carries 10 of 11 units. That still fails, because the unit it drops sits inside a block where <strong>all</strong> units are required. And the failure is not a content gap. It is a <strong>capacity collision</strong>: ITSY 1371 is structurally required to be two courses at once.</p>
+<p>If ITSY 1371 must carry BSP, because nothing else can, it has to teach Python from zero. That costs four to five weeks, which displaces the machine learning content it also needs to carry.</p>
+<div class="tw"><table>
+<thead><tr><th>ITSY 1371 configuration</th><th class="num-col">AIF</th><th class="num-col">MLF</th><th>Verdict</th></tr></thead>
+<tbody>
+<tr class="hi"><td>AIF + MLF + Python for BSP</td><td class="num-col">7 of 7</td><td class="num-col"><strong>10 of 14, 71%</strong></td><td><strong>MLF fails.</strong> Python displaces neural networks, NLP, and generative AI</td></tr>
+<tr><td>AIF + MLF, no Python</td><td class="num-col">7 of 7</td><td class="num-col">11 of 14, 79%</td><td>Passes, but single-carrier and one disagreement from failure</td></tr>
+<tr class="hi2"><td><strong>ITSY 1371 (classical) + ITSY 1377 (modern half)</strong></td><td class="num-col">7 of 7</td><td class="num-col"><strong>14 of 14, 100%</strong></td><td><strong>Passes robustly, two carriers</strong></td></tr>
+</tbody></table></div>
+<p>The contact-hour arithmetic is blunt: AIF's seven topic areas take roughly five weeks, classical machine learning another five, neural networks two, and Python from zero another four to five. <strong>That is 16 to 17 weeks of new content in a 16-week term with no room for assessment.</strong> It does not fit at any lecture and lab coding, because the lab hours are already consumed by the machine learning work.</p>
+<div class="note stop"><span class="nh">So BSP must leave ITSY 1371</span><p>That single move is what unlocks everything else in the plan.</p></div>
+</section>
+
+<section id="k6">
+<h2 class="sec"><span class="snum">06</span><span>The single smallest change</span></h2>
+<div class="note good"><span class="nh">The recommendation</span><p><strong>Replace ITSC 2325 Advanced Linux (3 SCH) with ITSC 1342 Shell Programming: Scripting (3 SCH) in the Advanced Core.</strong></p></div>
+<ul>
+<li><strong>Zero credit-hour cost.</strong> Three out, three in. The plan stays at 60. Nothing else moves.</li>
+<li><strong>No THECB Local Need approval.</strong> ITSC 1342 is a statewide WECM course, so adding it is an inventory action.</li>
+<li><strong>It puts BSP evidence into the state record</strong>, rather than a local syllabus a reviewer must take on faith and a future instructor can silently drop.</li>
+<li><strong>It costs almost nothing pedagogically.</strong> ITSC 2325's four outcomes carry <strong>no knowledge unit that is not already carried elsewhere</strong>: its Linux network administration content overlaps ITNW 2405 and ITSY 2301. It is the least unit-productive course in the plan.</li>
+<li><strong>It unlocks Machine Learning Fundamentals</strong>, by removing the Python burden from ITSY 1371.</li>
+</ul>
+<p><strong>Second best, if the committee will not drop Advanced Linux:</strong> upgrade ITSY 1371 to a 4 SCH Local Need course and recover the hour by moving ITSY 2443 Forensics to a 3 SCH sibling. That costs a Local Need revision plus a second inventory change, and still leaves BSP resting entirely on locally authored text. Prefer the swap.</p>
+</section>
+
+<section id="k7">
+<h2 class="sec"><span class="snum">07</span><span>Carrier map for the proposed plan</span></h2>
+<p>Assumes the ITSC 1342 swap and the local authoring in section 8. <strong>Every unit has two or three carriers, every course carries three or fewer units, and every carrier is mandatory for all students.</strong></p>
+<div class="tw"><table>
+<thead><tr><th>KU</th><th>Primary carrier</th><th>Co-carriers</th><th>Fit</th><th>Evidence required</th></tr></thead>
+<tbody>
+<tr><td><strong>ISC</strong></td><td>ITNW 1308</td><td>ITSC 1316, ITNW 2405</td><td><strong>Strong</strong></td><td>Document the virtualization labs both courses already run; the only thin spot</td></tr>
+<tr><td><strong>CSF</strong></td><td>ITSY 1342</td><td>ITSY 2301</td><td><strong>Strong</strong></td><td>No action needed</td></tr>
+<tr class="hi2"><td><strong>BSP</strong></td><td><strong>ITSC 1342</strong></td><td>ITSC 1316, ITSY 1371</td><td><strong>Strong once swapped</strong></td><td>Local syllabus must pin PowerShell alongside bash, regular expressions including sed and awk, and input validation</td></tr>
+<tr class="hi"><td><strong>MAF</strong></td><td><strong>MATH 1314, pinned</strong></td><td>ITSY 1371</td><td>Partial until fixed</td><td>Requires both the pin and statistics outcomes in ITSY 1371. See section 9</td></tr>
+<tr class="hi2"><td><strong>AIG</strong></td><td><strong>ITSY 2373</strong></td><td>ITSY 2442</td><td><strong>Strong</strong></td><td>Easiest win in the plan</td></tr>
+<tr class="hi2"><td><strong>AIF</strong></td><td><strong>ITSY 1371</strong></td><td>ITSY 2373</td><td><strong>Strong</strong></td><td>7 of 7 topics as authored</td></tr>
+<tr class="hi"><td><strong>MLF</strong></td><td>ITSY 1371</td><td><strong>ITSY 1377</strong></td><td>Strong only with both</td><td>Requires the split. See section 9</td></tr>
+<tr class="hi"><td><strong>BNW</strong></td><td>ITNW 1425</td><td>ITNW 2405</td><td><strong>Partial</strong></td><td><strong>Subnetting and the TCP/IP model are absent</strong> from ITNW 1425's statewide description and both published outcome lists. Needs a documented local addendum</td></tr>
+<tr><td><strong>NDF</strong></td><td>ITSY 2301</td><td>ITSY 2430, ITSY 2442</td><td><strong>Strong</strong></td><td>Best-covered unit in the plan</td></tr>
+<tr class="hi2"><td><strong>AIS</strong></td><td><strong>ITSY 1377</strong></td><td>ITSY 2443, ITSY 2442</td><td><strong>Strong</strong></td><td>ENGL 1301 and SPCH 1321 are mandatory and named, so they support the reporting outcome, but cite them as supporting rather than as carriers</td></tr>
+<tr class="hi2"><td><strong>DFA</strong></td><td><strong>ITSY 1377</strong></td><td>ITSY 2430, ITSY 2442</td><td><strong>Strong</strong></td><td><strong>Elect DFA, not OFA.</strong> There is no ethical hacking or penetration testing course anywhere in this plan, so OFA would have a single carrier in a degree titled Cyber Defense</td></tr>
+</tbody></table></div>
+<p><strong>Course load audit:</strong> ITSY 1371 carries three (AIF, MLF, MAF), ITSY 1377 three (AIS, DFA, MLF), ITSY 2442 three (NDF, AIS, AIG). All others carry two or fewer. Nothing exceeds the ceiling.</p>
+</section>
+
+<section id="k8">
+<h2 class="sec"><span class="snum">08</span><span>What to write into the three locally authored courses</span></h2>
+<p>These are Local Need courses, so the college writes their outcomes. This is the cheapest lever in the whole package.</p>
+<div class="tw"><table>
+<thead><tr><th>Course</th><th>Should carry</th><th>What to write in</th></tr></thead>
+<tbody>
+<tr><td><strong>ITSY 1371</strong><br>AI Fundamentals</td><td>AIF outright, classical half of MLF, statistics for MAF</td><td>AI principles and terminology; classical search and optimization; knowledge representation and reasoning; intelligent agents; supervised, unsupervised, semi-supervised and reinforcement learning; decision trees, SVM, KNN, clustering, dimensionality reduction, overfitting; descriptive statistics, probability, elementary inferential methods. <strong>Do not put Python fundamentals here</strong></td></tr>
+<tr><td><strong>ITSY 1377</strong><br>Agentic AI and Security Operations</td><td>AIS, DFA, modern half of MLF</td><td>Transformer and LLM architecture with its CNN and RNN lineage; NLP applied to security data; prompt engineering and fine-tuning; agentic workflows with tool calling and human-in-the-loop control; AI-enhanced security evaluation; vulnerability impact assessment and prioritized mitigation; threat modeling and attack-surface mapping; comprehensive assessment reporting; AI for anomaly detection, alert triage, and classification; AI-specific risks including prompt injection, poisoning, hallucination, and unsafe autonomy</td></tr>
+<tr><td><strong>ITSY 2373</strong><br>IT Governance, Regulation, Compliance</td><td>AIG outright</td><td>COBIT, NIST CSF, ISO/IEC 27001; HIPAA, GLBA, CCPA; GDPR and the EU AI Act with extraterritorial reach; NIST AI RMF and ISO/IEC 42001; fairness and bias, transparency, accountability, non-discrimination; societal responsibility and human oversight; compliance gap assessment</td></tr>
+</tbody></table></div>
+<div class="note"><span class="nh">Keep ITSY 2373 as a Local Need course</span><p>ITSY 2341 Security Management Practices and ITSY 2359 Security Assessment and Auditing cover the cyber governance ground well, but <strong>neither covers AI governance</strong>. No WECM course in the ITSY rubric names the EU AI Act, the NIST AI RMF, ISO/IEC 42001, algorithmic bias, or AI transparency. This is the one place where a locally authored course is genuinely the right answer, and the submission should say so.</p></div>
+</section>
+
+<section id="k9">
+<h2 class="sec"><span class="snum">09</span><span>Math and machine learning, specifically</span></h2>
+
+<h3><span class="hn">9.1</span>Math Fundamentals has two blockers</h3>
+<p><strong>Blocker one: the slot cannot carry a unit at all.</strong> "Mathematics, 1 course, MATH 1314 given as example" means a student may satisfy the degree with MATH 1332, MATH 1342, or MATH 1350. <strong>A select-one slot carries nothing regardless of content</strong>, because carriers must be mandatory for every student. This is definitional.</p>
+<p><strong>Blocker two: even pinned, MATH 1314 fails on content.</strong></p>
+<div class="tw"><table>
+<thead><tr><th>MAF bucket</th><th>MATH 1314</th><th>MATH 1342</th></tr></thead>
+<tbody>
+<tr><td>Algebra</td><td>Partial</td><td>No</td></tr>
+<tr><td>Function analysis</td><td>Yes</td><td>No</td></tr>
+<tr><td>Composition and inverses</td><td>Yes</td><td>No</td></tr>
+<tr><td>Sequences and series</td><td>No (ACGM says these "may be included")</td><td>No</td></tr>
+<tr><td>Descriptive statistics</td><td>No</td><td>Yes</td></tr>
+<tr><td>Inferential statistics</td><td>No</td><td>Yes</td></tr>
+<tr><td>Probability</td><td>No</td><td>Yes</td></tr>
+<tr class="hi"><td><strong>Score</strong></td><td class="num-col"><strong>3 of 7, 43%</strong></td><td class="num-col"><strong>3 of 7, 43%</strong></td></tr>
+</tbody></table></div>
+<p><strong>No single Texas ACGM mathematics course covers both halves</strong>, because ACGM deliberately splits the algebra, statistics, and quantitative reasoning pathways. MATH 1314 and MATH 1342 are near-perfect complements, which is why the knowledge unit's own note says it is "likely covered by multiple math courses."</p>
+<p><strong>The fix costs zero credit hours:</strong> pin MATH 1314 by name rather than as an example; elect and document sequences and series in the local MATH 1314 syllabus, which the ACGM explicitly permits; and write descriptive statistics, probability, and elementary inferential methods into ITSY 1371. That reaches 7 of 7, or 6 of 7 if a reviewer discounts inferential statistics taught in a non-mathematics course. Either clears 75 percent.</p>
+<div class="note warn"><span class="nh">One institutional check, and it is the only place a unit could be genuinely lost</span><p>Confirm that a program may narrow a core curriculum slot to a single named course. Most Texas institutions permit this; some forbid programs from restricting core options. <strong>If MATH 1314 cannot be pinned, MAF cannot be carried</strong>, because there is no in-major substitute for function composition and inverses. That is one email to the core curriculum office.</p></div>
+
+<h3><span class="hn">9.2</span>Machine Learning Fundamentals needs the split</h3>
+<p>Fourteen topics, so eleven are required. ITSY 1371 reaches eleven only if it is not also teaching Python. Adding ITSY 1377's transformer, NLP, and generative AI content brings it to fourteen of fourteen with two carriers.</p>
+<p><strong>This is not a paper split.</strong> ITSY 1377 genuinely cannot teach agentic AI without transformers, embeddings, prompt engineering, and fine-tuning. The two courses cover complementary halves.</p>
+</section>
+
+<section id="k10">
+<h2 class="sec"><span class="snum">10</span><span>Verdict, and items to resolve</span></h2>
+<div class="tw"><table>
+<thead><tr><th>Configuration</th><th class="num-col">Units carried</th><th>Validates</th></tr></thead>
+<tbody>
+<tr class="hi"><td>Plan exactly as written, no local authoring</td><td class="num-col"><strong>5 of 11</strong></td><td><strong>No</strong></td></tr>
+<tr class="hi"><td>Plan as written, optimal local authoring only</td><td class="num-col"><strong>10 of 11</strong></td><td><strong>No.</strong> Whichever of BSP or MLF loses the ITSY 1371 contest fails, and either loss kills a required block</td></tr>
+<tr class="hi2"><td><strong>Plan + ITSC 1342 swap + MATH 1314 pinned + outcomes authored</strong></td><td class="num-col"><strong>11 of 11</strong></td><td><strong>Yes</strong></td></tr>
+</tbody></table></div>
+<p><strong>Does validation require a course change? Yes.</strong> Local authoring alone is not sufficient, because the blocker is capacity rather than content. <strong>The total cost is one course substitution and one degree-plan pin</strong>, with no new Local Need approvals beyond the three courses already planned, no credit-hour growth, and no THECB new-course action.</p>
+
+<h3>Four items to resolve before submission</h3>
+<div class="note stop"><span class="nh">1. A credit-hour discrepancy that will be caught</span><p>The plan lists <strong>ITSY 2430 Intrusion Detection at 3 SCH</strong>, but under WECM numbering the second digit is the credit value, so 2430 denotes <strong>4 SCH</strong>. Every other course in the plan is internally consistent. The stated Advanced Core total of 22 and grand total of 60 hold only if it is 3 SCH. <strong>If the number is right, the plan is 61 SCH and exceeds the cap. If the credit value is right, the number should be ITSY 2330</strong>, the 3 SCH intrusion detection course in the statewide inventory. This does not affect any unit mapping, but it must be reconciled.</p></div>
+<div class="note warn"><span class="nh">2. A course number collision</span><p><strong>ITSY 1371 is already in use in Texas under other titles</strong>, including at Collin College ("OSINT and Introductory Security Analysis"). Local Need numbers are institution-scoped so this does not block the college, but it will collide in any articulation or transfer discussion. Consider a different number in the 1370 to 1379 band. <strong>ITSY 2373 appears unclaimed</strong>, though that cannot be proven statewide because the THECB Local Need registry search is retired.</p></div>
+<div class="note warn"><span class="nh">3. A networking gap worth documenting</span><p><strong>Subnetting and the TCP/IP model are absent</strong> from ITNW 1425's statewide description and from both published outcome lists. Del Mar College's local description adds "protocols and subnetting," which shows colleges do this locally. Document a local addendum with graded lab artifacts. Note also that Del Mar's catalog states ITNW 1425 "does not fulfill CCNA requirements," so do not claim anything the Cisco sequence carried beyond Basic Networking.</p></div>
+<div class="note"><span class="nh">4. A sourcing caveat for the package</span><p><strong>No WECM or ACGM outcome quoted in this analysis comes from a THECB-published source.</strong> The THECB WECM interactive search application is retired: its form target returns HTTP 404 and the successor host does not resolve. Every outcome here is transcribed from college master syllabi, strongest where El Paso Community College publishes them under an explicit heading reading "THECB Learning Outcomes (WECM)," corroborated across six or more colleges with near-exact agreement.</p><p>Three items to confirm with the curriculum office: <strong>ITNW 1425's authoritative outcomes</strong> (two colleges publish five-item lists sharing almost no wording, and "basic troubleshooting" appears in only one); <strong>ITSC 1342's end-of-course outcomes</strong> (the description is confirmed and is doing the heavy lifting for BSP, but the outcomes were not retrievable); and the two Local Need number questions above.</p></div>
+</section>
+
+<footer class="end">
+  <p>Companion to the ITSY 1377 course blueprint, revised against the proposed 2027-2028 Cyber Defense A.A.S. degree plan. Every claim checked against a primary source; where only a catalog description was available rather than formal end-of-course outcomes, that is stated in the text.</p>
+</footer>
+
+</main>
+</div>
+</div>
+
+<script>
+(function(){
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var map = {};
+  links.forEach(function(a){
+    var id = a.getAttribute('href').slice(1);
+    var el = document.getElementById(id);
+    if(el) map[id] = a;
+  });
+  var ids = Object.keys(map);
+  if(!ids.length || !('IntersectionObserver' in window)) return;
+  var visible = {};
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(en){ visible[en.target.id] = en.isIntersecting; });
+    var current = null;
+    for(var i=0;i<ids.length;i++){ if(visible[ids[i]]){ current = ids[i]; break; } }
+    if(!current) return;
+    links.forEach(function(a){ a.classList.remove('active'); a.removeAttribute('aria-current'); });
+    map[current].classList.add('active');
+    map[current].setAttribute('aria-current','true');
+  }, {rootMargin:'-8% 0px -70% 0px', threshold:0});
+  ids.forEach(function(id){ obs.observe(document.getElementById(id)); });
+})();
+</script>
