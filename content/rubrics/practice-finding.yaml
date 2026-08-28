@@ -44,7 +44,9 @@ criteria:
     points: 15
     ratings:
       - {points: 15, description: Complete}
+      - {points: 10, description: "One or two headings blank, or headings renamed"}
       - {points: 8, description: One or two headings empty}
+      - {points: 5, description: Three or more headings blank}
       - {points: 0, description: Template not used}
   - description: Framework identifiers correct for the attack described
     points: 5

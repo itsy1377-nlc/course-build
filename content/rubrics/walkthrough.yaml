@@ -16,17 +16,21 @@ criteria:
     points: 10
     ratings:
       - {points: 10, description: Shows their own code and explains what it does}
+      - {points: 8, description: "Shows their own code, but never says what it does"}
       - {points: 6, description: Describes it without showing it}
       - {points: 0, description: Missing}
   - description: What you broke, and how you know
     points: 10
     ratings:
       - {points: 10, description: "Shows the evidence, not the transcript"}
+      - {points: 8, description: "Shows the rate but no evidence, or evidence with no rate"}
       - {points: 6, description: Describes the attack without evidence}
       - {points: 0, description: Missing}
   - description: What you fixed, and what remains
     points: 10
     ratings:
       - {points: 10, description: "Shows before and after numbers, and names something still open"}
+      - {points: 8, description: "Shows the after number only, and names something still open"}
       - {points: 6, description: "Shows the fix without the numbers, or claims nothing remains"}
+      - {points: 3, description: "Names the case they changed, with no code and no numbers"}
       - {points: 0, description: Missing}

@@ -20,17 +20,21 @@ criteria:
     points: 8
     ratings:
       - {points: 8, description: "Pasted unedited, with its timestamp"}
-      - {points: 8, description: "From the fallback branch, and you said so"}
-      - {points: 0, description: Missing or invented}
+      - {points: 8, description: "Pasted unedited from the fallback branch, and you said so"}
+      - {points: 5, description: "From the terminal or a transcript, not the ledger"}
+      - {points: 2, description: Described rather than pasted}
+      - {points: 0, description: "Missing, invented, or edited before pasting"}
   - description: The tool's JSON schema, as registered
     points: 4
     ratings:
-      - {points: 4, description: Present}
+      - {points: 4, description: "The whole schema, for the tool you named"}
+      - {points: 2, description: "Part of the schema, or the wrong tool"}
       - {points: 0, description: Missing}
   - description: One sentence on what the tool does and what it refuses to do
     points: 4
     ratings:
-      - {points: 4, description: Present}
+      - {points: 4, description: "Both halves, and the refusal is one the code makes"}
+      - {points: 2, description: "Only one half, or a refusal the code does not make"}
       - {points: 0, description: Missing}
   - description: The blocker sentence
     long_description: >

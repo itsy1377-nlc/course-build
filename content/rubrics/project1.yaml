@@ -26,6 +26,7 @@ criteria:
       - {points: 25, description: Returns the record and raises a clear error when there is none}
       - {points: 17, description: Returns the record; the error path is missing or silent}
       - {points: 8, description: Partly working}
+      - {points: 4, description: "Written, but it crashes instead of returning"}
       - {points: 0, description: Still the shipped stub}
   - description: Your tool runs
     long_description: >
@@ -37,6 +38,7 @@ criteria:
     ratings:
       - {points: 15, description: Runs with arguments generated from its own schema}
       - {points: 8, description: Runs only with arguments you chose by hand}
+      - {points: 4, description: "Written and in TOOLS, but not in agent.allowed_tools"}
       - {points: 0, description: "Does not run, or returns nothing"}
   - description: Your schema describes your tool
     long_description: >
@@ -53,6 +55,7 @@ criteria:
     points: 10
     ratings:
       - {points: 10, description: "Present, unedited, with the tool call visible"}
+      - {points: 6, description: "Present and unedited, but your tool is never called"}
       - {points: 5, description: Present but edited or partial}
       - {points: 0, description: Missing}
   - description: Written answers
@@ -63,6 +66,7 @@ criteria:
     ratings:
       - {points: 10, description: All three answered specifically}
       - {points: 6, description: Answered generally}
+      - {points: 3, description: Only one or two of the three answered}
       - {points: 0, description: Missing}
   - description: AI-USE.md documents a suggestion you rejected
     long_description: >

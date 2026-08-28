@@ -37,6 +37,7 @@ criteria:
     ratings:
       - {points: 15, description: Returns the dictionary}
       - {points: 8, description: Works only on some shapes}
+      - {points: 4, description: "Parses the reply, then raises instead of returning it"}
       - {points: 0, description: Not written}
   - description: parse_json_content fails clearly rather than crashing
     long_description: >

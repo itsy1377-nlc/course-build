@@ -56,7 +56,8 @@ criteria:
     ratings:
       - {points: 10, description: Stated with scope and exclusions}
       - {points: 5, description: Stated without exclusions}
-      - {points: 0, description: Missing, long_description: "A findings report with no authorization section is not a findings report."}
+      - {points: 3, description: "Authorization heading on one finding, not both"}
+      - {points: 0, description: Missing}
   - description: Framework identifiers
     long_description: >
       Are the OWASP, ATLAS, and CWE labels correct for what the evidence shows?
@@ -72,6 +73,7 @@ criteria:
     ratings:
       - {points: 5, description: "Rated, with the facts it rests on", long_description: "Data class, blast radius, what access an attacker needs, and whether a human approves the action."}
       - {points: 3, description: "Rated, thinly justified"}
+      - {points: 2, description: Rated only}
       - {points: 0, description: A label with no reasoning}
   - description: What defect remains
     long_description: >
@@ -87,4 +89,5 @@ criteria:
     ratings:
       - {points: 5, description: "Every heading used, at or under 900 words"}
       - {points: 3, description: "Over the cap, or a heading missing"}
+      - {points: 1, description: Three or more headings empty, long_description: "Count the empty headings first. The count decides this row, whatever the word count says, and a second finding written as prose lands here."}
       - {points: 0, description: Neither}

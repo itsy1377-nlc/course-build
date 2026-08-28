@@ -20,6 +20,7 @@ criteria:
     ratings:
       - {points: 6, description: "Ran, code submitted"}
       - {points: 3, description: "Ran, code not submitted"}
+      - {points: 2, description: "Only the error that stopped it, or the run described"}
       - {points: 0, description: Not run}
   - description: Read-and-predict answers
     long_description: >
@@ -28,6 +29,7 @@ criteria:
     points: 10
     ratings:
       - {points: 10, description: "All answered, with the prediction written before the result"}
+      - {points: 8, description: "All five predicted with a reason, output not pasted"}
       - {points: 6, description: "All answered, but only after running the code"}
       - {points: 3, description: Some answered}
       - {points: 0, description: Missing}
@@ -61,5 +63,6 @@ criteria:
   - description: Submitted on time and in the right format
     points: 3
     ratings:
-      - {points: 3, description: "Yes"}
-      - {points: 0, description: "No"}
+      - {points: 3, description: "On time, one file named as asked, or one text entry"}
+      - {points: 2, description: "Late, or the file name, type, or count is wrong"}
+      - {points: 0, description: Missing}

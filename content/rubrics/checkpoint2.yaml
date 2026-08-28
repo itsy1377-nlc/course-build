@@ -24,7 +24,10 @@ criteria:
       Its ID and its text, word for word. Not one of the six that ship.
     points: 8
     ratings:
-      - {points: 8, description: "Original, quoted in full"}
+      - {points: 8, description: "Original, quoted in full, with its ID"}
+      - {points: 6, description: "Original, quoted in full, no ID"}
+      - {points: 3, description: "Original, quoted only in part"}
+      - {points: 2, description: "Original, but described rather than quoted"}
       - {points: 0, description: "Missing, or copied from a shipped case"}
   - description: A transcript excerpt, fifteen lines or fewer
     long_description: >
@@ -36,15 +39,17 @@ criteria:
       internal content, excessive agency, or insecure tool authorization.
     points: 4
     ratings:
-      - {points: 4, description: Present and genuine}
-      - {points: 0, description: Missing}
+      - {points: 4, description: "Present and genuine, with a weakness class that fits"}
+      - {points: 2, description: "Present and genuine, weakness class missing or wrong"}
+      - {points: 0, description: Missing or invented}
   - description: Your target address, pasted from your settings file
     long_description: >
       It has to be your own machine. This is clause 1 of the Rules of
       Engagement, checked rather than assumed.
     points: 4
     ratings:
-      - {points: 4, description: In scope}
+      - {points: 4, description: "In scope, pasted from your settings file"}
+      - {points: 2, description: "In scope, but described instead of pasted"}
       - {points: 0, description: "Missing, or out of scope"}
   - description: The blocker sentence
     long_description: >

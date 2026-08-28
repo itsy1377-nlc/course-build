@@ -27,7 +27,9 @@ criteria:
     points: 15
     ratings:
       - {points: 15, description: "A complete run, controls passing"}
+      - {points: 12, description: "A complete run, the two-sentence self-test answer missing"}
       - {points: 9, description: "A run that stopped on a control, with an explanation"}
+      - {points: 4, description: "A run that stopped on a control, no explanation"}
       - {points: 0, description: No run}
   - description: Rates reported, never a yes or no
     long_description: >
@@ -37,6 +39,7 @@ criteria:
     ratings:
       - {points: 15, description: Every case reported with its rate}
       - {points: 8, description: Some rates given}
+      - {points: 4, description: Hit counts given with no trial count}
       - {points: 0, description: Reported as pass or fail}
   - description: You read a result you did not expect
     long_description: >
@@ -47,6 +50,7 @@ criteria:
     ratings:
       - {points: 15, description: Names the case and what was checked}
       - {points: 8, description: Notices it without investigating}
+      - {points: 4, description: "Describes the surprising result, no case named"}
       - {points: 0, description: Takes every result at face value}
   - description: The four walkthrough questions
     long_description: >
@@ -57,6 +61,7 @@ criteria:
       - {points: 20, description: "All four answered, and the audit-log question distinguishes a record from a control"}
       - {points: 14, description: "All four answered, one shallow"}
       - {points: 7, description: Two or three answered}
+      - {points: 3, description: One answered}
       - {points: 0, description: Missing}
   - description: Evidence is a side effect, a canary, or an audit row
     long_description: >
@@ -67,5 +72,6 @@ criteria:
     points: 15
     ratings:
       - {points: 15, description: Pasted evidence for every claim}
-      - {points: 8, description: Some claims rest on the model's answer}
+      - {points: 8, description: "Some claims rest on the model's answer"}
+      - {points: 4, description: "The audit row, outbox file, or canary named, not pasted"}
       - {points: 0, description: No evidence}
