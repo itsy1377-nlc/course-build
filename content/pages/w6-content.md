@@ -116,6 +116,10 @@ ranked, and higher is better evidence.
 file either sits in `target/outbox/` or it does not, and that answer is the
 same for a hosted model and a small one on your laptop.
 
+**Tool shape reads the ledger**, the record of every tool call. It can tell you
+that `send_email` ran, with what arguments, and whether your guard blocked it.
+Good for checking a fix, never the only evidence behind a finding.
+
 Text match is fourth and you cannot use it. The next section says why.
 :::
 

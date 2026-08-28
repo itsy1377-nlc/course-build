@@ -2,7 +2,7 @@
 - A model reads text and writes text. A tool does things. An agent is a loop
   that joins the two.
 - An agent fails differently for three reasons: it can act, its input includes
-  text strangers wrote, and it cannot tell instructions from data.
+  text strangers wrote, and it cannot reliably tell instructions from data.
 - An agent does not fail the same way twice, so you test it many times and
   report a rate.
 - Authorization comes before technique. You may attack three things and nothing

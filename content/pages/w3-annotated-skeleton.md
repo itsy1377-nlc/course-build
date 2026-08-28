@@ -97,9 +97,13 @@ where it sits now, because you will come back to it four times.
 The file also says what does not belong here:
 
 ```python
-# Things that do NOT belong here: anything that inspects the model's prose and
-# tries to decide whether it "seems like" an attack. That is a guess. This
-# function is where you stop guessing.
+# What does NOT belong here is a rule that reads the model's prose and decides
+# whether it "seems like" an attack. Not because such things are worthless:
+# input and output classifiers are real and production systems run them. They
+# are a layer, and they guess. This function is the layer that does not have
+# to, because it decides on facts you already have: which tool, which
+# arguments, which recipient. Put the certain check here and let anything
+# probabilistic sit in front of it, never behind it.
 ```
 
 That is the difference between a guess and a control. Week 5 comes back to it.

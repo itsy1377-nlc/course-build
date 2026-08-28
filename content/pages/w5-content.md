@@ -6,8 +6,12 @@ and why the obvious fix does not work. Read it before you start the lab.
 ::: section | Start with one fact about models
 A language model reads text. That is all it does.
 
-It does not get two separate inputs, one marked "orders from my owner" and one
-marked "data from a stranger." Everything arrives in the same stream, as words.
+Messages do carry a role label, and models are trained to give the system role
+more weight. That is a learned habit, not a wall. It can be talked out of,
+which is the whole reason any of this works.
+
+So there are not two separate inputs, one marked "orders from my owner" and one
+marked "data from a stranger". Everything arrives in the same stream, as words.
 
 Your system prompt is words. The user's question is words. The ticket your tool
 just fetched is words. The model sees one long piece of text and continues it.
@@ -59,7 +63,8 @@ Now follow what happens:
 
 1. A support agent asks for a summary of the ticket. Ordinary request.
 2. `search_tickets` returns the ticket body. Ordinary tool call.
-3. The body contains instructions. The model cannot tell them apart from yours.
+3. The body contains instructions. The model cannot reliably tell them
+   apart from yours.
 4. The model calls `get_customer`.
 5. The model calls `send_email`, and a customer's record leaves the company.
 
@@ -102,16 +107,21 @@ special power. You have not built a wall. You have made a request, and the
 model weighs your request against the attacker's request, and sometimes yours
 wins.
 
-Next week you will measure exactly this. You will run the same attack five
-times with that sentence in place, and you will get a number like 3 out of 5.
-The harness has a word for that result: **FLAKY**.
+Next week you measure exactly this. You run the same attack five times with
+that sentence in place and get a number like 3 out of 5. The harness flags that
+result **FLAKY**, because the same test did not give the same answer twice.
 
-A defense that works three times in five is not a defense. An attacker gets to
-try again.
+A defense that works three times in five is not a defense. An attacker retries,
+and here it costs them nothing to do so.
 
-Then you will build the other kind of fix, in code, in a function that runs
-whether or not the model was convinced. That one comes back 0 out of 5, every
-time.
+Then you build the other kind of fix, in code, in a function that runs whether
+or not the model was convinced. That one reports `BLOCKED_5_OF_5`: the agent
+asked every time and the control refused every time.
+
+Read that status carefully, because it is not "the attack failed". The agent is
+still being steered. One line of code is standing between the attacker and the
+data, and it held five times. Those are different situations and a report that
+prints them the same way hides the one that matters.
 
 **Words ask. Code decides.** Hold on to that sentence.
 :::
