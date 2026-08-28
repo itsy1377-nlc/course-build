@@ -165,6 +165,25 @@ simulator, not a model, and every report it produces says so at the top.
 Attack lands, fix goes in, attack stops, normal use survives. It puts every
 file back the way it found it when it finishes.
 
+### The offline bundle for locked-down lab machines
+
+```bash
+cd labs
+python scripts/build_wheels.py --all-platforms
+```
+
+65 wheels, about 13MB, covering Windows, macOS on both architectures, and
+Linux, across Python 3.11 to 3.13. A student on a machine that cannot reach
+PyPI then installs with:
+
+```bash
+pip install --no-index --find-links wheels -r requirements.txt
+```
+
+The download uses `--only-binary=:all:`, so it fails outright if any package
+would need compiling. That is how the "no C toolchain, no administrator rights"
+promise is checked rather than asserted.
+
 ### Producing the repository students actually get
 
 ```bash
