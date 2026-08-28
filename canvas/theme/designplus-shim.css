@@ -317,7 +317,7 @@
   border: 0;
   color: var(--dp-ink-invert);
   font-family: var(--dp-font);
-  font-size: 1.5rem;      /* the markup carries an inline 18pt on the span */
+  font-size: 1.5rem;      /* 24px, matching the 18pt the template hard-coded */
   font-weight: 700;
   line-height: 1.25;
   letter-spacing: -0.01em;
@@ -409,7 +409,7 @@
   border-bottom: 1px solid var(--dp-line);
   color: var(--dp-ink);
   font-family: var(--dp-font);
-  font-size: 1.17rem;     /* matches the inline 14pt on the title span */
+  font-size: 1.17rem;     /* 18.7px, matching the 14pt the template hard-coded */
   font-weight: 700;
   line-height: 1.3;
   letter-spacing: -0.005em;

@@ -21,3 +21,9 @@ venv/
 # Local
 .env
 .DS_Store
+
+# Local Canvas credentials, including the demo admin password
+canvas/.canvas-credentials
+
+# Local Canvas credentials, including the demo admin password
+canvas/.canvas-credentials

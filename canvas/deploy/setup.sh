@@ -153,7 +153,17 @@ t = u.access_tokens.create!(purpose: "ITSY 1377 course population", workflow_sta
 puts "TOKEN=#{t.full_token}"' -- 2>/dev/null | grep '^TOKEN=' | cut -d= -f2 | tr -d '\r')
 
 [ -z "$TOKEN" ] && die "Could not mint an API token"
-printf 'CANVAS_URL=%s\nCANVAS_TOKEN=%s\n' "$CANVAS_URL" "$TOKEN" > "$REPO_ROOT/canvas/.canvas-credentials"
+# The admin password goes in here as well as the token, because installing the
+# theme genuinely needs it. Canvas honours a bearer token only on /api/ routes
+# and the theme routes are not under /api/, so an API token cannot install
+# account CSS at all. This is a local demo credential and it is printed below
+# anyway; the file is mode 600 and gitignored.
+{
+  printf 'CANVAS_URL=%s\n' "$CANVAS_URL"
+  printf 'CANVAS_TOKEN=%s\n' "$TOKEN"
+  printf 'CANVAS_ADMIN_EMAIL=%s\n' "$ADMIN_EMAIL"
+  printf 'CANVAS_ADMIN_PASSWORD=%s\n' "$ADMIN_PASSWORD"
+} > "$REPO_ROOT/canvas/.canvas-credentials"
 chmod 600 "$REPO_ROOT/canvas/.canvas-credentials"
 
 # ---------------------------------------------------------------------------
@@ -171,7 +181,8 @@ Canvas is running.
 An API token was written to canvas/.canvas-credentials (mode 600).
 
 Next:
-  ./canvas/build/create_course.sh     create the ITSY 1377 course shell
+  python -m tools.import_cartridge     build and import the course, then verify it
+  python canvas/theme/apply_theme.py   make it look like a designed course
   docker compose -f $CANVAS_DIR/docker-compose.yml logs -f web
 
 To stop:   cd $CANVAS_DIR && docker compose stop

@@ -148,10 +148,18 @@ it in CSS alone would require markup this build does not produce.
 
 **Type at Canvas's width.** Canvas hands page content a container of roughly
 1100px. The wrapper caps at 1100px, but prose is capped at a 68ch *measure*
-while tables and code use the full width. The authored markup carries inline
-`font-size: 18pt` on page titles and `14pt` on block headings; those are
-respected rather than fought, and the surrounding `h2`/`h3` sizes are set to
-match so the icons line up with the text they sit beside.
+while tables and code use the full width, so line length stays readable without
+wasting the container.
+
+The NLC template hard-codes `font-size: 18pt` on page titles and `14pt` on block
+headings. `tools/blocks.py` deliberately does not reproduce those, because a
+fixed point size ignores a reader who has raised their default font — a real
+part of this audience. Sizing is therefore the stylesheet's job, and it is
+expressed in `rem` throughout: page titles at `1.5rem` and block headings at
+`1.17rem`, which land on the same 24px and 18.7px the template's point sizes
+produced at a default font size, but now scale with the reader. Block heading
+size is set explicitly rather than left to the browser so the icon, which
+inherits the heading's font size, lines up with the text beside it.
 
 **Light and dark.** Both palettes are defined as CSS custom properties on
 `.dp-wrapper`. Dark mode triggers on `prefers-color-scheme: dark`, and also on
@@ -373,7 +381,7 @@ untouched, so the whole stylesheet ends up inline in the page head. There is no
 second request to fail, no hostname to resolve, and nothing to expire. It also
 happens to be the most offline-proof option available.
 
-Cost: the 43,790-byte stylesheet becomes a 58,409-byte `data:` URI. Canvas's
+Cost: the 43,800-byte stylesheet becomes a 58,421-byte `data:` URI. Canvas's
 `css_overrides` column is `text`, so this is not close to a limit. Canvas's own
 CSP (`frame-ancestors 'self' canvas.docker`) does not restrict stylesheet
 sources, so `data:` stylesheets are not blocked.
@@ -421,12 +429,12 @@ run non-interactively, supply `CANVAS_ADMIN_PASSWORD` in the environment or pass
 ==> Enabling custom CSS on the account
   custom CSS/JavaScript overrides enabled: True
 ==> Uploading the stylesheet
-  stylesheet: 43,790 bytes -> 58,409 byte data: URI
-  brand config created: f1e5e2e626c921428648aea89ffac2d0
+  stylesheet: 43,800 bytes -> 58,421 byte data: URI
+  brand config created: a6f9be07146e6abe6d4a1af527328f44
 ==> Applying it to the account
   theme applied to the account
 ==> Verifying against a rendered page
-  verified: 43,790 bytes served in the page head, byte-for-byte identical to designplus-shim.css
+  verified: 43,800 bytes served in the page head, byte-for-byte identical to designplus-shim.css
 ```
 
 The last step is the one that matters. It does not trust the API's "OK"; it

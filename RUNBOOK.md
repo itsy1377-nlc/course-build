@@ -21,6 +21,7 @@ Canvas LMS.
 | Course content | `content/` | 57 authored pages, 6 quizzes, 5 rubrics, all from one `course.yaml` |
 | Lab repository | `labs/` | The agent, the vulnerable target, and the test harness |
 | Build tooling | `tools/` | Cartridge generator, Canvas importer, reading level check |
+| Styling | `canvas/theme/` | An openly licensed stand-in for DesignPLUS, for the demo only |
 | Blueprint | `docs/course-blueprint.md` | The design, its costs, and what it cannot do |
 
 ---
@@ -46,7 +47,10 @@ pip install -r tools/requirements.txt
 # 3. Build the course, import it, and verify what actually arrived
 python -m tools.import_cartridge
 
-# 4. The labs
+# 4. Make it look like a designed course (see the note below on the password)
+python canvas/theme/apply_theme.py
+
+# 5. The labs
 cd labs
 python -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
@@ -57,6 +61,22 @@ python -m target.seed
 
 Canvas is then at **http://localhost:3000**, `admin@itsy1377.local` /
 `Itsy1377demo!`, with the course at `/courses/1`.
+
+**On the theme step and its password.** Canvas honours a bearer token only on
+`/api/` routes, and the theme routes are not under `/api/`, so an API token
+alone genuinely cannot install account CSS. `apply_theme.py` logs in with a
+session and a CSRF token instead, and prompts for the admin password. That is
+the one place in this build that needs a password rather than a token, and it
+is a Canvas constraint rather than a choice. `--manual` prints by-hand steps if
+you would rather click.
+
+Two things it does deliberately. It installs the stylesheet as a
+`data:text/css;base64` URI rather than uploading a file, because this
+deployment's `config/domain.yml` says `canvas.docker`, so an uploaded
+stylesheet gets a `<link>` the host browser cannot resolve. That also breaks
+the Theme Editor UI on this deployment, which is worth knowing before you go
+looking for it. And it renames the icon font family, because Font Awesome's
+SIL OFL licence reserves the name and a subset is a modification.
 
 ## Bringing it back up later
 
