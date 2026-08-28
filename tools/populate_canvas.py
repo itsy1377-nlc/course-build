@@ -39,6 +39,7 @@ from __future__ import annotations
 
 import argparse
 import sys
+import time
 from pathlib import Path
 from typing import Any
 
@@ -186,21 +187,50 @@ def sync_quizzes(canvas: Canvas, course_id: int, session: str,
             data={"quiz[published]": "true", "quiz[notify_of_update]": "false"},
             timeout=60).raise_for_status()
 
-        # Canvas recomputes points_possible from the questions. Check it.
-        after = canvas.get(f"/courses/{course_id}/quizzes/{quiz_id}")
-        actual_points = float(after.get("points_possible") or 0)
-        if abs(actual_points - float(row["points"])) > 0.01:
+        # Canvas recomputes question_count and points_possible in a background
+        # job, and quiz.points_possible is what the GRADEBOOK scores against.
+        # Reading it straight after the publish is worthless: it returns the
+        # stale value from before the rebuild, which matches, so the check
+        # passes and the job then lands on a wrong number nobody looks at
+        # again. That is exactly how the final exam sat at 117 of 120 points,
+        # one question short, through a clean import that reported success.
+        #
+        # So: wait for the counters to settle, and re-save once if they do not.
+        # A quiz save with no submissions is safe and forces the recompute.
+        expected_questions = len(quiz["questions"])
+        expected_points = float(row["points"])
+        settled = False
+        for attempt in range(2):
+            for _ in range(15):
+                after = canvas.get(f"/courses/{course_id}/quizzes/{quiz_id}")
+                if (after.get("question_count") == expected_questions
+                        and abs(float(after.get("points_possible") or 0)
+                                - expected_points) <= 0.01):
+                    settled = True
+                    break
+                time.sleep(1)
+            if settled:
+                break
+            # Nudge it. The false to true transition is what triggers the
+            # recompute, and it has to happen after every question exists.
+            for state in ("false", "true"):
+                canvas.session.put(
+                    f"{canvas.url}/api/v1/courses/{course_id}/quizzes/{quiz_id}",
+                    data={"quiz[published]": state,
+                          "quiz[notify_of_update]": "false"},
+                    timeout=60).raise_for_status()
+
+        if not settled:
             problems.append(
-                f"{title}: Canvas made it {actual_points:g} points, course.yaml "
-                f"says {row['points']}")
-        if after.get("question_count") != len(quiz["questions"]):
-            problems.append(
-                f"{title}: {after.get('question_count')} questions landed, "
-                f"the file has {len(quiz['questions'])}")
+                f"{title}: Canvas settled on {after.get('question_count')} questions "
+                f"and {float(after.get('points_possible') or 0):g} points; the file "
+                f"has {expected_questions} questions and course.yaml says "
+                f"{row['points']} points")
 
         if not quiet:
             print(f"  {action:8} {title:58} "
-                  f"{after.get('question_count')} items, {actual_points:g} points")
+                  f"{after.get('question_count')} items, "
+                  f"{float(after.get('points_possible') or 0):g} points")
 
         _place_in_module(canvas, course_id, course, row["ref"], quiz_id, title, problems)
 
