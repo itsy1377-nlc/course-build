@@ -1,7 +1,7 @@
 ::: intro
-This page covers three things: what an agentic system is, why it fails
-differently from ordinary software, and enough Python to read the lab code.
-Read it before you start Lab 1. It takes about 45 minutes.
+This page covers what an agentic system is, why it fails differently from
+ordinary software, and enough Python to read the lab code. Read it before Lab
+1. It takes about 45 minutes.
 :::
 
 ::: section | Three words, in order
@@ -13,7 +13,7 @@ file. It cannot send mail. It cannot reach your database.
 **A tool** is an ordinary function somebody wrote. It can do all three. There
 is nothing clever about a tool.
 
-**An agent** is a program that puts the two together in a loop:
+**An agent** puts the two together in a loop:
 
 1. Your program sends the model a question and a list of tools.
 2. The model answers, or it asks for a tool by name.
@@ -28,7 +28,7 @@ An **agentic system** is software that picks its own next step and can act on
 the world.
 
 Ordinary software follows a path a person wrote. An agent picks the path while
-it is running. That one difference is the subject of this course.
+it runs. That one difference is the subject of this course.
 :::
 
 ::: section | Why an agent fails differently
@@ -52,8 +52,8 @@ try to give it orders. If the agent believes them, it has tools.
 :::
 
 ::: section | It does not fail the same way twice
-Ordinary software is boring. Given the same input, it does the same thing, so a
-bug is a line of code and fixing the line ends the bug.
+Ordinary software is boring. Given the same input it does the same thing, so a
+bug is a line of code.
 
 A model is not like that. Ask it the same question twice and you can get two
 answers. An agent can do the right thing four times and the wrong thing on the
@@ -94,14 +94,14 @@ Rules of Engagement page is that practice, written down.
 You will read Python that already runs and predict what it does. That is how
 professionals meet a codebase they did not write.
 
-These two lines are real, from `verify_env.py`:
+These two lines are real, from `verify_env.py`.
 
 ```python
 MIN_PYTHON = (3, 11)
 REQUIRED_PACKAGES = ["requests", "flask", "yaml", "jsonschema", "dotenv", "pytest"]
 ```
 
-A **variable** is a name for a value. A **type** is what kind of value it is.
+A **variable** names a value. A **type** is what kind of value it is.
 
 | Type | What it is | Example |
 |---|---|---|
@@ -166,10 +166,10 @@ Your own tokens differ, because they are built from your student ID.
 
 1. **You look up by key, not by position.** `tokens["kb"]` works. `tokens[2]`
    raises a `KeyError`.
-2. **A missing key stops the program**, unless you ask for a default.
-   `tokens.get("password", "no such key")` returns that default instead.
-3. **A value can itself be a dictionary.** That is how a model's reply is
-   shaped, and it is the subject of Week 2.
+2. **A missing key stops the program**, unless you ask for a default with
+   `tokens.get("password", "no such key")`.
+3. **A value can itself be a dictionary.** That is the shape of a model's
+   reply, and the subject of Week 2.
 :::
 
 ::: section | Running a script
@@ -190,7 +190,7 @@ cannot find something, you are in the wrong folder nine times out of ten.
 Python. It is free, and you will keep using it after this course.
 
 **What to read.** Two short sections in chapter 5: lists, and dictionaries.
-Skip everything else this week. Budget about 25 minutes.
+Budget about 25 minutes.
 
 **What to look for.** Three things:
 
@@ -226,8 +226,8 @@ Answer these before you start Lab 1. If one is hard, read that section again.
 3. You may attack three things. Name them without looking.
 4. `REQUIRED_PACKAGES[1]` returns one string. Which one, and why is it not the
    first item?
-5. You have a dictionary named `tokens`. Write the line that gets the value
-   stored under the key `customer`.
+5. Given a dictionary named `tokens`, write the line that gets the value stored
+   under the key `customer`.
 :::
 
 ::: sources
@@ -237,7 +237,6 @@ reproduced.
 
 NIST AI RMF 1.0, subcategory GOVERN 4.3. A United States government work.
 
-All lab code quoted on this page is instructor-authored and lives in your lab
-repository. The canary tokens shown are from the shared demo student ID, so
-they are not anyone's real evidence.
+All lab code quoted here is instructor-authored. The canary tokens shown are
+from the shared demo student ID, so they are nobody's real evidence.
 :::

@@ -1,218 +1,110 @@
-::: intro
-This page holds the rules that decide your grade: deadlines, late work, what
-happens if you fall behind, and how your privacy is protected. The full syllabus
-is linked in the Canvas course navigation.
+::: keyfacts
+| | |
+|---|---|
+| Weekly deadline | Sunday, 11:59 PM Central |
+| Late work, Weeks 1 to 7 | Accepted until day 51, 11:59 PM Central |
+| Late work, final block | None. Days 52 and 54 are hard |
+| Incompletes | None, for any reason |
+| Your privacy | Protected by FERPA |
+| Full syllabus | Canvas course navigation |
 :::
 
-::: section | The course week
-The course week starts Monday and ends **Sunday at 11:59 PM Central**. Unless a
-page says otherwise, everything for that week is due then.
-
-Every module is published at the start of the term, so you can look ahead and
-work early. Modules do unlock in order, and Week 2 stays closed until you pass
-the Module 0 Gate.
-
-This course is fully asynchronous. Nothing meets live. That freedom is the whole
-reason the deadlines are firm.
-
-Canvas shows the real calendar date for every deadline. The course pages use day
-numbers, because the same course runs in sessions that start on different
-weekdays.
+::: intro
+These are the rules that decide your grade: deadlines, late work, and how your
+data is handled.
 :::
 
 ::: section | How your grade is built
-Your grade comes from three groups of work.
-
 | Group | What is in it | Weight |
 |---|---|---|
-| Foundations | Module 0 Gate, Lab 1, Attack Lab 1 and its practice finding | 15% |
-| Project 1 | Modules 1 and 2, their comprehension quizzes, and the Project 1 checkpoint | 30% |
-| Project 2 | Modules 3 and 4, their quizzes, the Project 2 checkpoint, and the whole final block | 55% |
+| Foundations | Module 0 Gate, Lab 1, Attack Lab 1 and its finding | 15% |
+| Project 1 | Modules 1 and 2, their quizzes, the Project 1 checkpoint | 30% |
+| Project 2 | Modules 3 and 4, their quizzes, the Project 2 checkpoint, the final block | 55% |
+:::
 
-Most of this is scored by a machine. You can run the autograder yourself, as
-often as you like, before the deadline. There is no reason to guess at your
-score.
+::: section | The course week
+Every module is published on day 1, so you can work ahead. Modules unlock in
+order, and Week 2 stays closed until you pass the Module 0 Gate.
 
-The two checkpoints are pass or fail. They are not judged on quality. Their only
-job is to show that you are not stuck.
+Canvas shows the real calendar date for every deadline.
 :::
 
 ::: section | Late work
-Deadlines here are real, and the term is short. Plan for that.
+| Work | Late window |
+|---|---|
+| Weeks 1 to 7 | Until day 51, 11:59 PM Central. Hard close |
+| Project 2 Part A | Opens day 50, capped at 90 percent |
+| Final Part B, day 52 | None |
+| Final exam and Part C, day 54 | None |
+| Anything with its own stated penalty | The assignment page wins |
 
-1. Work from Weeks 1 through 7 is accepted late until **day 51 at 11:59 PM
-   Central**. That is a hard close. Nothing from those weeks is accepted after
-   it.
-2. **Project 2 Part A** has its own late window. It opens on day 50 and caps
-   the score at 90 percent.
-3. The final block has no late window at all. Part B is due day 52. The final
-   exam and Part C are due day 54. Those are hard deadlines.
-4. Some assignments state their own credit reduction for late work. The
-   assignment page always wins.
+Canvas locks an activity after its deadline. That is not a technical fault.
 
-Canvas is set to lock activities after a deadline. A locked assignment is not a
-technical problem, so do not report it as one.
-
-Technical trouble does not excuse a missed deadline. You need a backup plan for
-getting online. Start early enough that one bad evening does not cost you a
-grade.
-:::
-
-::: section | Your lowest lab score is dropped
-One lab score is dropped at the end of the term: your lowest one.
-
-That drop is not a spare deadline. It exists because one bad week happens to
-almost everyone, and because a single setup failure should not follow you for
-eight weeks. Spend it on a week that went wrong, not on a week you skipped.
-
-The Module 0 Gate, the projects, and the final exam are never dropped.
-:::
-
-::: section | If you fall behind, you can still finish
-No part of this course is a dead end. Every piece of work that depends on
-running code has a **fallback branch** your instructor publishes.
-
-- If your agent never runs, you pull the `agent-working` branch. It is
-  published on day 18, which is before the checkpoint is due, not after.
-- If your harness never runs, you pull the `harness-working` branch and do the
-  analysis, the fix, and the exam against it.
-
-Using a fallback branch caps that one artifact at 80 percent. That is not a
-zero, and it is not a blocker. The exam is graded against whatever you
-submitted, fallback branches included, so it is always finishable.
-
-Tell your instructor when you pull one. That is not a confession. It is how a
-professional says a dependency failed and here is the workaround.
+Technical trouble does not move a deadline either.
 :::
 
 ::: callout stop | There are no incompletes in this course
-The term ends on day 55. The final exam closes on day 54. There is no time
-after that for make-up work, so none is offered.
+The exam closes on day 54 and the term ends on day 55.
 
-That means:
+No incompletes. No extra credit. Nothing accepted after day 54, for any reason.
 
-1. No incomplete grades.
-2. No work accepted after day 54, for any reason.
-3. No extra credit at the end to fix an earlier grade.
-
-Everything that protects your grade is front-loaded instead: unlimited Gate
-retakes, the dropped lab score, the fallback branches, and the late window on
-Part A. Use them while they exist.
+Your protections are front-loaded instead: unlimited Gate retakes, the fallback
+branches below, and the late window on Part A.
 :::
 
-::: section | Technology you need
-You need regular access to a computer and the internet. Canvas works best on a
-laptop or a desktop. The mobile app can show you a grade, but it cannot run a
-lab.
+::: section | If your code never runs, you can still finish
+Every piece of work that depends on running code has a **fallback branch** your
+instructor publishes.
 
-Keep your browser up to date. Microsoft Edge, Apple Safari, Google Chrome, and
-Mozilla Firefox all work.
+- Agent not working: pull `agent-working`, published on day 18.
+- Harness not working: pull `harness-working`, then do the analysis and the fix
+  against it.
 
-You should already be able to do these things:
-
-- Save and upload a file, and turn a document into a PDF.
-- Find a due date in Canvas and submit to the right assignment.
-- Post a reply in a discussion.
-- Join a Zoom meeting, for office hours.
-- Open a terminal and run a command that someone gives you.
-
-The last one is taught in Week 1. The others are not.
+A fallback branch caps that one artifact at 80 percent. Tell your instructor
+when you pull one.
 :::
 
 ::: section | Student privacy
-Your work in this course is protected by FERPA, the federal student privacy law.
-Your grades and your submissions are between you and your instructor. Nobody
-else in the class sees them.
+FERPA, the federal student privacy law, covers this course. Your grades and
+submissions are between you and your instructor.
 
-You have to protect other people the same way:
+You protect other people the same way:
 
-1. Do not share your own personal details with the class. That includes your
-   home address, your personal email, and any login information.
-2. Do not repost a classmate's work, words, or personal information anywhere
-   outside this course.
-3. Do not share course links, Zoom links, or lab material with people outside
+1. Keep your own address, personal email, and logins off the discussion boards.
+2. Do not repost a classmate's work or details outside this course.
+3. Do not share course links, Zoom links, or lab material with anyone outside
    the course.
-
-Discussion posts are visible to the whole class. Write them knowing that.
 :::
 
-::: section | Which tools handle your data, and what to read
-FERPA covers the college. It does not cover a company you send text to. So here
-is the honest list of what handles your work in this course.
+::: section | Which tools handle your data
+FERPA covers the college. It does not cover a company you send text to.
 
-**Canvas** holds your submissions, grades, quiz answers, and discussion posts.
-Canvas is run by Instructure.
+| What handles your work | What it receives |
+|---|---|
+| Canvas, run by Instructure | Submissions, grades, quiz answers, posts |
+| The model provider you pick in Week 2 | Every prompt, including your code |
+| Ollama, or the offline `mock` provider | Nothing. Both run on your computer |
+| Any tool the college adds later | Named in the Canvas syllabus |
 
-**The model provider you pick** receives every prompt you send it. That
-includes your code and anything you paste into it. You choose that provider in
-Week 2, from Groq, Gemini, Ollama, or the offline `mock` provider.
-
-**Any tool the college adds later** handles whatever that tool collects. If one
-is added mid-session, your instructor names it in the Canvas syllabus.
-
-Read these documents. Each one is published under the title given here.
-
-| Whose | Document to read | How to find it |
-|---|---|---|
-| Instructure, for Canvas | Instructure Privacy Policy | Search the web for that title |
-| Groq | Groq Privacy Policy | On the Groq site, with its legal pages |
-| Groq | Groq Acceptable Use and Responsible AI Policy | Linked on the Course Material page |
-| Google | Google Privacy Policy | On the Google policies site |
-| Google | Google Generative AI Prohibited Use Policy | Linked on the Course Material page |
-| The federal government | Family Educational Rights and Privacy Act | Search for FERPA on the college website |
-
-Your instructor puts a direct link to each of these in the Canvas syllabus, and
-checks those links at the start of each session. They live there rather than
-here because this page is copied forward between sessions and the syllabus is
-rewritten for each one.
-
-**Ollama and the `mock` provider send nothing anywhere.** Both run on your own
-computer. If privacy is your main concern, pick one of those.
+A free hosted model may train on what you send it. Never put personal
+information into a prompt. The AI Use Policy page has that rule in full.
 :::
 
-::: callout warning | The specific risk this course keeps naming
-A free tier may train on what you submit. Your text can be stored, read by a
-person, and used to improve the provider's products.
+::: section | The privacy documents to read
+| Whose | Document |
+|---|---|
+| Instructure | Instructure Privacy Policy |
+| Groq | Groq Privacy Policy |
+| Groq | Groq Acceptable Use and Responsible AI Policy |
+| Google | Google Privacy Policy |
+| Google | Google Generative AI Prohibited Use Policy |
+| Federal | Family Educational Rights and Privacy Act |
 
-Google says plainly not to submit sensitive, confidential, or personal
-information to its unpaid services. Treat every free hosted model the same way.
-
-This is not a reason to avoid the tools. It is the reason the lab data is all
-invented, and the reason for the rule in the next block.
-:::
-
-::: callout stop | Never put personal information into a model prompt
-A free hosted model may use what you send it to improve the provider's own
-products. Your text can be stored, read by people, and used for training.
-
-So treat every prompt as public. Never type any of these into a model:
-
-1. Your name, address, phone number, or student ID.
-2. A classmate's name or any detail about a classmate.
-3. Anything from your job: a real ticket, a real customer, a real system name.
-4. An API key, a password, or any other credential.
-
-The lab data is all invented for this reason. Clause 4 of the Rules of
-Engagement says more, and it is not optional.
-
-If you are not sure whether something counts as personal, do not send it.
-:::
-
-::: section | The other policy pages
-Three rules live on their own pages because they are longer, and because you
-need to find them fast.
-
-1. **Rules of Engagement.** What you may attack, and what you may never attack.
-   You pass a quiz on it before Week 2 opens.
-2. **AI Use Policy.** AI help is allowed in this course, with conditions. Read
-   the conditions.
-3. **Academic Integrity.** What counts as a violation, and what happens then.
-
-Communicating Online covers how to behave in a discussion. The full syllabus,
-including college and district policy, is linked in the course navigation.
+Direct links live in the Canvas syllabus, which is rewritten and checked every
+session.
 :::
 
 ::: next
-Next is the Academic Integrity page. It is short, and it explains how working
-with classmates fits into a course where everyone attacks the same target.
+Next is Academic Integrity. The AI Use Policy, the Rules of Engagement, and
+Communicating Online follow it in this module.
 :::

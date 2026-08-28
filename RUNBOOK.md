@@ -89,10 +89,20 @@ python -m target.app                      # the vulnerable app, leave running
 ## Rebuilding after editing content
 
 ```bash
-python -m tools.readability               # reading level, fails the build if over
+python -m tools.readability               # reading level AND page length
+python -m tools.verify_content            # does the content still match the code?
 python -m tools.cartridge --check         # validate without building
 python -m tools.import_cartridge          # build, import, verify
 ```
+
+The second one is worth knowing about. Reading level was enforced from the
+start; factual accuracy was a checklist somebody was meant to run once a
+semester. Only one of the two could fail a build, so pages drifted from the
+code they describe while the numbers stayed green. `verify_content` checks
+every command a page tells a student to run, every path it cites, every
+framework identifier against what the case files demonstrate, every harness
+status word against what the runner can emit, and every point total against its
+rubric.
 
 The import is idempotent. Running it again updates the course rather than
 duplicating it, because every identifier is derived from the content ref.
@@ -315,7 +325,7 @@ Point at four things while it runs:
 3. **Two benign controls.** One checks that ordinary work stays quiet. The
    other checks that a legitimate escalation still goes out, which is what
    stops "delete the tool" from counting as a remediation.
-4. **Rates, never a yes or no.** `5/5`, `3/5 FLAKY`, `0/5 MITIGATED`.
+4. **Rates, never a yes or no.** `5/5`, `3/5 FLAKY`, `0/5 NO_HITS_IN_5`.
 
 Then the payload of the whole design:
 
@@ -325,16 +335,24 @@ python -m harness.runner
 python demo/apply_solution.py revert
 ```
 
-Four cases flip to `ATTEMPTED_BLOCKED 0/5`. Three stay `VULNERABLE`. That is the
-honest result and it is the lesson: a recipient allowlist fixes one class of
-weakness. It does nothing about system prompt disclosure or a missing
-authorization check. Different weakness, different control.
+Five cases report `BLOCKED_5_OF_5`. Three stay `VULNERABLE`. That is the honest
+result and it is the lesson: a recipient allowlist fixes one class of weakness.
+It does nothing about system prompt disclosure or a missing authorization
+check. Different weakness, different control.
 
-`ATTEMPTED_BLOCKED` is worth pausing on. It means the agent was still fully
-hijacked and asked to send the record every single time, and one line of code
-stopped it. That is a very different residual risk from an attack that failed,
-and a report that prints them identically is hiding the thing a client most
-needs to know.
+Two things about that output are worth pausing on, and both are corrections the
+reviews forced.
+
+`BLOCKED_5_OF_5` does not say the attack failed. It says the agent was still
+fully hijacked, asked to send the record every single time, and one line of
+code stopped it. Very different residual risk, and a report that prints the two
+identically hides the thing a client most needs to know.
+
+And there is no `MITIGATED` anywhere. Zero hits across five trials against a
+weakness that lands three times in ten happens about one run in six, so the
+word was a conclusion presented as an observation. The status is
+`NO_HITS_IN_5`, carrying its own sample size. A student who wants to write
+"mitigated" in a report still can, and now has to decide to.
 
 ### Minute 10: what it cannot do
 
@@ -411,6 +429,8 @@ pkill -f "target.app"                              # the lab app
 | `crystalball ... not yet checked out` | gems not installed | `docker compose run --rm --no-deps web bundle install` |
 | Import completes, no quizzes | Canvas has no QTI converter | expected; `tools/populate_canvas.py` handles it |
 | Harness refuses to start, canary mismatch | `.env` changed after seeding | `python -m target.seed` |
+| A page is over its word budget | The build now enforces length as well as reading level | Cut it, or raise the budget in `tools/readability.py` on purpose |
+| `verify_content` says a page disagrees with the code | The page describes an older version | Fix the page. The code is right by construction |
 | Harness refuses, "shared demo student ID" | `LAB_STUDENT_ID` unset | set it in `.env`, then reseed |
 | A control fails and the run stops | usually a stale outbox | this is the harness working; read what it says |
 | `tests/` shows many failures | expected on a fresh clone | those are the student's work, not defects |

@@ -50,6 +50,31 @@ What each heading is for:
    blank.
 :::
 
+::: section | Which label goes in which field
+Three catalogues, and they answer different questions. Your rubric checks that
+each is right for what your evidence shows.
+
+| Catalogue | What it names | Example |
+|---|---|---|
+| OWASP LLM Top 10 (2026) | A risk in an application built on a language model | `LLM01:2026` prompt injection |
+| OWASP Agentic Top 10 (2026) | A risk that only exists once the model can act | `ASI02` tool misuse |
+| MITRE ATLAS (2026.07) | Something an ADVERSARY does, as a step in an attack | `AML.T0051.001` indirect prompt injection |
+| CWE | An ordinary software defect, whether or not a model is involved | `CWE-862` missing authorization |
+
+**Two rules that keep these honest.**
+
+Leave a field empty rather than filling it with something plausible. An ATLAS
+technique describes an adversary. A missing control with no adversary is not a
+technique, and case A4 in your labs has an empty ATLAS list for exactly that
+reason.
+
+Reach for CWE when the weakness would still be a weakness with the agent taken
+out. Case A6 is missing authorization on an endpoint that has no login at all,
+so anyone could fetch the record directly. The agent is a convenience there,
+not the vulnerability, and `CWE-862` says that where an ATLAS technique would
+not.
+:::
+
 ::: section | The severity table
 Severity in this course comes from four rows. Each row is defined by two
 things: what the agent could actually do, and whether a human approved it.
@@ -63,6 +88,34 @@ things: what the agent could actually do, and whether a human approved it.
 
 Read each row from left to right. Start with what the agent could do, then ask
 whether a person signed off. If nobody signed off, the rating goes up a row.
+:::
+
+::: section | Severity is impact and likelihood, and the table above is only impact
+The table gives you one axis. A rating needs two.
+
+The other axis is likelihood, and you already measured it. It is the rate.
+
+| What you observed | What it says about likelihood |
+|---|---|
+| 5 of 5 | It works. Nothing has to go the attacker's way |
+| 1 of 5, or any FLAKY result | It works when the attacker retries. It still works |
+| 0 of 5, with nothing built to stop it | It did not land in five tries. That is weak evidence, not a clean bill |
+| 0 of 5, with a control that blocked every attempt | The control held five times. The weakness is still there behind it |
+
+Two rules for putting the axes together.
+
+**A low rate lowers likelihood. It does not lower impact.** A flaw that lands
+once in five still sends the whole record when it lands. Rate the impact from
+the table, then say what the rate does to how often you expect it.
+
+**Ask what it costs the attacker to retry.** Here, nothing. There is no
+lockout, no alert on the fourth failure, and no limit on how many tickets
+somebody can open. When retrying is free, a low rate is close to no defense at
+all, and your report should say so rather than leaving a reader to assume the
+number means safety.
+
+Write both. "Critical impact, and it landed 1 of 5, on this model at this
+temperature" is a finding somebody can act on. "Critical" alone is not.
 :::
 
 ::: callout note | The idea behind the table: capability amplifies a flaw
@@ -129,7 +182,12 @@ MITRE ATLAS: AML.T0051.001 Indirect, AML.T0086 Exfiltration via AI Agent Tool
 Invocation
 
 ### Severity
-Critical. Customer data left the organization and no person approved the send.
+Critical impact, observed 5 of 5.
+
+Customer data left the organization and no person approved the send, which is
+the top row of the table. It landed on every trial, so likelihood is not a
+mitigating factor. Retrying costs an attacker nothing here: anyone can open a
+ticket, and nothing limits how many.
 That is the top row of the table: an action nobody can take back, with no human
 in the path.
 
