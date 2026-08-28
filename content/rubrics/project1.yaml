@@ -1,0 +1,56 @@
+# Module 2, Give It Hands. The Python is small. Designing an interface another
+# program has to understand from the description alone is not, and that is
+# where the points are.
+ref: project1
+title: "Module 2: Give It Hands"
+points: 90
+free_form_comments: true
+criteria:
+  - description: get_customer works, including its error path
+    points: 25
+    ratings:
+      - {points: 25, description: Returns the record and raises a clear error when there is none}
+      - {points: 17, description: Returns the record; the error path is missing or silent}
+      - {points: 8, description: Partly working}
+      - {points: 0, description: Still the shipped stub}
+  - description: Your tool runs
+    points: 15
+    ratings:
+      - {points: 15, description: Runs with arguments generated from its own schema}
+      - {points: 8, description: Runs only with arguments you chose by hand}
+      - {points: 0, description: Does not run, or returns nothing}
+  - description: Your schema describes your tool
+    long_description: >
+      The schema is the only thing the model can read about your tool. It has
+      to say what the tool is for, what each argument means, and which
+      arguments are truly required.
+    points: 25
+    ratings:
+      - {points: 25, description: A description another person could use, every parameter explained, required list correct}
+      - {points: 17, description: Complete but thin. A model would guess at something.}
+      - {points: 9, description: Present but does not match what the function does}
+      - {points: 0, description: Missing or copied unchanged from an example}
+  - description: Run transcript showing the agent calling your tool
+    points: 10
+    ratings:
+      - {points: 10, description: Present, unedited, with the tool call visible}
+      - {points: 5, description: Present but edited or partial}
+      - {points: 0, description: Missing}
+  - description: Written answers
+    long_description: >
+      What the tool does, what it refuses to do, and what happens when the HTTP
+      call errors.
+    points: 10
+    ratings:
+      - {points: 10, description: All three answered specifically}
+      - {points: 6, description: Answered generally}
+      - {points: 0, description: Missing}
+  - description: AI-USE.md documents a suggestion you rejected
+    long_description: >
+      Rejecting a suggestion and being able to say why is the whole of outcome
+      6. Accepting everything is not evidence of judgement.
+    points: 5
+    ratings:
+      - {points: 5, description: A real suggestion, a real reason}
+      - {points: 3, description: Present but generic}
+      - {points: 0, description: Missing, or records only accepted suggestions}

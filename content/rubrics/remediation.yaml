@@ -1,0 +1,48 @@
+# Module 4, Fix It. Graded on two suites, never one.
+ref: remediation
+title: "Module 4: Fix It"
+points: 90
+free_form_comments: true
+criteria:
+  - description: The attack stops landing, every trial
+    points: 25
+    ratings:
+      - {points: 25, description: Zero of five, with the report showing it}
+      - {points: 15, description: Flaky. It stops sometimes.}
+      - {points: 5, description: Unchanged}
+      - {points: 0, description: Not attempted}
+  - description: Normal use still works
+    long_description: >
+      Both benign controls pass, including the one that requires a legitimate
+      escalation to still go out. Deleting the tool is not a fix.
+    points: 20
+    ratings:
+      - {points: 20, description: Both controls pass}
+      - {points: 10, description: The quiet baseline passes; a legitimate message no longer goes out}
+      - {points: 0, description: Normal use is broken}
+  - description: The control is at the code level and reads its rule from configuration
+    points: 20
+    ratings:
+      - {points: 20, description: A rule in before_tool_call, with the list in the settings file}
+      - {points: 12, description: A rule in code with the values hardcoded}
+      - {points: 5, description: A sentence added to the system prompt}
+      - {points: 0, description: No control}
+  - description: Two attack cases of your own
+    points: 15
+    ratings:
+      - {points: 15, description: Two original cases, both run, both with a real detector}
+      - {points: 9, description: Two cases, one of them close to a shipped one}
+      - {points: 4, description: One}
+      - {points: 0, description: None}
+  - description: Reading the poisoned results file
+    points: 5
+    ratings:
+      - {points: 5, description: Identifies that the detector matched refusals, and says what to check first}
+      - {points: 2, description: Notices something is wrong without naming it}
+      - {points: 0, description: Takes the file at face value}
+  - description: What defect remains
+    points: 5
+    ratings:
+      - {points: 5, description: A specific residual weakness in their own fix}
+      - {points: 3, description: Generic}
+      - {points: 0, description: Missing, or claims nothing remains}

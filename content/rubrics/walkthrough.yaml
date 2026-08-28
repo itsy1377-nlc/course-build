@@ -1,0 +1,25 @@
+# Final Part C. Three minutes. It is worth 30 points and it exists so a student
+# leaves with something they can show an employer.
+ref: walkthrough
+title: "Final Part C: Three-Minute Walkthrough"
+points: 30
+free_form_comments: true
+criteria:
+  - description: What you built
+    points: 10
+    ratings:
+      - {points: 10, description: Shows their own code and explains what it does}
+      - {points: 6, description: Describes it without showing it}
+      - {points: 0, description: Missing}
+  - description: What you broke, and how you know
+    points: 10
+    ratings:
+      - {points: 10, description: Shows the evidence, not the transcript}
+      - {points: 6, description: Describes the attack without evidence}
+      - {points: 0, description: Missing}
+  - description: What you fixed, and what remains
+    points: 10
+    ratings:
+      - {points: 10, description: Shows before and after numbers, and names something still open}
+      - {points: 6, description: Shows the fix without the numbers, or claims nothing remains}
+      - {points: 0, description: Missing}

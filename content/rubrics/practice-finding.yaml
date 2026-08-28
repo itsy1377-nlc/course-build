@@ -1,0 +1,49 @@
+# Week 5 rehearsal on the same template as the graded report. Lower stakes and
+# the same shape, so the final block is a second attempt at the genre rather
+# than a first.
+ref: practice-finding
+title: "Attack Lab 1: Practice Finding"
+points: 80
+free_form_comments: true
+criteria:
+  - description: Three attacks run, with the exact result line
+    points: 20
+    ratings:
+      - {points: 20, description: All three, copied exactly}
+      - {points: 13, description: Two, or paraphrased rather than copied}
+      - {points: 6, description: One}
+      - {points: 0, description: None}
+  - description: Evidence is a side effect or a canary
+    long_description: >
+      Pasted, not described. What the model said is not evidence.
+    points: 20
+    ratings:
+      - {points: 20, description: Side effect or canary for every attack}
+      - {points: 13, description: Evidence for some, model prose for others}
+      - {points: 6, description: Mostly transcript excerpts}
+      - {points: 0, description: No evidence, or the model's words only}
+  - description: Each attack labeled with its class
+    points: 15
+    ratings:
+      - {points: 15, description: All three correct}
+      - {points: 10, description: Two correct}
+      - {points: 5, description: One correct}
+      - {points: 0, description: None correct}
+  - description: The finding uses every heading on the template
+    points: 15
+    ratings:
+      - {points: 15, description: Complete}
+      - {points: 8, description: One or two headings empty}
+      - {points: 0, description: Template not used}
+  - description: Framework identifiers correct for the attack described
+    points: 5
+    ratings:
+      - {points: 5, description: Correct}
+      - {points: 2, description: Plausible but not supported by the evidence}
+      - {points: 0, description: Missing or invented}
+  - description: Severity stated with a reason
+    points: 5
+    ratings:
+      - {points: 5, description: Rated and justified}
+      - {points: 2, description: Rated only}
+      - {points: 0, description: Missing}

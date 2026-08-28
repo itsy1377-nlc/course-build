@@ -1,0 +1,1065 @@
+/* ===========================================================================
+ * designplus-shim.css
+ * A visual stand-in for Cidi Labs DesignPLUS, for the ITSY 1377 local demo.
+ *
+ * WHAT THIS IS
+ *   Original CSS, written from scratch, that happens to target the same class
+ *   names the NLC Online Course Template uses. It exists so that course pages
+ *   authored with DesignPLUS class names render as a designed course inside a
+ *   local open-source Canvas that has no DesignPLUS license.
+ *
+ * WHAT THIS IS NOT
+ *   - It is NOT DesignPLUS, and it is NOT a reimplementation of DesignPLUS.
+ *   - NO Cidi Labs CSS or JavaScript is copied, derived from, or redistributed
+ *     here. No DesignPLUS stylesheet was fetched, inspected, or reproduced.
+ *   - It will NOT match Alamo Colleges' production theme. Production styling
+ *     comes from the college's own DesignPLUS license. See README.md.
+ *
+ * ZERO EXTERNAL REQUESTS
+ *   This file makes no network request of any kind. There is no @import, no
+ *   CDN reference, and no remote url(). The icon font is embedded below as a
+ *   data: URI so the demo works with the network unplugged.
+ *
+ * LICENSE
+ *   This stylesheet: CC0 1.0 Universal (public domain dedication).
+ *   Embedded icon font: a renamed subset of Font Awesome Free 6.7.2,
+ *   Copyright (c) 2024 Fonticons, Inc., under SIL OFL 1.1. See README.md.
+ *
+ * Every colour pair below was checked against WCAG 2.1. Text pairs meet AA
+ * (>= 4.5:1); non-text indicators meet >= 3:1. Measured ratios are recorded
+ * in README.md.
+ * ========================================================================= */
+
+
+/* ---------------------------------------------------------------------------
+ * 1. Icon font
+ *
+ * A subset of Font Awesome Free 6.7.2 containing only the 18 glyphs this
+ * course actually uses, embedded as woff2 data: URIs (3.8 KB total).
+ *
+ * The family is renamed to "ITSY Shim Icons" because SIL OFL 1.1 reserves the
+ * font name "Font Awesome"; a modified font may not carry a Reserved Font
+ * Name. This subset is not endorsed by Fonticons, Inc.
+ * ------------------------------------------------------------------------ */
+
+@font-face {
+  font-family: "ITSY Shim Icons";
+  font-style: normal;
+  font-weight: 900;
+  font-display: block;
+  src: url("data:font/woff2;base64,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") format("woff2");
+}
+
+@font-face {
+  font-family: "ITSY Shim Icons";
+  font-style: normal;
+  font-weight: 400;
+  font-display: block;
+  src: url("data:font/woff2;base64,d09GMgABAAAAAAQ8AAoAAAAACIwAAAP2AwcFAAAAAAAAAAAAAAAAAAAAAAAAAAAABmAAPMqEGgE2AiQDDMsIBCAFiHcHIBvaBxEVnN8gvk5g6+adpci6U6LpdoV2XqWWxvIhHxGXSYNJTOIpQTy/ps37fylJmcBWVfYAUEa4q6o6QnUrI48lIG4A+PZzjjkrYWT3PjRDRdLsKrxtfU3WXHOpXVqgZzEtNxefChMUVRhDflIULr7//H6zIkm0/VAuHkJ4HETkIhNr6ojmxeSWxOqWAgt5NkZz+BkDD3OVz8CQmxLEBBmTZWBwPvVbModBYWpmQxQ/Rffi7DjuR/q4W0IekBBDgABIp5wEsgBQgAbi0AjZGhQBVklQjkx4HjQR+Try6PSVgAmeK/vFxSKcOFKph8bGcWMhtqQzzRg3JjJte8GvzQiS1ALMIwlOVEtbjGwpu7rkwvbyX42b0p+XCHLKhQP/l/CIOMmKW4ULo/7/MJmythb+X2zMwRsmJWPkB8WWmDFZRQdRpTgohXqGIT9uXO2xKTeHR6yReiNpRafCMTkZhExIIE9JiRHI0DiUcxvj7fFABJgrNTMs6iFGttxI8wARwPOZP7RVkp3zfL1729vSpNuc/TKwFBsRiJlXCQk9t7mqAsVAcKTnxsz9tbTkaZpTz4+Cx9dCuN2lKbRHmnclqOq7EPAeqj5ZpQvM2lxdi6DmkhOMbLs6GrVoqOAmSe/4CB1k0cxkSJmZdJalezg6D0Z0d3/VunY3W+84/pj/64/fs08it1pmSnbVREqVxMR4TWqsu2/FFOpK1p7jbqQbtVnLMeMWMQU6mFWksrIgLiyWVOvyv4iAtk2O+o+viGz75gQUAE8OCjy/3PZ61DEJAQ4KAIGTa1LtB8hiql9Zy/7ln6C6AJjimoQjgLZ/hQMgkFMM9xHiQVhBiBR4a1LYnCBNMmtkkMh1MonnHlnE8YbCSca7PoJUSUIjhg8kS2oPJGSoWVJEqA2kqVH7yKBCnSOTEvWALIq0j8Kp0dWzETRoi/HgNx5JLS2+1m0YPJS4aURj6kH/2+LCLMJ3DH2PK8+5igqO291kl7r0ywI4tXK577FIuIB7fSNGqJU0Z444KbCUzCTv6vxYTuLt+sb1fxqERJH3s9ZgEZrvYVlXNtKIovJeDHsiwXNwPJs6gTjgMVMEwhc1xKjut+t6f9knsxdeI7mGF1Supc5WgcTGNolFtouvxabIMm1zMMOOaEw96H9F9gyy5RZEk0EhxdJkvcAycRUVHLcKurRjXKAVLWrMqZV7IWEWhz5TfbCjB9XNMEKtBAfnhuMEBOdnzSQPTEuR2Ezi7foOcNCl2QgiBEFhp/QqnsPjc8ar1mLdugeD0PDDCnbIg9RnAyLYw5nZkSDszQQkck+cDI2zzJdBwgSLjW3KM+GtbOReWjCxF1KSO0Km7b++Ag==") format("woff2");
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 2. Design tokens - light
+ *
+ * Everything downstream reads these. Changing the palette means changing this
+ * block and the dark block below, and nothing else.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper {
+  /* surfaces */
+  --dp-bg:            #ffffff;
+  --dp-surface:       #f5f7f9;
+  --dp-surface-2:     #eceff4;
+  --dp-surface-3:     #e4e9f0;
+  --dp-stripe:        #f7f9fb;
+  --dp-hover:         #e9eef4;
+
+  /* text */
+  --dp-ink:           #1a2027;
+  --dp-ink-soft:      #4d5866;
+  --dp-ink-invert:    #ffffff;
+  --dp-link:          #0a5a8a;
+
+  /* structure */
+  --dp-line:          #d6dce4;
+  --dp-line-strong:   #b6c0cc;
+  --dp-accent:        #14384f;
+  --dp-accent-edge:   #2f7fa8;
+
+  /* per-block accent keylines */
+  --dp-k-intro:       #14384f;
+  --dp-k-objectives:  #1f5c8f;
+  --dp-k-tasks:       #463c8c;
+  --dp-k-b0:          #12645d;
+  --dp-k-b1:          #3d4a5c;
+  --dp-k-b2:          #1c6b3d;
+  --dp-k-b3:          #755008;
+  --dp-k-b5:          #6a3d8c;
+  --dp-k-b6:          #0d6182;
+  --dp-k-b7:          #2f4858;
+
+  /* callouts: background / rule / ink */
+  --dp-note-bg:       #eaf2fa;  --dp-note-rule:  #1f5c8f;  --dp-note-ink:  #12324c;
+  --dp-tip-bg:        #e9f5ee;  --dp-tip-rule:   #1c6b3d;  --dp-tip-ink:   #12331f;
+  --dp-time-bg:       #eff0f6;  --dp-time-rule:  #454a72;  --dp-time-ink:  #23253c;
+  --dp-warn-bg:       #fdf2e0;  --dp-warn-rule:  #9a5a06;  --dp-warn-ink:  #452a02;
+  --dp-stop-bg:       #fceded;  --dp-stop-rule:  #a01c1c;  --dp-stop-ink:  #4d1010;
+
+  /* shape */
+  --dp-radius:        6px;
+  --dp-keyline:       4px;
+  --dp-shadow:        0 1px 2px rgba(16, 26, 38, 0.06);
+
+  /* type */
+  --dp-font: "Lato", "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+  --dp-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas,
+             "Liberation Mono", monospace;
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 3. Design tokens - dark
+ *
+ * Two triggers: the OS/browser preference, and an explicit opt-in attribute
+ * (`<html data-dp-theme="dark">`) so a reviewer can force it without changing
+ * system settings.
+ *
+ * NOTE: in dark mode the wrapper paints its own background (section 4). Canvas
+ * itself has no dark theme, so dark cards floating on a white Canvas page would
+ * look broken. Making the wrapper an explicit dark canvas keeps the palette
+ * internally consistent. This is documented in README.md.
+ * ------------------------------------------------------------------------ */
+
+@media (prefers-color-scheme: dark) {
+  .dp-wrapper {
+    --dp-bg:          #12161b;
+    --dp-surface:     #1b212a;
+    --dp-surface-2:   #232c37;
+    --dp-surface-3:   #28323e;
+    --dp-stripe:      #1f2731;
+    --dp-hover:       #2a3542;
+
+    --dp-ink:         #e4eaf1;
+    --dp-ink-soft:    #a3b0be;
+    --dp-ink-invert:  #eef4f8;
+    --dp-link:        #79c2ee;
+
+    --dp-line:        #33404d;
+    --dp-line-strong: #4b5b6b;
+    --dp-accent:      #1b465f;
+    --dp-accent-edge: #4fa3cd;
+
+    --dp-k-intro:      #6fb6da;
+    --dp-k-objectives: #5aa6da;
+    --dp-k-tasks:      #9b8ce0;
+    --dp-k-b0:         #3fb5a8;
+    --dp-k-b1:         #8fa3ba;
+    --dp-k-b2:         #54c184;
+    --dp-k-b3:         #d9a53c;
+    --dp-k-b5:         #bb8ce0;
+    --dp-k-b6:         #3fadd6;
+    --dp-k-b7:         #8aa9bd;
+
+    --dp-note-bg:     #152430;  --dp-note-rule: #5aa6da;  --dp-note-ink: #d9e8f6;
+    --dp-tip-bg:      #132218;  --dp-tip-rule:  #54c184;  --dp-tip-ink:  #d8efe0;
+    --dp-time-bg:     #1a1c26;  --dp-time-rule: #9497c9;  --dp-time-ink: #e0e1ef;
+    --dp-warn-bg:     #2a1e0a;  --dp-warn-rule: #e0a03a;  --dp-warn-ink: #f7e5c6;
+    --dp-stop-bg:     #2c1212;  --dp-stop-rule: #ef6a6a;  --dp-stop-ink: #f8d9d9;
+
+    --dp-shadow:      0 1px 2px rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Same palette, forced on. Duplicated rather than nested so it works without
+   CSS nesting support. */
+[data-dp-theme="dark"] .dp-wrapper,
+.dp-wrapper[data-dp-theme="dark"] {
+  --dp-bg:          #12161b;
+  --dp-surface:     #1b212a;
+  --dp-surface-2:   #232c37;
+  --dp-surface-3:   #28323e;
+  --dp-stripe:      #1f2731;
+  --dp-hover:       #2a3542;
+
+  --dp-ink:         #e4eaf1;
+  --dp-ink-soft:    #a3b0be;
+  --dp-ink-invert:  #eef4f8;
+  --dp-link:        #79c2ee;
+
+  --dp-line:        #33404d;
+  --dp-line-strong: #4b5b6b;
+  --dp-accent:      #1b465f;
+  --dp-accent-edge: #4fa3cd;
+
+  --dp-k-intro:      #6fb6da;
+  --dp-k-objectives: #5aa6da;
+  --dp-k-tasks:      #9b8ce0;
+  --dp-k-b0:         #3fb5a8;
+  --dp-k-b1:         #8fa3ba;
+  --dp-k-b2:         #54c184;
+  --dp-k-b3:         #d9a53c;
+  --dp-k-b5:         #bb8ce0;
+  --dp-k-b6:         #3fadd6;
+  --dp-k-b7:         #8aa9bd;
+
+  --dp-note-bg:     #152430;  --dp-note-rule: #5aa6da;  --dp-note-ink: #d9e8f6;
+  --dp-tip-bg:      #132218;  --dp-tip-rule:  #54c184;  --dp-tip-ink:  #d8efe0;
+  --dp-time-bg:     #1a1c26;  --dp-time-rule: #9497c9;  --dp-time-ink: #e0e1ef;
+  --dp-warn-bg:     #2a1e0a;  --dp-warn-rule: #e0a03a;  --dp-warn-ink: #f7e5c6;
+  --dp-stop-bg:     #2c1212;  --dp-stop-rule: #ef6a6a;  --dp-stop-ink: #f8d9d9;
+
+  --dp-shadow:      0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+/* Explicit light, for symmetry: lets a reviewer force light on a dark OS. */
+[data-dp-theme="light"] .dp-wrapper,
+.dp-wrapper[data-dp-theme="light"] {
+  --dp-bg:        #ffffff;
+  --dp-surface:   #f5f7f9;
+  --dp-surface-2: #eceff4;
+  --dp-surface-3: #e4e9f0;
+  --dp-stripe:    #f7f9fb;
+  --dp-hover:     #e9eef4;
+  --dp-ink:       #1a2027;
+  --dp-ink-soft:  #4d5866;
+  --dp-ink-invert:#ffffff;
+  --dp-link:      #0a5a8a;
+  --dp-line:      #d6dce4;
+  --dp-line-strong:#b6c0cc;
+  --dp-accent:    #14384f;
+  --dp-accent-edge:#2f7fa8;
+  --dp-k-intro:      #14384f;
+  --dp-k-objectives: #1f5c8f;
+  --dp-k-tasks:      #463c8c;
+  --dp-k-b0:         #12645d;
+  --dp-k-b1:         #3d4a5c;
+  --dp-k-b2:         #1c6b3d;
+  --dp-k-b3:         #755008;
+  --dp-k-b5:         #6a3d8c;
+  --dp-k-b6:         #0d6182;
+  --dp-k-b7:         #2f4858;
+  --dp-note-bg: #eaf2fa; --dp-note-rule: #1f5c8f; --dp-note-ink: #12324c;
+  --dp-tip-bg:  #e9f5ee; --dp-tip-rule:  #1c6b3d; --dp-tip-ink:  #12331f;
+  --dp-time-bg: #eff0f6; --dp-time-rule: #454a72; --dp-time-ink: #23253c;
+  --dp-warn-bg: #fdf2e0; --dp-warn-rule: #9a5a06; --dp-warn-ink: #452a02;
+  --dp-stop-bg: #fceded; --dp-stop-rule: #a01c1c; --dp-stop-ink: #4d1010;
+  --dp-shadow:  0 1px 2px rgba(16, 26, 38, 0.06);
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 4. Page wrapper
+ *
+ * Sized for Canvas, which hands user content a container around 1100px wide.
+ * The 68ch measure keeps prose lines readable even when the container is wide;
+ * tables and code are allowed to use the full width.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper {
+  box-sizing: border-box;
+  max-width: 1100px;
+  margin: 0 auto 2rem;
+  padding: 0;
+  color: var(--dp-ink);
+  font-family: var(--dp-font);
+  font-size: 1rem;
+  line-height: 1.6;
+  -webkit-text-size-adjust: 100%;
+}
+
+.dp-wrapper *,
+.dp-wrapper *::before,
+.dp-wrapper *::after {
+  box-sizing: border-box;
+}
+
+/* Only paint a background when the palette is dark. In light mode the wrapper
+   stays transparent so it sits on Canvas's own white page cleanly. */
+@media (prefers-color-scheme: dark) {
+  .dp-wrapper {
+    background: var(--dp-bg);
+    padding: 0 0 1px;
+    border-radius: var(--dp-radius);
+  }
+}
+
+[data-dp-theme="dark"] .dp-wrapper,
+.dp-wrapper[data-dp-theme="dark"] {
+  background: var(--dp-bg);
+  padding: 0 0 1px;
+  border-radius: var(--dp-radius);
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 5. Header bar
+ *
+ * One solid bar at the top of every page carrying the page title, with a
+ * brighter edge underneath so the bar reads as a deliberate masthead rather
+ * than a coloured box. This is what delimits one page from the next.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper .dp-header,
+.dp-wrapper header.dp-basic-bar {
+  display: block;
+  margin: 0 0 1.5rem;
+  padding: 1.05rem 1.5rem 1rem;
+  background: var(--dp-accent);
+  border-radius: var(--dp-radius) var(--dp-radius) 0 0;
+  border-bottom: 4px solid var(--dp-accent-edge);
+}
+
+.dp-wrapper .dp-header .dp-heading,
+.dp-wrapper .dp-header h2 {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  color: var(--dp-ink-invert);
+  font-family: var(--dp-font);
+  font-size: 1.5rem;      /* the markup carries an inline 18pt on the span */
+  font-weight: 700;
+  line-height: 1.25;
+  letter-spacing: -0.01em;
+}
+
+.dp-wrapper .dp-header .dp-header-title,
+.dp-wrapper .dp-header .dp-header-pre,
+.dp-wrapper .dp-header .dp-header-pre-1,
+.dp-wrapper .dp-header .dp-header-pre-2 {
+  color: var(--dp-ink-invert);
+}
+
+/* Template pages split the title into a lead-in and a remainder. Give the
+   lead-in a lighter weight so it reads as a kicker. */
+.dp-wrapper .dp-header .dp-header-pre-1 {
+  font-weight: 400;
+  opacity: 0.85;
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 6. Content blocks
+ *
+ * Cards, but quiet ones: a tinted surface, a hairline, and a coloured keyline
+ * down the left edge. No heavy borders anywhere. The keyline colour is what
+ * distinguishes one kind of block from another.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper .dp-content-block {
+  margin: 0 0 1.25rem;
+  padding: 1.1rem 1.35rem;
+  background: var(--dp-surface);
+  border: 1px solid var(--dp-line);
+  border-left: var(--dp-keyline) solid var(--dp-k-b1);
+  border-radius: 0 var(--dp-radius) var(--dp-radius) 0;
+  box-shadow: var(--dp-shadow);
+}
+
+.dp-wrapper .dp-content-block > *:first-child { margin-top: 0; }
+.dp-wrapper .dp-content-block > *:last-child  { margin-bottom: 0; }
+
+/* The introduction is the page's lead paragraph, not a card. Strip the fill
+   and let the type do the work. */
+.dp-wrapper .dp-content-block.kl_introduction {
+  background: transparent;
+  border: 0;
+  border-left: var(--dp-keyline) solid var(--dp-k-intro);
+  border-radius: 0;
+  box-shadow: none;
+  padding: 0.15rem 0 0.15rem 1.15rem;
+  margin-bottom: 1.5rem;
+  font-size: 1.075rem;
+  line-height: 1.65;
+  color: var(--dp-ink);
+}
+
+/* Keyline colour per block family. Names on the right are the authoring
+   directives in tools/blocks.py that produce each class. */
+.dp-wrapper .dp-content-block.kl_objectives2    { border-left-color: var(--dp-k-objectives); } /* objectives */
+.dp-wrapper .dp-content-block.kl_assignments2   { border-left-color: var(--dp-k-tasks); }      /* tasks */
+.dp-wrapper .dp-content-block.kl_custom_block_0 { border-left-color: var(--dp-k-b0); }         /* learned */
+.dp-wrapper .dp-content-block.kl_custom_block_1 { border-left-color: var(--dp-k-b1); }         /* section, directions, did */
+.dp-wrapper .dp-content-block.kl_custom_block_2 { border-left-color: var(--dp-k-b2); }         /* grading, next */
+.dp-wrapper .dp-content-block.kl_custom_block_3 { border-left-color: var(--dp-k-b3); }         /* submit, sources */
+.dp-wrapper .dp-content-block.kl_custom_block_5 { border-left-color: var(--dp-k-b5); }         /* reading bridge */
+.dp-wrapper .dp-content-block.kl_custom_block_6 { border-left-color: var(--dp-k-b6); }         /* checkpoint */
+
+/* Authorization and Scope. This is the one block whose content has legal
+   weight, so it gets a full outline: it should read as a formal clause, not as
+   an alert. Urgency is reserved for the warning and stop callouts. */
+.dp-wrapper .dp-content-block.kl_custom_block_7 {
+  border-color: var(--dp-line-strong);
+  border-left-color: var(--dp-k-b7);
+  border-left-width: 6px;
+  background: var(--dp-bg);
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 7. Block headings and icons
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper .dp-content-block h3 {
+  display: flex;
+  align-items: baseline;
+  gap: 0.55rem;
+  margin: 0 0 0.7rem;
+  padding: 0 0 0.5rem;
+  border-bottom: 1px solid var(--dp-line);
+  color: var(--dp-ink);
+  font-family: var(--dp-font);
+  font-size: 1.17rem;     /* matches the inline 14pt on the title span */
+  font-weight: 700;
+  line-height: 1.3;
+  letter-spacing: -0.005em;
+}
+
+.dp-wrapper .dp-content-block.kl_custom_block_7 h3 {
+  border-bottom-color: var(--dp-line-strong);
+}
+
+/* Icons. The markup is
+     <i class="fas fa-x dp-i-size-small" aria-hidden="true">
+       <span class="dp-icon-content" style="display:none">&nbsp;</span></i>
+   so the glyph has to come from ::before. <i> is italic by default; reset it. */
+.dp-wrapper .fas,
+.dp-wrapper .far,
+.dp-wrapper .fa {
+  display: inline-block;
+  font-family: "ITSY Shim Icons";
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  text-transform: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  width: 1.05em;
+  text-align: center;
+  flex: 0 0 auto;
+}
+
+.dp-wrapper .fas { font-weight: 900; }
+.dp-wrapper .far { font-weight: 400; }
+.dp-wrapper .fa  { font-weight: 900; }
+
+.dp-wrapper .dp-i-size-small { font-size: 0.95em; }
+
+/* The template hides this span inline; declared here so it stays hidden even
+   if a page is authored without the inline style. */
+.dp-wrapper .dp-icon-content { display: none !important; }
+
+/* Icon colour follows the block's keyline, so the icon reinforces the same
+   signal the left edge does. */
+.dp-wrapper .dp-content-block h3 .fas,
+.dp-wrapper .dp-content-block h3 .far { color: var(--dp-k-b1); }
+.dp-wrapper .kl_objectives2    h3 .fas { color: var(--dp-k-objectives); }
+.dp-wrapper .kl_assignments2   h3 .fas { color: var(--dp-k-tasks); }
+.dp-wrapper .kl_custom_block_0 h3 .fas,
+.dp-wrapper .kl_custom_block_0 h3 .far { color: var(--dp-k-b0); }
+.dp-wrapper .kl_custom_block_2 h3 .fas,
+.dp-wrapper .kl_custom_block_2 h3 .far { color: var(--dp-k-b2); }
+.dp-wrapper .kl_custom_block_3 h3 .fas,
+.dp-wrapper .kl_custom_block_3 h3 .far { color: var(--dp-k-b3); }
+.dp-wrapper .kl_custom_block_5 h3 .fas { color: var(--dp-k-b5); }
+.dp-wrapper .kl_custom_block_6 h3 .fas { color: var(--dp-k-b6); }
+.dp-wrapper .kl_custom_block_7 h3 .fas { color: var(--dp-k-b7); }
+
+/* --- The 18 glyphs this course uses -------------------------------------
+ * Left column is the Font Awesome 5 class name the content carries; the
+ * codepoint is that icon's position in the embedded subset. FA6 renamed
+ * several of these, and the FA6 name is noted where it differs. */
+.dp-wrapper .fa-arrow-alt-circle-right::before { content: "\f35a"; } /* fa6: circle-right */
+.dp-wrapper .fa-book-open::before              { content: "\f518"; }
+.dp-wrapper .fa-book-reader::before            { content: "\f5da"; } /* fa6: book-open-reader */
+.dp-wrapper .fa-bullseye::before               { content: "\f140"; }
+.dp-wrapper .fa-check-square::before           { content: "\f14a"; } /* fa6: square-check */
+.dp-wrapper .fa-clipboard-check::before        { content: "\f46c"; }
+.dp-wrapper .fa-clock::before                  { content: "\f017"; }
+.dp-wrapper .fa-exclamation-circle::before     { content: "\f06a"; } /* fa6: circle-exclamation */
+.dp-wrapper .fa-exclamation-triangle::before   { content: "\f071"; } /* fa6: triangle-exclamation */
+.dp-wrapper .fa-flag-checkered::before         { content: "\f11e"; }
+.dp-wrapper .fa-folder-open::before            { content: "\f07c"; }
+.dp-wrapper .fa-hand-paper::before             { content: "\f256"; } /* fa6: hand */
+.dp-wrapper .fa-info-circle::before            { content: "\f05a"; } /* fa6: circle-info */
+.dp-wrapper .fa-lightbulb::before              { content: "\f0eb"; }
+.dp-wrapper .fa-list-alt::before               { content: "\f022"; } /* fa6: rectangle-list */
+.dp-wrapper .fa-tasks::before                  { content: "\f0ae"; } /* fa6: list-check */
+.dp-wrapper .fa-upload::before                 { content: "\f093"; }
+.dp-wrapper .fa-user-shield::before            { content: "\f505"; }
+
+/* Any fa-* class not in the subset would otherwise render nothing at all. A
+   bullet is a deliberate, visible fallback: never an empty box, never a
+   tofu square. Overridden by every rule above. */
+.dp-wrapper [class*="fa-"]::before {
+  content: "\25cf";
+  font-family: var(--dp-font);
+  font-weight: 700;
+  font-size: 0.7em;
+}
+/* Re-assert the real glyphs at higher specificity than the fallback. */
+.dp-wrapper .fas[class*="fa-"]::before,
+.dp-wrapper .far[class*="fa-"]::before,
+.dp-wrapper .fa[class*="fa-"]::before {
+  font-family: "ITSY Shim Icons";
+  font-size: 1em;
+}
+.dp-wrapper .fas.fa-arrow-alt-circle-right::before { content: "\f35a"; font-weight: 900; }
+.dp-wrapper .fas.fa-book-open::before              { content: "\f518"; font-weight: 900; }
+.dp-wrapper .fas.fa-book-reader::before            { content: "\f5da"; font-weight: 900; }
+.dp-wrapper .fas.fa-bullseye::before               { content: "\f140"; font-weight: 900; }
+.dp-wrapper .fas.fa-check-square::before           { content: "\f14a"; font-weight: 900; }
+.dp-wrapper .fas.fa-clipboard-check::before        { content: "\f46c"; font-weight: 900; }
+.dp-wrapper .far.fa-clock::before                  { content: "\f017"; font-weight: 400; }
+.dp-wrapper .fas.fa-exclamation-circle::before     { content: "\f06a"; font-weight: 900; }
+.dp-wrapper .fas.fa-exclamation-triangle::before   { content: "\f071"; font-weight: 900; }
+.dp-wrapper .fas.fa-flag-checkered::before         { content: "\f11e"; font-weight: 900; }
+.dp-wrapper .far.fa-folder-open::before            { content: "\f07c"; font-weight: 400; }
+.dp-wrapper .fas.fa-hand-paper::before             { content: "\f256"; font-weight: 900; }
+.dp-wrapper .fas.fa-info-circle::before            { content: "\f05a"; font-weight: 900; }
+.dp-wrapper .fas.fa-lightbulb::before              { content: "\f0eb"; font-weight: 900; }
+.dp-wrapper .fas.fa-list-alt::before               { content: "\f022"; font-weight: 900; }
+.dp-wrapper .fas.fa-tasks::before                  { content: "\f0ae"; font-weight: 900; }
+.dp-wrapper .fas.fa-upload::before                 { content: "\f093"; font-weight: 900; }
+.dp-wrapper .fas.fa-user-shield::before            { content: "\f505"; font-weight: 900; }
+
+
+/* ---------------------------------------------------------------------------
+ * 8. Prose
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper p,
+.dp-wrapper li {
+  max-width: 68ch;   /* measure, not container width */
+}
+
+.dp-wrapper p {
+  margin: 0 0 0.85rem;
+}
+
+.dp-wrapper ul,
+.dp-wrapper ol {
+  margin: 0 0 0.9rem;
+  padding-left: 1.5rem;
+}
+
+.dp-wrapper li { margin: 0 0 0.35rem; }
+.dp-wrapper li > ul,
+.dp-wrapper li > ol { margin-top: 0.35rem; }
+
+.dp-wrapper strong { font-weight: 700; color: var(--dp-ink); }
+.dp-wrapper em     { font-style: italic; }
+
+.dp-wrapper a {
+  color: var(--dp-link);
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  text-decoration-thickness: 1px;
+}
+
+.dp-wrapper a:hover,
+.dp-wrapper a:focus {
+  text-decoration-thickness: 2px;
+}
+
+.dp-wrapper a:focus-visible {
+  outline: 2px solid var(--dp-accent-edge);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+.dp-wrapper hr {
+  height: 1px;
+  margin: 1.25rem 0;
+  border: 0;
+  background: var(--dp-line);
+}
+
+.dp-wrapper blockquote {
+  margin: 0 0 0.9rem;
+  padding: 0.15rem 0 0.15rem 1rem;
+  border-left: 3px solid var(--dp-line-strong);
+  color: var(--dp-ink-soft);
+}
+
+.dp-wrapper img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 9. Callouts
+ *
+ * Five flavours, and they must be told apart WITHOUT colour. Colour alone
+ * fails an accessibility review, so each flavour carries three independent
+ * cues: a distinct icon, a distinct border treatment, and a printed label.
+ *
+ *   flavour   left rule        outline     label      reads as
+ *   --------  ---------------  ----------  ---------  -----------------
+ *   note      4px solid        none        NOTE       neutral aside
+ *   tip       4px dashed       none        TIP        optional advice
+ *   time      4px dotted       none        TIMING     scheduling detail
+ *   warning   7px solid        1px solid   WARNING    act carefully
+ *   stop      7px solid        2px solid   STOP       do not proceed
+ *
+ * Border weight and outline weight both climb toward stop, so the urgency
+ * ordering survives greyscale printing and colour-blind vision.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper .dp-callout {
+  position: relative;
+  padding: 1rem 1.35rem 1rem 1.35rem;
+  border: 1px solid transparent;
+  border-radius: 0 var(--dp-radius) var(--dp-radius) 0;
+  box-shadow: none;
+}
+
+/* The label sits inline above the heading rather than floating, so it never
+   collides with a long title and it survives a narrow viewport. */
+.dp-wrapper .dp-callout::before {
+  display: block;
+  margin: 0 0 0.4rem;
+  font-family: var(--dp-font);
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.dp-wrapper .dp-callout h3 {
+  margin-bottom: 0.6rem;
+  padding-bottom: 0.45rem;
+}
+
+/* --- note ---------------------------------------------------------------- */
+.dp-wrapper .dp-callout-note {
+  background: var(--dp-note-bg);
+  border-left: 4px solid var(--dp-note-rule);
+  color: var(--dp-note-ink);
+}
+.dp-wrapper .dp-callout-note::before  { content: "Note"; color: var(--dp-note-rule); }
+.dp-wrapper .dp-callout-note h3       { color: var(--dp-note-ink); border-bottom-color: var(--dp-note-rule); }
+.dp-wrapper .dp-callout-note h3 .fas,
+.dp-wrapper .dp-callout-note h3 .far  { color: var(--dp-note-rule); }
+.dp-wrapper .dp-callout-note strong   { color: var(--dp-note-ink); }
+
+/* --- tip ----------------------------------------------------------------- */
+.dp-wrapper .dp-callout-tip {
+  background: var(--dp-tip-bg);
+  border-left: 4px dashed var(--dp-tip-rule);
+  color: var(--dp-tip-ink);
+}
+.dp-wrapper .dp-callout-tip::before   { content: "Tip"; color: var(--dp-tip-rule); }
+.dp-wrapper .dp-callout-tip h3        { color: var(--dp-tip-ink); border-bottom-color: var(--dp-tip-rule); }
+.dp-wrapper .dp-callout-tip h3 .fas,
+.dp-wrapper .dp-callout-tip h3 .far   { color: var(--dp-tip-rule); }
+.dp-wrapper .dp-callout-tip strong    { color: var(--dp-tip-ink); }
+
+/* --- time ---------------------------------------------------------------- */
+.dp-wrapper .dp-callout-time {
+  background: var(--dp-time-bg);
+  border-left: 4px dotted var(--dp-time-rule);
+  color: var(--dp-time-ink);
+}
+.dp-wrapper .dp-callout-time::before  { content: "Timing"; color: var(--dp-time-rule); }
+.dp-wrapper .dp-callout-time h3       { color: var(--dp-time-ink); border-bottom-color: var(--dp-time-rule); }
+.dp-wrapper .dp-callout-time h3 .fas,
+.dp-wrapper .dp-callout-time h3 .far  { color: var(--dp-time-rule); }
+.dp-wrapper .dp-callout-time strong   { color: var(--dp-time-ink); }
+
+/* --- warning ------------------------------------------------------------- */
+.dp-wrapper .dp-callout-warning {
+  background: var(--dp-warn-bg);
+  border: 1px solid var(--dp-warn-rule);
+  border-left: 7px solid var(--dp-warn-rule);
+  color: var(--dp-warn-ink);
+}
+.dp-wrapper .dp-callout-warning::before { content: "Warning"; color: var(--dp-warn-ink); }
+.dp-wrapper .dp-callout-warning h3      { color: var(--dp-warn-ink); border-bottom-color: var(--dp-warn-rule); }
+.dp-wrapper .dp-callout-warning h3 .fas,
+.dp-wrapper .dp-callout-warning h3 .far { color: var(--dp-warn-rule); }
+.dp-wrapper .dp-callout-warning strong  { color: var(--dp-warn-ink); }
+
+/* --- stop ---------------------------------------------------------------- */
+.dp-wrapper .dp-callout-stop {
+  background: var(--dp-stop-bg);
+  border: 2px solid var(--dp-stop-rule);
+  border-left: 7px solid var(--dp-stop-rule);
+  color: var(--dp-stop-ink);
+}
+.dp-wrapper .dp-callout-stop::before  { content: "Stop"; color: var(--dp-stop-ink); }
+.dp-wrapper .dp-callout-stop h3       { color: var(--dp-stop-ink); border-bottom-color: var(--dp-stop-rule); }
+.dp-wrapper .dp-callout-stop h3 .fas,
+.dp-wrapper .dp-callout-stop h3 .far  { color: var(--dp-stop-rule); }
+.dp-wrapper .dp-callout-stop strong   { color: var(--dp-stop-ink); }
+
+/* A bare kl_custom_block_4 with no flavour class falls back to note. */
+.dp-wrapper .dp-content-block.kl_custom_block_4:not(.dp-callout) {
+  background: var(--dp-note-bg);
+  border-left-color: var(--dp-note-rule);
+}
+
+/* Links inside callouts inherit the flavour ink, so they stay legible on a
+   tinted background. */
+.dp-wrapper .dp-callout a { color: inherit; text-decoration-thickness: 1.5px; }
+
+
+/* ---------------------------------------------------------------------------
+ * 10. Tables
+ *
+ * The Canvas table classes the content emits:
+ *   ic-Table  table-bordered  ic-Table--striped  ic-Table--hover-row
+ *   ic-Table--condensed
+ * Canvas ships its own rules for some of these; account CSS loads last, so
+ * these win at equal specificity.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper table {
+  width: 100%;
+  max-width: 100%;
+  margin: 0 0 1rem;
+  border-collapse: collapse;
+  border-spacing: 0;
+  font-size: 0.95rem;
+  line-height: 1.45;
+  background: var(--dp-bg);
+}
+
+.dp-wrapper table.ic-Table {
+  border: 1px solid var(--dp-line-strong);
+  border-radius: var(--dp-radius);
+  overflow: hidden;
+}
+
+.dp-wrapper table caption,
+.dp-wrapper .dp-caption-t {
+  margin: 0 0 0.45rem;
+  color: var(--dp-ink-soft);
+  font-size: 0.875rem;
+  font-style: italic;
+  text-align: left;
+  caption-side: top;
+}
+
+.dp-wrapper table th,
+.dp-wrapper table td {
+  padding: 0.6rem 0.75rem;
+  text-align: left;
+  vertical-align: top;
+  border: 0;
+  border-bottom: 1px solid var(--dp-line);
+  color: var(--dp-ink);
+  max-width: none;
+}
+
+.dp-wrapper table thead th {
+  background: var(--dp-surface-3);
+  color: var(--dp-ink);
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 0.045em;
+  text-transform: uppercase;
+  border-bottom: 2px solid var(--dp-line-strong);
+  white-space: nowrap;
+}
+
+/* Row headers. The template uses <th scope="row"> for the first cell, which
+   carries real meaning; give it weight without the header-row treatment. */
+.dp-wrapper table tbody th,
+.dp-wrapper table th[scope="row"] {
+  background: transparent;
+  font-weight: 700;
+  text-transform: none;
+  letter-spacing: 0;
+  font-size: 0.95rem;
+  white-space: normal;
+}
+
+.dp-wrapper table tbody tr:last-child th,
+.dp-wrapper table tbody tr:last-child td { border-bottom: 0; }
+
+.dp-wrapper table.table-bordered th,
+.dp-wrapper table.table-bordered td {
+  border-right: 1px solid var(--dp-line);
+}
+.dp-wrapper table.table-bordered th:last-child,
+.dp-wrapper table.table-bordered td:last-child { border-right: 0; }
+
+.dp-wrapper table.ic-Table--striped tbody tr:nth-child(odd) { background: var(--dp-stripe); }
+
+.dp-wrapper table.ic-Table--hover-row tbody tr:hover { background: var(--dp-hover); }
+
+.dp-wrapper table.ic-Table--condensed th,
+.dp-wrapper table.ic-Table--condensed td { padding: 0.45rem 0.7rem; }
+
+/* Tables get the full container width and scroll rather than squeeze. */
+.dp-wrapper .dp-content-block > table { display: table; }
+
+@media (max-width: 640px) {
+  .dp-wrapper table { font-size: 0.875rem; }
+  .dp-wrapper table thead th { white-space: normal; }
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 11. Code
+ *
+ * Code has to be unmistakably code: a darker slab, a monospace face, a left
+ * keyline, and horizontal scrolling instead of wrapping so a command line is
+ * never silently broken across lines.
+ * ------------------------------------------------------------------------ */
+
+.dp-wrapper code,
+.dp-wrapper kbd,
+.dp-wrapper samp,
+.dp-wrapper pre {
+  font-family: var(--dp-mono);
+  font-size: 0.9em;
+  font-variant-ligatures: none;
+  tab-size: 4;
+}
+
+/* inline */
+.dp-wrapper code {
+  padding: 0.1em 0.34em;
+  background: var(--dp-surface-2);
+  border: 1px solid var(--dp-line);
+  border-radius: 3px;
+  color: var(--dp-ink);
+  white-space: nowrap;
+}
+
+/* block */
+.dp-wrapper pre {
+  margin: 0 0 1rem;
+  padding: 0.85rem 1rem;
+  max-width: 100%;
+  overflow-x: auto;
+  background: var(--dp-surface-2);
+  border: 1px solid var(--dp-line);
+  border-left: var(--dp-keyline) solid var(--dp-line-strong);
+  border-radius: 0 var(--dp-radius) var(--dp-radius) 0;
+  color: var(--dp-ink);
+  font-size: 0.875rem;
+  line-height: 1.55;
+  white-space: pre;
+  -webkit-overflow-scrolling: touch;
+}
+
+.dp-wrapper pre code {
+  padding: 0;
+  background: none;
+  border: 0;
+  border-radius: 0;
+  font-size: inherit;
+  white-space: pre;
+  color: inherit;
+}
+
+/* Fenced blocks carry language-* from the markdown build. No syntax
+   highlighting is attempted; the language is shown as a small corner tag so a
+   reader knows what they are looking at. */
+.dp-wrapper pre:has(> code[class*="language-"]) { position: relative; padding-top: 1.6rem; }
+.dp-wrapper pre > code[class*="language-"]::before {
+  position: absolute;
+  top: 0.4rem;
+  right: 0.7rem;
+  color: var(--dp-ink-soft);
+  font-family: var(--dp-font);
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+.dp-wrapper pre > code.language-python::before { content: "Python"; }
+.dp-wrapper pre > code.language-json::before   { content: "JSON"; }
+.dp-wrapper pre > code.language-yaml::before   { content: "YAML"; }
+.dp-wrapper pre > code.language-bash::before   { content: "Shell"; }
+.dp-wrapper pre > code.language-text::before   { content: "Output"; }
+
+/* Code inside a callout keeps the callout's ink so it stays legible on tint. */
+.dp-wrapper .dp-callout code,
+.dp-wrapper .dp-callout pre {
+  background: var(--dp-bg);
+  color: var(--dp-ink);
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 12. Template leftovers
+ *
+ * Classes that appear in the NLC template's boilerplate pages (academic
+ * integrity, tech support, and so on) but that tools/blocks.py never emits.
+ * These pages are carried over as-is, so they need to be readable too.
+ * ------------------------------------------------------------------------ */
+
+/* Accordions. DesignPLUS collapses these with JavaScript. There is no
+   JavaScript here by design, so they render open, as a labelled stack. */
+.dp-wrapper .dp-panels-wrapper { margin: 0 0 1.25rem; }
+
+.dp-wrapper .dp-panel-group {
+  margin: 0 0 0.6rem;
+  border: 1px solid var(--dp-line);
+  border-radius: var(--dp-radius);
+  overflow: hidden;
+  background: var(--dp-bg);
+}
+
+.dp-wrapper .dp-panel-heading {
+  margin: 0;
+  padding: 0.65rem 1rem;
+  background: var(--dp-surface-3);
+  border-bottom: 1px solid var(--dp-line);
+  color: var(--dp-ink);
+  font-size: 1.02rem;
+  font-weight: 700;
+}
+
+.dp-wrapper .dp-panel-content {
+  display: block;      /* never hidden: nothing here can open it */
+  padding: 0.85rem 1rem;
+}
+
+.dp-wrapper .dp-panel-content > *:last-child { margin-bottom: 0; }
+
+/* Images */
+.dp-wrapper .dp-image-bordered { border: 1px solid var(--dp-line-strong); }
+.dp-wrapper .dp-image-padded   { padding: 6px; background: var(--dp-bg); }
+.dp-wrapper .dp-image-shadow   { box-shadow: 0 2px 8px rgba(16, 26, 38, 0.18); }
+.dp-wrapper .dp-embed-wrapper  { max-width: 100%; margin: 0 0 1rem; }
+
+/* Bootstrap utilities the template sprinkles around */
+.dp-wrapper .text-center   { text-align: center; }
+.dp-wrapper .float-end     { float: right; margin-left: 1rem; }
+.dp-wrapper .mb-3          { margin-bottom: 1rem; }
+.dp-wrapper .ms-3          { margin-left: 1rem; }
+.dp-wrapper .container-fluid { width: 100%; }
+.dp-wrapper .row           { display: flex; flex-wrap: wrap; gap: 1rem; }
+.dp-wrapper .card {
+  flex: 1 1 260px;
+  background: var(--dp-bg);
+  border: 1px solid var(--dp-line);
+  border-radius: var(--dp-radius);
+}
+.dp-wrapper .card-body { padding: 0.9rem 1rem; }
+.dp-wrapper .card-text { margin: 0; }
+
+.dp-wrapper .btn {
+  display: inline-block;
+  padding: 0.45rem 0.95rem;
+  background: var(--dp-accent);
+  border: 1px solid var(--dp-accent);
+  border-radius: var(--dp-radius);
+  color: var(--dp-ink-invert);
+  font-weight: 700;
+  text-decoration: none;
+}
+.dp-wrapper .btn:hover { background: var(--dp-accent-edge); border-color: var(--dp-accent-edge); }
+.dp-wrapper .btn-success { background: var(--dp-k-b2); border-color: var(--dp-k-b2); }
+
+/* Unfilled template placeholders. The content build asserts that zero of
+   these survive to publication; this makes any survivor impossible to miss
+   during review. The inline background-color cannot be overridden without
+   !important, so flag it with an outline instead. */
+.dp-wrapper .phpally-ignore {
+  outline: 2px dashed var(--dp-stop-rule);
+  outline-offset: 1px;
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 13. Accessibility modes
+ * ------------------------------------------------------------------------ */
+
+/* Users who ask for more contrast get thicker structure, not just darker ink.
+   Canvas's own High Contrast UI setting does not expose a hook to user CSS, so
+   this keys off the OS/browser preference. */
+@media (prefers-contrast: more) {
+  .dp-wrapper .dp-content-block { border-color: var(--dp-line-strong); }
+  .dp-wrapper .dp-content-block h3 { border-bottom-color: var(--dp-line-strong); }
+  .dp-wrapper table th,
+  .dp-wrapper table td { border-bottom-color: var(--dp-line-strong); }
+  .dp-wrapper a { text-decoration-thickness: 2px; }
+  .dp-wrapper .dp-callout { border-width: 2px; }
+  .dp-wrapper .dp-callout-stop { border-width: 3px; }
+}
+
+/* Windows High Contrast / forced-colors: hand everything back to the OS
+   palette but keep the structure, which is what carries the meaning here. */
+@media (forced-colors: active) {
+  .dp-wrapper .dp-content-block,
+  .dp-wrapper .dp-callout,
+  .dp-wrapper table.ic-Table,
+  .dp-wrapper pre,
+  .dp-wrapper .dp-panel-group {
+    border: 1px solid CanvasText;
+    forced-color-adjust: none;
+    background: Canvas;
+    color: CanvasText;
+  }
+  .dp-wrapper .dp-content-block { border-left-width: 4px; }
+  .dp-wrapper .dp-callout-warning { border-left-width: 7px; }
+  .dp-wrapper .dp-callout-stop    { border-left-width: 7px; border-width: 3px; }
+  .dp-wrapper .dp-header { background: Canvas; color: CanvasText; border: 2px solid CanvasText; }
+  .dp-wrapper .dp-header .dp-heading,
+  .dp-wrapper .dp-header .dp-header-title { color: CanvasText; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .dp-wrapper * { transition: none !important; animation: none !important; }
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 14. Print
+ *
+ * Students print the Rules of Engagement. Callout urgency has to survive the
+ * loss of colour, which is why the border weights above do the real work.
+ * ------------------------------------------------------------------------ */
+
+@media print {
+  .dp-wrapper {
+    max-width: none;
+    background: #ffffff;
+    color: #000000;
+  }
+  .dp-wrapper .dp-header {
+    background: #ffffff;
+    color: #000000;
+    border: 0;
+    border-bottom: 3px solid #000000;
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .dp-wrapper .dp-header .dp-heading,
+  .dp-wrapper .dp-header .dp-header-title { color: #000000; }
+  .dp-wrapper .dp-content-block {
+    background: #ffffff;
+    box-shadow: none;
+    border-color: #999999;
+    break-inside: avoid;
+  }
+  .dp-wrapper .dp-callout { break-inside: avoid; }
+  .dp-wrapper pre { white-space: pre-wrap; break-inside: avoid; }
+  .dp-wrapper a { color: #000000; }
+  .dp-wrapper a[href^="http"]::after {
+    content: " (" attr(href) ")";
+    font-size: 0.8em;
+    word-break: break-all;
+  }
+}
+
+
+/* ---------------------------------------------------------------------------
+ * 15. Narrow viewports
+ * ------------------------------------------------------------------------ */
+
+@media (max-width: 560px) {
+  .dp-wrapper .dp-header      { padding: 0.85rem 1rem 0.8rem; }
+  .dp-wrapper .dp-content-block { padding: 0.9rem 1rem; }
+  .dp-wrapper .dp-callout       { padding: 0.9rem 1rem; }
+  .dp-wrapper .dp-content-block h3 { font-size: 1.08rem; }
+  .dp-wrapper .dp-header .dp-heading { font-size: 1.3rem; }
+}

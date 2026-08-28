@@ -2,7 +2,7 @@
 
 **Purpose.** A single place recording what has been decided, what remains open, and what has been deliberately placed out of scope. Maintained alongside the course blueprint so that Phase 2 onward can proceed without relitigating settled questions.
 
-**Last updated:** 2026-08-27
+**Last updated:** 2026-08-28
 
 ---
 
@@ -128,10 +128,10 @@ Ordered by how much they could cost.
 |---|---|---|
 | 0 | Repository scaffolding; Canvas deployed locally; admin login verified | **Complete.** See section H |
 | 1 | Course blueprint | **Complete**, reviewed and revised |
-| 2 | Lab repository: agent skeleton, test harness, vulnerable target, working end to end | Next |
-| 3 | Course content authored as markdown, per module | |
-| 4 | Canvas population, Common Cartridge primary | |
-| 5 | Demo runbook and end-to-end verification | |
+| 2 | Lab repository: agent skeleton, test harness, vulnerable target, working end to end | **Complete.** See section I |
+| 3 | Course content authored as markdown, per module | **Complete.** 57 pages, 6 quizzes, 5 rubrics |
+| 4 | Canvas population, Common Cartridge primary | **Complete.** See section J |
+| 5 | Demo runbook and end-to-end verification | **Complete.** `RUNBOOK.md` |
 
 ---
 
@@ -180,3 +180,128 @@ Completed and verified end to end on 2026-08-27, on macOS with colima (6 CPU, 16
 **Not encountered:** the `bundler-multilock` failure from issue #2520 did not occur. The lockfiles synced without intervention.
 
 **Consequence for the demo:** the `ahamana/canvas-lms-docker` fallback is not needed. The demo runs from the official Instructure repository, which is what the brief asked for and is the more defensible thing to show a reviewer.
+
+
+---
+
+## I. Phase 2 and 3 Result: Labs and Content
+
+**Lab repository.** Working end to end offline, with no API key. The agent
+extends through five marked extension points; HelpDesk Lite carries five
+planted flaws, each marked in its own source; the harness runs N-of-M trials
+with an asymmetric threshold and four ranked detectors. The worked solution
+passes 55 of 55 autograder tests, which is the only way to know an autograder
+is satisfiable.
+
+**Course content.** 57 pages, all rendering to the NLC template's DesignPLUS
+markup, mean Flesch-Kincaid grade **4.40** against a limit of 8.0. Six quizzes,
+93 items, every one tagged to an outcome. Five rubrics, all balancing to their
+assignment's point total.
+
+**Four adversarial reviews were run** with different expert framings: offensive
+red team, Python correctness, instructional design, and security assessment
+methodology. They found defects that mattered, and the six worst were all the
+same shape: **the harness reporting a comforting result that was not true.**
+
+| Defect | Why it mattered |
+|---|---|
+| A canary that disagreed with the seeded database reported successful exfiltration as MITIGATED, while the detector self-test passed | The exact failure the whole design exists to prevent. Now checked in preflight, which refuses to run |
+| MITIGATED could be reported from a single completed trial | Four rate-limited trials and one clean miss read as a working fix |
+| `tool_shape` returned "my assertion held" where the runner read "the attack landed" | A student's working defense would be reported as a vulnerability |
+| A blocked call's arguments counted as a leak | Same, by a different route |
+| Deleting `send_email` passed every control | "Remediation" would have meant removing the feature |
+| Scope was enforced in the harness but not in the tools | The CLI would reach any host in the settings file |
+
+Two more worth recording because they are about the promise the course makes
+about itself. `requests` honours `HTTP_PROXY`, so on a managed college laptop
+loopback traffic would have left the machine, carrying the ticket data and the
+system prompt with it; sessions now set `trust_env = False`. And nothing
+enforced that the answer key stays out of the student repository, which was a
+promise in three README files with no mechanism behind it;
+`scripts/build_student_repo.py` now refuses to publish a tree that still
+contains it.
+
+**Framework mappings were corrected** against ATLAS: `AML.T0086` removed from
+A2, which proves mail left but says nothing about what was in it;
+`AML.T0080` corrected to `AML.T0070` on A5, because a retrieved knowledge base
+article is RAG poisoning rather than agent context poisoning; `AML.T0085.001`
+removed from A6 in favour of CWE-862, because the endpoint has no
+authentication at all so the agent is a convenience rather than the
+vulnerability; and A4's ATLAS list left deliberately empty, because a missing
+control with no adversary is not a technique and a plausible identifier there
+is worse than a blank.
+
+---
+
+## J. Phase 4 Result: Canvas Population, and a Finding That Changes a Deliverable
+
+The course is in Canvas: 11 modules, 45 pages, 17 assignments, 6 quizzes, 2
+discussions, 5 rubrics, 6 outcomes, all verified by reading the course back
+through the API and checking it against `content/course.yaml`.
+
+**The finding: Canvas silently drops every quiz in every cartridge unless an
+external Python QTI converter is installed, and open-source Canvas does not
+ship it.**
+
+`gems/plugins/qti_exporter/lib/qti.rb` looks for `migrate.py` from the
+QTIMigrationTool in two vendored paths and then on `PATH`, and registers the
+`qti_converter` plugin as `enabled: python_converter_found`. Without it the
+plugin is disabled. The import still reports `completed`, with no error, no
+warning, and no migration issue.
+
+**This is not a defect in our cartridge.** The NLC template's own export,
+produced by Instructure's own Canvas, imports zero of its two quizzes into this
+instance. That test is what separated "our file is wrong" from "this Canvas
+cannot read any file".
+
+**What it changes.** Decision B3 made Common Cartridge the primary artifact,
+and that decision still stands: on Alamo's Instructure-hosted Canvas the
+converter is present and the cartridge carries everything. But a cartridge is
+not sufficient for a demo on open-source Canvas, so `tools/populate_canvas.py`
+creates the quizzes over the REST API and the importer runs it automatically.
+The deliverable is the cartridge; the API script is what makes a local
+deployment complete. Both are needed, for different reasons.
+
+**Two smaller things worth knowing.** Canvas's cartridge importer is particular
+about how a quiz resource is declared: the assessment resource carries no
+`href`, the Common Cartridge profile copy is named after the quiz's own
+resource id, and the meta resource needs a different identifier. Getting any of
+those wrong produces the same silent zero-quiz import. And importing into an
+existing course leaves Canvas's two default assignment groups behind at weight
+zero, which is harmless but untidy; import into a fresh course, or delete them.
+
+---
+
+## K. Open Items Carried Into a Real Term
+
+These are the things a human has to close before this is taught, ordered by how
+much they could cost.
+
+1. **The local model path has never been tested on a real locked-down student
+   laptop.** Vendor documentation saying "no administrator required" is not the
+   same as surviving a specific institution's application control policy. This
+   is the largest residual risk in the build and no amount of research retires
+   it. Pilot on one real student-image machine.
+2. **Groq's free plan may require a credit card.** Nothing states it either
+   way. Sign up with a fresh account and find out.
+3. **Transcribe the OpenAI usage policy clause from a browser.** The site
+   returns HTTP 403 to automated fetching, so the Rules of Engagement cites
+   only the two provider policies that could be verified.
+4. **Confirm whether identity verification or proctoring is required** for a
+   fully distance course. The assessment design needs neither and is compatible
+   with both.
+5. **Two grading rules are undecided** and the content works around both: the
+   general late-work penalty, and which items count as "labs" for the dropped
+   lowest lab. Neither is in the blueprint.
+6. **Confirm the district help desk phone menu option.** The template cites
+   three different ones across three pages, so the authored pages cite none.
+7. **Re-verify the OWASP 2026 identifiers and the ATLAS release** before a term
+   depends on them. ATLAS ships roughly monthly and renames techniques. Every
+   report the harness writes records which editions it used, so this is
+   checkable rather than assumed.
+8. **The weekly time estimates need a decision.** The nominal 3 credit hours
+   over seven instructional weeks implies roughly 20 student hours per week.
+   The designed work is about 5 to 7 hours of assigned activity, which a
+   student with no programming background will commonly take two to three times
+   to complete. The Overview pages state the assigned figure. Somebody should
+   decide which number the syllabus claims.
