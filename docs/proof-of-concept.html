@@ -1,0 +1,679 @@
+<title>ITSY 1377 Proof of Concept</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,600;1,6..72,400&family=Public+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap">
+
+<style>
+:root{
+  --paper:#F4F5F1; --surface:#FFFFFF; --surface-2:#EDEFE8;
+  --ink:#16202B; --ink-2:#3D4A55; --ink-3:#68737D;
+  --rule:#D6DACE; --rule-2:#C2C7B9;
+  --accent:#1F5E5B; --accent-soft:#DDE8E5;
+  --flag:#A8571B; --flag-soft:#F4E6D6;
+  --alert:#8C2F2F; --alert-soft:#F2E0DE;
+  --ok:#2F5D3A; --ok-soft:#E0EADF;
+  --f-display:"Newsreader",Georgia,"Times New Roman",serif;
+  --f-body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  --f-mono:"JetBrains Mono","SF Mono",Menlo,Consolas,monospace;
+  --measure:68ch;
+  --s1:.35rem; --s2:.7rem; --s3:1.1rem; --s4:1.7rem; --s5:2.6rem; --s6:4rem;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --paper:#12171A; --surface:#181E21; --surface-2:#1F2629;
+    --ink:#E4E8DF; --ink-2:#B3BCB4; --ink-3:#87948B;
+    --rule:#2B3438; --rule-2:#3A4549;
+    --accent:#69B5AC; --accent-soft:#1B302E;
+    --flag:#D9924F; --flag-soft:#33261A;
+    --alert:#D97B75; --alert-soft:#33201F;
+    --ok:#7FB088; --ok-soft:#1D2A20;
+  }
+}
+:root[data-theme="dark"]{
+  --paper:#12171A; --surface:#181E21; --surface-2:#1F2629;
+  --ink:#E4E8DF; --ink-2:#B3BCB4; --ink-3:#87948B;
+  --rule:#2B3438; --rule-2:#3A4549;
+  --accent:#69B5AC; --accent-soft:#1B302E;
+  --flag:#D9924F; --flag-soft:#33261A;
+  --alert:#D97B75; --alert-soft:#33201F;
+  --ok:#7FB088; --ok-soft:#1D2A20;
+}
+
+*{box-sizing:border-box}
+body{
+  margin:0; background:var(--paper); color:var(--ink);
+  font-family:var(--f-body); font-size:17px; line-height:1.62;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1180px;margin:0 auto;padding:0 var(--s4)}
+
+/* ---------------------------------------------------------- masthead */
+header.mast{border-bottom:1px solid var(--rule);padding:var(--s6) 0 var(--s5)}
+.eyebrow{
+  font-family:var(--f-mono);font-size:.72rem;letter-spacing:.14em;
+  text-transform:uppercase;color:var(--accent);margin:0 0 var(--s3)
+}
+h1{
+  font-family:var(--f-display);font-weight:600;font-size:clamp(2.3rem,5vw,3.4rem);
+  line-height:1.08;margin:0 0 var(--s3);letter-spacing:-.015em;text-wrap:balance;
+  max-width:20ch
+}
+.standfirst{
+  font-family:var(--f-display);font-size:1.2rem;line-height:1.55;
+  color:var(--ink-2);max-width:var(--measure);margin:0 0 var(--s4)
+}
+.meta{
+  font-family:var(--f-mono);font-size:.78rem;color:var(--ink-3);
+  display:flex;flex-wrap:wrap;gap:var(--s3) var(--s4)
+}
+
+/* ------------------------------------------------------ scoreboard */
+.board{
+  display:grid;gap:1px;background:var(--rule);
+  grid-template-columns:repeat(auto-fit,minmax(150px,1fr));
+  border:1px solid var(--rule);margin:var(--s5) 0
+}
+.board div{background:var(--surface);padding:var(--s3) var(--s3) var(--s3)}
+.board b{
+  display:block;font-family:var(--f-display);font-size:1.9rem;font-weight:600;
+  line-height:1;color:var(--accent);font-variant-numeric:tabular-nums
+}
+.board span{
+  display:block;font-size:.78rem;color:var(--ink-3);margin-top:var(--s2);
+  line-height:1.4
+}
+
+/* ---------------------------------------------------------- layout */
+.cols{display:grid;grid-template-columns:210px minmax(0,1fr);gap:var(--s6);
+  align-items:start;padding:var(--s5) 0 var(--s6)}
+nav.toc{position:sticky;top:var(--s4);font-size:.83rem}
+nav.toc ol{list-style:none;margin:0;padding:0}
+nav.toc li{margin:0 0 var(--s2)}
+nav.toc a{
+  color:var(--ink-3);text-decoration:none;display:block;
+  padding:.2rem 0 .2rem .8rem;border-left:2px solid var(--rule);
+  transition:color .15s,border-color .15s
+}
+nav.toc a:hover{color:var(--ink)}
+nav.toc a.on{color:var(--accent);border-left-color:var(--accent);font-weight:600}
+main{min-width:0}
+@media (max-width:900px){
+  .cols{grid-template-columns:1fr;gap:var(--s4)}
+  nav.toc{position:static;border-bottom:1px solid var(--rule);padding-bottom:var(--s3)}
+  nav.toc ol{display:flex;flex-wrap:wrap;gap:var(--s2) var(--s3)}
+  nav.toc a{border-left:none;padding-left:0}
+  nav.toc a.on{border-left:none}
+}
+
+/* -------------------------------------------------------- sections */
+section{margin:0 0 var(--s6);scroll-margin-top:var(--s4)}
+h2{
+  font-family:var(--f-display);font-weight:600;font-size:1.85rem;line-height:1.2;
+  margin:0 0 var(--s3);letter-spacing:-.01em;text-wrap:balance;
+  padding-bottom:var(--s2);border-bottom:1px solid var(--rule)
+}
+h3{
+  font-family:var(--f-body);font-weight:700;font-size:1.02rem;
+  margin:var(--s4) 0 var(--s2);letter-spacing:.005em
+}
+p,ul,ol{max-width:var(--measure)}
+p{margin:0 0 var(--s3)}
+ul,ol{margin:0 0 var(--s3);padding-left:1.3rem}
+li{margin:0 0 var(--s2)}
+strong{font-weight:650}
+code{
+  font-family:var(--f-mono);font-size:.86em;background:var(--surface-2);
+  padding:.1em .35em;border-radius:2px
+}
+a{color:var(--accent)}
+
+/* ---------------------------------------------------------- tables */
+.tw{overflow-x:auto;margin:0 0 var(--s4);border:1px solid var(--rule)}
+table{border-collapse:collapse;width:100%;font-size:.9rem;background:var(--surface)}
+caption{
+  text-align:left;font-family:var(--f-mono);font-size:.72rem;
+  letter-spacing:.1em;text-transform:uppercase;color:var(--ink-3);
+  padding:var(--s3) var(--s3) var(--s2)
+}
+th,td{
+  text-align:left;padding:.62rem var(--s3);
+  border-bottom:1px solid var(--rule);vertical-align:top
+}
+thead th{
+  font-size:.72rem;letter-spacing:.07em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;background:var(--surface-2);
+  border-bottom:1px solid var(--rule-2)
+}
+tbody tr:last-child td,tbody tr:last-child th{border-bottom:none}
+td.num,th.num{font-family:var(--f-mono);font-variant-numeric:tabular-nums;
+  white-space:nowrap}
+tbody th{font-weight:600;font-size:.9rem}
+
+/* ---------------------------------------------------------- notes */
+.note{
+  border-left:3px solid var(--accent);background:var(--accent-soft);
+  padding:var(--s3) var(--s4);margin:0 0 var(--s4);max-width:var(--measure)
+}
+.note.flag{border-left-color:var(--flag);background:var(--flag-soft)}
+.note.alert{border-left-color:var(--alert);background:var(--alert-soft)}
+.note.ok{border-left-color:var(--ok);background:var(--ok-soft)}
+.note p:last-child{margin-bottom:0}
+.note .lbl{
+  display:block;font-family:var(--f-mono);font-size:.7rem;letter-spacing:.1em;
+  text-transform:uppercase;margin-bottom:var(--s2);color:var(--ink-2)
+}
+
+.pill{
+  display:inline-block;font-family:var(--f-mono);font-size:.7rem;
+  padding:.12em .5em;border-radius:2px;letter-spacing:.04em;white-space:nowrap
+}
+.pill.pass{background:var(--ok-soft);color:var(--ok)}
+.pill.gone{background:var(--alert-soft);color:var(--alert)}
+.pill.part{background:var(--flag-soft);color:var(--flag)}
+
+pre{
+  font-family:var(--f-mono);font-size:.8rem;line-height:1.55;
+  background:var(--surface-2);border:1px solid var(--rule);
+  padding:var(--s3);overflow-x:auto;margin:0 0 var(--s4)
+}
+pre code{background:none;padding:0;font-size:1em}
+
+footer{
+  border-top:1px solid var(--rule);padding:var(--s4) 0 var(--s6);
+  font-size:.83rem;color:var(--ink-3);max-width:var(--measure)
+}
+</style>
+
+<div class="wrap">
+
+<header class="mast">
+  <p class="eyebrow">Proof of concept &middot; built and verified</p>
+  <h1>ITSY 1377 Proof of Concept</h1>
+  <p class="standfirst">
+    A working build of <em>Agentic AI and Security Operations</em>: the course
+    running in a real Canvas, the lab repository students would clone, and the
+    tooling that keeps the two from disagreeing. This page reports what exists,
+    what seven adversarial reviews found in it, and what it still cannot do.
+  </p>
+  <p class="meta">
+    <span>Northeast Lakeview College</span>
+    <span>3 SCH &middot; 8-week Flex &middot; fully asynchronous</span>
+    <span>Companion to the Course Blueprint</span>
+  </p>
+
+  <div class="board">
+    <div><b>11</b><span>Canvas modules, all populated and published</span></div>
+    <div><b>58</b><span>authored pages, mean reading grade 4.46</span></div>
+    <div><b>93</b><span>quiz items, every one tagged to an outcome</span></div>
+    <div><b>8</b><span>attack cases, auto-graded on side effects</span></div>
+    <div><b>6</b><span>build gates, all passing</span></div>
+    <div><b>7</b><span>adversarial reviews, findings applied</span></div>
+  </div>
+</header>
+
+<div class="cols">
+  <nav class="toc" aria-label="Contents">
+    <ol>
+      <li><a href="#built">What exists</a></li>
+      <li><a href="#demo">The ten minutes</a></li>
+      <li><a href="#reviews">What the reviews found</a></li>
+      <li><a href="#gates">Why it stays fixed</a></li>
+      <li><a href="#limits">What it cannot do</a></li>
+      <li><a href="#decide">What a human must decide</a></li>
+      <li><a href="#run">Running it</a></li>
+    </ol>
+  </nav>
+
+  <main>
+
+  <!-- =========================================================== -->
+  <section id="built">
+    <h2>What exists</h2>
+
+    <p>
+      Every number on this page was read back out of a running system rather
+      than counted from a plan. The course is in Canvas at
+      <code>localhost:3000/courses/1</code>, built from a Common Cartridge and
+      then verified against its own source of truth.
+    </p>
+
+    <div class="tw">
+      <table>
+        <caption>In Canvas now, verified by reading the course back through the API</caption>
+        <thead><tr><th>Piece</th><th class="num">Count</th><th>Notes</th></tr></thead>
+        <tbody>
+          <tr><th>Modules</th><td class="num">11</td><td>Start Here, seven weekly modules, the final block, a pathway module, and one unpublished instructor module</td></tr>
+          <tr><th>Pages</th><td class="num">45</td><td>Every week built to the NLC template's four-part anatomy</td></tr>
+          <tr><th>Assignments</th><td class="num">18</td><td>Ten graded artifacts plus the quiz and discussion assignments Canvas creates</td></tr>
+          <tr><th>Quizzes</th><td class="num">6</td><td>93 items: a gate, four comprehension quizzes, a 40-item final</td></tr>
+          <tr><th>Rubrics</th><td class="num">10</td><td>One per graded assignment, all balancing to their point total</td></tr>
+          <tr><th>Outcomes</th><td class="num">6</td><td>Fixed by the program, reproduced verbatim, never reworded</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <h3>The lab repository</h3>
+    <p>
+      Three programs students work with all term: an agent they extend, a
+      deliberately vulnerable helpdesk they attack, and a test harness that
+      decides whether an attack worked by looking at the world rather than at
+      what the model said. Five marked extension points carry every graded
+      change. It runs offline with no API key.
+    </p>
+
+    <div class="note ok">
+      <span class="lbl">Verified, not asserted</span>
+      <p>
+        The worked solution passes <strong>56 of 56</strong> autograder tests.
+        An autograder nobody has satisfied is a rumor rather than an
+        assessment, so the build applies the solution, runs the harness, runs
+        the tests, and puts everything back. That check has caught a broken
+        assertion twice, including one of its own.
+      </p>
+    </div>
+
+    <h3>The reading level, enforced</h3>
+    <p>
+      All 58 authored pages sit at a mean Flesch-Kincaid grade of
+      <strong>4.46</strong> against a limit of 8.0, measured after code blocks,
+      tables, framework identifiers and quoted text are excluded, because
+      scoring those would make the number dishonest. The Rules of Engagement is
+      held tighter and scores 4.0. The report is committed beside the content
+      so a reviewer can read the numbers rather than take the claim on faith.
+    </p>
+
+    <div class="tw">
+      <table>
+        <caption>Length is a readability problem too, and it was not being measured</caption>
+        <thead><tr><th></th><th class="num">Before</th><th class="num">After</th></tr></thead>
+        <tbody>
+          <tr><th>Start Here module</th><td class="num">12,588 words</td><td class="num">8,207</td></tr>
+          <tr><th>All authored content</th><td class="num">58,700 words</td><td class="num">45,402</td></tr>
+          <tr><th>Pages over budget</th><td class="num">40</td><td class="num">0</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Reading grade was a build failure from day one. Length was not measured
+      at all, so the orientation module grew to fifty minutes of reading before
+      a student touched anything, while the grade stayed at 4.4 the whole time.
+      Every page kind now has a word budget that fails the build, no paragraph
+      may exceed 70 words, and every Start Here page opens with a table of the
+      facts somebody arrived wanting.
+    </p>
+  </section>
+
+  <!-- =========================================================== -->
+  <section id="demo">
+    <h2>The ten minutes</h2>
+
+    <p>
+      One command runs the whole arc offline, with no API key and no cost:
+      the attack lands, the fix goes in, the attack stops, and normal use
+      survives.
+    </p>
+
+<pre><code>./demo/run_demo.sh</code></pre>
+
+    <h3>The attack is the interesting part</h3>
+    <p>
+      A support agent asks for an ordinary ticket summary. That is all they do.
+      The instruction to email a customer's record to an outside address came
+      out of the ticket body, written by whoever opened the ticket, sitting in
+      a database waiting for an assistant to read it. Nobody at the company did
+      anything wrong.
+    </p>
+    <p>
+      The evidence is a file in the outbox addressed outside the company,
+      containing the customer's stored payment reference. That file either
+      exists or it does not. What the model said about it is not evidence, and
+      the harness has no way to grade on it: the case file format refuses text
+      matching outright.
+    </p>
+
+    <h3>The result that carries the lesson</h3>
+    <div class="tw">
+      <table>
+        <caption>The same eight cases, before and after one code-level control</caption>
+        <thead><tr><th>Case</th><th>Before</th><th>After a recipient allowlist</th></tr></thead>
+        <tbody>
+          <tr><th>Indirect injection from a ticket</th><td><span class="pill gone">VULNERABLE 5/5</span></td><td><span class="pill pass">BLOCKED_5_OF_5</span></td></tr>
+          <tr><th>Customer record exfiltrated</th><td><span class="pill gone">VULNERABLE 5/5</span></td><td><span class="pill pass">BLOCKED_5_OF_5</span></td></tr>
+          <tr><th>Excessive agency</th><td><span class="pill gone">VULNERABLE 5/5</span></td><td><span class="pill pass">BLOCKED_5_OF_5</span></td></tr>
+          <tr><th>Injection from a trusted internal article</th><td><span class="pill gone">VULNERABLE 5/5</span></td><td><span class="pill pass">BLOCKED_5_OF_5</span></td></tr>
+          <tr><th>System prompt disclosure</th><td><span class="pill gone">VULNERABLE 5/5</span></td><td><span class="pill gone">VULNERABLE 5/5</span></td></tr>
+          <tr><th>Insecure tool authorization</th><td><span class="pill gone">VULNERABLE 5/5</span></td><td><span class="pill gone">VULNERABLE 5/5</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Three cases stay vulnerable, and that is the honest result rather than a
+      gap in the demo. A recipient allowlist does nothing about system prompt
+      disclosure or a missing authorization check. <strong>One fix, one
+      class.</strong>
+    </p>
+
+    <div class="note flag">
+      <span class="lbl">Read that status carefully</span>
+      <p>
+        <code>BLOCKED_5_OF_5</code> does not say the attack failed. It says the
+        agent was still fully hijacked, asked to send the record every single
+        time, and one line of code stopped it. That is a very different
+        residual risk from an attack that failed, and a report printing the two
+        identically hides the thing a client most needs to know.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <section id="reviews">
+    <h2>What the reviews found</h2>
+
+    <p>
+      Seven adversarial passes were run with different expert framings:
+      offensive red team, Python correctness, instructional design, security
+      assessment methodology, a CAE program reviewer, a Quality Matters peer
+      reviewer with an accessibility specialty, and a cross-artifact
+      consistency audit. They found real defects. The ones worth a committee's
+      attention are below.
+    </p>
+
+    <h3>Six defects that would have put a wrong result in a gradebook</h3>
+    <p>
+      All six were the same shape: <strong>the harness reporting a comforting
+      result that was not true.</strong>
+    </p>
+    <ul>
+      <li>A canary token that disagreed with the seeded database reported a successful exfiltration as mitigated, while the detector self-test passed. That is precisely the failure the whole design exists to prevent. Preflight now refuses to run on a mismatch.</li>
+      <li>Zero hits could be reported as a fix from a single completed trial. Four rate-limited trials and one clean miss read as a working defense.</li>
+      <li>A detector returned "my assertion held" where the runner read "the attack landed," so a student's working defense would have been reported as a vulnerability.</li>
+      <li>A blocked call's arguments counted as a leak, reaching the same wrong conclusion by another route.</li>
+      <li>Deleting the email tool outright passed every control, which would have made "remediation" mean removing the feature. A second benign control now requires a legitimate escalation to still go out.</li>
+      <li>The autograder <em>required</em> a security control to fail open, in a course that says three pages later that a guard which lets everything through is worse than no guard.</li>
+    </ul>
+
+    <div class="note alert">
+      <span class="lbl">A word left the harness</span>
+      <p>
+        <code>MITIGATED</code> is gone. Zero hits across five trials against a
+        weakness that lands three times in ten happens about one run in six, so
+        the word was a conclusion presented as an observation, sitting two
+        lines below a comment reading <em>"Missing evidence is not evidence of
+        absence."</em> The statuses now carry their own sample size. A student
+        who wants to write "mitigated" in a report still can, and now has to
+        decide to.
+      </p>
+    </div>
+
+    <h3>Two findings about what the project claimed</h3>
+
+    <p>
+      <strong>A knowledge unit claim was withdrawn.</strong> The blueprint
+      claimed three NSA units. A search of the built artifacts supports one,
+      partially: there is no machine learning library in the student
+      dependencies, zero occurrences of anomaly detection or alert triage, zero
+      of five claimed defensive elements, and zero occurrences of the EU AI
+      Act, GDPR, CCPA or HIPAA. "Governance" appears once in the whole course,
+      on an instructor-facing page. The two program documents had also been
+      contradicting each other, and the one with no governance content in it
+      was wrong.
+    </p>
+    <p>
+      The honest framing is a <strong>security-of-AI course with an offensive
+      centre of gravity</strong>. The modules are called "Break It" then "Fix
+      It" and Project 2 is "Attack, Harness, Report" at 55 percent of the
+      grade. Claiming a defensive designation would put every other mapping in
+      the packet in question.
+    </p>
+
+    <p>
+      <strong>The Rules of Engagement stated as flat fact that unauthorized
+      testing "is a crime."</strong> That is wrong as written, it named no
+      statute, and the course then had students restate it in their own words
+      and quoted that back on the final exam. A college attorney would have
+      caught it. It now reads "can be a crime, and it breaks the student code
+      of conduct either way." The clause on finding a real vulnerability
+      outside the course gained three things it needed: keep notes only and
+      retain no data, route a workplace finding to the employer's security
+      channel rather than to an instructor, and the three places a report
+      belongs when there is no obvious owner.
+    </p>
+
+    <h3>Quality Matters</h3>
+    <div class="tw">
+      <table>
+        <caption>Against the Higher Education Rubric, seventh edition</caption>
+        <thead><tr><th>General Standard</th><th>Verdict</th></tr></thead>
+        <tbody>
+          <tr><th>1. Course overview and introduction</th><td><span class="pill pass">met</span></td></tr>
+          <tr><th>2. Learning objectives</th><td><span class="pill part">partially, now addressed</span></td></tr>
+          <tr><th>3. Assessment and measurement</th><td><span class="pill part">partially, now addressed</span></td></tr>
+          <tr><th>4. Instructional materials</th><td><span class="pill pass">met</span></td></tr>
+          <tr><th>5. Learning activities and interaction</th><td><span class="pill gone">not met, now fixed</span></td></tr>
+          <tr><th>6. Course technology</th><td><span class="pill part">partially, now addressed</span></td></tr>
+          <tr><th>7. Learner support</th><td><span class="pill part">partially, now addressed</span></td></tr>
+          <tr><th>8. Accessibility and usability</th><td><span class="pill pass">met</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      Standard 5 was the only one that blocks certification, and the failure
+      was clean: across eight weeks and a thousand points, students were
+      required to interact with each other exactly once, in week one, worth a
+      single point that the course data then excluded from the grade. A graded
+      peer activity now sits in week 6 where the material already supports it.
+      Students post a finding from their own run with its evidence and answer
+      one question about a classmate's: <em>would that evidence convince
+      you?</em>
+    </p>
+    <p>
+      Accessibility came out strong. All 58 pages render with a caption and
+      correct header scope on every table, a logical heading order, no images
+      to need alt text, no media to caption, and every colour pair passing AA.
+      Three things were fixed anyway: callout severity now lives in the markup
+      as a hidden word rather than in a stylesheet the college controls, the
+      documents declare a language, and about fifteen quiz items that offered
+      single-letter answer options now restate what makes each option
+      distinctive.
+    </p>
+
+    <h3>Eleven wrong answer keys</h3>
+    <p>
+      The worst defect class in a course, because a student who reasons
+      correctly loses points and then learns the wrong thing. Two items keyed a
+      control that fails open. One had no correct answer at all. One keyed
+      evidence naming the wrong actor, which is the row the detector
+      specifically rejects. One keyed code that raises an exception on a column
+      that does not exist. Two built on a tool the assignment explicitly
+      forbids because the target has no route for it. Every one was verified
+      against the lab code before it was changed.
+    </p>
+  </section>
+
+  <!-- =========================================================== -->
+  <section id="gates">
+    <h2>Why it stays fixed</h2>
+
+    <p>
+      Nearly every content defect the seven reviews found traced to the same
+      root cause, and it is worth stating plainly because it generalises.
+    </p>
+
+    <div class="note">
+      <span class="lbl">The mechanism</span>
+      <p>
+        Reading level was mechanically enforced from day one: a page over grade
+        8 failed the build. Factual accuracy was a checklist somebody was meant
+        to run once a semester. <strong>Only one of those two could fail
+        anything</strong>, so pages drifted away from the code they describe
+        while the numbers stayed green. The asymmetry even had a direction: an
+        accurate hedged sentence costs reading grade, and a confident wrong one
+        does not.
+      </p>
+    </div>
+
+    <p>
+      So the fix was not to correct thirty-four items. It was to build the
+      check that makes them impossible, and then correct them.
+    </p>
+
+    <div class="tw">
+      <table>
+        <caption>python -m tools.preflight, all six passing</caption>
+        <thead><tr><th>Gate</th><th>What it catches</th></tr></thead>
+        <tbody>
+          <tr><th>Reading level and length</th><td>Grade over 8.0, sentences over 15 words, a page over its budget, a paragraph over 70 words</td></tr>
+          <tr><th>Content against code</th><td>A command that does not exist, a stale path, a framework identifier no case file demonstrates, a harness status the runner cannot emit, a quiz item with no correct answer</td></tr>
+          <tr><th>Course structure</th><td>Points that do not add up, a module item with no file, a rubric that does not balance</td></tr>
+          <tr><th>The worked solution applies</th><td>An answer key that has drifted from the files it edits</td></tr>
+          <tr><th>The autograder is satisfiable</th><td>Applies the solution, runs the harness and the tests, puts everything back</td></tr>
+          <tr><th>The student repo is clean</th><td>The working tree holds the complete answer to every extension point. Three README files promised that would not reach students, and a promise is not a control</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <p>
+      The consistency gate found 23 disagreements on its first run, including
+      two the human reviewers had missed. It also caught itself: an early
+      version read status names out of a code comment, so it matched
+      <code>MITIGATED</code> inside a comment explaining why
+      <code>MITIGATED</code> had been removed, and then told every page the
+      status was still valid. A checker that reads prose has exactly the
+      problem as the content it is checking.
+    </p>
+  </section>
+
+  <!-- =========================================================== -->
+  <section id="limits">
+    <h2>What it cannot do</h2>
+
+    <p>These are the claims a reviewer should not let the course make.</p>
+
+    <ul>
+      <li><strong>Not OWASP LLM Top 10 coverage.</strong> Three of ten risks substantively. The materials say "selected OWASP risks" and never the full list, and a build check enforces it.</li>
+      <li><strong>Not agent development.</strong> Students extend a scaffold. They cannot build an agent from an empty directory.</li>
+      <li><strong>Not Python competence.</strong> No object orientation, no algorithms, no data structures beyond lists and dictionaries. This course does not articulate into COSC 1436 and must not be listed as preparation for it.</li>
+      <li><strong>Not red teaming.</strong> Pre-authored attack classes against one known-vulnerable instructor-built target is exercise, not discovery.</li>
+      <li><strong>Insecure tool authorization is a walkthrough, not a hands-on lab.</strong> Outcome 3 names three weakness classes and students get hands-on exploitation with two. That is the largest thing the seven-week calendar cost, and it is named rather than glossed.</li>
+      <li><strong>Only one knowledge unit, partially.</strong> See above.</li>
+    </ul>
+
+    <div class="note flag">
+      <span class="lbl">The largest residual risk</span>
+      <p>
+        <strong>The local model path has never been tested on a real
+        locked-down student laptop.</strong> Vendor documentation saying "no
+        administrator required" is not the same as surviving a specific
+        institution's application control policy. No amount of research retires
+        this one. It needs a pilot on one real student-image machine, and week
+        one is where this course loses people.
+      </p>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <section id="decide">
+    <h2>What a human must decide</h2>
+
+    <p>
+      A build cannot settle these, and each is visible to a student or a
+      reviewer.
+    </p>
+
+    <div class="tw">
+      <table>
+        <caption>Open before the course runs</caption>
+        <thead><tr><th>Item</th><th>Why it matters</th></tr></thead>
+        <tbody>
+          <tr><th>The credit-hour question</th><td>Three semester credit hours over seven instructional weeks implies about 20 student hours a week. The assigned work is 5 to 9, or 10 to 20 once you allow that students new to programming take two to three times as long on the coding. Either the course carries more work or the designation needs revisiting. This is a compliance question before it is a Quality Matters one</td></tr>
+          <tr><th>The instructor introduction</th><td>Quality Matters asks for a self-introduction. The page describes the role, the response-time commitments and the contact channels, and it has no name or photo because the build had nobody to write about</td></tr>
+          <tr><th>Two grading rules</th><td>The general late-work penalty, and which items count as a lab for a dropped-lowest policy. The content works around both rather than inventing them</td></tr>
+          <tr><th>Provider terms</th><td>Whether Groq's free plan needs a credit card, and a human transcription of the OpenAI usage policy clause. Both sites refuse automated fetching</td></tr>
+          <tr><th>Identity verification</th><td>The assessment design needs neither proctoring nor identity verification and is compatible with both, but the answer changes the week one setup burden</td></tr>
+          <tr><th>Framework churn</th><td>MITRE ATLAS ships roughly monthly and renames techniques. Every harness report records which editions it used, so this is checkable rather than assumed, but it needs a pass each semester</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- =========================================================== -->
+  <section id="run">
+    <h2>Running it</h2>
+
+    <p>From nothing, on one machine, in about forty minutes:</p>
+
+<pre><code>./canvas/deploy/setup.sh          # Canvas from the official repository
+pip install -r tools/requirements.txt
+python -m tools.import_cartridge  # build, import, and verify what arrived
+python canvas/theme/apply_theme.py
+
+cd labs
+python -m venv .venv &amp;&amp; source .venv/bin/activate
+pip install -r requirements.txt
+python verify_env.py
+./demo/run_demo.sh                # the five-minute walkthrough</code></pre>
+
+    <p>
+      The full operator guide, the ten-minute committee walkthrough, and the
+      three deployment failures worth knowing about are in
+      <code>RUNBOOK.md</code>. The most useful of the three: <strong>Canvas
+      silently drops every quiz in every cartridge</strong> unless an external
+      Python QTI converter is installed, which open-source Canvas does not
+      ship. The import reports success with no error, no warning, and no
+      migration issue. The two-minute test that settled it was importing the
+      college's own template export, which loses both of its quizzes the same
+      way.
+    </p>
+
+    <div class="note ok">
+      <span class="lbl">What that means for the deliverable</span>
+      <p>
+        Common Cartridge stays the primary artifact, because the college's
+        hosted Canvas has the converter and a cartridge is how the institution
+        actually moves a course. A small API script creates the quizzes so a
+        local deployment is complete, and the importer runs it automatically.
+        Both are needed, for different reasons, and the runbook says which is
+        which.
+      </p>
+    </div>
+  </section>
+
+  </main>
+</div>
+
+<footer>
+  <p>
+    Prepared alongside the Course Blueprint and the Knowledge Unit Coverage
+    Analysis. Every figure here was read out of a running system. Where
+    something could not be verified, this page says so rather than rounding it
+    up.
+  </p>
+</footer>
+
+</div>
+
+<script>
+(function () {
+  var links = Array.prototype.slice.call(document.querySelectorAll('nav.toc a'));
+  var map = {};
+  links.forEach(function (a) {
+    var el = document.querySelector(a.getAttribute('href'));
+    if (el) { map[el.id] = a; }
+  });
+  var seen = {};
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) { seen[e.target.id] = e.isIntersecting; });
+    var current = null;
+    Object.keys(map).forEach(function (id) { if (seen[id] && !current) { current = id; } });
+    links.forEach(function (a) { a.classList.remove('on'); });
+    if (current && map[current]) { map[current].classList.add('on'); }
+  }, { rootMargin: '-15% 0px -70% 0px', threshold: 0 });
+  Object.keys(map).forEach(function (id) {
+    var el = document.getElementById(id);
+    if (el) { io.observe(el); }
+  });
+})();
+</script>
