@@ -20,10 +20,12 @@ guidance: |
   times as you like before the deadline.
 criteria:
   - description: One real tool call from your own log
+    long_description: >
+      Your own run and the agent-working branch earn the same 8 points. If you
+      used the branch, say so in your blocker sentence.
     points: 8
     ratings:
-      - {points: 8, description: "Pasted unedited, with its timestamp"}
-      - {points: 8, description: "Pasted unedited from the fallback branch, and you said so"}
+      - {points: 8, description: "Pasted unedited, with its timestamp, from your run or the agent-working branch"}
       - {points: 5, description: "From the terminal or a transcript, not the ledger"}
       - {points: 2, description: Described rather than pasted}
       - {points: 0, description: "Missing, invented, or edited before pasting"}

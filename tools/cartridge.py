@@ -201,6 +201,36 @@ def check(course: dict, notes: list[str] | None = None) -> list[str]:
                         f"text. YAML reads a bare Yes, No, On or Off as a boolean. "
                         f"Put quotes around it.")
 
+            # Shape checks. None of these existed, and their absence let a
+            # criterion ship with two ratings both worth full marks, which
+            # survived two editing passes because nothing looks at a ladder as
+            # a ladder. A rating is a score level; two levels at one score
+            # cannot be told apart, and Canvas hashes each rating's id from its
+            # description, so a duplicate description silently collides.
+            points = [r["points"] for r in criterion["ratings"]]
+            descriptions = [r["description"] for r in criterion["ratings"]
+                            if isinstance(r.get("description"), str)]
+            where = f"rubric {rubric['ref']}, criterion {criterion['description']!r}"
+            if not points:
+                problems.append(f"{where}: has no ratings")
+                continue
+            if max(points) != criterion["points"]:
+                problems.append(f"{where}: top rating is {max(points)}, "
+                                f"criterion is worth {criterion['points']}")
+            if min(points) != 0:
+                problems.append(f"{where}: lowest rating is {min(points)}, "
+                                f"so a blank submission cannot score zero")
+            if points != sorted(points, reverse=True):
+                problems.append(f"{where}: ratings run {points}, "
+                                f"which is not highest to lowest")
+            if len(set(points)) != len(points):
+                problems.append(f"{where}: two ratings share a point value "
+                                f"{points}. A grader has to read both to learn "
+                                f"the score is the same either way")
+            if len(set(descriptions)) != len(descriptions):
+                problems.append(f"{where}: two ratings share a description, and "
+                                f"their Canvas ids are hashed from that text")
+
     # Every page has to render, and none may still contain a placeholder.
     for folder, kind in (("pages", "page"), ("assignments", "assignment"),
                          ("discussions", "discussion")):

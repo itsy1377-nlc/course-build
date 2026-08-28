@@ -67,8 +67,8 @@ something.
 
 **Step 5. Write your status sentence.**
 
-Write exactly one of these two sentences, filling in the blank if you use the
-first one:
+Write exactly one of these sentences, filling in the blank if you use one that
+has one:
 
 ```
 I am stuck on ___.
@@ -76,6 +76,10 @@ I am stuck on ___.
 
 ```
 I am not stuck.
+```
+
+```
+I am stuck on ___, so I used the agent-working branch.
 ```
 
 Be specific in the blank. "I am stuck on the target app refusing to start on
