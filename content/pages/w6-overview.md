@@ -14,12 +14,14 @@ By the end of this week, you will be able to:
 - 6.3. Run the shipped harness and read every part of what it prints.
 - 6.4. Explain how the harness decides an attack worked, and why it refuses to
   grade what the model said.
+
+These serve course outcomes O3 (finding weaknesses in agents) and O4 (running
+the harness and reading its results).
 :::
 
 ::: scope
-Everything this week runs against the HelpDesk Lite app on your own computer.
-Nothing else. Read clause 1 and clause 2 of the Rules of Engagement again
-before you start.
+Everything this week runs against HelpDesk Lite on your own computer. Nothing
+else. Read clause 1 and clause 2 of the Rules of Engagement again first.
 
 The harness prints the address it is pointed at, every run. Read that line.
 :::
@@ -44,13 +46,17 @@ Module 3: about 3 hours.
 The checkpoint: about 45 minutes.
 The quiz: about 30 minutes.
 
-Much of Module 3 is waiting. The harness pauses between trials on purpose, so
-a free endpoint does not cut you off. Start it early and do something else
-while it runs.
+That is a little over 6 hours of assigned work in total.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
+
+Much of Module 3 is waiting. The harness pauses between trials so a free
+endpoint does not cut you off. Start it early.
 :::
 
 ::: next
-Week 7 hands you the other half of the work. So far you have found problems
-and measured them. Next you write cases of your own, fix one weakness in code,
-and prove the fix held every time.
+Week 7 hands you the other half. So far you have found problems and measured
+them. Next you write cases of your own, fix one weakness in code, and prove
+the fix held every time.
 :::

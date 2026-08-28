@@ -116,24 +116,6 @@ ledger line have to be about the same tool. Check the names match before you
 submit.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| One tool-call line from your own `runs/ledger.jsonl`, pasted unedited, with its timestamp | 5 |
-| The JSON schema for that same tool, exactly as registered in `TOOLS` | 5 |
-| One sentence saying what the tool does and what it refuses to do | 5 |
-| One sentence: either "I am stuck on ___" or "I am not stuck" | 5 |
-| **Total** | **20** |
-
-This is graded pass/fail. All four parts present earns the full 20 points.
-
-Nothing here is graded on quality. A messy tool passes. A slow tool passes. A
-tool that only works once passes. A submission built on the `agent-working`
-branch passes.
-
-You can resubmit as many times as you like before the deadline.
-:::
-
 ::: submit
 Upload one file, markdown or PDF, or paste the same content into the text box.
 

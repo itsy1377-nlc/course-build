@@ -39,6 +39,19 @@ Answer these for yourself before the final block opens.
    each is the evidence in your finding?
 5. In your own words, why does a fix have to hold every time when an attack
    only has to work once?
+
+**Answers:**
+
+1. Anyone who reaches an address on your allowlist that forwards elsewhere.
+   Your rule checks the recipient, not where the message ends up.
+2. One trial completed, and it did not land. Report 0 of 1 completed with 4
+   errored, because an errored trial is not a trial the attack failed.
+3. It stops every attack case and it also stops the product. A control that
+   blocks everything is not a control.
+4. The result line for that one case, with its rate, from each run. The two
+   rates side by side are the claim.
+5. An attacker gets to try again, so one hit is a win. A defense that fails
+   once has already let the thing through.
 :::
 
 ::: next

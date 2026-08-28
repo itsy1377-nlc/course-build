@@ -3,7 +3,7 @@ ref: remediation
 title: "Module 4: Fix It"
 points: 90
 free_form_comments: true
-guidance: >
+guidance: |
   Record your before numbers first. Run the whole harness once before you touch
   any code, and save that results file. You cannot get those numbers back after
   you change the code.
@@ -28,7 +28,7 @@ criteria:
       case. Zero of five in the after run, shown in the report, is the claim.
     points: 25
     ratings:
-      - {points: 25, description: Zero of five, with the report showing it}
+      - {points: 25, description: "Zero of five, with the report showing it"}
       - {points: 15, description: Flaky. It stops sometimes.}
       - {points: 5, description: Unchanged}
       - {points: 0, description: Not attempted}
@@ -50,18 +50,15 @@ criteria:
       `agent.recipient_allowlist` in `config/lab.config.yaml`, and you fill
       that list in as well as write the code. Reading the list at run time is
       worth the top 8 points of this row, so a rule with the addresses typed
-      into Python scores 12 rather than 20.
-
-      The reason is not style. A rule hardcoded in Python is a rule nobody can
-      change without editing code, and a control somebody has to edit Python to
-      change is a control that will not get changed. It is also what makes the
-      control a rule instead of a list of enemies. The rule says which
-      recipients are allowed at all. The list of allowed addresses is data, and
-      data belongs in the settings file. A held-out test hands your guard a
-      different allowlist and checks that it follows that one.
+      into Python scores 12 rather than 20. A rule hardcoded in Python is a
+      rule nobody can change without editing code. Keeping the list in
+      configuration is also what makes the control a rule rather than a list of
+      enemies: the rule says which recipients are allowed at all, and the
+      addresses are data. A held-out test hands your guard a different
+      allowlist and checks that it follows that one.
     points: 20
     ratings:
-      - {points: 20, description: A rule in before_tool_call, with the list in the settings file}
+      - {points: 20, description: "A rule in before_tool_call, with the list in the settings file"}
       - {points: 12, description: A rule in code with the values hardcoded}
       - {points: 5, description: A sentence added to the system prompt}
       - {points: 0, description: No control}
@@ -74,19 +71,28 @@ criteria:
       Project 2 checkpoint counts as one of the two if it is an attack case.
     points: 15
     ratings:
-      - {points: 15, description: Two original cases, both run, both with a real detector}
-      - {points: 9, description: Two cases, one of them close to a shipped one}
+      - {points: 15, description: "Two original cases, both run, both with a real detector"}
+      - {points: 9, description: "Two cases, one of them close to a shipped one"}
       - {points: 4, description: One}
       - {points: 0, description: None}
   - description: Reading the poisoned results file
+    long_description: >
+      The two questions from the Reading Results page, about
+      `labs/harness/fixtures/poisoned-results.json`. Three to five sentences
+      each. Name fields, quote lines, and point at places.
     points: 5
     ratings:
-      - {points: 5, description: Identifies that the detector matched refusals, and says what to check first}
+      - {points: 5, description: "Identifies that the detector matched refusals, and says what to check first"}
       - {points: 2, description: Notices something is wrong without naming it}
       - {points: 0, description: Takes the file at face value}
   - description: What defect remains
+    long_description: >
+      In 150 words or fewer, name a weakness you know your own fix does not
+      cover. Not a guess about what might be wrong. You built the control, so
+      you know where it is thin. There is no penalty for naming a real limit.
+      There is a penalty for writing that your fix is complete.
     points: 5
     ratings:
       - {points: 5, description: A specific residual weakness in their own fix}
       - {points: 3, description: Generic}
-      - {points: 0, description: Missing, or claims nothing remains}
+      - {points: 0, description: "Missing, or claims nothing remains"}

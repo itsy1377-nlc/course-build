@@ -13,6 +13,9 @@ By the end of this week, you will be able to:
 - 2.3. Pull a value out of a nested dictionary in a model's reply, including the
   tool call arguments.
 - 2.4. Explain why the labs pin every package to an exact version.
+
+These serve course outcomes O1 (scripting against a model API) and O6
+(checking AI-written code before you trust it).
 :::
 
 ::: scope
@@ -60,7 +63,10 @@ Module 1, the three functions plus testing: about 4 hours.
 
 The comprehension quiz: about 45 minutes.
 
-That is about 7 hours in total.
+That is about 7 hours of assigned work in total.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
 
 The three functions in Module 1 are small. If one of them takes you more than an
 hour, you are probably guessing instead of reading the test file. The tests say

@@ -119,6 +119,28 @@ That protection ends at the edge of your own tooling. Every other results file
 you are ever handed was produced by something you did not write.
 :::
 
+::: checkpoint | Check Yourself
+These check the method, not the file. The two graded questions above are still
+yours to answer, so nothing here answers them.
+
+1. Every case in this file carries `detector: text.contains`. Where does that
+   sit in the four detector tiers from Week 6?
+2. A results file reports 0 of 5 with 4 trials errored. What is the completed
+   count, and what may you claim?
+3. Why does "the results look wrong" earn nothing?
+
+**Answers:**
+
+1. Last of the four. The ranking is side effect, canary, tool shape, then text
+   match. The three above it read what the system did. A text match only reads
+   words.
+2. One trial completed. Report it as 0 of 1 completed with 4 errored, because
+   an errored trial is not a trial the attack failed.
+3. It could be written without opening the file. An answer earns credit when
+   it names a field, says what that field claims, and says what you would
+   compare it against.
+:::
+
 ::: sources
 The results file is instructor-authored and lives in the lab repository at
 `labs/harness/fixtures/poisoned-results.json`. Nothing in it is real, and no

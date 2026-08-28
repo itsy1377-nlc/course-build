@@ -91,25 +91,6 @@ is a real finding about your environment, and it is worth more than a made-up
 table.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| Full harness run completed, with the run banner pasted | 10 |
-| Results table pasted, with a status and a rate for every case | 20 |
-| Evidence line for at least three cases, pasted, not paraphrased | 15 |
-| Both control results reported, plus the two-sentence answer from step 4 | 10 |
-| The four walkthrough questions answered | 20 |
-| The out-of-scope line from your own run, pasted | 5 |
-| Target address in scope | 0, and the submission is not graded without it |
-| **Total** | **80** |
-
-The walkthrough answers are read by your instructor. The rest is checked
-against the results file your run wrote.
-
-This assignment is paired with the Module 3 comprehension quiz, worth 40
-points, with the same deadline.
-:::
-
 ::: submit
 Upload one file. Markdown or PDF.
 

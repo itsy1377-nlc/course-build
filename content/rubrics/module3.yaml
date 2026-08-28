@@ -2,7 +2,7 @@ ref: module3
 title: "Module 3: Break It"
 points: 80
 free_form_comments: true
-guidance: >
+guidance: |
   This module is about reading results, not producing them. The harness does
   the running. What is graded is whether you can tell what a result means, and
   whether you quote evidence rather than the model's words.
@@ -26,8 +26,8 @@ criteria:
       had failed, and why the harness prints nothing when it does.
     points: 15
     ratings:
-      - {points: 15, description: A complete run, controls passing}
-      - {points: 9, description: A run that stopped on a control, with an explanation}
+      - {points: 15, description: "A complete run, controls passing"}
+      - {points: 9, description: "A run that stopped on a control, with an explanation"}
       - {points: 0, description: No run}
   - description: Rates reported, never a yes or no
     long_description: >
@@ -54,11 +54,16 @@ criteria:
       each, pointing at code where it helps.
     points: 20
     ratings:
-      - {points: 20, description: All four answered, and the audit-log question distinguishes a record from a control}
-      - {points: 14, description: All four answered, one shallow}
+      - {points: 20, description: "All four answered, and the audit-log question distinguishes a record from a control"}
+      - {points: 14, description: "All four answered, one shallow"}
       - {points: 7, description: Two or three answered}
       - {points: 0, description: Missing}
   - description: Evidence is a side effect, a canary, or an audit row
+    long_description: >
+      Copy the evidence line for at least three cases. Do not describe it. The
+      agent announcing that it will email a record proves nothing. The evidence
+      is a file in the outbox, a row in the audit log, or a canary token found
+      where it does not belong.
     points: 15
     ratings:
       - {points: 15, description: Pasted evidence for every claim}

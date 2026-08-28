@@ -35,6 +35,9 @@ By the end of this week, you will be able to:
 - 3.3. Apply try, except, a timeout, and a retry to code in the lab scaffold.
 - 3.4. Walk through the agent loop in `agent/loop.py` and say what each part
   does.
+
+These serve course outcomes O1 (scripting against a model API), O2 (extending
+an agent with tools), and O6 (checking AI-written code).
 :::
 
 ::: tasks
@@ -62,7 +65,13 @@ The Annotated Skeleton reading: 45 minutes, and it is capped there.
 Hands-on work in the lab: about 4 hours.
 The checkpoint write-up: about 30 minutes.
 
-This is the longest week in the course. That is expected.
+That is about 6 hours of assigned work in total.
+
+This is the hardest week in the course, and it is not the longest. Week 4 and
+Week 7 both assign more hours than this one.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
 
 If you pass 6 hours of lab work and the agent still does not run, stop. Use the
 `agent-working` branch and submit the checkpoint. That branch exists for this

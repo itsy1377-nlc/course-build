@@ -5,16 +5,11 @@ ref: project1
 title: "Module 2: Give It Hands"
 points: 90
 free_form_comments: true
-guidance: >
+guidance: |
   The first three rows are checked by `python -m pytest tests/test_module2.py
   -q`. Run it as often as you like before the deadline. It is the same tool
   that grades you. The transcript, the written answers, and `AI-USE.md` are
   read by your instructor.
-
-  The autograder builds arguments from your own schema and calls your function
-  with them. So a schema that disagrees with your function signature fails,
-  even when both halves look right on their own. Read one back against the
-  other before you submit.
 
   Module 2 is paired with the Module 2 comprehension quiz, worth 50 points,
   with the same deadline.
@@ -42,7 +37,7 @@ criteria:
     ratings:
       - {points: 15, description: Runs with arguments generated from its own schema}
       - {points: 8, description: Runs only with arguments you chose by hand}
-      - {points: 0, description: Does not run, or returns nothing}
+      - {points: 0, description: "Does not run, or returns nothing"}
   - description: Your schema describes your tool
     long_description: >
       The schema is the only thing the model can read about your tool. It has
@@ -50,14 +45,14 @@ criteria:
       arguments are truly required.
     points: 25
     ratings:
-      - {points: 25, description: A description another person could use, every parameter explained, required list correct}
+      - {points: 25, description: "A description another person could use, every parameter explained, required list correct"}
       - {points: 17, description: Complete but thin. A model would guess at something.}
       - {points: 9, description: Present but does not match what the function does}
       - {points: 0, description: Missing or copied unchanged from an example}
   - description: Run transcript showing the agent calling your tool
     points: 10
     ratings:
-      - {points: 10, description: Present, unedited, with the tool call visible}
+      - {points: 10, description: "Present, unedited, with the tool call visible"}
       - {points: 5, description: Present but edited or partial}
       - {points: 0, description: Missing}
   - description: Written answers
@@ -75,6 +70,6 @@ criteria:
       6. Accepting everything is not evidence of judgement.
     points: 5
     ratings:
-      - {points: 5, description: A real suggestion, a real reason}
+      - {points: 5, description: "A real suggestion, a real reason"}
       - {points: 3, description: Present but generic}
-      - {points: 0, description: Missing, or records only accepted suggestions}
+      - {points: 0, description: "Missing, or records only accepted suggestions"}

@@ -35,6 +35,19 @@ again.
    one sentence.
 5. You may attack three things. If you cannot name all three from memory, open
    the Rules of Engagement again now.
+
+**Answers:**
+
+1. Reading brings in text a stranger wrote. Sending acts on the world outside.
+   Together they give a stranger's words a path to a real action.
+2. A system prompt is a request, not a control. The model reads the rule and
+   the ticket in the same list, so it can be talked out of the rule.
+3. That it worked once. An agent does not fail the same way twice, so you run
+   it several times and report a rate.
+4. A dictionary is found by key, and `2` is not one of its keys. Position only
+   works on a list.
+5. The HelpDesk Lite app, your own copy of the agent, and a model running on
+   your own computer. Nothing else, ever.
 :::
 
 ::: next

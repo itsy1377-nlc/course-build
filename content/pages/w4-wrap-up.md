@@ -37,6 +37,18 @@ Answer these for yourself before Week 5 opens.
    that a stranger should not be able to steer.
 4. Your agent read a support ticket in step 1. In step 2 it called
    `send_email`. Who chose the recipient?
+
+**Answers:**
+
+1. It appended all 6000 characters to `messages` as a tool result. The list
+   only grows, so they are sent again on every later step.
+2. The model sends an integer, because the schema is all it reads. Your
+   function then gets a type it did not expect and fails.
+3. Your own tool is your answer. Of the shipped ones, `search_tickets` and
+   `search_kb` pull in text strangers wrote, `get_customer` returns a whole
+   customer record, and `send_email` puts a message outside the company.
+4. The model did. Nothing in the loop checks the address, and that gap is what
+   Week 6 is about.
 :::
 
 ::: next

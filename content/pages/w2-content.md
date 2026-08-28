@@ -41,8 +41,77 @@ empty list counts as no. A list with anything in it counts as yes.
 **`return`** ends the function right there and hands a value back to whoever
 called it. This function has two of them, and only one ever runs.
 
-The `try` and `except` lines are next week's topic. For now, read them as "try
-this, and if it breaks, do that instead."
+The `try` and `except` lines get their own section further down this page. For
+now, read them as "try this, and if it breaks, do that instead."
+:::
+
+::: section | Just enough try and except for Module 1
+Module 1 asks you to catch one error and raise a clearer one in its place. This
+section teaches exactly that much and no more. Week 3 goes deeper.
+
+**What `try` and `except` do.** Python normally stops a function the moment
+something goes wrong. A `try` block says: run these lines, and expect trouble.
+An `except` block says: if that trouble arrives, run these lines instead of
+stopping.
+
+```python
+try:
+    data = json.loads(text)
+except json.JSONDecodeError:
+    print("that was not valid JSON")
+```
+
+The `try` lines run first. If nothing goes wrong, the `except` block is skipped
+completely.
+
+**Catch one kind of error, not all of them.** The example above names
+`json.JSONDecodeError`. That is the one error `json.loads` raises when the text
+will not parse. Every other problem still stops the function, which is what you
+want.
+
+Now compare it to this:
+
+```python
+except Exception:
+    print("something went wrong")
+```
+
+That catches everything, including bugs you have not found yet. A typo in a
+variable name now prints "something went wrong" and the program carries on. You
+will lose an evening to that.
+
+Name the error you expect. Let the rest through.
+
+**Raise a clearer error in place of a confusing one.** Catching is only half
+the job. Whoever called your function still needs to know what happened.
+
+```python
+try:
+    data = json.loads(text)
+except json.JSONDecodeError as exc:
+    raise LLMError(f"The model's reply was not valid JSON: {exc}") from exc
+```
+
+Three moves are in those three lines. `as exc` gives the original error a name.
+`raise` sends up a new error with a message a person can act on. `from exc`
+keeps the original attached, so the full traceback still shows the real cause.
+:::
+
+::: callout tip | Read the worked example in your own lab
+Open `agent/llm.py` and find the function named `chat()`. Look for the block
+that starts `except ValueError`.
+
+It does all three moves at once. It catches one specific failure, the endpoint
+answering 200 with a body that is not JSON. It raises `LLMError`. Its message
+names the problem and shows the first 200 characters of what actually came
+back.
+
+That block is the pattern Module 1 asks you to write in `parse_json_content`.
+Read it before you start step 4.
+
+Week 3 returns to error handling and goes further. There you meet errors that
+cross more than one function, and what an agent should do when a tool fails in
+the middle of a run. This week is only the three moves above.
 :::
 
 ::: section | The request: what you send

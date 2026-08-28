@@ -9,15 +9,45 @@ Every service below has its own page on the Northeast Lakeview College website,
 with current hours, contact details, and a way to book time. Those pages are
 kept up to date. A phone number printed inside a course shell is not.
 
-You have three doors into all of it:
+So this page gives you the search, not the number. Three systems hold all of it.
 
-1. **ACES.** Your student portal. Several of these tools launch from inside it.
-2. **The Canvas course navigation**, on the left of this page. Some services
-   appear there as direct links.
-3. **The college website.** Search the service name.
+1. **The college website.** Search the term in the last column below.
+2. **ACES.** Your student portal. Several of these tools launch from inside it.
+3. **The Canvas course navigation**, on the left of this page.
+
+| What you need | Which system | Search for, or click |
+|---|---|---|
+| An accommodation | College website | Student Accessibility Services |
+| An advisor, or a degree plan question | College website | Academic Advising |
+| To book an advising appointment | ACES, or the college website | Navigate |
+| Tutoring online, at any hour | ACES, or this course's navigation | Brainfuse |
+| Tutoring in person or over Zoom | College website | Tutoring |
+| A counselor | College website | Counseling |
+| Research help, or a database | College website | Library |
+| Veterans benefits paperwork | College website | Veterans Center |
+| Admissions, registration, or aid | ACES, or the college website | Admissions, or Financial Aid |
+| Help with the lab code | Canvas course navigation | Q and A Discussion Board |
+
+Each term in that last column is the name of an office. Look for the result
+named for that office on the Northeast Lakeview College site. If you land
+somewhere else, add Northeast Lakeview to your search.
 
 If you do not know which office you need, ask your advisor. Sorting that out is
 part of what advising does.
+:::
+
+::: callout note | Where the direct links live
+Your instructor puts a direct link to every service above into the Canvas
+syllabus, and checks those links at the start of each session.
+
+They live there instead of here for one reason. A course page like this one is
+copied forward from session to session and nobody reopens it, so a link on it
+rots quietly. The syllabus is rewritten for each session, so it is the one
+place a link gets looked at again.
+
+Open **Syllabus** in the course navigation on the left. If a link there is
+dead, post it on the Q and A board. Then it gets fixed for everyone, not just
+for you.
 :::
 
 ::: section | Academic Advising
@@ -56,6 +86,10 @@ someone who has.
 If you need an accommodation, you request it through the NLC Student
 Accessibility Services office. Apply through the office's website, or call or
 email to set up an appointment.
+
+**Find it today.** Search the college website for Student Accessibility
+Services, or open Syllabus in the course navigation and use the direct link
+there. Both take about a minute.
 
 Two things about this course specifically.
 

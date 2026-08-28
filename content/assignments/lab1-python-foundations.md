@@ -123,22 +123,6 @@ Predicting late is not.
 the output in a sentence is not the same as pasting it.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| `verify_env.py` output pasted in full, failures included | 6 |
-| Five predictions written, each with a one-sentence reason | 10 |
-| Real output from `lab1.py` pasted, and any wrong prediction explained | 5 |
-| Output from `lab1_dict.py` pasted in full | 3 |
-| Question 1: names the key and the value, and says why yours is unique | 2 |
-| Question 2: names the printed default and explains what prevented the error | 2 |
-| Question 3: explains that a dictionary is found by key, not by position | 2 |
-| **Total** | **30** |
-
-Your instructor reads the three written answers. The pasted output is checked
-against what the lab code produces for your student ID.
-:::
-
 ::: submit
 Upload one file. Markdown or plain text.
 

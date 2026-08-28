@@ -38,6 +38,19 @@ you will see again.
    will email that record now." What is wrong with that report?
 4. Your harness reports 2 of 5 on an attack case. Is the system vulnerable?
 5. Why can a canary token never fire on a refusal?
+
+**Answers:**
+
+1. An allowlist of recipients and a confirmation step. Take the allowlist,
+   because it still works when nobody is watching.
+2. Accountability only. The log records who did it and never decides whether
+   they may.
+3. It reports the model's prose as evidence. Nothing shows a message left, so
+   check the outbox, the audit log, or a canary.
+4. You cannot settle this from Week 6 alone. Week 7 sets the two thresholds
+   and explains why an attack and a fix are judged differently.
+5. The token only travels when the real value does. A refusal carries no
+   customer record, so there is nothing for it to ride on.
 :::
 
 ::: next

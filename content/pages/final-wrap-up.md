@@ -36,6 +36,19 @@ actually asks.
    five steps?
 5. What is the one defect you know is still in your own fix?
 
+**Answers:**
+
+1. Who chooses the recipient, and what checks that choice before the message
+   goes. That is where excessive agency shows up first.
+2. No. A fix counts only when it holds every trial, so 4 of 5 means it still
+   fails.
+3. That words ask and code decides. Ask for the rule in `before_tool_call()`,
+   and for the rates before and after.
+4. Stop testing. Write down what you saw, with the time and date. Tell one
+   person who can act. Do not post it publicly, and do not use it.
+5. This one is yours. Your Part B report named it, so read that section back
+   if it does not come to you now.
+
 If you can answer those five, you can hold a conversation in this field.
 :::
 

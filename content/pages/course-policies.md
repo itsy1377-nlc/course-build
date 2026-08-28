@@ -134,9 +134,51 @@ You have to protect other people the same way:
    the course.
 
 Discussion posts are visible to the whole class. Write them knowing that.
+:::
 
-Every outside tool this course uses publishes its own privacy policy and
-accessibility statement. Those are linked in the course syllabus.
+::: section | Which tools handle your data, and what to read
+FERPA covers the college. It does not cover a company you send text to. So here
+is the honest list of what handles your work in this course.
+
+**Canvas** holds your submissions, grades, quiz answers, and discussion posts.
+Canvas is run by Instructure.
+
+**The model provider you pick** receives every prompt you send it. That
+includes your code and anything you paste into it. You choose that provider in
+Week 2, from Groq, Gemini, Ollama, or the offline `mock` provider.
+
+**Any tool the college adds later** handles whatever that tool collects. If one
+is added mid-session, your instructor names it in the Canvas syllabus.
+
+Read these documents. Each one is published under the title given here.
+
+| Whose | Document to read | How to find it |
+|---|---|---|
+| Instructure, for Canvas | Instructure Privacy Policy | Search the web for that title |
+| Groq | Groq Privacy Policy | On the Groq site, with its legal pages |
+| Groq | Groq Acceptable Use and Responsible AI Policy | Linked on the Course Material page |
+| Google | Google Privacy Policy | On the Google policies site |
+| Google | Google Generative AI Prohibited Use Policy | Linked on the Course Material page |
+| The federal government | Family Educational Rights and Privacy Act | Search for FERPA on the college website |
+
+Your instructor puts a direct link to each of these in the Canvas syllabus, and
+checks those links at the start of each session. They live there rather than
+here because this page is copied forward between sessions and the syllabus is
+rewritten for each one.
+
+**Ollama and the `mock` provider send nothing anywhere.** Both run on your own
+computer. If privacy is your main concern, pick one of those.
+:::
+
+::: callout warning | The specific risk this course keeps naming
+A free tier may train on what you submit. Your text can be stored, read by a
+person, and used to improve the provider's products.
+
+Google says plainly not to submit sensitive, confidential, or personal
+information to its unpaid services. Treat every free hosted model the same way.
+
+This is not a reason to avoid the tools. It is the reason the lab data is all
+invented, and the reason for the rule in the next block.
 :::
 
 ::: callout stop | Never put personal information into a model prompt

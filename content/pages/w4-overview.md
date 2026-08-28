@@ -12,6 +12,9 @@ By the end of this week, you will be able to:
 - 4.2. Explain how a tool result gets back to the model, and why that matters.
 - 4.3. Write a tool function with a working error path.
 - 4.4. Design a tool and write the JSON schema that describes it.
+
+These serve course outcomes O2 (extending an agent with tools), O1 (scripting
+against a model API), and O6 (checking AI-written code).
 :::
 
 ::: tasks
@@ -44,6 +47,12 @@ Module 2 part one, `get_customer`: about 2 hours.
 Module 2 part two, your own tool: about 3 hours.
 Written answers and `AI-USE.md`: about 1 hour.
 The comprehension quiz: about 30 minutes.
+
+That is about 8 hours of assigned work in total, which is the heaviest week in
+the course.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
 
 Part two takes longer than part one, and the extra time goes into the schema
 rather than the Python. That is the design of the assignment, not a problem

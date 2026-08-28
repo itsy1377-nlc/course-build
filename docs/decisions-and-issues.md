@@ -398,3 +398,103 @@ is about 55 hours, that is well under what 3 credit hours implies, and it is a
 credit-hour compliance question before it is a Quality Matters question. Either
 the course carries more work than it currently assigns, or the contact-hour
 designation needs revisiting. Nobody should discover this during an audit.
+
+
+---
+
+## M. The Security Subject Matter Review, and a Claim We Withdrew
+
+A cybersecurity subject matter expert with NSA CAE panel experience assessed
+the finished content. The review was the most consequential of the five,
+because two of its findings are about what the project claims rather than about
+how it is built.
+
+### The knowledge unit claim is withdrawn, from three units to one
+
+Blueprint section 7.4 claimed **AI for Security Assessment** as lead carrier,
+**Defensive Applications of AI** as co-lead, and the legal and regulatory half
+of **AI Governance, Laws, and Ethics**. A search of the built artifacts shows
+none of the three is supportable:
+
+| Claimed | In the built course |
+|---|---|
+| Machine learning applied to assessment, anomaly detection, alert triage | Nothing. There is no ML library in the student dependencies |
+| Detection models, UEBA, SIEM and SOAR, model drift, poisoning of defensive models | Zero of five |
+| EU AI Act, GDPR, CCPA, HIPAA, incident disclosure duties | Zero occurrences of any of them. "Governance" appears once, on an instructor page |
+
+The course has no defensive centre of gravity either. One of five extension
+points builds a control, the reference remediation is sixteen lines, and of the
+three weakness classes outcome 3 names, exactly one is ever fixed in code. The
+modules are "Break It" then "Fix It" and Project 2 is "Attack, Harness,
+Report" at 55 percent of the grade.
+
+**Section 7.4 has been rewritten to claim one unit, partially, with evidence
+behind every word.** The companion knowledge unit analysis had already assigned
+governance to ITSY 2373, so the two program documents were contradicting each
+other and the one with no governance content in it was the wrong one.
+
+That analysis wrote its own indictment: *"a finding that one knowledge unit was
+overclaimed puts the credibility of the program's entire mapping in question."*
+Blueprint section 8.3 applied exactly that honesty test to the OWASP coverage
+claim and never applied it to the knowledge units. It has now.
+
+**The submission lab changed too.** Module 3 was nominated, and it instructs
+students not to pass `--case`, not to pass `--trials`, and not to edit any case
+file. Forty-five of its eighty points are transcription of tool output. Module 4
+is the submission: students author cases, build a control in code, verify it
+against two suites, and name a defect they know remains.
+
+### Two smaller claims that were not true of the build
+
+The blueprint said Module 3 offers "a reproducible containerized environment".
+There is no Docker anywhere in the labs. And it said a working code fix reports
+"5 of 5, MITIGATED", which was wrong twice over. Both corrected in place.
+
+### The autograder required a control to fail open
+
+`test_module4.py` proved a student read their rule from configuration by
+handing the guard an **empty** allowlist and asserting the call was **allowed**.
+That accidentally made fail-open the required behaviour, in a course that says
+three pages later that a guard which lets everything through when something is
+missing is worse than no guard. The intent was right and the assertion
+expressed the opposite of it.
+
+Now the test hands the guard a **different** non-empty allowlist and checks
+that it follows it, in both directions. The reference answers no longer fail
+open either.
+
+### "Mitigated" left the harness
+
+Zero hits was reported as MITIGATED on as few as three completed trials. Five
+clean trials against a weakness that lands three times in ten produce zero hits
+about one run in six, so the word was a conclusion presented as an observation,
+sitting two lines below a comment reading *"Missing evidence is not evidence of
+absence."*
+
+The status is now `NO_HITS_IN_5`, carrying its own sample size, and
+`BLOCKED_5_OF_5` when a control stopped an attempt. A student who wants to
+write "mitigated" in a report still can, and now has to decide to.
+
+### Legal framing, which a college attorney would have caught
+
+The Rules of Engagement stated as flat fact that testing without authorization
+"is a crime". That is wrong as written, it names no statute, and the course
+then has students restate it in their own words and quotes it back on the final
+exam. Corrected to "can be a crime", with the student code of conduct as the
+consequence that is certain. The page also claimed every commercial provider
+bans adversarial testing, and then contradicted itself five lines later.
+
+Clause 6, what to do on finding a real vulnerability outside the course, gained
+three things it needed: do not retain any data you saw, route a workplace
+finding to the employer's security channel rather than to an instructor, and
+the three places a report actually belongs when there is no obvious owner.
+
+### The finding that explains all the others
+
+*"Reading level is mechanically enforced. Framework accuracy is a manual
+checklist. Only one of those two can fail a build."*
+
+Worse, the asymmetry had a direction: an accurate hedged sentence costs reading
+grade and a confident wrong one does not. That is the mechanism that produced
+most of the content defects across all five reviews, and it is now closed by
+`tools/verify_content.py`.

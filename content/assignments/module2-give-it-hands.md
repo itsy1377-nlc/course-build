@@ -187,29 +187,6 @@ wrong is worse than a tool that is missing. The agent carries on as if it
 worked, and the log agrees with it.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| `get_customer` returns the right record for a real customer ID | 15 |
-| A missing customer raises `ToolError` with a message naming the failed lookup | 15 |
-| `get_customer` never returns an empty string on failure | 5 |
-| One tool of your own, registered in `TOOLS` and in `agent.allowed_tools` | 10 |
-| Your schema has a name, a real description, and typed, described parameters | 15 |
-| Your schema matches your function: arguments built from it run without being rejected | 15 |
-| Run transcript showing the agent calling your new tool | 5 |
-| `ANSWERS.md`: what it does, what it refuses, what happens on an HTTP error | 5 |
-| `AI-USE.md`: at least one AI suggestion you rejected, with your reason | 5 |
-| **Total** | **90** |
-
-The first six rows are checked by `tests/test_module2.py`. You can run it as
-often as you want before the deadline.
-
-The last three rows are read by your instructor.
-
-The Module 2 comprehension quiz is a separate item worth 50 points, with the
-same deadline.
-:::
-
 ::: submit
 Upload one zip file named `module2-<your last name>.zip`.
 

@@ -35,6 +35,17 @@ questions coming up.
 3. The model sends `{"customer_id": 1002}` and your function expects a string.
    Which part of your work was wrong, the Python or the schema?
 4. Name the one place in `agent/loop.py` where a tool call can still be stopped.
+
+**Answers:**
+
+1. The model chose it. The address came out of the text the model had read,
+   which includes ticket content a stranger wrote.
+2. The allowlist decides which schemas the model is sent. A tool the model is
+   never told about cannot be called.
+3. The schema. It is the only thing the model reads about your tool, so it
+   declared the wrong type and the model believed it.
+4. `before_tool_call()`. It runs after the model asks and before the tool
+   acts, so it is the last moment anything can say no.
 :::
 
 ::: next

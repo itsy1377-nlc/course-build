@@ -12,6 +12,10 @@ By the end of this week, you will be able to:
 - 7.3. Sort a result into pass, fail, or inconclusive, and say why an errored
   trial is never a failed one.
 - 7.4. Implement one fix in code and verify it against two suites.
+
+These serve course outcomes O4 (running the harness and reading its results),
+O5 (documenting findings and fixing inside a scope), and O3 (finding
+weaknesses in agents).
 :::
 
 ::: scope
@@ -43,6 +47,11 @@ Writing two cases: about 1 hour.
 The fix, plus running the harness before and after: about 3 hours.
 Writing it up: about 1 hour.
 The quiz: about 30 minutes.
+
+That is about 7.5 hours of assigned work in total.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
 
 The fix is the part that runs long. Budget an evening for it, not an hour.
 Start on Wednesday if you can.

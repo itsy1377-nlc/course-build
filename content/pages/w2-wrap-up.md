@@ -40,6 +40,19 @@ Answer these before Week 3 opens.
    arguments. Then say what type you are holding at the end.
 5. You copied a working request from a blog post and it fails against your
    provider. Name one thing worth checking first.
+
+**Answers:**
+
+1. No. A 400 means the request itself is wrong, so sending it again gives the
+   same answer and spends your quota.
+2. It never gives a rate limit time to clear, and it never stops. Waits have
+   to grow, and growth needs a ceiling.
+3. Your caller needs a dictionary to look keys up in. A list parses fine and
+   has no keys, so it is valid JSON of the wrong shape.
+4. `response["choices"][0]["message"]["tool_calls"][0]["function"]["arguments"]`.
+   You are holding a string, so `json.loads` comes next.
+5. The model name. Providers name their models differently, so a name yours
+   does not have fails before anything else is even read.
 :::
 
 ::: next

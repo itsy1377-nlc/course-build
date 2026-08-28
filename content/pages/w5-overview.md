@@ -12,6 +12,9 @@ By the end of this week, you will be able to:
 - 5.3. Explain why a rule written in the system prompt is not a control.
 - 5.4. Write one finding on the report template, with evidence and a
   framework reference.
+
+These serve course outcomes O3 (finding weaknesses in agents), O5 (documenting
+findings inside an authorized scope), and O6 (checking AI-written code).
 :::
 
 ::: scope
@@ -38,6 +41,11 @@ deadline.
 Reading and the content page: about 90 minutes.
 Attack Lab 1: about 3 hours.
 The practice finding: about 1 hour.
+
+That is about 5.5 hours of assigned work in total.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
 
 If the lab takes you much longer than that, you are probably stuck on setup
 rather than on the attack. Post on the Q and A board early.

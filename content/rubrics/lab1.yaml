@@ -2,15 +2,11 @@ ref: lab1
 title: "Lab 1: Python Foundations"
 points: 30
 free_form_comments: true
-guidance: >
+guidance: |
   Lab 1 is not a programming test. Nothing here asks you to write code from
   nothing. You run one command, read code that already works, predict what it
   does, and then check whether you were right. Being wrong and saying why you
   were wrong is worth full credit. Guessing right and not knowing why is not.
-
-  Two rows are graded on pasted output. Describing output in a sentence is not
-  the same as pasting it. Paste the failures too. A submission with two failed
-  checks and honest output is worth more than one with nothing pasted.
 
   Your instructor reads the three written answers. The pasted output is checked
   against what the lab code produces for your student ID.
@@ -22,8 +18,8 @@ criteria:
       instructor now knows what.
     points: 6
     ratings:
-      - {points: 6, description: Ran, code submitted}
-      - {points: 3, description: Ran, code not submitted}
+      - {points: 6, description: "Ran, code submitted"}
+      - {points: 3, description: "Ran, code not submitted"}
       - {points: 0, description: Not run}
   - description: Read-and-predict answers
     long_description: >
@@ -31,8 +27,8 @@ criteria:
       happened. Where they differed you said what you had misunderstood.
     points: 10
     ratings:
-      - {points: 10, description: All answered, with the prediction written before the result}
-      - {points: 6, description: All answered, but only after running the code}
+      - {points: 10, description: "All answered, with the prediction written before the result"}
+      - {points: 6, description: "All answered, but only after running the code"}
       - {points: 3, description: Some answered}
       - {points: 0, description: Missing}
   - description: The dictionary lookup questions
@@ -60,7 +56,7 @@ criteria:
   - description: Work is your own, and AI use is declared where you used it
     points: 3
     ratings:
-      - {points: 3, description: Declared, or plainly not used}
+      - {points: 3, description: "Declared, or plainly not used"}
       - {points: 0, description: Not declared}
   - description: Submitted on time and in the right format
     points: 3

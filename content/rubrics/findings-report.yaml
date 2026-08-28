@@ -12,9 +12,6 @@ free_form_comments: true
 guidance: >
   Finding accuracy and remediation adequacy carry 70 of the 120 points. They
   are read by your instructor, not scored by a script. Spend your time there.
-
-  Run the harness once more before you write, so every number comes from your
-  newest file in `runs/reports/`. Do not quote a run from last week.
 criteria:
   - description: Finding accuracy
     long_description: >
@@ -36,7 +33,7 @@ criteria:
     ratings:
       - {points: 35, description: Verified and scoped, long_description: "The control is at the code level, the attack goes to zero across every trial, the benign suite still passes, and the report shows both numbers."}
       - {points: 26, description: Verified but narrow, long_description: "The fix works and is verified, but it addresses the instance rather than the class, for example by naming one address."}
-      - {points: 17, description: Asserted, not verified, long_description: "A fix is described. No before and after numbers are given, or only the attack suite was re-run."}
+      - {points: 17, description: "Asserted, not verified", long_description: "A fix is described. No before and after numbers are given, or only the attack suite was re-run."}
       - {points: 8, description: Breaks the feature, long_description: "The attack stops, and so does normal use. A control that blocks everything is not a control."}
       - {points: 0, description: No remediation}
   - description: The second remediation, specified in writing
@@ -46,8 +43,8 @@ criteria:
     points: 20
     ratings:
       - {points: 20, description: Buildable and testable, long_description: "Names the control, where it goes, and the exact test that would show it working."}
-      - {points: 13, description: Buildable, not testable, long_description: "The control is clear. The verification is missing or vague."}
-      - {points: 6, description: A direction, not a specification}
+      - {points: 13, description: "Buildable, not testable", long_description: "The control is clear. The verification is missing or vague."}
+      - {points: 6, description: "A direction, not a specification"}
       - {points: 0, description: Missing}
   - description: Authorization basis
     long_description: >
@@ -66,15 +63,15 @@ criteria:
       An identifier the evidence does not support is worse than a blank.
     points: 5
     ratings:
-      - {points: 5, description: Correct, with editions given}
+      - {points: 5, description: "Correct, with editions given"}
       - {points: 3, description: Correct but no edition or release cited}
       - {points: 1, description: One or more identifiers do not fit the finding}
       - {points: 0, description: Missing or invented}
   - description: Severity, with its basis
     points: 5
     ratings:
-      - {points: 5, description: Rated, with the facts it rests on, long_description: "Data class, blast radius, what access an attacker needs, and whether a human approves the action."}
-      - {points: 3, description: Rated, thinly justified}
+      - {points: 5, description: "Rated, with the facts it rests on", long_description: "Data class, blast radius, what access an attacker needs, and whether a human approves the action."}
+      - {points: 3, description: "Rated, thinly justified"}
       - {points: 0, description: A label with no reasoning}
   - description: What defect remains
     long_description: >
@@ -82,12 +79,12 @@ criteria:
       not cover. Honesty here is the skill being assessed.
     points: 5
     ratings:
-      - {points: 5, description: A real, specific residual weakness}
+      - {points: 5, description: "A real, specific residual weakness"}
       - {points: 3, description: Generic or hedged}
-      - {points: 0, description: Missing, or claims nothing remains}
+      - {points: 0, description: "Missing, or claims nothing remains"}
   - description: Template and word cap
     points: 5
     ratings:
-      - {points: 5, description: Every heading used, at or under 900 words}
-      - {points: 3, description: Over the cap, or a heading missing}
+      - {points: 5, description: "Every heading used, at or under 900 words"}
+      - {points: 3, description: "Over the cap, or a heading missing"}
       - {points: 0, description: Neither}

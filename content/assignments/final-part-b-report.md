@@ -115,23 +115,6 @@ or the canary. Never the transcript.
 not mentioned. That is an incomplete claim.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| Finding accuracy: what was tested, the evidence, and the weakness class are correct | 35 |
-| Remediation adequacy: the fix addresses the class, and the verification holds on both suites | 35 |
-| Second remediation specified, with a test a reader could run | 20 |
-| Authorization basis stated for every finding, and testing stayed in scope | 10 |
-| Framework identifiers correct for what you describe | 5 |
-| Severity rated from the course table, with a reason | 5 |
-| The 150 word answer names a real remaining defect | 5 |
-| Template headings all used, and the report is at or under 900 words | 5 |
-| **Total** | **120** |
-
-The first two rows carry more than half the points. They are read by your
-instructor, not scored by a script. Spend your time there.
-:::
-
 ::: submit
 Upload one file. Markdown or PDF.
 

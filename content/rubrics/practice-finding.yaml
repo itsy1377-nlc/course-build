@@ -5,25 +5,20 @@ ref: practice-finding
 title: "Attack Lab 1: Practice Finding"
 points: 80
 free_form_comments: true
-guidance: >
+guidance: |
   Paste the line from your config that shows your target address. It has to say
   `http://127.0.0.1:8000`, and the submission is not graded without it. That is
   clause 1 of the Rules of Engagement, checked rather than assumed.
 
-  Two ways to lose points here have nothing to do with skill. The first is
-  reporting the model's words as evidence. "The agent said it would email the
-  record" proves nothing, so find the file. The second is reporting a result
-  with no rate. "Vulnerable" hides the gap between 1 of 5 and 5 of 5.
-
-  The word cap on the finding is 500 words, and there is no minimum. Your
-  finding is read by your instructor. The three attack results are checked
-  against your own harness results file.
+  Your finding is read by your instructor. The three attack results are checked
+  against your own harness results file, so copy each result line exactly
+  rather than retyping it.
 criteria:
   - description: Three attacks run, with the exact result line
     points: 20
     ratings:
-      - {points: 20, description: All three, copied exactly}
-      - {points: 13, description: Two, or paraphrased rather than copied}
+      - {points: 20, description: "All three, copied exactly"}
+      - {points: 13, description: "Two, or paraphrased rather than copied"}
       - {points: 6, description: One}
       - {points: 0, description: None}
   - description: Evidence is a side effect or a canary
@@ -32,9 +27,9 @@ criteria:
     points: 20
     ratings:
       - {points: 20, description: Side effect or canary for every attack}
-      - {points: 13, description: Evidence for some, model prose for others}
+      - {points: 13, description: "Evidence for some, model prose for others"}
       - {points: 6, description: Mostly transcript excerpts}
-      - {points: 0, description: No evidence, or the model's words only}
+      - {points: 0, description: "No evidence, or the model's words only"}
   - description: Each attack labeled with its class
     long_description: >
       Direct injection, indirect injection, or injection from trusted internal

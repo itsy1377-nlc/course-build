@@ -12,6 +12,9 @@ By the end of this week, you will be able to:
   technique.
 - 1.4. Read short Python code and predict what it prints, using variables,
   strings, lists, and dictionaries.
+
+These serve course outcomes O5 (working inside an authorized scope) and O1
+(scripting against a model API). The six are on the Welcome page.
 :::
 
 ::: scope
@@ -63,7 +66,10 @@ The Week 1 content page: about 45 minutes.
 
 Lab 1: about 2 hours.
 
-That is 5 to 6 hours in total.
+That is 5 to 6 hours of assigned work in total.
+
+If programming is new to you, the coding parts commonly take two to three
+times as long. That wider range is normal, not a sign of falling behind.
 
 Setup is the part that goes wrong. It is the main reason students fall behind in
 week 1. If you are stuck for more than 30 minutes, post the whole output on the

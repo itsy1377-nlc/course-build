@@ -11,6 +11,10 @@ By the end of this block, you will be able to:
 - F.2. Specify a second fix, with the test that would prove it works.
 - F.3. Name the weakness class in an agent setup you have never run.
 - F.4. Explain your own repository out loud in three minutes.
+
+These serve course outcomes O3 (finding weaknesses in agents), O4 (running the
+harness and reading its results), O5 (documenting findings and fixing inside a
+scope), and O6 (checking AI-written code).
 :::
 
 ::: scope
@@ -57,8 +61,13 @@ The report: about 4 hours, including one fresh harness run.
 The exam: 3 hours at most, and the timer is hard.
 The walkthrough: about 90 minutes, including one practice take.
 
-That is roughly 9 hours across six days. This block is lighter than a normal
-week on purpose.
+That is about 8.5 hours of assigned work across six days. It is heavier than
+any of the seven weeks before it, not lighter. It is also spread over six days
+rather than seven.
+
+If programming is new to you, the harness run and any repair work commonly
+take two to three times as long. That wider range is normal, not a sign of
+falling behind.
 :::
 
 ::: callout stop | There are no incompletes and no make-up work

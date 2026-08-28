@@ -59,6 +59,12 @@ Return a number. It may have a decimal part.
 
 **Step 4: write `parse_json_content(text)`.**
 
+This step needs `try` and `except`. Read the section named **Just enough try
+and except for Module 1** on the Week 2 content page before you start. It
+teaches the three moves this step needs, and it points you at a worked example
+inside `agent/llm.py`. Week 3 goes further with error handling. You do not need
+that yet.
+
 This function takes the text of a model's reply and returns a dictionary.
 
 Models are asked for JSON and do not always deliver it. Sometimes you get clean
@@ -127,26 +133,6 @@ Work in this order.
    actually receiving.
 4. If a test message does not make sense, paste the test name and the message on
    the Q and A board. Do not paste your answer.
-:::
-
-::: grading
-| Criterion | Points |
-|---|---|
-| `should_retry` returns `True` for 429, 500, 502, 503, and 504 | 20 |
-| `should_retry` returns `False` for 400, 401, 403, 404, and 422 | 20 |
-| `backoff_seconds` never returns zero, and each wait is at least as long as the last | 15 |
-| `backoff_seconds` is capped, so attempt 20 waits 60 seconds or less | 10 |
-| `parse_json_content` returns the right dictionary for valid JSON | 10 |
-| `parse_json_content` raises `LLMError` for malformed text, empty text, and a JSON list, and never leaks a raw decode error | 15 |
-| Your `module1-pytest.txt` output uploaded | 0, and the submission is not graded without it |
-| **Total** | **90** |
-
-Every row above is checked by `tests/test_module1.py`. You can see your score
-before you submit by running that file yourself.
-
-The pytest output you upload has to match the file you upload. A passing output
-with a file that does not pass is an academic integrity referral, not a lost
-point.
 :::
 
 ::: submit

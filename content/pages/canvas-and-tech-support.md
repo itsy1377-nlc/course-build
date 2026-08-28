@@ -47,8 +47,8 @@ They can help with:
 - General troubleshooting when you do not know what is wrong.
 
 Current phone numbers, the email address, and hours of operation are on the
-district IT support page. Check there rather than trusting a number copied from
-an old course.
+Alamo Colleges District IT support page. Check there rather than trusting a
+number copied from an old course.
 
 Have this ready before you call. It makes the call short:
 
@@ -58,6 +58,39 @@ Have this ready before you call. It makes the call short:
 
 Give only what the help desk asks for. Nobody from the college will ask for
 your password.
+:::
+
+::: section | How to find each of these in under a minute
+No phone number or web address is printed on this page, and that is deliberate.
+Numbers change and hours change. A number typed into a course shell goes stale
+and nobody notices.
+
+So here is the route to each one instead. The third column is what you click,
+or what you type into a search box.
+
+| What you want | Which system | Search for, or click |
+|---|---|---|
+| Canvas guides, live chat, or the support phone menu | Canvas | Help, in the gray menu on the left |
+| A walkthrough for a new Canvas student | Canvas | Student Quick Guide, in that same Help menu |
+| Help desk numbers, email, and hours | Alamo Colleges District website | IT Support |
+| A loaner laptop or a hotspot | College website | Help Desk |
+| An accommodation | College website | Student Accessibility Services |
+| Anything about the lab code | Canvas course navigation | Q and A Discussion Board |
+
+Each search term above is the name of an office or a page. Look for the result
+named for it. If you land somewhere else, add Alamo Colleges to your search.
+:::
+
+::: callout note | Where the direct links live
+Your instructor puts a direct link to each item in that table into the Canvas
+syllabus, and checks those links at the start of each session.
+
+They live there rather than here because this page is copied forward from
+session to session without being reopened. The syllabus is rewritten for each
+session, so it is the one place a link gets checked again.
+
+Open **Syllabus** in the course navigation on the left. If a link there is
+dead, say so on the Q and A board.
 :::
 
 ::: section | Borrowing a laptop or a hotspot
@@ -126,8 +159,8 @@ words into syllables, highlight a line at a time, and read a page aloud.
 You turn it on once, and it then works in every course, because the setting
 lives on your Canvas profile.
 
-If you need more than that, contact Student Accessibility Services. The
-Academic and Student Support page says how.
+If you need more than that, contact Student Accessibility Services. The Support
+Resources page in this course says how to reach them.
 :::
 
 ::: next

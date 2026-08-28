@@ -5,10 +5,15 @@ students have gotten stuck before.
 :::
 
 ::: callout time | Plan the hours before the term starts
-This course needs **19 to 21 hours a week**, reading included. It is a short
-term carrying a full course, so the work does not thin out.
+Assigned work runs about **5 to 9 hours a week**, reading included. Every
+Overview page itemizes its own week, so plan from those numbers.
 
-Open a calendar right now and block the time. Four sittings of about five hours
+Coding takes longer when it is new. Students with no programming background
+commonly spend two to three times the assigned time on the coding parts. That
+puts a realistic week between about **10 and 20 hours**. The range is normal,
+not a sign of falling behind.
+
+Open a calendar right now and block the wider figure. Four sittings a week
 works better than one long day, because most problems here need a night of not
 thinking about them.
 

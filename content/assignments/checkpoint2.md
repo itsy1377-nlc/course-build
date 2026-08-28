@@ -70,20 +70,6 @@ made-up success does not.
    problem, and it is the one thing here that is serious.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| All five items present, plus the blocker sentence, with one original payload, one genuine transcript, and an in-scope target configuration | 20 |
-| Anything on that list missing | 0 |
-| **Total** | **20** |
-
-This is graded pass or fail. It is not judged on elegance, on whether your
-payload worked, or on how much you have finished.
-
-Submissions are triaged by script, so your instructor reads the exceptions.
-Expect a reply only if something needs attention.
-:::
-
 ::: submit
 Upload one file, markdown or PDF, or paste the same content into the text box.
 

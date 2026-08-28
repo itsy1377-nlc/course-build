@@ -2,7 +2,7 @@ ref: module1
 title: "Module 1: Talk to the Model"
 points: 90
 free_form_comments: true
-guidance: >
+guidance: |
   Every row below is checked by a test you can run yourself, as many times as
   you like, before the deadline. Run `python -m pytest tests/test_module1.py -q`
   and the output tells you your score before your instructor sees it. There are
@@ -19,7 +19,7 @@ criteria:
     points: 20
     ratings:
       - {points: 20, description: All eleven status codes correct}
-      - {points: 12, description: Retryable codes right, one or more 4xx wrongly retried}
+      - {points: 12, description: "Retryable codes right, one or more 4xx wrongly retried"}
       - {points: 5, description: Partly working}
       - {points: 0, description: Still the shipped stub}
   - description: backoff_seconds grows and is capped
@@ -29,7 +29,7 @@ criteria:
     points: 15
     ratings:
       - {points: 15, description: Grows and is capped}
-      - {points: 9, description: Grows, no cap}
+      - {points: 9, description: "Grows, no cap"}
       - {points: 4, description: Returns a fixed number above zero}
       - {points: 0, description: Still returns zero}
   - description: parse_json_content reads a well-formed reply
@@ -44,19 +44,19 @@ criteria:
       JSONDecodeError reaching the caller is the defect this row exists for.
     points: 20
     ratings:
-      - {points: 20, description: LLMError with a useful message, on every bad input}
-      - {points: 12, description: Raises LLMError, message unhelpful}
-      - {points: 5, description: Raises something, but the raw library error escapes}
-      - {points: 0, description: Returns an empty result, or crashes}
+      - {points: 20, description: "LLMError with a useful message, on every bad input"}
+      - {points: 12, description: "Raises LLMError, message unhelpful"}
+      - {points: 5, description: "Raises something, but the raw library error escapes"}
+      - {points: 0, description: "Returns an empty result, or crashes"}
   - description: Your pytest output is included
     points: 10
     ratings:
-      - {points: 10, description: Pasted, unedited}
+      - {points: 10, description: "Pasted, unedited"}
       - {points: 5, description: Described rather than pasted}
       - {points: 0, description: Missing}
   - description: AI use declared, and you can explain what you submitted
     points: 10
     ratings:
-      - {points: 10, description: Declared, and the written answers show you read it}
-      - {points: 5, description: Declared, answers thin}
+      - {points: 10, description: "Declared, and the written answers show you read it"}
+      - {points: 5, description: "Declared, answers thin"}
       - {points: 0, description: Not declared}

@@ -67,19 +67,6 @@ Open every file you need before you start recording. Do not search on camera.
 Read your rate off the screen. Do not try to remember it.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| Part 1: your own tool and schema shown and explained | 8 |
-| Part 2: a result read with its rate, and the evidence shown | 8 |
-| Part 3: the fix shown, re-run, with the benign baseline passing | 8 |
-| Inside three minutes, or the written form at or under 600 words | 3 |
-| It is your own repository, with your student ID or canary visible once | 3 |
-| **Total** | **30** |
-
-The three parts carry the points. Production quality carries none.
-:::
-
 ::: submit
 Submit either a media recording or a link.
 

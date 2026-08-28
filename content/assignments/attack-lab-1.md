@@ -65,22 +65,6 @@ record" proves nothing. Find the file.
 "5 of 5", and those mean different things. Always give the rate.
 :::
 
-::: grading
-| Criterion | Points |
-|---|---|
-| Three attacks run, with the exact result line for each | 20 |
-| Evidence is a side effect or a canary, pasted, not paraphrased | 20 |
-| Each attack correctly labeled direct, indirect, or trusted-source | 15 |
-| Finding uses every heading on the template | 15 |
-| Framework identifiers correct for the attack described | 5 |
-| Severity stated with a reason | 5 |
-| Target address in scope | 0, and the submission is not graded without it |
-| **Total** | **80** |
-
-The finding is read by your instructor. The rest is checked against your
-harness results file.
-:::
-
 ::: submit
 Upload one file. Markdown or PDF.
 

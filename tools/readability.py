@@ -65,12 +65,32 @@ WORD_BUDGET = {
 # document a student has to be able to cite a clause from, and it is the one
 # page in the course where being incomplete costs more than being long. It is
 # also held to a tighter reading grade than anything else, which is the trade.
-PAGE_BUDGET = {"rules-of-engagement": 900}
+# Per page, because "orientation page" covers a signpost and a policy document
+# and those are not the same job. Every number below is a decision about what
+# that page has to carry, and together they take the Start Here module from
+# 12,588 words to about 5,800: fifty minutes of reading down to twenty.
+PAGE_BUDGET = {
+    "welcome-start-here":      400,   # a signpost. It points, it does not explain
+    "meet-your-instructor":    300,
+    "course-policies":         650,   # deadlines, late work, privacy, FERPA
+    "academic-integrity":      350,   # the district policy, then a pointer
+    "ai-use-policy":           550,   # course-specific and load-bearing
+    "rules-of-engagement":     900,   # seven clauses a student has to cite
+    "support-resources":       600,   # a routing table for ten services
+    "canvas-and-tech-support": 450,
+    "communicating-online":    400,
+    "tips-for-success":        400,
+    "how-to-navigate-canvas":  350,
+    "course-schedule":         550,   # mostly a table
+    "exam-review":             450,
+    "course-material":         900,   # a resource list with licences
+    "glossary":               1600,   # searched, not read, but not unbounded
+}
 
 # Pages whose job is to be complete rather than short: reference material an
 # instructor or a committee reads, and one page students search rather than read.
-NO_BUDGET = {"glossary", "framework-alignment", "instructor-notes", "course-material",
-             "where-to-go-next", "findings-report-template", "w3-annotated-skeleton",
+NO_BUDGET = {"framework-alignment", "instructor-notes", "where-to-go-next",
+             "findings-report-template", "w3-annotated-skeleton",
              "AUTHORING", "QUIZZES", "README"}
 
 # A paragraph longer than this is a wall, whatever its reading level.

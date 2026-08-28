@@ -52,9 +52,15 @@ There is no class you have to attend at a set hour.
 
 Work is due **Sunday at 11:59 PM Central**, unless a page says otherwise.
 
-Plan on **19 to 21 hours per week**, reading included. This is a short term
-carrying a full course. The hours are real, and they are front-loaded in
-weeks 3 and 4.
+Assigned work runs about **5 to 9 hours per week**, reading included. Every
+Overview page itemizes its own week, so plan from those numbers.
+
+Coding takes longer when it is new. Students with no programming background
+commonly spend two to three times the assigned time on the coding parts. That
+puts a realistic week between about **10 and 20 hours**.
+
+That range is normal. It is not a sign of falling behind. This is a short term
+carrying a full course, so block the wider figure and adjust down.
 :::
 
 ::: section | Do these four things in your first three days

@@ -4,7 +4,7 @@ ref: checkpoint1
 title: "Project 1 Checkpoint"
 points: 20
 free_form_comments: true
-guidance: >
+guidance: |
   Read the bar before you worry about this one. One real tool call, with a
   real tool name, from your own run. That is it. If you cannot get your own
   run working, pull the `agent-working` branch your instructor published on
@@ -15,16 +15,12 @@ guidance: >
   tool that works once passes. A submission built on `agent-working` passes,
   and it is worth the same 20 points as any other. You may resubmit as many
   times as you like before the deadline.
-
-  Two things do fail it, and both are easy to avoid. An edited ledger line no
-  longer proves a run happened, so paste it whole with its timestamp. And the
-  schema has to be for the same tool your ledger line names.
 criteria:
   - description: One real tool call from your own log
     points: 8
     ratings:
-      - {points: 8, description: Pasted unedited, with its timestamp}
-      - {points: 8, description: From the fallback branch, and you said so}
+      - {points: 8, description: "Pasted unedited, with its timestamp"}
+      - {points: 8, description: "From the fallback branch, and you said so"}
       - {points: 0, description: Missing or invented}
   - description: The tool's JSON schema, as registered
     points: 4
