@@ -477,11 +477,28 @@ def _with_rubric(markdown_text: str, row: dict, course: dict) -> str:
              f"submit. It totals {rubric['points']} points.", ""]
     if rubric.get("guidance"):
         lines += [rubric["guidance"].strip(), ""]
-    lines += ["| Criterion | Points | What full credit looks like |", "|---|---|---|"]
+
+    # The partial credit column is the point of this table, not a decoration.
+    # It used to show full credit alone, which told a student what perfect
+    # looks like and nothing about what an imperfect submission is worth. A
+    # student deciding whether a half-finished attempt is worth handing in got
+    # no signal that most rows pay for it, which is the opposite of what the
+    # ladders are for. Every rung between full marks and zero is listed here.
+    lines += ["| Criterion | Points | Full credit | Partial credit |",
+              "|---|---|---|---|"]
     for criterion in rubric["criteria"]:
-        best = max(criterion["ratings"], key=lambda r: r["points"])
+        ratings = sorted(criterion["ratings"], key=lambda r: -r["points"])
+        best = ratings[0]
+        middle = [r for r in ratings
+                  if 0 < r["points"] < criterion["points"]]
+        if middle:
+            partial = "<br>".join(f"**{r['points']}** {r['description']}"
+                                  for r in middle)
+        else:
+            partial = "None. This row is all or nothing."
         lines.append(f"| {criterion['description']} | {criterion['points']} | "
-                     f"{best.get('long_description') or best['description']} |")
+                     f"{best.get('long_description') or best['description']} | "
+                     f"{partial} |")
     lines.append(":::")
     block = "\n".join(lines)
 
