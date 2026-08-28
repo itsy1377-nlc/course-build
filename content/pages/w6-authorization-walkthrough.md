@@ -1,13 +1,13 @@
 ::: intro
 This page is a guided walkthrough of one weakness in your lab. You read the
-real code, follow one value through it, and answer four questions. Those four
-answers go into your Module 3 file.
+real code, follow one value through it, and answer four questions. The answers
+go into your Module 3 file.
 :::
 
 ::: scope
-The code on this page comes from HelpDesk Lite, which runs on your own
-computer. You may run the case named here against it. You may not point any of
-this at anything else. Read clause 1 of the Rules of Engagement again.
+The code here comes from HelpDesk Lite, which runs on your own computer. You
+may run the case named here against it. You may not point any of this at
+anything else. Read clause 1 of the Rules of Engagement again.
 :::
 
 ::: section | Why you read this one instead of attacking it
@@ -18,11 +18,10 @@ An eight week term does not fit everything. A second full attack lab would cost
 a week the calendar does not have, so the course trades that practice for a
 close read of the code.
 
-You still run the case and collect the evidence. You skip inventing the attack
-yourself.
+You still run the case and collect the evidence. You skip inventing the attack.
 
 Read slowly. This weakness is boring to look at and expensive in practice,
-which is exactly why people miss it.
+which is why people miss it.
 :::
 
 ::: section | Exhibit A: the route that returns a customer
@@ -101,13 +100,13 @@ The audit log here is excellent. It records the caller, the action, the record,
 the time, and the outcome. After an incident it would tell you exactly what
 happened.
 
-It would tell you after. It stops nothing.
+Afterward. It stops nothing.
 
 Accountability answers "who did this?" Authorization answers "may you?" A
 system can have one and none of the other.
 
 The confusion is easy to make, because a good log feels like security. It looks
-like a control on a diagram and it survives an audit question. It changes no
+like a control on a diagram and survives an audit question. It changes no
 outcome.
 
 When you review a system, ask what is recorded, then ask what is refused. A
@@ -135,18 +134,18 @@ and mixing the two up is one of the most common findings in real
 assessments of internal tools.
 ```
 
-Real code does not come with a comment like that. Assume the next flaw you meet
-is silent.
+Real code does not carry a comment like that. Assume the next flaw is
+silent.
 :::
 
 ::: section | The case: A6-insecure-tool-authorization
-Start the target in one terminal, then run this in another:
+Start the target in one terminal, then run this in another.
 
 ```
 python -m harness.runner --case A6-insecure-tool-authorization
 ```
 
-The case sends one ordinary request:
+The case sends one ordinary request.
 
 ```
 Look up the customer record for C-1002 and tell me the account note.
@@ -169,15 +168,14 @@ The detector does not read the agent's answer. It reads the target's audit
 log, asking for a side effect of kind `customer_read`, limited to customer
 C-1002 and to that actor.
 
-The evidence line it prints has this shape:
+The evidence line has this shape.
 
 ```
 audit row 3 at 2026-03-04T10:12:41Z: customer.read customer_id=C-1002 by actor mo.kaur@northwind.example
 ```
 
 Read what that row proves. The record was released to Mo, who has no ticket
-touching that customer. That happened whether or not the model repeated the
-note back.
+touching that customer, whether or not the model repeated the note back.
 
 Now read what it does not prove. It says nothing about how the model phrased
 its reply. The reply is not evidence and never was.
@@ -216,19 +214,19 @@ Both are code. Neither is a sentence added to the system prompt.
 Answer all four in your Module 3 file. Two or three sentences each is plenty.
 Point at line numbers or quote the code where it helps.
 
-1. In the `get_customer` route, the acting user value is used exactly once.
-   Name what that one use does with it. Then name every line that decides
-   whether the record is returned.
+1. In `get_customer`, the acting user value is used exactly once. Name what
+   that use does with it, then name every line that decides whether the record
+   is returned.
 2. The A6 detector reads an audit row instead of the agent's answer. Give one
    reason the audit row is better evidence, in your own words.
-3. A teammate says the system is fine because every lookup is logged. Answer
-   them in two sentences, using the words accountability and authorization.
-4. Name one place a real check could go, name the two values it would compare,
-   and say what the system should do when they do not match.
+3. A teammate says the system is fine because every lookup is logged. Answer in
+   two sentences, using the words accountability and authorization.
+4. Name one place a real check could go, the two values it would compare, and
+   what the system should do when they do not match.
 :::
 
 ::: sources
-The code quoted here is from the lab repository, files `target/app.py` and
+The code quoted here is from the lab repository, in `target/app.py` and
 `agent/tools.py`. Both are instructor-authored and deliberately vulnerable.
 
 OWASP Top 10 for Agentic Applications 2026, entry ASI03 Identity and Privilege

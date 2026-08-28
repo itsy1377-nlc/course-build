@@ -245,6 +245,38 @@ def page_kind(path: Path) -> str | None:
     return "content"
 
 
+# A word in a table cell is still a word, but a table is scanned and a
+# paragraph is read, and the budget is a proxy for how long a page takes rather
+# than for how many words are in it. Charging both at the same rate penalised
+# exactly the formatting the course wants, which an author noticed while trying
+# to convert prose into a table and finding it cost them budget.
+#
+# So table rows, list items and fenced code count at a discount. The discount
+# is not generous enough to make a page of tables free, and paragraph length is
+# capped separately, so this cannot be used to smuggle prose past the gate.
+SCAN_WEIGHT = 0.6
+
+
+def weighted_words(text: str) -> int:
+    """Roughly how much reading a page asks for, not how many words it holds."""
+    body = re.sub(r"^:::.*$", "", text, flags=re.MULTILINE)
+    scanned = 0
+    prose_lines = []
+    in_fence = False
+    for line in body.splitlines():
+        stripped = line.strip()
+        if stripped.startswith("```"):
+            in_fence = not in_fence
+            continue
+        if in_fence or stripped.startswith("|") or stripped.startswith(("-", "*", ">")) \
+                or re.match(r"^\d+\.", stripped):
+            scanned += len(stripped.split())
+        else:
+            prose_lines.append(line)
+    prose = len(" ".join(prose_lines).split())
+    return int(prose + scanned * SCAN_WEIGHT)
+
+
 def _paragraphs(text: str) -> list[str]:
     """Prose paragraphs only. Tables, lists, and code are not paragraphs."""
     body = re.sub(r"^:::.*$", "", text, flags=re.MULTILINE)
@@ -267,17 +299,18 @@ def check_file(path: Path) -> PageReport:
 
     kind = page_kind(path)
     report.kind = kind or "reference"
-    body_words = len(re.sub(r"^:::.*$", "", text, flags=re.MULTILINE).split())
-    report.body_words = body_words
+    report.body_words = weighted_words(text)
 
     if kind:
         budget = PAGE_BUDGET.get(stem, WORD_BUDGET[kind])
         report.budget = budget
-        if body_words > budget:
+        if report.body_words > budget:
             report.problems.append(
-                f"{body_words} words against a {budget} word budget for a "
-                f"{kind} page, {body_words - budget} over. Length is a "
-                f"readability problem too. Cut, or split it.")
+                f"{report.body_words} words against a {budget} word budget for a "
+                f"{kind} page, {report.body_words - budget} over. Length is a "
+                f"readability problem too. Cut, or split it.\n"
+                f"      Tables and lists count at 60 percent, because a table is "
+                f"scanned and a paragraph is read.")
             report.passed = False
 
     paragraphs = _paragraphs(text)

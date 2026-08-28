@@ -162,7 +162,7 @@ def _heading(icon: str | None, title: str) -> str:
     return f"<h3>{label}</h3>"
 
 
-def render_block(block: Block) -> str:
+def render_block(block: Block, source: str = "<page>") -> str:
     spec = BLOCKS[block.name]
     cls = spec["cls"]
     icon = spec["icon"]
@@ -173,7 +173,7 @@ def render_block(block: Block) -> str:
         flavor = (block.arg or "note").strip()
         if flavor not in CALLOUT_ICONS:
             raise BlockError(
-                f"line {block.line}: '{flavor}' is not a callout kind.\n"
+                f"{source}:{block.line}: '{flavor}' is not a callout kind.\n"
                 f"  Use one of: {', '.join(sorted(CALLOUT_ICONS))}"
             )
         icon = CALLOUT_ICONS[flavor]
@@ -192,7 +192,7 @@ def render_block(block: Block) -> str:
         severity = CALLOUT_SEVERITY[flavor]
 
     body = markdown_lib.markdown(block.body, extensions=MD_EXTENSIONS)
-    body = _accessible_tables(body, block)
+    body = _accessible_tables(body, block, source)
 
     parts = [f'<div class="dp-content-block {cls}">']
     if severity:
@@ -208,7 +208,7 @@ TABLE_CLASSES = ("ic-Table table-bordered ic-Table--striped "
                  "ic-Table--hover-row ic-Table--condensed")
 
 
-def _accessible_tables(body: str, block: Block) -> str:
+def _accessible_tables(body: str, block: Block, source: str = "<page>") -> str:
     """Make every generated table readable by a screen reader.
 
     Markdown produces a bare `<table>` with `<th>` cells and nothing else. A
@@ -231,8 +231,8 @@ def _accessible_tables(body: str, block: Block) -> str:
     caption = block.title or BLOCKS[block.name]["title"] or "Table"
     if body.count("<table>") > 1:
         raise BlockError(
-            f"line {block.line}: this block has more than one table, and they would "
-            f"share a caption.\n"
+            f"{source}:{block.line}: this block has more than one table, and they "
+            f"would share a caption.\n"
             f"  Split it into one ::: block per table, each with its own heading."
         )
     body = body.replace(
@@ -279,7 +279,7 @@ def _accessible_tables(body: str, block: Block) -> str:
 def render_page(text: str, page_title: str, source: str = "<page>") -> str:
     """Full page HTML, wrapped the way every template page is wrapped."""
     blocks = parse_blocks(text, source)
-    inner = "\n".join(render_block(block) for block in blocks)
+    inner = "\n".join(render_block(block, source) for block in blocks)
     escaped = html.escape(page_title)
     return (
         f'<div id="dp-wrapper" class="dp-wrapper dp-basic-bar">'

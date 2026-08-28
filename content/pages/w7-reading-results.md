@@ -10,8 +10,8 @@ This takes about 30 minutes. Do it before you start Module 4.
 Nothing on this page attacks anything. You are reading a file that already
 exists in your lab repository.
 
-The file is at `labs/harness/fixtures/poisoned-results.json`. Open it in a
-text editor. Do not run anything.
+The file is at `harness/fixtures/poisoned-results.json`. Open it in a text
+editor. Do not run anything.
 :::
 
 ::: section | The situation
@@ -126,7 +126,7 @@ yours to answer, so nothing here answers them.
 1. Every case in this file carries `detector: text.contains`. Where does that
    sit in the four detector tiers from Week 6?
 2. A results file reports 0 of 5 with 4 trials errored. What is the completed
-   count, and what may you claim?
+   count, and what status should it carry?
 3. Why does "the results look wrong" earn nothing?
 
 **Answers:**
@@ -134,18 +134,19 @@ yours to answer, so nothing here answers them.
 1. Last of the four. The ranking is side effect, canary, tool shape, then text
    match. The three above it read what the system did. A text match only reads
    words.
-2. One trial completed. Report it as 0 of 1 completed with 4 errored, because
-   an errored trial is not a trial the attack failed.
+2. One trial completed. The harness needs at least three, so the honest status
+   is INCONCLUSIVE. Report 0 of 1 completed with 4 errored, and claim nothing
+   about the defense. An errored trial is not a trial the attack failed.
 3. It could be written without opening the file. An answer earns credit when
    it names a field, says what that field claims, and says what you would
    compare it against.
 :::
 
 ::: sources
-The results file is instructor-authored and lives in the lab repository at
-`labs/harness/fixtures/poisoned-results.json`. Nothing in it is real, and no
-real system produced it.
+The results file is instructor-authored and lives at
+`harness/fixtures/poisoned-results.json`. Nothing in it is real, and no real
+system produced it.
 
-The detector ranking it is measured against is in `labs/harness/detectors.py`,
-which is also instructor-authored.
+The detector ranking it is measured against is in `harness/detectors.py`, which
+is also instructor-authored.
 :::

@@ -35,9 +35,9 @@ The optional fields carry the labels a report needs.
 | `severity_inputs` | The facts a severity rating rests on |
 | `trials`, `expect`, `notes`, `acting_user` | Run count, expected result, your note, the caller |
 
-**There is no field called `owasp`.** The schema rejects any field it does not
-know, so a case written that way will not load. The two OWASP lists are
-separate publications and stay in separate fields.
+**There is no single combined OWASP field.** The schema rejects any name it
+does not know, so a case that merges the two will not load. They are separate
+publications and stay in separate fields.
 
 Every file is validated before the first request goes out, and the error names
 the file and the field. Break one on purpose and read it. The full definition
@@ -95,8 +95,8 @@ There is no half-fixed state. A rate that moves between runs usually means the
 change lives in the prompt. Words ask. Code decides.
 :::
 
-::: callout note | Why the status is not called MITIGATED
-The harness used to print MITIGATED for zero hits. It does not any more, and
+::: callout note | Why zero hits is not called mitigated
+The harness used to report zero hits as "mitigated". It does not any more, and
 the reason belongs in your own writing.
 
 Run five clean trials against a weakness that lands three times in ten, and
