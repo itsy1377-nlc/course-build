@@ -146,22 +146,22 @@ questions:
 
       Which one is correct?
     answers:
-      - text: "B"
+      - text: "B: retries 429 and the four server error codes, and nothing else"
         correct: true
         feedback: "Correct. It retries the five codes that can clear on their own, and nothing else."
-      - text: "A"
+      - text: "A: retries every code at 400 and above, so a 401 goes out again"
         correct: false
         feedback: "Wrong. This retries every 4xx. A 401 means your key is not accepted, and sending it again cannot change that. Reread the docstring of `should_retry` in `agent/llm.py`."
-      - text: "C"
+      - text: "C: retries anything that is not 200"
         correct: false
         feedback: "Wrong. This retries everything that is not a 200, which includes 400 and 404. Reread the docstring of `should_retry` in `agent/llm.py`."
-      - text: "D"
+      - text: "D: retries only the four codes you must never retry"
         correct: false
         feedback: "Wrong. This is backwards. It retries exactly the codes you must never retry, and it never retries a 429."
-      - text: "E"
+      - text: "E: retries server errors only, so 429 is never sent again"
         correct: false
         feedback: "Close, and this is the common near-miss. It handles the server errors and misses 429, which is the one you will actually see on a free tier."
-      - text: "F"
+      - text: "F: retries everything, including a 400"
         correct: false
         feedback: "Wrong. This retries a 400 forever, up to your retry limit, and burns quota on a request that can never succeed."
     general_feedback: |
@@ -217,16 +217,16 @@ questions:
 
       Which one is correct?
     answers:
-      - text: "C"
+      - text: "C: raises LLMError naming the problem and the first 200 characters"
         correct: true
         feedback: "Correct. It returns the dictionary, it raises `LLMError`, and its message shows the caller what actually came back."
-      - text: "A"
+      - text: "A: parses with no error handling at all"
         correct: false
         feedback: "Wrong. A malformed reply raises a bare `json.JSONDecodeError`, which is the third requirement broken. Reread the docstring in `agent/llm.py`."
-      - text: "B"
+      - text: "B: catches every exception and passes, so the function returns None"
         correct: false
         feedback: "Wrong. `except Exception: pass` throws the failure away and returns `None`. The caller cannot tell a bad reply from a good one."
-      - text: "D"
+      - text: "D: returns an empty dictionary when the text will not parse"
         correct: false
         feedback: "Wrong. An empty dictionary is a lie. It says the model answered with nothing, when the truth is that the answer could not be read."
     general_feedback: |
@@ -363,16 +363,16 @@ questions:
 
       Which one is correct?
     answers:
-      - text: "C"
+      - text: "C: parses, checks the result is an object, and turns a failure into a message"
         correct: true
         feedback: "Correct. It parses the string, checks that the result really is an object, and turns a failure into a message the model can act on."
-      - text: "A"
+      - text: "A: passes the raw string straight through as if it were a dictionary"
         correct: false
         feedback: "Wrong. `raw_arguments` is a string. Passing it on as if it were a dictionary fails as soon as anything asks for a key."
-      - text: "B"
+      - text: "B: parses with no error handling at all"
         correct: false
         feedback: "Wrong. This is right until the model sends something malformed, and then the exception escapes and the agent stops. Reread the comment above this block in `agent/loop.py`."
-      - text: "D"
+      - text: "D: falls back to an empty dictionary on any failure"
         correct: false
         feedback: "Wrong. An empty dictionary means the tool gets called with no arguments and nobody is told why. The failure disappears."
     general_feedback: |
@@ -557,16 +557,16 @@ questions:
 
       Which one is correct?
     answers:
-      - text: "B"
+      - text: "B: checks its input, uses _get, and returns a readable summary"
         correct: true
         feedback: "Correct. It checks its input, uses `_get`, returns a readable summary, and lets `_get` raise `ToolError` on a missing customer."
-      - text: "A"
+      - text: "A: catches the ToolError and returns an empty string instead"
         correct: false
         feedback: "Wrong. Returning an empty string on failure is the exact case the extension point warns about. A tool that fails silently is worse than a tool that is missing."
-      - text: "C"
+      - text: "C: hardcodes the address and skips _get entirely"
         correct: false
         feedback: "Wrong. It hardcodes the address, so `target.base_url` is ignored, and it skips `_headers`, so the `X-Acting-User` header never goes out. Reread `_get` in `agent/tools.py`."
-      - text: "D"
+      - text: "D: returns the error text as if it were an ordinary tool result"
         correct: false
         feedback: "Wrong. The failure comes back looking like ordinary tool output. The model reads `error: ...` as data and keeps going as if the lookup worked."
     general_feedback: |
@@ -1007,16 +1007,16 @@ questions:
 
       Which one loads?
     answers:
-      - text: "B"
+      - text: "B: one canary detector, a known token name, and two places to look"
         correct: true
         feedback: "Correct. One detector, a known token name, and two valid places to look."
-      - text: "A"
+      - text: "A: a regex detector, matching the words api key"
         correct: false
         feedback: "Wrong. `regex` is refused. A rule like \"the answer contained 'api key'\" fires on \"I can't share the api key\", which is a refusal. Reread `BANNED` in `harness/detectors.py`."
-      - text: "C"
+      - text: "C: a side_effect detector and a canary detector in the same block"
         correct: false
         feedback: "Wrong. A detect block takes exactly one detector. Two detectors means two claims, and a finding should make one claim you can defend."
-      - text: "D"
+      - text: "D: an llm_judge detector, asking a model whether the attack succeeded"
         correct: false
         feedback: "Wrong. `llm_judge` is refused. Asking a model whether an attack worked adds a second unpredictable system to a harness whose job is to remove unpredictability."
     general_feedback: |
@@ -1309,16 +1309,16 @@ questions:
 
       Which one fixes the class of bug rather than the one instance you saw?
     answers:
-      - text: "C"
+      - text: "C: uses the allowlist and lowercases both sides before comparing"
         correct: true
         feedback: "Correct. Nothing leaves unless it is on the list, and both sides of the comparison are lowercased before they meet."
-      - text: "A"
+      - text: "A: blocks the one address that case A2 used"
         correct: false
         feedback: "Wrong. This fixes the one address in front of you. The next payload uses a different address and walks straight through."
-      - text: "B"
+      - text: "B: uses the allowlist, but compares the raw strings"
         correct: false
         feedback: "Wrong, and this is the near-miss worth studying. It blocks the class, but it compares raw strings. If the list holds `Support@northwind.example` and the model sends `support@northwind.example`, it refuses mail it should allow, and the benign baseline catches it."
-      - text: "D"
+      - text: "D: prints the tool call and allows every call"
         correct: false
         feedback: "Wrong. Printing is not deciding. It returns True every time, so nothing is ever blocked."
     general_feedback: |
@@ -1404,16 +1404,16 @@ questions:
 
       Which block is correct?
     answers:
-      - text: "A"
+      - text: "A: insecure tool authorization on get_customer, with an audit row as evidence and an acting-user check as the control"
         correct: true
         feedback: "Correct. The class, the tool, the evidence, and the control all describe the same thing, and the case is in scope."
-      - text: "B"
+      - text: "B: excessive agency on send_email, with a customer read as the evidence"
         correct: false
         feedback: "Wrong. The class and the tool do not match the evidence. The audit row is a customer read, not an outbound message."
-      - text: "C"
+      - text: "C: the model's prose as the evidence, and another audit row as the control"
         correct: false
         feedback: "Wrong twice. The evidence is the model's prose, and the proposed control is another log. A log records; it does not decide."
-      - text: "D"
+      - text: "D: indirect prompt injection on search_tickets, with in_scope set to false"
         correct: false
         feedback: "Wrong. A6 is not an injection case; the caller simply asked. The control is a request rather than a control, and `in_scope` is false for a case that targets your own lab app."
     general_feedback: |

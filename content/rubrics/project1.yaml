@@ -5,8 +5,27 @@ ref: project1
 title: "Module 2: Give It Hands"
 points: 90
 free_form_comments: true
+guidance: >
+  The first three rows are checked by `python -m pytest tests/test_module2.py
+  -q`. Run it as often as you like before the deadline. It is the same tool
+  that grades you. The transcript, the written answers, and `AI-USE.md` are
+  read by your instructor.
+
+  The autograder builds arguments from your own schema and calls your function
+  with them. So a schema that disagrees with your function signature fails,
+  even when both halves look right on their own. Read one back against the
+  other before you submit.
+
+  Module 2 is paired with the Module 2 comprehension quiz, worth 50 points,
+  with the same deadline.
 criteria:
   - description: get_customer works, including its error path
+    long_description: >
+      A real customer ID returns a summary a person could read, not a wall of
+      raw JSON. A customer ID that does not exist raises `ToolError` with a
+      message naming the lookup that failed. It never returns an empty string
+      when something goes wrong, because the agent would carry on as if the
+      call had worked.
     points: 25
     ratings:
       - {points: 25, description: Returns the record and raises a clear error when there is none}
@@ -14,6 +33,11 @@ criteria:
       - {points: 8, description: Partly working}
       - {points: 0, description: Still the shipped stub}
   - description: Your tool runs
+    long_description: >
+      Registered in two places: `TOOLS` in `agent/tools.py`, and
+      `agent.allowed_tools` in `config/lab.config.yaml`. Those are two
+      different lists, and both need your tool's name. Miss the second one and
+      the model is never told your tool exists.
     points: 15
     ratings:
       - {points: 15, description: Runs with arguments generated from its own schema}

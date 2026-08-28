@@ -4,7 +4,10 @@ description: |
   This quiz covers what you built in Module 2: a tool schema, the tool-calling
   loop, how a tool call is dispatched, and what happens when a tool fails.
 
-  You get one attempt. Take it after your Module 2 code passes its tests.
+  There are 10 questions. Each one is worth 5 points, for 50 points total.
+
+  You get one attempt. There is no time limit, so take as long as you need once
+  you start. Take it after your Module 2 code passes its tests.
 
   AI help is permitted and it is unprofitable here on purpose. One item asks for
   a value out of your own `runs/ledger.jsonl`, and one depends on your own
@@ -55,16 +58,16 @@ questions:
               pass
       ```
     answers:
-      - text: "B"
+      - text: "B: raises ToolError for a missing customer_id and returns a readable summary"
         correct: true
         feedback: "Correct. _get already raises ToolError on a 404, and B adds a clear error for the missing argument case. The summary is a readable string."
-      - text: "A"
+      - text: "A: catches the ToolError and returns an empty string instead"
         correct: false
         feedback: "Wrong. It catches the 404 and returns an empty string, so the agent is told nothing went wrong. Extension point 2 says do not return an empty string on failure. Reread the comment block above get_customer in agent/tools.py."
-      - text: "C"
+      - text: "C: returns the raw dictionary instead of a readable summary"
         correct: false
         feedback: "Wrong. It returns the raw dictionary instead of a readable summary. call_tool will json.dumps it, so it works, but it fails requirement 2. Reread extension point 2 in agent/tools.py."
-      - text: "D"
+      - text: "D: catches every exception and passes, so the function returns None"
         correct: false
         feedback: "Wrong. `except Exception: pass` swallows every failure and returns None. That is the exact pattern extension point 2 tells you to avoid. Reread the comment block above get_customer."
     general_feedback: |
@@ -158,16 +161,16 @@ questions:
       properties: {}
       ```
     answers:
-      - text: "A"
+      - text: "A: a string ticket_id and a string reason, with only ticket_id required"
         correct: true
         feedback: "Correct. Every property matches a real parameter, the types match, and the only required argument is the one the function cannot work without."
-      - text: "B"
+      - text: "B: requires closed_by, which is not a parameter of the function"
         correct: false
         feedback: "Wrong. `closed_by` is not a parameter of the function. call_tool passes arguments with **args, so a TypeError is raised and turned into a ToolError. Reread call_tool at the bottom of agent/tools.py."
-      - text: "C"
+      - text: "C: declares ticket_id as an integer"
         correct: false
         feedback: "Wrong. Ticket IDs in this lab look like T-503, which is not an integer. A schema that lies about a type sends the model down the wrong path. Reread extension point 4 in agent/tools.py."
-      - text: "D"
+      - text: "D: an empty schema with no properties and nothing required"
         correct: false
         feedback: "Wrong. An empty schema tells the model nothing, so it cannot supply ticket_id and the tool can never do its job. Reread extension point 4 in agent/tools.py."
     general_feedback: |

@@ -10,6 +10,15 @@ guidance: >
   run working, pull the `agent-working` branch your instructor published on
   day 18, say that you did, and you still pass. Saying you are stuck is a pass.
   Saying nothing is the only way to fail.
+
+  Nothing here is graded on quality. A messy tool passes. A slow tool passes. A
+  tool that works once passes. A submission built on `agent-working` passes,
+  and it is worth the same 20 points as any other. You may resubmit as many
+  times as you like before the deadline.
+
+  Two things do fail it, and both are easy to avoid. An edited ledger line no
+  longer proves a run happened, so paste it whole with its timestamp. And the
+  schema has to be for the same tool your ledger line names.
 criteria:
   - description: One real tool call from your own log
     points: 8

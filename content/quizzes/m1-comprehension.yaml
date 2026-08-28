@@ -5,8 +5,10 @@ description: |
   response shape, retrying when the endpoint pushes back, and turning a model's
   reply into a dictionary.
 
-  You get one attempt. Take it after your Module 1 code passes its tests, not
-  before.
+  There are 10 questions. Each one is worth 5 points, for 50 points total.
+
+  You get one attempt. There is no time limit, so take as long as you need once
+  you start. Take it after your Module 1 code passes its tests, not before.
 
   AI help is permitted and it is declared unprofitable here on purpose. Several
   items depend on your own settings in `config/lab.config.yaml` and on files
@@ -51,22 +53,22 @@ questions:
           return status_code >= 500
       ```
     answers:
-      - text: "B"
+      - text: "B: retries 429 and the four server error codes, and nothing else"
         correct: true
         feedback: "Correct. It retries the rate limit and the five server errors, and nothing else."
-      - text: "A"
+      - text: "A: retries every code at 400 and above, so a 401 goes out again"
         correct: false
         feedback: "Wrong. This retries 400, 401, 403, and 404. Sending a malformed or unauthorized request again changes nothing and burns your quota. Reread the docstring for should_retry in agent/llm.py."
-      - text: "C"
+      - text: "C: retries anything that is not 200"
         correct: false
         feedback: "Wrong. This retries every status except 200, which includes 401 and 404. Reread the Do NOT retry list in the should_retry docstring."
-      - text: "D"
+      - text: "D: retries the four codes you must never retry, plus 429"
         correct: false
         feedback: "Wrong. This retries the exact codes the docstring says never to retry, and skips the 5xx codes it says to retry. Reread the should_retry docstring."
-      - text: "E"
+      - text: "E: retries client errors only, so a 500 is never sent again"
         correct: false
         feedback: "Wrong. This retries only client errors and never retries a 500 or a 503, which are the ones that may work next time. Reread the should_retry docstring."
-      - text: "F"
+      - text: "F: retries server errors only, so 429 is never sent again"
         correct: false
         feedback: "Wrong. This misses 429, which is the one a free tier gives you constantly and the one waiting actually fixes. Reread the should_retry docstring."
     general_feedback: |
@@ -113,22 +115,22 @@ questions:
           return random.random()
       ```
     answers:
-      - text: "B"
+      - text: "B: doubles the wait each attempt and stops it at 30 seconds"
         correct: true
         feedback: "Correct. It waits 1, then 2, then 4 seconds, and never more than 30."
-      - text: "A"
+      - text: "A: waits one second every time, so the wait never grows"
         correct: false
         feedback: "Wrong. This waits the same one second every time. The docstring says waiting the same short time over and over does not help a rate limit clear. Reread the backoff_seconds docstring in agent/llm.py."
-      - text: "C"
+      - text: "C: doubles the wait each attempt with no upper limit"
         correct: false
         feedback: "Wrong. It does grow, but nothing caps it, so a long run can hang for minutes with no output. Reread the last line of the backoff_seconds docstring."
-      - text: "D"
+      - text: "D: waits less on each attempt than on the one before"
         correct: false
         feedback: "Wrong. This waits less each time, which is backwards. Reread the backoff_seconds docstring."
-      - text: "E"
+      - text: "E: caps the wait at one second, which is below the first wait"
         correct: false
         feedback: "Wrong. min() with 1.0 caps it at one second from the very first attempt, so it never grows. Compare it to version B and reread the docstring."
-      - text: "F"
+      - text: "F: waits a random fraction of a second, ignoring the attempt number"
         correct: false
         feedback: "Wrong. A random wait under one second neither grows nor helps a rate limit clear. Reread the backoff_seconds docstring."
     general_feedback: |
@@ -184,16 +186,16 @@ questions:
               return {}
       ```
     answers:
-      - text: "C"
+      - text: "C: raises LLMError with the reason and the start of the text, and rejects a JSON list"
         correct: true
         feedback: "Correct. It parses, it raises LLMError with the reason and the start of the text, and it also catches the case where the JSON was valid but was a list."
-      - text: "A"
+      - text: "A: catches every exception and passes, so the function returns None"
         correct: false
         feedback: "Wrong. `except Exception: pass` swallows the error and the function then returns None with no message at all. The caller crashes later, far from the real cause. Reread the parse_json_content docstring in agent/llm.py."
-      - text: "B"
+      - text: "B: parses with no error handling at all"
         correct: false
         feedback: "Wrong. This lets a bare json.JSONDecodeError reach the caller, which requirement 3 forbids. Reread the parse_json_content docstring."
-      - text: "D"
+      - text: "D: returns an empty dictionary when the text will not parse"
         correct: false
         feedback: "Wrong. Returning an empty dictionary hides the failure. The caller sees a dictionary with nothing in it and cannot tell that anything went wrong. Reread requirement 2 in the docstring."
     general_feedback: |

@@ -10,6 +10,13 @@ guidance: >
   address that is in scope. A documented near-miss with a correct class label
   passes. This is due two days before Module 3 on purpose, so that "I am
   stuck" still leaves time to be unstuck.
+
+  Hand in five items, in this order, then the blocker sentence. Your payload
+  count, which `python -m harness.runner --list` prints. Your own payload. The
+  transcript excerpt. The weakness class it maps to. Your `target:` block.
+
+  Submissions are triaged by script, so your instructor reads the exceptions.
+  Expect a reply only when something needs attention.
 criteria:
   - description: One payload you wrote yourself
     long_description: >
@@ -20,8 +27,12 @@ criteria:
       - {points: 0, description: Missing, or copied from a shipped case}
   - description: A transcript excerpt, fifteen lines or fewer
     long_description: >
-      The target doing something it should not, or your closest near-miss. A
-      near-miss with the right weakness class named is a pass.
+      The target doing something it should not, or your closest near-miss.
+      Paste it from a trace file, the ledger, the outbox, or your report. A
+      near-miss with the right weakness class named is a pass, so say in one
+      sentence what you think stopped it. Name one of five classes: direct
+      prompt injection, indirect prompt injection, injection from trusted
+      internal content, excessive agency, or insecure tool authorization.
     points: 4
     ratings:
       - {points: 4, description: Present and genuine}

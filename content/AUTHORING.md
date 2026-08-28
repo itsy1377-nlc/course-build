@@ -42,6 +42,8 @@ Available blocks and where each belongs:
 | `reading` | Content pages, before every external link | Before You Read This |
 | `checkpoint` | Content and Wrap-up pages | Check Yourself |
 | `scope` | any page with an attack in it | Authorization and Scope |
+| `keyfacts` | first block on an orientation page | The short version |
+| `steps` | anything the student does in order | Do this now |
 | `directions` | Assignment pages | Directions |
 | `grading` | Assignment pages | Grading Criteria |
 | `submit` | Assignment pages | How to Submit |
@@ -64,7 +66,60 @@ an Overview page, a Content page, the graded Assignments, and a Wrap-up page.
 
 ---
 
-## 2. The writing standard
+## 2. Length is a readability problem too
+
+A page can score grade 4 and still be twelve hundred words of unbroken prose.
+That is not readable in any sense a student would recognise, and for a while
+nothing here checked it. The orientation module ran to 12,588 words across 13
+pages: about fifty minutes of reading before anybody touched anything.
+
+**Every page now has a word budget, and the build fails over it.**
+
+| Page kind | Budget | Why |
+|---|---|---|
+| Orientation, in Start Here | 450 | Scanned, not read. A student wants one fact and leaves |
+| Rules of Engagement | 900 | The one exception. A policy document has to be citable |
+| Week Overview | 400 | A front page, not a lesson |
+| Week Wrap-up | 400 | |
+| Week Content | 1400 | The one place length earns itself |
+| Assignment | 700 | If it needs more, the assignment is too big |
+| Discussion | 500 | |
+
+Reference pages are exempt: the glossary, the findings report template, the
+framework alignment page, the instructor notes, Module 9, the annotated
+skeleton, and the resource list. Their job is to be complete.
+
+**No paragraph over 70 words.** Also enforced. If a paragraph is long, it is
+usually two paragraphs, or it is a list that has not noticed yet.
+
+**Write to the budget, do not trim to it.** A page written short reads
+differently from a page cut down. Decide what the one thing on this page is,
+write that, and stop.
+
+## 3. Making a page scannable
+
+Students do not read course pages. They scan them, find the thing they came
+for, and leave. Design for that and they get what they need. Design for a
+reader who starts at the top and they miss it.
+
+- **`::: keyfacts` first, on every orientation page.** A two-column table
+  answering what somebody actually arrived wanting: what is due, when, how
+  many attempts, what it is worth. Five seconds, no prose.
+- **`::: steps` for anything sequential.** Numbered, with the numbers large
+  enough to find on a phone. Course pages get read on phones.
+- **Tables and lists beat paragraphs** for anything with more than two parts.
+  A three-item comparison is a table, not a sentence with two semicolons.
+- **Front-load every block.** The first sentence says the point. Everything
+  after it is support, and a student who stops reading after one sentence
+  should still have the answer.
+- **Bold the load-bearing phrase**, once per block at most. Bolding
+  everything bolds nothing.
+- **One idea per block.** If a `::: section` needs a "second," it is two
+  sections.
+- **Cut every sentence that only introduces the next one.** "There are three
+  things to know about this." Name them instead.
+
+## 4. The writing standard
 
 This is enforced by `python -m tools.readability`, which fails the build. The
 exemplars score between grade 3.7 and 5.0. Aim there.
@@ -98,7 +153,7 @@ ages and first languages.
 
 ---
 
-## 3. Rules that are not negotiable
+## 5. Rules that are not negotiable
 
 1. **Every external link gets a `reading` block first.** It says what the
    document is, which part to read, what to look for, and one question to
@@ -126,7 +181,7 @@ ages and first languages.
 
 ---
 
-## 4. Facts you may rely on
+## 6. Facts you may rely on
 
 The lab repository is at `labs/`. Students run:
 
@@ -149,7 +204,7 @@ The five marked extension points:
 | 4 | `agent/tools.py` a tool of their own | 2 | design it, write its schema, register it |
 | 5 | `harness/cases/*.yaml` | 3 | add attack cases, YAML only |
 
-The target app is HelpDesk Lite. Customers are C-1001 through C-1005. Tickets
+The target app is HelpDesk Lite. Customers are C-1002 through C-1005. Tickets
 are T-501 through T-506. T-503 carries an indirect injection that leads to
 customer data leaving. T-504 carries a system prompt leak. Knowledge base
 article KB-02 carries an injection from trusted internal content. Three canary
@@ -165,10 +220,27 @@ Never grade the model's prose. Grade the world.
 
 ---
 
-## 5. Check your work
+## 7. Check your work
+
+Two gates, and both fail the build.
 
 ```
-python -m tools.readability --file content/pages/your-page.md
+python -m tools.readability          reading grade, sentence length, word budget
+python -m tools.verify_content       does the page still describe the code?
 ```
 
-Fix anything it flags before you consider a page finished.
+The second one is newer and it exists because of a specific failure. Reading
+level was enforced from the start; factual accuracy was a checklist somebody
+was supposed to run once a semester. So only one of the two could fail a
+build, and pages drifted away from the code they describe while the numbers
+stayed green.
+
+The asymmetry even had a direction. An accurate hedged sentence costs reading
+grade. A confident wrong one does not.
+
+`verify_content` checks every command a page tells a student to run, every file
+path it cites, every framework identifier against what the case files actually
+demonstrate, every harness status word against what the runner can emit, every
+case-file field against the schema, and every point total against the rubric.
+
+Run both before you consider a page finished.

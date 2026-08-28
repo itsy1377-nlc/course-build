@@ -179,13 +179,27 @@ def check(course: dict, notes: list[str] | None = None) -> list[str]:
         quiz = yaml.safe_load(path.read_text(encoding="utf-8"))
         problems.extend(qti.validate(quiz, row["ref"], row["points"]))
 
-    # Rubrics: points have to add up to the assignment they are attached to.
+    # Rubrics: points have to add up to the assignment they are attached to,
+    # and every description has to be text.
     for path in sorted((CONTENT / "rubrics").glob("*.yaml")):
         rubric = yaml.safe_load(path.read_text(encoding="utf-8"))
         total = sum(c["points"] for c in rubric["criteria"])
         if total != rubric["points"]:
             problems.append(f"rubric {rubric['ref']}: criteria add to {total}, "
                             f"declared {rubric['points']}")
+        for criterion in rubric["criteria"]:
+            for rating in criterion["ratings"]:
+                if not isinstance(rating.get("description"), str):
+                    # YAML reads a bare Yes, No, On or Off as a boolean, so a
+                    # rating written as `description: Yes` arrives as True and
+                    # then dies inside the XML escaper with a message about
+                    # bool having no replace method. Say what it actually is.
+                    problems.append(
+                        f"rubric {rubric['ref']}, criterion "
+                        f"{criterion['description']!r}: a rating description came "
+                        f"through as {type(rating.get('description')).__name__}, not "
+                        f"text. YAML reads a bare Yes, No, On or Off as a boolean. "
+                        f"Put quotes around it.")
 
     # Every page has to render, and none may still contain a placeholder.
     for folder, kind in (("pages", "page"), ("assignments", "assignment"),
@@ -901,9 +915,9 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  - {problem}")
         print()
         return 1
-    for note in notes:
-        print(f"note: {note}")
     if args.check:
+        for note in notes:
+            print(f"note: {note}")
         print("Everything validates. Nothing was built.")
         return 0
 

@@ -9,6 +9,12 @@ ref: findings-report
 title: "Final Part B: Security Assessment Report"
 points: 120
 free_form_comments: true
+guidance: >
+  Finding accuracy and remediation adequacy carry 70 of the 120 points. They
+  are read by your instructor, not scored by a script. Spend your time there.
+
+  Run the harness once more before you write, so every number comes from your
+  newest file in `runs/reports/`. Do not quote a run from last week.
 criteria:
   - description: Finding accuracy
     long_description: >
@@ -46,7 +52,9 @@ criteria:
   - description: Authorization basis
     long_description: >
       Does the report state what was tested, under what authority, and what was
-      deliberately not tested?
+      deliberately not tested? Every finding carries this under its own
+      heading. Paste your `target.base_url` line at the end of the file, and
+      say in one sentence whether you worked from a fallback branch.
     points: 10
     ratings:
       - {points: 10, description: Stated with scope and exclusions}

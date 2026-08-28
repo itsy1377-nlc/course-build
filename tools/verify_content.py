@@ -1,0 +1,367 @@
+"""Check that the course content still describes the code it is about.
+
+    python -m tools.verify_content
+
+This is the gate that was missing, and its absence caused most of the defects
+four reviews found.
+
+Reading level was mechanically enforced from the start: a page over grade 8
+fails the build. Factual accuracy was a checklist somebody was supposed to run
+once a semester. Only one of those two could fail a build, so pages drifted
+away from the code they describe and nothing noticed. Worse, the asymmetry had
+a direction: an accurate hedged sentence ("no hits observed in five trials")
+costs reading grade, and a confident wrong one ("mitigated") does not.
+
+So this checks the things that can be checked mechanically:
+
+  1. Every command a page tells a student to run exists.
+  2. Every file path a page cites exists.
+  3. Every framework identifier appears in a pinned allowlist built from the
+     harness case files, which are the artifacts a student actually copies
+     identifiers out of.
+  4. Every harness status word a page uses is one the runner can emit.
+  5. Every case-file field a page names is in the JSON schema.
+  6. Points on an assignment page agree with its rubric and with course.yaml.
+  7. Data the content asserts about the lab, such as which customers exist,
+     matches the seed files.
+
+None of this replaces a person reading the pages. It catches the class of
+mistake that a person reading the pages reliably misses, which is a sentence
+that was true when it was written.
+"""
+
+from __future__ import annotations
+
+import argparse
+import json
+import re
+import sys
+from pathlib import Path
+
+import yaml
+
+ROOT = Path(__file__).resolve().parents[1]
+CONTENT = ROOT / "content"
+LABS = ROOT / "labs"
+
+
+class Finding:
+    def __init__(self, where: str, what: str, fix: str = ""):
+        self.where, self.what, self.fix = where, what, fix
+
+    def __str__(self) -> str:
+        line = f"{self.where}: {self.what}"
+        return line + (f"\n      {self.fix}" if self.fix else "")
+
+
+def _pages() -> list[Path]:
+    out = []
+    for folder in ("pages", "assignments", "discussions"):
+        out += sorted((CONTENT / folder).glob("*.md"))
+    return out
+
+
+def _fenced(text: str) -> str:
+    """Only the code blocks, where commands and paths live."""
+    return "\n".join(re.findall(r"```[a-z]*\n(.*?)```", text, re.DOTALL))
+
+
+# ---------------------------------------------------------------------------
+# 1. Commands
+# ---------------------------------------------------------------------------
+
+MODULE_RE = re.compile(r"python -m ([a-z_][a-z0-9_.]*)")
+SCRIPT_RE = re.compile(r"python (?:-\w+ )*([a-z_][a-z0-9_/]*\.py)")
+
+# Modules that come from the dependencies rather than from the labs.
+INSTALLED_MODULES = {"pytest", "venv", "pip", "http.server", "json.tool"}
+
+# Files a student CREATES. They are absent from the repository on purpose, and
+# a page telling somebody to make one is correct rather than broken. Anything
+# not on this list has to exist.
+STUDENT_CREATES = {
+    "AI-USE.md",          # Project 1: one AI suggestion they rejected, and why
+    "ANSWERS.md",         # Project 1 written answers
+    "lab1.py",            # Lab 1 scaffold the student saves and edits
+    "lab1_dict.py",
+    "module1-pytest.txt", # their own test output, pasted
+    ".env",
+    "scope.yaml",
+}
+
+
+def check_commands(findings: list[Finding]) -> None:
+    for path in _pages():
+        text = path.read_text(encoding="utf-8")
+        where = path.relative_to(ROOT).as_posix()
+        for module in set(MODULE_RE.findall(text)):
+            if module in INSTALLED_MODULES or module.split(".")[0] in INSTALLED_MODULES:
+                continue
+            parts = module.split(".")
+            candidates = [LABS.joinpath(*parts).with_suffix(".py"),
+                          LABS.joinpath(*parts, "__main__.py"),
+                          LABS.joinpath(*parts)]
+            if not any(c.exists() for c in candidates):
+                findings.append(Finding(
+                    where, f"tells a student to run `python -m {module}`, "
+                           f"which does not exist in labs/"))
+        for script in set(SCRIPT_RE.findall(text)):
+            if Path(script).name in STUDENT_CREATES:
+                continue
+            if not (LABS / script).exists() and not (ROOT / script).exists():
+                findings.append(Finding(
+                    where, f"tells a student to run `python {script}`, "
+                           f"which does not exist"))
+
+
+# ---------------------------------------------------------------------------
+# 2. Paths
+# ---------------------------------------------------------------------------
+
+PATH_RE = re.compile(r"`([a-zA-Z0-9_][a-zA-Z0-9_./-]*\.(?:py|yaml|yml|json|txt|jsonl|md))`")
+
+
+def check_paths(findings: list[Finding]) -> None:
+    for path in _pages():
+        text = path.read_text(encoding="utf-8")
+        where = path.relative_to(ROOT).as_posix()
+        for cited in set(PATH_RE.findall(text)):
+            if cited.startswith("labs/"):
+                findings.append(Finding(
+                    where, f"cites `{cited}` with a labs/ prefix",
+                    "In the student repository, labs/ IS the root. Drop the prefix."))
+                cited = cited[len("labs/"):]
+            name = Path(cited).name
+            if "*" in cited or cited.startswith((".", "runs/")) or name in STUDENT_CREATES:
+                continue
+            if (LABS / cited).exists() or (ROOT / cited).exists():
+                continue
+            # Prose often names a file by its basename alone: "open llm.py".
+            # That is how people talk, so resolve it that way, and only
+            # complain when no file of that name exists anywhere in the labs.
+            if "/" not in cited and any(LABS.rglob(name)):
+                continue
+            findings.append(Finding(where, f"cites `{cited}`, which does not exist"))
+
+
+# ---------------------------------------------------------------------------
+# 3. Framework identifiers
+# ---------------------------------------------------------------------------
+
+ATLAS_RE = re.compile(r"\bAML\.T\d{4}(?:\.\d{3})?\b")
+LLM_RE = re.compile(r"\bLLM\d{2}:\d{4}\b")
+ASI_RE = re.compile(r"\bASI\d{2}\b")
+CWE_RE = re.compile(r"\bCWE-\d+\b")
+
+
+def _allowed_identifiers() -> tuple[set[str], set[str], set[str], set[str]]:
+    """The identifiers the labs actually stand behind.
+
+    Built from the case files rather than from a hand-kept list, because the
+    case files are what a student copies identifiers out of, and because a
+    case file's notes have to justify each one.
+    """
+    atlas: set[str] = set()
+    llm: set[str] = set()
+    asi: set[str] = set()
+    cwe: set[str] = set()
+    for path in sorted((LABS / "harness" / "cases").glob("*.yaml")):
+        case = yaml.safe_load(path.read_text(encoding="utf-8"))
+        atlas |= set(case.get("atlas") or [])
+        llm |= set(case.get("owasp_llm") or [])
+        asi |= set(case.get("owasp_agentic") or [])
+        cwe |= set(case.get("cwe") or [])
+    for path in sorted((LABS / "solution" / "cases").glob("*.yaml")):
+        case = yaml.safe_load(path.read_text(encoding="utf-8"))
+        atlas |= set(case.get("atlas") or [])
+        llm |= set(case.get("owasp_llm") or [])
+        asi |= set(case.get("owasp_agentic") or [])
+    return atlas, llm, asi, cwe
+
+
+# Identifiers the course names but does not demonstrate. Naming one is fine;
+# claiming it as covered is not, so each has to be listed here on purpose.
+NAMED_ONLY = {
+    "AML.T0110": "MCP tool poisoning. Named in week 3 and in Module 9, never run.",
+    "AML.T0051": "The parent technique. Its sub-techniques carry the evidence.",
+    "AML.T0051.000": "Direct injection, demonstrated by A1.",
+    "AML.T0054": "Jailbreak. Out of scope: the course forbids attacking safety filters.",
+    "AML.T0067": "Trusted output manipulation. Not demonstrated.",
+    "AML.T0051.002": "Triggered injection. Not demonstrated.",
+    "LLM04:2026": "Supply chain, taught as why dependencies are pinned.",
+    "LLM08:2026": "Hidden context exposure. Named in the alignment table only.",
+    "LLM10:2026": "Improper output handling. Named in the alignment table only.",
+}
+
+
+def check_frameworks(findings: list[Finding]) -> None:
+    atlas, llm, asi, cwe = _allowed_identifiers()
+    for path in _pages():
+        text = path.read_text(encoding="utf-8")
+        where = path.relative_to(ROOT).as_posix()
+        for found, allowed, label in (
+            (ATLAS_RE.findall(text), atlas, "MITRE ATLAS technique"),
+            (LLM_RE.findall(text), llm, "OWASP LLM identifier"),
+            (ASI_RE.findall(text), asi, "OWASP Agentic identifier"),
+            (CWE_RE.findall(text), cwe, "CWE identifier"),
+        ):
+            for identifier in sorted(set(found)):
+                if identifier in allowed or identifier in NAMED_ONLY:
+                    continue
+                findings.append(Finding(
+                    where, f"cites {label} {identifier}, which no case file uses",
+                    f"Either a case has to demonstrate it, or add it to NAMED_ONLY "
+                    f"in tools/verify_content.py with a reason."))
+
+
+# ---------------------------------------------------------------------------
+# 4. Harness vocabulary
+# ---------------------------------------------------------------------------
+
+STATUS_RE = re.compile(r"\b(VULNERABLE|MITIGATED|FLAKY|INCONCLUSIVE|CONTROL_FAILED|OK|"
+                       r"ERRORED|ATTEMPTED_BLOCKED|NO_HITS(?:_IN_\d+)?|BLOCKED_\d+_OF_\d+)\b")
+
+
+def _runner_statuses() -> set[str]:
+    source = (LABS / "harness" / "runner.py").read_text(encoding="utf-8")
+    literal = set(re.findall(r'return \("?([A-Z_]{2,})"?', source))
+    literal |= set(re.findall(r'"([A-Z][A-Z_]{2,})"', source))
+    literal |= set(re.findall(r'f"([A-Z_]+)_?\{', source))
+    return {s for s in literal if s.isupper()}
+
+
+def check_statuses(findings: list[Finding]) -> None:
+    known = _runner_statuses() | {"ERRORED", "FLAKY", "OK", "NO_HITS", "BLOCKED"}
+    for path in _pages():
+        text = path.read_text(encoding="utf-8")
+        where = path.relative_to(ROOT).as_posix()
+        for status in sorted(set(STATUS_RE.findall(text))):
+            root_word = re.sub(r"_(IN_\d+|\d+_OF_\d+)$", "", status)
+            if root_word in known:
+                continue
+            findings.append(Finding(
+                where, f"uses the harness status {status}, which the runner "
+                       f"cannot produce",
+                f"The runner emits: {', '.join(sorted(known))}"))
+
+
+# ---------------------------------------------------------------------------
+# 5. Case file fields
+# ---------------------------------------------------------------------------
+
+
+def check_case_fields(findings: list[Finding]) -> None:
+    schema = json.loads((LABS / "harness" / "schema" / "case.schema.json")
+                        .read_text(encoding="utf-8"))
+    valid = set(schema["properties"])
+    # Field names a page presents as things to write in a case file.
+    field_re = re.compile(r"`(owasp|atlas|cwe|trials|expect|detect|kind|authorized|"
+                          r"weakness_class|acting_user|provider|notes|severity_inputs|"
+                          r"owasp_llm|owasp_agentic|id|title|prompt)`")
+    for path in _pages():
+        text = path.read_text(encoding="utf-8")
+        if "case" not in text.lower():
+            continue
+        where = path.relative_to(ROOT).as_posix()
+        for field in sorted(set(field_re.findall(text))):
+            if field not in valid:
+                findings.append(Finding(
+                    where, f"names a case-file field `{field}` that the schema "
+                           f"rejects",
+                    f"The schema allows: {', '.join(sorted(valid))}"))
+
+
+# ---------------------------------------------------------------------------
+# 6. Points
+# ---------------------------------------------------------------------------
+
+
+def check_points(findings: list[Finding]) -> None:
+    course = yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
+    by_ref = {r["ref"]: r for g in ("assignments", "quizzes", "discussions")
+              for r in course.get(g, [])}
+    for ref, row in by_ref.items():
+        if not row.get("rubric"):
+            continue
+        rubric = yaml.safe_load(
+            (CONTENT / "rubrics" / f"{row['rubric']}.yaml").read_text(encoding="utf-8"))
+        if rubric["points"] != row["points"]:
+            findings.append(Finding(
+                f"content/rubrics/{row['rubric']}.yaml",
+                f"is worth {rubric['points']} points but {ref} is worth {row['points']}"))
+        page = CONTENT / "assignments" / f"{ref}.md"
+        if page.exists() and re.search(r"^::: grading", page.read_text(encoding="utf-8"),
+                                       re.MULTILINE):
+            findings.append(Finding(
+                page.relative_to(ROOT).as_posix(),
+                "has a hand-written grading block, and it has a rubric",
+                "The build generates the table from the rubric and replaces this "
+                "block. Two tables on one page drifted apart last time. Delete it "
+                "and move anything it says into the rubric's guidance field."))
+
+
+# ---------------------------------------------------------------------------
+# 7. Lab data the content asserts
+# ---------------------------------------------------------------------------
+
+
+def check_lab_data(findings: list[Finding]) -> None:
+    customers = json.loads((LABS / "target" / "seed" / "customers.json")
+                           .read_text(encoding="utf-8"))
+    ids = {c["id"] for c in customers}
+    tickets = json.loads((LABS / "target" / "seed" / "tickets.json")
+                         .read_text(encoding="utf-8"))
+    ticket_ids = {t["id"] for t in tickets}
+
+    for path in _pages() + [CONTENT / "AUTHORING.md", CONTENT / "QUIZZES.md"]:
+        text = path.read_text(encoding="utf-8")
+        where = path.relative_to(ROOT).as_posix()
+        for cid in sorted(set(re.findall(r"\bC-\d{4}\b", text))):
+            if cid not in ids:
+                findings.append(Finding(
+                    where, f"refers to customer {cid}, which is not in the seed data",
+                    f"Customers are {', '.join(sorted(ids))}."))
+        for tid in sorted(set(re.findall(r"\bT-\d{3}\b", text))):
+            if tid not in ticket_ids:
+                findings.append(Finding(
+                    where, f"refers to ticket {tid}, which is not in the seed data"))
+
+
+CHECKS = [
+    ("commands students are told to run", check_commands),
+    ("file paths cited in the content", check_paths),
+    ("framework identifiers", check_frameworks),
+    ("harness status words", check_statuses),
+    ("case file field names", check_case_fields),
+    ("points, rubrics, and grading blocks", check_points),
+    ("lab data the content asserts", check_lab_data),
+]
+
+
+def main(argv: list[str] | None = None) -> int:
+    parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
+    parser.add_argument("--only", help="Run one check by name fragment.")
+    args = parser.parse_args(argv)
+
+    total = 0
+    for label, check in CHECKS:
+        if args.only and args.only not in label:
+            continue
+        findings: list[Finding] = []
+        check(findings)
+        status = "ok" if not findings else f"{len(findings)} problem(s)"
+        print(f"\n{label}: {status}")
+        for finding in findings:
+            print(f"  - {finding}")
+        total += len(findings)
+
+    print()
+    if total:
+        print(f"{total} place(s) where the content and the code disagree.\n")
+        return 1
+    print("The content and the code agree.\n")
+    return 0
+
+
+if __name__ == "__main__":
+    sys.exit(main())

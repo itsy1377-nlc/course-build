@@ -5,8 +5,11 @@ description: |
   not symmetric, telling ERRORED from FAILED, and what makes a fix a real
   control.
 
-  You get one attempt. Take it after your Module 4 fix is in and you have run
-  the harness against both suites.
+  There are 10 questions. Each one is worth 5 points, for 50 points total.
+
+  You get one attempt. There is no time limit, so take as long as you need once
+  you start. Take it after your Module 4 fix is in and you have run the harness
+  against both suites.
 
   AI help is permitted and it is unprofitable here on purpose. One item asks for
   a value out of your own `runs/reports/` file. Two items ask you to write what
@@ -155,13 +158,13 @@ questions:
           return True, ""
       ```
     answers:
-      - text: "B"
+      - text: "B: lowercases both the address and the list before comparing them"
         correct: true
         feedback: "Correct. It lowercases both sides before comparing, so a difference in capitalization does not change the decision."
-      - text: "A"
+      - text: "A: compares the raw address to the raw list, with no lowercasing"
         correct: false
         feedback: "Wrong. It compares the raw address to the raw list, so `Dana@Northwind.Example` is blocked even though it is the same mailbox. Compare version B, which lowercases both sides."
-      - text: "C"
+      - text: "C: lowercases the list but not the address"
         correct: false
         feedback: "Wrong. It lowercases the list but not the address, so the comparison still fails. This is the harder one to spot, because it looks like it handled case already. Compare version B, which lowercases both sides."
       - text: "A and C are both correct, because email addresses are case sensitive."

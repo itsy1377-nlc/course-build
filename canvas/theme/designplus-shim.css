@@ -1084,3 +1084,58 @@
   white-space: nowrap;
   border: 0;
 }
+
+
+/* ---------------------------------------------------------------------------
+   Two blocks built for scanning rather than reading.
+
+   dp-keyfacts sits at the top of an orientation page and answers the question
+   the student actually came with, in a table they can read in five seconds
+   without entering the prose at all.
+
+   dp-steps is a numbered list of things to do now, with the numbers made large
+   enough to find on a phone. Course pages get read on phones.
+   ------------------------------------------------------------------------- */
+
+.dp-content-block.dp-keyfacts {
+  border-left: 5px solid var(--dp-accent, #1F5E5B);
+  background: var(--dp-surface-2, #EDEFE8);
+}
+.dp-keyfacts table { margin: 0; }
+.dp-keyfacts table th[scope="row"] {
+  width: 34%;
+  white-space: nowrap;
+  font-weight: 600;
+}
+.dp-keyfacts table caption { position: absolute; width: 1px; height: 1px;
+  overflow: hidden; clip: rect(0,0,0,0); white-space: nowrap; }
+
+.dp-content-block.dp-steps ol {
+  list-style: none;
+  counter-reset: dp-step;
+  padding-left: 0;
+  margin: 0;
+}
+.dp-content-block.dp-steps ol > li {
+  counter-increment: dp-step;
+  position: relative;
+  padding-left: 2.9rem;
+  margin-bottom: 0.9rem;
+  min-height: 2rem;
+}
+.dp-content-block.dp-steps ol > li::before {
+  content: counter(dp-step);
+  position: absolute;
+  left: 0;
+  top: -0.1rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 50%;
+  background: var(--dp-accent, #1F5E5B);
+  color: #fff;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

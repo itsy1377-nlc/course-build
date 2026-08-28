@@ -41,6 +41,41 @@ MAX_GRADE = 8.0
 TARGET_GRADE = 7.0
 MAX_SENTENCE_WORDS = 15.0
 
+# How long a page is allowed to be, by what kind of page it is.
+#
+# Reading level and length are different problems and only one of them was
+# being enforced. A page can score grade 4 and still be twelve hundred words of
+# unbroken prose, which is not readable in any sense a student would recognise.
+# The orientation module ran to 12,588 words across 13 pages: roughly fifty
+# minutes of reading before anybody touched anything.
+#
+# The budgets below are per page and they are deliberately tight. A student
+# skims an orientation page, finds the one thing they came for, and leaves.
+# Anything that does not survive the budget was not going to be read.
+WORD_BUDGET = {
+    "orientation": 450,   # Start Here pages. Scanned, not read.
+    "overview":    400,   # a week's front page
+    "wrapup":      400,
+    "content":    1400,   # the week's actual lesson, the one place length earns itself
+    "assignment":  700,
+    "discussion":  500,
+}
+
+# One page gets more room, and only one. The Rules of Engagement is a policy
+# document a student has to be able to cite a clause from, and it is the one
+# page in the course where being incomplete costs more than being long. It is
+# also held to a tighter reading grade than anything else, which is the trade.
+PAGE_BUDGET = {"rules-of-engagement": 900}
+
+# Pages whose job is to be complete rather than short: reference material an
+# instructor or a committee reads, and one page students search rather than read.
+NO_BUDGET = {"glossary", "framework-alignment", "instructor-notes", "course-material",
+             "where-to-go-next", "findings-report-template", "w3-annotated-skeleton",
+             "AUTHORING", "QUIZZES", "README"}
+
+# A paragraph longer than this is a wall, whatever its reading level.
+MAX_PARAGRAPH_WORDS = 70
+
 # The Rules of Engagement is the one page where misreading has consequences,
 # so it is held to a tighter bar.
 STRICTER = {"rules-of-engagement": 7.0}
@@ -89,6 +124,9 @@ class PageReport:
     excluded_chars: int
     passed: bool
     problems: list[str]
+    kind: str = "reference"
+    body_words: int = 0
+    budget: int = 0
 
 
 def strip_for_measurement(text: str) -> tuple[str, int]:
@@ -155,12 +193,80 @@ def check_text(text: str, name: str, limit: float, enforced: bool) -> PageReport
     )
 
 
+ORIENTATION = {"welcome-start-here", "meet-your-instructor", "course-policies",
+               "academic-integrity", "ai-use-policy", "support-resources",
+               "canvas-and-tech-support", "communicating-online", "tips-for-success",
+               "how-to-navigate-canvas", "course-schedule", "rules-of-engagement",
+               "exam-review", "final-overview", "final-wrap-up"}
+
+
+def page_kind(path: Path) -> str | None:
+    """What kind of page this is, which decides how long it may be."""
+    stem = path.stem
+    if stem in NO_BUDGET:
+        return None
+    if path.parent.name == "assignments":
+        return "assignment"
+    if path.parent.name == "discussions":
+        return "discussion"
+    if stem.endswith("-overview"):
+        return "overview"
+    if stem.endswith("-wrap-up"):
+        return "wrapup"
+    if stem.endswith("-content") or stem.endswith("-walkthrough") \
+            or stem.endswith("-results") or stem.endswith("-skeleton"):
+        return "content"
+    if stem in ORIENTATION:
+        return "orientation"
+    return "content"
+
+
+def _paragraphs(text: str) -> list[str]:
+    """Prose paragraphs only. Tables, lists, and code are not paragraphs."""
+    body = re.sub(r"^:::.*$", "", text, flags=re.MULTILINE)
+    body = FENCE_RE.sub(" ", body)
+    out = []
+    for chunk in re.split(r"\n\s*\n", body):
+        chunk = chunk.strip()
+        if not chunk or chunk.startswith(("|", "-", "*", ">")) or re.match(r"^\d+\.", chunk):
+            continue
+        out.append(chunk)
+    return out
+
+
 def check_file(path: Path) -> PageReport:
     stem = path.stem
     enforced = stem not in EXEMPT_STEMS
     limit = STRICTER.get(stem, MAX_GRADE)
-    return check_text(path.read_text(encoding="utf-8"), str(path.relative_to(ROOT)),
-                      limit, enforced)
+    text = path.read_text(encoding="utf-8")
+    report = check_text(text, str(path.relative_to(ROOT)), limit, enforced)
+
+    kind = page_kind(path)
+    report.kind = kind or "reference"
+    body_words = len(re.sub(r"^:::.*$", "", text, flags=re.MULTILINE).split())
+    report.body_words = body_words
+
+    if kind:
+        budget = PAGE_BUDGET.get(stem, WORD_BUDGET[kind])
+        report.budget = budget
+        if body_words > budget:
+            report.problems.append(
+                f"{body_words} words against a {budget} word budget for a "
+                f"{kind} page, {body_words - budget} over. Length is a "
+                f"readability problem too. Cut, or split it.")
+            report.passed = False
+
+    paragraphs = _paragraphs(text)
+    long_ones = [p for p in paragraphs if len(p.split()) > MAX_PARAGRAPH_WORDS]
+    if long_ones:
+        worst = max(long_ones, key=lambda p: len(p.split()))
+        report.problems.append(
+            f"{len(long_ones)} paragraph(s) over {MAX_PARAGRAPH_WORDS} words. "
+            f"The longest is {len(worst.split())}. Break them up: "
+            f"\"{' '.join(worst.split()[:12])}...\"")
+        if enforced:
+            report.passed = False
+    return report
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -197,13 +303,13 @@ def main(argv: list[str] | None = None) -> int:
             print(text)
             return 0 if not failures else 1
 
-    print(f"{'page':52} {'grade':>6} {'ease':>6} {'avg':>6} {'words':>6}")
-    print("-" * 82)
-    for report in sorted(reports, key=lambda r: -r.grade):
+    print(f"{'page':50} {'kind':12} {'grade':>6} {'words':>6} {'budget':>7}")
+    print("-" * 88)
+    for report in sorted(reports, key=lambda r: (r.passed, -r.body_words)):
         flag = "  " if report.passed else "!!"
-        note = "" if report.enforced else "  (not enforced)"
-        print(f"{flag}{report.path:50} {report.grade:6.2f} {report.reading_ease:6.1f} "
-              f"{report.avg_sentence_words:6.1f} {report.words:6d}{note}")
+        budget = f"{report.budget}" if report.budget else "-"
+        print(f"{flag}{report.path:48} {report.kind:12} {report.grade:6.2f} "
+              f"{report.body_words:6d} {budget:>7}")
 
     scored = [r for r in reports if r.words >= 40 and r.enforced]
     if scored:

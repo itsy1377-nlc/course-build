@@ -7,6 +7,10 @@ guidance: >
   you like, before the deadline. Run `python -m pytest tests/test_module1.py -q`
   and the output tells you your score before your instructor sees it. There are
   no surprises in this one.
+
+  Upload the pytest output you actually got, unedited. It has to match the
+  `agent/llm.py` file you upload beside it. A passing output next to a file
+  that does not pass is an academic integrity referral, not a lost point.
 criteria:
   - description: should_retry answers correctly for every status code
     long_description: >
@@ -20,7 +24,8 @@ criteria:
       - {points: 0, description: Still the shipped stub}
   - description: backoff_seconds grows and is capped
     long_description: >
-      Each wait longer than the one before, never above sixty seconds.
+      Each wait longer than the one before, and never zero. The cap is sixty
+      seconds, and the tests check it at attempt 20.
     points: 15
     ratings:
       - {points: 15, description: Grows and is capped}

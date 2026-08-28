@@ -7,6 +7,13 @@ guidance: >
   nothing. You run one command, read code that already works, predict what it
   does, and then check whether you were right. Being wrong and saying why you
   were wrong is worth full credit. Guessing right and not knowing why is not.
+
+  Two rows are graded on pasted output. Describing output in a sentence is not
+  the same as pasting it. Paste the failures too. A submission with two failed
+  checks and honest output is worth more than one with nothing pasted.
+
+  Your instructor reads the three written answers. The pasted output is checked
+  against what the lab code produces for your student ID.
 criteria:
   - description: The environment check ran
     long_description: >
@@ -29,6 +36,12 @@ criteria:
       - {points: 3, description: Some answered}
       - {points: 0, description: Missing}
   - description: The dictionary lookup questions
+    long_description: >
+      Three questions about the run of `lab1_dict.py`. Name the key you looked
+      up and the value it returned, and say why your value is not your
+      classmate's. Name what the missing key printed, and say what kept the
+      program running. Say why a dictionary cannot be looked up by position the
+      way a list can.
     points: 5
     ratings:
       - {points: 5, description: All three correct}
@@ -52,5 +65,5 @@ criteria:
   - description: Submitted on time and in the right format
     points: 3
     ratings:
-      - {points: 3, description: Yes}
-      - {points: 0, description: No}
+      - {points: 3, description: "Yes"}
+      - {points: 0, description: "No"}

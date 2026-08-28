@@ -151,13 +151,15 @@ detect what it cannot.
 :::
 
 ::: callout tip | One place to leave the AI closed
-Week 1 has an entry diagnostic. It is ungraded on purpose.
+Every week carries a Check Yourself block, on the content page or the wrap-up
+page. Those questions are not graded. Nothing stops you from using AI on them.
 
-Nothing stops you from using AI on it. But it is the only clean measure you get
-of what you already know, and your instructor uses it to decide who needs help
-early.
+Try them closed anyway. They are the cleanest measure you get of what you
+actually understand. Getting one wrong there costs you nothing.
 
-Answer it yourself, get some wrong, and let it be useful.
+The graded work is where AI stops helping. Every comprehension item is anchored
+to your own run, and no model can read your run. A gap you find on Wednesday in
+a Check Yourself block is a gap you can close before Sunday.
 :::
 
 ::: section | If you break a condition

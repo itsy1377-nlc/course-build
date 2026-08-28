@@ -53,6 +53,11 @@ BLOCKS = {
     "reading":    {"cls": "kl_custom_block_5", "icon": "fas fa-book-reader",        "title": "Before You Read This"},
     "checkpoint": {"cls": "kl_custom_block_6", "icon": "fas fa-flag-checkered",     "title": "Check Yourself"},
     "scope":      {"cls": "kl_custom_block_7", "icon": "fas fa-user-shield",        "title": "Authorization and Scope"},
+    # The two below exist to make a page scannable rather than readable, which
+    # is a different job. A student opening an orientation page is looking for
+    # one fact. These put the facts where they can be found without reading.
+    "keyfacts":   {"cls": "kl_custom_block_8 dp-keyfacts", "icon": "fas fa-bolt",        "title": "The short version"},
+    "steps":      {"cls": "kl_custom_block_9 dp-steps",    "icon": "fas fa-shoe-prints", "title": "Do this now"},
 }
 
 # Read aloud by a screen reader, invisible on screen. The wording says what the

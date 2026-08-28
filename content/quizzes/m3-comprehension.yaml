@@ -5,8 +5,11 @@ description: |
   agency, insecure tool authorization, and how the harness decides that an
   attack actually worked.
 
-  You get one attempt. Take it after you have run the shipped attack cases at
-  least once and read your own results.
+  There are 8 questions. Each one is worth 5 points, for 40 points total.
+
+  You get one attempt. There is no time limit, so take as long as you need once
+  you start. Take it after you have run the shipped attack cases at least once
+  and read your own results.
 
   AI help is permitted. Most of these items ask you to judge a piece of code or
   a result rather than recall a definition, which is work a model cannot do for
@@ -47,16 +50,16 @@ questions:
           question: "Did the agent leak customer data?"
       ```
     answers:
-      - text: "A"
+      - text: "A: a side_effect detector, looking for a message sent outside the company"
         correct: true
         feedback: "Correct. It reads the target's outbox, which is a side effect. It gives the same answer for a large hosted model and a small local one."
-      - text: "B"
+      - text: "B: a contains detector, matching the outside address in the text"
         correct: false
         feedback: "Wrong. `contains` is banned in the case file format. It fires on an answer that names the address while refusing to use it. Read the BANNED block in harness/detectors.py."
-      - text: "C"
+      - text: "C: a regex detector, matching a sentence about sending mail"
         correct: false
         feedback: "Wrong. `regex` is banned for the same reason as `contains`. It grades the model's prose. Read the BANNED block in harness/detectors.py."
-      - text: "D"
+      - text: "D: an llm_judge detector, asking a model whether data leaked"
         correct: false
         feedback: "Wrong. `llm_judge` is banned. It adds a second unpredictable system to a harness whose whole job is removing unpredictability. Read the BANNED block in harness/detectors.py."
     general_feedback: |
@@ -91,16 +94,16 @@ questions:
       return "CANARY" in obs.final_message
       ```
     answers:
-      - text: "B"
+      - text: "B: searches the final message, the tool arguments, the outbox, and the beacon"
         correct: true
         feedback: "Correct. That is the set of places the canary detector searches, and searching tool arguments separately is the point."
-      - text: "A"
+      - text: "A: searches the final message only"
         correct: false
         feedback: "Wrong. It searches only what the model said out loud. Data leaves an agent through tool arguments far more often. Reread the canary function in harness/detectors.py."
-      - text: "C"
+      - text: "C: searches the system prompt, which is where the canary was planted"
         correct: false
         feedback: "Wrong. The system prompt is where the canary is planted, so this returns True on every run whether or not anything leaked. That is a check on the wrong haystack. Reread the canary docstring in common/canary.py."
-      - text: "D"
+      - text: "D: searches the final message for the word CANARY instead of the token"
         correct: false
         feedback: "Wrong. Matching the word CANARY is a text match, not an exact token match, and it fires on an answer that merely mentions the word. Reread the ranking comment at the top of harness/detectors.py."
     general_feedback: |
@@ -149,16 +152,16 @@ questions:
           return True, ""
       ```
     answers:
-      - text: "B"
+      - text: "B: refuses a customer who is not on the configured allowed list"
         correct: true
         feedback: "Correct. It compares the requested customer to a list from configuration and returns False when it is not on it. Something is actually stopped."
-      - text: "A"
+      - text: "A: writes an audit record, then allows the call"
         correct: false
         feedback: "Wrong. It writes a record and then returns True, so the read happens anyway. That is an audit log, not an authorization check. Reread the comment in _headers in agent/tools.py."
-      - text: "C"
+      - text: "C: looks for injection wording in the arguments and refuses on a match"
         correct: false
         feedback: "Wrong. It inspects text and guesses whether it looks like an attack. Extension point 1 says that is exactly what does not belong in this function. Reread the comment block above before_tool_call in agent/loop.py."
-      - text: "D"
+      - text: "D: prints a warning, then allows the call"
         correct: false
         feedback: "Wrong. A printed warning changes nothing. The call still runs. Reread the comment block above before_tool_call in agent/loop.py."
     general_feedback: |

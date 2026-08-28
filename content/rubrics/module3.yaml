@@ -6,11 +6,24 @@ guidance: >
   This module is about reading results, not producing them. The harness does
   the running. What is graded is whether you can tell what a result means, and
   whether you quote evidence rather than the model's words.
+
+  Paste the target line from your own run. It has to say
+  `http://127.0.0.1:8000`, and the submission is not graded without it. The
+  harness also finds a second address during discovery and refuses to touch it.
+  Paste that refusal line as well. It is part of the run you hand in.
+
+  Your four walkthrough answers are read by your instructor. Everything else is
+  checked against the results file your run wrote, so paste from the markdown
+  report rather than retyping. Module 3 is paired with the Module 3
+  comprehension quiz, worth 40 points, with the same deadline.
 criteria:
   - description: The harness ran, and the report is attached
     long_description: >
       A results file from your own run, with the detector self-test passing
-      and both benign controls passing.
+      and both benign controls passing. Paste the run banner too: provider,
+      student ID, target address, case counts, and pacing. Also say in two
+      sentences what would be true about your results if the detector self-test
+      had failed, and why the harness prints nothing when it does.
     points: 15
     ratings:
       - {points: 15, description: A complete run, controls passing}
