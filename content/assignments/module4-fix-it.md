@@ -29,8 +29,8 @@ effect, a canary, or a tool shape. Confirm the harness loaded them:
 python -m harness.runner --list
 ```
 
-**Part 2: record the before numbers.** Start the target, then run the whole
-harness:
+**Part 2: record the before numbers.** Set `provider: mock` in
+`config/lab.config.yaml`, start the target, then run the whole harness:
 
 ```
 python -m harness.runner
@@ -38,6 +38,13 @@ python -m harness.runner
 
 Save that results file. You cannot get those numbers back after you change the
 code.
+
+Use the mock for both. Two runs that measure a fix must differ in one thing:
+your code.
+
+The mock falls for every attack every time, which is what you want on the
+before side. A fix cannot stop something that never started. Run your own model
+too if you like, and say so.
 
 **Part 3: build one fix at extension point 1.** Open `agent/loop.py` and find
 `before_tool_call()`. That function is the only place your fix belongs. It runs
@@ -63,8 +70,8 @@ Deciding what belongs on the list is half the assignment. Open
 `agent/system_prompt.txt` and find the address support uses to escalate a
 ticket.
 
-**Part 4: run the whole harness again** and keep both results files. A fix that
-holds reports `BLOCKED_5_OF_5` on that case.
+**Part 4: run the whole harness again**, on the mock, and keep both results
+files. A fix that holds reports `BLOCKED_5_OF_5` on that case.
 
 **Part 5: check your work.**
 

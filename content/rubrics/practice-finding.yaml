@@ -17,12 +17,16 @@ guidance: |
   against your own harness results file, so copy each result line exactly
   rather than retyping it.
 criteria:
-  - description: Three attacks run, with the exact result line
+  - description: Three attacks run on both providers, with the exact result lines
+    long_description: >
+      Six result lines: three against the mock and three against your own
+      model, each labeled with which provider produced it.
     points: 20
     ratings:
-      - {points: 20, description: "All three, copied exactly"}
-      - {points: 13, description: "Two, or paraphrased rather than copied"}
-      - {points: 6, description: One}
+      - {points: 20, description: "All six, copied exactly and labeled by provider"}
+      - {points: 15, description: "All six, copied exactly, providers not labeled"}
+      - {points: 13, description: "One provider only, or paraphrased rather than copied"}
+      - {points: 6, description: One or two lines}
       - {points: 0, description: None}
   - description: Evidence is a side effect or a canary
     long_description: >
@@ -39,20 +43,32 @@ criteria:
     long_description: >
       Direct injection, indirect injection, or injection from trusted internal
       content. Label each of the three attacks with one of them.
-    points: 15
+    points: 10
     ratings:
-      - {points: 15, description: All three correct}
-      - {points: 10, description: Two correct}
-      - {points: 5, description: One correct}
+      - {points: 10, description: All three correct}
+      - {points: 7, description: Two correct}
+      - {points: 3, description: One correct}
       - {points: 0, description: None correct}
   - description: The finding uses every heading on the template
-    points: 15
+    points: 10
     ratings:
-      - {points: 15, description: Complete}
-      - {points: 10, description: "One or two headings blank, or headings renamed"}
-      - {points: 8, description: One or two headings empty}
-      - {points: 5, description: Three or more headings blank}
+      - {points: 10, description: Complete}
+      - {points: 7, description: "One or two headings blank, or headings renamed"}
+      - {points: 5, description: One or two headings empty}
+      - {points: 3, description: Three or more headings blank}
       - {points: 0, description: Template not used}
+  - description: What the difference between the two runs means
+    long_description: >
+      Where the mock and your model disagreed, you said which attacks landed on
+      one and not the other, and whether that makes the system safer. An attack
+      that did not land is evidence about one model on one day. It is not a
+      clean bill of health, and saying so is the point of this row.
+    points: 10
+    ratings:
+      - {points: 10, description: "Difference named, and correctly read as weak evidence rather than safety"}
+      - {points: 7, description: "Difference named, conclusion overstated"}
+      - {points: 4, description: "Notes the runs differed, without saying what it means"}
+      - {points: 0, description: Missing}
   - description: Framework identifiers correct for the attack described
     points: 5
     ratings:

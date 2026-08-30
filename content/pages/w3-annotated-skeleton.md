@@ -344,30 +344,56 @@ matter. The ledger line is your proof that the guard did something.
 
 ::: section | Running the tool, and surviving it
 ```python
-            try:
-                result = tools.call_tool(cfg, name, args)
-                error = None
-            except tools.ToolError as exc:
-                # A tool failing is normal. Tell the model and keep going.
-                result = f"The tool failed: {exc}"
-                error = str(exc)
+            signature = (name, json.dumps(args, sort_keys=True, ensure_ascii=False))
+            suppressed = False
+            if signature in dead_calls:
+                result = (f"You already called {name} with these exact arguments and it "
+                          f"failed. It will fail again. Use different arguments, or "
+                          f"answer without this tool.")
+                error = "repeated a call that already failed"
+                suppressed = True
+            else:
+                try:
+                    result = tools.call_tool(cfg, name, args)
+                    error = None
+                except (tools.ToolArgumentError, tools.ToolNotImplemented) as exc:
+                    # Permanent for this run, so remember it.
+                    dead_calls.add(signature)
+                    result = f"The tool failed: {exc}"
+                    error = str(exc)
+                except tools.ToolError as exc:
+                    # This one might clear on its own. A tool failing is normal.
+                    result = f"The tool failed: {exc}"
+                    error = str(exc)
 
             if len(result) > max_chars:
                 result = result[:max_chars] + f"\n[...truncated at {max_chars} characters]"
 
-            trace.tool_call(step, name, requested, result, allowed=True, reason="", error=error)
+            trace.tool_call(step, name, requested, result, allowed=True,
+                            reason="not run: an identical call already failed" if suppressed else "",
+                            error=error)
             messages.append({"role": "tool", "tool_call_id": call.get("id", ""),
                              "name": name, "content": result})
 ```
 
 Four things happen here, in order.
 
-1. The tool runs. If it raises `ToolError`, the error text becomes the result.
-2. A long result is cut at `max_tool_result_chars`, which is 4000 in the config.
-3. The call is written to the trace and to the ledger, using `requested`.
-4. The result is appended to `messages`, so the model sees it on the next pass.
+1. A call that already failed with these exact arguments is not run again. The
+   model is told so, in words it can act on.
+2. Otherwise the tool runs. If it raises, the error text becomes the result.
+3. A long result is cut at `max_tool_result_chars`, which is 4000 in the config.
+4. The call is written to the trace and to the ledger, using `requested`.
+5. The result is appended to `messages`, so the model sees it on the next pass.
 
-Step 4 is step 2 of the file's four-step summary. The loop is now closed.
+Step 1 is not a security control, and it matters that you can say why.
+
+It never looks at who an email is going to, or at what is in it. It only
+refuses to redo work already known to fail. A call that would have worked is
+never stopped.
+
+The one place a defense goes is `before_tool_call`, above. That is still true.
+
+Step 5 is step 2 of the file's four-step summary. The loop is now closed.
 
 Notice that a tool result is just another message. The model reads it the same
 way it reads yours.

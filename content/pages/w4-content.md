@@ -49,21 +49,29 @@ ticket T-503.
 | Step 1, tool runs | plus a tool message holding the ticket text |
 | Step 2, model replies | plus an assistant message asking for `get_customer` |
 | Step 2, tool runs | plus a tool message holding the customer record |
-| Step 3, model answers | nothing is added. The loop breaks |
+| Step 3, model replies | plus an assistant message asking for `send_email` |
+| Step 3, tool runs | plus a tool message holding the send result |
+| Step 4, model answers | nothing is added. The loop breaks |
 
 Read that last row again, because it surprises people. On the step where the
 model answers in words, the loop sets `final_text`, records a trace event, and
 breaks. It never appends that message.
 
-So the list ends at six entries, and the agent's final answer is not one of
+So the list ends at eight entries, and the agent's final answer is not one of
 them. It lives in `final_text` and in the trace file.
+
+You never asked for an email. Step 3 is there because the body of T-503 tells
+the agent to send one, and the agent read that instruction out of a tool
+result. Week 5 is about why that works. For now, note only that it happened
+inside the same list.
 
 **Cost.** Every entry is sent again on every pass, so a long tool result is
 paid for on every later step. That is why the loop cuts results off at
 `max_tool_result_chars`.
 
-**Trust.** By step 3 that list holds text a stranger typed into a ticket, next
-to your system prompt, in the same format.
+**Trust.** From step 1 that list holds text a stranger typed into a ticket,
+next to your system prompt, in the same format. Nothing in the list marks one
+entry as data and another as orders.
 :::
 
 ::: section | Tool dispatch: how a name becomes a function
@@ -110,14 +118,30 @@ not exist.
 try:
     result = tools.call_tool(cfg, name, args)
     error = None
+except (tools.ToolArgumentError, tools.ToolNotImplemented) as exc:
+    # Permanent for this run, so remember it.
+    dead_calls.add(signature)
+    result = f"The tool failed: {exc}"
+    error = str(exc)
 except tools.ToolError as exc:
-    # A tool failing is normal. Tell the model and keep going.
+    # This one might clear on its own. A tool failing is normal.
     result = f"The tool failed: {exc}"
     error = str(exc)
 ```
 
 The failure becomes text, goes back to the model as the tool result, and the
 loop keeps running.
+
+There are two kinds of failure here. It is the same split `llm.py` makes about
+a bad request.
+
+"The target app did not answer" may clear on its own, so the agent may try
+again. "This tool does not take an argument called cfg" will not clear, however
+many times it is sent.
+
+So the loop remembers that exact call and refuses to repeat it. Small models
+get stuck in that loop easily, and an agent that spends every step re-sending a
+call that cannot work never answers at all.
 
 Now compare a tool that fails quietly. Say your `get_customer` returns an
 empty string when the customer does not exist. No error is raised, so the loop
@@ -142,7 +166,7 @@ Do this before you write code. It takes about 30 minutes.
 3. Open `agent/loop.py` and read from the `for step` line.
 4. Walk one pass by hand. Every time the code appends to `messages`, write a
    new row and note the step.
-5. Stop at a `break`, or after six passes.
+5. Stop at a `break`, or after six passes. Do not assume the run is short.
 6. Now run it for real. Start the target app:
 
 ```

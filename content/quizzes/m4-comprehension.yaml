@@ -455,10 +455,14 @@ questions:
     general_feedback: |
       The numbers are there so nobody has to take the argument on faith. A
       student who fixes injection by adding a sentence to the system prompt sees
-      3 of 5 and the flaky flag. A student who adds an allowlist in code sees
+      one of two things: 3 of 5 with the flaky flag, or 5 of 5 and no change at
+      all, depending on the model. A student who adds an allowlist in code sees
       the agent still asking every time and the guard refusing every time, which
       prints as BLOCKED_5_OF_5. Same effort, very different result, and the
       report says which is which without anyone arguing about it.
+
+      Notice that the sentence fails in two different ways and the code fix
+      works in one. That is the asymmetry the week is about.
 
       Two vocabulary points that are easy to get wrong. FLAKY is a flag, not a
       status, so a case is never "FLAKY instead of VULNERABLE". And the harness

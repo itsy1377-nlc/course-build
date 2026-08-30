@@ -1210,7 +1210,9 @@ questions:
 
       A sentence in the system prompt is more text, in the same stream, with
       no special power. The model weighs your request against the attacker's
-      request, and sometimes yours wins. That is what 3 of 5 looks like.
+      request, and sometimes yours wins. That is what 3 of 5 looks like. On a
+      smaller model your sentence may win nothing at all, and 5 of 5 looks the
+      same after the change as before it.
 
       A check in `before_tool_call` runs whether or not the model was
       convinced. That is what 0 of 5 looks like.
