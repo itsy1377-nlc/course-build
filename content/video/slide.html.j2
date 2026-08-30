@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8">
+<style>{{ theme }}</style>
+</head>
+<body class="{{ 'title-card' if scene.layout in ('title','closing') else '' }}">
+{%- if scene.eyebrow %}
+<div class="eyebrow">{{ scene.eyebrow }}</div>
+{%- endif %}
+{%- if scene.layout == 'title' %}
+  <h1 class="big">{{ scene.heading | nl2br }}</h1>
+  {%- if scene.body %}<div class="body">{{ scene.body | nl2br }}</div>{% endif %}
+{%- elif scene.layout == 'closing' %}
+  <h1 class="lede">{{ scene.heading | nl2br }}</h1>
+  {%- if scene.body %}<div class="body">{{ scene.body | nl2br }}</div>{% endif %}
+{%- elif scene.layout == 'numbered' %}
+  {%- if scene.heading %}<h1>{{ scene.heading | nl2br }}</h1>{% endif %}
+  <ol class="items">
+  {%- for item in scene.items %}
+    <li class="{{ '' if loop.index <= reveal else 'off' }}"><span class="n">{{ loop.index }}</span><span>{{ item }}</span></li>
+  {%- endfor %}
+  </ol>
+{%- elif scene.layout == 'compare' %}
+  {%- if scene.heading %}<h1>{{ scene.heading | nl2br }}</h1>{% endif %}
+  <div class="compare">
+  {%- for item in scene.items %}
+    {%- set parts = item.split('|') %}
+    <div class="panel {{ 'mark' if loop.last else '' }}">
+      <h2>{{ parts[0].strip() }}</h2>
+      <p>{{ parts[1].strip() if parts | length > 1 else '' }}</p>
+    </div>
+  {%- endfor %}
+  </div>
+{%- elif scene.layout == 'diagram' %}
+  {%- set d = scene.diagram %}
+  {%- if scene.heading %}<h1>{{ scene.heading | nl2br }}</h1>{% endif %}
+  <div class="diagram" role="img" aria-label="{{ d.alt }}">
+  {%- if d.kind == 'flow' %}
+    <div class="track {{ 'down' if d.direction == 'down' else '' }}">
+    {%- for n in d.nodes %}
+      {%- if not loop.first %}
+      <span class="arrow {{ '' if loop.index0 <= reveal - 1 else 'off' }}"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12h15M13 6l6 6-6 6"/></svg></span>
+      {%- endif %}
+      <div class="node {{ 'mark' if n.mark }} {{ 'code' if n.code }} {{ '' if loop.index <= reveal else 'off' }}">
+        <span class="label">{{ n.label }}</span>
+        {%- if n.sub %}<span class="sub">{{ n.sub }}</span>{% endif %}
+      </div>
+    {%- endfor %}
+    </div>
+    {%- if d.loop %}
+    <div class="loop {{ '' if reveal > d.nodes | length else 'off' }}">
+      <span class="path"></span><span class="head"></span>
+      <span class="text">{{ d.loop }}</span>
+    </div>
+    {%- endif %}
+  {%- elif d.kind == 'split' %}
+    <div class="split">
+      <div class="node source {{ 'mark' if d.source.mark }}">
+        <span class="label">{{ d.source.label }}</span>
+        {%- if d.source.sub %}<span class="sub">{{ d.source.sub }}</span>{% endif %}
+      </div>
+      {#- The fork is one SVG path rather than positioned rules. Absolute
+          positioned 2px spans rendered as visible boxes and the geometry did
+          not survive a real slide. preserveAspectRatio none lets the path
+          stretch to the slide width, and non-scaling-stroke keeps the line
+          weight even after that stretch. -#}
+      {%- set n = d.tracks | length %}
+      {#- vector-effect does not inherit, so it goes on every path. Set once on
+          the group, the strokes scaled with the viewBox: a 16x horizontal
+          stretch turned the vertical drops into grey blocks. -#}
+      <svg class="fork" viewBox="0 0 100 32" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M50 0 V13" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        <path d="M{{ 100 / n / 2 }} 13 H{{ 100 - 100 / n / 2 }}" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        {%- for t in d.tracks %}
+        <path d="M{{ 100 / n / 2 + loop.index0 * (100 / n) }} 13 V32" fill="none" stroke="currentColor" stroke-width="2" vector-effect="non-scaling-stroke"/>
+        {%- endfor %}
+      </svg>
+      <div class="tracks">
+      {%- for t in d.tracks %}
+        <div class="node {{ 'mark' if t.mark }} {{ 'code' if t.code }} {{ '' if loop.index <= reveal else 'off' }}">
+          <span class="label">{{ t.label }}</span>
+          {%- if t.sub %}<span class="sub">{{ t.sub }}</span>{% endif %}
+        </div>
+      {%- endfor %}
+      </div>
+    </div>
+  {%- elif d.kind == 'stack' %}
+    <div class="stack">
+    {%- for n in d.layers %}
+      <div class="node {{ 'mark' if n.mark }} {{ 'code' if n.code }} {{ '' if loop.index <= reveal else 'off' }}">
+        <span class="label">{{ n.label }}</span>
+        {%- if n.sub %}<span class="sub">{{ n.sub }}</span>{% endif %}
+      </div>
+    {%- endfor %}
+    </div>
+  {%- else %}
+    <div class="svgwrap">{{ d.svg | safe }}</div>
+  {%- endif %}
+  </div>
+
+{%- elif scene.layout == 'code' %}
+  {%- if scene.heading %}<h1>{{ scene.heading | nl2br }}</h1>{% endif %}
+  <pre class="code">{{ scene.body }}</pre>
+{%- else %}
+  <h1>{{ scene.heading | nl2br }}</h1>
+  {%- if scene.body %}<div class="body">{{ scene.body | nl2br }}</div>{% endif %}
+{%- endif %}
+<footer><span>{{ course_code }}</span><span class="sp">{{ course_name }}</span></footer>
+</body></html>

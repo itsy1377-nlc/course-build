@@ -5,6 +5,11 @@ does. You do not write any code from a blank file.
 Everything here runs offline. You do not need an API key for this lab.
 :::
 
+::: video lab1-walkthrough | Prove it runs, then predict
+Three commands at the terminal, including one that fails. It shows the first
+half of this lab and none of your five predictions.
+:::
+
 ::: callout note | What you need before you start
 You need three things, all of them from Week 1:
 

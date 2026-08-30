@@ -14,6 +14,11 @@ in a screen recording is the fastest way to raise a scope question about work
 that was fine.
 :::
 
+::: video final-part-c-walkthrough-video | Three minutes, three parts
+Three minutes at the terminal. Watch for what you can prepare before you press
+record.
+:::
+
 ::: callout note | Three ways to submit, all worth the same
 Nobody is graded on equipment or on comfort being filmed. Pick any one of
 these:

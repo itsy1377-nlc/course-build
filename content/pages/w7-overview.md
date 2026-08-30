@@ -3,6 +3,11 @@ This week you stop reading the harness and start writing for it. You add cases
 of your own, learn what its numbers claim, and fix one weakness in code.
 :::
 
+::: video w7-concept | One hit, and five of five
+Five minutes. Watch for the third answer a trial can give, and why a fix has
+to hold every time.
+:::
+
 ::: objectives
 By the end of this week, you will be able to:
 

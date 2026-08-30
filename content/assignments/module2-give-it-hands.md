@@ -6,6 +6,11 @@ yourself.
 The schema is the graded part of part two. The Python in it is small.
 :::
 
+::: video module2-walkthrough | Registered is not allowed
+Three minutes at the terminal. It shows the grader you can run as often as you
+like, and the failure that keeps a correct tool from ever running.
+:::
+
 ::: callout note | What you are being graded on
 Writing a function is Week 4 work. Writing an interface another program has to
 understand from the description alone is new, and that is where the points are.

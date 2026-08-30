@@ -14,6 +14,11 @@ Your submission includes a copy of your `target.base_url` setting. It has to
 say `http://127.0.0.1:8000`.
 :::
 
+::: video attack-lab-1-walkthrough | The three things you collect
+Three minutes at the terminal, on a case you are not submitting. It shows the
+three things you collect, and none of your three answers.
+:::
+
 ::: directions
 **Part 1: run the attacks.**
 

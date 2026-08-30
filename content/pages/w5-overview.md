@@ -4,6 +4,11 @@ read tickets and send email. Now you find out what happens when someone writes
 a ticket on purpose to steer it.
 :::
 
+::: video w5-concept | A ticket that gives orders
+Four minutes. Watch for why a sentence added to the system prompt is a
+request, not a control.
+:::
+
 ::: objectives
 By the end of this week, you will be able to:
 

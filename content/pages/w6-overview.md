@@ -4,6 +4,11 @@ nothing stopped it, and you meet the harness that turns "it seemed to work"
 into a number.
 :::
 
+::: video w6-concept | Why nothing stopped it
+Five minutes. Watch for the four controls missing from one small function, and
+why the harness refuses to grade what the model said.
+:::
+
 ::: objectives
 By the end of this week, you will be able to:
 

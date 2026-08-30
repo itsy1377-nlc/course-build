@@ -3,6 +3,11 @@ This week you put a real model on the other end of the line. You add an API key,
 send a request, and read the reply.
 :::
 
+::: video w2-concept | Four roles, one box
+Four minutes. Watch for the moment where your instructions and a stranger's
+ticket turn out to be traveling in the same box.
+:::
+
 ::: objectives
 By the end of this week, you will be able to:
 

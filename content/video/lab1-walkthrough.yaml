@@ -1,0 +1,145 @@
+id: lab1-walkthrough
+title: Prove it runs, then predict
+kind: walkthrough
+module: m01
+embed_on: content/assignments/lab1-python-foundations.md
+blurb: Three commands at the terminal, including one that fails. It shows the first half of this lab and none of your predictions.
+voice: af_heart
+explains:
+  - content/assignments/lab1-python-foundations.md
+  - content/pages/w1-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Lab 1
+    heading: |
+      Prove it runs,
+      then predict
+    body: |
+      Two jobs. This video shows the first one,
+      and none of your five predictions.
+    narration:
+      - Lab 1 asks you for two things. This video shows the first one.
+      - Nothing here needs an API key. It all runs offline.
+      - You are not graded on whether every check passed.
+      - You are graded on running it and showing the result.
+      - Two failed checks with honest pasted output beat a submission with nothing pasted.
+
+  # One command, and only the top of its output. The terminal renders every
+  # line it is given, so a scene that prints thirty lines is a scene that
+  # records slowly. Fifteen lines is the whole check list.
+  - type: terminal
+    cwd: /work
+    steps:
+      - run: python verify_env.py | sed -n '1,15p'
+        wait: "The agent runs"
+        settle: 44.0
+    narration:
+      - Run python verify env dot p y from the folder that holds it.
+      - The full output runs past one screen, so this shows the top.
+      - Nine checks print, one per line, each with a symbol.
+      - Python version passes. Then the virtual environment check warns.
+      - It says you are not in a virtual environment.
+      - A warning is not a failure, and the lab still runs.
+      - The arrow under it prints the fix, python dash m venv dot venv.
+      - Then you activate it with the line for your own system.
+      - The other seven checks all pass here.
+      - Packages, the settings file, and no key stored in it.
+      - Your canary tokens, the target files, and saving a file.
+      - The last check runs the agent, and it answered in one step.
+
+  # The redirect is the habit this assignment wants: the output has to be
+  # pasted, so save it once and read it back.
+  - type: terminal
+    cwd: /work
+    steps:
+      - run: python verify_env.py > verify-output.txt
+        settle: 3.0
+      - run: tail -n 9 verify-output.txt | sed -E 's/M0-.{5}-.{5}/M0-XXXXX-XXXXX/'
+        wait: "Gate code"
+        settle: 36.0
+    narration:
+      - Now save the output, because the assignment asks you to paste it.
+      - The redirect writes it to a file, so nothing prints here.
+      - Then read the end of that file, which is the part you need.
+      - Everything passed, and then your Module 0 Gate code.
+      - The pipe into sed hides my code on purpose.
+      - Yours comes from your student ID, so no two are the same.
+      - Copy the whole line, including the letter after the last hyphen.
+      - Paste it into the Module 0 Gate in Canvas.
+      - It is due on day 3, and it is your attendance check for the term.
+      - The last lines look ahead to week 2, when you have an API key.
+      - Run this again with dash dash live and submit the code ending in L.
+
+  # This scene starts inside the agent folder on purpose, so the command fails
+  # the way it fails for a student who opened the wrong one. The lab data is
+  # seeded from /work because the bootstrap lands in the subfolder.
+  - type: terminal
+    cwd: /work/agent
+    setup:
+      - cd /work && python -m target.seed > /dev/null 2>&1
+    steps:
+      - run: python verify_env.py
+        wait: "No such file"
+        settle: 7.5
+      - run: cd ..
+        settle: 1.5
+      - run: python verify_env.py | sed -n '1,3p'
+        wait: "Python version"
+        settle: 8.5
+    narration:
+      - Here is the failure that costs the most time and is not a real failure.
+      - The same command, run from the wrong folder.
+      - Python cannot find the file, and it prints the path it tried.
+      - Move back one folder and run it again.
+      - It works, and the check starts printing.
+      - If a command cannot find something, check your folder first.
+      - Nine times out of ten, that is the whole problem.
+
+  - type: terminal
+    cwd: /work
+    steps:
+      - run: python -m common.canary | sed -n '1,4p'
+        wait: "CANARY-KB"
+        settle: 22.0
+    narration:
+      - One more command. Run python dash m common dot canary.
+      - It prints three tokens. Sysprompt, customer, and kb.
+      - The dash m flag runs a module by its dotted name.
+      - That flag is what makes the lab import lines work.
+      - Your three tokens are built from your student ID, so a classmate has three different ones.
+      - You will hunt these tokens as evidence in Week 5.
+
+  - type: slide
+    layout: compare
+    eyebrow: Two easy ways to lose points
+    heading: What the grader is looking for
+    items:
+      - "Loses points | Running the code first, then writing your prediction. Describing the output in a sentence instead of pasting it."
+      - "Full credit | A prediction written first, one sentence on why, and the real output pasted underneath."
+    narration:
+      - Two easy ways to lose points here, and both are avoidable.
+      - The first one is predicting late.
+      - Running the code first, then writing that you predicted it.
+      - That is the one thing this lab is built to catch.
+      - Predicting badly is fine. Predicting late is not.
+      - A wrong prediction you explain in one sentence earns full credit.
+      - The second one is describing output instead of pasting it.
+      - Several graded rows are the paste itself.
+
+  - type: slide
+    layout: closing
+    eyebrow: What to hand in
+    heading: One file, four parts, in order.
+    body: |
+      Environment check output. Five predictions with
+      reasons, then the real output. Dictionary output.
+      Three written answers.
+    narration:
+      - One file, four parts, in this order.
+      - Your environment check output, then your five predictions with reasons and the real output.
+      - Then your dictionary output, then your three written answers.
+      - That order is the order the grader reads.
+      - Do not upload the two python files. Everything the grader needs is pasted inside the one file.
+      - If setup fights you for thirty minutes, post the whole output and start Part 2 anyway.

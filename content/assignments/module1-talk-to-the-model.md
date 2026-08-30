@@ -4,6 +4,11 @@ rate limit and reads a structured reply. Everything else in that file already
 works.
 :::
 
+::: video module1-walkthrough | The tests are the assignment
+Three minutes at the terminal. It shows the tool that grades you, and never
+opens the file you are writing.
+:::
+
 ::: callout note | These tests run offline
 Nothing in this assignment needs a network or an API key. The three functions
 are pure logic, so pytest checks them with no requests at all.

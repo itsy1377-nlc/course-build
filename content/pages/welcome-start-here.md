@@ -16,6 +16,11 @@ lets a language model call your code. You extend one, attack it, and prove your
 fix held.
 :::
 
+::: video orientation | Day three and the list of three
+Four minutes. Watch for the day 3 deadline and the three things you are ever
+allowed to attack.
+:::
+
 ::: steps | Your first three days
 1. **Take the Module 0 Gate, due day 3.** Three parts: a quiz on the Rules of
    Engagement, a code from your own computer, and a short written answer.

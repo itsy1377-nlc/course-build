@@ -3,6 +3,11 @@ This week the direction flips. Until now your script called the model, and from
 here the model calls your function.
 :::
 
+::: video w3-concept | The inversion
+Four minutes. Watch for the one new box in the loop picture, and what it does
+in Week 3, which is nothing.
+:::
+
 ::: callout stop | The hardest week, and it is built so you cannot fall out
 Five protections are already in place.
 

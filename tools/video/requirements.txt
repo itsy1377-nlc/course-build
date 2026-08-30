@@ -1,0 +1,25 @@
+# The video pipeline runs in its own venv at tools/video/.venv, deliberately
+# separate from tools/requirements.txt. Two reasons. The build tooling should
+# stay installable with two small pure-python packages, and this pulls torch.
+#
+# Python 3.10 to 3.12 only. Kokoro's dependency misaki does not publish for
+# 3.13, and the first attempt at this venv was 3.13 and failed to resolve.
+# 3.12 also matches labs/.devcontainer, which is the environment the
+# walkthrough recordings run inside.
+#
+#   uv venv --python 3.12 tools/video/.venv
+#   uv pip install --python tools/video/.venv/bin/python -r tools/video/requirements.txt
+
+# Pinned, not floated. Every caption timestamp in the course is a measurement
+# of this model's output, so a version bump silently re-times every video and
+# invalidates every .vtt. An adversarial review of this pipeline flagged the
+# floating requirement as the single highest-risk unpinned dependency.
+kokoro==0.9.4        # Apache-2.0 weights, 82M params, the default voice
+soundfile            # wav out
+jinja2               # slide layouts
+pyyaml               # scene lists
+
+# Pinned explicitly rather than left to kokoro's runtime auto-download. Its G2P
+# shells out to install this and picked up an unrelated venv on this machine,
+# so the model landed somewhere the pipeline could not see it.
+en_core_web_sm @ https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-3.8.0/en_core_web_sm-3.8.0-py3-none-any.whl

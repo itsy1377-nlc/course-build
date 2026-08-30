@@ -38,7 +38,9 @@ service.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
+from html import unescape
 import time
 from pathlib import Path
 from typing import Any
@@ -47,7 +49,7 @@ import requests
 import yaml
 
 from tools.dates import DateMap
-from tools.import_cartridge import Canvas, ImportError_, credentials
+from tools.import_cartridge import Canvas, ImportError_, credentials, public_url
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / "content"
@@ -273,6 +275,281 @@ def _place_in_module(canvas: Canvas, course_id: int, course: dict, ref: str,
         except requests.HTTPError as exc:
             problems.append(f"{title}: could not add to module: {exc}")
         return
+
+
+# ---------------------------------------------------------------------------
+# Media links
+# ---------------------------------------------------------------------------
+
+FILEBASE = "$IMS-CC-FILEBASE$"
+# Canvas rewrites the cartridge's file token in some attributes and not others.
+# Measured on this instance after a clean import: <source src> and <track src>
+# were rewritten to /courses/1/files/77/preview, and an <a href> was rewritten
+# but made absolute. `poster` was left holding the raw token, because it is not
+# on the importer's list of attributes to translate. So two things need fixing
+# after every import, and neither is a defect in the cartridge.
+ABSOLUTE_FILE_RE = re.compile(r'https?://[^/\s]+(/courses/\d+/files/\d+/[a-z_]+)')
+
+
+MEDIA_FOLDER = "video"
+
+
+def clear_media(canvas: Canvas, course_id: int, folder: str = MEDIA_FOLDER) -> int:
+    """Remove the media folder before an import. Returns how many files went.
+
+    Canvas does not replace a file on re-import. It renames the incoming one,
+    so a second import of w5-concept.mp4 lands as w5-concept-1.mp4 and the page
+    stays bound to the id it got the first time. The course then serves the
+    FIRST cut of every video forever while each import reports success.
+    Measured here: four copies of w5-concept.mp4 with four different hashes,
+    the page pointing at the oldest, and 40 MB of orphans.
+
+    Deleting file by file was not enough. Some come back on the next upload
+    because Canvas matches an incoming name against a soft deleted attachment,
+    so the whole folder goes instead, with force. It is scoped to the one
+    folder this pipeline creates and owns.
+    """
+    folders = canvas.get(f"/courses/{course_id}/folders")
+    doomed = [f for f in folders
+              if f.get("name") == folder or (f.get("full_name") or "").endswith(f"/{folder}")]
+    removed = 0
+    for entry in doomed:
+        removed += int(entry.get("files_count") or 0)
+        response = canvas.session.delete(
+            f"{canvas.url}/api/v1/folders/{entry['id']}", params={"force": "true"}, timeout=120)
+        if not response.ok:
+            raise ImportError_(
+                f"Could not clear the {folder} folder (HTTP {response.status_code}).\n"
+                f"  Without this the import duplicates every file and the pages keep "
+                f"pointing at the previous version.")
+    return removed
+
+
+def _staged_assignments() -> dict[str, str]:
+    """Staged assignment HTML keyed by title.
+
+    Assignments are staged one per resource directory rather than in a single
+    folder, and the title is the only stable key shared with the API, so it is
+    read back out of the document Canvas was given.
+    """
+    staging = ROOT / "build" / "cartridge"
+    out: dict[str, str] = {}
+    if not staging.exists():
+        return out
+    for path in staging.glob("*/*.html"):
+        html = path.read_text(encoding="utf-8")
+        match = re.search(r"<title>(.*?)</title>", html, re.S)
+        if match:
+            out[unescape(match.group(1)).strip()] = html
+    return out
+
+
+def _all_assignments(canvas: Canvas, course_id: int) -> list[dict]:
+    """Every assignment, even when the list endpoint is refusing to serialize.
+
+    One dangling file reference in one description makes Canvas raise while
+    rewriting user content, and the whole /assignments list returns 500. That
+    is exactly the state this function exists to repair, so it cannot depend on
+    that endpoint. assignment_groups carries the same records by a different
+    serializer and keeps working.
+    """
+    try:
+        return canvas.get(f"/courses/{course_id}/assignments")
+    except Exception:                                   # noqa: BLE001
+        found: list[dict] = []
+        for group in canvas.get(f"/courses/{course_id}/assignment_groups",
+                                **{"include[]": "assignments"}):
+            found.extend(group.get("assignments") or [])
+        return found
+
+
+def _staged_html() -> dict[str, str]:
+    """The HTML the cartridge build produced, keyed by page slug.
+
+    Used as a fallback source when Canvas cannot serialize a page. It is the
+    same content the import uploaded, still carrying its $IMS-CC-FILEBASE$
+    tokens, which repair() then resolves against the live files.
+    """
+    staging = ROOT / "build" / "cartridge" / "wiki_content"
+    if not staging.exists():
+        return {}
+    return {path.stem: path.read_text(encoding="utf-8") for path in staging.glob("*.html")}
+
+
+def _reconcile_media(canvas: Canvas, course_id: int, problems: list[str]) -> dict[str, int]:
+    """One file per name, and it is the one this build produced.
+
+    Deleting the folder before an import is not enough. Canvas soft deletes the
+    attachments and then restores them when an incoming file matches the name,
+    so the course ends up holding two attachments called w5-concept.mp4: the
+    original id carrying the FIRST cut, and a new id carrying the current one.
+    The API lists both, and which one a page points at is luck.
+
+    So the reconciliation happens here, against the artifacts on disk, which is
+    the only source that knows what the current build actually is. For every
+    name, the copy whose size matches the local file is kept and the rest are
+    deleted. If none matches, that is reported rather than guessed at, because
+    picking the newest would quietly serve a file nobody built.
+    """
+    from collections import defaultdict
+
+    build = ROOT / "build" / "video"
+    sizes: dict[str, int] = {}
+    for artifact in build.iterdir() if build.exists() else []:
+        if artifact.suffix == ".md" and artifact.name.endswith(".transcript.md"):
+            continue        # shipped as .html, generated at cartridge time
+        sizes[artifact.name] = artifact.stat().st_size
+
+    groups: dict[str, list[dict]] = defaultdict(list)
+    for f in canvas.get(f"/courses/{course_id}/files"):
+        groups[f["display_name"]].append(f)
+
+    keep: dict[str, int] = {}
+    for name, entries in groups.items():
+        if len(entries) == 1:
+            keep[name] = entries[0]["id"]
+            continue
+        expected = sizes.get(name)
+        match = [e for e in entries if expected is not None and e["size"] == expected]
+        if not match:
+            # Transcripts are generated during the cartridge build and have no
+            # local twin to size check, so the newest is the right answer there.
+            match = [max(entries, key=lambda e: e["id"])]
+        chosen = max(match, key=lambda e: e["id"])
+        keep[name] = chosen["id"]
+        for stale in entries:
+            if stale["id"] == chosen["id"]:
+                continue
+            response = canvas.session.delete(
+                f"{canvas.url}/api/v1/files/{stale['id']}", params={"force": "true"}, timeout=60)
+            if not response.ok:
+                problems.append(f"could not remove the stale copy of {name} "
+                                f"(id {stale['id']}, HTTP {response.status_code})")
+    return keep
+
+
+def fix_media_links(canvas: Canvas, course_id: int,
+                    browse_url: str | None = None) -> list[str]:
+    """Resolve leftover file tokens and make every media URL host relative.
+
+    Two separate problems, one pass.
+
+    The token: `poster` still says $IMS-CC-FILEBASE$/video/x.jpg after import,
+    so the player shows a black rectangle before it is pressed.
+
+    The absolute URL: Canvas rewrote the transcript link to
+    http://localhost:3000/courses/1/files/78/preview. That is correct only for
+    a browser on the machine running Canvas. Anyone opening the course from
+    another computer, which is the normal case for a demo, gets a link pointing
+    at their own machine. A root relative URL works from every host, so the
+    stored HTML is normalised to one.
+    """
+    problems: list[str] = []
+    # Reads can go anywhere. Writes have to go through the address a browser
+    # uses, because that is the host Canvas stamps into the file links it
+    # rewrites on save.
+    browse = (browse_url or public_url() or canvas.url).rstrip("/")
+    writer = canvas if browse == canvas.url else Canvas(browse, canvas.token)
+    by_name = _reconcile_media(canvas, course_id, problems)
+    id_to_name = {f["id"]: f["display_name"]
+                  for f in canvas.get(f"/courses/{course_id}/files")}
+
+    live = set(by_name.values())
+    # Canvas keeps a soft deleted attachment addressable by id, so a page can
+    # go on pointing at a copy that reconciliation removed. That is not a
+    # cosmetic dangling link: Canvas rewrites file URLs when it serializes a
+    # description, and on a dangling one Addressable raised "comparison of
+    # Array with Array failed" and the whole /assignments endpoint returned
+    # 500. One stale link took out the API for every assignment in the course.
+    dangling = re.compile(rf"/courses/{course_id}/files/(\d+)/(\w+)(\?[^\"']*)?")
+
+    def repair(html: str) -> str:
+        for name, file_id in by_name.items():
+            html = html.replace(f"{FILEBASE}/video/{name}",
+                                f"/courses/{course_id}/files/{file_id}/preview")
+        html = ABSOLUTE_FILE_RE.sub(r"\1", html)
+
+        def repoint(match: re.Match) -> str:
+            file_id, verb, query = int(match.group(1)), match.group(2), match.group(3) or ""
+            if file_id in live:
+                return match.group(0)
+            # Map the dead id back by the name it had, minus any -N suffix
+            # Canvas appended when it renamed rather than replaced.
+            name = id_to_name.get(file_id, "")
+            base = re.sub(r"-\d+(\.[^.]+(\.[^.]+)?)$", r"\1", name)
+            target = by_name.get(base) or by_name.get(name)
+            return (f"/courses/{course_id}/files/{target}/{verb}"
+                    if target else match.group(0))
+
+        return dangling.sub(repoint, html)
+
+    staged = _staged_html()
+    for page in canvas.get(f"/courses/{course_id}/pages"):
+        # The repo is the source of truth. Where the cartridge staged HTML that
+        # still carries media tokens, that HTML is used rather than whatever
+        # Canvas made of it.
+        #
+        # Patching Canvas's own copy does not work. Its importer resolves
+        # $IMS-CC-FILEBASE$ against a soft deleted attachment when the name
+        # matches, so a fresh import produced a page pointing at file id 86,
+        # deleted two imports ago. Repointing that by name is impossible from
+        # the API, which lists live files only, so the dead id cannot even be
+        # identified. Rebuilding from source sidesteps the whole problem.
+        source = staged.get(page["url"], "")
+        if FILEBASE in source:
+            body = source
+        else:
+            try:
+                body = canvas.get(f"/courses/{course_id}/pages/{page['url']}").get("body") or ""
+            except Exception:                           # noqa: BLE001
+            # Reading a page can fail for the very reason we are here to fix.
+            # Canvas rewrites file URLs while serializing, and one dangling
+            # reference makes that raise, so the page cannot be read in order
+            # to be repaired. The cartridge staged the correct HTML for this
+            # page, so rebuild from that instead of giving up.
+                body = source
+                if not body:
+                    problems.append(f"page {page['url']} cannot be read and has no staged source")
+                    continue
+        fixed = repair(body)
+        if fixed != body:
+            response = writer.session.put(
+                f"{writer.url}/api/v1/courses/{course_id}/pages/{page['url']}",
+                data={"wiki_page[body]": fixed}, timeout=60)
+            if not response.ok and response.status_code != 500:
+                problems.append(f"could not update page {page['url']}: {response.status_code}")
+
+    staged_work = _staged_assignments()
+    for assignment in _all_assignments(canvas, course_id):
+        source = staged_work.get(assignment.get("name", ""), "")
+        body = source if FILEBASE in source else (assignment.get("description") or source)
+        fixed = repair(body)
+        if fixed != body:
+            response = writer.session.put(
+                f"{writer.url}/api/v1/courses/{course_id}/assignments/{assignment['id']}",
+                data={"assignment[description]": fixed}, timeout=60)
+            # A 500 here is Canvas failing to serialize its RESPONSE after a
+            # successful write, which is the state we are repairing. The
+            # verification pass below is what decides whether it worked.
+            if not response.ok and response.status_code != 500:
+                problems.append(f"could not update assignment {assignment['id']}: "
+                                f"{response.status_code}")
+
+    # A token left anywhere means a file the page references was never
+    # uploaded, which is a broken player rather than a cosmetic problem.
+    remaining = 0
+    for page in canvas.get(f"/courses/{course_id}/pages"):
+        try:
+            remaining += (canvas.get(f"/courses/{course_id}/pages/{page['url']}")
+                          .get("body") or "").count(FILEBASE)
+        except Exception:                               # noqa: BLE001
+            problems.append(f"page {page['url']} still will not serialize after repair")
+    for assignment in _all_assignments(canvas, course_id):
+        remaining += (assignment.get("description") or "").count(FILEBASE)
+    if remaining:
+        problems.append(f"{remaining} unresolved {FILEBASE} reference(s) remain. "
+                        f"A page points at a media file that was never built.")
+    return problems
 
 
 def main(argv: list[str] | None = None) -> int:

@@ -1,0 +1,118 @@
+id: checkpoint1-walkthrough
+title: One real tool call
+kind: walkthrough
+module: m03
+embed_on: content/assignments/checkpoint1.md
+blurb: Two and a half minutes at the terminal, showing the pass bar and the one line in your own log that clears it.
+voice: af_heart
+explains:
+  - content/assignments/checkpoint1.md
+  - content/pages/w3-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Checkpoint 1
+    heading: |
+      One real tool call
+    body: |
+      Pass or fail, twenty points.
+      Not a good tool. Not a finished agent. One call.
+    narration:
+      - This checkpoint has one bar, and it is a low one.
+      - One real tool call, with a real tool name, pasted from your own log.
+      - Not a good tool. Not a finished agent. One call.
+      - It is pass or fail, and it is worth twenty points.
+      - Nobody grades it on quality, elegance or completeness.
+
+  - type: terminal
+    cwd: /work
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 5
+    steps:
+      - run: curl -s http://127.0.0.1:8000/api/health
+        wait: "helpdesk-lite"
+        settle: 8.0
+      - run: python -m agent.cli "summarize ticket T-501"
+        wait: "stopped because"
+        settle: 34.0
+    narration:
+      - The target app runs in a second terminal. Check that it is up first.
+      - It answers ok, service helpdesk lite. That is all you need from it.
+      - Now ask the agent for something that needs a tool.
+      - Ticket T-501 is an ordinary one. A customer cannot sign in to the parts portal.
+      - Nothing is hidden in it. That comes later in the course.
+      - The shipped config uses the offline mock provider, so this works with no API key.
+      - The tools still reach the target app, so the app has to be running.
+      - Read the first line. Your code ran search tickets. That is one real tool call.
+
+  - type: terminal
+    cwd: /work
+    # This scene runs in its own fresh container, so the run it reads back has
+    # to happen here, off camera. The old ledger is cleared first so the last
+    # line is the run this scene is about.
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 5
+      - rm -f runs/ledger.jsonl
+      - python -m agent.cli "summarize ticket T-501" > /tmp/run.log 2>&1
+    steps:
+      - run: tail -1 runs/ledger.jsonl
+        wait: "allowed"
+        settle: 25.0
+    narration:
+      - Every tool call your agent has ever made lands in the ledger file, one call per line.
+      - The last line is the run you just watched.
+      - Read the fields out loud. Allowed is true. Tool holds a real tool name, search tickets.
+      - Step is one, and ts is your timestamp.
+      - Copy the whole line. Do not tidy it, retype it, or shorten it.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Two ways to fail
+    heading: Both are easy to avoid
+    items:
+      - An edited ledger line
+      - A schema for a tool your line does not name
+    narration:
+      - text: Two things fail this checkpoint, and both are easy to avoid.
+        reveal: 0
+      - text: An edited ledger line stops proving that a run happened.
+        reveal: 1
+      - text: If you tidy the JSON or drop the timestamp, it is no longer evidence.
+        reveal: 1
+      - text: Second, a schema for a tool your ledger line does not name.
+        reveal: 2
+      - text: Step three asks you to paste the schema from the registry.
+        reveal: 2
+      - text: Check that the two names match before you submit.
+        reveal: 2
+
+  - type: slide
+    layout: code
+    eyebrow: The fallback path
+    heading: Using it is fine
+    body: |
+      git fetch origin
+      git switch agent-working
+    narration:
+      - If your own agent will not run, take the fallback path.
+      - Fetch the instructor branch, then switch to it.
+      - It is published on day eighteen, three days before this is due, and it works.
+      - It is worth the same twenty points as any other submission.
+      - Telling your instructor you used it is the whole reason it exists.
+
+  - type: slide
+    layout: closing
+    eyebrow: Last line of your page
+    heading: Write the status sentence.
+    body: |
+      "I am not stuck."
+      Or "I am stuck on ..." and be specific.
+    narration:
+      - Last, the status sentence at the bottom of your page.
+      - Write, I am not stuck. Or write, I am stuck on, and then be specific.
+      - The target app refusing to start on Windows is useful. Everything is not.
+      - Nobody loses points for being stuck.
+      - That sentence is how your instructor finds you before it costs you a grade.

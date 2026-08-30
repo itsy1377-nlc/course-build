@@ -14,6 +14,12 @@ case without it. Your submission includes the target line from your run. It has
 to say `http://127.0.0.1:8000`.
 :::
 
+::: video module4-walkthrough | The numbers you cannot get back
+Four minutes at the terminal, on a case you are not submitting. Watch one
+result move from vulnerable to blocked, and see the proof behind the status
+word.
+:::
+
 ::: directions
 **Part 1: add at least two attack cases.** Write two new YAML files in
 `harness/cases/`. Each needs `kind: attack` and a detector that is a side

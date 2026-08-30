@@ -35,7 +35,7 @@ from xml.sax.saxutils import escape
 import yaml
 
 from tools import qti
-from tools.blocks import BlockError, render_document
+from tools.blocks import MD_EXTENSIONS, BlockError, markdown_lib, render_document
 from tools.dates import DateMap
 from tools.qti import ident
 
@@ -261,6 +261,116 @@ def _xml(tag: str, value: Any) -> str:
     return f"    <{tag}>{escape(str(value))}</{tag}>\n"
 
 
+VIDEO_BUILD = ROOT / "build" / "video"
+# One folder inside the course's Files, hidden the way the institutional export
+# hides its own "Uploaded Media". Hidden is not unpublished: a hidden file is
+# still served to anyone with the link, which is exactly what an embedded
+# player needs. It only keeps seventeen videos and their caption files out of
+# the Files list a student browses.
+MEDIA_FOLDER = "video"
+MEDIA_SUFFIXES = (".mp4", ".vtt", ".jpg")
+
+
+def _stage_media(staging: Path, course: dict) -> tuple[list[str], list[tuple[str, str]]]:
+    """Copy the built video into web_resources/ and declare it.
+
+    The shape here is copied from the college's own export rather than invented:
+    a plain `type="webcontent"` resource whose href and single <file> both point
+    at the web_resources path. That is what Instructure emits for the MP4 in
+    "NLC Online Course Template/web_resources/Uploaded Media/", so it is the
+    shape their Canvas is known to accept.
+
+    Every page that embeds a video is checked against what was actually built,
+    because a cartridge that imports cleanly and then shows a broken player is
+    worse than one that refuses to build.
+    """
+    wanted: dict[str, str] = {}
+    for page in sorted((CONTENT).rglob("*.md")):
+        text = page.read_text(encoding="utf-8")
+        for video_id in re.findall(r"^:::\s*video\s+([a-z0-9-]+)", text, re.MULTILINE):
+            wanted[video_id] = str(page.relative_to(ROOT))
+    if not wanted:
+        return [], []
+
+    missing = [f"{vid} (embedded on {where})" for vid, where in sorted(wanted.items())
+               if not (VIDEO_BUILD / f"{vid}.mp4").exists()]
+    if missing:
+        raise BuildError(
+            "These pages embed a video that has not been built:\n"
+            + "\n".join(f"  - {m}" for m in missing)
+            + "\n  Run: tools/video/.venv/bin/python -m tools.video.build --all")
+
+    destination = staging / "web_resources" / MEDIA_FOLDER
+    destination.mkdir(parents=True)
+    resources: list[str] = []
+    meta: list[tuple[str, str]] = []
+
+    for video_id in sorted(wanted):
+        for suffix in MEDIA_SUFFIXES:
+            source = VIDEO_BUILD / f"{video_id}{suffix}"
+            if not source.exists():
+                continue
+            shutil.copy2(source, destination / source.name)
+            resources.append(_web_resource(f"{MEDIA_FOLDER}/{source.name}"))
+            meta.append((ident("file", f"{MEDIA_FOLDER}/{source.name}"), source.name))
+
+        # The transcript ships as HTML rather than as the markdown the video
+        # build writes, because it is linked from the player and a browser has
+        # to render it. It is the text alternative WCAG 1.2.3 asks for, and the
+        # college's own export pairs its media with a transcript document the
+        # same way.
+        transcript = VIDEO_BUILD / f"{video_id}.transcript.md"
+        if transcript.exists():
+            name = f"{video_id}.transcript.html"
+            title = f"Transcript: {video_id.replace('-', ' ')}"
+            body = markdown_lib.markdown(transcript.read_text(encoding="utf-8"),
+                                         extensions=MD_EXTENSIONS)
+            (destination / name).write_text(
+                '<html lang="en">\n<head>\n'
+                '<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>\n'
+                f'<title>{escape(title)}</title>\n</head>\n<body>\n{body}\n</body>\n</html>',
+                encoding="utf-8")
+            resources.append(_web_resource(f"{MEDIA_FOLDER}/{name}"))
+            meta.append((ident("file", f"{MEDIA_FOLDER}/{name}"), name))
+    return resources, meta
+
+
+def _web_resource(relative: str) -> str:
+    path = f"web_resources/{relative}"
+    return (f'    <resource type="webcontent" identifier="{ident("file", relative)}" '
+            f'href="{path}">\n'
+            f'      <file href="{path}"/>\n'
+            f'    </resource>\n')
+
+
+def _files_meta(entries: list[tuple[str, str]]) -> str:
+    """Canvas reads this to learn a file's folder, name, and visibility.
+
+    It used to be written as an empty element because nothing shipped a file.
+    An empty one alongside real files in web_resources leaves them in the
+    course with no display name and no folder.
+    """
+    if not entries:
+        return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+                f'<fileMeta xmlns="{CANVAS_NS}"/>\n')
+    files = "".join(
+        f'    <file identifier="{identifier}">\n'
+        f'      <hidden>true</hidden>\n'
+        f'      <display_name>{escape(name)}</display_name>\n'
+        f'      <category>uncategorized</category>\n'
+        f'    </file>\n' for identifier, name in entries)
+    return ('<?xml version="1.0" encoding="UTF-8"?>\n'
+            f'<fileMeta xmlns="{CANVAS_NS}" '
+            'xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">\n'
+            '  <folders>\n'
+            f'    <folder path="{MEDIA_FOLDER}">\n'
+            '      <hidden>true</hidden>\n'
+            '    </folder>\n'
+            '  </folders>\n'
+            '  <files>\n' + files + '  </files>\n'
+            '</fileMeta>\n')
+
+
 def build(out_path: Path, session: str = "fall-flex-2", quiet: bool = False) -> Path:
     course = load_course()
     notes: list[str] = []
@@ -282,6 +392,7 @@ def build(out_path: Path, session: str = "fall-flex-2", quiet: bool = False) -> 
     (staging / "non_cc_assessments").mkdir()
 
     resources: list[str] = []
+    file_meta: list[str] = []
     organizations: list[str] = []
 
     by_ref = {row["ref"]: row for group in ("assignments", "quizzes", "discussions")
@@ -416,9 +527,9 @@ def build(out_path: Path, session: str = "fall-flex-2", quiet: bool = False) -> 
     (settings / "learning_outcomes.xml").write_text(
         _learning_outcomes(course), encoding="utf-8")
     (settings / "rubrics.xml").write_text(_rubrics(course), encoding="utf-8")
-    (settings / "files_meta.xml").write_text(
-        '<?xml version="1.0" encoding="UTF-8"?>\n'
-        f'<fileMeta xmlns="{CANVAS_NS}"/>\n', encoding="utf-8")
+    media_resources, file_meta = _stage_media(staging, course)
+    resources.extend(media_resources)
+    (settings / "files_meta.xml").write_text(_files_meta(file_meta), encoding="utf-8")
     (settings / "media_tracks.xml").write_text(
         '<?xml version="1.0" encoding="UTF-8"?>\n'
         f'<media_tracks xmlns="{CANVAS_NS}"/>\n', encoding="utf-8")

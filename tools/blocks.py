@@ -58,6 +58,9 @@ BLOCKS = {
     # one fact. These put the facts where they can be found without reading.
     "keyfacts":   {"cls": "kl_custom_block_8 dp-keyfacts", "icon": "fas fa-bolt",        "title": "The short version"},
     "steps":      {"cls": "kl_custom_block_9 dp-steps",    "icon": "fas fa-shoe-prints", "title": "Do this now"},
+    # A video block names a video id after the directive, the way a callout
+    # names its kind: ::: video w5-concept | Why a ticket can give orders
+    "video":      {"cls": "kl_custom_block_5 dp-video",    "icon": "fas fa-play-circle", "title": None},
 }
 
 # Read aloud by a screen reader, invisible on screen. The wording says what the
@@ -191,8 +194,31 @@ def render_block(block: Block, source: str = "<page>") -> str:
         # whatever stylesheet is in front of it.
         severity = CALLOUT_SEVERITY[flavor]
 
+    if block.name == "video":
+        video_id = (block.arg or "").strip()
+        if not re.fullmatch(r"[a-z0-9-]+", video_id or ""):
+            raise BlockError(
+                f"{source}:{block.line}: a video block needs an id.\n"
+                f"  Write ':::  video <id> | Title', where <id> matches a file in "
+                f"content/video/.")
+        if not title:
+            raise BlockError(
+                f"{source}:{block.line}: video '{video_id}' has no title.\n"
+                f"  Write '::: video {video_id} | What this video shows'. The title is "
+                f"the heading a student reads before deciding to press play.")
+
     body = markdown_lib.markdown(block.body, extensions=MD_EXTENSIONS)
     body = _accessible_tables(body, block, source)
+
+    if block.name == "video":
+        video_id = (block.arg or "").strip()
+        # The player first, then the one line saying what to watch for, then a
+        # link to the transcript. The link is not decoration: a student whose
+        # browser blocks the video still has to be able to get the content, and
+        # some of this audience is on a locked-down machine.
+        body = (VIDEO_TEMPLATE.format(base=VIDEO_BASE, vid=video_id) + "\n" + body
+                + f'\n<p><a href="{VIDEO_BASE}/{video_id}.transcript.html">'
+                  f'Read the transcript instead</a></p>')
 
     parts = [f'<div class="dp-content-block {cls}">']
     if severity:
@@ -202,6 +228,26 @@ def render_block(block: Block, source: str = "<page>") -> str:
     parts.append(body)
     parts.append("</div>")
     return "\n".join(parts)
+
+
+# Every attribute below survives Canvas's sanitizer. I read the allowlist in
+# gems/canvas_sanitize/lib/canvas_sanitize/canvas_sanitize.rb rather than
+# guessing:
+#   video  => name src allowfullscreen allow muted poster width height controls playsinline
+#   track  => default kind label src srclang
+#   source => media width height sizes src srcset type
+# `preload` is NOT on that list and would be stripped silently, so it is absent
+# here. $IMS-CC-FILEBASE$ is the Common Cartridge token Canvas rewrites to the
+# imported file's own URL, which is what lets the same markup work locally and
+# at the college without a hardcoded course id.
+VIDEO_BASE = "$IMS-CC-FILEBASE$/video"
+
+VIDEO_TEMPLATE = """<div class="dp-video-player">
+<video controls playsinline width="100%" poster="{base}/{vid}.jpg">
+<source src="{base}/{vid}.mp4" type="video/mp4">
+<track default kind="captions" label="English" srclang="en" src="{base}/{vid}.vtt">
+</video>
+</div>"""
 
 
 TABLE_CLASSES = ("ic-Table table-bordered ic-Table--striped "

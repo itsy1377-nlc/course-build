@@ -18,6 +18,11 @@ The harness also finds a second address during discovery and refuses to touch
 it. That refusal is part of what you hand in.
 :::
 
+::: video module3-walkthrough | Six things to capture
+Three and a half minutes at the terminal. It runs a single case, so nothing on
+screen is your submission.
+:::
+
 ::: directions
 **Step 1: start the target.**
 

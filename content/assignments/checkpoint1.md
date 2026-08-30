@@ -14,6 +14,11 @@ If you cannot get there, there is a fallback path below, and using it still
 passes. Read it before you decide you are stuck.
 :::
 
+::: video checkpoint1-walkthrough | One real tool call
+Two and a half minutes at the terminal. It shows the pass bar and the one line
+in your own log that clears it.
+:::
+
 ::: directions
 **Step 1. Make one tool call happen.**
 

@@ -1,0 +1,200 @@
+id: w4-concept
+title: The list only grows
+kind: concept
+module: m04
+embed_on: content/pages/w4-overview.md
+blurb: About five minutes on one run of the loop, what the message list holds at every step, and the two checks that decide whether a tool runs.
+voice: af_heart
+explains:
+  - content/pages/w4-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 4
+    heading: |
+      The loop is one line.
+      The list only grows.
+    narration:
+      - This week you give the agent hands. You write the tools it can call.
+      - It is the heaviest week in the course. That is normal, not a sign of falling behind.
+      - First take the loop apart, and find every place a tool call can still be refused.
+
+  - type: slide
+    layout: code
+    eyebrow: The whole loop
+    heading: Four steps, and a bound on how many
+    body: "for step in range(1, max_steps + 1):"
+    narration:
+      - The whole agent loop is one for statement. This is it.
+      - Send the conversation to the model. Run any tool it asked for. Put the result back. Repeat.
+      - It stops when the model answers in words, or at the step limit.
+      - max steps is six, and it is set in your lab config file. So the loop runs six times at most.
+
+  - type: slide
+    layout: statement
+    eyebrow: The first control
+    heading: A bounded loop is a control.
+    body: |
+      Take the bound away and a model that keeps
+      asking for tools keeps getting them.
+    narration:
+      - A model that keeps asking for tools keeps getting them.
+      - Nothing in the model gets tired. Your quota does.
+      - This is the first control in this course written in code rather than in words.
+      - It is one number in a settings file.
+
+  - type: slide
+    layout: numbered
+    eyebrow: One run, T-503
+    heading: What the message list holds
+    items:
+      - "Start: your system prompt, then your question"
+      - "Step 1: search_tickets, and the ticket text"
+      - "Step 2: get_customer, and the customer record"
+      - "Step 3: send_email, and the result it returned"
+      - "Step 4: the model answers. Nothing is added."
+    narration:
+      - text: The conversation is a Python list, and it only grows.
+        reveal: 1
+      - text: It starts with two entries. Your system prompt, then a question.
+        reveal: 1
+      - text: Walk one run. You ask the agent to summarize ticket T-503.
+        reveal: 1
+      - text: On step one the model asks for search tickets. The ticket text is added.
+        reveal: 2
+      - text: On step two it asks for get customer. The customer record is added.
+        reveal: 3
+      - text: On step three it asks to send an email. That result is added too.
+        reveal: 4
+      - text: You never asked for an email. The ticket text did. Week 5 is about that.
+        reveal: 4
+      - text: On step four the model answers in words.
+        reveal: 5
+      - text: Read that last line twice, because it surprises people.
+        reveal: 5
+      - text: Nothing is added on step four. The loop saves the answer and breaks.
+        reveal: 5
+      - text: So the list ends at eight entries, and the final answer is not one of them. It lives in the trace file.
+        reveal: 5
+
+  - type: slide
+    layout: compare
+    eyebrow: Two things follow
+    heading: A list that only grows
+    items:
+      - "Cost | Every entry is sent again on every later pass, so a long tool result is paid for again and again."
+      - "Trust | From step 1 that list holds text a stranger typed, next to your system prompt, in the same format."
+    narration:
+      - Two things follow from a list that only grows.
+      - First, cost. Every entry is sent again on every later pass.
+      - A long tool result is paid for on every step after it. That is why the loop cuts results off.
+      - Second, trust. From step one that list holds text a stranger typed into a ticket.
+      - It sits right next to your system prompt, in the same format.
+      - Nothing in the list marks one entry as data and another as orders. That is where step three came from.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Tool dispatch
+    heading: Two checks before your function runs
+    items:
+      - Is the name in TOOLS, the registry?
+      - Is the name in agent.allowed_tools?
+      - Then the function runs.
+    narration:
+      - The model sent a name. Something turns that name into running code.
+      - text: First, is the name in TOOLS, the registry that maps a name to a function?
+        reveal: 1
+      - text: Second, is the name in the allowed tools list in your settings file?
+        reveal: 2
+      - text: Only then does your function run, and that second check is the control.
+        reveal: 3
+      - text: A model can write any tool name it likes, including one you never offered.
+        reveal: 3
+      - text: A tool call is only text. Nothing stops it asking. The allowlist stops the call running.
+        reveal: 3
+      - text: So Module 2 has you edit two files. Miss the second one and your tool never runs.
+        reveal: 3
+
+  - type: slide
+    layout: diagram
+    eyebrow: Where a call can be refused
+    heading: Four places, and one of them is empty
+    diagram:
+      kind: stack
+      alt: >
+        Four layers stacked top to bottom, each a place a tool call can still
+        be refused. max_steps bounds the loop. The TOOLS registry asks whether
+        the name exists. agent.allowed_tools asks whether the tool is switched
+        on, and it is marked as the control. At the bottom sits
+        before_tool_call, which right now returns yes to everything.
+      layers:
+        - label: max_steps
+          sub: the bound on the loop
+          code: true
+        - label: The TOOLS registry
+          sub: does this name exist at all
+        - label: agent.allowed_tools
+          sub: is this tool switched on
+          mark: true
+          code: true
+        - label: before_tool_call()
+          sub: right now it says yes to everything
+          code: true
+    narration:
+      - text: Here is every place a tool call can still be refused.
+        reveal: 0
+      - text: The step limit bounds how many calls there can be.
+        reveal: 1
+      - text: The registry asks whether the name exists at all.
+        reveal: 2
+      - text: The allowlist asks whether that tool is switched on. This layer is the control.
+        reveal: 3
+      - text: And one layer sits under all of them, in your loop, one line before a tool runs.
+        reveal: 4
+      - text: Right now it says yes to everything. In Week 7 you are the one who fills it in.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: When a tool fails
+    heading: Loud is safe. Quiet is not.
+    items:
+      - "Raises an error | The failure becomes text, goes back to the model, and the loop keeps going."
+      - "Returns an empty string | Nothing is raised. The model believes the record is blank, and your log agrees."
+    narration:
+      - Tools fail, and that is ordinary. The target app is down. A customer ID does not exist.
+      - When a tool raises, the failure becomes text and goes back to the model.
+      - The loop keeps going, and that is correct behavior.
+      - Now compare a tool that returns an empty string when the customer is missing.
+      - Nothing is raised. The model believes the record is blank and tells the user so.
+      - Your ledger agrees, because nothing went wrong.
+      - A tool that fails quietly is worse than a tool that is missing.
+      - So Module 2 grades your error path as heavily as your success path.
+
+  - type: slide
+    layout: statement
+    eyebrow: On purpose
+    heading: Your tool will not ask who is calling.
+    body: |
+      get_customer never checks whether the caller
+      may see that customer. Leave that gap.
+    narration:
+      - One gap you are building on purpose.
+      - get customer asks the target app for a record. It never asks who is calling.
+      - Your own tool will not ask either. The assignment does not want that check, so do not add it.
+      - In Week 6 you find this gap yourself, in code you wrote. That teaches more than being told now.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Trace one run on paper first.
+    body: |
+      The gap already has a name.
+      Excessive agency: capability granted
+      without a control on its use.
+    narration:
+      - That gap already has a name. Excessive agency is capability granted without a control on its use.
+      - Every tool you register widens what the model can ask for. The tool list is the list of harm the system can do.
+      - So before you open the editor, trace one run on paper. It takes about thirty minutes.
+      - Students who trace first finish Module 2 in about half the time.

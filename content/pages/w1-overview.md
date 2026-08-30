@@ -3,6 +3,11 @@ Week 1 has two jobs. You get your tools working, and you learn what an agent is
 before you build one.
 :::
 
+::: video w1-concept | Three words, in order
+Four minutes. Watch for the three reasons an agent fails differently from
+ordinary software.
+:::
+
 ::: objectives
 By the end of this week, you will be able to:
 

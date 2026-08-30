@@ -1,0 +1,226 @@
+id: final-concept
+title: The last six days
+kind: concept
+module: m08
+embed_on: content/pages/final-overview.md
+blurb: The three final artifacts, the eight headings every finding uses, and the three ways good work loses points here.
+voice: af_heart
+explains:
+  - content/assignments/final-part-b-report.md
+  - content/pages/exam-review.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Final block
+    heading: |
+      The last
+      six days
+    narration:
+      - Day fifty to day fifty five. Nothing new is taught in this block.
+      - You hand in three things, and all three come from work you already did.
+      - Here is what each one asks for, and in what order.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The calendar
+    heading: Four dates, and one of them is a close
+    items:
+      - Day 51, late work from weeks 1 to 7 closes
+      - Day 52, Part B, the findings report
+      - Day 54, Part A, the exam
+      - Day 54, Part C, your walkthrough
+    narration:
+      - text: Start with the date that takes points away rather than giving them.
+        reveal: 1
+      - text: Day fifty one is the hard close on late work from weeks one through seven.
+        reveal: 1
+      - text: After that day those points are gone. Clear that backlog first.
+        reveal: 1
+      - text: Day fifty two is Part B, the findings report.
+        reveal: 2
+      - text: Day fifty four is Part A, the exam.
+        reveal: 3
+      - text: The same day, Part C, a three minute walkthrough of your own repository.
+        reveal: 4
+      - text: The report lands first on purpose. Writing it is exam review.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: Before you write a word
+    heading: Run the harness one more time.
+    body: |
+      Your newest file in runs/reports is the source
+      for every number in the report.
+    narration:
+      - Before you write anything, run the harness once more.
+      - Seed the target, start the app, then run the whole suite.
+      - Your newest file in the reports folder is the source for every number you quote.
+      - Do not quote a run from last week. Your code has changed since then.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The report
+    heading: Eight headings, the first four
+    items:
+      - What was tested, and how
+      - Authorization basis
+      - Evidence
+      - Framework identifiers
+    narration:
+      - text: Both findings are written on the same eight headings. Do not rename one, and do not skip one.
+        reveal: 0
+      - text: An empty heading tells you what is missing before your reader finds it.
+        reveal: 0
+      - text: What was tested, and how. The case, the prompt, and how many trials.
+        reveal: 1
+      - text: Authorization basis. The clause that allowed the test, and the address you tested.
+        reveal: 2
+      - text: Evidence. A side effect, an audit row, or a canary, pasted in.
+        reveal: 3
+      - text: Framework identifiers. The OWASP entries and the ATLAS techniques, copied from your case file.
+        reveal: 4
+
+  - type: slide
+    layout: numbered
+    eyebrow: The report
+    heading: Eight headings, the last four
+    items:
+      - Severity
+      - Remediation applied
+      - Verification
+      - What still remains
+    narration:
+      - text: Severity. One rating from the table, and the reason you chose it.
+        reveal: 1
+      - text: Remediation applied. The change you made, and the file and function you made it in.
+        reveal: 2
+      - text: Verification. The re-run result with its rate, next to the benign baseline.
+        reveal: 3
+      - text: What still remains. The defect you know is left. This heading is never blank.
+        reveal: 4
+      - text: Finding one is the fix you built and verified in Part A.
+        reveal: 4
+      - text: Finding two you specify in writing, and you do not build it.
+        reveal: 4
+
+  - type: slide
+    layout: numbered
+    eyebrow: Finding two
+    heading: A fix you write instead of building
+    items:
+      - The file and the function
+      - The rule you would put there
+      - The case, and how many trials
+      - What the detector would look at
+      - Which result would count as fixed
+    narration:
+      - text: Pick a second weakness your harness found, then write the fix instead of building it.
+        reveal: 0
+      - text: Name the file and the function you would change.
+        reveal: 1
+      - text: Say what rule you would put there.
+        reveal: 2
+      - text: Name the case you would run, and how many trials.
+        reveal: 3
+      - text: Say what the detector would have to look at.
+        reveal: 4
+      - text: Then say which result counts as fixed, and which one does not.
+        reveal: 5
+      - text: The bar is one sentence. A classmate could build it without asking you a question.
+        reveal: 5
+
+  - type: slide
+    layout: compare
+    eyebrow: Verification
+    heading: Two results, side by side
+    items:
+      - "The attack case, re-run | With its rate. Blocked five of five and one of five are different findings."
+      - "The benign baseline | Normal use still works. A fix that breaks the product is not a fix."
+    narration:
+      - The Verification heading needs two results, side by side.
+      - First, the attack case re-run, with its rate.
+      - Second, the benign baseline, showing that ordinary use still works.
+      - One result without the other proves nothing.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Watch for these
+    heading: Three ways good work loses points
+    items:
+      - Evidence that is only the model's account
+      - A status word with no rate
+      - A verification with only half the picture
+    narration:
+      - text: Three things sink reports that are otherwise good.
+        reveal: 0
+      - text: First, evidence that is only the model's account of what it did.
+        reveal: 1
+      - text: Quote the outbox file, the audit row, or your canary token instead.
+        reveal: 1
+      - text: Grade the world, not the prose.
+        reveal: 1
+      - text: Second, a status word with no rate next to it.
+        reveal: 2
+      - text: Vulnerable hides the gap between one of five and five of five. Always give the rate.
+        reveal: 2
+      - text: Third, a verification with only half the picture.
+        reveal: 3
+      - text: The attack blocked, and the benign baseline never mentioned.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: The cap
+    heading: Nine hundred words, and it is hard.
+    body: |
+      There is no minimum. Cutting is part of the assignment.
+      The 150 word question at the end is counted separately.
+    narration:
+      - The report has a nine hundred word cap and it is hard.
+      - Nothing after word nine hundred is read or graded.
+      - There is no minimum. A short exact report beats a long vague one.
+      - The last question is separate, and it gets one hundred fifty words.
+      - It asks what defect you know remains in your fix.
+      - Every control has an edge it does not cover. An answer of none scores zero.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The exam
+    heading: Name the weakness class
+    items:
+      - Prompt injection
+      - Excessive agency
+      - Insecure tool authorization
+    narration:
+      - text: The exam is three hours, one attempt, and open book.
+        reveal: 0
+      - text: Some items show an agent setup you have never run, so practice on a case file you did not write.
+        reveal: 0
+      - text: Then name the weakness class. There are three of them.
+        reveal: 0
+      - text: Prompt injection is text the model treats as an instruction when it was meant to be data.
+        reveal: 1
+      - text: Excessive agency is the agent taking an action nobody approved.
+        reveal: 2
+      - text: Insecure tool authorization is the tool never asking who is calling.
+        reveal: 3
+      - text: For each one, say what evidence proves it, and what fix holds five of five.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If you are behind
+    heading: You still finish.
+    body: |
+      Pull the harness-working branch on day 50. Run it against
+      your target. Say so in your report. That caps the artifact
+      at 80 percent, and never a zero.
+    narration:
+      - If you are behind right now, you still finish this course.
+      - On day fifty, pull the harness working branch your instructor published.
+      - Run it against your target and collect real results from it.
+      - Then say so in your report. That caps the artifact at eighty percent, never a zero.
+      - People use that branch every term. That is normal, not a sign of falling behind.
+      - One last time, the sentence this course opened with. Scope first, technique second.

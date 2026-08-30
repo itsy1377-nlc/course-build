@@ -1,0 +1,29 @@
+# What the video pipeline needs to know about this particular course.
+# Everything else in tools/video/ is course agnostic.
+
+course_code: ITSY 1377
+course_name: Agentic AI and Security Operations
+
+# Kokoro is local and Apache-2.0 licensed, which is what lets the college
+# redistribute and re-render the audio. Swap to elevenlabs:<voice_id> to use a
+# subscription instead; captions are measured from the audio, so nothing else
+# in the pipeline changes.
+voice: kokoro:af_heart
+
+# The runnable code a walkthrough records against, and the code every command
+# typed on camera has to resolve in. Recorded inside a container built from the
+# same image students develop in, so the shell in the video is their shell.
+code_dir: labs
+recorder_base: mcr.microsoft.com/devcontainers/python:3.12-bookworm
+recorder_image: itsy1377/recorder:latest
+
+# Files holding work a student is supposed to produce themselves. The no
+# spoiler gate reads the captured terminal text and fails if any substantial
+# line from these turns up on camera.
+answer_globs:
+  - labs/solution/**/*.py
+  - labs/solution/**/*.yaml
+
+# Canvas courses default to a 500 MB storage quota, so fail here rather than at
+# the institution.
+library_budget_mb: 400

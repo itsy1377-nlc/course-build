@@ -1,0 +1,139 @@
+id: module1-walkthrough
+title: The tests are the assignment
+kind: walkthrough
+module: m02
+embed_on: content/assignments/module1-talk-to-the-model.md
+blurb: Three minutes at the terminal. It shows the tool that grades you, and never opens the file you are writing.
+voice: af_heart
+explains:
+  - content/assignments/module1-talk-to-the-model.md
+  - content/pages/w2-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Module 1
+    heading: |
+      The tests are
+      the assignment
+    body: |
+      This video never opens the file you are writing.
+      It shows the tool that decides.
+    narration:
+      - Module 1 asks you for three small functions in one file.
+      - This video never opens that file. Your answer stays yours.
+      - What it shows you is the tool that decides whether the three are right.
+      - You can run that tool as often as you like before the deadline.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Extension point 3 of 5
+    heading: Three functions, and no network
+    items:
+      - should_retry, is this request worth sending again
+      - backoff_seconds, how long to wait first
+      - parse_json_content, read the reply or fail clearly
+    narration:
+      - text: The three sit under one banner, extension point 3 of 5.
+        reveal: 0
+      - text: should retry asks one question. Is this request worth sending again?
+        reveal: 1
+      - text: backoff seconds says how long to wait before you try.
+        reveal: 2
+      - text: parse json content reads a reply, or says clearly why it could not.
+        reveal: 3
+      - text: None of the three needs a network or a key. They are pure logic.
+        reveal: 3
+      - text: So the whole assignment runs offline, on your own machine.
+        reveal: 3
+
+  - type: terminal
+    cwd: /work
+    # No `wait` on any step in this video, deliberately. A sub-second command
+    # followed by Wait+Screen deadlocks inside the recorder: the tape sends
+    # Enter, VHS starts polling, and the command never runs at all. Verified
+    # against this exact tape. pytest finishes in under a second every time,
+    # so a fixed settle is both safe and steadier to narrate over.
+    steps:
+      - run: python -m pytest tests/test_module1.py -q | tail -3
+        settle: 16.0
+    narration:
+      - Run the tests before you write anything, so you know what failing looks like.
+      - The output goes through tail, so you see the summary and no assertion detail.
+      - Eleven failed, six passed. Say that count out loud.
+      - That is a starting line, not a problem.
+
+  - type: slide
+    layout: statement
+    eyebrow: Step 5 on the page
+    heading: The test file is the assignment.
+    body: |
+      Every failing name points at a rule
+      the docstring already gave you.
+    narration:
+      - Then open the test file itself and read it.
+      - Every failing name points at a rule the docstring already gave you.
+      - It is the clearest statement of what your three functions have to do.
+      - Reading it is part of the job, not a way around the job.
+
+  - type: terminal
+    cwd: /work
+    # Recorded against a finished copy of the work, applied off camera. The
+    # tape shows only pytest's own summary, so nothing a student writes is on
+    # screen at any point.
+    setup:
+      - python demo/apply_solution.py apply > /tmp/apply.log 2>&1
+    steps:
+      - run: python -m pytest tests/test_module1.py -q
+        settle: 19.0
+    narration:
+      - Here is the same command against finished work, with the whole output this time.
+      - Seventeen passed, in well under a second.
+      - No request went anywhere. That is what pure logic looks like.
+      - There is no key to burn here and no rate limit to wait on.
+      - So run it after every small change you make.
+
+  - type: terminal
+    cwd: /work
+    setup:
+      - python demo/apply_solution.py apply > /tmp/apply.log 2>&1
+    steps:
+      - run: python -m pytest tests/test_module1.py -q > module1-pytest.txt
+        settle: 3.5
+      - run: cat module1-pytest.txt
+        settle: 12.5
+    narration:
+      - Now save your proof. Send the same output into a file.
+      - Nothing printed, because the output went into the file instead.
+      - So open the file and read it back. Seventeen passed, and the file is not empty.
+      - An empty proof file is a submission with no proof in it.
+      - Check that before you upload, not after.
+
+  - type: slide
+    layout: compare
+    eyebrow: One warning
+    heading: The mistake that costs real money
+    items:
+      - "Retry every client error | A 401 means your key is not accepted. Your loop retries, and your daily limit is gone in about four seconds."
+      - "Retry only what waiting fixes | 429 and 503 clear on their own. A 401 never will, so sending it again cannot help."
+    narration:
+      - One warning before you start.
+      - Say you write should retry so it says yes to every client error, and nothing crashes.
+      - Then a 401 arrives. Your key is not accepted, and your loop keeps trying.
+      - Your provider's daily limit is gone in about four seconds, on a request that could never succeed.
+      - Then you are locked out until tomorrow, and the work is due tonight.
+      - That is why the rule is narrow. Retry only what waiting can fix.
+
+  - type: slide
+    layout: closing
+    eyebrow: To submit
+    heading: Upload two files.
+    body: |
+      Your edited model client, and your saved pytest output.
+      Never the whole repository, and never your key file.
+    narration:
+      - Upload two files. Your edited model client, and your saved pytest output.
+      - Not the whole repository, and never the file that holds your key.
+      - If you get stuck, paste the test name and the message on the Q and A board.
+      - Paste the failure, not your answer.
+      - Being stuck costs nobody points. Being quiet about it costs time.

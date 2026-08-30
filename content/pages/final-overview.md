@@ -3,6 +3,11 @@ This is the last block, day 50 to day 55. You write your report, take the exam,
 and record a short walkthrough.
 :::
 
+::: video final-concept | The last six days
+Four and a half minutes. Watch for the three ways good work loses points on
+the report.
+:::
+
 ::: objectives
 By the end of this block, you will be able to:
 

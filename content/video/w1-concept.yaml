@@ -1,0 +1,180 @@
+id: w1-concept
+title: Three words, in order
+kind: concept
+module: m01
+embed_on: content/pages/w1-overview.md
+blurb: Four minutes on what a model, a tool and an agent each are, and the three reasons an agent fails differently from ordinary software.
+voice: af_heart
+explains:
+  - content/pages/w1-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 1
+    heading: |
+      A model. A tool.
+      An agent.
+    narration:
+      - This course is about agents, and about how they break.
+      - Almost everything in it is built from three words.
+      - A model, a tool, and an agent. In that order.
+      - Get these three right and the rest of the term is detail.
+
+  - type: slide
+    layout: statement
+    eyebrow: Word one
+    heading: A model reads text and produces text.
+    body: |
+      That is all it does. It cannot open a file.
+      It cannot send mail. It cannot reach your database.
+    narration:
+      - Start with the model. It reads text, and it produces text.
+      - That is all it does.
+      - It cannot open a file. It cannot send mail. It cannot reach your database.
+      - So every power a model appears to have came from somewhere else.
+      - It has no hands. Anything it does in the world, it asks something else to do.
+
+  - type: slide
+    layout: statement
+    eyebrow: Word two
+    heading: A tool is an ordinary function somebody wrote.
+    body: |
+      It can open a file. It can send mail.
+      It can reach your database.
+    narration:
+      - A tool is an ordinary function that somebody wrote.
+      - It can open a file. It can send mail. It can reach your database.
+      - There is nothing clever about a tool. You have read code like this before.
+      - Your lab ships with a few. One searches tickets. One looks up a customer. One sends mail.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Word three
+    heading: An agent is the loop that joins them
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. You ask, sending a question and a list of
+        tools. The model answers, or asks for a tool by name. Your code runs
+        that tool. The result goes back as another message. A return path
+        runs from the end to the start, labelled "and the loop runs again".
+      nodes:
+        - label: You ask
+          sub: a question, and a list of tools
+        - label: The model answers
+          sub: or asks for a tool by name
+        - label: Your code runs the tool
+          sub: the model runs nothing
+        - label: The result goes back
+          sub: as another message
+      loop: and the loop runs again
+    narration:
+      - text: An agent is the loop that joins the two.
+        reveal: 0
+      - text: Your program sends a question, and a list of tools.
+        reveal: 1
+      - text: The model answers in words, or it asks for a tool by name.
+        reveal: 2
+      - text: Your program runs that tool. The model runs nothing at all.
+        reveal: 3
+      - text: The result goes back to the model as another message.
+        reveal: 4
+      - text: Then the whole thing repeats, until the model stops asking.
+        reveal: 5
+      - text: Your lab already has one of these. You read it in Week 3.
+        reveal: 5
+
+  - type: slide
+    layout: statement
+    eyebrow: The word agentic
+    heading: An agent picks its own next step.
+    body: |
+      Ordinary software follows a path a person wrote.
+      An agent picks the path while it runs.
+    narration:
+      - There is a word for that shape. Agentic.
+      - An agentic system picks its own next step, and it can act on the world.
+      - Ordinary software follows a path a person wrote.
+      - An agent picks the path while it runs. That one difference is the subject of this course.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Three reasons
+    heading: Why an agent fails differently
+    items:
+      - It can act
+      - Its input includes text other people wrote
+      - It cannot reliably tell instructions from data
+    narration:
+      - text: So an agent fails differently from ordinary software. There are three reasons.
+        reveal: 0
+      - text: None of them is a bug. Each one is a feature somebody asked for.
+        reveal: 0
+      - text: Reason one. It can act.
+        reveal: 1
+      - text: A chatbot that only writes text can be wrong.
+        reveal: 1
+      - text: An agent that can send mail can be wrong in a way you cannot take back.
+        reveal: 1
+      - text: So the tool list is the list of harm the system can do. Count it before you add to it.
+        reveal: 1
+      - text: Reason two. Its input includes text that other people wrote.
+        reveal: 2
+      - text: Strangers write support tickets. Coworkers write knowledge base articles.
+        reveal: 2
+      - text: Your agent reads both, and it cannot see who typed either one.
+        reveal: 2
+      - text: Reason three. It cannot reliably tell instructions from data.
+        reveal: 3
+      - text: Messages do carry a role label, and models are trained to weight those labels.
+        reveal: 3
+      - text: But a label is a learned habit, not an enforced boundary.
+        reveal: 3
+      - text: Everything still arrives in one stream, as words.
+        reveal: 3
+      - text: Reason three is the hardest of the three. Read that section twice.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: Put them together
+    heading: |
+      A stranger can try to give your agent orders.
+      And the agent has tools.
+    narration:
+      - Now put all three together, because they only matter as a set.
+      - Anyone who can get text in front of your agent can try to give it orders.
+      - And the agent has tools.
+      - That one sentence is most of Week 5, and you already have it in Week 1.
+
+  - type: slide
+    layout: compare
+    eyebrow: One more difference
+    heading: It does not fail the same way twice
+    items:
+      - "Ordinary software | Same input, same result. A bug is a line of code you can point at."
+      - "A model | Ask the same question twice and you can get two answers."
+    narration:
+      - One more difference, and it changes how you test.
+      - Ordinary software is boring. Given the same input it does the same thing.
+      - So a bug is a line of code, and you can point at it.
+      - A model is not like that. Ask it the same question twice and you can get two answers.
+      - An agent can do the right thing four times, and the wrong thing on the fifth.
+      - So one clean test run here proves very little on its own.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Never run an attack once.
+    body: |
+      Your harness runs every case five times.
+      One success in five still counts as vulnerable.
+    narration:
+      - So you never run an attack once and write down that it worked.
+      - You run it many times, and you report a rate. Always give the rate.
+      - Your lab harness runs every case five times.
+      - One success out of five still counts as vulnerable, because an attacker gets to try again.
+      - This week you get your tools working and read some Python.
+      - If setup fights you, that is normal, not a sign of falling behind.

@@ -1,0 +1,167 @@
+id: orientation
+title: Day three and the list of three
+kind: concept
+module: m00
+embed_on: content/pages/welcome-start-here.md
+blurb: Four minutes on your first three days, the day 3 deadline that records your attendance, and the only three things you are ever allowed to attack.
+voice: af_heart
+explains:
+  - content/pages/rules-of-engagement.md
+  - content/pages/course-policies.md
+  - content/pages/tips-for-success.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Start Here
+    heading: |
+      This course is about agents
+      and how they break
+    narration:
+      - This course is about agents and how they break.
+      - An agent is a program that lets a language model call your code.
+      - You extend one, you attack it, and you prove your fix held.
+      - Before any of that, you have three days and one list to learn.
+
+  - type: slide
+    layout: statement
+    eyebrow: Day 3
+    heading: The Module 0 Gate is your attendance verification.
+    body: |
+      Census falls on day 8. Miss the Gate and you can be
+      recorded as never having attended.
+    narration:
+      - Your first deadline is the Module 0 Gate, and it is due on day 3.
+      - It is not just a grade. It is how the college records that you are here.
+      - Census falls on day 8. Miss the Gate and you can be recorded as never having attended.
+      - Nobody can fix that afterward, so start on day 1.
+      - Attempts are unlimited and your best score is kept. You need 100 percent to open Week 2.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The Gate
+    heading: Three parts, and one of them takes time
+    items:
+      - A quiz on the Rules of Engagement
+      - A code your own computer prints
+      - A short written answer
+    narration:
+      - text: The first part is a quiz. Every question comes from the Rules of Engagement page.
+        reveal: 1
+      - text: The second part is a code. You run the verify env script in your lab folder and it prints one.
+        reveal: 2
+      - text: Your code is different from your classmate's, so no answer key can exist.
+        reveal: 2
+      - text: The third part is a short written answer.
+        reveal: 3
+      - text: Start on day 1, because setup is the part that goes wrong.
+        reveal: 3
+
+  - type: slide
+    layout: numbered
+    eyebrow: Clause 1
+    heading: The three things you may attack
+    items:
+      - The HelpDesk Lite app in your lab repository
+      - Your own copy of the agent
+      - A language model running on your own computer
+    narration:
+      - text: Now the rule that matters most. Here is clause 1, said out loud so you can repeat it.
+        reveal: 0
+      - text: You may attack the HelpDesk Lite app in your lab repository. It runs on your computer and it was built to be broken.
+        reveal: 1
+      - text: You may attack your own copy of the agent.
+        reveal: 2
+      - text: And you may attack a language model running on your own computer.
+        reveal: 3
+      - text: That is the whole list. Nothing on it belongs to anyone else.
+        reveal: 3
+      - text: Security testing is legal work when someone has said yes. The word for that yes is authorization.
+        reveal: 3
+      - text: This page is the yes you have, and it names three things.
+        reveal: 3
+
+  - type: slide
+    layout: numbered
+    eyebrow: Clause 2
+    heading: Nothing else. Not once, not to test.
+    items:
+      - No commercial AI service
+      - No system the college owns
+      - Nothing at your job, or a friend's
+    narration:
+      - text: Clause 2 is shorter, and it has no exceptions.
+        reveal: 0
+      - text: Not a commercial AI service. Not ChatGPT, Claude, Gemini or Groq.
+        reveal: 1
+      - text: Not a system the college owns. Not Canvas, not ACES, not campus Wi-Fi.
+        reveal: 2
+      - text: Not your job's systems, and not a friend's or a family member's.
+        reveal: 3
+      - text: I only tried it once is not a defense. Neither is it was already broken.
+        reveal: 3
+      - text: Breaking either clause means a zero on that work and a referral. It can also break the law.
+        reveal: 3
+
+  - type: slide
+    layout: compare
+    eyebrow: Clause 3
+    heading: Where your key lives
+    items:
+      - "lab.config.yaml | Tracked by git. A key written here is published the moment you push."
+      - ".env | Never committed. Your key belongs here and nowhere else."
+    narration:
+      - Your key is yours alone, and it lives in one place.
+      - The settings file is tracked by git. A key written there is published the moment you push.
+      - So your key goes in a file named dot e n v, and nowhere else. That file is never committed.
+      - The lab code checks for you. It refuses to start when it finds a credential in the settings file.
+      - If a key ever leaks, turn it off at the provider and tell your instructor. Nobody is in trouble for reporting that quickly.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Every week
+    heading: The same four pages, in the same order
+    items:
+      - An Overview
+      - A Content page
+      - The graded work
+      - A Wrap-up
+    narration:
+      - text: The rhythm does not change after this module.
+        reveal: 0
+      - text: Every week opens with an Overview. It says what is due and how long it takes.
+        reveal: 1
+      - text: Then a Content page. Read it before you touch the lab.
+        reveal: 2
+      - text: Then the graded work.
+        reveal: 3
+      - text: Then a Wrap-up.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: The hours
+    heading: |
+      Five to nine hours a week,
+      and ten to twenty if coding is new
+    body: |
+      That is normal, not a sign of falling behind.
+    narration:
+      - Assigned work runs 5 to 9 hours a week, reading included.
+      - If coding is new to you, plan for 10 to 20.
+      - That is normal, not a sign of falling behind.
+      - Set one rule now. Thirty minutes of no progress, and you post on the Q and A board.
+      - Include the exact command and the exact error text. Never paste your key.
+
+  - type: slide
+    layout: closing
+    eyebrow: Remember this
+    heading: Scope first. Technique second.
+    body: |
+      Read the Rules of Engagement. Run the environment check.
+      Take the Gate before day 3.
+    narration:
+      - One sentence carries this whole course. Scope first, technique second.
+      - Permission comes before any technique you learn here. That order never changes.
+      - So today, read the Rules of Engagement, set up the lab, and run the environment check.
+      - Then take the Gate. You have until day 3, and you can retake it as often as you need.

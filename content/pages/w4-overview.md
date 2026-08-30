@@ -3,6 +3,11 @@ This week you build. You finish the customer lookup tool and design a tool of
 your own, which together are Project 1, due day 28.
 :::
 
+::: video w4-concept | The list only grows
+About five minutes. Watch what the message list holds at every step, and the
+two checks that decide whether a tool runs at all.
+:::
+
 ::: objectives
 By the end of this week, you will be able to:
 

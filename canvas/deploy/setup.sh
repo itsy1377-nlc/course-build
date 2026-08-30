@@ -80,6 +80,30 @@ if [ ! -f docker-compose.override.yml ]; then
   cp "$REPO_ROOT/canvas/deploy/docker-compose.override.yml" docker-compose.override.yml
 fi
 
+# Canvas builds absolute URLs from config/domain.yml for anything it serves
+# through a redirect, and every file download is served that way. Upstream
+# ships "canvas.docker", the hostname the dinghy proxy resolves, and we do not
+# install that proxy. Left alone, an embedded <video> in a course page resolves
+# to a hostname no browser can look up, and the player fails silently.
+#
+# It also has to be the address a BROWSER uses rather than localhost, because
+# the demo is normally viewed from another machine on the network. Canvas only
+# redirects when the request host differs from this value, so matching it to
+# the LAN address means files are served inline with no redirect at all.
+LAN_IP="$(ipconfig getifaddr en0 2>/dev/null || hostname -I 2>/dev/null | awk '{print $1}')"
+BROWSE_HOST="${CANVAS_BROWSE_HOST:-${LAN_IP:-localhost}:3000}"
+say "Setting the files domain to $BROWSE_HOST"
+cat > config/domain.yml <<DOMAINEOF
+production:
+  domain: "canvas.docker"
+
+test:
+  domain: localhost
+
+development:
+  domain: "$BROWSE_HOST"
+DOMAINEOF
+
 docker compose config --quiet || die "docker compose config is invalid"
 
 # ---------------------------------------------------------------------------
@@ -160,6 +184,11 @@ puts "TOKEN=#{t.full_token}"' -- 2>/dev/null | grep '^TOKEN=' | cut -d= -f2 | tr
 # anyway; the file is mode 600 and gitignored.
 {
   printf 'CANVAS_URL=%s\n' "$CANVAS_URL"
+  # The address a browser uses. Canvas stamps the host from the incoming
+  # request into every file link it rewrites on save, so the tools write
+  # through this rather than through localhost. Without it, a course saved
+  # from this machine hands out links to the viewer's own computer.
+  printf 'CANVAS_PUBLIC_URL=http://%s\n' "$BROWSE_HOST"
   printf 'CANVAS_TOKEN=%s\n' "$TOKEN"
   printf 'CANVAS_ADMIN_EMAIL=%s\n' "$ADMIN_EMAIL"
   printf 'CANVAS_ADMIN_PASSWORD=%s\n' "$ADMIN_PASSWORD"

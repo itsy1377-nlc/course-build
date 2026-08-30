@@ -67,6 +67,9 @@ def main(argv: list[str] | None = None) -> int:
     print(f"\n{BOLD}ITSY 1377 preflight{RESET}\n")
     failures: list[tuple[str, str]] = []
     lab_python = python_for(LABS)
+    # The video pipeline lives in its own environment because it pulls torch,
+    # and tools/requirements.txt is deliberately two small pure-python packages.
+    video_python = python_for(ROOT / "tools" / "video")
 
     checks = [
         ("reading level and page length", [sys.executable, "-m", "tools.readability"], ROOT, None),
@@ -76,6 +79,13 @@ def main(argv: list[str] | None = None) -> int:
         ("student repository has no answers", [lab_python, "scripts/build_student_repo.py",
                                                str(ROOT / "build" / "student-check"), "--force"], LABS, None),
     ]
+
+    # Only worth running when the pipeline is installed. A contributor who has
+    # not built any video should not be blocked by a gate about video.
+    if (ROOT / "tools" / "video" / ".venv").exists() and any(
+            (ROOT / "content" / "video").glob("*.yaml")):
+        checks.append(("video is current, captioned, and gives nothing away",
+                       [video_python, "-m", "tools.video.check"], ROOT, None))
 
     for label, command, cwd, env_extra in checks:
         ok, output = run(label, command, cwd, env_extra)

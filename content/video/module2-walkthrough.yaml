@@ -1,0 +1,168 @@
+id: module2-walkthrough
+title: Registered is not allowed
+kind: walkthrough
+module: m04
+embed_on: content/assignments/module2-give-it-hands.md
+blurb: The grader you can run as often as you like, and the quiet failure that keeps a correct tool from ever running. No code on screen.
+voice: af_heart
+explains:
+  - content/assignments/module2-give-it-hands.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Module 2
+    heading: |
+      Registered is not
+      the same as allowed
+    body: |
+      The grader is a command you can run
+      as often as you like.
+    narration:
+      - This is what a finished Module 2 run looks like.
+      - You will see the tool that grades you, and one failure that looks like broken Python.
+      - You will not see any code, because the code is yours.
+
+  - type: slide
+    layout: compare
+    eyebrow: Two parts
+    heading: One of them is new work
+    items:
+      - "Part one | get_customer. The schema is already written for you."
+      - "Part two | A tool of your own. The schema is the graded part."
+    narration:
+      - Module 2 has two parts.
+      - Part one is get_customer. Its schema is already written for you.
+      - Part two is one tool you design yourself.
+      - There, the schema is the graded part, not the Python.
+      - Writing a function is Week 4 work.
+      - Writing an interface another program has to understand is new.
+      - The model reads your description and nothing else.
+
+  # No `wait` on the two pytest steps. VHS Wait+Screen polling and a live
+  # pytest run do not coexist in this container: the run never reaches the
+  # screen and the recording times out. Verified by bisection. A fixed settle
+  # records correctly, and the run takes about a second.
+  - type: terminal
+    cwd: /work
+    steps:
+      - run: python -m pytest tests/test_module2.py -q | tail -3
+        settle: 19.0
+    narration:
+      - The grader is a command, and you may run it as often as you like.
+      - Run it before you write anything, so you know what failing looks like.
+      - Five failed, one passed, seven skipped.
+      - The seven skipped are waiting for the tool you have not written yet.
+      - That is a starting line, not a problem.
+
+  - type: terminal
+    cwd: /work
+    # Recorded against finished work, so the passing count on screen is real.
+    # The solution is applied off camera and nothing from it is displayed.
+    setup:
+      - python demo/apply_solution.py apply > /dev/null
+    steps:
+      - run: python -m pytest tests/test_module2.py -q
+        settle: 11.5
+    narration:
+      - Now the same command against work that is finished.
+      - Thirteen passed, in well under a second.
+      - It is the same tool that grades you.
+      - So nothing is waiting to surprise you at the deadline.
+
+  - type: terminal
+    cwd: /work
+    # A tool name is added to agent.allowed_tools and left out of TOOLS, off
+    # camera, so the error the student sees on screen is a real one.
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 4
+      - "python - <<'PY'"
+      - import pathlib
+      - p = pathlib.Path('config/lab.config.yaml')
+      - "old = '    - search_kb\\n'"
+      - "p.write_text(p.read_text().replace(old, old + '    - ticket_status\\n'))"
+      - PY
+    steps:
+      - run: grep -A6 "allowed_tools:" config/lab.config.yaml
+        wait: "ticket_status"
+        settle: 9.0
+      - run: python -m agent.cli "summarize ticket T-501"
+        wait: "do not exist in TOOLS"
+        settle: 13.0
+    narration:
+      - Your tool name has to go in two places.
+      - Here is the allowed list in the config file, with a new name on the end.
+      - That name was never added to TOOLS, the registry in your tools file.
+      - Now run the agent. It stops before it asks the model anything.
+      - The error names the tool that is missing, then every tool that is registered.
+      - Miss the other list instead and your tool is never offered to the model.
+      - The model never picks it, and nothing looks broken at all.
+
+  - type: terminal
+    cwd: /work
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 4
+    steps:
+      - run: python -m agent.cli "summarize ticket T-501"
+        wait: "status=open"
+        settle: 11.0
+    narration:
+      - Here is a good run. T-501 is an ordinary ticket with nothing hidden in it.
+      - The agent ran search_tickets and read the ticket back.
+      - Save this whole output. It is the run transcript the assignment asks for.
+
+  - type: terminal
+    cwd: /work
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 4
+      - python -m agent.cli "summarize ticket T-501" > /dev/null 2>&1
+    steps:
+      - run: python -m agent.replay | head -13
+        wait: "Nothing in your program chose this"
+        settle: 18.0
+    narration:
+      - Replay walks that same run one step at a time.
+      - You asked for a summary.
+      - The model asked for a tool, and the line under it says nothing in your program chose that.
+      - Then your code ran the tool and got back two hundred and thirty six characters.
+      - The model asks. Your code answers.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Watch for these
+    heading: The three failures that cost the most points
+    items:
+      - A schema that lies about the function
+      - A tool registered but not allowed
+      - An empty string when the call fails
+    narration:
+      - text: Three failures cost the most points here.
+        reveal: 0
+      - text: A schema that lies about your function.
+        reveal: 1
+      - text: The autograder builds arguments from your schema and calls your function with them.
+        reveal: 1
+      - text: A tool registered in one list and not the other.
+        reveal: 2
+      - text: And an empty string when the call fails.
+        reveal: 3
+      - text: The agent carries on as if it worked, and your log agrees with it.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: What you hand in
+    heading: One zip, five things.
+    body: |
+      tools.py, lab.config.yaml, your run transcript,
+      ANSWERS.md and AI-USE.md. No .env, no runs folder.
+    narration:
+      - One zip file, holding five things.
+      - Your tools file, your config file, your run transcript, ANSWERS and AI-USE.
+      - No dot env file, and no runs folder.
+      - AI-USE needs one suggestion you turned down, with a real reason.
+      - It was wrong is not a reason.
+      - It caught every exception, which would have hidden the missing customer case, is a reason.

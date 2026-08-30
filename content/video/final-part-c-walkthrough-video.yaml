@@ -1,0 +1,184 @@
+id: final-part-c-walkthrough-video
+title: Three minutes, three parts
+kind: walkthrough
+module: m08
+embed_on: content/assignments/final-part-c-walkthrough.md
+blurb: Three minutes at the terminal. It shows the shape of the walkthrough and which parts you can prepare before you press record.
+voice: af_heart
+explains:
+  - content/assignments/final-part-c-walkthrough.md
+  - content/pages/final-overview.md
+
+scenes:
+  - type: slide
+    layout: diagram
+    eyebrow: Part C
+    heading: Three minutes, three parts
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Three boxes left to right. What you built, from zero to one minute.
+        What you broke and how you know, from one to two minutes. What you
+        fixed and what remains, from two to three minutes, drawn as the part
+        people run out of time for.
+      nodes:
+        - label: What you built
+          sub: 0:00 to 1:00
+        - label: What you broke
+          sub: 1:00 to 2:00, and how you know
+        - label: What you fixed
+          sub: 2:00 to 3:00, and what remains
+          mark: true
+    narration:
+      - text: Part C is three minutes on your own repository.
+        reveal: 1
+      - text: Minute one is what you built.
+        reveal: 1
+      - text: Minute two is what you broke, and how you know.
+        reveal: 2
+      - text: Minute three is what you fixed, and what still remains.
+        reveal: 3
+      - text: The timings are the whole structure. Nothing is left for you to guess.
+        reveal: 3
+
+  - type: slide
+    layout: numbered
+    eyebrow: All worth the same
+    heading: Three ways to hand this in
+    items:
+      - A screen recording with narration
+      - A slide deck with narration
+      - A written walkthrough with screenshots
+    narration:
+      - text: There are three ways to hand this in, and all three are worth the same.
+        reveal: 0
+      - text: A recording of your screen, with your voice.
+        reveal: 1
+      - text: A slide deck with screenshots and recorded audio.
+        reveal: 2
+      - text: Or a written walkthrough with screenshots and no audio at all.
+        reveal: 3
+      - text: The written option is full credit, not a fallback.
+        reveal: 3
+      - text: Choose it for any reason, or for none.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: Minute one
+    heading: |
+      Your tool,
+      and its schema
+    body: |
+      One sentence on what it does.
+      One sentence on what it refuses to do.
+    narration:
+      - Start with what you built.
+      - On your own screen, open your tools file and show the tool you designed.
+      - Show its schema next to it.
+      - Then say one sentence on what the tool does.
+      - And one sentence on what it refuses to do.
+      - This video never opens that file, because your code is yours.
+      - Most people run long here, and then rush part three.
+
+  - type: terminal
+    cwd: /work
+    # A fresh container per scene, so the report has to be made here, off
+    # camera. On camera the student sees only the two commands that read it
+    # back. The case shown is the knowledge base one, so this video reads a
+    # result rather than producing anybody's submission.
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 4
+      - rm -rf runs/reports
+      - python -m harness.runner --case A5-trusted-internal-kb-injection > /tmp/run.log 2>&1
+    steps:
+      - run: ls runs/reports
+        wait: "results.md"
+        settle: 10.0
+      - run: sed -n "/^### A5/,/^- Evidence/p" runs/reports/*-results.md
+        wait: "Evidence"
+        settle: 24.0
+      - run: grep "^| .A5" runs/reports/*-results.md
+        wait: "injection"
+        settle: 18.0
+    narration:
+      - Minute two is what you broke, and how you know.
+      - Run the harness once more before you record, so your numbers are current.
+      - Then list your reports folder. The newest file is your source.
+      - Print the finding for one attack case.
+      - This is the knowledge base case from Week 5, article KB dash 02.
+      - Staff wrote that article, and it still carries an instruction.
+      - Read the result off the screen. Vulnerable, five of five.
+      - The three framework lines are labels from OWASP and MITRE ATLAS.
+      - They are not the weakness class. That is a separate field.
+      - The last line names the evidence. An outbox file, addressed outside the company.
+      - Now print the table row, where the Class column lives.
+      - It reads indirect prompt injection from trusted internal content.
+
+  - type: terminal
+    cwd: /work
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 4
+      - python -m harness.runner --case A5-trusted-internal-kb-injection > /tmp/run.log 2>&1
+    steps:
+      - run: ls target/outbox/
+        wait: "json"
+        settle: 8.0
+      - run: grep '"to"' target/outbox/*.json
+        wait: "records-vault"
+        settle: 14.0
+    narration:
+      - Now show the evidence itself, not the report's summary of it.
+      - There is one file in the outbox, and the recipient is in the file name.
+      - One line out of that file is the whole finding.
+      - An address nobody at the company authorized.
+      - Then say which weakness class it is. The Class column has the words.
+      - Grade the world, not the prose.
+
+  - type: terminal
+    cwd: /work
+    # Recorded against working code. The fix and the run both happen in setup,
+    # off camera, so the numbers are genuine and no line of the answer is
+    # displayed. On camera this reads the new report with the same command the
+    # earlier scene used, so the student sees one number move.
+    setup:
+      - python -m target.app > /tmp/app.log 2>&1 &
+      - sleep 4
+      - rm -rf runs/reports
+      - python demo/apply_solution.py apply > /dev/null
+      - python -m harness.runner --case control-benign-baseline --case control-benign-escalation-works --case A5-trusted-internal-kb-injection > /tmp/run.log 2>&1
+    steps:
+      - run: grep "^| control" runs/reports/*-results.md
+        wait: "escalation"
+        settle: 10.0
+      - run: sed -n "/^### A5/,/^- Evidence/p" runs/reports/*-results.md
+        wait: "BLOCKED"
+        settle: 20.0
+    narration:
+      - Minute three is what you fixed, and what remains.
+      - Show your guard on your own screen, then run the harness again.
+      - Read the controls first. Both pass, so normal support work still gets through.
+      - Now the same case, in your new report.
+      - It reads blocked, five out of five.
+      - That is not the same as an attack that failed.
+      - The agent asked every time. Your code refused every time.
+      - The evidence line says no message left the company.
+      - Finish by naming one thing your fix still does not cover.
+
+  - type: slide
+    layout: closing
+    eyebrow: Before you record
+    heading: Two habits make this fit.
+    body: |
+      One practice take with a timer.
+      Every file open before you start.
+    narration:
+      - Do one practice take with a timer before the real one.
+      - Open every file you need before you press record, and do not search on camera.
+      - Close any browser tab that is not your own lab.
+      - A stray tab raises a scope question about work that was fine.
+      - If you host the file somewhere, check the link opens for your instructor.
+      - A link nobody can open scores zero.

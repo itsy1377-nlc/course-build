@@ -20,6 +20,7 @@ about attacks. The tool said it worked is not evidence.
 from __future__ import annotations
 
 import argparse
+import re
 import sys
 import time
 from pathlib import Path
@@ -53,18 +54,60 @@ def credentials() -> tuple[str, str]:
     return values["CANVAS_URL"].rstrip("/"), values["CANVAS_TOKEN"]
 
 
+def public_url() -> str:
+    """The address a browser uses to reach Canvas, which is not always ours.
+
+    Canvas canonicalises file links when a page is saved, and it builds the
+    absolute URL from the host on the incoming request rather than from
+    config/domain.yml. Saving a page over http://localhost:3000 therefore
+    stamps localhost into every file link in it, and anyone opening the course
+    from another computer gets a link to their own machine. Measured directly:
+    the same PUT sent to the LAN address stored the LAN address instead.
+
+    So writes that touch file links go through this, and it defaults to
+    CANVAS_URL when nothing else is set.
+    """
+    values = {}
+    if CREDENTIALS.exists():
+        for line in CREDENTIALS.read_text(encoding="utf-8").splitlines():
+            if "=" in line:
+                key, _, value = line.partition("=")
+                values[key.strip()] = value.strip()
+    return (values.get("CANVAS_PUBLIC_URL") or values.get("CANVAS_URL", "")).rstrip("/")
+
+
 class Canvas:
     def __init__(self, url: str, token: str):
         self.url = url
+        # Kept so a second client can be built for the same Canvas on a
+        # different host. See populate_canvas.fix_media_links.
+        self.token = token
         self.session = requests.Session()
         self.session.trust_env = False
         self.session.headers["Authorization"] = f"Bearer {token}"
 
     def get(self, path: str, **params) -> Any:
+        """A GET that follows pagination.
+
+        per_page=100 with no Link following silently truncates, and every
+        caller assumed it had the whole list. The course's media folder held
+        136 files while this returned 100, so a cleanup pass believed it had
+        removed everything and left 36 behind.
+        """
         response = self.session.get(f"{self.url}/api/v1{path}",
                                     params={"per_page": 100, **params}, timeout=60)
         response.raise_for_status()
-        return response.json()
+        payload = response.json()
+        if not isinstance(payload, list):
+            return payload
+        while True:
+            link = response.headers.get("Link", "")
+            match = re.search(r'<([^>]+)>;\s*rel="next"', link)
+            if not match:
+                return payload
+            response = self.session.get(match.group(1), timeout=60)
+            response.raise_for_status()
+            payload.extend(response.json())
 
     def post(self, path: str, **data) -> Any:
         response = self.session.post(f"{self.url}/api/v1{path}", data=data, timeout=60)
@@ -252,6 +295,14 @@ def main(argv: list[str] | None = None) -> int:
         print(f"No cartridge at {cartridge}")
         return 1
 
+    # Canvas renames rather than replaces on re-import, so stale media has to
+    # go before the upload or the course keeps serving the first cut forever.
+    from tools.populate_canvas import clear_media
+    removed = clear_media(canvas, args.course)
+    if removed:
+        print(f"\nCleared {removed} existing media file(s) so this import replaces "
+              f"rather than duplicates.")
+
     print(f"\nImporting into course {args.course} at {url}")
     try:
         migration = upload(canvas, args.course, cartridge)
@@ -280,9 +331,20 @@ def main(argv: list[str] | None = None) -> int:
         from tools.populate_canvas import sync_quizzes
         print("\nCreating the quizzes over the API, because this Canvas cannot read "
               "them from the cartridge.")
-        quiz_problems = sync_quizzes(canvas, args.course, args.session)
-        for problem in quiz_problems:
+        for problem in sync_quizzes(canvas, args.course, args.session):
             print(f"  - {problem}")
+
+    # Canvas rewrites a cartridge's file references in some HTML attributes and
+    # not others, and makes one of them absolute. Both leave a course that
+    # imported cleanly and still shows a broken player, so the media links get
+    # one pass afterwards. See fix_media_links for what and why.
+    from tools.populate_canvas import fix_media_links
+    print("\nResolving the media links the importer left behind.")
+    media_problems = fix_media_links(canvas, args.course)
+    for problem in media_problems:
+        print(f"  - {problem}")
+    if not media_problems:
+        print("  every media reference resolves, and none is host specific")
 
     print("\nReading the course back to check what actually arrived.")
     problems = verify(canvas, args.course)
