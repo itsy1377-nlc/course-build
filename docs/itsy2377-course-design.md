@@ -534,4 +534,164 @@ The cheapest way to close items 1 and 2 is one loaner laptop, Store Python,
 the offline wheel bundle, and a full test-suite run. That is roughly half an
 hour and it settles everything except whether a model can be served on the
 device.
+---
+
+## 6. Content build
+
+What has to be authored, week by week, on the four-part page anatomy the
+college template requires: an Overview, a Content page, the graded
+Assignments, and a Wrap-up. Counts are measured against the current course,
+which ships 45 pages, 18 scene lists and 17 built videos.
+
+### 6.1 What carries over without rewriting
+
+Twenty of the 45 pages are course-shell rather than subject matter, and they
+survive a change of subject intact: welcome and navigation, course policies,
+the schedule, academic integrity, communicating online, tech support, support
+resources, tips for success, meet your instructor, and the instructor notes.
+Four more survive on merit rather than by default:
+
+| Page | Why it survives |
+|---|---|
+| `rules-of-engagement.md` | Week 1 is built on it, and the runner enforces it in code |
+| `findings-report-template.md` | AIS outcome 2 is the course's strongest element and this is its instrument |
+| `glossary.md` | Mostly still accurate; needs entries for threat model, precision, recall, occlusion |
+| `ai-use-policy.md` | Needs extending, not replacing: the course now *requires* AI use and grades the verification of it |
+
+That leaves roughly 21 subject pages to author, against 25 retired.
+
+### 6.2 The build, week by week
+
+Each week is one Overview, one Content page, one Wrap-up, one assignment page,
+and one concept video. Walkthrough videos are marked where a week needs one.
+
+| Wk | Content page teaches | Assignment page | Video | New infrastructure it depends on |
+|---|---|---|---|---|
+| 1 | What an agent is, what a trace records, and why scope is written in code rather than promised | Lab 1: baseline and refusal evidence | Concept + walkthrough | none |
+| 2 | Attack surface of an agentic system: tool registry, untrusted input channels, trust boundaries. How to verify a model's claims against source | Lab 2: surface, drafted and verified | Concept | inventory extractor; `assist.py` |
+| 3 | Threat modelling for agents, and reading threat intelligence in a shared taxonomy | Lab 3: threat model and ATLAS adjudication | Concept | ATLAS catalog; CTI excerpt corpus |
+| 4 | Why a schema makes a model's output checkable, and what a five-trial rate means | Lab 4: model-drafted test plan, verified | Concept + walkthrough | `assist.py` structured output mode |
+| 5 | Detection: what a rule proves, what a classifier proves, and how precision and recall differ | Lab 5: two detectors, measured | Concept + walkthrough | labeled benign corpus |
+| 6 | Explaining a decision from behaviour rather than from intent; the limits of an AI judgment | Lab 6: explanation and trust boundary | Concept | occlusion driver |
+| 7 | Impact, severity, and why a control that breaks benign use is not a fix | Lab 7: impact and mitigation | Concept + walkthrough | none |
+| Final | Assembling an assessment report whose every claim is traceable | Final A exam, Final B report | Concept | claims linker |
+
+**Eight concept videos and four walkthroughs, so twelve against the current
+seventeen.** The reduction is real: the current course spends four videos on
+agent construction, which moves to the prerequisite.
+
+### 6.3 Order of work
+
+Content cannot be authored before the infrastructure it demonstrates, because
+the course's own gate requires that every command shown on a page resolves in
+`labs/`, and every walkthrough records a real terminal.
+
+1. **Infrastructure first**, in the order section 4.2 lists it. Weeks 1 and 7
+   need nothing new, so they can be authored immediately and act as the
+   template for the rest.
+2. **Author weeks 1 and 7**, then use them to settle voice, page length and
+   the shape of a lab page before committing to five more.
+3. **Build `assist.py` next**, because weeks 2, 4, 5 and 7 all depend on it
+   and its output shape determines what those pages can claim.
+4. **Weeks 2, 3, 4** follow, then **5 and 6**, which are the hardest and
+   should be authored last when the instrument is settled.
+5. **Videos last, per week**, because the staleness gate marks a video stale
+   by name the moment its page changes, and authoring pages after videos wastes
+   renders.
+6. **Quizzes and rubrics alongside each week**, not in a batch at the end. The
+   items reference specific files and line numbers, so they rot if written
+   against content that is still moving.
+
+### 6.4 The honest size of this
+
+| | Count |
+|---|---|
+| Pages to author | ~21 |
+| Pages retired | ~25 |
+| Pages carried over | ~24 |
+| Videos to build | 12 |
+| Videos retired | 17 |
+| Quizzes to rewrite | 6, 350 points |
+| Rubrics to rewrite | 10 |
+| New lab modules | 7 |
+| Lab code carried over | ~2,300 lines |
+
+This is a course rebuild with a lab refit, not a revision. The thing that
+makes it tractable is that the assessment machinery, which is the expensive
+part to get right, is already built and tested and moves to the centre of the
+course rather than being replaced.
+---
+
+## 7. Migration
+
+A migration plan is necessary, for one reason that has nothing to do with
+content: **the current course is deployed and importable**, and the mechanism
+that puts it into Canvas has properties worth preserving rather than
+rediscovering.
+
+### 7.1 What must not be lost
+
+| | Why it matters |
+|---|---|
+| The cartridge build and import path | Works, is idempotent across repeated imports, and carries 126 MB of media inside the 500 MB course quota |
+| The preflight gates | Seven gates including reading level, content-agrees-with-code, no-answers-in-the-student-repo, and video staleness. They are what keep the rebuild honest |
+| The video pipeline | Authored scene lists, measured narration, captions correct by construction. Rebuilding twelve videos costs render time, not authorship of the machinery |
+| Per-student canary derivation | The reason assessment is anchored to an individual run |
+| The two-repository split | `labs/` is its own repository and ships to students without the answers; `scripts/build_student_repo.py` enforces that |
+
+### 7.2 Sequence
+
+The old and new courses cannot share a branch, because the preflight gates
+check the whole tree and a half-migrated tree fails all of them.
+
+1. **Branch.** `itsy2377` off `main`. The current course stays on `main` and
+   remains deliverable, which matters if the re-architecture slips past a
+   term boundary.
+2. **Retire in one commit, not gradually.** Delete the 25 retired pages, the
+   17 scene lists and the four agent-construction modules together. A tree
+   half-converted fails the content-agrees-with-code gate in ways that are
+   confusing rather than informative.
+3. **Land the lab infrastructure** before any page references it.
+4. **Author, week by week**, in the order section 6.3 gives.
+5. **Rebuild videos last.**
+6. **Import into a second Canvas course**, not over the top of the existing
+   one. Canvas renames files on collision rather than replacing them, which
+   has already caused this project to serve stale media for three imports
+   before anyone checked a hash.
+7. **Run the full preflight and the import verifier**, which reads the course
+   back through the API and checks it against `course.yaml` rather than
+   trusting the migration's own report.
+
+### 7.3 What blocks a start
+
+Two things, and neither is technical.
+
+**The scripting prerequisite has to be real.** Everything in sections 2
+through 6 assumes students arrive able to write Python. If ITSE 1359 or an
+equivalent does not land before this course runs, weeks 1 to 4 of instruction
+have to come back and the design collapses to something much closer to what
+exists today. This is the single largest dependency in the plan and it is a
+curriculum committee decision, not a course decision.
+
+**The renumbering has to clear.** ITSY 2377 needs the Local Need block
+checked for availability and the change processed. Until then the course is
+ITSY 1377 with a prerequisite it cannot enforce.
+
+### 7.4 What can start immediately, regardless
+
+Three things are correct under either the old or the new architecture, and
+waiting on the prerequisite decision to do them wastes the wait.
+
+1. **The knowledge unit corrections.** `docs/aicyber-ku-mapping.md` records
+   that the instructor-facing framework page still claims two ATLAS techniques
+   the course removed, one of which the Rules of Engagement forbid. That is a
+   defect in the shipped course today.
+2. **The live-model question.** The course currently defaults to the mock and
+   requires it for Module 4's before and after runs. Whatever architecture
+   wins, a course claiming AIS cannot leave a student able to finish with one
+   live model call.
+3. **The outcome provenance gap.** Nobody can say where the current six
+   learning outcomes came from. That question arrives with the first reviewer
+   and it is answerable now by the curriculum office rather than later under
+   time pressure.
 
