@@ -538,10 +538,10 @@ Recorded rather than glossed, and deferred by decision.
    Python resolving `python -m` invocations as the labs expect, whether IT
    policy blocks the Store itself, and long-path behaviour if a student clones
    deep inside `OneDrive\\Documents`.
-2. **Inference for student C.** Their labs run locally but a model may not:
-   Ollama needs an installer, and a bare llama.cpp binary can be stopped by
-   AppLocker or Defender Application Control. Codespaces covers this today,
-   and it is the one place that student depends on a quota.
+2. **Inference for student C.** Their labs run locally but a model may not.
+   Codespaces covers this today, and it is the one place that student depends
+   on a quota. Section 12 measures a way to remove that dependency: the
+   premise above that "Ollama needs an installer" is wrong.
 3. **Gitpod is gone.** `gitpod.io/pricing` now redirects to `ona.com/pricing`,
    minimum twenty dollars a month, with Gitpod Classic sunset. It should not
    appear in any planning document as a free option.
@@ -1308,3 +1308,93 @@ healthily. Confirm `db_path` from `/api/health` before measuring anything.
 
 **Run the cheap filter first.** A four-call tool-shape probe eliminated more
 than half the field in two and a half minutes, before any suite ran.
+
+---
+
+## 12. A model on a USB stick, for the student who cannot install anything
+
+Section 5.5 held inference for the locked-down loaner as the one place a
+student depends on a quota, and assumed Ollama needs an installer. It does
+not. This section is what was measured against the published artifacts on
+31 August 2026, pinned to Ollama v0.33.2.
+
+### 12.1 The three facts that make it plausible
+
+**There is a standalone build.** `ollama-windows-amd64.zip` ships on every
+release. Ollama's own Windows documentation states that installation "does not
+require Administrator privileges" and defaults to the home directory, and the
+standalone zip is offered for exactly the case where the installer is not
+wanted.
+
+**Almost all of that 1.46 GB is GPU code a loaner cannot use.** Reading the
+zip's central directory without downloading it: 71 files, of which the CUDA
+v12 and v13, Vulkan and ROCm trees are 1,868 MB. `cublasLt64_12.dll` alone is
+692 MB.
+
+| Bundle | Files | Size |
+|---|---|---|
+| Full `ollama-windows-amd64.zip` | 71 | 1,460 MB compressed |
+| **CPU-only subset** | **30** | **74.6 MB unpacked, 26.1 MB zipped** |
+
+The CPU subset is `ollama.exe` at 36.8 MB, the llama and ggml runtime DLLs, and
+one `ggml-cpu-*.dll` per instruction-set generation from haswell up. Nothing
+else is needed to serve a model on a machine with no discrete GPU.
+
+**The binaries are signed.** `ollama.exe` and `libllama.dll` both carry an
+Authenticode certificate table naming Ollama and issued through DigiCert,
+verified by parsing the PE certificate directory of each. This matters more
+than size: Defender's Attack Surface Reduction rule for removable media blocks
+untrusted and **unsigned** processes, and a signed binary from a known
+certificate authority is also what keeps SmartScreen quiet.
+
+### 12.2 The bundle, sized
+
+| Component | Size | Notes |
+|---|---|---|
+| Ollama, CPU-only subset | 75 MB | Signed. `ollama.exe serve` needs no service and no admin |
+| granite4.1:3b weights | 2.10 GB | The blob, byte-identical to the Hugging Face GGUF |
+| Python 3.12 embeddable | 11 MB | A zip from python.org, no installer |
+| The labs and the offline wheel bundle | small | `scripts/build_wheels.py` already builds it |
+| **Total** | **about 2.2 GB** | Fits any USB stick, with room for the student's own work |
+
+`OLLAMA_MODELS` redirects model storage to the stick, so nothing is written to
+the machine's profile.
+
+### 12.3 What is still unknown, and it is the part that decides it
+
+Everything above is about the artifacts. None of it is about the college's
+image, and the image is what will actually say yes or no.
+
+| Risk | Why it could block, and what would settle it |
+|---|---|
+| **AppLocker** | If enabled with default rules, non-administrators may execute only from `Program Files` and `Windows`. A USB path is neither. This is the likeliest blocker and it is pure policy |
+| **Application Control (WDAC)** | Stricter still. Signed by DigiCert helps, but a policy that trusts only Microsoft-signed code would refuse both the exe and the DLLs |
+| **Removable storage policy** | Some images block USB mass storage outright, which ends the question before any of this matters |
+| **Python embeddable** | Deliberately restricted: no pip, and a `._pth` file that constrains `sys.path`. Whether the labs run under it is untested and it is the least certain component in the bundle |
+| **Hardware** | The weights need roughly 2.5 to 3 GB of RAM resident, and a first load reads 2.1 GB off the stick. USB 3 makes that seconds; USB 2 makes it a minute. Inference speed on that CPU is unmeasured |
+
+### 12.4 What to do about it
+
+**One test settles the whole thing, and it is the same half hour section 5.5
+already asked for.** Take one real loaner, a stick with the bundle on it, and
+in order: does the stick mount, does `ollama.exe serve` start, does
+`ollama run granite4.1:3b` answer, does the embeddable Python run
+`verify_env.py`, and how long does one harness case take. Each step that fails
+names its own blocker, and a failure at step 2 or 3 is an AppLocker or
+Application Control finding to take to IT rather than a dead end.
+
+**Ask IT the question directly, in parallel.** "Does the standard loaner image
+enforce AppLocker or Application Control, and does it allow signed executables
+from removable media" is answerable in an email by the person who owns the
+image, and it costs nothing to ask before building the stick.
+
+**If it is blocked, the fallbacks are ordered.** First, ask for the bundle path
+to be allow-listed by publisher certificate, which is a narrow ask because the
+binaries are signed. Second, Codespaces as today, with its quota. Third, an
+instructor-hosted endpoint on the existing virtual private server, which costs
+money and reintroduces a dependency the design deliberately removed, so it is a
+last resort rather than a plan.
+
+**This is worth the half hour regardless of the answer**, because it converts
+the one remaining quota dependency in the design into either a solved problem
+or a documented institutional constraint with a named owner.
