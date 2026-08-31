@@ -172,34 +172,38 @@ def _allowed_identifiers() -> tuple[set[str], set[str], set[str], set[str]]:
     Built from the case files rather than from a hand-kept list, because the
     case files are what a student copies identifiers out of, and because a
     case file's notes have to justify each one.
+
+    Read through tools.atlas_table so that the generated mapping tables and
+    this gate cannot disagree about what a case demonstrates. Two readers of
+    the same files answering the same question differently is the shape of the
+    bug this whole area exists to prevent.
     """
-    atlas: set[str] = set()
-    llm: set[str] = set()
-    asi: set[str] = set()
-    cwe: set[str] = set()
-    for path in sorted((LABS / "harness" / "cases").glob("*.yaml")):
-        case = yaml.safe_load(path.read_text(encoding="utf-8"))
-        atlas |= set(case.get("atlas") or [])
-        llm |= set(case.get("owasp_llm") or [])
-        asi |= set(case.get("owasp_agentic") or [])
-        cwe |= set(case.get("cwe") or [])
-    for path in sorted((LABS / "solution" / "cases").glob("*.yaml")):
-        case = yaml.safe_load(path.read_text(encoding="utf-8"))
-        atlas |= set(case.get("atlas") or [])
-        llm |= set(case.get("owasp_llm") or [])
-        asi |= set(case.get("owasp_agentic") or [])
+    from tools import atlas_table
+    families = atlas_table.case_identifiers()
+    atlas = set(families["atlas"])
+    llm = set(families["owasp_llm"])
+    asi = set(families["owasp_agentic"])
+    cwe = set(families["cwe"])
+    atlas = atlas_table.with_parents(atlas)
     return atlas, llm, asi, cwe
 
 
 # Identifiers the course names but does not demonstrate. Naming one is fine;
 # claiming it as covered is not, so each has to be listed here on purpose.
+#
+# Being on this list buys prose, not a table row. A technique nothing
+# demonstrates has no business in a table, because every table in this course
+# reads as a coverage claim: that is exactly how AML.T0054 and AML.T0067 came
+# to be claimed for a week that ran nothing. check_named_only_stays_in_prose
+# enforces the distinction, and tools/atlas_table.py fails if an identifier is
+# listed here and demonstrated by a case at the same time.
 NAMED_ONLY = {
     "AML.T0110": "MCP tool poisoning. Named in week 3 and in Module 9, never run.",
-    "AML.T0051": "The parent technique. Its sub-techniques carry the evidence.",
-    "AML.T0051.000": "Direct injection, demonstrated by A1.",
     "AML.T0054": "Jailbreak. Out of scope: the course forbids attacking safety filters.",
     "AML.T0067": "Trusted output manipulation. Not demonstrated.",
     "AML.T0051.002": "Triggered injection. Not demonstrated.",
+    "AML.T0080": "Agent memory and thread poisoning. Named only where the design "
+                 "record explains why A5 was corrected away from it to AML.T0070.",
     "LLM04:2026": "Supply chain, taught as why dependencies are pinned.",
     "LLM08:2026": "Hidden context exposure. Named in the alignment table only.",
     "LLM10:2026": "Improper output handling. Named in the alignment table only.",
@@ -226,6 +230,80 @@ def check_frameworks(findings: list[Finding]) -> None:
                     where, f"cites {label} {identifier}, which no case file uses",
                     f"Either a case has to demonstrate it, or add it to NAMED_ONLY "
                     f"in tools/verify_content.py with a reason."))
+
+
+def _mapping_documents() -> list[Path]:
+    """Design records that also carry framework identifiers.
+
+    These are not course content, so they are not in _all_authored(). They are
+    checked anyway, because the wrong claim survived for as long as it did by
+    sitting in exactly these files where no gate was looking.
+    """
+    docs = ROOT / "docs"
+    return sorted(docs.glob("*.md")) + sorted(docs.glob("*.html"))
+
+
+def check_frameworks_in_docs(findings: list[Finding]) -> None:
+    """The same rule, applied to the design records."""
+    atlas, llm, asi, cwe = _allowed_identifiers()
+    for path in _mapping_documents():
+        text = path.read_text(encoding="utf-8")
+        where = path.relative_to(ROOT).as_posix()
+        for found, allowed, label in (
+            (ATLAS_RE.findall(text), atlas, "MITRE ATLAS technique"),
+            (LLM_RE.findall(text), llm, "OWASP LLM identifier"),
+            (ASI_RE.findall(text), asi, "OWASP Agentic identifier"),
+        ):
+            for identifier in sorted(set(found)):
+                if identifier in allowed or identifier in NAMED_ONLY:
+                    continue
+                findings.append(Finding(
+                    where, f"cites {label} {identifier}, which no case file uses",
+                    f"Either a case has to demonstrate it, or add it to NAMED_ONLY "
+                    f"in tools/verify_content.py with a reason."))
+
+
+# A Markdown table row, or an HTML one. Both read as a coverage claim.
+_TABLE_ROW_RE = re.compile(r"^\s*\|.*\|\s*$|<t[dh][ >]", re.M)
+
+
+def check_named_only_stays_in_prose(findings: list[Finding]) -> None:
+    """A technique nothing demonstrates may be named, but not tabulated.
+
+    This is the check that was missing. AML.T0054 and AML.T0067 sat in
+    NAMED_ONLY with accurate reasons and simultaneously sat in a table headed
+    "MITRE ATLAS mapping", which every reader takes as a claim of coverage.
+    NAMED_ONLY buys a sentence, not a row.
+
+    The generated block is exempt, and only the generated block: it exists to
+    state the distinction, and it is machine written from this same list.
+    """
+    from tools import atlas_table
+    generated = re.compile(re.escape(atlas_table.BEGIN) + r".*?"
+                           + re.escape(atlas_table.END), re.S)
+    for path in _all_authored() + _mapping_documents():
+        text = generated.sub("", path.read_text(encoding="utf-8"))
+        where = path.relative_to(ROOT).as_posix()
+        for line in text.splitlines():
+            if not _TABLE_ROW_RE.search(line):
+                continue
+            for identifier in sorted(set(ATLAS_RE.findall(line))):
+                if identifier not in NAMED_ONLY:
+                    continue
+                findings.append(Finding(
+                    where, f"puts {identifier} in a table row, and no case "
+                           f"demonstrates it",
+                    f"A table reads as a coverage claim. {NAMED_ONLY[identifier]} "
+                    f"Say it in a sentence, or let tools/atlas_table.py "
+                    f"generate the row."))
+
+
+def check_mapping_is_generated(findings: list[Finding]) -> None:
+    """The generated tables match what the sources say right now."""
+    from tools import atlas_table
+    for problem in atlas_table.apply(write=False):
+        findings.append(Finding("tools/atlas_table.py", problem,
+                                "Run `python -m tools.atlas_table --write`."))
 
 
 # ---------------------------------------------------------------------------
@@ -433,6 +511,9 @@ CHECKS = [
     ("commands students are told to run", check_commands),
     ("file paths cited in the content", check_paths),
     ("framework identifiers", check_frameworks),
+    ("framework identifiers in the design records", check_frameworks_in_docs),
+    ("undemonstrated techniques stay out of tables", check_named_only_stays_in_prose),
+    ("the framework mapping is generated, not typed", check_mapping_is_generated),
     ("harness status words", check_statuses),
     ("case file field names", check_case_fields),
     ("points, rubrics, and grading blocks", check_points),

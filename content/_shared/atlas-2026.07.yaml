@@ -1,0 +1,51 @@
+# MITRE ATLAS technique names, pinned to release 2026.07.
+#
+# WHAT THIS IS: a subset, not the catalog. It holds exactly the identifiers
+# this course names, and its job is to give one authoritative spelling for each
+# so that no page has to type a technique name by hand. Every name below was
+# transcribed from course material that had already been verified against
+# release 2026.07; nothing here was written from memory.
+#
+# WHY IT EXISTS: the week-to-technique table used to be typed into three files
+# by hand. They drifted, and two techniques ended up claimed that no case
+# demonstrates. Tables are generated from this file plus the case files now.
+#
+# HOW TO EXTEND IT: add an identifier only when you have the name in front of
+# you from the pinned release. tools/atlas_table.py fails if a case cites an
+# identifier that is missing here, which is the intended way to find out.
+#
+# ATTRIBUTION: ATLAS is distributed under Apache 2.0 and incorporates MITRE
+# ATT&CK, whose terms require the following string wherever its content
+# appears: ATT&CK is a registered trademark of The MITRE Corporation.
+
+release: "2026.07"
+source: https://github.com/mitre-atlas/atlas-data/releases
+
+techniques:
+  AML.T0051:
+    name: LLM Prompt Injection
+  AML.T0051.000:
+    name: Direct
+    parent: AML.T0051
+  AML.T0051.001:
+    name: Indirect
+    parent: AML.T0051
+  AML.T0051.002:
+    name: Triggered
+    parent: AML.T0051
+  AML.T0053:
+    name: AI Agent Tool Invocation
+  AML.T0054:
+    name: LLM Jailbreak
+  AML.T0056:
+    name: Extract LLM System Prompt
+  AML.T0067:
+    name: LLM Trusted Output Components Manipulation
+  AML.T0070:
+    name: RAG Poisoning
+  AML.T0085.001:
+    name: AI Agent Tools
+  AML.T0086:
+    name: Exfiltration via AI Agent Tool Invocation
+  AML.T0110:
+    name: AI Agent Tool Poisoning

@@ -231,6 +231,43 @@ vulnerability; and A4's ATLAS list left deliberately empty, because a missing
 control with no adversary is not a technique and a plausible identifier there
 is worse than a blank.
 
+**The framework mapping is generated now, because correcting it by hand did not
+hold.** The correction above was written into `docs/course-blueprint.md` and
+reached neither of the two other files carrying the same table. The result:
+`content/pages/framework-alignment.md` and `docs/blueprint.html` both went on
+claiming `AML.T0067` and `AML.T0054` for week 7 with nothing demonstrating
+either, and `AML.T0054` is jailbreak, which the Rules of Engagement forbid
+students from attempting. The three copies also disagreed about where
+`AML.T0070` sat and whether `AML.T0053` reappeared on week 6.
+
+The content gate did not catch it, and the reason is worth keeping: both
+identifiers were in `NAMED_ONLY` with accurate explanations, and `NAMED_ONLY`
+could not distinguish prose that names a technique in order to rule it out from
+a table row that claims it. `docs/` was not scanned at all.
+
+What changed. `content/_shared/atlas-2026.07.yaml` pins the technique names as
+a labelled subset of the release, transcribed from material already verified
+against it rather than written from memory. `tools/atlas_table.py` generates
+three tables into all three files from the case files and `content/course.yaml`.
+Four gates were added: the generated block has to be current; `docs/` is
+scanned for identifiers; no undemonstrated technique may appear in a
+hand-written table row; and an identifier may not be both demonstrated and
+excused. `tools/blocks.py` now treats an HTML comment between blocks as what it
+is, a marker rather than page text.
+
+Three things the work found. `content/course.yaml` had never claimed either
+technique, so the structural source Canvas is built from was already right and
+only the prose copies were wrong. `AML.T0051.000` was simultaneously
+demonstrated by A1 and excused in `NAMED_ONLY`, which put one technique in two
+tables saying opposite things. And `AML.T0051` was excused as "the parent
+technique" when A1 and A2 demonstrate two of its sub-techniques, which
+understated the course; a parent is now derived as demonstrated when a child
+is.
+
+One gap left open on purpose. `AML.T0080` has no name in the pinned file,
+because the repository records a description of it rather than a title. The
+generator reports it under the table instead of inventing a name.
+
 ---
 
 ## J. Phase 4 Result: Canvas Population, and a Finding That Changes a Deliverable

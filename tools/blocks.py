@@ -100,6 +100,9 @@ class Block:
     line: int
 
 
+COMMENT_RE = re.compile(r"^\s*<!--.*-->\s*$")
+
+
 def parse_blocks(text: str, source: str = "<page>") -> list[Block]:
     blocks: list[Block] = []
     current: Block | None = None
@@ -117,6 +120,12 @@ def parse_blocks(text: str, source: str = "<page>") -> list[Block]:
                     )
                 current = Block(name, match.group("arg"), match.group("title"), "", number)
                 buffer = []
+            elif COMMENT_RE.match(line):
+                # An HTML comment between blocks is not text on the page: it
+                # never renders. This is what lets a generator mark the region
+                # it owns, which is how the framework mapping stopped being
+                # three hand-typed copies of one table.
+                continue
             elif line.strip():
                 raise BlockError(
                     f"{source}:{number}: text outside a block.\n"

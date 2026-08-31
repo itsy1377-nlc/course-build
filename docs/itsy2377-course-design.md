@@ -740,32 +740,27 @@ touching.
 `AML.T0054` were claimed for week 7 with nothing demonstrating either ... Both
 removed." That edit landed in one artifact out of three.
 
-There are three hand-maintained copies of one table, and all three disagree:
-
-| Artifact | Week 6 | Week 7 |
-|---|---|---|
-| `docs/course-blueprint.md` (corrected) | `AML.T0086`, `AML.T0085.001`, `AML.T0053` | `AML.T0070` RAG Poisoning |
-| `content/pages/framework-alignment.md` | `AML.T0086`, `AML.T0085.001`, `AML.T0070` | `AML.T0067`, `AML.T0054` |
-| `docs/blueprint.html:744` | `AML.T0086`, `AML.T0085.001` | `AML.T0067`, `AML.T0054` |
-
-Three answers to where `AML.T0070` belongs and whether `AML.T0053` is on week 6.
-The two techniques are the visible symptom; three copies of a hand-typed table
-is the disease.
+There were three hand-maintained copies of one table and all three disagreed,
+not only about the two techniques. On where `AML.T0070` belonged,
+`docs/course-blueprint.md` put it on week 7, `content/pages/framework-alignment.md`
+put it on week 6, and `docs/blueprint.html` did not carry it at all. On whether
+`AML.T0053` appeared again on week 6, the blueprint said yes and the other two
+said nothing. The two undemonstrated techniques were the visible symptom. Three
+copies of a hand-typed table was the disease.
 
 **Why the gate did not catch it.** `tools/verify_content.py` `check_frameworks()`
 fails the build on any identifier no case file demonstrates, unless it appears
-in `NAMED_ONLY`. Both are in that list, with reasons that are correct as
+in `NAMED_ONLY`. Both were in that list, with reasons that are correct as
 written: "Jailbreak. Out of scope: the course forbids attacking safety filters"
-and "Trusted output manipulation. Not demonstrated." The annotations are
-honest. The gate simply cannot tell prose that names a technique in order to
-rule it out from a coverage table that claims it. Running
-`python -m tools.verify_content` today reports "The content and the code
-agree," which is how a false claim survives a gate built to catch false claims.
+and "Trusted output manipulation. Not demonstrated." The annotations were
+honest. The gate simply could not tell prose that names a technique in order to
+rule it out from a coverage table that claims it. `python -m tools.verify_content`
+reported "The content and the code agree," which is how a false claim survives
+a gate built to catch false claims. A second hole sat behind it: `docs/` was
+not scanned at all, so a corrected `NAMED_ONLY` would have left
+`docs/blueprint.html` wrong.
 
-A second hole sits behind it: `docs/` is not scanned at all, so a corrected
-`NAMED_ONLY` would still leave `docs/blueprint.html` wrong.
-
-**Does the redesign require the fix?** Yes, and it raises the stakes rather
+**Did the redesign require the fix?** Yes, and it raises the stakes rather
 than lowering them. Four reasons:
 
 1. CO5 makes classification with ATLAS and OWASP identifiers a graded outcome,
@@ -780,21 +775,44 @@ than lowering them. Four reasons:
 4. Section 7.1 preserves artifacts by copying them forward. A stale row
    propagates unless it is killed first.
 
-**The fix, in three parts, and the order matters.**
+### 8.1.1 What was built
 
-| # | Change | Verifies |
-|---|---|---|
-| 1 | **Generate the table, stop typing it.** Derive the week-to-technique table from the case files' `atlas:` fields, joined to the week assignment already in `content/course.yaml`, and write it into the page between markers. A gate regenerates and diffs | The table cannot claim what no case demonstrates, by construction. Both techniques leave without anyone having to remember them |
-| 2 | **Reduce three copies to one.** `docs/course-blueprint.md` and `docs/blueprint.html` link to the generated table rather than restating it. If either must restate it, `_all_authored()` has to include `docs/` so the gate reaches them | The three artifacts cannot disagree, because there is one artifact |
-| 3 | **`NAMED_ONLY` becomes prose-only.** Add a check that no `NAMED_ONLY` identifier appears inside any Markdown table row anywhere in `content/`. Every table in this course is a coverage claim, so a technique the course does not demonstrate has no business in one | The distinction the gate was missing becomes mechanical rather than a matter of judgment |
+Done on `main`, before the `itsy2377` branch, so the branch inherits it.
 
-**When: now, on `main`, before the `itsy2377` branch is cut.** The corrections
-and the generator both survive the rebuild, and cutting the branch first means
-doing the work twice. Cost is roughly half a day: the generator is perhaps
-sixty lines, the corrections are three edits, and the gate is a diff.
+| Piece | What it does |
+|---|---|
+| `content/_shared/atlas-2026.07.yaml` | The pinned technique names, as a labelled subset of release 2026.07 rather than a catalog. Nothing here was written from memory; every name was transcribed from material already verified against the release. It carries the ATT&CK attribution string, and it is the seed of build item 2 |
+| `tools/atlas_table.py` | Generates three tables into every file that shows the mapping: what the course demonstrates and which case is the evidence, what it names without demonstrating and why, and what each week claims. Sources are the case files and `content/course.yaml`. `--write` regenerates, no flag checks |
+| Markers in three files | `content/pages/framework-alignment.md`, `docs/course-blueprint.md` and `docs/blueprint.html` now hold a generated block. The mapping is written in one place and rendered in three |
+| Four new gates | The mapping is current; `docs/` is scanned for identifiers; no undemonstrated technique appears in any hand-written table row; and an identifier cannot be both demonstrated and excused |
 
-Prove it the way the rubric shape checks were proven: reintroduce
-`AML.T0054` into the page by hand and confirm the gate fails.
+**Four things the work found that the plan did not predict.**
+
+**`content/course.yaml` was already correct.** It never claimed either
+technique. The false claim existed only in the hand-typed prose copies, which
+is why generating from the structural source fixes it rather than merely
+restating it.
+
+**`AML.T0051.000` was listed as both demonstrated and excused.** A1
+demonstrates it, and it was also sitting in `NAMED_ONLY` with the note "Direct
+injection, demonstrated by A1," so the same technique appeared in two tables
+saying opposite things about coverage. The generator now refuses to build when
+an identifier is in both states, which is how this surfaced.
+
+**A parent technique whose sub-technique is demonstrated is demonstrated.**
+`AML.T0051` was excused as "the parent technique," but A1 proves `.000` and A2
+proves `.001`. Excusing it understated the course. `with_parents()` now derives
+this, so the gate and the tables cannot disagree about it.
+
+**One name is still unpinned.** `AML.T0080` appears only in the design record
+explaining why A5 was corrected away from it to `AML.T0070`. The repository
+records a description of it, not a title, so it is not in the pinned name file
+and the generator says so under the table rather than inventing a name or
+hiding the gap.
+
+**Verified by reintroduction, not by assertion.** The same method that proved
+the rubric shape checks: put `AML.T0054` back into a table by hand and confirm
+the build fails.
 
 ### 8.2 The simulator is the default, and nothing requires a live model
 
