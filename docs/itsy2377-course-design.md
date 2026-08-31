@@ -2,7 +2,10 @@
 
 The course rebuilt around the NCAE-C CyberAI knowledge units AIS and DFA.
 Section 1 is locked: the outcomes and the knowledge unit mapping are agreed.
-Everything after it is the architecture built to deliver them.
+Sections 2 to 7 are the architecture built to deliver them. Sections 8 to 10
+are the additions that came after the first pass: the two defects the shipped
+course would otherwise carry forward, the environment setup video the build
+plan was missing, and an optional portfolio module.
 
 Renumbering from ITSY 1377 to ITSY 2377 follows from the prerequisite. Under
 THECB rules the first digit is level, so 2 is sophomore standing; the second
@@ -380,6 +383,12 @@ Seven new pieces, ordered by the week that needs them.
 | 6 | **Occlusion driver** | Week 6 | Runs the student's triage step with one evidence feature removed at a time and records the flips. Perhaps forty lines, no libraries |
 | 7 | **Claims linker** | Final block | Checks that every claim in the report cites a check, and that every cited check passed. Turns "comprehensive report" from a rubric adjective into a machine-verified property |
 
+Two more arrive with the later sections and are listed there rather than here,
+because neither is required for a week of instruction: the **evidence
+scrubber** that strips canary tokens before a student publishes anything
+(section 10.3), and the **`stills` slide layout** the setup videos need
+(section 9.4). The second is video tooling rather than lab infrastructure.
+
 ### 4.3 To change
 
 | What | Change | Why |
@@ -580,6 +589,10 @@ and one concept video. Walkthrough videos are marked where a week needs one.
 seventeen.** The reduction is real: the current course spends four videos on
 agent construction, which moves to the prerequisite.
 
+That twelve counts subject matter only. Section 9 adds five setup videos, which
+the current course also lacks, and section 10 adds three optional ones. The
+library total is in 6.4.
+
 ### 6.3 Order of work
 
 Content cannot be authored before the infrastructure it demonstrates, because
@@ -604,17 +617,17 @@ the course's own gate requires that every command shown on a page resolves in
 
 ### 6.4 The honest size of this
 
-| | Count |
-|---|---|
-| Pages to author | ~21 |
-| Pages retired | ~25 |
-| Pages carried over | ~24 |
-| Videos to build | 12 |
-| Videos retired | 17 |
-| Quizzes to rewrite | 6, 350 points |
-| Rubrics to rewrite | 10 |
-| New lab modules | 7 |
-| Lab code carried over | ~2,300 lines |
+| | Count | Of which |
+|---|---|---|
+| Pages to author | ~26 | 21 subject, 1 setup guide (section 9), 4 portfolio (section 10) |
+| Pages retired | ~25 | |
+| Pages carried over | ~24 | 20 course shell, 4 on merit |
+| Videos to build | 20 | 12 subject, 5 setup, 3 optional portfolio |
+| Videos retired | 17 | |
+| Quizzes to rewrite | 6, 350 points | |
+| Rubrics to rewrite | 10 | |
+| New lab modules | 7 | plus the portfolio scrubber, if section 10 ships |
+| Lab code carried over | ~2,300 lines | |
 
 This is a course rebuild with a lab refit, not a revision. The thing that
 makes it tractable is that the assessment machinery, which is the expensive
@@ -682,16 +695,436 @@ ITSY 1377 with a prerequisite it cannot enforce.
 Three things are correct under either the old or the new architecture, and
 waiting on the prerequisite decision to do them wastes the wait.
 
-1. **The knowledge unit corrections.** `docs/aicyber-ku-mapping.md` records
-   that the instructor-facing framework page still claims two ATLAS techniques
-   the course removed, one of which the Rules of Engagement forbid. That is a
-   defect in the shipped course today.
-2. **The live-model question.** The course currently defaults to the mock and
-   requires it for Module 4's before and after runs. Whatever architecture
-   wins, a course claiming AIS cannot leave a student able to finish with one
-   live model call.
+1. **The knowledge unit corrections.** The instructor-facing framework page
+   still claims two ATLAS techniques the course removed, one of which the Rules
+   of Engagement forbid. That is a defect in the shipped course today.
+   **Planned in section 8.1, and it should be done now on `main`, before the
+   branch is cut.**
+2. **The live-model question.** The course currently defaults to the mock.
+   Whatever architecture wins, a course claiming AIS cannot leave a student
+   able to finish with one live model call. **Planned in section 8.2, which
+   argues this one should land with the rebuild rather than ahead of it, and
+   says why.**
 3. **The outcome provenance gap.** Nobody can say where the current six
    learning outcomes came from. That question arrives with the first reviewer
    and it is answerable now by the curriculum office rather than later under
    time pressure.
 
+
+---
+
+## 8. Two shipped defects, and whether the rebuild inherits them
+
+Section 7.4 named these as startable now. This section is the plan, and for
+each one it answers the prior question first: does the redesigned course
+actually require the fix, or is it a defect the rebuild deletes on its way
+past.
+
+### 8.1 The course claims two ATLAS techniques it does not demonstrate
+
+**What is wrong, precisely.** `content/pages/framework-alignment.md:68` gives,
+for week 7, `AML.T0067 LLM Trusted Output Components Manipulation; AML.T0054
+LLM Jailbreak`. No case file demonstrates either. The set that is actually
+demonstrated, read from the `atlas:` field of every file in
+`labs/harness/cases/` and `labs/solution/cases/`, is exactly seven:
+`AML.T0051.000`, `AML.T0051.001`, `AML.T0053`, `AML.T0056`, `AML.T0070`,
+`AML.T0085.001`, `AML.T0086`.
+
+`AML.T0054` is worse than unsupported. It is jailbreak, and the Rules of
+Engagement forbid students from attempting attacks on model safety filters. The
+course claims coverage of a technique it prohibits its own students from
+touching.
+
+**The correction was already made once and did not reach the page.**
+`docs/course-blueprint.md:816` records it in writing: "`AML.T0067` and
+`AML.T0054` were claimed for week 7 with nothing demonstrating either ... Both
+removed." That edit landed in one artifact out of three.
+
+There are three hand-maintained copies of one table, and all three disagree:
+
+| Artifact | Week 6 | Week 7 |
+|---|---|---|
+| `docs/course-blueprint.md` (corrected) | `AML.T0086`, `AML.T0085.001`, `AML.T0053` | `AML.T0070` RAG Poisoning |
+| `content/pages/framework-alignment.md` | `AML.T0086`, `AML.T0085.001`, `AML.T0070` | `AML.T0067`, `AML.T0054` |
+| `docs/blueprint.html:744` | `AML.T0086`, `AML.T0085.001` | `AML.T0067`, `AML.T0054` |
+
+Three answers to where `AML.T0070` belongs and whether `AML.T0053` is on week 6.
+The two techniques are the visible symptom; three copies of a hand-typed table
+is the disease.
+
+**Why the gate did not catch it.** `tools/verify_content.py` `check_frameworks()`
+fails the build on any identifier no case file demonstrates, unless it appears
+in `NAMED_ONLY`. Both are in that list, with reasons that are correct as
+written: "Jailbreak. Out of scope: the course forbids attacking safety filters"
+and "Trusted output manipulation. Not demonstrated." The annotations are
+honest. The gate simply cannot tell prose that names a technique in order to
+rule it out from a coverage table that claims it. Running
+`python -m tools.verify_content` today reports "The content and the code
+agree," which is how a false claim survives a gate built to catch false claims.
+
+A second hole sits behind it: `docs/` is not scanned at all, so a corrected
+`NAMED_ONLY` would still leave `docs/blueprint.html` wrong.
+
+**Does the redesign require the fix?** Yes, and it raises the stakes rather
+than lowering them. Four reasons:
+
+1. CO5 makes classification with ATLAS and OWASP identifiers a graded outcome,
+   assessed three times (section 3.2).
+2. Section 3.3 promises a knowledge unit reviewer can open
+   `atlas-adjudication.csv`, which is a record of students being marked right
+   or wrong about identifiers. A course that grades identifier accuracy while
+   shipping a wrong coverage table hands that reviewer their first finding.
+3. Build item 2 makes a pinned offline catalog the authority. Once the catalog
+   is in the repository, the alignment table stops being editorial and becomes
+   a claim checkable against a file.
+4. Section 7.1 preserves artifacts by copying them forward. A stale row
+   propagates unless it is killed first.
+
+**The fix, in three parts, and the order matters.**
+
+| # | Change | Verifies |
+|---|---|---|
+| 1 | **Generate the table, stop typing it.** Derive the week-to-technique table from the case files' `atlas:` fields, joined to the week assignment already in `content/course.yaml`, and write it into the page between markers. A gate regenerates and diffs | The table cannot claim what no case demonstrates, by construction. Both techniques leave without anyone having to remember them |
+| 2 | **Reduce three copies to one.** `docs/course-blueprint.md` and `docs/blueprint.html` link to the generated table rather than restating it. If either must restate it, `_all_authored()` has to include `docs/` so the gate reaches them | The three artifacts cannot disagree, because there is one artifact |
+| 3 | **`NAMED_ONLY` becomes prose-only.** Add a check that no `NAMED_ONLY` identifier appears inside any Markdown table row anywhere in `content/`. Every table in this course is a coverage claim, so a technique the course does not demonstrate has no business in one | The distinction the gate was missing becomes mechanical rather than a matter of judgment |
+
+**When: now, on `main`, before the `itsy2377` branch is cut.** The corrections
+and the generator both survive the rebuild, and cutting the branch first means
+doing the work twice. Cost is roughly half a day: the generator is perhaps
+sixty lines, the corrections are three edits, and the gate is a diff.
+
+Prove it the way the rubric shape checks were proven: reintroduce
+`AML.T0054` into the page by hand and confirm the gate fails.
+
+### 8.2 The simulator is the default, and nothing requires a live model
+
+**What is wrong.** `labs/config/lab.config.yaml:19` sets `provider: mock`, and
+the file's own comment explains why: "This is the default so Lab 1 runs before
+you have a key." Nothing downstream requires that setting to change.
+`verify_env.py:194` has a `check_live_call()`, but it only runs under `--live`.
+The Module 0 gate code is `HMAC(term_salt, "gate0:" + student_id)`
+(`labs/common/canary.py:64`), derived from the student ID alone. That derivation
+is deliberate and good, because it lets an instructor recompute the code
+without storing anything, but it means the gate carries no evidence that a
+model was ever called.
+
+The result: the course as shipped can be completed end to end with zero live
+model calls.
+
+**Does the redesign require the fix?** Yes. Section 4.3 already commits to it
+and section 2.5 retires "the mock as the graded path." But three things the
+redesign changes are worth naming, because they change what the fix costs.
+
+**1. A live model that does not fire the attack becomes a result rather than a
+failure.** Measured on `granite4.1:3b` at temperature 0, on the
+student-shaped baseline: A1 4/5, A2 0/5, A3 0/5, A4 5/5, A5 0/5, A6 5/5,
+S1 5/5, S2 5/5. Three of eight cases never fired. Under the current course
+that student's lab did not work. Under the redesign, week 4 grades whether the
+predicted verdict matched the observed one, so `NO_HITS_IN_5` on a small local
+model is a correct, gradeable observation about a real system. **The live
+default stops being punitive at the exact moment the redesign lands**, which is
+an argument for doing this one with the rebuild rather than ahead of it.
+
+**2. The mechanism to mix providers already exists and no case uses it.**
+`labs/harness/runner.py:383` reads `provider: mock` off an individual case and
+overrides the model for that case alone. Not one file in `labs/harness/cases/`
+or `labs/solution/cases/` sets it. So "live by default, with named
+demonstration cases pinned to the simulator" is a configuration change, not a
+code change.
+
+**3. Reports already carry provenance.** `labs/harness/report.py` records
+provider, model name, endpoint, temperature, seed and step limit, and stamps
+mock runs with a banner saying the numbers are "not evidence about how any real
+model behaves." The instrument is already honest. Only the default is wrong.
+
+**The honest limit, stated before the plan.** You cannot prove a live call from
+a script the student runs. They control the configuration, the code and the
+network, and any local attestation is forgeable by anyone who reads the file
+that produces it. This course teaches people to read that file. So the goal is
+not proof. It is making the offline path visibly different, unprofitable, and
+easy for an instructor to notice.
+
+**What actually works: the simulator has a fingerprint.** Measured, the mock
+returns 8 of 8 cases VULNERABLE at 5/5. No local model measured in this project
+has done that, and the granite numbers above are why. A submitted report in
+which every case landed 5 of 5 on a 3B model is a run worth opening. That is a
+flag for instructor review, never an automatic penalty, because a capable model
+could in principle produce it and a rule that fails honest students is worse
+than the problem it solves.
+
+**The fix, in five parts.**
+
+| # | Change | Where |
+|---|---|---|
+| 1 | `provider: openai_compatible` becomes the shipped default; `mock` is documented as the fallback, with the comment rewritten | `labs/config/lab.config.yaml:19` |
+| 2 | Worked-example cases pin themselves to the simulator so demonstrations stay deterministic | `provider: mock` in the case YAML, read at `runner.py:383` |
+| 3 | `verify_env.py` runs the live check by default; `--offline` becomes the opt-out and `--live` retires | `verify_env.py:194` and its argument parser |
+| 4 | The rubric reads the report's provenance block, so provider and endpoint are graded facts rather than trusted ones | `report.py`, already written |
+| 5 | The claims linker flags an all-5/5 verdict profile for review | Build item 7, section 4.2 |
+
+**Two things this plan does not settle, and both need an owner.**
+
+**The grade cap has never been stated.** Section 2.5 says the simulator is
+"kept as a fallback with a stated grade cap." Nobody has stated it. What the
+maximum grade is for work that cannot demonstrate the outcome is an academic
+policy question, and it belongs to whoever signs the syllabus.
+
+**A cap must not land on the student who had no other option.** Student C, on
+the locked-down loaner, depends on Codespaces for inference, and section 5.5
+records that as the one place they depend on a quota. Making live the graded
+path puts the students with the least equipment on the thinnest margin. If a
+student cannot serve a model, that is an accommodation to arrange, not a grade
+to cap. The two cases have to be distinguished in the policy or the policy will
+punish the wrong people.
+
+---
+
+## 9. Setup and environment video
+
+### 9.1 The gap
+
+Section 6.2 lists eight concept videos and four walkthroughs, and not one of
+them shows a student how to get a working environment. The current course has
+the same gap: `orientation.yaml` covers the day 3 deadline and the Rules of
+Engagement, not setup. Setup exists only as prose, in `labs/README.md` (three
+options: own computer, container or Codespaces, college computer with no
+internet) and in `content/pages/course-material.md`.
+
+That is the wrong thing to teach only in writing. Week 1 attrition in a course
+whose first deadline falls on day 3 is the highest-cost failure this course
+has, and `scripts/build_wheels.py` already names the student it is about in its
+own docstring: "A student who cannot install anything in week 1 does not fall
+behind, they withdraw."
+
+### 9.2 What the pipeline can and cannot record
+
+This constrains the video list, so it comes first.
+
+The recorder is VHS running inside a Linux container built from
+`mcr.microsoft.com/devcontainers/python:3.12-bookworm` (`content/video/config.yaml`).
+It records a terminal. It cannot record a Windows desktop, so not the Microsoft
+Store and not a Defender prompt; it cannot record a browser, so not the
+Codespaces launch flow and not GitHub's web interface; it cannot record a
+macOS installer; it cannot record anything involving a mouse.
+
+**That is a property, not a limitation to route around.** The recording is
+checkable precisely because it is text: `tools/video/check.py` greps the
+`.ascii` capture for answer strings, which is how the no-spoiler gate reads a
+real artifact instead of trusting an intention. A GUI recording is pixels, and
+no gate can read it.
+
+So each setup path has to be classified by what it needs to show:
+
+| Path | What has to be shown | Recordable today |
+|---|---|---|
+| Student A, macOS or Linux | Python version, virtual environment, pip, `verify_env.py` | **fully** |
+| Student A, Windows | PowerShell is a shell, but the install is a Store or python.org GUI | partly |
+| Student B, free cloud | Shell once the instance exists; creating it is a browser | partly |
+| Student C, locked loaner | Microsoft Store, then Codespaces in a browser | **no** |
+| Model install | Installer GUI on Windows and macOS; a shell on Linux | partly |
+
+Three ways to cover the GUI parts:
+
+| Option | What it is | Verdict |
+|---|---|---|
+| A. Slide-only, narrated | Describe the GUI steps over the existing layouts | Weakest. A student who cannot find the button is not helped by a sentence about the button |
+| B. **Screenshot stills as a new slide layout** | Checked-in PNGs of the real interface, narrated, click target marked in the accent colour | **Recommended.** The build stays deterministic and offline, the student sees the real interface, and the PNG is a tracked artifact like everything else here |
+| C. Live browser capture | Playwright drives github.com and Codespaces, recorded | Rejected. It makes the build depend on a third-party site, an account and the network, and a course build that logs into GitHub is a credential in a pipeline |
+
+**Option B's cost, stated rather than glossed.** Vendor interfaces go stale and
+both Microsoft and GitHub redesign without notice, so budget a screenshot
+re-shoot each term alongside the framework re-verification pass the blueprint
+already calls for. And reproducing a vendor interface in course material is
+ordinary educational use, but it is someone else's trade dress: route it to
+whoever handles courseware licensing, the same way the ATLAS attribution
+question was routed, rather than deciding it here.
+
+### 9.3 The five videos
+
+| id | Title | Records |
+|---|---|---|
+| `setup-a-native` | Your own computer: Python, a virtual environment, and the check that says it worked | Terminal, fully recordable |
+| `setup-b-cloud` | A free cloud instance, from empty to a green environment check | Stills to create it, terminal for the rest |
+| `setup-c-loaner` | A locked-down school laptop: Store Python, the offline wheel bundle, and Codespaces for the model | Mostly stills |
+| `setup-model` | Getting a model to answer: Ollama, the endpoint, and what the live check proves | Installer stills, terminal for the rest |
+| `setup-when-it-breaks` | The failures that stop week 1, and what each one looks like | Terminal, fully recordable |
+
+**The last one is the cheapest and probably the most valuable.**
+`verify_env.py` already emits named checks: Python version, virtual
+environment, packages, config, no secret in config, canary, offline agent,
+target files, write access, live call. A video that deliberately breaks each
+one and shows the exact failure text needs no stills, no new layout and no
+vendor screenshot, and it turns the most common week 1 support tickets into
+something a student can diagnose alone at eleven at night. It should be built
+first, because it is buildable today.
+
+These embed on a new `setup-guide.md` page rather than on
+`course-material.md`. Not for length: that page measures 640 weighted words
+against a 900 budget and has room. It is a topic split. `course-material.md`
+answers "what am I using and who licensed it," and setup answers "how do I get
+it running," and a student hunting the second question at eleven at night
+should not have to read past a licence table to find it.
+
+### 9.4 What the pipeline needs
+
+Three small items, all following patterns that already exist.
+
+1. **A `stills` slide layout.** One PNG, an optional caption, an optional
+   marked click target. `LAYOUTS` in `tools/video/schema.py` gains one entry,
+   `slide.html.j2` gains one branch, and the theme needs a frame treatment so a
+   screenshot reads as a screenshot rather than as course art.
+2. **A gate.** Every still exists, is a PNG, is under a size ceiling, and
+   carries an `alt` string. Diagram scenes already require `alt`, so this
+   follows the established rule rather than inventing one.
+3. **A shot list per still**, recording what was captured, on which OS build,
+   on what date. The term re-shoot then has a checklist instead of a memory.
+
+The `explains:` field and the staleness gate need no change: a setup video
+whose page changes gets marked stale by name automatically.
+
+### 9.5 What this does to the count
+
+Five videos, two fully recordable today, three needing the stills layout,
+roughly 18 to 22 minutes.
+
+Worth saying plainly: **the reduction claimed in section 6.2 disappears once
+setup is covered.** Twelve becomes seventeen, which is what the current course
+ships. The trade is four videos of agent construction for five videos of
+getting started. That is the better trade, but it is a trade and not a saving,
+and the build estimate in section 6.4 should carry it rather than absorb it.
+
+---
+
+## 10. Optional module: turning the course into a portfolio
+
+### 10.1 Why this is worth building, and why it could not be built before
+
+Today the entire treatment is one sentence.
+`content/pages/final-wrap-up.md:62` says "Your repository and your findings
+document are portfolio work. Clean them up," and stops. The course also never
+teaches version control: the only git commands in student-facing content are
+the two in `content/assignments/checkpoint1.md` that recover a broken agent
+from a fallback branch. GitHub appears in the course only as URLs pointing at
+other people's projects.
+
+**The re-architecture is what makes this module safe.** Under the current
+course the graded work is fill-in-the-blank extension points, so a public
+repository of completed work is an answer key for the next cohort.
+`labs/scripts/build_student_repo.py` exists specifically to keep answers away
+from students; publishing would undo it from the other end.
+
+Under the redesign the graded work changes character. What a student produces
+is `surface.yaml`, `threat-model.yaml`, `atlas-adjudication.csv`,
+student-authored cases, `plan-verification.jsonl`, `rules.py`, `triage.py`,
+`metrics.json`, `explanation.json`, `impact.jsonl`, an implemented control and
+a report. That is analysis of the student's own uniquely seeded target,
+anchored to their own canary, and section 4.4 gives each student one of four
+misconfiguration variants so one student's surface map is not another's answer.
+
+**One blocking dependency, and it is load bearing.** That per-student variant
+is a build item, not built. Until it lands, two students on the same variant
+have interchangeable week 2 work and this module should not ship.
+
+### 10.2 What a student publishes, and what they must not
+
+| Publish | Why it is worth publishing |
+|---|---|
+| The findings report | The strongest artifact the course produces, written to a professional template, every claim linked to a recorded check. This is the thing that gets someone read |
+| `threat-model.yaml` and `atlas-adjudication.csv` | Judgment work, and it shows a reader the student scored a model's proposals rather than trusting them |
+| `metrics.json` and the two confusion matrices | Numbers with a stated method behind them |
+| The week 6 explanation comparison | The rarest thing in an entry-level portfolio: someone who can say what their detector cannot be trusted to decide |
+| The written account of where the instrument was wrong | Already required in the final block. It reads as maturity, not as failure |
+
+| Do not publish | Why |
+|---|---|
+| `rules.py` and `triage.py` verbatim | Detection logic is general and transfers between students in a way a seeded surface map does not. Publish the method, the metrics and a reduced excerpt |
+| Any file containing a canary token | See 10.3. This one has a real consequence |
+| `.env`, ever | Obvious, and worth a video anyway, because it is the mistake people actually make |
+| Anything from `solution/`, `reference/` or `demo/` | It is not in the student repository and it is not theirs |
+
+### 10.3 Three hazards, specifically
+
+**1. A published canary can identify the student who published it.**
+`labs/common/canary.py` derives a token as `HMAC(term_salt, "name:student_id")`
+truncated to twelve hex characters, and `DEFAULT_TERM_SALT` is a literal in the
+file, published on purpose. The instructor is expected to set `LAB_TERM_SALT`
+per term. If a student publishes evidence containing a token while the salt is
+the default, or if the salt later leaks, anyone can compute the token for every
+plausible student ID and match it. College IDs are a small, guessable space.
+This is not hypothetical arithmetic; it is one loop over a number range.
+
+So the module needs a scrubber that runs before anything is pushed: a script
+that walks a directory, finds anything matching the canary pattern
+`CANARY-[A-Z]+-[0-9a-f]{12}` and the gate code pattern
+`M0-[A-Z0-9]{5}-[A-Z0-9]{5}`, replaces each with a stable placeholder, and
+refuses to exit clean if any survived. That is the same shape as step 4 of
+`build_student_repo.py`, and for the same reason: a promise is not a control.
+
+**2. Neither repository has a LICENSE file.** Verified: `git ls-files` returns
+nothing matching in either the course repository or `labs/`.
+`content/pages/course-material.md` states that instructor-written material is
+CC BY 4.0, but a student publishing a repository derived from unlicensed code
+is publishing something whose terms nobody wrote down. Before this module
+ships, the labs repository needs a licence chosen and a file added, and the
+module needs one page saying what the student may relicense (their own work)
+and what they must attribute (the course's).
+
+**3. The Rules of Engagement do not expire at the end of term.**
+`where-to-go-next.md` already makes this point about practice targets. A public
+portfolio is a public claim about security work, and a public claim invites
+someone to ask what else was tested. The module says plainly that the report
+describes a target built to be attacked, that the README says so in its first
+line, and that nothing in the repository implies access to any system the
+student was not given.
+
+### 10.4 The module
+
+**Ungraded, open from day 1, never closes.** Modelled on `m09 Where To Go
+Next`, which is already exactly that shape (`content/course.yaml:245`).
+
+**Placement: extend `m09` rather than add a module.** A student thinking about
+what comes next is already on that page, and the portfolio is the same question
+answered concretely.
+
+| Page | What it does |
+|---|---|
+| `portfolio-what-to-publish.md` | The two tables from 10.2, and the scrubber command |
+| `portfolio-git-and-github.md` | Enough git to publish and keep publishing: clone or init, add, commit, a remote, push, and what `.gitignore` is for. No branching model, no rebase, no pull requests |
+| `portfolio-the-readme.md` | The highest-value artifact and the one people get wrong. What the repository is, what was in scope, what the evidence proves, what it does not, how to reproduce. With a worked example |
+| `portfolio-beyond-this-course.md` | Profile README, pinned repositories, commit history as evidence of process, and the honest note that a thin portfolio with one real report beats six tutorials |
+
+**Assessment: none, deliberately.** Grading a portfolio would bring the
+college's academic integrity and publication policies to bear on it, and it
+would force every student to hold a GitHub account, which reintroduces an
+external account and a minimum age of 13 into a course built to need neither.
+Optional is the correct status and it should stay optional even if it becomes
+popular.
+
+### 10.5 The videos
+
+| id | Title | Records |
+|---|---|---|
+| `portfolio-publish` | From a finished course repository to a published one, including the scrub step | Terminal, fully recordable |
+| `portfolio-readme` | Writing the README that makes someone read the report | Slides, fully renderable |
+| `portfolio-profile` | What a hiring reader actually sees: the profile, the pinned repositories, the first fifteen seconds | Stills of GitHub's interface, so it needs the 9.4 layout |
+
+**One thing to get right rather than discover.** `portfolio-publish` records a
+`git push`, and pushing to github.com from a build is exactly the third-party
+dependency 9.2 rejected. Record against a local bare repository inside the
+container instead. Be honest in the narration that the output is not identical:
+a local remote prints no `remote:` lines and no URL, so the narration says the
+student's push will also print the address it went to.
+
+### 10.6 What it costs
+
+| | Count |
+|---|---|
+| Pages | 4 |
+| Videos | 3, roughly 12 minutes |
+| New code | One scrubber, perhaps 80 lines, plus a test |
+| Blocking dependency | Per-student target variant, section 4.4 |
+| Policy dependency | A LICENSE file for the labs repository |
+| Assessment impact | None, by design |
+
+The scrubber is the only part that must exist before the module opens.
+Everything else is authoring, and none of it blocks a week of instruction.
