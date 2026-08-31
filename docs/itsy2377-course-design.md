@@ -227,10 +227,10 @@ starting from what exists.
    already costs ITSE 1359, and it would carry Basic Scripting and Programming,
    a required AICyber foundational unit currently without a home. One decision
    settles two problems.
-2. **Which model, and hosted or local?** Requiring live model use raises cost,
-   privacy and reliability questions the current course avoids by defaulting to
-   the simulator. Measured earlier: a 3B local model is reliable for some
-   assessment steps and not others.
+2. ~~**Which model, and hosted or local?**~~ **Closed.** Local, and
+   `granite4.1:3b`. Section 11 measures why: it is the only model that is both
+   licence-clean and able to complete the two-turn tool loop, and it is also
+   the fastest of those that work. Section 12 pins it into a portable bundle.
 3. **Does week 5 fit?** It was the most-criticised week in every design.
    Building two detectors and scoring both against a labeled corpus in seven
    days is the heaviest single week here.
@@ -383,6 +383,8 @@ Seven new pieces, ordered by the week that needs them.
 | 6 | **Occlusion driver** | Week 6 | Runs the student's triage step with one evidence feature removed at a time and records the flips. Perhaps forty lines, no libraries |
 | 7 | **Claims linker** | Final block | Checks that every claim in the report cites a check, and that every cited check passed. Turns "comprehensive report" from a rubric adjective into a machine-verified property |
 
+| 8 | **`scripts/build_portable_bundle.py`** | Week 1, student C | Assembles the no-install bundle section 12 locks: the CPU-only Ollama subset, the `granite4.1:3b` blob, the Python embeddable runtime, the labs and the offline wheels, plus the three licence files that have to travel with them. Same shape as `build_wheels.py` and `build_student_repo.py`, and like those it must refuse to finish if a piece is missing |
+
 Two more arrive with the later sections and are listed there rather than here,
 because neither is required for a week of instruction: the **evidence
 scrubber** that strips canary tokens before a student publishes anything
@@ -443,8 +445,9 @@ because free tiers move.
 |---|---|---|---|
 | Labs | Native Python, Windows or macOS | Native Python on the instance | **Native Windows Python** |
 | Install | pip, or the offline wheel bundle | pip | **Microsoft Store Python plus the wheel bundle, no admin needed** |
-| Model | Ollama or llama.cpp locally | Same | **Codespaces, for inference** |
+| Model | Ollama or llama.cpp locally | Same | **The portable bundle, section 12** |
 | Cost | none | none | none |
+| Fallback if blocked | n/a | n/a | Codespaces, on its quota |
 
 **The labs themselves are portable and this was designed in, not discovered.**
 An audit of the lab code found no POSIX-only imports, no `os.fork` or POSIX
@@ -461,6 +464,11 @@ about: "Some college lab images block PyPI outright. A student who cannot
 install anything in week 1 does not fall behind, they withdraw."
 
 ### 5.2 GitHub Codespaces, with the numbers corrected
+
+Codespaces is student B's path by choice and student C's fallback, not their
+plan. Section 12 locks a portable bundle for student C instead, which removes
+the only place in the design where a student depended on a quota. The numbers
+below still matter, because a fallback that is never costed is not a fallback.
 
 | | Free personal account | Verified student, Education pack |
 |---|---|---|
@@ -1311,90 +1319,117 @@ than half the field in two and a half minutes, before any suite ran.
 
 ---
 
-## 12. A model on a USB stick, for the student who cannot install anything
+## 12. The portable bundle (decided)
 
-Section 5.5 held inference for the locked-down loaner as the one place a
-student depends on a quota, and assumed Ollama needs an installer. It does
-not. This section is what was measured against the published artifacts on
-31 August 2026, pinned to Ollama v0.33.2.
+**Decision: student C runs the model from a no-install bundle. Codespaces
+becomes their fallback rather than their plan.** This removes the only place in
+the design where a student depended on a quota.
 
-### 12.1 The three facts that make it plausible
+**The assumption this rests on, stated plainly:** that a college loaner will
+execute a signed, user-path binary. That has not been tested on a real image
+and it is a policy question, not a technical one. Everything else below is
+measured. Section 12.5 is what would falsify the assumption and what happens
+then.
 
-**There is a standalone build.** `ollama-windows-amd64.zip` ships on every
-release. Ollama's own Windows documentation states that installation "does not
-require Administrator privileges" and defaults to the home directory, and the
-standalone zip is offered for exactly the case where the installer is not
-wanted.
+Measured on 31 August 2026 against Ollama v0.33.2.
 
-**Almost all of that 1.46 GB is GPU code a loaner cannot use.** Reading the
-zip's central directory without downloading it: 71 files, of which the CUDA
-v12 and v13, Vulkan and ROCm trees are 1,868 MB. `cublasLt64_12.dll` alone is
-692 MB.
+### 12.1 Why it works
 
-| Bundle | Files | Size |
+**There is a standalone build and it needs no installer.**
+`ollama-windows-amd64.zip` ships on every release, and Ollama's Windows
+documentation states that installation "does not require Administrator
+privileges." `ollama.exe serve` runs as a plain user process; the service
+wrapper is optional and not used here.
+
+**Almost all of the 1.46 GB download is GPU code a loaner cannot use.** Read
+from the zip's central directory without downloading it: of 71 files, the CUDA
+v12 and v13, Vulkan and ROCm trees are 1,868 MB, and `cublasLt64_12.dll` alone
+is 692 MB.
+
+| | Files | Size |
 |---|---|---|
-| Full `ollama-windows-amd64.zip` | 71 | 1,460 MB compressed |
-| **CPU-only subset** | **30** | **74.6 MB unpacked, 26.1 MB zipped** |
-
-The CPU subset is `ollama.exe` at 36.8 MB, the llama and ggml runtime DLLs, and
-one `ggml-cpu-*.dll` per instruction-set generation from haswell up. Nothing
-else is needed to serve a model on a machine with no discrete GPU.
+| Full `ollama-windows-amd64.zip` | 71 | 1,460 MB |
+| **CPU-only subset, which is what ships** | **30** | **74.6 MB unpacked** |
 
 **The binaries are signed.** `ollama.exe` and `libllama.dll` both carry an
-Authenticode certificate table naming Ollama and issued through DigiCert,
-verified by parsing the PE certificate directory of each. This matters more
-than size: Defender's Attack Surface Reduction rule for removable media blocks
-untrusted and **unsigned** processes, and a signed binary from a known
-certificate authority is also what keeps SmartScreen quiet.
+Authenticode certificate table naming Ollama, issued through DigiCert, verified
+by parsing each file's PE certificate directory. This is the single most
+important fact in the section: Defender's Attack Surface Reduction rule for
+removable media blocks untrusted and **unsigned** processes, and a binary
+signed by a known certificate authority is also what keeps SmartScreen quiet.
 
-### 12.2 The bundle, sized
+### 12.2 What ships
 
-| Component | Size | Notes |
+| Component | Size | Licence |
 |---|---|---|
-| Ollama, CPU-only subset | 75 MB | Signed. `ollama.exe serve` needs no service and no admin |
-| granite4.1:3b weights | 2.10 GB | The blob, byte-identical to the Hugging Face GGUF |
-| Python 3.12 embeddable | 11 MB | A zip from python.org, no installer |
-| The labs and the offline wheel bundle | small | `scripts/build_wheels.py` already builds it |
-| **Total** | **about 2.2 GB** | Fits any USB stick, with room for the student's own work |
+| Ollama, CPU-only subset | 75 MB | MIT |
+| `granite4.1:3b` weights | 2.10 GB | Apache 2.0 |
+| Python 3.12 embeddable runtime | 11 MB | PSF |
+| The labs and the offline wheel bundle | small | course licence, section 10.3 |
+| **Total** | **about 2.2 GB** | |
 
-`OLLAMA_MODELS` redirects model storage to the stick, so nothing is written to
-the machine's profile.
+**All three third-party licences permit redistribution and all three require
+their text to travel with the binaries.** The college is handing out somebody
+else's compiled code, so `build_portable_bundle.py` copies the MIT text, the
+Apache 2.0 text and the PSF text into the bundle and refuses to finish if any
+is missing. That is the same mechanism as `build_student_repo.py` refusing to
+publish a tree that still holds an answer key: a promise is not a control.
 
-### 12.3 What is still unknown, and it is the part that decides it
+`OLLAMA_MODELS` points at the bundle directory, so nothing is written into the
+machine's profile that the student did not put there.
 
-Everything above is about the artifacts. None of it is about the college's
-image, and the image is what will actually say yes or no.
+### 12.3 The profile first, the stick second
 
-| Risk | Why it could block, and what would settle it |
+**Prefer the user profile.** The requirement is "no installer, no
+administrator," not "must be removable media." If the loaner allows writing to
+`%USERPROFILE%`, which nearly every image does, the bundle lives there and the
+removable-media rules never engage at all. That avoids one of the two main
+policy risks outright, and it costs nothing.
+
+**The stick is the fallback within the fallback**, for a machine whose profile
+is wiped between sessions or too small for 2.2 GB.
+
+**This also settles a budget question before it is asked.** The program cannot
+buy hardware, and it does not have to: the bundle is a download the student
+copies into their own profile. A stick is only needed in the wiped-profile
+case, and most students already own one.
+
+### 12.4 What this changes elsewhere
+
+| Section | Change |
 |---|---|
-| **AppLocker** | If enabled with default rules, non-administrators may execute only from `Program Files` and `Windows`. A USB path is neither. This is the likeliest blocker and it is pure policy |
-| **Application Control (WDAC)** | Stricter still. Signed by DigiCert helps, but a policy that trusts only Microsoft-signed code would refuse both the exe and the DLLs |
-| **Removable storage policy** | Some images block USB mass storage outright, which ends the question before any of this matters |
-| **Python embeddable** | Deliberately restricted: no pip, and a `._pth` file that constrains `sys.path`. Whether the labs run under it is untested and it is the least certain component in the bundle |
-| **Hardware** | The weights need roughly 2.5 to 3 GB of RAM resident, and a first load reads 2.1 GB off the stick. USB 3 makes that seconds; USB 2 makes it a minute. Inference speed on that CPU is unmeasured |
+| 5.1 | Student C's model path is the bundle; Codespaces is listed as their fallback |
+| 5.2 | Codespaces is student B's choice and student C's fallback, not the inference plan. Its numbers still have to hold, because an uncosted fallback is not one |
+| 2.6 | Open question 2, which model and hosted or local, is closed: local, `granite4.1:3b` |
+| 4.2 | New build item 8, `scripts/build_portable_bundle.py` |
+| 9.3 | `setup-c-loaner` gets easier to film. Copy a folder, run two commands. It still needs stills for the Windows shell, since the recorder is a Linux container, but the browser walkthrough of the Codespaces launch flow moves to the fallback video where fewer students will need it |
 
-### 12.4 What to do about it
+### 12.5 What would falsify the assumption, and what happens then
 
-**One test settles the whole thing, and it is the same half hour section 5.5
-already asked for.** Take one real loaner, a stick with the bundle on it, and
-in order: does the stick mount, does `ollama.exe serve` start, does
-`ollama run granite4.1:3b` answer, does the embeddable Python run
-`verify_env.py`, and how long does one harness case take. Each step that fails
-names its own blocker, and a failure at step 2 or 3 is an AppLocker or
-Application Control finding to take to IT rather than a dead end.
+Four things could still say no, and the first two are the real ones.
 
-**Ask IT the question directly, in parallel.** "Does the standard loaner image
-enforce AppLocker or Application Control, and does it allow signed executables
-from removable media" is answerable in an email by the person who owns the
-image, and it costs nothing to ask before building the stick.
+| Risk | Effect |
+|---|---|
+| **AppLocker** with default rules | Non-administrators may execute only from `Program Files` and `Windows`. A profile path is neither. This is the likeliest blocker and it is pure policy |
+| **Application Control (WDAC)** | A policy trusting only Microsoft-signed code refuses both the exe and the DLLs, signature notwithstanding |
+| **The Python embeddable runtime** | Deliberately restricted: no pip, and a `._pth` file that constrains `sys.path`. Whether the labs run under it is untested and it is the least certain component in the bundle |
+| **Hardware** | The weights need roughly 2.5 to 3 GB resident. Inference speed on a loaner CPU is unmeasured |
 
-**If it is blocked, the fallbacks are ordered.** First, ask for the bundle path
-to be allow-listed by publisher certificate, which is a narrow ask because the
-binaries are signed. Second, Codespaces as today, with its quota. Third, an
-instructor-hosted endpoint on the existing virtual private server, which costs
-money and reintroduces a dependency the design deliberately removed, so it is a
-last resort rather than a plan.
+**Two actions, and one is free.** Ask whoever owns the loaner image, by email,
+whether it enforces AppLocker or Application Control and whether it permits
+signed executables from a user profile. Then run the half hour section 5.5
+already asked for, in order: does the bundle copy, does `ollama.exe serve`
+start, does the model answer, does the embeddable Python run `verify_env.py`,
+and how long does one harness case take. Each failure names its own blocker.
 
-**This is worth the half hour regardless of the answer**, because it converts
-the one remaining quota dependency in the design into either a solved problem
-or a documented institutional constraint with a named owner.
+**If it is blocked, the fallbacks are ordered.** Ask for an allow-list entry by
+publisher certificate first, which is a narrow request precisely because the
+binaries are signed. Codespaces second, on its quota. An instructor-hosted
+endpoint third, which costs money and reintroduces the dependency this decision
+removed, so it is a last resort and not a plan.
+
+**Confirm before the syllabus is signed, not before the build starts.** Nothing
+in sections 6 through 11 depends on the answer: the labs, the harness and the
+content are identical on all three paths. What changes if the answer is no is
+one setup video and one page, which is why this can be locked now and checked
+later.
