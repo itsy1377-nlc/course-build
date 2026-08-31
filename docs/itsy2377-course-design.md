@@ -1433,3 +1433,53 @@ in sections 6 through 11 depends on the answer: the labs, the harness and the
 content are identical on all three paths. What changes if the answer is no is
 one setup video and one page, which is why this can be locked now and checked
 later.
+
+---
+
+## 13. The browser runtime, assessed and declined
+
+A browser-hosted Linux VM exists and works: `bashtion-wasm` boots a real
+x86_64 kernel with systemd under QEMU compiled to WebAssembly, restoring a
+snapshot to a login prompt in 13 to 15 seconds. The question was whether it
+could also serve the model, giving student C a course that needs no executable
+on disk at all. Full assessment: `docs/browser-runtime-assessment.md`.
+
+**Decided: no, not as the primary path.** Three findings settle it.
+
+**Inside the VM is arithmetically impossible.** The guest has 512 MB of RAM
+and one emulated CPU, inside a wasm32 module budgeted at 2,300 MB against a
+4 GB hard ceiling. The capability floor from section 11 is a 3.4B model, about
+2.24 GB at Q4. Raising guest RAM does not help, because the requirement
+exceeds the whole module's budget.
+
+**In the page is possible, and the plumbing is genuinely cheap.** virtio-serial
+is already compiled into the shipped binary and the guest kernel has it built
+in; measured from this course's own 2,301 recorded traces, the channel needs
+0.8 to 1.5 KB/s, three orders of magnitude below what the transport does. The
+runtime would be wllama rather than WebLLM, because WebLLM's tool calling is
+gated to a five-model allowlist and its multi-turn loop is structurally broken
+in a way that silently drops the tool call from the prompt.
+
+**It is declined on failure asymmetry, not on difficulty.** The portable
+bundle fails loudly: the executable does not launch, immediately and
+reproducibly. Every browser failure mode is silent and per-machine: hardware
+acceleration disabled by policy returns a null adapter that feature detection
+does not catch, session-only cookies cap the whole origin at 300 MB in a way
+`storage.estimate()` cannot pre-flight, and the cache wipe on exit does not
+fire when the browser exits uncleanly. Trading a verified 12 to 22 minute
+experience with a loud failure for an unverified 20 to 70 minute one with five
+quiet failures, to save a download of the same size, is the wrong trade for
+this course.
+
+**One experiment from that assessment should be run regardless, and soon.**
+No licence-clean model under 2 GB has ever been tested at Q4 for the two-turn
+tool loop. Section 11 measured the floor at 3.4B under Ollama at its default
+quantisation, and Q4 is exactly the kind of change that breaks a marginal
+capability. **The portable bundle ships a Q4 model to a CPU-only machine, so
+this question is already load bearing for the path that was chosen.** Half a
+day with `llama-server` and `student_run.py` answers it.
+
+**What would reverse this decision:** evidence that application control blocks
+the bundle from executing on the actual loaner fleet. Then the browser path is
+not an improvement, it is the only one, and section 12.5's email to whoever
+owns the image is what tells us.
