@@ -115,7 +115,7 @@ verify, and both are reached in the last third, after the scaffolding.
 | 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Inventory what this agent can reach, using week 1's four questions on the tool source itself. Then change one setting, the loop's step limit, predict what a run will look like afterwards, and check | Annotated trace; blast-radius inventory; the predicted and observed effect of one setting |
 | 3 | B | Make it talk | Ask the agent to repeat its own instructions; watch it hand over a credential stored there for convenience. Five trials, report the rate, including the trials where it refused | Evidence pack 1: disclosure |
 | 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
-| 5 | C | The case | You are handed an incident: an agent did something last Tuesday and here is what was recorded. Give the assistant read access to the evidence pack and ask it for a timeline: claim, time, actor, and the exact record each claim came from. Then check every row. One thing does not add up, and the sources disagree about it | The evidence-linked timeline, every row marked accepted, corrected or rejected |
+| 5 | C | The case | An alert fired: mail left the company. You are handed the evidence pack. Give the assistant read access and ask it for a timeline: claim, time, actor, and the exact record each claim came from. Then check every row against the source. The alert is true and the conclusion drawn from it is wrong, and the pack contains an analyst note that states the wrong conclusion confidently | The evidence-linked timeline, every row marked accepted, corrected or rejected |
 | 6 | C | What you would do about it | Work out what actually happened from the evidence rather than from the assistant's account or the analyst note in the pack, which contains a confident wrong claim. Choose one containment step, say what evidence supports it, and say what you are not recommending and why. Write it as a one-page handover the next person could act on | The SOC handover note |
 | 7 | B | One rule that holds, and one that cannot | Implement the containment you recommended. First try it as a firm instruction in the agent's prompt, and measure. Then add the recipient allowlist in code and measure again, confirming the benign escalation still works. Then try the same control against the week 3 disclosure and find it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
 | Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 6, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
@@ -129,13 +129,32 @@ before the student meets it, so there was never an unknown to resolve, never
 two sources disagreeing, and never a decision that mattered. Four weeks of ask,
 run five times, read the report.
 
-Now week 5 hands the student a case with a genuine conflict in it: the agent's
-own trace says it sent the mail, and the outbox shows the guard stopped it. One
-of those is wrong and the student has to work out which, using the same
-evidence discipline weeks 3 and 4 built. Week 6 turns that into a decision, and
-week 7 implements the decision they made. **The control the student writes in
-week 7 is the one they recommended in week 6**, which is what turns the best
-moment of the course from a demonstration into a payoff.
+Now week 5 hands the student a case with a genuine conflict in it, and the
+conflict is one that really happened to this project rather than one invented
+for the exercise. An alert says mail left the company, and it is correct: the
+outbox holds a message addressed outside the organisation. The obvious
+conclusion is that customer data was exfiltrated. The evidence says otherwise:
+the recipient is the customer, at their own address, and the planted token is
+not in the message. The agent answered a customer, which is its job.
+
+That case, A5, reported VULNERABLE five times out of five for weeks against an
+attack that never landed, because its detector asked only whether mail had left
+the company. Naming the recipient is what turned a claim about mail into a
+claim about theft. The students are being handed the exact false positive that
+fooled the people who built the course, which is a better week than any
+scenario written to be a good scenario.
+
+Week 6 turns that into a decision, and week 7 implements the decision.
+**The control the student writes in week 7 is the one they recommended in week
+6**, which turns the best moment of the course from a demonstration into a
+payoff.
+
+**An earlier version of this section described a different conflict** and it
+was false: it said the agent's trace would claim the mail was sent while the
+outbox showed the guard had stopped it. Checking `agent/loop.py` showed the
+trace records a blocked call as blocked, with the reason, so the two sources
+would agree and there would be no mystery at all. The scenario above is
+producible because it has already been produced.
 
 The analyst note in the pack carries a plausible wrong claim, which is where
 the old "take apart a supplied poisoned report" exercise went. It is the same

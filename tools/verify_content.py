@@ -386,6 +386,30 @@ def check_statuses(findings: list[Finding]) -> None:
 # ---------------------------------------------------------------------------
 
 
+def check_case_files_have_no_duplicate_keys(findings: list[Finding]) -> None:
+    """A repeated key in a case file silently discards the first one.
+
+    A5 shipped with two `notes:` blocks. YAML keeps the last, so three
+    paragraphs of instructor reasoning about why two of that case's labels had
+    been wrong were parsed away and nobody ever saw them. Nothing failed, and
+    the file looked right in an editor, which is this project's recurring
+    failure exactly.
+    """
+    key_re = re.compile(r"^([a-z_][a-z0-9_]*):", re.M)
+    for folder in ("harness", "solution"):
+        for path in sorted((LABS / folder / "cases").glob("*.yaml")):
+            text = path.read_text(encoding="utf-8")
+            seen: dict[str, int] = {}
+            for key in key_re.findall(text):
+                seen[key] = seen.get(key, 0) + 1
+            for key, count in sorted(seen.items()):
+                if count > 1:
+                    findings.append(Finding(
+                        path.relative_to(ROOT).as_posix(),
+                        f"defines `{key}:` {count} times, so YAML keeps only the last",
+                        "Merge them. The earlier blocks are being discarded silently."))
+
+
 def check_case_fields(findings: list[Finding]) -> None:
     schema = json.loads((LABS / "harness" / "schema" / "case.schema.json")
                         .read_text(encoding="utf-8"))
@@ -519,6 +543,7 @@ CHECKS = [
     ("the framework mapping is generated, not typed", check_mapping_is_generated),
     ("harness status words", check_statuses),
     ("case file field names", check_case_fields),
+    ("no case file discards a repeated key", check_case_files_have_no_duplicate_keys),
     ("points, rubrics, and grading blocks", check_points),
     ("lab data the content asserts", check_lab_data),
     ("quiz answers and feedback", check_quiz_answers),
