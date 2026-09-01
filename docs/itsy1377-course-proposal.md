@@ -112,13 +112,61 @@ verify, and both are reached in the last third, after the scaffolding.
 | Wk | Part | Title | What the student does | Artifact |
 |---|---|---|---|---|
 | 1 | A, B | Make it leak, then ask how you know | In the first half hour, before anything is explained: type the supplied request and watch the agent hand over the credential in its own instructions. Then the question the rest of the course answers, on the same page: how do you know it did that, rather than said it did? Only then the six pieces of syntax and the four questions, which arrive as the tools for answering it | The screenshot and the question answered in one paragraph; Rules of Engagement gate at 100 percent |
-| 2 | A | What is actually happening | Read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has. Inventory what this one can reach, using week 1's four questions on the tool source. Change one setting, predict the effect on a run, and check. Then go back and prove week 1's leak properly, with the token, over five trials | Annotated trace; blast-radius inventory; evidence pack 1, disclosure |
-| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict in writing what will happen before you run it. Run five trials. Then read the traces and report how far it actually got: did the agent read your document, did it obey, did it call a tool it was not asked to call, did anything leave | The student's own case file, the prediction, and the run with a written account of how far the chain went |
+| 2 | A | What is actually happening | Read the replay in plain English and mark just five lines: the first model decision, the first tool call, the first returned result, the step that could not be undone, and the step where untrusted text entered. Meet the shape every agent has. Inventory what this one can reach. Change one setting, predict the effect, and check. Then prove week 1's leak properly, with the token, over five trials | Five marked lines, not a full annotation; blast-radius inventory; evidence pack 1 |
+| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict what will happen before you run it. Run five trials, then read the traces and mark how far it got on a four-step scale: did the agent read your document, obey it, call a tool it was not asked to call, and did anything leave. **Your case goes into the class pool, and in week 7 it will be run against everybody's defenses** | The student's own case file, the prediction, and the four-step result |
 | 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
 | 5 | C | The case | An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask for a timeline: claim, time, actor, and the exact record each claim came from. Check every row against the source. The alert is true and the conclusion drawn from it is wrong, and the pack holds an analyst note stating the wrong conclusion confidently | The evidence-linked timeline, every row marked accepted, corrected or rejected |
-| 6 | C | What you would do about it | Work out what happened from the evidence rather than from the assistant or the analyst note. Choose one containment step, say what evidence supports it, and say what you are not recommending and why. Write it as a one-page handover the next person could act on | The SOC handover note |
-| 7 | B | One rule that holds, and one that cannot | Implement the containment you recommended. First as a firm instruction in the agent's prompt, and measure. Then as a recipient allowlist in code, and measure again, confirming the benign escalation still works. Then try the same control against week 1's disclosure and find it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
+| 6 | C | What you would do about it | Work out what happened from the evidence rather than from the assistant or the analyst note. Then fill the handover form: what happened, which record proves each line, who was affected, what the assistant got wrong, the one containment step you recommend, and one you rejected with the reason. It is a form with fixed fields, not an essay | The completed handover form |
+| 7 | B | One rule that holds, and one that cannot | Implement the containment you recommended. First as a firm instruction in the agent's prompt, and measure. Then as a recipient allowlist in code, and measure again, confirming the benign escalation still works. **Then run it against the class pool of attacks from week 3, none of which you wrote.** Then point the same control at week 1's disclosure and find it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, the pool result, and two sentences on why the last attempt could not work |
 | Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
+
+**Week 3's attacks come back in week 7, and that is the change that makes both
+weeks work.** In an earlier draft the student wrote an attack in week 3 and a
+control in week 7 and the two never met. Six independent readers noticed, and
+two of them proposed the same fix unprompted.
+
+Now every student's week 3 case goes into a class pool. In week 7, after their
+control passes against the shipped cases, they run it against the pool: a dozen
+attacks written by classmates, none of which they wrote and none of which they
+have seen. Their own attack, meanwhile, is being run against everybody else's
+control.
+
+That one change fixes four complaints at once, and adds no new deliverable:
+
+- **Week 3 stops being a guaranteed fizzle.** It was the only week that was the
+  student's own, and the design admitted the chain usually does not complete on
+  a small local model, so the week ended in a paragraph about how far a failure
+  got. Now the attack has a second life and a reason to be good.
+- **A control that only stops the attack you wrote is overfitted**, and this is
+  the cheapest possible way to teach that. The pool is a held-out test set, and
+  the students built it.
+- **Something finally fights back.** Every vulnerability in weeks 1 to 5 is
+  deliberate and announced. In week 7 the opposition is other people, who were
+  trying.
+- **It is the first thing in the course that is social.** A board showing which
+  attacks survived the most controls, and which controls stopped the most
+  attacks, costs nothing and is the only competitive moment in seven weeks.
+
+**How the pool moves, with no infrastructure and no accounts.** Cases are YAML.
+The instructor collects them, strips names, screens them, and posts one file.
+That is a Canvas upload, not a service. The screening matters and is not
+optional: the instructor reads every case before it is redistributed, both for
+scope and because a pooled attack is the one artifact in the course written by
+one student and run by another.
+
+**Per-student tokens still work in the pool**, because a canary detector derives
+the token at run time from whoever is running it. A classmate's case looks for
+*your* token in *your* environment, so the evidence stays unforgeable even
+though the attack is shared. That property was designed in for a different
+reason and it is what makes this possible.
+
+**Two of the worst hours also got shorter.** Six readers counted the
+deliverables unprompted and reached the same verdict: the course grades writing
+more than it grades doing. Week 2's full trace annotation, called "a highlighter
+worksheet with a cyber costume on", is now five marked lines. Week 6's one-page
+handover, called "an English essay with a cybersecurity skin", is now a form
+with fixed fields. Both keep what they were teaching and stop asking for prose
+to prove it.
 
 **Something happens in the first half hour, and that is deliberate.** An earlier
 draft opened with environment setup, then six pieces of syntax, then a
