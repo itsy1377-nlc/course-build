@@ -111,14 +111,38 @@ verify, and both are reached in the last third, after the scaffolding.
 
 | Wk | Part | Title | What the student does | Artifact |
 |---|---|---|---|---|
-| 1 | A | Six things and four questions | Get the environment running. Meet six pieces of syntax by name, with one example each: assignment, calling a function, `if`, `for`, `import`, and opening a file. Then four questions to ask of any script: what does it read, what does it change or send, can that be undone, and what decides whether it happens. Practise on three short scripts from 3c against bundled sample data, the last written by a coding agent | Code-reading worksheet; Rules of Engagement gate at 100 percent |
-| 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Inventory what this agent can reach, using week 1's four questions on the tool source itself. Then change one setting, the loop's step limit, predict what a run will look like afterwards, and check | Annotated trace; blast-radius inventory; the predicted and observed effect of one setting |
-| 3 | B | Make it talk | Ask the agent to repeat its own instructions; watch it hand over a credential stored there for convenience. Five trials, report the rate, including the trials where it refused | Evidence pack 1: disclosure |
+| 1 | A, B | Make it leak, then ask how you know | In the first half hour, before anything is explained: type the supplied request and watch the agent hand over the credential in its own instructions. Then the question the rest of the course answers, on the same page: how do you know it did that, rather than said it did? Only then the six pieces of syntax and the four questions, which arrive as the tools for answering it | The screenshot and the question answered in one paragraph; Rules of Engagement gate at 100 percent |
+| 2 | A | What is actually happening | Read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has. Inventory what this one can reach, using week 1's four questions on the tool source. Change one setting, predict the effect on a run, and check. Then go back and prove week 1's leak properly, with the token, over five trials | Annotated trace; blast-radius inventory; evidence pack 1, disclosure |
+| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict in writing what will happen before you run it. Run five trials. Then read the traces and report how far it actually got: did the agent read your document, did it obey, did it call a tool it was not asked to call, did anything leave | The student's own case file, the prediction, and the run with a written account of how far the chain went |
 | 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
-| 5 | C | The case | An alert fired: mail left the company. You are handed the evidence pack. Give the assistant read access and ask it for a timeline: claim, time, actor, and the exact record each claim came from. Then check every row against the source. The alert is true and the conclusion drawn from it is wrong, and the pack contains an analyst note that states the wrong conclusion confidently | The evidence-linked timeline, every row marked accepted, corrected or rejected |
-| 6 | C | What you would do about it | Work out what actually happened from the evidence rather than from the assistant's account or the analyst note in the pack, which contains a confident wrong claim. Choose one containment step, say what evidence supports it, and say what you are not recommending and why. Write it as a one-page handover the next person could act on | The SOC handover note |
-| 7 | B | One rule that holds, and one that cannot | Implement the containment you recommended. First try it as a firm instruction in the agent's prompt, and measure. Then add the recipient allowlist in code and measure again, confirming the benign escalation still works. Then try the same control against the week 3 disclosure and find it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
-| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 6, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
+| 5 | C | The case | An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask for a timeline: claim, time, actor, and the exact record each claim came from. Check every row against the source. The alert is true and the conclusion drawn from it is wrong, and the pack holds an analyst note stating the wrong conclusion confidently | The evidence-linked timeline, every row marked accepted, corrected or rejected |
+| 6 | C | What you would do about it | Work out what happened from the evidence rather than from the assistant or the analyst note. Choose one containment step, say what evidence supports it, and say what you are not recommending and why. Write it as a one-page handover the next person could act on | The SOC handover note |
+| 7 | B | One rule that holds, and one that cannot | Implement the containment you recommended. First as a firm instruction in the agent's prompt, and measure. Then as a recipient allowlist in code, and measure again, confirming the benign escalation still works. Then try the same control against week 1's disclosure and find it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
+| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
+
+**Something happens in the first half hour, and that is deliberate.** An earlier
+draft opened with environment setup, then six pieces of syntax, then a
+worksheet, and the first misbehaving agent arrived in week 3. That is twenty-nine
+percent of the term before anything worth telling a friend about. Now the
+credential falls out of the agent before anything is explained, and the syntax
+arrives forty minutes later as the tool for answering the question that
+demonstration raises. The same content, in the order that makes a student want
+it.
+
+**Week 3 is the student's own attack, and it is the week the course was
+missing.** Every prompt in an earlier draft was handed to the student in a file,
+which made them a copy-and-wait operator for five weeks. Cases are YAML, so
+authoring one needs no Python: a prompt, a door, a detector, a prediction.
+
+**Week 3 also puts indirect prompt injection back, honestly.** The measured
+result is that on a small local model the agent does read the planted document,
+does obey it, and does call a tool it was not asked to call, and then fails at
+the last step. An earlier draft treated that as a reason to leave the attack out.
+It is a better reason to put it in and grade what the student observed: the
+harness gives its terminal verdict, usually no hits, and the student reads the
+trace and reports how far the chain went. "The verdict says no and here is what
+did happen" is the most useful sentence in agent security, and there is no
+honest way to teach it with a staged success.
 
 **Weeks 5 to 7 are now one continuing case, and that is the biggest change in
 this draft.** They used to be three separate exercises: read a harness report,
