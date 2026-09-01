@@ -128,17 +128,41 @@ what goes wrong with them, and 7 is using one for security work.
 | Wk | Part | Title | What the student is asked to do | Artifact |
 |---|---|---|---|---|
 | 1 | A, B | Ask it something it should not answer | In the first half hour, before anything is explained, send the supplied request and record what comes back. Then two questions the rest of the course answers: how would you know whether it did that or only said it did, and what else can it reach? Answer the second one now by inventorying its tools: what each reads, what each changes, what cannot be taken back. The six pieces of syntax and the four questions arrive next, as the tools for reading that configuration, stepped in a visual debugger rather than taught on a worksheet | What came back; the blast-radius inventory; the code-reading worksheet; Rules of Engagement gate at 100 percent |
-| 2 | A | Read the machine | Read the replay and mark five lines: the first model decision, the first tool call, the first returned result, the step that cannot be undone, and the step where untrusted text entered. Run the starter scripts against your own week 1 run and make the one-line change each asks for. Then run week 1's request five times and report what you get | Five marked lines; the modified scripts; the five-trial rate |
-| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict what will happen before you run it. Run five trials, read the traces, and mark how far it got on a four-step scale. **Your case joins the class pool at the end of this week, and the board goes up** | The case file, the prediction, the four-step result, a place on the board |
+| 2 | A | Does it do the same thing twice? | Send the same request five times and compare what the agent did each time. Then send five different ordinary requests and compare again. Use the starter scripts to count and compare, making the one-line change each asks for. Report what varies and what does not, and answer the question the comparison raises: if it does not do the same thing twice, what does one run prove | A comparison across ten runs, and a written answer to what one run proves |
+| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict what will happen before you run it. Run five trials, then read your own traces to score it: in each run, mark the first model decision, the first tool call, the step where your text entered, and the furthest point the agent got on the four-step scale. **Your case joins the class pool at the end of this week, and the board goes up** | The case file, the prediction, the marked traces, the four-step result, a place on the board |
 | 4 | B | Two requests and an audit log | Ask the agent, politely and with no trickery, to send a note to an outside address, and record what happens. Then run as a support agent working two tickets that have nothing to do with customer C-1002, ask for that record, and record what happens. Then read the audit log and say who it says did it | Evidence packs 1 and 2 |
 | 5 | C | The case, and the call | An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask for a timeline: claim, time, actor, and the record each claim came from. Check every row against its source. Then make the call in the handover form: was this an incident, what in the pack decides it, what did the assistant get wrong, and what would you do about it | The evidence-linked timeline and the completed handover |
 | 6 | B | Build one that holds | Take the containment you recommended and build it. First as an instruction in the agent's prompt; measure it. Then in code at the tool boundary; measure again, and confirm the benign escalation still works | The control, paired before and after reports |
 | 7 | B | Head to head | Run your control against the class pool, live, in the room. The board updates as it goes. You get one revision after the first round and one more run. Then point your finished control at what happened in week 1, and report what you find | The pool standing, the revision, and two sentences on the last result |
-| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus your control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
+| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus your control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why. The exam is open book and evidence based: you are given a results file, a trace excerpt and an audit row you have not seen, and asked what each does and does not establish | The report; the where-next note; the exam |
 
 **Three weeks changed, and no outcome did.** That is the point of cutting the
 outcomes to one verb each: the schedule below moved substantially and the
 document that goes to committee did not have to.
+
+**Week 2 stopped being a worksheet, and this is the third time that hour has
+been rebuilt.** It was named the worst hour by five of six readers in the last
+round, all quoting the same activity: read the replay and mark five lines. The
+diagnosis was that a previous fix had moved the interesting half of the week
+into week 1 and left the highlighting behind.
+
+Trace reading is a real skill and the course needs it. What it did not need was
+an hour of marking a log because the syllabus said to. So the marking moves to
+week 3, where a student reads their own traces to score their own attack and
+therefore has a reason to read closely, and week 2 becomes a question worth
+answering: run the same request five times, and see whether the agent does the
+same thing twice.
+
+It does not. That is the finding, the student produces it themselves, and it is
+the reason the whole course runs five trials rather than one. The convention
+stops being a rule they were given and becomes a conclusion they reached.
+
+**The exam changed with it.** A recall exam is a strange ending for a course
+whose argument is that assertions do not count and evidence does. It is now open
+book and evidence based: a results file, a trace excerpt and an audit row the
+student has not seen, and the question is what each one does and does not
+establish. That is the same task as every graded week, on unfamiliar material,
+which is what an exam should be here.
 
 **Week 6 is gone as a writing week.** Across three rounds of independent review
 it was named the worst hour every time, by half the readers each time, and
