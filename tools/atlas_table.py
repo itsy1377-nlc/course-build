@@ -43,11 +43,11 @@ BEGIN = "<!-- atlas:begin -->"
 END = "<!-- atlas:end -->"
 
 # Every file that shows the mapping. Adding one here is what keeps it from
-# becoming a fourth hand-maintained copy.
+# becoming a second hand-maintained copy. Two design records were dropped when
+# they were archived: an archived document is a snapshot and regenerating into
+# it would rewrite history.
 TARGETS = (
     (CONTENT / "pages" / "framework-alignment.md", "page"),
-    (ROOT / "docs" / "course-blueprint.md", "doc"),
-    (ROOT / "docs" / "blueprint.html", "html"),
 )
 
 

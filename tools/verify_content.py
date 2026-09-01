@@ -240,6 +240,9 @@ def _mapping_documents() -> list[Path]:
     sitting in exactly these files where no gate was looking.
     """
     docs = ROOT / "docs"
+    # archive/ is deliberately excluded. Those documents are snapshots of what
+    # was believed when they were written, and holding a snapshot to today's
+    # case files would either falsify the record or block the build on history.
     return sorted(docs.glob("*.md")) + sorted(docs.glob("*.html"))
 
 
