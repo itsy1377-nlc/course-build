@@ -582,6 +582,54 @@ transfers. The remaining risks (data retention in traces, runaway cost,
 multi-agent chains) are named in the wrap-up without a case, and this proposal
 says so rather than implying coverage.
 
+## 5c. What job this prepares a graduate for
+
+A committee will ask, and the honest answer is narrower and more useful than
+"AI security".
+
+**The realistic first role for a Cyber Defense graduate is tier one security
+operations**: an analyst who receives alerts, works out what actually happened,
+decides whether it is an incident, contains it or escalates it, and writes it
+down so the next person can act. That is the job this course is aimed at.
+
+**It does not produce an AI security specialist, and should not claim to.** What
+it produces is a tier one analyst who is not helpless the first time an agent
+shows up in their queue, which is a thing that is now starting to happen and
+which almost nobody arrives able to do.
+
+| Outcome | The task it maps to on shift |
+|---|---|
+| 1. Describe how an agentic system operates from its recorded run | Reconstructing what happened from an unfamiliar telemetry source. The specific source is new; the skill of reading a log you have not seen before and saying what the system did is the daily work |
+| 2. Interpret a short script to determine what it accesses and changes | Triaging a flagged script. "This one-liner fired an alert, what does it touch" is among the most common tier one questions, and increasingly the script was machine written |
+| 3. Analyze an agent's tool configuration to identify irreversible actions | Scoping and impact assessment. What could this account or service have done, and what cannot be undone, which is what decides urgency |
+| 4. Differentiate evidence from assertion | The single most valuable discipline on a tier one desk. The alert claims something; does the recorded evidence support the claim. This is what separates an analyst who escalates well from one who escalates everything |
+| 5. Interpret repeated-trial results, including results showing no effect | Detection reliability. Understanding that one clean run is not proof, that a negative result has a confidence attached, and that "no alert" is not "no problem" |
+| 6. Apply a control at a tool boundary and verify its effect | Containment and validation. Did the block actually work, and did it break something legitimate. The second half is what gets a containment reversed at 2am |
+| 7. Evaluate AI generated output against source evidence | The newest of these and the most immediately employable. Security tooling now summarises, triages and drafts. Analysts are being asked to act on that output, and a graduate who verifies it against the source rather than forwarding it is worth more than one who does not |
+
+**Outcomes 4, 5 and 7 are the ones worth arguing for in front of a hiring
+manager.** They are transferable off the lab entirely: they are about how to
+treat a claim, and they apply to a SIEM alert, a vendor report or a model's
+summary equally.
+
+**What this course does not prepare anyone for**, stated so nobody oversells it:
+no SIEM, no endpoint tooling, no network forensics, no malware analysis, no
+Windows or directory internals. It is one elective. The Cyber Defense degree's
+identity rests on forensics and incident response, and this complements that
+rather than substituting for any of it.
+
+**One programme-level consequence, recorded because it is easy to forget.** The
+Cyber Defense AAS sits at exactly 60 semester credit hours, which is the Texas
+statutory ceiling. Adding a three credit hour course to the degree plan means
+removing three from it. That is a programme decision and not a course decision,
+and it is separate from offering this course as an elective or in a certificate.
+
+**A formal NICE Framework mapping has not been done.** The work role names and
+identifiers were revised recently and were not verified when this section was
+written, so nothing above cites one. If the committee wants the mapping stated
+in NICE terms, that is an hour of work against the current published framework
+and it should be checked rather than recalled.
+
 ## 6. What makes this different from what other schools teach
 
 Stated honestly, because parts of it are common.
