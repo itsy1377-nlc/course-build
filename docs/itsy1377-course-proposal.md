@@ -111,7 +111,7 @@ verify, and both are reached in the last third, after the scaffolding.
 
 | Wk | Part | Title | What the student does | Artifact |
 |---|---|---|---|---|
-| 1 | A | Four questions you can ask any code | Get the environment running. Learn to answer four questions about a short script without writing any: what does it read, what does it change or send, can that be undone, and what decides whether it happens. Work through four scripts of rising length, the last one written by a coding agent | Code-reading worksheet; Rules of Engagement gate at 100 percent |
+| 1 | A | Four questions you can ask any code | Get the environment running. Meet four questions to ask about any short script: what does it read, what does it change or sends, can that be undone, and what decides whether it happens. One worked example, then four short scripts of rising length, the last written by a coding agent. Anyone who wants more than the worked example is pointed at the shelf in 3b rather than taught a language | Code-reading worksheet; Rules of Engagement gate at 100 percent |
 | 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Inventory what this agent can reach, using week 1's four questions on the tool source itself. Then change one setting, the loop's step limit, predict what a run will look like afterwards, and check | Annotated trace; blast-radius inventory; the predicted and observed effect of one setting |
 | 3 | B | Make it talk | Ask the agent to repeat its own instructions; watch it hand over a credential stored there for convenience. Five trials, report the rate, including the trials where it refused | Evidence pack 1: disclosure |
 | 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
@@ -166,6 +166,73 @@ already seen.
 spent seven weeks finding that they can *almost* read the code, and that the
 almost is what stands between them and catching the agent's mistake, does not
 need to be told to go learn programming.
+
+### 3b. The reference shelf, which does the work the course does not
+
+The course teaches recognition and stops there. It does not teach a language,
+and it should not pretend to in seven weeks with no prerequisite. What it does
+instead is hand every student a short shelf and tell them plainly which one to
+open for which problem. A student who wants to go further has somewhere to go
+on the day they want it, which is the only moment that matters.
+
+All six are free, need no account, and were checked on 31 August 2026.
+
+| Resource | What it is for | Access and licence |
+|---|---|---|
+| [Python Tutor](https://pythontutor.com/) | Paste a script, step through it one line at a time, and watch what changes. This is the single best fit for the four questions, because it answers them visually | Free, runs in the browser, no account |
+| [futurecoder](https://futurecoder.io/) | A full beginner course that runs entirely in the browser with nothing installed | Free and open source, no account |
+| [Automate the Boring Stuff with Python](https://automatetheboringstuff.com/) | The friendliest first book, and the one whose examples look most like scripts a student will actually meet | Free to read online, CC BY-NC-SA 3.0 |
+| [Python for Everybody](https://www.py4e.com/) | The same ground with video, for a student who would rather be shown than read | Free |
+| [Software Carpentry: Programming with Python](https://swcarpentry.github.io/python-novice-inflammation/) | A structured lesson written for researchers, useful for a student who wants exercises with answers | CC-BY 4.0 |
+| [The Python Tutorial](https://docs.python.org/3/tutorial/) | The authoritative reference, for looking up what something means rather than learning from scratch | Free, part of the language documentation |
+
+**Two of these run in a browser with nothing installed**, which matters: the
+student most likely to want more help is the one on a locked-down laptop, and
+Python Tutor and futurecoder both work there.
+
+**One licence note for whoever assembles the pages.** Automate the Boring Stuff
+is CC BY-NC-SA 3.0, so the course links to it and does not copy passages into
+its own handouts. Reproducing it would create a derivative work carrying the
+ShareAlike obligation, which is the same trap the framework documents present.
+
+**The shelf is also the honest answer to the closing argument.** A course that
+tells students they will want to learn programming, and then does not say where
+to start, has given advice instead of a path.
+
+### 3c. Scripts they can run, read, and change
+
+The shelf in 3b is for a student who wants to learn a language. The corpus
+below is for the other twenty-four: short working scripts that do something
+they actually want done, operating on their own data, which they read first,
+run second, and change third.
+
+This is the better teaching corpus because motivation is built in. "Read this
+example" is an assignment. "This prints your own canary tokens, and here is how
+to make it print the ones in your outbox too" is a reason.
+
+| Script | What it does for the student | The change they are asked to make |
+|---|---|---|
+| `show_my_tokens.py` | Prints their three canary tokens, which they need from week 3 onward | Print the gate code as well |
+| `count_tool_calls.py` | Reads one trace and reports how many tool calls the agent made | Report the busiest run across a whole folder |
+| `search_outbox.py` | Searches the outbox for a string, which is how they find their own evidence | Report which message it was in, not just whether it was there |
+| `read_report.py` | Reads a harness report and prints each case with its rate | Sort so the vulnerable cases come first |
+| `who_touched_what.py` | Reads the audit log and prints who did what to which customer | Filter to one actor, which is week 4's whole point |
+
+Each is twenty to forty lines, commented in the course's voice, and does one
+thing. The requested change is one or two lines and is checkable by running it.
+None requires writing from a blank file, which is the line the course does not
+cross.
+
+**They are also the answer to the four questions, applied to code the student
+has a reason to care about.** `who_touched_what.py` reads a file, changes
+nothing, cannot do harm, and runs unconditionally. `search_outbox.py` reads a
+directory. Neither sends anything anywhere. A student who can say that about
+these five can say it about a script a coding agent hands them, which is what
+the coordinator asked for.
+
+**Most of this already exists in some form.** `python -m common.canary` already
+prints the tokens; the harness already writes the reports these read. What is
+needed is the small, commented, single-purpose versions, and they are cheap.
 
 ## 4. The deterministic backstop, and what it fixes
 
