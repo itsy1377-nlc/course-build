@@ -451,20 +451,29 @@ a real system, which is a better lesson than a staged success.
 
 ### Open items, each needing a decision or a build
 
-**Four contradictions in the shipped code, all verified, all blocking.** These
-are repository problems rather than proposal problems, and the course cannot
-run until each is fixed.
+**The lab in `labs/` still implements the previous course, and that is
+expected rather than a defect.** This proposal is a clean sheet. The existing
+implementation was built for a version that assumed students would construct an
+agent over four weeks, so it carries student exercises this course does not
+assign: writing the retry logic in `llm.py`, writing `get_customer`, designing a
+second tool and its schema, and a README that tells students to obtain an API
+key in week 2. None of that is a contradiction to resolve. It is the old course,
+waiting to be rebuilt against the new one.
 
-| Contradiction | Verified against |
-|---|---|
-| `get_customer` is still an unwritten student exercise that raises `ToolNotImplemented`, and week 4 requires it. The student build strips the reference answer, so no student can complete week 4 as shipped | `agent/tools.py`, and measured directly: on the raw tree A3 and A6 cannot land for any model |
-| The config default is `provider: mock` with `model: qwen3:1.7b`, while the portable bundle ships `granite4.1:3b`. Switching to live asks Ollama for a model that is not there | `config/lab.config.yaml` against `scripts/build_portable_bundle.py` |
-| The labs README tells students to obtain an API key in week 2, while the course claims no key and no account | `README.md`, "Adding your API key, in week 2" |
-| The config advertises two hosted commercial endpoints, while the scope rules say never a commercial AI service | `config/lab.config.yaml` |
+What carries over is the machinery rather than the assignments: the target, the
+agent loop, the trace, the harness, the detectors, the canary derivation, the
+cartridge build and the video pipeline. What gets rewritten is everything that
+told a student what to do.
 
-The first is the worst: the course as written cannot be completed on the
-repository as shipped, and it is the same defect that made one of my own
-measurements meaningless earlier before I found the cause.
+Two reviews of this proposal read the existing lab as though it were the
+implementation of this design and reported the mismatch as a fault. It is worth
+recording that it is not, because the same reading will happen again.
+
+**The rebuild list, then:** ship `get_customer` working rather than as an
+exercise; retire the Module 1 to 4 extension points; align the README, the
+config and the portable bundle on a local model with no key; add the
+`read_evidence` tool and the case pack; give the mock per-case target rates; and
+make the outbox evidence string carry its content.
 
 | Item | Who or what settles it |
 |---|---|
