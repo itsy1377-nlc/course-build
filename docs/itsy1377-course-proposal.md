@@ -308,10 +308,10 @@ claim about theft. The students are being handed the exact false positive that
 fooled the people who built the course, which is a better week than any
 scenario written to be a good scenario.
 
-Week 6 turns that into a decision, and week 7 implements the decision.
-**The control the student writes in week 7 is the one they recommended in week
-6**, which turns the best moment of the course from a demonstration into a
-payoff.
+Week 5 ends in the call, week 6 builds the control that call implies, and week
+7 runs it against the class. **The control the student builds in week 6 is the
+one they themselves recommended at the end of week 5**, which turns the best
+moment of the course from a demonstration into a payoff.
 
 **An earlier version of this section described a different conflict** and it
 was false: it said the agent's trace would claim the mail was sent while the
@@ -649,7 +649,7 @@ make the outbox evidence string carry its content.
 
 | Item | Who or what settles it |
 |---|---|
-| Contact hours, points and rubrics are not yet allocated | Needs doing before submission. Two weeks look heavy on their face, week 4 with two investigations and week 7 with a control plus two measured runs, and that should be costed rather than assumed |
+| Contact hours, points and rubrics are not yet allocated | Needs doing before submission. Week 1 now carries the demonstration, the inventory, the syntax and the scope gate, and the final block carries a report, a where-next note, an open book exam and three cases. Both were flagged by readers as uncosted, and both should be costed rather than assumed |
 | Student college IDs are written into harness reports | District records policy, for students under 18 |
 | Neither repository has a licence file | Whoever owns courseware IP, before any student is encouraged to publish |
 | The mock needs per-case target rates | A small change to `agent/mock_model.py`, plus one authored rate per case |
