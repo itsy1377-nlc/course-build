@@ -624,11 +624,52 @@ statutory ceiling. Adding a three credit hour course to the degree plan means
 removing three from it. That is a programme decision and not a course decision,
 and it is separate from offering this course as an elective or in a certificate.
 
-**A formal NICE Framework mapping has not been done.** The work role names and
-identifiers were revised recently and were not verified when this section was
-written, so nothing above cites one. If the committee wants the mapping stated
-in NICE terms, that is an hour of work against the current published framework
-and it should be checked rather than recalled.
+### The NICE Framework mapping, verified
+
+Checked against NICE Framework components **version 2.2.0, released 28 April
+2025**, downloaded from the NIST Cybersecurity and Privacy Reference Tool rather
+than recalled.
+
+The target role is **PD-WRL-001 Defensive Cybersecurity**, in the Protection and
+Defense category. **PD-WRL-003 Incident Response** is adjacent and shares much of
+the mapping.
+
+| Outcome | NICE task statements it serves |
+|---|---|
+| 1. Describe how an agentic system operates from its recorded run | T1391 Reconstruct malicious attacks; T1299 Determine causes of network alerts; T1489 Correlate incident data |
+| 2. Interpret a short script to determine what it accesses and changes | T1348 Distinguish between benign and potentially malicious cybersecurity attacks and intrusions; T1370 Collect intrusion artifacts |
+| 3. Analyze an agent's tool configuration to identify irreversible actions | T1351 Determine impact of malicious activity on systems and information; T1020 Determine the operational and safety impacts of cybersecurity lapses; T1252 Determine the scope, urgency, and impact of cyber defense incidents; T1548 Determine adequacy of access controls |
+| 4. Differentiate evidence from assertion | **T1112 Validate network alerts; T1387 Validate intrusion detection system alerts.** The outcome is close to a restatement of these two |
+| 5. Interpret repeated-trial results, including results showing no effect | T1254 Determine the effectiveness of an observed attack; T1583 Determine effectiveness of system implementation and testing processes |
+| 6. Apply a control at a tool boundary and verify its effect | T1177 Determine if security control technologies reduce identified risk to acceptable levels; T1371 Mitigate potential cyber defense incidents; T1251 Recommend incident remediation strategies |
+| 7. Evaluate AI generated output against source evidence | **No task in the framework.** See below |
+
+The week 5 handover form serves T1332 Produce incident findings reports, T1333
+Communicate incident findings to appropriate constituencies, T1316 Document
+cyber defense incidents from initial detection through final resolution, and
+T1242 Escalate incidents that may cause ongoing and immediate impact.
+
+### The gap this course actually fills, and it is a real one
+
+**NICE 2.2.0 contains 962 task statements and not one of them mentions AI.**
+Checked directly against the component file.
+
+AI appears in the framework only as a competency area, **NF-COM-002 Artificial
+Intelligence (AI) Security**, carrying six knowledge statements and three
+skills. One of those skills is **S0957, identifying possible mistakes or
+hallucinations in AI generated outputs**, which is outcome 7 almost word for
+word.
+
+**No work role carries any of them.** PD-WRL-001 Defensive Cybersecurity holds
+none of NF-COM-002's knowledge or skill statements, and neither does any other
+role in the framework.
+
+So the position to take to a committee is precise: this course teaches a
+competency area NICE has defined and named, to students entering work roles
+NICE has not yet connected it to. That is not the course being out of step with
+the framework. It is the course being where the framework is going, one revision
+early, and it is the strongest single argument for offering it now rather than
+waiting.
 
 ## 6. What makes this different from what other schools teach
 
