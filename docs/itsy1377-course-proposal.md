@@ -82,13 +82,13 @@ The criteria live in the rubric, not inside the outcome.
 
 | # | Part | Outcome | Assessed by |
 |---|---|---|---|
-| **1** | A | Describe what an agentic AI system did during a recorded run, identifying each step as a model decision, a tool call, or a returned result. | An annotated trace of the student's own run |
-| **2** | A | Read a short script and state what it reads, what it changes or sends, and what condition decides whether it acts. | A code-reading worksheet in week 1, and the located missing check in week 4 |
-| **3** | A | Determine, from an agent's tool configuration, which of its actions cannot be undone. | The blast-radius inventory |
-| **4** | B | Support a claim about an agent's behavior with recorded system evidence, and reject a claim whose only support is the agent's own account of what it did. | The evidence line in each pack; a teardown of a supplied results file that claims more than it found |
-| **5** | B | Report the result of a repeated-trial test as a rate with its controls, and state what a no-hit result does and does not establish. | A harness report with a written reading of it |
-| **6** | B | Implement a control at an agent's tool boundary and verify with paired runs that it stops the unauthorized action while authorized use still works. | The control, two reports side by side |
-| **7** | C | Verify an AI assistant's output against source evidence, recording each claim as accepted, corrected or rejected with the reason. | The verification record |
+| **1** | A | Describe what an agentic AI system did during a recorded run, identifying each step as a model decision, a tool call, or a returned result. | The week 2 annotated trace of the student's own run |
+| **2** | A | Read a short script and state what it reads, what it changes or sends, and what condition decides whether it acts. | The week 1 code-reading worksheet, and the missing check located in week 4 |
+| **3** | A | Determine, from an agent's tool configuration, which of its actions cannot be undone. | The week 2 blast-radius inventory |
+| **4** | B | Support a claim about an agent's behavior with recorded system evidence, and reject a claim whose only support is the agent's own account of what it did. | The evidence line in each pack (weeks 2 and 4); the wrong analyst claim caught in week 5 |
+| **5** | B | Report the result of a repeated-trial test as a rate with its controls, and state what a no-hit result does and does not establish. | The week 3 run: a prediction, a rate, and an account of how far the chain went |
+| **6** | B | Implement a control at an agent's tool boundary and verify with paired runs that it stops the unauthorized action while authorized use still works. | The week 7 control, and two reports side by side |
+| **7** | C | Verify an AI assistant's output against source evidence, recording each claim as accepted, corrected or rejected with the reason. | The week 5 evidence-linked timeline and the week 6 handover note |
 
 **Outcome 2 is new and it is the coordinator's scripting ask, made assessable.**
 An earlier draft had no code-reading outcome at all; it put students in front of
@@ -405,34 +405,42 @@ technical facts are better than the optics suggest.
 That last row is an open item, not a solved one. It is flagged here so it is
 decided by the right person rather than by default.
 
-## 5b. Breadth, as seven case cards rather than a glossary
+## 5b. Breadth, as three cases with evidence and a decision
 
-Seven weeks at introductory depth cannot cover the agentic security surface,
-and an earlier draft handled that by naming the omitted risks on one page. That
-is a vocabulary list, and a student who has been given names has not been given
-knowledge.
+Seven weeks cannot cover the agentic security surface, and two earlier attempts
+at this section were both wrong. The first named the omitted risks on one page,
+which is a glossary. The second made seven ten-minute cards asking the same four
+questions of seven one-line scenarios, which review correctly called a glossary
+converted into a repeated worksheet.
 
-Instead: seven ten-minute case cards, each a short real-shaped scenario, each
-asking the same four questions the course has already taught.
+Three cases instead, twenty-five minutes each, in the final block. Each carries
+evidence to read and ends in a decision the student has to defend, which is the
+same shape as weeks 5 and 6 and therefore needs no new skill.
 
-| Card | The scenario in one line |
-|---|---|
-| Poisoned memory | The agent remembers something a previous user told it, and acts on it for the next user |
-| Agent identity abuse | The agent acts with a service account's authority, and the log names the service, not the person who asked |
-| A poisoned tool description | The agent is handed a tool whose description tells it to do something else |
-| Generated code, executed | The agent writes a script and something runs it before anyone reads it |
-| What the trace remembers | A customer's data is in a trace file that outlives the ticket |
-| Runaway cost | Nothing stops a loop, and the bill is the incident |
-| One agent's output, another's instruction | Two agents, and the first one's summary becomes the second one's orders |
+**Case one: the agent remembers.** A support agent tells the assistant something
+in confidence on Monday. On Tuesday a different customer gets it back. You are
+shown two conversation records and a configuration file. Decide: is this a bug in
+the agent, a bug in the deployment, or working as designed, and what would you
+turn off tonight?
 
-**The four questions are the same every time**, which is the point: what crossed
-a trust boundary, what authority was available at that moment, what evidence
-would show whether it happened, and where would the control have to live. A
-student who can ask those four of a scenario they have never seen has a method,
-which is what transfers.
+**Case two: the helpful tool.** Your team installs a package of tools written by
+someone else. One tool's description, which the model reads and the humans do
+not, carries a sentence aimed at the model rather than at you. You are shown the
+tool manifest and one trace. Decide: what did the agent do, who authorized it,
+and where does the review have to happen so it cannot recur?
 
-They are ten minutes each, not a week. They are the closing discussion, and a
-student picks one to write up for the optional where-next artifact.
+**Case three: the script that ran.** The assistant writes a script and something
+executes it before a person reads it. You are shown the script and the log.
+Decide: apply week 1's four questions, say what it touched, and name the single
+control that would have stopped it.
+
+**The same four questions run through all three:** what crossed a trust
+boundary, what authority was available at that moment, what evidence would show
+whether it happened, and where must the control live. A student who can ask
+those of a scenario they have never seen has a method, and the method is what
+transfers. The remaining risks (data retention in traces, runaway cost,
+multi-agent chains) are named in the wrap-up without a case, and this proposal
+says so rather than implying coverage.
 
 ## 6. What makes this different from what other schools teach
 
