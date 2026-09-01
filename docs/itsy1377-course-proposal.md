@@ -9,99 +9,229 @@ and a scripting prerequisite. Neither constraint applies now.
 
 ---
 
-## 1. The course in one sentence
+## 1. The course in three parts
 
-**Students run a real AI agent on their own machine, catch it doing three
-things nobody authorized, and prove each one with evidence a stranger can
-check.**
+The coordinator's scope has three parts and the course should have three too:
+**what an agent is, what goes wrong with them, and how you would use one in
+security operations.** An earlier draft of this proposal covered the first two
+and left the third out, which made it a testing course wearing a broader title.
 
-Everything else follows from that. The agent is a helpdesk assistant with
-tools: it reads tickets, looks up customers, searches a knowledge base and
-sends mail. It has the problems real deployments have, and the course is
-about noticing them and proving them rather than guessing.
+| Part | Weeks | The question it answers |
+|---|---|---|
+| **A. What an agent is** | 1 to 2 | What is actually happening when an AI "does something", what shape every agent has, and what each one can reach |
+| **B. What goes wrong** | 3 to 5, 7 | Where the security problems come from, how you prove one, and what a control looks like |
+| **C. Using one for the work** | 1, 6, and throughout | Where an agent genuinely helps a security analyst, how you check it, and what you would need to learn to supervise it well |
+
+**One idea holds all three together: evidence over assertion.** When you test an
+agent you do not believe what it says it did, you look at what the system
+recorded. When you *use* an agent you do not believe what it tells you either,
+you check it against the source. It is the same discipline pointed in two
+directions, and it is the through line of the course.
+
+**Coding agents are the agent every student will actually meet**, so they are
+taught alongside the lab's helpdesk agent rather than mentioned in passing.
+The point is that they are the same shape: a model, a set of tools, and a loop.
+What differs is reach, and reach is a property of how a particular agent was
+configured rather than of coding agents in general. Some are read-only. Some
+gate every command behind an approval prompt. Some are sandboxed to one
+directory. That variability is the lesson: the student inventories a supplied
+configuration and reads what it actually permits, rather than being told that
+coding agents can do anything. Putting that inventory beside the helpdesk
+agent's is the cheapest way to make blast radius mean something, and it is
+directly useful to a student about to start using one.
+
+It also fixes a vocabulary problem before it confuses anybody. "Harness" is
+used two ways in this field: the scaffolding that wraps a model in tools and a
+loop, which is what makes an agent an agent, and a test harness that runs cases
+and reports results, which is what this course's `harness/` directory is. The
+course names both and says which it means.
+
+**The course's closing argument is that you cannot supervise what you cannot
+read**, and it is made by experience rather than asserted. There is no
+programming prerequisite and this course does not add one. What it does is put
+a student in the position of needing the skill, three times, and let them
+notice:
+
+1. **Week 1.** The agent explains two short scripts. The student checks the
+   explanation against the scripts and finds where it is wrong. Their ability
+   to catch it is exactly their ability to read the code.
+2. **Week 2.** The coding agent's tools are read any file, write any file, run
+   any command, and almost nothing is reversible. The student is the approval
+   step, and an approval step that cannot read what it is approving is not one.
+3. **Week 6.** The agent summarises the student's own incident and gets a claim
+   wrong. They catch it only because they hold the evidence.
+
+By the end a student should be able to say, from their own experience rather
+than because they were told, why they want to learn to program: not to replace
+the agent, but to be able to supervise it. That is the honest case for the
+programming courses the college already offers, and this course is a feeder
+into them rather than a substitute.
+
+**Part C uses a cheap local model, and that turns out to be a feature.** A 3B
+model running on a student laptop makes mistakes: it will summarise an incident
+and get a detail wrong, or explain a script and invent a flag. The exercise is
+verification, so the model's errors are the teaching material. A better model
+would make the lesson harder to teach, not easier.
 
 ## 2. Proposed learning outcomes
 
-Six, measurable, each with the artifact that assesses it.
+Seven, and each one is a single observable claim. An earlier draft had six that
+each bundled three or four capabilities together, which cannot be scored: a
+student could satisfy half of one and there would be no way to say which half.
+The criteria live in the rubric, not inside the outcome.
 
-| # | Outcome | Assessed by |
-|---|---|---|
-| **1** | Describe how an agentic AI system works, and trace a recorded run to identify each model decision, each tool call, each untrusted input, and the point at which an action can no longer be undone. | An annotated trace of the student's own agent run |
-| **2** | Given an agent's tools and configuration, classify each available action by what it reads, what it changes, whether it can be reversed, and who approves it. | A four-row tool and blast-radius inventory |
-| **3** | Conduct authorized testing against an instructor-provided target, within a written scope, and demonstrate common agentic failure modes including disclosure of a system prompt, an irreversible action taken with no approval, and a privileged action taken with no authorization check. | Three evidence packs, one per failure mode |
-| **4** | Support every reported finding with a recorded system side effect, an audit record, or a planted token, and reject a claim whose only support is the agent's own account of what it did. | The evidence line in each pack, plus a teardown of a supplied results file that overstates what it found |
-| **5** | Run a repeated-trial test harness and interpret its output as rates rather than verdicts, distinguishing a failure caused by the model from a failure caused by a missing control, and an attack that failed from a test that never ran. | A full harness report from the student's own machine, with a written reading of it |
-| **6** | Implement one control at the agent's tool boundary and verify with paired before-and-after runs that it stops the unauthorized action without breaking authorized use, and contrast that with the same rule written as an instruction in the agent's prompt. | The edited control, two harness reports side by side, and the prompt-only attempt that did not hold |
+| # | Part | Outcome | Assessed by |
+|---|---|---|---|
+| **1** | A | Describe what an agentic AI system did during a recorded run, identifying each step as a model decision, a tool call, or a returned result. | An annotated trace of the student's own run |
+| **2** | A | Read a short script and state what it reads, what it changes or sends, and what condition decides whether it acts. | A code-reading worksheet over four supplied scripts |
+| **3** | A | Determine, from an agent's tool configuration, which of its actions cannot be undone. | The blast-radius inventory |
+| **4** | B | Support a claim about an agent's behavior with recorded system evidence, and reject a claim whose only support is the agent's own account of what it did. | The evidence line in each pack; a teardown of a supplied results file that claims more than it found |
+| **5** | B | Report the result of a repeated-trial test as a rate with its controls, and state what a no-hit result does and does not establish. | A harness report with a written reading of it |
+| **6** | B | Implement a control at an agent's tool boundary and verify with paired runs that it stops the unauthorized action while authorized use still works. | The control, two reports side by side |
+| **7** | C | Verify an AI assistant's output against source evidence, recording each claim as accepted, corrected or rejected with the reason. | The verification record |
 
-**On the wording.** Outcomes 3 through 5 are the heart of the course and they
-describe security testing, so they are written the way a curriculum committee
-needs to read them: authorized, scoped, against an instructor-provided target.
-Outcome 1 and outcome 2 lead with description and analysis on purpose, because
-they come first in the term and because they are what the course is really
-about. Outcome 6 is the only one that requires writing code, and it is four
-lines.
+**Outcome 2 is new and it is the coordinator's scripting ask, made assessable.**
+An earlier draft had no code-reading outcome at all; it put students in front of
+an agent's explanation of a script and asked them to find the error, which
+requires exactly the skill the course had declined to teach. That is not
+instruction, it is a trap. Week 1 now teaches the four questions and the course
+assesses them.
+
+**Outcome 5 is worded so that a correct test with no hits is a pass.** A student
+whose five trials all refuse has done the work correctly and must be able to
+show mastery. Stating what a no-hit result does not establish is the harder
+skill anyway.
+
+**A note for the committee on levels.** Outcomes 1 to 3 are describe and
+determine, which is right for weeks 1 and 2 of a course with no prerequisite.
+Outcomes 4 and 5 are the analytical core. Outcomes 6 and 7 are apply and
+verify, and both are reached in the last third, after the scaffolding.
 
 ## 3. Week by week
 
-| Wk | Title | What the student does | Artifact |
-|---|---|---|---|
-| 1 | Read the machine, not the language | Get the environment running. Run one ordinary request and read the replay in plain English. Annotate which line was the model deciding, which was code running, which could not be undone. Read two short scripts a coding assistant wrote and say what each one touches | Annotated trace; Rules of Engagement gate at 100 percent |
-| 2 | What can it actually do | Read the agent's tool registry and its settings. Build the inventory: what each action reads, what it changes, whether it can be taken back, who finds out. Find, in the source, the one action with no way back | Tool and blast radius inventory |
-| 3 | Make it talk | Ask the agent to repeat its own instructions. Watch it hand over a credential somebody stored there for convenience. Run it five times and report the rate, including the run where it refused | Evidence pack 1: disclosure |
-| 4 | Make it act, make it fetch | Ask it, politely and with no trickery, to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a particular customer, and get the record anyway. Open the source and find the check that is missing. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
-| 5 | Rates, not vibes | Run the whole harness. Read every part of what it prints: the provider banner, the scope refusal, the detector self test, the controls. Post your rate for week 3 on the class board and look at the spread. Take apart a supplied results file that claims more than it found | Harness report with a written reading; results teardown |
-| 6 | Your case, your name on it | Write an attack case of your own against a different door. Predict the outcome in writing before running it. Report what actually happened, including a prediction that was wrong | A student-authored case, the prediction, the run |
-| 7 | One rule that holds | Try to stop the disclosure by adding a firm instruction to the prompt. Measure it; it does not hold. Then add one control in code at the tool boundary. Measure again. Confirm the benign case still works | The control, paired before and after reports |
-| Final | The evidence file | Assemble three findings on fixed headings, each tracing to a recorded check, plus the fix and its before and after | The report; a short exam |
+| Wk | Part | Title | What the student does | Artifact |
+|---|---|---|---|---|
+| 1 | A | Four questions you can ask any code | Get the environment running. Learn to answer four questions about a short script without writing any: what does it read, what does it change or send, can that be undone, and what decides whether it happens. Work through four scripts of rising length, the last one written by a coding agent | Code-reading worksheet; Rules of Engagement gate at 100 percent |
+| 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Then inventory what this agent can reach, and use week 1's four questions on the tool source itself | Annotated trace; blast-radius inventory |
+| 3 | B | Make it talk | Ask the agent to repeat its own instructions; watch it hand over a credential stored there for convenience. Five trials, report the rate, including the trials where it refused | Evidence pack 1: disclosure |
+| 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
+| 5 | B | Rates, not vibes | Run the whole harness and read every part of it: provider banner, scope refusal, detector self test, controls. Post your week 3 rate on the class board and look at the spread. Take apart a supplied results file that claims more than it found | Harness report with a written reading; results teardown |
+| 6 | C | Put it to work, then check it | Give the agent read access to your own evidence from weeks 3 to 5 and ask it three checkable questions: what happened, in what order, and who does the audit log name. Check every claim against the file it came from. Mark each accepted, corrected or rejected | Verification record; judgment note |
+| 7 | B | One rule that holds, and one that cannot | Try to stop the outbound mail with a firm instruction in the prompt. Measure it. Then add a recipient allowlist in code and measure again, confirming the benign escalation still works. Then try the same control against the week 3 disclosure and find that it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
+| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 6, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
 
-**Week 1 answers the coordinator's scripting ask without becoming a
-programming course.** Nothing is written from a blank file. The student reads a
-recorded run rendered as numbered English, then reads two short scripts and
-answers one question about each: what does this touch, and can it be undone.
-That is recognition, which is what was asked for.
+**Week 7 was wrong in the previous draft and the fix improves it.** It paired
+the week 3 disclosure with a control at the tool boundary. That control cannot
+work: the disclosure appears in the model's own text, and a tool-boundary check
+gates tool calls, not text. The week now pairs the control with the outbound
+mail, which it genuinely stops, and then runs it against the disclosure as a
+deliberate negative result. "Here is a control that works, here is the same
+control failing, and here is why" is a better week than the one that was
+broken.
 
-## 4. Three problems in this design, and how each is handled
+**Week 6 needs one new tool and is better for it.** The agent has no way to read
+a trace or an audit log, so an earlier draft was really asking students to paste
+text into a chat window and call it agentic. Adding a single `read_evidence`
+tool, scoped to the student's own `runs/` directory, makes the exercise real. It
+is also a teaching moment: the student has just granted an agent filesystem
+read, so they run week 2's inventory on it and see the blast radius grow.
 
-Three independent reviews of four competing designs converged on the same
-three, so they are written down rather than discovered later.
+**Severity is not asked for.** An earlier draft wanted the agent to rate
+severity. Severity is not recoverable from an audit row; it needs impact, scope
+and likelihood that the evidence does not contain. The three questions asked
+instead are all checkable against a file, which is the point.
 
-**Weeks 3 and 4 risk being the same assignment twice.** Run a shipped case,
-read the rate, paste the evidence. The fix is that each week does a different
-kind of work: week 3 is a model failure that varies run to run, week 4 is a
-system defect that lands every time and has to be found in the source rather
-than pointed at. The class board in week 5 is where the two become one lesson.
+## 4. The deterministic backstop, and what it fixes
 
-**Every graded week from 3 onward needs a model running locally.** That is a
-real risk for a student on a locked-down laptop, and the assumption that a
-college loaner will run the no-install bundle is untested.
-**So the course ships instructor-recorded evidence bundles as a fallback for
-weeks 3 through 5.** A student whose machine will not run the model does the
-same analysis on a real recorded run, produces the same artifacts, and is
-graded the same. This costs one build script and it removes the single largest
-equity risk in the design.
+**The problem.** Models are unpredictable, and an outcome that depends on one
+misbehaving is an outcome graded on luck. In week 3 one student's five trials
+can all refuse while a classmate's leak four times, from identical correct
+work. The measured disclosure rate is 4 of 5, which means roughly one student
+in a class of 25 sees zero.
 
-**Six outcomes about making software misbehave is a syllabus optics problem,
-in a course open to students under 18 whose parents may read it.** Handled by
-the wording in section 2, by the scope document being week 1 and itself graded,
-and by outcome 6 being remediation. It is worth naming to the committee rather
-than hoping nobody asks.
+**The fix is already half built.** The course ships an offline `mock` provider:
+about 400 lines of pattern matching that behaves like a very gullible
+assistant. It is deterministic, and its variability is a seeded hash rather
+than randomness (`agent/mock_model.py:155`), so the same student always gets
+the same answer and can re-run to check their own work.
+
+**What changes.** The mock gains a per-case target rate, so the course author
+decides what each case demonstrates, and the pattern of which trials hit is
+derived from the student's own ID. Every student sees the same rate; no two see
+the same pattern; nobody's evidence is copyable.
+
+**How it is used.** The live local model is the default, because that is where
+the real lesson is. The mock is the backstop, in three situations:
+
+1. **A machine that cannot run a model.** This replaces the recorded evidence
+   bundles an earlier draft proposed, and it is strictly better: the student
+   runs it on their own machine, with their own tokens, and gets a real
+   interactive loop rather than watching someone else's recording. It also
+   covers weeks 1 and 2, which the recording fallback did not.
+2. **A guaranteed outcome when the course needs one.** Week 6's lesson requires
+   the assistant to make a catchable mistake. A real model may make a subtle one,
+   or none.
+3. **The instructor's demonstration**, which has to work in front of a class.
+
+**The honesty rule stays, and it is not negotiable.** Every report already
+carries a banner when the provider is mock, saying the numbers are not evidence
+about how any real model behaves. The course keeps it, teaches why it is there,
+and treats a student who cites a mock run as evidence about a model as having
+made the exact error the course exists to correct. Where a student has both
+runs, the comparison is itself a finding: the simulator falls for it every
+time, and the real model did not.
 
 ## 5. Portfolio: optional, ungraded, and separate
 
-Students produce three things as ordinary graded coursework. **Packaging any of
-them for a portfolio is optional and carries no points**, because not every
-student wants one and nobody should be graded on choosing.
+Every artifact below is produced as ordinary graded coursework. **Packaging any
+of it for a portfolio is optional and carries no points**, because not every
+student wants one and nobody should be graded on choosing. An earlier draft
+listed two artifacts the weeks did not actually assign, which would have made
+the optional portfolio an unannounced extra project during the final crunch.
+These three are assigned.
 
-| Artifact | Why it is worth showing |
-|---|---|
-| The evidence file | A short assessment report on a live agentic system, every claim traced to a recorded check. Most entry-level portfolios have nothing like it |
-| One case, five trials | The student's own test case, the prediction written before the run, and the observed rate. It shows judgment under uncertainty, including a prediction that was wrong |
-| A three-minute walkthrough | From an ordinary-looking request to the proof. Optional, and the one most students will enjoy making |
+| Artifact | Produced in | Why it is worth showing |
+|---|---|---|
+| The evidence file | Final block | A short assessment report on a live agentic system, every claim traced to a recorded check. Most entry-level portfolios have nothing like it |
+| The verification record | Week 6 | Where an AI assistant was right, where it was wrong, and how the student knew. This is the rarest thing in the list and the most current |
+| The control, measured | Week 7 | A fix with a before and after, and a benign case proving it did not just delete the feature |
 
-Two things the optional module has to teach, because both are real: the canary
+Two things the optional module has to teach, because both are real: canary
 tokens in a student's evidence are derived from their college ID and must be
-scrubbed before anything is published, and the repository needs a licence
-before anyone is encouraged to publish from it.
+scrubbed before anything is published, and neither repository has a licence file
+yet, so nothing should be encouraged into public view until one exists.
+
+## 5a. Safety, privacy, and what to tell a parent
+
+The course asks students, some of them sixteen, to make an AI system disclose a
+credential. That deserves a plain answer rather than a wording strategy, and the
+technical facts are better than the optics suggest.
+
+| Question | Answer |
+|---|---|
+| Is anything real? | No. The credential is invented, the customers are invented, and the mail domains are reserved example domains that cannot receive mail |
+| Can it reach anything? | No. The target listens on the loopback address only. The runner refuses to test any host that is not the authorized target and records the refusal |
+| What are students forbidden to do? | Anything outside the provided target, their own agent, and a local model. Never a commercial AI service, never a third-party system. This is week 1, it is graded, and it gates the rest of the course |
+| What if a student finds something real? | They stop and tell the instructor. The course says so and says why |
+| What personal data is in a student's work? | Their college ID is written into harness reports, and their canary tokens are derived from it. This is deliberate, so that evidence cannot be copied between students. **It is also why publishing is optional and why scrubbing is taught.** For students under 18 this should be reviewed against district records policy before the course runs |
+
+That last row is an open item, not a solved one. It is flagged here so it is
+decided by the right person rather than by default.
+
+## 5b. What this course does not cover
+
+Seven weeks at introductory depth cannot cover the agentic security surface, and
+a course calling itself broad should say what it leaves out rather than imply
+completeness. Named in week 2 and in the closing week, at awareness level only,
+with no exercise: memory and context poisoning; the supply chain of tools,
+models and extensions; unsafe execution of generated code; validating an agent's
+output before acting on it; sensitive data accumulating in logs and traces;
+monitoring agents in production; runaway cost; and multi-agent systems where one
+agent's output becomes another's instruction.
+
+Naming them takes one page and one wrap-up discussion. Leaving them unnamed
+would let a student finish believing agent risk is prompt injection plus broad
+tools, which is the misconception this field most needs to stop producing.
 
 ## 6. What makes this different from what other schools teach
 
@@ -123,21 +253,55 @@ Distinctive, specifically:
   cannot share the proof that it worked in your environment.
 - **It runs on a locked-down laptop with no account, no key and no internet.**
 
-## 7. What has been verified, and what has not
+## 7. What is verified, what is not, and what is still open
 
 **Verified by measurement**, on the model the course would ship, over 46 agent
-runs on the real student path: the agent discloses its system prompt and the
-credential in it 4 times in 5; it sends mail outside the company with no
+runs through the real student path: the agent discloses its system prompt and
+the credential in it 4 times in 5; it sends mail outside the company with no
 approval 5 times in 5; any caller can read any customer record 5 times in 5,
 with the audit log recording it perfectly and stopping nothing.
 
-**Not verified:** that a college loaner will execute the bundle. That is a
-policy question for whoever owns the image, and the recorded-evidence fallback
-in section 4 is what makes the course survive a no.
+**Not verified: that a college loaner will run the bundle.** That is a policy
+question for whoever owns the image, and it is why the deterministic backstop in
+section 4 exists. With the backstop, a blocked machine costs a student the live
+comparison, not the course.
 
-**A limit worth stating to students in week 1:** indirect prompt injection, the
-attack everyone has heard of, does not reliably complete on a small local
-model. Hidden instructions do steer the agent into fetching a record it was not
-asked for; the final step does not land. The course teaches that as a real
-result about a real system rather than pretending otherwise, which is a better
-lesson than a staged success.
+**A limit to state to students in week 1:** indirect prompt injection, the
+attack everyone has heard of, does not reliably complete on a small local model.
+Hidden instructions do steer the agent into fetching a record it was not asked
+for; the last step does not land. The course teaches that as a real result about
+a real system, which is a better lesson than a staged success.
+
+### Open items, each needing a decision or a build
+
+| Item | Who or what settles it |
+|---|---|
+| Contact hours, points and rubrics are not yet allocated | Needs doing before submission. Two weeks look heavy on their face, week 4 with two investigations and week 7 with a control plus two measured runs, and that should be costed rather than assumed |
+| Student college IDs are written into harness reports | District records policy, for students under 18 |
+| Neither repository has a licence file | Whoever owns courseware IP, before any student is encouraged to publish |
+| The mock needs per-case target rates | A small change to `agent/mock_model.py`, plus one authored rate per case |
+| Week 6 needs a `read_evidence` tool | Roughly twenty lines, scoped to the student's own runs directory |
+| The outbox detector cites a file that the next trial deletes | The evidence string should carry the message content, the way the canary and audit-row detectors already do. Small fix, and it is what makes "evidence a stranger can check" true rather than nearly true |
+
+### How this proposal was reviewed
+
+Four course concepts were designed independently and judged by three lenses: a
+dual-credit student, the curriculum committee, and the instructor who has to
+build it. All three ranked the same concept first and all three named the same
+three flaws, which are handled above rather than left to be found later.
+
+The result was then reviewed adversarially by a separate agent working from the
+repository rather than the proposal, which found thirteen defects. The
+consequential ones are fixed here: the outcomes were compound and are now single
+claims; week 1 expected novices to catch an agent's mistake using skills the
+course declined to teach, and now teaches them; week 7 paired an attack with a
+control that could not touch it; week 6 asked an agent to read files it had no
+tool to open, and to rate a severity the evidence could not support; the
+portfolio promised work the weeks no longer assigned; and the coding-agent
+comparison asserted a maximum-privilege agent that does not exist.
+
+One finding was checked and found half right: the harness deletes outbox files
+between trials, so an evidence string naming a file no longer resolves, but the
+canary and audit-row detectors carry their content inline and stand on their
+own. One was checked and found wrong in its reasoning but right in its
+conclusion, which is the week 7 control above.
