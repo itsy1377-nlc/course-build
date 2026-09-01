@@ -75,37 +75,53 @@ would make the lesson harder to teach, not easier.
 
 ## 2. Proposed learning outcomes
 
-Seven, and each one is a single observable claim. An earlier draft had six that
-each bundled three or four capabilities together, which cannot be scored: a
-student could satisfy half of one and there would be no way to say which half.
-The criteria live in the rubric, not inside the outcome.
+Upon successful completion of this course, the student will be able to:
 
-| # | Part | Outcome | Assessed by |
+| # | Outcome | Bloom | Evidence |
 |---|---|---|---|
-| **1** | A | Describe what an agentic AI system did during a recorded run, identifying each step as a model decision, a tool call, or a returned result. | The week 2 annotated trace of the student's own run |
-| **2** | A | Read a short script and state what it reads, what it changes or sends, and what condition decides whether it acts. | The week 1 code-reading worksheet, and the missing check located in week 4 |
-| **3** | A | Determine, from an agent's tool configuration, which of its actions cannot be undone. | The week 2 blast-radius inventory |
-| **4** | B | Support a claim about an agent's behavior with recorded system evidence, and reject a claim whose only support is the agent's own account of what it did. | The evidence line in each pack (weeks 2 and 4); the wrong analyst claim caught in week 5 |
-| **5** | B | Report the result of a repeated-trial test as a rate with its controls, and state what a no-hit result does and does not establish. | The week 3 run: a prediction, a rate, and an account of how far the chain went |
-| **6** | B | Implement a control at an agent's tool boundary and verify with paired runs that it stops the unauthorized action while authorized use still works. | The week 7 control, and two reports side by side |
-| **7** | C | Verify an AI assistant's output against source evidence, recording each claim as accepted, corrected or rejected with the reason. | The week 5 evidence-linked timeline and the week 6 handover note |
+| **1** | Describe how an agentic AI system operates, using its recorded run | Understand | Annotated trace |
+| **2** | Interpret a short script to determine what it accesses and changes | Understand | Code-reading worksheet |
+| **3** | Analyze an agent's tool configuration to identify irreversible actions | Analyze | Blast-radius inventory |
+| **4** | Differentiate evidence from assertion in claims about an agent's behavior | Analyze | Evidence packs |
+| **5** | Interpret repeated-trial test results, including results showing no effect | Analyze | Test report and reading |
+| **6** | Apply a control at an agent's tool boundary and verify its effect | Apply | The control, measured before and after |
+| **7** | Evaluate AI-generated output against source evidence | Evaluate | Verification record |
 
-**Outcome 2 is new and it is the coordinator's scripting ask, made assessable.**
-An earlier draft had no code-reading outcome at all; it put students in front of
-an agent's explanation of a script and asked them to find the error, which
-requires exactly the skill the course had declined to teach. That is not
-instruction, it is a trap. Week 1 now teaches the four questions and the course
-assesses them.
+**One verb, one object, each.** An earlier draft ran to thirty-five words per
+outcome and bundled three or four capabilities into each, which cannot be
+scored: a student could satisfy half of one and there would be no way to say
+which half. Every condition and criterion that used to sit inside an outcome now
+sits in the rubric, where it belongs and where it can be changed without
+re-approving the outcome.
 
-**Outcome 5 is worded so that a correct test with no hits is a pass.** A student
-whose five trials all refuse has done the work correctly and must be able to
-show mastery. Stating what a no-hit result does not establish is the harder
-skill anyway.
+**That is the practical gain.** Outcome 6 says apply a control and verify its
+effect. It does not say which control, at which boundary, against which attack,
+measured over how many trials. So the week that delivers it can change, the
+target can change, and the number of trials can change, without touching a
+document that went through committee. The current design uses a recipient
+allowlist over five trials; nothing in the outcomes requires that, and nothing
+breaks if it moves.
 
-**A note for the committee on levels.** Outcomes 1 to 3 are describe and
-determine, which is right for weeks 1 and 2 of a course with no prerequisite.
-Outcomes 4 and 5 are the analytical core. Outcomes 6 and 7 are apply and
-verify, and both are reached in the last third, after the scaffolding.
+**The Bloom spread is deliberate for a course with no prerequisite:** two at
+Understand in the opening weeks, three at Analyze through the middle, one Apply
+and one Evaluate in the final third, after the scaffolding. Nothing sits at
+Remember, because a course that only asks students to recall would not need a
+lab; nothing sits at Create, because authoring something genuinely novel in
+seven weeks without a prerequisite would be a promise this course could not
+keep.
+
+**Two notes a reviewer will want.**
+
+Outcome 2 is the scripting requirement made assessable. The course teaches
+recognition rather than a language, and this is the line that says so and makes
+it gradeable.
+
+Outcome 5 is worded so that a correct test showing no effect is a pass. A
+student whose trials all come back negative has done the work correctly, and
+saying what a negative result does not establish is the harder skill anyway.
+
+**Mapping to the three parts:** outcomes 1 to 3 are what an agent is, 4 to 6 are
+what goes wrong with them, and 7 is using one for security work.
 
 ## 3. Week by week
 
