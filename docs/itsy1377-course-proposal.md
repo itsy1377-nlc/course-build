@@ -20,7 +20,7 @@ and left the third out, which made it a testing course wearing a broader title.
 |---|---|---|
 | **A. What an agent is** | 1 to 2 | What is actually happening when an AI "does something", what shape every agent has, and what each one can reach |
 | **B. What goes wrong** | 3 to 5, 7 | Where the security problems come from, how you prove one, and what a control looks like |
-| **C. Using one for the work** | 1, 6, and throughout | Where an agent genuinely helps a security analyst, how you check it, and what you would need to learn to supervise it well |
+| **C. Using one for the work** | 1, 5, 6 | Where an agent genuinely helps a security analyst, how you check it, and what you would need to learn to supervise it well |
 
 **One idea holds all three together: evidence over assertion.** When you test an
 agent you do not believe what it says it did, you look at what the system
@@ -111,16 +111,37 @@ verify, and both are reached in the last third, after the scaffolding.
 
 | Wk | Part | Title | What the student does | Artifact |
 |---|---|---|---|---|
-| 1 | A | Four questions you can ask any code | Get the environment running. Meet four questions to ask about any short script: what does it read, what does it change or send, can that be undone, and what decides whether it happens. One worked example, then the starter scripts from 3c, which operate on their own data and which they run before they read. The last is one a coding agent wrote. Anyone who wants more than that is pointed at the shelf in 3b rather than taught a language | Code-reading worksheet; Rules of Engagement gate at 100 percent |
+| 1 | A | Six things and four questions | Get the environment running. Meet six pieces of syntax by name, with one example each: assignment, calling a function, `if`, `for`, `import`, and opening a file. Then four questions to ask of any script: what does it read, what does it change or send, can that be undone, and what decides whether it happens. Practise on three short scripts from 3c against bundled sample data, the last written by a coding agent | Code-reading worksheet; Rules of Engagement gate at 100 percent |
 | 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Inventory what this agent can reach, using week 1's four questions on the tool source itself. Then change one setting, the loop's step limit, predict what a run will look like afterwards, and check | Annotated trace; blast-radius inventory; the predicted and observed effect of one setting |
 | 3 | B | Make it talk | Ask the agent to repeat its own instructions; watch it hand over a credential stored there for convenience. Five trials, report the rate, including the trials where it refused | Evidence pack 1: disclosure |
 | 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
-| 5 | B | Rates, not vibes | Run the whole harness and read every part of it: provider banner, scope refusal, detector self test, controls. Post your week 3 rate on the class board and look at the spread. Take apart a supplied results file that claims more than it found | Harness report with a written reading; results teardown |
-| 6 | C | Put it to work, then check it | Give the agent read access to your own evidence from weeks 3 to 5 and ask it three checkable questions: what happened, in what order, and who does the audit log name. Check every claim against the file it came from. Mark each accepted, corrected or rejected | Verification record; judgment note |
-| 7 | B | One rule that holds, and one that cannot | Try to stop the outbound mail with a firm instruction in the prompt. Measure it. Then add a recipient allowlist in code and measure again, confirming the benign escalation still works. Then try the same control against the week 3 disclosure and find that it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
+| 5 | C | The case | You are handed an incident: an agent did something last Tuesday and here is what was recorded. Give the assistant read access to the evidence pack and ask it for a timeline: claim, time, actor, and the exact record each claim came from. Then check every row. One thing does not add up, and the sources disagree about it | The evidence-linked timeline, every row marked accepted, corrected or rejected |
+| 6 | C | What you would do about it | Work out what actually happened from the evidence rather than from the assistant's account or the analyst note in the pack, which contains a confident wrong claim. Choose one containment step, say what evidence supports it, and say what you are not recommending and why. Write it as a one-page handover the next person could act on | The SOC handover note |
+| 7 | B | One rule that holds, and one that cannot | Implement the containment you recommended. First try it as a firm instruction in the agent's prompt, and measure. Then add the recipient allowlist in code and measure again, confirming the benign escalation still works. Then try the same control against the week 3 disclosure and find it does nothing, because that disclosure never crosses a tool boundary | The control, paired reports, and a written account of why the second attempt could not work |
 | Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 6, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
 
-**Week 7 was wrong in the previous draft and the fix improves it.** It paired
+**Weeks 5 to 7 are now one continuing case, and that is the biggest change in
+this draft.** They used to be three separate exercises: read a harness report,
+then hand the assistant some evidence, then implement a control. Review found
+the real problem with that, and it was not any one week. It was that the course
+had no mystery in it. Every vulnerability is announced in the source comments
+before the student meets it, so there was never an unknown to resolve, never
+two sources disagreeing, and never a decision that mattered. Four weeks of ask,
+run five times, read the report.
+
+Now week 5 hands the student a case with a genuine conflict in it: the agent's
+own trace says it sent the mail, and the outbox shows the guard stopped it. One
+of those is wrong and the student has to work out which, using the same
+evidence discipline weeks 3 and 4 built. Week 6 turns that into a decision, and
+week 7 implements the decision they made. **The control the student writes in
+week 7 is the one they recommended in week 6**, which is what turns the best
+moment of the course from a demonstration into a payoff.
+
+The analyst note in the pack carries a plausible wrong claim, which is where
+the old "take apart a supplied poisoned report" exercise went. It is the same
+skill, in a case the student cares about, instead of a worksheet.
+
+**Week 7 was wrong in an earlier draft and the fix improves it.** It paired
 the week 3 disclosure with a control at the tool boundary. That control cannot
 work: the disclosure appears in the model's own text, and a tool-boundary check
 gates tool calls, not text. The week now pairs the control with the outbound
@@ -129,17 +150,26 @@ deliberate negative result. "Here is a control that works, here is the same
 control failing, and here is why" is a better week than the one that was
 broken.
 
-**Week 6 needs one new tool and is better for it.** The agent has no way to read
-a trace or an audit log, so an earlier draft was really asking students to paste
-text into a chat window and call it agentic. Adding a single `read_evidence`
-tool, scoped to the student's own `runs/` directory, makes the exercise real. It
-is also a teaching moment: the student has just granted an agent filesystem
-read, so they run week 2's inventory on it and see the blast radius grow.
+**The `read_evidence` tool is the one real build this needs, and it is not
+twenty lines.** Review was right to push on that. Evidence spans JSONL traces,
+JSON reports, exported audit rows and outbox messages, and the outbox lives
+outside `runs/`. The tool has to be read-only and bound to a manifest that
+names what it may open: canonicalise the path, reject traversal, accept only
+the listed files, cap the size, and return numbered records so a claim can cite
+one. The agent gets no write tool and no send tool. That is a day's work, not
+an afternoon, and it is also the week's second lesson: the student has just
+scoped an agent's access, which is week 2's inventory turned around.
 
 **Severity is not asked for.** An earlier draft wanted the agent to rate
 severity. Severity is not recoverable from an audit row; it needs impact, scope
-and likelihood that the evidence does not contain. The three questions asked
-instead are all checkable against a file, which is the point.
+and likelihood the evidence does not contain. Every question asked instead is
+checkable against a file, which is the point.
+
+**What ships in the case pack**, generated once from a real run so nothing in
+it is invented: two agent traces, an exported `audit.jsonl` so the exercise
+does not depend on a running database, three preserved outbox messages, one
+analyst note containing a confident wrong claim, and a manifest naming what the
+agent is allowed to read.
 
 ### 3a. Where the code reading actually lives
 
@@ -169,8 +199,13 @@ need to be told to go learn programming.
 
 ### 3b. The reference shelf, which does the work the course does not
 
-The course teaches recognition and stops there. It does not teach a language,
-and it should not pretend to in seven weeks with no prerequisite. What it does
+The course teaches six pieces of syntax and then recognition, and stops there.
+Naming assignment, a function call, `if`, `for`, `import` and opening a file is
+about forty minutes, and without it the four questions are a ritual: a student
+who cannot tell a function call from a variable cannot say what a script
+touches, and the supervision argument the course rests on does not stand up. It
+does not teach a language beyond that, and should not pretend to in seven weeks
+with no prerequisite. What it does
 instead is hand every student a short shelf and tell them plainly which one to
 open for which problem. A student who wants to go further has somewhere to go
 on the day they want it, which is the only moment that matters.
@@ -210,28 +245,30 @@ This is the better teaching corpus because motivation is built in. "Read this
 example" is an assignment. "This prints your own canary tokens, and here is how
 to make it print the ones in your outbox too" is a reason.
 
-| Script | What it does for the student | The change they are asked to make |
-|---|---|---|
-| `show_my_tokens.py` | Prints their three canary tokens, which they need from week 3 onward | Print the gate code as well |
-| `count_tool_calls.py` | Reads one trace and reports how many tool calls the agent made | Report the busiest run across a whole folder |
-| `search_outbox.py` | Searches the outbox for a string, which is how they find their own evidence | Report which message it was in, not just whether it was there |
-| `read_report.py` | Reads a harness report and prints each case with its rate | Sort so the vulnerable cases come first |
-| `who_touched_what.py` | Reads the audit log and prints who did what to which customer | Filter to one actor, which is week 4's whole point |
+| Script | Week | What it does for the student | The change they are asked to make |
+|---|---|---|---|
+| `show_my_tokens.py` | 1 | Prints their three canary tokens, which they need from week 3 onward | Print the gate code as well |
+| `count_tool_calls.py` | 1 | Reads one trace and reports how many tool calls the agent made | Report the busiest run across a whole folder |
+| `read_report.py` | 1 | Reads a harness report and prints each case with its rate | Sort so the vulnerable cases come first |
+| `who_touched_what.py` | 4 | Reads exported audit rows and prints who did what to which customer | Filter to one actor, which is week 4's whole point |
+| `search_outbox.py` | 5 | Searches preserved outbox messages for a string | Report which message it was in, not just whether it was there |
+
+**Week 1 uses the first three, against bundled sample data**, because a student
+in week 1 has generated nothing yet. The other two arrive in the week whose
+evidence they read.
 
 Each is twenty to forty lines, commented in the course's voice, and does one
 thing. The requested change is one or two lines and is checkable by running it.
 None requires writing from a blank file, which is the line the course does not
 cross.
 
-**One of them needs care, and checking found it.** The harness clears the
+**One of them needed care, and checking found it.** The harness clears the
 outbox before every trial, so a student who has just run the suite has an empty
-outbox and `search_outbox.py` finds nothing. It works after a single agent run,
-not after a harness run. That is worth teaching rather than hiding: a test that
-does not clean up between trials reports trial one's mail as trial two's
-success, which is the same reasoning the whole course is built on. But the
-script's instructions have to say when to run it, and the evidence-preservation
-fix in section 7 has to land, or a student's own evidence will be gone by the
-time they go to show it.
+outbox and a search over it finds nothing. That is why `search_outbox.py` now
+sits in week 5, against the preserved messages in the case pack, rather than in
+week 1 against nothing. It is also worth teaching rather than hiding: a test
+that does not clean up between trials reports trial one's mail as trial two's
+success, which is the reasoning the whole course is built on.
 
 The other four have data: traces and reports accumulate per run, the audit log
 is read over the API, and the tokens are derived rather than stored. Verified
@@ -325,20 +362,34 @@ technical facts are better than the optics suggest.
 That last row is an open item, not a solved one. It is flagged here so it is
 decided by the right person rather than by default.
 
-## 5b. What this course does not cover
+## 5b. Breadth, as seven case cards rather than a glossary
 
-Seven weeks at introductory depth cannot cover the agentic security surface, and
-a course calling itself broad should say what it leaves out rather than imply
-completeness. Named in week 2 and in the closing week, at awareness level only,
-with no exercise: memory and context poisoning; the supply chain of tools,
-models and extensions; unsafe execution of generated code; validating an agent's
-output before acting on it; sensitive data accumulating in logs and traces;
-monitoring agents in production; runaway cost; and multi-agent systems where one
-agent's output becomes another's instruction.
+Seven weeks at introductory depth cannot cover the agentic security surface,
+and an earlier draft handled that by naming the omitted risks on one page. That
+is a vocabulary list, and a student who has been given names has not been given
+knowledge.
 
-Naming them takes one page and one wrap-up discussion. Leaving them unnamed
-would let a student finish believing agent risk is prompt injection plus broad
-tools, which is the misconception this field most needs to stop producing.
+Instead: seven ten-minute case cards, each a short real-shaped scenario, each
+asking the same four questions the course has already taught.
+
+| Card | The scenario in one line |
+|---|---|
+| Poisoned memory | The agent remembers something a previous user told it, and acts on it for the next user |
+| Agent identity abuse | The agent acts with a service account's authority, and the log names the service, not the person who asked |
+| A poisoned tool description | The agent is handed a tool whose description tells it to do something else |
+| Generated code, executed | The agent writes a script and something runs it before anyone reads it |
+| What the trace remembers | A customer's data is in a trace file that outlives the ticket |
+| Runaway cost | Nothing stops a loop, and the bill is the incident |
+| One agent's output, another's instruction | Two agents, and the first one's summary becomes the second one's orders |
+
+**The four questions are the same every time**, which is the point: what crossed
+a trust boundary, what authority was available at that moment, what evidence
+would show whether it happened, and where would the control have to live. A
+student who can ask those four of a scenario they have never seen has a method,
+which is what transfers.
+
+They are ten minutes each, not a week. They are the closing discussion, and a
+student picks one to write up for the optional where-next artifact.
 
 ## 6. What makes this different from what other schools teach
 
@@ -381,13 +432,28 @@ a real system, which is a better lesson than a staged success.
 
 ### Open items, each needing a decision or a build
 
+**Four contradictions in the shipped code, all verified, all blocking.** These
+are repository problems rather than proposal problems, and the course cannot
+run until each is fixed.
+
+| Contradiction | Verified against |
+|---|---|
+| `get_customer` is still an unwritten student exercise that raises `ToolNotImplemented`, and week 4 requires it. The student build strips the reference answer, so no student can complete week 4 as shipped | `agent/tools.py`, and measured directly: on the raw tree A3 and A6 cannot land for any model |
+| The config default is `provider: mock` with `model: qwen3:1.7b`, while the portable bundle ships `granite4.1:3b`. Switching to live asks Ollama for a model that is not there | `config/lab.config.yaml` against `scripts/build_portable_bundle.py` |
+| The labs README tells students to obtain an API key in week 2, while the course claims no key and no account | `README.md`, "Adding your API key, in week 2" |
+| The config advertises two hosted commercial endpoints, while the scope rules say never a commercial AI service | `config/lab.config.yaml` |
+
+The first is the worst: the course as written cannot be completed on the
+repository as shipped, and it is the same defect that made one of my own
+measurements meaningless earlier before I found the cause.
+
 | Item | Who or what settles it |
 |---|---|
 | Contact hours, points and rubrics are not yet allocated | Needs doing before submission. Two weeks look heavy on their face, week 4 with two investigations and week 7 with a control plus two measured runs, and that should be costed rather than assumed |
 | Student college IDs are written into harness reports | District records policy, for students under 18 |
 | Neither repository has a licence file | Whoever owns courseware IP, before any student is encouraged to publish |
 | The mock needs per-case target rates | A small change to `agent/mock_model.py`, plus one authored rate per case |
-| Week 6 needs a `read_evidence` tool | Roughly twenty lines, scoped to the student's own runs directory |
+| Weeks 5 and 6 need a `read_evidence` tool and a case pack | A day, not an afternoon: read-only, manifest-bound, path-canonicalised, size-capped, returning numbered records. Plus the pack itself, generated once from a real run |
 | The outbox detector cites a file that the next trial deletes | The evidence string should carry the message content, the way the canary and audit-row detectors already do. Small fix, and it is what makes "evidence a stranger can check" true rather than nearly true |
 
 ### How this proposal was reviewed
