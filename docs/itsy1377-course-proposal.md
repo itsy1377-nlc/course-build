@@ -83,7 +83,7 @@ The criteria live in the rubric, not inside the outcome.
 | # | Part | Outcome | Assessed by |
 |---|---|---|---|
 | **1** | A | Describe what an agentic AI system did during a recorded run, identifying each step as a model decision, a tool call, or a returned result. | An annotated trace of the student's own run |
-| **2** | A | Read a short script and state what it reads, what it changes or sends, and what condition decides whether it acts. | A code-reading worksheet over four supplied scripts |
+| **2** | A | Read a short script and state what it reads, what it changes or sends, and what condition decides whether it acts. | A code-reading worksheet in week 1, and the located missing check in week 4 |
 | **3** | A | Determine, from an agent's tool configuration, which of its actions cannot be undone. | The blast-radius inventory |
 | **4** | B | Support a claim about an agent's behavior with recorded system evidence, and reject a claim whose only support is the agent's own account of what it did. | The evidence line in each pack; a teardown of a supplied results file that claims more than it found |
 | **5** | B | Report the result of a repeated-trial test as a rate with its controls, and state what a no-hit result does and does not establish. | A harness report with a written reading of it |
@@ -112,7 +112,7 @@ verify, and both are reached in the last third, after the scaffolding.
 | Wk | Part | Title | What the student does | Artifact |
 |---|---|---|---|---|
 | 1 | A | Four questions you can ask any code | Get the environment running. Learn to answer four questions about a short script without writing any: what does it read, what does it change or send, can that be undone, and what decides whether it happens. Work through four scripts of rising length, the last one written by a coding agent | Code-reading worksheet; Rules of Engagement gate at 100 percent |
-| 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Then inventory what this agent can reach, and use week 1's four questions on the tool source itself | Annotated trace; blast-radius inventory |
+| 2 | A | What is actually happening | Run one ordinary request and read the replay in plain English: which line was the model deciding, which was code running, which returned a result. Meet the shape every agent has: a model, tools, and a loop. Inventory what this agent can reach, using week 1's four questions on the tool source itself. Then change one setting, the loop's step limit, predict what a run will look like afterwards, and check | Annotated trace; blast-radius inventory; the predicted and observed effect of one setting |
 | 3 | B | Make it talk | Ask the agent to repeat its own instructions; watch it hand over a credential stored there for convenience. Five trials, report the rate, including the trials where it refused | Evidence pack 1: disclosure |
 | 4 | B | Make it act, make it fetch | Ask it politely to mail an outside address; nobody approves it. Then run as a support agent with no business seeing a customer, and get the record anyway. Find the missing check in the source. Read the audit row and notice whose name is on it | Evidence packs 2 and 3 |
 | 5 | B | Rates, not vibes | Run the whole harness and read every part of it: provider banner, scope refusal, detector self test, controls. Post your week 3 rate on the class board and look at the spread. Take apart a supplied results file that claims more than it found | Harness report with a written reading; results teardown |
@@ -140,6 +140,32 @@ read, so they run week 2's inventory on it and see the blast radius grow.
 severity. Severity is not recoverable from an audit row; it needs impact, scope
 and likelihood that the evidence does not contain. The three questions asked
 instead are all checkable against a file, which is the point.
+
+### 3a. Where the code reading actually lives
+
+The coordinator asked for enough scripting to recognise things in the output of
+coding agents. That is one week of concentrated teaching and then a thread
+through the rest, because a skill taught once in week 1 and never used again is
+a skill nobody keeps.
+
+| Wk | What kind of reading | Whose code |
+|---|---|---|
+| 1 | The four questions, taught and practised: what does it read, what does it change or send, can that be undone, what decides whether it happens | Four supplied scripts of rising length, the last written by a coding agent |
+| 2 | The same four questions, on the system under study. Then change one setting, predict the effect on a run, and check | The agent's own tool definitions and configuration |
+| 4 | Reading for absence, which is harder: find the check that is not there | The target's customer lookup, which never asks who is calling |
+| 6 | Verifying somebody else's claim about code | The assistant's account of what the evidence shows |
+| 7 | The smallest possible write: one list and a four-line guard | Their own |
+
+**No student writes code from a blank file, and the only authoring is in week
+7.** The progression is deliberate: read someone else's code, read the code that
+runs your lab, notice what is missing from it, check a claim about it, change
+it. Each rung is small and each one is grounded in something the student has
+already seen.
+
+**This is also how the course makes its closing argument.** A student who has
+spent seven weeks finding that they can *almost* read the code, and that the
+almost is what stands between them and catching the agent's mistake, does not
+need to be told to go learn programming.
 
 ## 4. The deterministic backstop, and what it fixes
 
