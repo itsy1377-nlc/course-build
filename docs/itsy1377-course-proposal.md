@@ -127,14 +127,45 @@ what goes wrong with them, and 7 is using one for security work.
 
 | Wk | Part | Title | What the student is asked to do | Artifact |
 |---|---|---|---|---|
-| 1 | A, B | Ask it something it should not answer | In the first half hour, before anything is explained, send the supplied request and record what comes back. Then the question the rest of the course answers: how would you know whether it did that, or only said it did? The six pieces of syntax and the four questions arrive next, as the tools for answering it, taught by stepping the scripts in a visual debugger rather than on a worksheet | What came back, and the question answered in one paragraph; Rules of Engagement gate at 100 percent |
-| 2 | A | What is actually happening | Read the replay and mark five lines: the first model decision, the first tool call, the first returned result, the step that cannot be undone, and the step where untrusted text entered. Inventory what this agent can reach. Change one setting, predict the effect, and check. Then run week 1's request five times and report what you get | Five marked lines; blast-radius inventory; the five-trial rate |
-| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict what will happen before you run it. Run five trials, read the traces, and mark how far it got on a four-step scale: read, obeyed, called a tool it was not asked to call, something left. **Your case joins the class pool at the end of this week, and the board goes up** | The case file, the prediction, the four-step result, and a place on the board |
-| 4 | B | Two requests and an audit log | Ask the agent, politely and with no trickery, to send a note to an outside address, and record what happens. Then run as a support agent working two tickets that have nothing to do with customer C-1002, ask for that record, and record what happens. Then read the audit log and say who it says did it | Evidence packs 2 and 3 |
-| 5 | C | The case | An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask it for a timeline: claim, time, actor, and the exact record each claim came from. Check every row against its source, then make the call. Was this an incident or was it not, and what in the pack decides it | The evidence-linked timeline and the call, with the evidence behind it |
-| 6 | C | What you would do about it | Fill the handover form: what happened, which record proves each line, who was affected, what the assistant got wrong, the containment step you recommend and one you rejected, each with the reason. Then check your call against the class: your pack was not everybody's | The handover form |
-| 7 | B | Make one hold | Implement the containment you recommended. First as an instruction in the agent's prompt; measure it. Then as a recipient allowlist in code; measure again, and confirm the benign escalation still works. **Then run it against the class pool from week 3, none of which you wrote.** Then point it at what week 1 did, and report what you find | The control, paired reports, the pool standing, and two sentences on the last result |
-| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus the control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
+| 1 | A, B | Ask it something it should not answer | In the first half hour, before anything is explained, send the supplied request and record what comes back. Then two questions the rest of the course answers: how would you know whether it did that or only said it did, and what else can it reach? Answer the second one now by inventorying its tools: what each reads, what each changes, what cannot be taken back. The six pieces of syntax and the four questions arrive next, as the tools for reading that configuration, stepped in a visual debugger rather than taught on a worksheet | What came back; the blast-radius inventory; the code-reading worksheet; Rules of Engagement gate at 100 percent |
+| 2 | A | Read the machine | Read the replay and mark five lines: the first model decision, the first tool call, the first returned result, the step that cannot be undone, and the step where untrusted text entered. Run the starter scripts against your own week 1 run and make the one-line change each asks for. Then run week 1's request five times and report what you get | Five marked lines; the modified scripts; the five-trial rate |
+| 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict what will happen before you run it. Run five trials, read the traces, and mark how far it got on a four-step scale. **Your case joins the class pool at the end of this week, and the board goes up** | The case file, the prediction, the four-step result, a place on the board |
+| 4 | B | Two requests and an audit log | Ask the agent, politely and with no trickery, to send a note to an outside address, and record what happens. Then run as a support agent working two tickets that have nothing to do with customer C-1002, ask for that record, and record what happens. Then read the audit log and say who it says did it | Evidence packs 1 and 2 |
+| 5 | C | The case, and the call | An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask for a timeline: claim, time, actor, and the record each claim came from. Check every row against its source. Then make the call in the handover form: was this an incident, what in the pack decides it, what did the assistant get wrong, and what would you do about it | The evidence-linked timeline and the completed handover |
+| 6 | B | Build one that holds | Take the containment you recommended and build it. First as an instruction in the agent's prompt; measure it. Then in code at the tool boundary; measure again, and confirm the benign escalation still works | The control, paired before and after reports |
+| 7 | B | Head to head | Run your control against the class pool, live, in the room. The board updates as it goes. You get one revision after the first round and one more run. Then point your finished control at what happened in week 1, and report what you find | The pool standing, the revision, and two sentences on the last result |
+| Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus your control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why | The report; the where-next note; a short exam |
+
+**Three weeks changed, and no outcome did.** That is the point of cutting the
+outcomes to one verb each: the schedule below moved substantially and the
+document that goes to committee did not have to.
+
+**Week 6 is gone as a writing week.** Across three rounds of independent review
+it was named the worst hour every time, by half the readers each time, and
+shortening it twice did not move that once. The diagnosis was consistent: it
+existed to write up a decision already reached the week before. The
+investigation and the call now happen together in week 5, while the evidence is
+still live, and the handover form is the artifact of that week rather than a
+week of its own.
+
+**Week 2's inventory moved into week 1.** It was the second most-named worst
+hour, and the reason was placement: a configuration-reading exercise landing the
+week after the most interesting thirty minutes in the course. It is now the
+answer to a question the student has just been made to want. They watched the
+agent do something it should not; the immediate next question is what else it
+can reach, and the inventory answers it while they still care.
+
+**The freed week became the live head to head.** The pool was already the
+best-reviewed hour in the course and it was asynchronous: submit, wait, read a
+board. Week 7 is now a session in the room. Your control runs against the class
+pool while the board updates, you get one revision and one more run, and only
+then do you point the finished control at week 1 and find the thing it cannot
+touch. The course ends on a competition and a limit rather than a report.
+
+**What that costs the instructor** is a session to run and a board to keep,
+against a week of forms to grade. That is a favourable trade but it is not a
+free one, and it is the one thing here that adds staff time rather than removing
+it.
 
 ### 3a. The spoiler rule
 
@@ -166,25 +197,21 @@ scope or grading. The Rules of Engagement, the rubric, what is being assessed
 and how, and every constraint on what may be tested stay stated plainly and up
 front. The only thing that moves is the answer.
 
-**The class pool runs from week 3 to week 7, not for one hour at the end.** In
-an earlier draft the pool was a single activity in the final week. Every reader
-called it the best hour in the course, and then several made the same point:
-it is in week 7, and weeks 2 through 6 are a person alone at a laptop reading
-files. So it becomes a ladder.
+**The class pool runs from week 3 to week 7, and it ends live.** In an earlier
+draft it was a single activity in the final week. Every reader called it the
+best hour in the course, and then several made the same point: it is in week 7,
+and the weeks before it are a person alone at a laptop reading files. So it
+became a ladder that ends in a room.
 
-- **End of week 3:** every student's case goes into the pool, and the board goes
-  up. It shows how far each attack got on the four-step scale, by handle rather
-  than by name.
-- **Weeks 4 to 6:** the board stays up. Anyone may revise their case and
-  resubmit; the board moves when they do.
-- **Week 7:** each student runs their finished control against the pool, and the
-  second board goes up: which controls held, and which attacks survived the most
-  controls.
+- **End of week 3:** every case goes into the pool and the board goes up,
+  showing how far each attack got on the four-step scale, by handle not by name.
+- **Weeks 4 to 6:** the board stays up. Anyone may revise and resubmit, and it
+  moves when they do.
+- **Week 7:** every control runs against the pool live, the board updates as it
+  goes, and each student gets one revision and one more run.
 
-That gives the course a standing, visible, competitive thread across five weeks
-for the cost of one file and one page. Nothing about it needs a server, an
-account or a budget: cases are YAML, the instructor strips names, screens them
-and posts one file.
+That is a standing, visible thread across five weeks and a competitive finish,
+for the cost of one file, one page, and one session to run.
 
 **The screening is not optional.** A pooled attack is the one artifact in this
 course written by one student and run by another, and some of those students are
