@@ -223,6 +223,20 @@ thing. The requested change is one or two lines and is checkable by running it.
 None requires writing from a blank file, which is the line the course does not
 cross.
 
+**One of them needs care, and checking found it.** The harness clears the
+outbox before every trial, so a student who has just run the suite has an empty
+outbox and `search_outbox.py` finds nothing. It works after a single agent run,
+not after a harness run. That is worth teaching rather than hiding: a test that
+does not clean up between trials reports trial one's mail as trial two's
+success, which is the same reasoning the whole course is built on. But the
+script's instructions have to say when to run it, and the evidence-preservation
+fix in section 7 has to land, or a student's own evidence will be gone by the
+time they go to show it.
+
+The other four have data: traces and reports accumulate per run, the audit log
+is read over the API, and the tokens are derived rather than stored. Verified
+against a real suite run: 3,080 traces and 212 reports present, outbox empty.
+
 **They are also the answer to the four questions, applied to code the student
 has a reason to care about.** `who_touched_what.py` reads a file, changes
 nothing, cannot do harm, and runs unconditionally. `search_outbox.py` reads a
