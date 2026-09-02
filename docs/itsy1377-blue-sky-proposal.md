@@ -14,40 +14,47 @@ responsibility under the contract, which resolves the age question.
 
 ---
 
-## Status: not yet fit for a committee or a procurement office
+## Status: a design under review, and not a submission
 
-Adversarial review found ten defects, three of them plain errors of mine, and
-the verdict was that this document is not yet fit to put in front of either. It
-has been corrected where correction was possible in a document, and the
-remainder are recorded here rather than smoothed over.
+Two rounds of adversarial review. The second confirmed five corrections, found
+that four more were partial, and returned the same verdict as the first: not yet
+fit for a curriculum committee or a procurement office. That verdict stands and
+this section says why, because a proposal that hides its own review is worse
+than one that fails it.
 
-**Corrected in this revision:** the run count said 350 against rows summing to
-280; the budget claimed to be measured from recorded traces which contain no
-usage data at all; the gating experiment's arithmetic did not match its own
-procedure and its statistical claim was overstated; the silent-failure account
-was broader than the code supports; the control fix was cosmetic; week 6 was
-called unchanged while carrying the largest hosted spend; and a governance rule
-forbidding hosted-only graded work was broken by four graded activities in the
-same document.
+**Corrected and confirmed:** the run arithmetic; the false claim that the budget
+was measured from recorded traces; the statistical overclaim that model size had
+been ruled out; the silent-failure account, which was broader than the code
+supports; and the control-validity fix, which was cosmetic in the first
+revision.
 
-**Specified in this revision**, in answer to the rest of that verdict: the
-points and fallback matrix (4a), where local inference runs and what constrains
-it (4b), the model selection procedure with verified prices and a replacement
-policy (4c), the chain detector with its four observable steps (4d), and the
-twelve governance documents with owners and required contents (6a).
+**Corrected in this revision, after the second review:** the cost table, which
+had been left on the old token arithmetic after the allowance was raised, and
+which is a quarter to a half higher than stated; the licence finding, which was
+factually wrong in a way this document had announced loudly; the points matrix,
+whose rows summed to 100 before two weeks had been counted and which moved
+hosted evidence without removing the graded dependence on it; the workload
+figure; the claim that concurrency is free of memory; the chain detector's first
+two steps, which overclaimed what their evidence proves; and the governance
+register, which named two gating documents where six gate collection.
 
-**Genuinely outstanding, and these cannot be closed in a document:**
+**Not fixable in a document, and each blocks approval:**
 
-1. **The gating experiment has not been run.** Everything in section 0 is a
-   design for an experiment, not its result.
-2. **Server concurrency is unmeasured.** Section 4b names the constraint and the
-   knob; twenty-five simulated clients would settle it in an afternoon.
-3. **The licence question in 4c may narrow the model list to one family**, which
-   is a decision for whoever owns courseware licensing.
-4. **Twelve governance documents are specified and none is written.** Two of
-   them gate the collection of any data at all.
+1. **The gating experiment is unrun**, and it now needs a chain detector that
+   does not exist, which is a fortnight of work before the experiment starts.
+2. **The multi-tenant topology is undesigned.** The target authorises one
+   loopback port; twenty-five students on one server need network namespaces or
+   a rewritten scope check.
+3. **Server capacity is unmeasured**, and concurrency raises memory rather than
+   being free of it.
+4. **Twelve governance documents are specified and none is signed**, six of
+   which gate the collection of any student data at all, and the vendor terms
+   need more than school-official language.
 
-**Read this as a design ready to be costed and argued, not a submission.**
+**The honest summary is that the approval-critical additions in this document
+are specifications rather than completed decisions.** That is the correct state
+for a proposal being costed and argued, and the wrong state for one being
+submitted. Read it as the former.
 
 ## 0. One experiment gates everything below, and it costs under a dollar
 
@@ -244,8 +251,8 @@ how many model calls an agent run makes and roughly how much context it carries.
 They cannot support a token measurement, and this document should not have said
 they did.
 
-**Workload shape, which the traces do support:** about 2.9 model calls per agent
-run across 7,055 inferred requests.
+**Workload shape, which the traces do support:** about 3.2 model calls per agent
+run, from 7,836 recorded steps across 2,428 traces.
 
 **Token allowance, which is planning judgement:** 5,000 input tokens per run is
 defensible. **500 output tokens is not safe**, because a reasoning model can
@@ -272,16 +279,29 @@ the headroom figure, and say which is which.
 **Costed against real published prices rather than a generic tier**, because the
 price varies by model far more than by parameter count:
 
-| Model | Price per million in / out | 280 runs |
-|---|---|---|
-| Ministral 8B | 0.15 / 0.15 | about 6 dollars a class |
-| Qwen3 Next 80B | 0.15 / 1.20 | about 9 dollars a class |
-| Mistral Large 3 | 0.50 / 1.50 | about 23 dollars a class |
+Recomputed at the raised allowance of 5,000 input and 2,000 output tokens per
+run, for 25 students at 280 runs each, which is 7,000 runs, 35 million input and
+14 million output tokens. An earlier draft raised the output allowance and left
+the cost table on the old 500-token arithmetic, which review correctly called
+rearranging furniture around an unrecomputed budget.
 
-**A class of twenty-five costs somewhere between six and twenty-five dollars
-against three hundred**, depending entirely on which models are chosen. Verify
-every price and region at contract time; none of these should be carried forward
-from this document.
+| Model | Per million in / out | Class of 25 |
+|---|---|---|
+| Ministral 8B 3.0 | 0.15 / 0.15 | about 7 dollars |
+| Qwen3 Next 80B | 0.15 / 1.20 | about 22 dollars |
+| Mistral Large 3 | 0.50 / 1.50 | about 39 dollars |
+
+**A class costs between about seven and forty dollars against three hundred**,
+depending entirely on model choice. The cheapest option is a quarter the price
+of the most expensive, which makes model selection a budget decision as well as
+a pedagogical one.
+
+**The six-step ceiling is still uncosted.** A run that hits the step limit can
+consume the completion allowance at every step, so a pathological run costs
+several times an ordinary one. That is not a rounding error at the class scale
+above, but it is bounded by the step limit and by the per-student cap, and it is
+exactly what the cost lab is for. Price it once the gating experiment produces
+real usage figures.
 
 **What is missing from the run count**, and should be added before anyone signs:
 the final block's cost case, grading re-runs and accommodations, appeals,
@@ -310,35 +330,47 @@ it, before week 7 depends on it.**
 
 ## 4a. The points and fallback matrix
 
-The governance rule is that no rubric row may cite a hosted-only result. This is
-the table that makes that true rather than aspirational. **Every graded artifact
-is reachable on the local path. Hosted work carries participation credit and
-feeds a graded artifact, never carries points by itself.**
+The governance rule is that no rubric row may cite a hosted-only result. An
+earlier draft's attempt at this failed review on three counts, all correct: its
+rows summed to 100 before week 7 and the final, it omitted two hosted
+activities, and moving hosted evidence into an instructor-supplied file changed
+where the evidence came from without removing the graded claim's dependence on
+it.
 
-| Wk | Graded artifact | Points | Reachable locally | If the gateway is unavailable |
-|---|---|---|---|---|
-| 1 | What came back, the inventory, the code worksheet, the scope gate | 15 | Yes, entirely | No effect. Week 1 never touches the gateway |
-| 2 | The variance table and the two sentences | 15 | Yes. The local model and the simulator are two of the five columns | The table ships with three columns instead of five, and the graded sentences are unchanged. The instructor's own sweep is supplied as a comparison read rather than run |
-| 3 | The case, the prediction, the marked traces, the four-step result | 20 | Yes. Authoring, prediction and trace marking are all local | The hosted comparison becomes a supplied transcript. The graded claim, which step did they part at and what does each result establish, is answered from the supplied pair |
-| 4 | Evidence packs 1 and 2, and the reconciliation | 15 | Two of the three records are local | The reconciliation runs on trace and outbox only, and the gateway record is supplied from the instructor's own run. The lesson, that the official record is the weakest, survives with two records |
-| 5 | The timeline, the call, the handover form | 20 | Yes. The pack is a file | No effect. The pack is exported in advance and the session works from it |
-| 6 | The control and its paired reports | 15 | Yes. The control arc runs entirely on the local model | The cross-model confirmation is dropped. It was never the graded part |
-| Final | The evidence file, the where-next note, the exam | Remainder | Yes | No effect |
+**The fix is to change what is graded, not where the evidence comes from.** In
+every week, the graded question is answerable from the student's own local
+evidence. The hosted comparison enriches the answer and is never required to
+produce it.
 
-**Three consequences of this table, stated so nobody is surprised by them.**
+| Wk | Graded question, answerable locally | Pts | Hosted enrichment, ungraded |
+|---|---|---|---|
+| 1 | What came back, how would you know, what can it reach, what does this script touch | 12 | none |
+| 2 | Does it do the same thing twice, and what does one run therefore prove | 12 | the same table with three more columns |
+| 3 | Where did **your** run stop on the four-step scale, and what does that establish and not establish | 16 | the same case on two other models, and where they parted |
+| 4 | Two records of one event: what does each support on its own | 12 | a third record, and which of the three is weakest |
+| 5 | The timeline, the call, and the handover | 18 | none: the pack is a file and is cached before the session |
+| 6 | The control, measured before and after, benign case intact | 16 | the same control against a second model |
+| 7 | Your control against the class pool, and what it cannot touch | 8 | a ten-minute cross-model coda |
+| Final | The evidence file, the where-next note, the exam | 6 | the cost case, run on the burnable key |
+| | **Total** | **100** | |
 
-The hosted comparison is always the *second* run and never the first. That is a
-pedagogical choice as well as a resilience one: running hosted first would make
-local trace reading confirmatory, which is the most valuable thing weeks 2 and 3
-do.
+**Three consequences, stated because they are the price of the rule.**
 
-**The instructor must hold a supplied version of every hosted artifact**, built
-from their own run at the start of term. That is four files and it is the price
-of the rule. Without them the rule is a sentence rather than a plan.
+**Week 3's graded claim is now about the student's own run**, not about
+divergence between models. Divergence is the enrichment. That is a real
+reduction in what the hosted path is graded on, and it is the honest way to keep
+the governance rule true.
 
-**An outage costs a student a comparison, not a grade.** That is the entire
-point, and it is what lets this course survive a contract lapse, a deprecation,
-a region outage, or a model that starts refusing everything.
+**Week 4 grades two records, not three.** The lesson that the official record is
+the weakest needs the third, so an outage costs that specific insight. The
+graded question, what does each record support alone, survives on two.
+
+**Participation credit is not used anywhere**, because participation credit that
+moves a grade is points wearing a different hat, and review was right to say so.
+
+**The instructor still holds a supplied version of every hosted artifact**,
+built from their own run at the start of term. That is four files, and it means
+an outage costs a student an enrichment rather than an assignment.
 
 ---
 
@@ -365,14 +397,31 @@ The per-student target is not negotiable. The runner resets the target before
 every trial, clearing outbox, audit and beacon, so a shared target means one
 student's trial deletes another's evidence.
 
-**The real constraint is concurrency, not memory.** A shared server answers a
-bounded number of requests at once, and week 7 asks twenty-five students to run
-suites in the same hour. The capacity question is therefore how many parallel
-requests the server sustains and what queueing does to a fifty-minute session,
-and it wants measuring with twenty-five simulated clients before a graded week
-depends on it. Concurrency is a configured limit on that server rather than a
-fixed property, so this is a tuning exercise with a known knob rather than an
-unknown.
+**Concurrency is the binding constraint, and it is not free of memory.** An
+earlier draft said "concurrency, not memory", which is a false separation: the
+parallel-request setting multiplies the context allocation, so raising
+concurrency raises memory even though the weights are held once. Requests beyond
+the limit queue or are refused. So the capacity question is a curve rather than a
+number, and it wants measuring with twenty-five simulated clients before a graded
+week depends on it.
+
+**A second knob that is easy to miss.** Week 2's sweep may ask for more than one
+local model in a session. A server holds a bounded number of models resident and
+swaps beyond that, and swapping a 2 GB model under load turns a fifty-minute
+session into a queue. With two local models that is roughly 6 GB, which is
+nothing for a server, but it is a configuration decision rather than a default,
+and discovering it during week 2 looks exactly like the course being broken.
+
+**The multi-tenant topology is not designed, and it is not trivial.** The runner
+authorises a loopback target on one fixed port, and the target binds there. That
+is correct for one student on one machine and wrong for twenty-five on one
+server: containers communicating over a shared bridge are not loopback, so the
+scope check would reject them. Resolving it means either per-student network
+namespaces, so every student's target is genuinely their own loopback, or
+per-student ports with the authorisation check and the scope rules rewritten to
+match. **The first is cleaner and keeps the scope check honest.** Either way it
+is a deployment design that does not exist yet, and it is the largest unbuilt
+piece in this section.
 
 **If that measurement comes back badly**, week 7's head to head runs in two
 cohorts of twelve or as a scheduled queue over the session, which costs the
@@ -409,19 +458,24 @@ September 2026 and to be re-verified at contract time:**
 | Google | Gemma 4 31B | 0.14 / 0.40 |
 | Meta | Llama 3.3 | region dependent |
 
-**One finding that must be settled before signing, and it is uncomfortable.**
-The licence bar above admits fewer of these than the scenario assumes. The Qwen3
-family is Apache 2.0. Llama carries the Llama Community licence and Gemma
-carries Google's own terms, both of which this project has already ruled out for
-being non-permissive. Mistral's smaller models have shipped under more than one
-licence depending on the release, so each must be checked individually rather
-than by family.
+**A correction, because an earlier draft of this section got this wrong and
+said so loudly.** It claimed the licence bar admitted only the Qwen family, and
+that Mistral's licences were mixed and Gemma carried Google's own terms. Checked
+against the vendors' own material: Qwen3 Next 80B is Apache 2.0; the Mistral 3
+generation, including Ministral 8B and Mistral Large 3, is Apache 2.0; and Gemma
+4 is Apache 2.0, unlike earlier Gemma generations. **At least three families
+clear the bar, not one.** Llama remains outside an Apache or MIT bar and stays
+excluded.
 
-**So either the model list is narrower than three, or the licence bar moves, and
-that is a decision for whoever owns courseware licensing rather than for this
-document.** If the bar holds and only one permissive family qualifies, the
-comparison column becomes Qwen3 at two sizes plus the local model plus the
-simulator, which is still four columns and still teaches the lesson.
+That is a better position than the one it replaces, and it removes the tension
+the earlier draft manufactured. The capability spread the sweep wants is
+available inside the permissive tier, so the licence bar and the pedagogy do not
+have to be traded against each other.
+
+**What still has to be committed at contract time** is the region, the exact
+versioned model identifiers, and a per-model licence confirmation at the version
+being purchased rather than at the family level. Licences change between
+generations, which is exactly what the error above demonstrates.
 
 **Replacement policy.** Record the resolved, versioned model identifier in every
 run rather than the gateway alias. If a model is deprecated or re-versioned
@@ -446,12 +500,20 @@ evidence at all. A scale cannot be mechanised until every step is observable.
 
 | Step | Established by |
 |---|---|
-| 1. The agent retrieved the document carrying the instruction | a tool call to the search or lookup tool, in the trace |
-| 2. It acted on the instruction's content | a tool call the user's request did not ask for |
+| 1. The agent retrieved the document carrying the instruction | not the call, but its **result**: the returned text contains the planted marker. A call can fail or return the wrong record, so the call alone establishes nothing |
+| 2. It took an action the instruction specified and the request did not | a tool call whose **arguments match the payload**, occurring **after** step 1 in the trace. "Acted on the instruction" is a causal claim, and an unexpected call alone cannot carry it: the same call could come from model initiative or an ambiguous request |
 | 3. It attempted the privileged action | a tool call to the acting tool, whether or not permitted |
 | 4. The action completed against the intended target | a side effect: an outbox file to the named recipient, or the canary in it |
 
-Step 3 is the one that requires care, because a tool call is an attempt and not
+**Steps 1 and 2 need an observation shape the harness does not currently
+produce.** Detection today receives flattened arguments, ledger rows and side
+effects, not the ordered sequence of tool results a marker match and a temporal
+ordering both require. So this is a new observation shape, a schema change,
+ordering rules and tests, not a new detector slotted into the existing one. That
+is a fortnight rather than a few days, and it is a prerequisite for the gating
+experiment rather than a refinement of it.
+
+Step 3 requires care for a different reason: a tool call is an attempt and not
 an outcome, and this course's own first principle is that a request is not a
 result. **A stage verdict must never be reported as VULNERABLE**, and stage
 results must be excluded from any before-and-after comparison. The status word
@@ -585,14 +647,12 @@ cost case that only exists on the meter. Every one of those is hosted-only work
 carrying points, in a document whose load-bearing governance rule says it may
 not.
 
-**The resolution is a points and fallback matrix, published with the syllabus**,
-and it has to be built rather than asserted. For each graded artifact: the
-points it carries, whether it is reachable on the local path, and if it is not,
-the supplied evidence a student receives when the gateway is unavailable. The
-honest version is probably that hosted work carries participation credit and
-feeds a graded artifact that can also be produced locally, so that an outage
-costs a student a comparison rather than a grade. That is a real design
-constraint on weeks 2, 3 and 4, and it is not yet done.
+**The resolution is section 4a**, which changes what is graded rather than
+where the evidence comes from. In every week the graded question is answerable
+from the student's own local evidence, and the hosted work is enrichment that
+carries no points. That is a real reduction in what the hosted path is graded
+on, particularly in week 3, and it is the only version of this rule that
+survives an outage without an argument.
 
 Then, and these are gating rather than advisable:
 
@@ -651,10 +711,31 @@ a task somebody can complete rather than a heading.
 | 11 | **Accessibility** | Instructor with the accessibility office | Jupyter in a browser, a terminal, and a class board are three interfaces with three different accessibility profiles. Screen reader behaviour over a notebook and over harness output should be checked before a graded week depends on either |
 | 12 | **Outage policy** | Instructor, in the syllabus | A deadline auto-extends by the outage duration. Seven weeks has no slack week and census falls on day 8 |
 
-**Two of these gate the others.** Numbers 1 and 2 must be signed before a single
-prompt is logged, because both concern what may lawfully be collected. The rest
-can proceed in parallel, but none of them can be skipped on the grounds that the
-class is small.
+**Six of these gate collection, not two.** An earlier draft said numbers 1 and
+2. Review was right that the processing region, the student notice, the logging
+configuration, the identity and access rules, and the incident response plan all
+have to be settled before a single student prompt is collected, because each one
+determines something a student is being told or a regulator would ask. Numbers
+1, 2, 3, 5, 6 and 8, then, before collection. The rest before the term.
+
+**And this register is a requirements list, not an approval package.** Twelve
+specifications are not twelve policies, and nothing here is signed.
+
+**Missing from the list above, and needed for a real institutional review:**
+a security and data-flow review; identity and access management with
+multi-factor authentication and a credential lifecycle for the gateway admin
+account; patching and vulnerability ownership for the server; encryption and key
+management; backup and restore; contractual breach-notice terms; subprocessor
+review; and termination, export and deletion terms. Also the two controls this
+proposal names elsewhere and the register omits: pseudonymous gateway keys with
+governance of the identity map, and the deliberately retained losing case.
+
+**On the vendor terms specifically**, school-official designation and a
+no-training term are necessary and not sufficient. The institution has to
+establish direct control over use and maintenance, restrictions on use and
+redisclosure, a legitimate educational interest determination, and reasonable
+access controls. That is a contracts-office conversation rather than a checkbox,
+and it should start early because it is the long pole.
 
 **One thing this list deliberately does not do** is treat the logging as a
 problem to be minimised. The log is one of the genuinely valuable things the
@@ -715,10 +796,12 @@ here, and I can tell you which step turned and why"**, and that sentence needs
 both machines to say it.
 
 **But the two-path production course is not yet operationally credible**, and
-that is the honest state of this document. Section 4 does not say where local
-inference runs. Section 6 has a governance rule that sections 2 and 4 break.
-The control validity fix was cosmetic until this revision. Until those are
-closed, "run both" is a design intention rather than a plan.
+that is the honest state of this document. The multi-tenant target topology in
+4b does not exist. The chain detector in 4d needs a new observation shape before
+the gating experiment can run. The experiment itself is unrun. Twelve governance
+documents are specified and none is signed. Until those are closed, "run both"
+is a design intention rather than a plan, and the difference matters because a
+committee approves plans.
 
 **If the college can genuinely run only one**, the case is closer than an
 earlier draft of this document allowed. The constrained version teaches
