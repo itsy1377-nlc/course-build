@@ -30,14 +30,24 @@ called unchanged while carrying the largest hosted spend; and a governance rule
 forbidding hosted-only graded work was broken by four graded activities in the
 same document.
 
-**Still outstanding, and each blocks approval:** a points and fallback matrix;
-a powered gating experiment with a real chain detector; a decision on where
-local inference runs and measured capacity for it; exact models, versions,
-regions, licences and prices with a replacement policy; and the records,
-minors, access, deletion, incident response, appeals, staffing and
-accessibility plans named in section 6.
+**Specified in this revision**, in answer to the rest of that verdict: the
+points and fallback matrix (4a), where local inference runs and what constrains
+it (4b), the model selection procedure with verified prices and a replacement
+policy (4c), the chain detector with its four observable steps (4d), and the
+twelve governance documents with owners and required contents (6a).
 
-**Read this as a design under review, not a submission.**
+**Genuinely outstanding, and these cannot be closed in a document:**
+
+1. **The gating experiment has not been run.** Everything in section 0 is a
+   design for an experiment, not its result.
+2. **Server concurrency is unmeasured.** Section 4b names the constraint and the
+   knob; twenty-five simulated clients would settle it in an afternoon.
+3. **The licence question in 4c may narrow the model list to one family**, which
+   is a decision for whoever owns courseware licensing.
+4. **Twelve governance documents are specified and none is written.** Two of
+   them gate the collection of any data at all.
+
+**Read this as a design ready to be costed and argued, not a submission.**
 
 ## 0. One experiment gates everything below, and it costs under a dollar
 
@@ -298,6 +308,162 @@ it, before week 7 depends on it.**
 
 ---
 
+## 4a. The points and fallback matrix
+
+The governance rule is that no rubric row may cite a hosted-only result. This is
+the table that makes that true rather than aspirational. **Every graded artifact
+is reachable on the local path. Hosted work carries participation credit and
+feeds a graded artifact, never carries points by itself.**
+
+| Wk | Graded artifact | Points | Reachable locally | If the gateway is unavailable |
+|---|---|---|---|---|
+| 1 | What came back, the inventory, the code worksheet, the scope gate | 15 | Yes, entirely | No effect. Week 1 never touches the gateway |
+| 2 | The variance table and the two sentences | 15 | Yes. The local model and the simulator are two of the five columns | The table ships with three columns instead of five, and the graded sentences are unchanged. The instructor's own sweep is supplied as a comparison read rather than run |
+| 3 | The case, the prediction, the marked traces, the four-step result | 20 | Yes. Authoring, prediction and trace marking are all local | The hosted comparison becomes a supplied transcript. The graded claim, which step did they part at and what does each result establish, is answered from the supplied pair |
+| 4 | Evidence packs 1 and 2, and the reconciliation | 15 | Two of the three records are local | The reconciliation runs on trace and outbox only, and the gateway record is supplied from the instructor's own run. The lesson, that the official record is the weakest, survives with two records |
+| 5 | The timeline, the call, the handover form | 20 | Yes. The pack is a file | No effect. The pack is exported in advance and the session works from it |
+| 6 | The control and its paired reports | 15 | Yes. The control arc runs entirely on the local model | The cross-model confirmation is dropped. It was never the graded part |
+| Final | The evidence file, the where-next note, the exam | Remainder | Yes | No effect |
+
+**Three consequences of this table, stated so nobody is surprised by them.**
+
+The hosted comparison is always the *second* run and never the first. That is a
+pedagogical choice as well as a resilience one: running hosted first would make
+local trace reading confirmatory, which is the most valuable thing weeks 2 and 3
+do.
+
+**The instructor must hold a supplied version of every hosted artifact**, built
+from their own run at the start of term. That is four files and it is the price
+of the rule. Without them the rule is a sentence rather than a plan.
+
+**An outage costs a student a comparison, not a grade.** That is the entire
+point, and it is what lets this course survive a contract lapse, a deprecation,
+a region outage, or a model that starts refusing everything.
+
+---
+
+## 4b. Where local inference runs, and what it costs
+
+An earlier draft said week 7 runs local without saying where local is. Review
+was right that this is load bearing: laptops would re-inherit the deployment
+assumption this whole scenario exists to remove.
+
+**Local means one shared model server on the same machine, not one per
+student.** A single Ollama process holds one model resident and serves many
+clients concurrently. Twenty-five students do not need twenty-five copies of the
+weights, so the cost is roughly 2.5 to 3 GB once, not 60 to 75 GB.
+
+**What is per student and what is shared:**
+
+| | Per student | Shared |
+|---|---|---|
+| Jupyter kernel, notebook, files | yes | |
+| Target app process, its database, outbox and beacon | yes, and this is mandatory | |
+| Model weights and inference | | one server |
+
+The per-student target is not negotiable. The runner resets the target before
+every trial, clearing outbox, audit and beacon, so a shared target means one
+student's trial deletes another's evidence.
+
+**The real constraint is concurrency, not memory.** A shared server answers a
+bounded number of requests at once, and week 7 asks twenty-five students to run
+suites in the same hour. The capacity question is therefore how many parallel
+requests the server sustains and what queueing does to a fifty-minute session,
+and it wants measuring with twenty-five simulated clients before a graded week
+depends on it. Concurrency is a configured limit on that server rather than a
+fixed property, so this is a tuning exercise with a known knob rather than an
+unknown.
+
+**If that measurement comes back badly**, week 7's head to head runs in two
+cohorts of twelve or as a scheduled queue over the session, which costs the
+room's energy rather than the lesson. That is the fallback and it should be
+decided before the week, not during it.
+
+---
+
+## 4c. Which models, and how they get chosen
+
+**The gating experiment is the selection procedure.** Candidates are not chosen
+and then tested; they are tested and the test chooses. That is the only design
+that survives a model being deprecated mid-contract.
+
+**The bar a model must clear, in order:**
+
+1. **Licence.** Apache 2.0 or MIT, ungated. This project already rejected two
+   otherwise capable models for carrying the Llama Community licence, and that
+   ruling has to hold here or the course contradicts its own recorded analysis.
+2. **Native tool calling across more than one turn.** Measured, not advertised.
+   This project has already found a model that advertises tool support and never
+   emits a tool call.
+3. **The chain, at thirty trials**, with the result recorded whichever way it
+   goes.
+
+**Published on-demand prices, verified against the vendor's pricing page on 1
+September 2026 and to be re-verified at contract time:**
+
+| Family | Example | Per million in / out |
+|---|---|---|
+| Qwen3 | Qwen3 Next 80B | 0.15 / 1.20 |
+| Mistral | Ministral 8B 3.0 | 0.15 / 0.15 |
+| Mistral | Mistral Large 3 | 0.50 / 1.50 |
+| Google | Gemma 4 31B | 0.14 / 0.40 |
+| Meta | Llama 3.3 | region dependent |
+
+**One finding that must be settled before signing, and it is uncomfortable.**
+The licence bar above admits fewer of these than the scenario assumes. The Qwen3
+family is Apache 2.0. Llama carries the Llama Community licence and Gemma
+carries Google's own terms, both of which this project has already ruled out for
+being non-permissive. Mistral's smaller models have shipped under more than one
+licence depending on the release, so each must be checked individually rather
+than by family.
+
+**So either the model list is narrower than three, or the licence bar moves, and
+that is a decision for whoever owns courseware licensing rather than for this
+document.** If the bar holds and only one permissive family qualifies, the
+comparison column becomes Qwen3 at two sizes plus the local model plus the
+simulator, which is still four columns and still teaches the lesson.
+
+**Replacement policy.** Record the resolved, versioned model identifier in every
+run rather than the gateway alias. If a model is deprecated or re-versioned
+mid-term, the class board is frozen at its last valid state, the affected
+comparison becomes a supplied artifact under section 4a, and no student's grade
+moves. Re-qualification happens between terms, never during one.
+
+---
+
+## 4d. The chain detector, specified
+
+The gating experiment needs "reached step k of n" to be machine-produced. Today
+the schema pins detection to exactly one detector, so this is a prerequisite
+rather than a refinement.
+
+**Resolve the step count first.** The constrained proposal calls it four steps;
+the case file for the indirect injection enumerates five; and one of those five,
+that the model cannot distinguish instructions from description, leaves no trace
+evidence at all. A scale cannot be mechanised until every step is observable.
+
+**The four observable steps, each with the evidence that establishes it:**
+
+| Step | Established by |
+|---|---|
+| 1. The agent retrieved the document carrying the instruction | a tool call to the search or lookup tool, in the trace |
+| 2. It acted on the instruction's content | a tool call the user's request did not ask for |
+| 3. It attempted the privileged action | a tool call to the acting tool, whether or not permitted |
+| 4. The action completed against the intended target | a side effect: an outbox file to the named recipient, or the canary in it |
+
+Step 3 is the one that requires care, because a tool call is an attempt and not
+an outcome, and this course's own first principle is that a request is not a
+result. **A stage verdict must never be reported as VULNERABLE**, and stage
+results must be excluded from any before-and-after comparison. The status word
+carries its own vocabulary, `REACHED_STAGE_3_OF_4_IN_5`, so that it cannot be
+mistaken for a landed attack by a reader or by a rubric.
+
+That constraint is not decoration. This repository already contains a case whose
+detector once searched tool arguments and reported success after the data had
+been stopped, and the note recording that mistake is still in the case file.
+
+---
+
 ## 5. The biggest risk is the failure this course exists to teach
 
 **A gateway adds three new ways for a run to fail silently, and they are
@@ -463,6 +629,38 @@ Then, and these are gating rather than advisable:
   result is a pass survives on paper and dies in the marking.
 
 ---
+
+## 6a. The governance items, with owners and contents
+
+Review found these named but not specified. Each entry below says what the
+document must contain and who signs it, so that "write a records policy" becomes
+a task somebody can complete rather than a heading.
+
+| # | Document | Owner | It is not done until it contains |
+|---|---|---|---|
+| 1 | **Records determination** | Registrar | That the gateway log is an education record; the retention schedule item it falls under; the destruction date; and the named job or person that performs the deletion. A retention policy with no deletion step is a storage policy |
+| 2 | **Vendor agreement terms** | Contracts office | School-official designation, and a no-training-on-inputs term confirmed in the signed agreement rather than cited from a web page |
+| 3 | **Region and processing determination** | IT and contracts | The exact region, the resolved model identifiers, and an explicit decision on cross-region inference. If cross-region routing is enabled, anything told to a parent about where a minor's text is processed is false |
+| 4 | **Dual-credit rights determination** | Registrar with the school district | Who holds the rights over these records for a student under 18 attending a postsecondary course, and who may request them. This is a question somebody will ask and the instructor must not be the one answering it |
+| 5 | **Student notice** | Instructor, approved by the registrar | Delivered inside week 1's existing gate so it is provably read: what is captured, who may read it, for how long, how a student sees their own, how they ask for removal, and **what the answer will be**. A sixteen-year-old who pastes a real password and asks for it back deserves a decided answer rather than an improvised one |
+| 6 | **Logging posture, version controlled** | IT | The gateway's prompt-storage and redaction settings, held in configuration under change control. Both are toggleable from an admin interface without a restart, so the notice given in week 1 can silently become false in week 4 |
+| 7 | **Access log for the access log** | Instructor | When an individual student's prompts may be opened, which is to build a class aggregate or to adjudicate a disputed artifact, and a recorded reason each time. This is week 4's own lesson applied to the course, and it should be said out loud to the class |
+| 8 | **Incident response for the course itself** | IT with the instructor | What happens when a student sends something to the gateway that should not have been sent: real credentials, personal data, or content requiring a safeguarding response. Who is told, in what order, and what is preserved |
+| 9 | **Appeals procedure** | Department | How a grade dispute uses the logs, and the consequence that the retention date is set by the appeals window rather than the term end |
+| 10 | **Continuity and staffing** | Department | Who runs the server when the instructor is absent, who holds the gateway admin credentials, and what happens to the course if the contract is not renewed. The answer to the last one is section 4a, which is why that matrix is load bearing rather than administrative |
+| 11 | **Accessibility** | Instructor with the accessibility office | Jupyter in a browser, a terminal, and a class board are three interfaces with three different accessibility profiles. Screen reader behaviour over a notebook and over harness output should be checked before a graded week depends on either |
+| 12 | **Outage policy** | Instructor, in the syllabus | A deadline auto-extends by the outage duration. Seven weeks has no slack week and census falls on day 8 |
+
+**Two of these gate the others.** Numbers 1 and 2 must be signed before a single
+prompt is logged, because both concern what may lawfully be collected. The rest
+can proceed in parallel, but none of them can be skipped on the grounds that the
+class is small.
+
+**One thing this list deliberately does not do** is treat the logging as a
+problem to be minimised. The log is one of the genuinely valuable things the
+money buys, per section 1. The point of specifying twelve documents is that a
+record worth keeping is worth governing, and a course that teaches students to
+ask who can see a log should be able to answer the question about its own.
 
 ## 7. What each version teaches better
 
