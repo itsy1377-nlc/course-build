@@ -37,8 +37,7 @@ scenes:
         reveal: 2
 
   - type: terminal
-    setup:
-      - cd labs
+    setup: []
     steps:
       - run: python -m target.seed
         wait: "Start the app"
@@ -51,7 +50,6 @@ scenes:
 
   - type: terminal
     setup:
-      - cd labs
       - python -m target.app > /tmp/w1app.log 2>&1 &
       - sleep 5
     steps:
@@ -90,8 +88,7 @@ scenes:
           loop.
 
   - type: terminal
-    setup:
-      - cd labs
+    setup: []
     steps:
       - run: python -m agent.cli "Summarize ticket T-1001 for me"
         wait: "\\$|>"
@@ -116,8 +113,7 @@ scenes:
       - text: Every run writes a trace, and the trace is what you cite.
 
   - type: terminal
-    setup:
-      - cd labs
+    setup: []
     steps:
       - run: ls -t runs/traces | head -3
         settle: 4.0

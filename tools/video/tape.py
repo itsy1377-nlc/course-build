@@ -225,13 +225,39 @@ def render(tape: Path, out_dir: Path, labs: Path, use_docker: bool = True,
         # the path to the real lab tree and run the setup lines, which the
         # docker branch does in its bootstrap and this one previously skipped
         # entirely.
+        # Stage the tree at a neutral path first, for the same two reasons the
+        # docker branch copies to /work.
+        #
+        # One, the recording seeds a database and writes to runs/, and none of
+        # that belongs in the real checkout.
+        #
+        # Two, and this is the one a gate cannot catch: command output prints
+        # absolute paths. Recording from the checkout put a real home directory
+        # on screen, which reads to a student as somebody else's machine rather
+        # than as their own. The prompt is normalised for exactly this reason
+        # and the output defeated it. Caught by looking at a frame.
+        stage = Path("/tmp/itsy1377/labs")
+        if stage.exists():
+            shutil.rmtree(stage, ignore_errors=True)
+        stage.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copytree(
+            labs.resolve(), stage,
+            ignore=shutil.ignore_patterns(".git", ".venv", "wheels", "__pycache__",
+                                          "runs", "node_modules"))
+        (stage / "runs").mkdir(exist_ok=True)
+        # A neutral student id. The recording seeds a database and prints the
+        # id back, and whoever built the video is not who the student should
+        # see on screen. Same reason the prompt is normalised.
+        (stage / ".env").write_text("LAB_STUDENT_ID=s-example\n", encoding="utf-8")
+
         host_tape = out_dir / f"{stem}.host.tape"
         host_tape.write_text(
-            tape.read_text(encoding="utf-8").replace("/work", str(labs.resolve())),
+            tape.read_text(encoding="utf-8").replace("/work", str(stage)),
             encoding="utf-8")
         prelude = "\n".join(setup) + "\n" if setup else ""
         command = ["bash", "-c",
-                   f"cd {shlex.quote(str(labs.resolve()))}\n{prelude}"
+                   f"cd {shlex.quote(str(stage))}\n"
+                   f"python -m target.seed >/dev/null 2>&1\n{prelude}"
                    f"cd {shlex.quote(str(out_dir.resolve()))} && "
                    f"vhs {shlex.quote(host_tape.name)}"]
 
