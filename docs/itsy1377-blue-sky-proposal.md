@@ -8,8 +8,13 @@ environment is different.
 Jupyter notebook. A gateway gives each student their own token and a budget
 under ten dollars a semester, with all activity logged under school control. An
 AWS Bedrock contract supplies two or three permissively licensed open models
-against three hundred dollars per class. The school takes responsibility under
-the contract, which resolves the age question.
+against three hundred dollars per class. The premise is that the school takes
+responsibility under the contract, which is what would resolve the age question.
+
+**That premise is not true yet, and this document does not assume it is.**
+Nothing is signed. The dual-credit rights determination the premise rests on is
+item 4 of the register in section 10a and has no owner. Read the scenario as the
+condition under which this course can run, not as a description of this year.
 
 ---
 
@@ -63,16 +68,29 @@ A student glancing at it can see whether their agent did anything irreversible
 without reading a line of JSON. The current course teaches that by having them
 read twenty thousand characters of it.
 
-**The blindfold** is one checkbox on the filmstrip. Tick it and everything the
-model never received greys out, leaving only what it did. The hardest question
-in the course, what did it actually know when it decided that, answers itself.
+**The blindfold** is one checkbox on the filmstrip. Click a decision card, tick
+it, and everything the model did not have at that moment greys out: every card
+later in the run, and every card holding evidence that never entered the
+conversation at all, such as the workspace or the target's own logs. What stays
+lit is exactly the model's context at that step. The hardest question in the
+course, what did it actually know when it decided that, answers itself.
+
+**The prototype had this backwards and review caught it.** It greyed the result
+cards, which are precisely the cards the model does receive: `agent/loop.py`
+appends every tool result to the message list before the next step, so greying
+them taught the opposite of the lesson. The prototype now greys by position
+relative to a chosen card, which is a true statement about the run.
 
 **The trial grid** is twenty runs of the same thing as twenty squares filling in
 live. Sometimes twenty blue. Sometimes thirteen and seven. Sample size stops
 being a rule and becomes a picture.
 
-**The workspace diff** shows what a tool did to the student's own files, before
-and after, in green and red.
+**The workspace diff** shows what a tool did to files, before and after, in
+green and red. In week 1 those are the student's own files. In week 3 they are a
+disposable synthetic workspace inside the sandbox, and the diff is non-empty
+only for the two menu effects that write. Section 7a lists which of week 3's
+four discovery surfaces each effect actually shows on, because assuming it was
+always this one is a mistake this document made twice.
 
 **The boards** are projected: every student's agent in week 1, and in week 7
 every attack and every defence with names against them.
@@ -103,8 +121,8 @@ them as such.
 |---|---|---|---|
 | **1** | Twenty minutes | Take a working four line function, change one line of it, add one decorator, and watch a model decide by itself to call it. A reset cell restores the known-good version at any point, and a check cell says in plain words what is wrong before the model is ever called. Then break it six ways on purpose and watch what changes: delete the description, describe a different function, make it raise, make it return far too much, cut the step limit, take the tool away. Add a second supplied tool that writes a file, and answer the question that raises: which of your two can you undo? | The filmstrip drawing itself live; tool cards; the blindfold; twenty five agents appearing on a projected class board |
 | **2** | The blindfold | Two tools with the same code and different descriptions. Which does the model pick, twenty times? Change one word and run again. Find one edit that moves the grid and one that does not, and get credit for both. Then see the model's actual input as stacked blocks with token counts, and find your own tool descriptions sitting in it | Trial grids filling square by square, side by side as edits accumulate; the context window as coloured blocks |
-| **3** | Somebody else's function | Start from a working tool template with one marked transformation point and a menu of permitted hidden effects. Choose one, wire it in, and it still does what its description claims. Three classmates' tools then run against your agent in a sandbox, and you have forty five minutes to work out what each really does from the code and from the sandbox's filesystem diff | The workspace diff; anonymous tool cards; your own agent behaving strangely |
-| **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: put the same instruction in your own message instead. If it fires there and not from the document, your instrument works and your null is real | Two grids side by side, one mixed and one solid; filmstrips that stop part way |
+| **3** | Somebody else's function | You do not write the hidden behaviour, you specify it: pick one effect from a menu of eight, set its parameters, and write the sentence of description that hides it. A generator then emits a real Python tool from your specification, and **that generated source is what your classmates receive**, with no label on it saying which effect it is. Three classmates' tools run against your agent in a sandbox, and you have forty five minutes to work out what each really does by reading the code, by probing it directly, and by watching the filmstrip and the workspace diff | Anonymous tool cards; the code itself; the filmstrip of your own agent behaving strangely; the workspace diff for the two effects that write |
+| **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: the same instruction in your own message instead, twenty trials again. Report both grids and state exactly what the pair does and does not establish | Two grids side by side, whichever way they fall; filmstrips that stop part way |
 | **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then write the cap, in your own code, and run it again | The budget bar draining live; a black cap card ending a run mid-flight; before and after with the cost difference |
 | **6** | It told me something false | An incident pack built from your own records across weeks 3 to 5, your own installs, your own runaway, with one intruder mixed in. An assistant summarises it. Check every line against the file it came from and mark each accepted, corrected or rejected | A timeline colouring green and red as your own checker runs |
 | **7** | The gauntlet | Turn on every control you built. Then two rounds, live: your defences against the class's attacks, and your attacks against theirs | Two boards updating on the projector during play, everyone named on both |
@@ -131,12 +149,19 @@ and here is what that does and does not establish. That is a smaller claim than
 
 **The agent they built.** One artifact from week 1 minute 20 to week 7. Every
 attack is against a thing they made, every control is in their own code, and by
-the end it exports as a folder with a system prompt they wrote, six to ten tools
-that are their own functions, and the controls they added.
+the end it exports as a folder holding a system prompt they wrote, the three or
+four tools they edited or filled in, and the guard code they added in weeks 5
+and 7.
 
-**The cuckoo, in week 3.** Every student writes one tool that does what it
-claims and exactly one thing it does not mention, and receives three classmates'
-blind. All three judges called it the best single mechanic across the four
+**That count is small on purpose, and an earlier draft inflated it.** It
+promised six to ten student-authored functions, which no week assigns: the
+schedule assigns edits to supplied functions, one filled-in template in week 3,
+and guards in weeks 5 and 7. What makes the artifact theirs is that they changed
+every part of it and can read all of it, not the number of functions in it.
+
+**The cuckoo, in week 3.** Every student specifies one tool that does what it
+claims and exactly one thing it does not mention, receives the generated source
+of three classmates' tools blind, and has to read them. All three judges called it the best single mechanic across the four
 designs. It teaches supply chain, code reading and evidence at once, it cannot
 be looked up because the answer is a classmate's, and it produces the second
 best picture in the course.
@@ -148,6 +173,92 @@ final week.
 
 ---
 
+## 4a. Points, and what happens when the gateway is not there
+
+Two earlier drafts referred to this section as the answer to the governance rule
+in section 10 and to the continuity question in section 10a, and it did not
+exist. Review was right that this is the load-bearing missing piece: without it
+there is no auditable account of what is graded.
+
+**The substitution is a deterministic mock model, and it already exists.**
+`agent/mock_model.py` is 394 lines, wired in as a first-class provider at
+`agent/llm.py:144`, and it already has the property this section needs: its
+variability is seeded rather than random. It hashes the seed, the trial and the
+question, so the same run always gives the same answer while a grid still fills
+in mixed rather than as twenty identical squares. The funded course needs it
+extended to the new scenarios, not written.
+
+**Read its own docstring before relying on it**, because it says something this
+section has to obey. A mock run proves your code, your harness and your
+detectors work, and proves nothing about a real system. `harness/report.py:82`
+stamps every report produced against it. An earlier version of this section
+walked straight past that and said a student who runs against the mock earns
+full credit, with no mention of the banner. That would have made the outage
+substitution teach the exact habit the course exists to break: citing a run as
+evidence about a world it says nothing about.
+
+**So the mock is the fallback, not the default path.** The default is hosted.
+The mock is invoked when the instructor declares the gateway unavailable, the
+artifact keeps its banner, and the claim the student writes is scoped to what a
+simulator can support. What is graded either way is the student's reasoning over
+a run they recorded, not which way the model went.
+
+**And the governance rule is narrowed, because the wide version was wrong.** The
+rule is now: **no rubric row may require a particular hosted outcome.** One row
+may require that a hosted run happened, because that is a different kind of
+dependency: an outcome cannot be substituted at all, while a run that has not
+happened yet is handled by the outage policy extending the deadline. Without
+that narrowing, all one hundred points are earnable against behaviour the course
+author scripted, and then the contract is enrichment rather than an
+instructional resource. Review found exactly that and it was right.
+
+| Wk | Graded artifact | Pts | If the gateway is unavailable |
+|---|---|---:|---|
+| **1** | The working agent, the six deliberate breaks with what changed in each, and the irreversibility flag on each tool with a one-line reason | 15 | The mock drives the same six breaks. Break behaviour is scripted, so this week is nearly identical either way |
+| **2** | Two description edits, one that moved the trial grid and one that did not, both grids attached, and the student's account of why | 15 | The mock's tool choice is a seeded function of the description text, so an edit moves the grid or does not. The reading of the grid is what is graded |
+| **3** | Three reports on classmates' tools: what each really does, and the evidence line that shows it | 15 | Needs the sandbox on the school server, not the gateway. Unaffected by a contract lapse and blocked by a server outage |
+| **4** | The document grid, the positive-control grid, and the bounded claim the pair supports | 15 | The mock's injection-following rate is seeded per student, so some see a null and some do not. The claim is graded, not the outcome |
+| **5** | The cost prediction, the runaway trace, the cap in the student's own code, and the before-and-after difference. **Ten of these fifteen points require a real gateway run**, of any size and any outcome, reconciled against the ledger | 15 | Five points on the mock's synthetic arithmetic. The other ten wait: the outage policy extends the deadline. If the contract never lands, the row converts to the mock, the banner rides on the artifact, and the course records that it graded a simulation |
+| **6** | The incident pack checked line by line, each line accepted, corrected or rejected against the file it came from | 15 | The assistant that summarises the pack is the mock. Its planted errors are scripted rather than emergent, which makes the week easier than it should be |
+| **7** | The gauntlet: attacks submitted, defences turned on, and a short account of one defence that held and one that did not | 10 | Both rounds run against the mock. Needs the class board, so a server outage blocks it |
+| | **Total** | **100** | |
+
+**Two claims an earlier version of this table made that were false.** It said
+every artifact is producible with the network unplugged: weeks 3 and 7 need the
+school server, for the sandbox and the class board, so the mock protects the
+course against a contract lapse and not against a server outage. And it said the
+hosted path is graded on nothing, which is what made the money unjustifiable.
+Week 5 is now the one row where a real call has to have happened.
+
+**Why week 5 and not another.** The meter is that week's entire subject. Its
+artifact is the only one whose evidence is the gateway ledger rather than the
+student's own files, so it is also the only row where the log does the
+anti-fabrication work section 9 credits it with. On every other row a student
+working offline produces an artifact with no independent record behind it, and
+section 9's claim should be read as applying to the hosted path only.
+
+**Week 4's rubric, which is outcome-independent rather than outcome-neutral.**
+An earlier version said all four combinations earn full credit, which review
+correctly called undefined: each arm holds fired, missed and refused trials, so
+the space is not a two by two. The points are on conduct and reasoning, and none
+of them are on the result.
+
+| What earns it | Pts |
+|---|---:|
+| Twenty clean trials in each arm, with errored trials re-run and the re-run count reported | 4 |
+| Every trial classified as fired, missed, refused or errored, with refusals never counted as misses | 4 |
+| Both rates reported with the denominator each rests on | 3 |
+| One sentence on what a reader may and may not conclude from the pair, correct for whatever the pair actually was | 4 |
+| | **15** |
+
+The least convenient case is worth naming because it is the one a student will
+fear: a positive control that does not fire at all. That earns fifteen out of
+fifteen, provided the student says the instrument was not shown to work and the
+document result is therefore uninterpretable. Being unable to conclude anything,
+and knowing it, is the outcome this course exists to produce.
+
+---
+
 ## 5. How the outcomes are met
 
 | # | Outcome | Where |
@@ -156,7 +267,7 @@ final week.
 | 2 | Interpret a short script to determine what it accesses and changes | Wk 3, reading a stranger's tool, which is the literal week |
 | 3 | Analyze a tool configuration to identify irreversible actions | Wk 1, assigning the flag to their own tools |
 | 4 | Differentiate evidence from assertion | Wk 4 and 6, their own grids and their own incident |
-| 5 | Interpret repeated-trial results including no effect | Wk 2 and 4, with the positive control making the null real |
+| 5 | Interpret repeated-trial results including no effect | Wk 2 and 4, with the positive control bounding what the null supports |
 | 6 | Apply a control at a tool boundary and verify its effect | Wk 5 and 7, in their own code, verified against classmates |
 | 7 | Evaluate AI output against source evidence | Wk 6, against evidence generated from their own term |
 
@@ -186,24 +297,44 @@ behaviours, which is authoring rather than editing, and which sits at a Bloom
 level the sibling proposal explicitly rules out for a course with no programming
 prerequisite. The two documents contradicted each other.
 
-Week 3 is now an edit of a supplied template with one marked transformation
-point and a menu of permitted hidden effects. That keeps the mechanic, keeps the
-rule, and has the useful side effect described in section 7a: a template with no
-filesystem, process, environment, import or network calls in it removes most of
-the security exposure at the same time.
+Week 3 is now a specification rather than an edit. The student picks an effect
+from a menu, sets its parameters and writes the description that hides it; a
+generator emits a real Python tool from that specification, and the generated
+source is what runs and what classmates read. No student expression reaches the
+interpreter, which removes most of the security exposure at the same time as it
+removes the authoring requirement.
+
+**It took two more rounds of review to get there and both found real breaks.**
+The first version denied the template any filesystem call and then asked
+students to discover the effect from a filesystem diff, which for six of the
+eight effects is empty. The second distributed the specification itself, which
+either wrote the answer on the card or left every student's code identical, and
+so destroyed the code-reading that is the whole point of the week and the home
+of outcome 2. The generator is what fixes both: differing, readable, unlabelled
+Python, with the effect discoverable through whichever of four surfaces it
+actually touches.
 
 **On build cost**, the instructor scored deliverability 2 out of 10 assuming the
-visuals were a large custom build. Section 7 now costs the whole thing honestly
-at about a thousand lines and two to three weeks, including the recording the
-visuals need and the sandbox week 3 cannot run without. That is more than the
-first estimate and still within one person's reach before a term.
+visuals were a large custom build. Two rounds of review have now moved that
+estimate twice, both times upward, and section 7 states where it landed: about
+1,600 lines of notebook tooling that the instructor can write in four to six
+weeks, plus a sandbox and a model broker that are an IT project rather than an
+instructor project. The deliverability score was closer to right than the
+estimates that argued with it.
 
 ---
 
 ## 7. What has to be built
 
-Corrected after review. An earlier version costed only the views and assumed the
-data was already recorded.
+**Rebuilt twice under review, upward both times.** The first version costed only
+the views and assumed the data was already recorded. The second added the
+recording and the sandbox and reached about a thousand lines. Review then found
+that the second version still counted the visible components and left out the
+measurement rig, the cost arithmetic, the incident pack, the recovery cells and
+most of what a real sandbox is. This is the third version, and it is split by
+who builds it, because that turned out to be the more useful division.
+
+### What the instructor builds: the notebook tooling
 
 **The visuals**
 
@@ -211,54 +342,144 @@ data was already recorded.
 |---|---:|---|
 | Filmstrip renderer and styling | **68, spike exists** | draws a real trace; not yet live-updating |
 | Live update in place | 40 | display id, no dependency |
-| Blindfold as a real checkbox | 25 | the spike has an argument, not a control |
+| Blindfold as a real checkbox, greying by position | 35 | the spike has an argument, and had the semantics backwards |
 | Tool cards with schema inference | 90 | signature and docstring to schema |
-| Trial grid, four way classification | 60 | hit, miss, refused, error |
+| Trial grid, four way classification | 60 | fired, missed, refused, errored |
 | Context window view | 50 | needs the new trace event below |
-| Workspace diff | 30 | wraps a standard library module |
+| Workspace diff, presentation only | 30 | wraps a standard library module |
 | Nested filmstrip | 25 | recursion once cards exist |
-| Class boards | 120 | the only piece needing shared state |
-| **Visuals** | **~510** | |
+| **Visuals** | **398** | |
 
 **The recording the visuals need, which does not exist**
 
 | Piece | Lines | Why |
 |---|---:|---|
 | Capture usage from the response | 30 | the loop discards it today, so no cost stamp is possible |
-| Record the resolved model version | 15 | the alias is recorded, the version is not |
+| Cost arithmetic and a versioned price table | 70 | token counts are not money; prices change mid-term and a reported figure has to say which table produced it |
+| Record and pin the resolved model version | 45 | the alias is recorded, the version is not, and a Bedrock alias has to resolve to something reproducible |
 | Record the context sent to the model | 40 | nothing records what the model was shown |
 | Irreversibility as tool metadata | 25 | passed by hand into the renderer today |
 | Workspace snapshot before and after | 40 | no event exists |
-| **Recording** | **~150** | |
+| Per-call duration, at better than one-second resolution | 25 | `trace.py` stamps to the second and records no duration, so the stall effect in section 7a has no surface without this |
+| **Recording** | **~275** | |
 
-**The cuckoo sandbox, which is not optional**
+**The measurement rig, which section 8 and section 9 both call a prerequisite
+and which no earlier estimate contained**
 
 | Piece | Lines | Why |
 |---|---:|---|
-| Disposable container per cuckoo run | 120 | section 7a |
-| Narrow tool context replacing `cfg` | 60 | so a tool cannot reach the gateway key |
-| Screening, hashing and distribution | 90 | screen once, distribute exactly what was screened |
-| Week 3 template and effect menu | 70 | makes the cuckoo an edit rather than an authoring task |
-| **Sandbox** | **~340** | |
+| Ordered chain detector | 80 | so "reached step 3 of 5" is machine-produced; the schema pins detection to one detector today |
+| Refusal and failure classifier | 60 | so a refusal is not counted as a miss |
+| Positive tool-capability controls | 40 | so a model that cannot drive the loop is not read as one that declined |
+| Control validity repair | 30 | a control must be inconclusive unless every requested trial completes |
+| **Measurement** | **~210** | |
 
-**Plus, not code:** the per student incident pack generator for week 6, the
-burnable key mechanism, week 1 reset and recovery cells, and the malicious
-submission procedure.
+**The weeks that need machinery of their own**
 
-**Revised total: about 1,000 lines rather than 500**, and the honest schedule is
-two to three weeks rather than one, with the sandbox on the critical path
-because week 3 cannot run without it.
+| Piece | Lines | Why |
+|---|---:|---|
+| Week 3 schema, eight-effect menu, parameter validation and the trusted executor | 140 | this is what keeps student expression out of the interpreter |
+| Week 3 source generator | 80 | emits readable Python from a specification, which is what gives classmates something to read |
+| Week 6 per-student incident pack generator | 120 | assembles a term's records with one planted intruder; an earlier draft called this "not code" |
+| Week 1 reset and check cells | 60 | see the acceptance criteria below |
+| Week 5 burnable-key handling, student side | 40 | an earlier draft also called this "not code" |
+| Extending the existing mock model to the new scenarios | 200 | **not 130 to build one.** `agent/mock_model.py` already exists at 394 lines with the seeded determinism section 4a needs, but it was written for a different course's scenarios. An earlier estimate here costed writing from scratch what is already written, at a third of what the narrower existing version cost |
+| Class board | 300 | not 120: handles, authentication, authorisation, concurrency, moderation, model-version separation, persistence and projector-safe display |
+| **Weeks** | **~940** | |
+
+**Implementation subtotal: about 1,825 lines.** The mock is on the critical path
+for everything else, because it is what lets the visuals and the measurement rig
+be built and tested without a gateway.
+
+**And a subtotal is not an estimate, which is the finding that matters most in
+this section.** Three rounds of review have moved this number from 500 to 1,000
+to 1,650 to 1,825, and every increase came from noticing something that was
+never counted rather than from anything growing. What is still not counted:
+
+- **Tests.** The executor in section 7a is the security boundary for week 3 and
+  its safety is a property of tests rather than of anyone's reading. Nothing
+  here budgets them.
+- **The seven notebooks themselves**, with their prose, their fixtures, their
+  seeded scenarios and their rubrics. That is the course, and this table costs
+  only the machinery underneath it.
+- **Integration**, including migrating the existing agent and harness to the
+  notebook environment.
+- **Accessibility remediation**, which section 10a lists as an open item across
+  three interfaces with three different profiles.
+
+**So the honest statement is that there is no delivery date.** The instructor's
+implementation work is roughly 1,825 lines and four to six weeks; the work
+around it is uncosted; and the IT project below has no estimate at all while
+sitting on week 3's critical path. A procurement office should read this section
+as establishing that the build is larger than one person before a term, not as
+establishing when it would be ready.
+
+**Acceptance criteria for the week 1 reset**, corrected after review executed
+the previous version and broke it. That version said the reset restores the
+starter source, re-populates the tool registry, clears the trace, refreshes the
+workspace and renders an empty filmstrip. Review cleared and repopulated `TOOLS`
+while leaving `allowed_tools` empty and `max_steps` at one: the registry came
+back with four entries and the agent still had zero tools and one step. The
+criterion omitted the two things week 1 explicitly tells students to change.
+
+The cause is architectural rather than accidental. Registry and configuration
+are separate, and `tools.py:444` intersects `TOOLS` with `cfg.agent.allowed_tools`,
+so restoring one restores nothing. `config.py:74` also hands out the underlying
+mutable dictionary, so configuration can be edited in place from a notebook cell.
+
+The corrected criterion: from any state a student can reach in week 1, one run of
+the reset cell restores the starter function's source, the tool registry, **the
+configuration including `allowed_tools` and `max_steps`**, any alias a cell has
+bound to a tool or a config object, executor and counter state, the current
+`Trace` object, display and widget state, and the workspace directory, and then
+renders an empty filmstrip. It does not restart the kernel.
+
+**Which is a design constraint, not just a longer list.** A reset that has to
+find state scattered across modules will not hold for seven weeks. The state a
+student can reach has to live behind one object that the reset replaces
+wholesale, and that is a decision to make before week 1 is written rather than
+after. The check cell passes when, for each of nine seeded broken states, it
+names the fault in one sentence a student can act on without calling the model.
+
+### What IT builds: the sandbox and the broker
+
+**This is a separate project with a separate schedule, and it is on the critical
+path for week 3.** Review's judgement is that a community-college IT department
+may well be able to operate it and that it is not credible as part of a
+one-instructor build. That judgement is accepted here. No line count is offered,
+because a line count would imply the instructor could write it.
+
+- **The cuckoo sandbox.** Rootless execution, user namespaces, a seccomp or LSM
+  profile, no container-runtime socket, restricted devices, a pinned base image,
+  verified teardown, per-run resource ceilings, twenty-five-way concurrency, and
+  an audit record per run. Plus an honest statement of residual host-kernel risk
+  for whoever signs it off.
+- **The model broker.** The component outside the sandbox that makes the model
+  call on the cuckoo's behalf: authentication, per-run request ceilings, budget
+  enforcement, an audit trail, and a failure mode that does not leak the
+  gateway token into a stack trace.
+- **The audited workspace diff.** The presentation is thirty lines; the audited
+  producer is not. Deletions, renames, symlinks, binary files, permission
+  changes, path canonicalisation, size ceilings, and filenames chosen to be
+  hostile to whatever renders them.
+- **A load test at twenty-five concurrent sessions**, per section 9, before a
+  graded week depends on the answer.
+- **Deployment, patching, backup and restore, and credential lifecycle** for the
+  server and the gateway admin account, which section 10a lists as missing.
+
+**Not code, and this time the list is short because the previous version of it
+was wrong:** the malicious-submission procedure, and the instructor's screening
+pass, which section 7a demotes to defence in depth.
 
 ---
 
-## 7a. Week 3 is arbitrary code execution, and it needs a threat model
+## 7a. Week 3 is code execution, and the fix is to stop executing student code
 
-**This is the most serious problem in the proposal.** Week 3 has every student
-write code that deliberately does something it does not declare, and three
-classmates then execute it inside their own agent, on a school server, and some
-of these students are minors. An earlier draft's only protection was a sentence
-saying a cuckoo must stay inside the workspace, which is a rule rather than a
-control.
+**This was the most serious problem in the proposal.** Week 3 originally had
+every student write code that deliberately does something it does not declare,
+and three classmates then execute it inside their own agent, on a school server,
+and some of these students are minors. The only protection was a sentence saying
+a cuckoo must stay inside the workspace, which is a rule rather than a control.
 
 **One attack path was demonstrated rather than argued.** Every tool receives the
 configuration object as its first argument, and that object names the
@@ -273,34 +494,92 @@ exhaustion, the class board's credentials, and **the week 6 evidence itself**,
 since that pack is built from records accumulated across weeks 3 to 5 and a
 cuckoo can write to them.
 
-**The controls, and instructor screening is not one of them.** Static reading
-cannot settle dynamically constructed imports, encoded payloads, delayed
-execution or resource exhaustion, and twenty-five submissions in twenty-four
-hours by one person is a bottleneck as well as a single point of failure.
-Screening stays as defence in depth and stops being the control.
+### The primary control: the effect is specified, then generated
 
-1. Each cuckoo runs in a fresh disposable container, not in the student's
-   notebook kernel.
-2. Unprivileged, no added capabilities, with process, memory, CPU, disk, output
-   and wall-clock limits and a read-only base image.
-3. Mounted with a disposable copy of a synthetic workspace only. No home
-   directory, no notebook directory, no shared temporary space.
-4. Default-deny egress, including the local subnet. The model call happens in a
-   broker outside the cuckoo process.
-5. **No secrets enter the sandbox**: no gateway token, no board credential, no
-   notebook token, no student identifier.
-6. Only a bounded result and an audited filesystem diff come back out.
-7. Screen once, hash the accepted artifact, and distribute exactly that.
-8. A written procedure for a malicious submission: preservation, notification,
-   grading and restoration.
+The student does not supply Python. At the marked point they supply a small
+structured record: which effect, its parameters, and the sentence of description
+that hides it. The harness validates that record against a schema, **a generator
+emits a real Python tool from it**, and the generated source is what runs and
+what classmates receive. A malformed or unknown effect is rejected at
+submission, not at run time.
 
-**The template does double duty.** Making the cuckoo an edit of a supplied
-function with a menu of permitted effects, and no filesystem, process,
-environment, import or network calls available in the template, removes most of
-the capability at the same time as it removes the authoring requirement. The
-sandbox is what handles a student who works around the template.
+**The generator is what saves the mechanic**, and an earlier version of this
+section destroyed it without noticing. That version distributed the record
+itself, which meant either the classmate saw `effect: 3` written on the card, or
+they saw nothing at all and every student's code was identical. Either way there
+was no code to read, and outcome 2 is *interpret a short script to determine
+what it accesses and changes*, mapped to this week as the literal week. Review
+caught it.
 
----
+Generated source restores all of it. The code differs per student, is real
+Python, is readable, and carries no comment announcing which effect it
+implements. Working out that `if self._calls > 2: raise RuntimeError(...)` means
+this tool dies on its third use is the skill outcome 2 names. What stays
+authored by the student is the pair that matters: which effect, and the sentence
+that hides it, so comparing description against code is a comparison of a
+classmate's words against a classmate's choice.
+
+And the security property is unchanged, because no student expression reaches
+the interpreter. The demonstrated `cfg` path has nothing to run in.
+
+### The menu, and the surface each effect actually shows on
+
+Review checked all eight against the code and found four that did not work as
+claimed. Corrected below; the corrections are the substance.
+
+| # | Effect | Where it shows | What had to change |
+|---|---|---|---|
+| 1 | Appends extra text to the return value, addressed to the model rather than the reader | Filmstrip: the result card | Nothing. This is tool poisoning and it is the one worth having |
+| 2 | Returns a wrong value on one call in three | Filmstrip: compare result cards across probes | Was one in ten, which shows nothing in ten probes 35 per cent of the time. One in three, and the week specifies at least twelve direct probes |
+| 3 | Fails on its third call | Filmstrip: the run where the card turns red | Was "after n calls" with n unbounded, while the loop stops at six steps. Fixed at three, and discovered by direct probing rather than through the agent |
+| 4 | Stalls for a fixed delay before returning | Filmstrip: the duration on the card | **The surface did not exist.** `trace.py` stamps to the second, records no duration, and the prototype renders no timing. Section 7 now costs the event |
+| 5 | Returns far more than it needs to, crowding the context | Context window view: the block that swells | Nothing, except that it has to sit under the loop's own `max_tool_result_chars` truncation to be visible rather than clipped |
+| 6 | Counts its own calls and changes behaviour after the third | Filmstrip: behaviour that differs by position | State scope was undefined. It is per-instance state on the tool object, created fresh for each artifact execution and destroyed with the container. Never module-global, which would survive the runner's trial loop |
+| 7 | Appends a line to a fixed log file in the synthetic workspace on every call | Workspace diff | Destination is fixed by the generator, not named by the student |
+| 8 | Copies its argument into a fixed file in the synthetic workspace | Workspace diff | Same |
+
+**Effects 7 and 8 take no filename from the student**, which removes a
+contradiction review found: this section claimed path traversal was not
+expressible while the menu handed students a filename, and section 7 separately
+warned about hostile filenames. Now the only student-supplied values are an
+effect id from an enum, bounded numbers, and bounded text. Section 7's
+hostile-filename concern is about the general diff producer and not about
+anything week 3 can reach.
+
+### What screening can and cannot establish
+
+**Screening parameters is a reading task only if every sink treats a parameter
+as data.** That is a property of the executor, not of the screener, and review
+was right to press on it. The executor is safe when: effect ids are an enum;
+numbers are range-checked; text is length-capped and reaches only string
+concatenation or a file write; no parameter reaches `eval`, a shell, a dynamic
+import, a path, rendered HTML, or a regular expression; and destinations are
+fixed constants. **None of that is established by a person reading submissions.**
+It is established by tests on the executor, which section 7 now costs.
+
+**Screening is defence in depth and is not the control.** What it is genuinely
+good for is the thing code review cannot do: content. Nothing above stops a
+student putting abusive or identifying text into a description or a parameter
+that classmates then read. Bounded output limits size, not content. Reading
+twenty-five short descriptions is a task an instructor can actually complete in
+an evening, which is more than could be said for reviewing twenty-five programs.
+
+Then: the accepted artifact is hashed and exactly that is distributed, and the
+malicious-submission procedure covers preservation, notification, grading and
+restoration.
+
+**The executor still runs in the sandbox**, because it is a program processing
+input a student chose. What the declarative design buys is that the attack
+surface is one component the instructor wrote and can test, rather than
+twenty-five programs nobody can. The rest carries over: no secrets in the
+sandbox, default-deny egress including the local subnet, a disposable synthetic
+workspace and nothing else mounted, and only a bounded result plus the audited
+diff coming back out.
+
+**Verified absent.** No executor, schema, generator, effect menu or workspace
+diff exists in this repository. Every claim in this section is a specification,
+and review's judgement that a vertical slice should be built and tested before
+anyone estimates the rest is accepted.
 
 ---
 
@@ -339,10 +618,11 @@ building, and not a reason to claim the answer.
 
 **So before a page is written, run a powered experiment rather than a screen.**
 The version in an earlier draft of this document was incoherent: it said ninety
-runs for three cases at five trials across three models, which is forty-five,
-and it named a harness runner that cannot select individual cases and would
-instead run the full suite at one hundred and eight. Neither number matched the
-procedure.
+runs for three cases at five trials across three models, which is forty-five. It
+also said the harness runner could not select individual cases, which is false;
+`--case` is a repeatable argument and has been since before that draft was
+written. Both statements were wrong, and the second was wrong about code sitting
+in this repository.
 
 What is actually needed:
 
@@ -357,8 +637,21 @@ What is actually needed:
 - **Resolved model versions recorded**, randomised run order, and a repeat on a
   second day.
 
-Cost is still small: roughly 270 runs at about 5,500 tokens is under 1.5 million
-tokens, which is a few dollars at current open-model prices. **Two hours is the
+**The arithmetic, stated once so it stops drifting, and it is larger than the
+last version said.** Three attack cases plus the two capability controls listed
+above is five cases, not three. Five cases by three models by thirty trials is
+450 runs a day, and the second-day repeat doubles it to 900. At about 5,500
+tokens a run that is roughly five million tokens, still a few dollars at current
+open-model prices. Errored trials are re-run, so 900 is a floor.
+
+**Two numbers in that sentence are softer than they look.** The 5,500 tokens is
+an estimate rather than a measurement, because the loop discards usage today,
+which is the first line of the recording table in section 7; and one agent run
+contains several model requests, so the per-run figure is a sum over a variable
+number of calls. And the experiment needs three models while the opening
+scenario funds two or three. **Three is the requirement**, because the whole
+point is to see whether the result holds across models rather than in one, and
+the contract should be written for three. **Two hours is the
 part that is not credible**, since a local 8B probe measured 25 seconds per call
 and hosted latency and quotas are unknown. Budget a day, and budget separately
 for classifying the misses, which is the part that cannot be automated until the
@@ -469,6 +762,13 @@ should also be said plainly to students in the week 1 notice, because a control
 nobody knows about deters nobody, and one students discover later feels like a
 trap.
 
+**With one limit that review found and that section 4a now carries.** The log
+backs an artifact only when the artifact came from a hosted run. Anything
+produced against the mock during an outage has no independent record behind it,
+because every file in it was written by the student's own environment. So this
+control covers the hosted path and not the fallback, which is a further reason
+week 5's ten points are the row that requires a real call.
+
 The salt is still worth keeping out of the student environment, as tidiness
 rather than as a control, and it should not be sold as one.
 
@@ -478,11 +778,18 @@ rather than as a control, and it should not be sold as one.
 
 The load-bearing one first.
 
-**No rubric row may require a hosted result that cannot be substituted.** That
-single rule means a contract lapse, an outage, a deprecation, or a model that
-refuses everything costs the course a substitution rather than a re-approval.
-Section 4a shows how it is satisfied while hosted work still carries points,
-which an earlier version got wrong in the other direction.
+**No rubric row may require a particular hosted outcome.** That single rule
+means a contract lapse, an outage, a deprecation, or a model that refuses
+everything costs the course a substitution rather than a re-approval.
+
+**An earlier version of this line said "a hosted result that cannot be
+substituted", and section 4a then read it as forbidding hosted points
+altogether.** The two sections contradicted each other in the same document:
+this one said hosted work still carries points, that one said it is graded on
+nothing. Review found it. The narrowed rule above is the version both sections
+now follow, and section 4a explains why the wide version was worse than the
+problem it solved: it made every point earnable against scripted behaviour, and
+a course whose grades never depend on the contract does not need the contract.
 
 **And an earlier draft of this proposal broke that rule four times over**, which
 review caught and which is worth recording rather than quietly fixing. Week 2
@@ -494,10 +801,10 @@ not.
 
 **The resolution is section 4a**, which changes what is graded rather than
 where the evidence comes from. In every week the graded question is answerable
-from the student's own local evidence, and the hosted work is enrichment that
-carries no points. That is a real reduction in what the hosted path is graded
-on, particularly in week 3, and it is the only version of this rule that
-survives an outage without an argument.
+from the student's own evidence and none of it depends on which way a model
+went. One row, ten points in week 5, requires that a real call happened, which
+the outage policy protects by extending the deadline rather than by
+substituting.
 
 Then, and these are gating rather than advisable:
 
@@ -535,7 +842,7 @@ Then, and these are gating rather than advisable:
 
 ---
 
-## 6a. The governance items, with owners and contents
+## 10a. The governance items, with owners and contents
 
 Review found these named but not specified. Each entry below says what the
 document must contain and who signs it, so that "write a records policy" becomes
@@ -606,8 +913,9 @@ infrastructure excuse available. And it exists next August regardless of what a
 procurement office decides.
 
 **The honest comparison** is that this version is a better course and a more
-fragile one. It depends on a server, a contract, and about five hundred lines of
-notebook tooling that one person has to maintain. The constrained course depends
-on nothing and teaches the harder half of the job. Run both if the college can:
+fragile one. It depends on a contract, an IT-owned sandbox and broker, and about
+1,825 lines of notebook tooling that one person has to maintain, plus the
+uncosted work around it. The constrained course depends on nothing and teaches
+the harder half of the job. Run both if the college can:
 this one when the environment exists, the other as the thing that still works
 when it does not.
