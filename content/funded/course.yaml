@@ -1,0 +1,353 @@
+# ITSY 1377, the funded course.
+#
+# Runs on a school-network server: a per-student isolated Jupyter notebook, a
+# gateway giving each student their own token and a budget under ten dollars a
+# semester with all activity logged under school control, and a Bedrock contract
+# supplying open models against three hundred dollars per class.
+#
+# This file is the single source of truth for what exists in Canvas. The
+# cartridge generator and the API population script both read it.
+#
+# Build with:  ITSY_CONTENT=content/funded python3 -m tools.preflight
+#
+# DATES ARE RELATIVE. Seven weeks is 49 days and different Flex sessions start on
+# different weekdays, so everything here is a day offset from day 1.
+#
+# NOTHING IN THIS COURSE IS APPROVED TO RUN. The gateway contract is unsigned and
+# six governance documents gate collection. See the funded proposal, section 10a.
+
+course:
+  code: ITSY 1377
+  number: "1377"
+  title: Agentic AI and Security Operations
+  variant: funded
+  credit_hours: 3
+  contact_hours: 64          # 2 lecture + 2 lab; 3.80 workload units
+  institution: Northeast Lakeview College
+  district: Alamo Colleges District
+  program: A.A.S. Cyber Defense
+  session: 7-week Flex
+  modality: Hybrid; hosted notebooks on the school network
+  max_enrollment: 25
+  timezone: America/Chicago
+  deadline_time: "23:59"
+  license: >
+    Instructor-authored content is released CC BY 4.0. External framework
+    documents are linked, not reproduced. See the course material page.
+
+# The same three parts as the constrained course, because it is the same course
+# in a different environment. What an agent is, what goes wrong with them, and
+# how you would use one in security operations.
+parts:
+  - id: A
+    title: What an agent is
+    weeks: [1, 2]
+    question: >
+      What is actually happening when an AI does something, what shape every
+      agent has, and what each one can reach.
+  - id: B
+    title: What goes wrong
+    weeks: [3, 4, 5, 7]
+    question: >
+      Where the security problems come from, how you prove one, and what a
+      control looks like.
+  - id: C
+    title: Using one for the work
+    weeks: [5, 6]
+    question: >
+      Where an agent genuinely helps a security analyst, how you check it, and
+      what you would need to learn to supervise it well.
+
+outcomes:
+  - id: O1
+    bloom: Understand
+    evidence: Annotated trace
+    text: Describe how an agentic AI system operates, using its recorded run.
+  - id: O2
+    bloom: Understand
+    evidence: Code-reading worksheet
+    text: Interpret a short script to determine what it accesses and changes.
+  - id: O3
+    bloom: Analyze
+    evidence: Blast-radius inventory
+    text: >
+      Analyze an agent's tool configuration to identify irreversible actions.
+  - id: O4
+    bloom: Analyze
+    evidence: Evidence packs
+    text: >
+      Differentiate evidence from assertion in claims about an agent's behavior.
+  - id: O5
+    bloom: Analyze
+    evidence: Test report and reading
+    text: >
+      Interpret repeated-trial test results, including results showing no effect.
+  - id: O6
+    bloom: Apply
+    evidence: The control, measured before and after
+    text: Apply a control at an agent's tool boundary and verify its effect.
+  - id: O7
+    bloom: Evaluate
+    evidence: Verification record
+    text: Evaluate AI-generated output against source evidence.
+
+assignment_groups:
+  - id: foundations
+    title: "Part A: What an agent is"
+    weight: 30
+  - id: investigations
+    title: "Part B: What goes wrong"
+    weight: 30
+  - id: operations
+    title: "Part C: Using one for the work"
+    weight: 30
+  - id: gauntlet
+    title: The gauntlet
+    weight: 10
+
+modules:
+
+  - id: m00
+    title: "Start Here"
+    unlock_day: 1
+    items:
+      - {type: page, ref: welcome-start-here}
+      - {type: page, ref: meet-your-instructor}
+      - {type: page, ref: course-material}
+      - {type: page, ref: course-policies}
+      - {type: page, ref: academic-integrity}
+      - {type: page, ref: ai-use-policy}
+      - {type: page, ref: rules-of-engagement}
+      - {type: page, ref: what-is-logged}
+      - {type: page, ref: support-resources}
+      - {type: page, ref: canvas-and-tech-support}
+      - {type: page, ref: communicating-online}
+      - {type: page, ref: tips-for-success}
+      - {type: page, ref: glossary}
+      - {type: page, ref: course-schedule}
+      - {type: discussion, ref: qa-board}
+      - {type: discussion, ref: introduce-yourself}
+      - {type: quiz, ref: m0-gate}
+
+  - id: m01
+    title: "Week 1: Twenty minutes"
+    unlock_day: 1
+    week: 1
+    days: [1, 7]
+    parts: [A]
+    focus: >
+      Take a working four line function, change one line, add one decorator, and
+      watch a model decide by itself to call it. Then break it six ways on
+      purpose and watch what changes. Then say which of your tools you can undo.
+    outcomes: [O1, O3]
+    items:
+      - {type: page, ref: w1-overview}
+      - {type: page, ref: w1-content}
+      - {type: page, ref: w1-setup}
+      - {type: assignment, ref: w1-twenty-minutes}
+      - {type: page, ref: w1-wrap-up}
+
+  - id: m02
+    title: "Week 2: The blindfold"
+    unlock_day: 8
+    week: 2
+    days: [8, 14]
+    parts: [A]
+    focus: >
+      Two tools with the same code and different descriptions. Which does the
+      model pick, thirty times? Change one word and run again. Find one edit that
+      moves the grid and one that does not, and get credit for both.
+    outcomes: [O1, O5]
+    items:
+      - {type: page, ref: w2-overview}
+      - {type: page, ref: w2-content}
+      - {type: assignment, ref: w2-the-blindfold}
+      - {type: page, ref: w2-wrap-up}
+
+  - id: m03
+    title: "Week 3: Somebody else's function"
+    unlock_day: 15
+    week: 3
+    days: [15, 21]
+    parts: [B]
+    focus: >
+      Specify one hidden effect from a menu of eight and write the sentence that
+      hides it. A generator emits real Python from your specification, and that
+      is what three classmates receive, unlabelled. You get forty five minutes to
+      work out what theirs really do.
+    outcomes: [O2, O3]
+    frameworks: ["MITRE ATLAS AML.T0010"]
+    items:
+      - {type: page, ref: w3-overview}
+      - {type: page, ref: w3-content}
+      - {type: page, ref: w3-what-mcp-is}
+      - {type: assignment, ref: w3-somebody-elses-function}
+      - {type: page, ref: w3-wrap-up}
+
+  - id: m04
+    title: "Week 4: English versus Python"
+    unlock_day: 22
+    week: 4
+    days: [22, 28]
+    parts: [B]
+    focus: >
+      Put text in a ticket that makes your own agent call your own irreversible
+      tool. Thirty trials. Then the positive control: the same instruction in
+      your own message, thirty trials again. Report both grids and say exactly
+      what the pair does and does not establish.
+    outcomes: [O4, O5]
+    frameworks: ["MITRE ATLAS AML.T0051"]
+    items:
+      - {type: page, ref: w4-overview}
+      - {type: page, ref: w4-content}
+      - {type: assignment, ref: w4-english-versus-python}
+      - {type: page, ref: w4-wrap-up}
+
+  - id: m05
+    title: "Week 5: Watch it spend"
+    unlock_day: 29
+    week: 5
+    days: [29, 35]
+    parts: [B, C]
+    focus: >
+      Predict what a runaway loop costs, in cents, then build one on a burnable
+      key and watch the bar drain. Fill in the cap, which is guard one. Then the
+      approval gate, guard two, where you find out that a gate does not
+      discriminate, it delegates.
+    outcomes: [O6, O3]
+    frameworks: ["OWASP LLM06 Excessive Agency"]
+    items:
+      - {type: page, ref: w5-overview}
+      - {type: page, ref: w5-content}
+      - {type: assignment, ref: w5-watch-it-spend}
+      - {type: page, ref: w5-wrap-up}
+
+  - id: m06
+    title: "Week 6: Somebody else's agent"
+    unlock_day: 36
+    week: 6
+    days: [36, 42]
+    parts: [C]
+    focus: >
+      One of six fixed incident packs. Raw records, an alert already fired, and
+      the filmstrip switched off. File a containment ticket: what it did in
+      order, whether this is an incident, what to revoke and what that breaks,
+      where two records disagree, and which sentence in the handover note is
+      wrong.
+    outcomes: [O1, O4, O7]
+    items:
+      - {type: page, ref: w6-overview}
+      - {type: page, ref: w6-content}
+      - {type: page, ref: w6-reading-raw-records}
+      - {type: assignment, ref: w6-somebody-elses-agent}
+      - {type: page, ref: w6-wrap-up}
+
+  - id: m07
+    title: "Week 7: The gauntlet"
+    unlock_day: 43
+    week: 7
+    days: [43, 49]
+    parts: [B]
+    focus: >
+      Turn on every control you built, including the containment you recommended
+      in week 6. Then two rounds, live: your defences against the class's
+      attacks, and your attacks against theirs.
+    outcomes: [O6, O5]
+    items:
+      - {type: page, ref: w7-overview}
+      - {type: page, ref: w7-content}
+      - {type: assignment, ref: w7-the-gauntlet}
+      - {type: page, ref: w7-wrap-up}
+      - {type: page, ref: where-next}
+      - {type: page, ref: framework-alignment}
+
+assignments:
+
+  - ref: w1-twenty-minutes
+    title: "Week 1: Twenty minutes"
+    group: foundations
+    points: 15
+    due_day: 7
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O1, O3]
+    rubric: w1-twenty-minutes
+    note: >
+      The scope gate in Start Here is pass/fail and gates this assignment.
+
+  - ref: w2-the-blindfold
+    title: "Week 2: The blindfold"
+    group: foundations
+    points: 15
+    due_day: 14
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O1, O5]
+    rubric: w2-the-blindfold
+
+  - ref: w3-somebody-elses-function
+    title: "Week 3: Somebody else's function"
+    group: investigations
+    points: 15
+    due_day: 21
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O2, O3]
+    rubric: w3-somebody-elses-function
+
+  - ref: w4-english-versus-python
+    title: "Week 4: English versus Python"
+    group: investigations
+    points: 15
+    due_day: 28
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O4, O5]
+    rubric: w4-english-versus-python
+
+  - ref: w5-watch-it-spend
+    title: "Week 5: Watch it spend"
+    group: operations
+    points: 15
+    due_day: 35
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O6, O3]
+    rubric: w5-watch-it-spend
+    note: >
+      Ten of these fifteen points require a real gateway run, of any size and any
+      outcome, reconciled against the ledger. This is the only row in the course
+      that does. If the gateway is unavailable the outage policy extends the
+      deadline; it does not substitute.
+
+  - ref: w6-somebody-elses-agent
+    title: "Week 6: Somebody else's agent"
+    group: operations
+    points: 15
+    due_day: 42
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O1, O4, O7]
+    rubric: w6-somebody-elses-agent
+
+  - ref: w7-the-gauntlet
+    title: "Week 7: The gauntlet"
+    group: gauntlet
+    points: 10
+    due_day: 49
+    submission_types: [online_text_entry, online_upload]
+    outcomes: [O6, O5]
+    rubric: w7-the-gauntlet
+
+quizzes:
+  - ref: m0-gate
+    title: "Start Here: the scope, safety and logging gate"
+    points: 0
+    due_day: 3
+    grading_type: pass_fail
+    note: >
+      Ungraded and required. It carries the notice about what the gateway records
+      and who can read it, so a student cannot start week 1 without having seen
+      it. No attempt limit.
+
+discussions:
+  - ref: qa-board
+    title: "Questions and answers"
+    graded: false
+  - ref: introduce-yourself
+    title: "Introduce yourself"
+    graded: false
