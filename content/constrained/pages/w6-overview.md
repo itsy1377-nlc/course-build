@@ -29,6 +29,11 @@ Three minutes on why a rule in the prompt asks, and a rule in code decides.
 Captions and a full transcript are on the player.
 :::
 
+::: video w6-walkthrough | A control that holds, and how you show it
+Reading the three numbers, and finding the line where your control acted.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

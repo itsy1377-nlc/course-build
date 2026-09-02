@@ -4,6 +4,11 @@ picture. There are files, and you read them. This page teaches you how, using a
 short example made up for the purpose.
 :::
 
+::: video w6-raw-records | Reading the raw record
+The pretty view, then the same run without it. This is the week the filmstrip goes away.
+Captions and a full transcript are on the player.
+:::
+
 ::: section | One record per line
 Your pack's trace is a JSONL file. The name says what it is: JSON, one record
 per line. Nothing wraps and nothing is nested across lines.

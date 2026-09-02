@@ -1,0 +1,127 @@
+id: w6-raw-records
+title: Reading the raw record
+kind: walkthrough
+module: m06
+embed_on: content/funded/pages/w6-walkthrough.md
+blurb: The pretty view, then the same run without it. This is the week the filmstrip goes away.
+explains:
+  - content/funded/pages/w6-walkthrough.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 6
+    heading: Reading the raw record
+    body: The same run, twice. Once made easy for you, once not.
+    narration:
+      - text: This week the filmstrip goes away.
+      - text: You are handed records somebody else's agent produced, in the
+          state a real one arrives in.
+      - text: So first, look at the same run two ways.
+
+  - type: slide
+    layout: statement
+    eyebrow: Why bother
+    heading: Nothing in a real job renders a filmstrip
+    body: What arrives is a log file and a question.
+    narration:
+      - text: Every week so far gave you a picture of the run.
+      - text: Nothing in a real job does that. What arrives is a log file and
+          somebody asking what happened.
+      - text: The picture was the on-ramp. This is the off-ramp.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/w6app.log 2>&1 &
+      - sleep 5
+      - python -m agent.cli "Summarize ticket T-1001 for me" > /dev/null 2>&1
+      - python -m agent.cli "Look up the customer record for C-1002" > /dev/null 2>&1
+    steps:
+      - run: python -m agent.replay --list
+        settle: 6.0
+    narration:
+      - text: Start with the view you already know.
+      - text: Here are the recent runs, newest last, with how many tools each
+          one called.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: python -m agent.replay
+        settle: 9.0
+    narration:
+      - text: The replay tool walks the newest run in plain language.
+      - text: Read line two. Your program did not choose that tool. The model
+          asked for it.
+
+  - type: slide
+    layout: statement
+    eyebrow: Now take it away
+    heading: That was a rendering, not the record
+    body: Something read a file and made it readable. Now read the file.
+    narration:
+      - text: What you just read was a rendering.
+      - text: A program read a file and made it comfortable. The file is still
+          there, and it is what you would actually be handed.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: wc -l $(ls -t runs/traces/*.jsonl | head -1)
+        settle: 4.0
+    narration:
+      - text: Here is the same run as bytes. Five lines.
+      - text: A whole agent run is often under ten.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: cut -c1-120 $(ls -t runs/traces/*.jsonl | head -1) | head -3
+        settle: 5.0
+    narration:
+      - text: And here are the first three, cut short so they fit.
+      - text: Few lines, but each one is dense. One line holds several facts at
+          once.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The habit
+    heading: Cite the field, not the line
+    items:
+      - trace.jsonl line 3 is not enough
+      - trace.jsonl line 3, the tool field, is
+      - One line can hold the request, the result and the reason
+    narration:
+      - text: That is why this week asks you to cite a field and not a line.
+        reveal: 1
+      - text: Saying line three does not tell your reader which fact you meant.
+        reveal: 2
+      - text: Naming the field does. One line can carry the call, what came
+          back, and why it was allowed.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: The hard one
+    heading: Sometimes the answer is that nothing is there
+    body: An absent record has no line to cite. Say so, and name the file.
+    narration:
+      - text: And sometimes what settles a question is a record that does not
+          exist.
+      - text: No mail was sent, so there is no line about sending mail.
+      - text: An absent record has no line number, so the form lets you answer
+          no such record and name the file that should have held it. That is a
+          real finding, not a gap in your work.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: One ticket, five answers
+    body: What it did, whether it is an incident, what to revoke, where records disagree, and the wrong sentence.
+    narration:
+      - text: Your pack has records from more than one system, and they will
+          not agree with each other.
+      - text: Work the ticket, cite every claim to a field, and say plainly what
+          the records cannot settle.
+      - text: That last one is worth points. Being unable to conclude, and
+          knowing it, is the job.

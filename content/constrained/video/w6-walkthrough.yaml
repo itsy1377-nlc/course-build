@@ -1,0 +1,121 @@
+id: w6-walkthrough
+title: A control that holds, and how you show it
+kind: walkthrough
+module: m06
+embed_on: content/constrained/pages/w6-overview.md
+blurb: Reading the three numbers, and finding the line where your control acted.
+explains:
+  - content/constrained/pages/w6-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 6
+    heading: A control that holds
+    body: Not whether it feels safer. Whether the number moved.
+    narration:
+      - text: This week you build the containment you recommended, and then you
+          have to show that it works.
+      - text: Not that it feels safer. That the number moved.
+
+  - type: slide
+    layout: compare
+    eyebrow: Two kinds of fix
+    heading: One of these is a control
+    items:
+      - In the system prompt | A polite request the model may ignore
+      - In before_tool_call | Code that runs before the tool does
+    narration:
+      - text: You will try the fix two ways.
+        reveal: 0
+      - text: First as a sentence in the system prompt. That is a request, and
+          the model can ignore it.
+        reveal: 1
+      - text: Then in code at the tool boundary, which runs whether the model
+          cooperates or not. Measure both.
+        reveal: 2
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/w6app.log 2>&1 &
+      - sleep 5
+      - python -m harness.runner --case A4-excessive-agency-no-confirmation --case A6-insecure-tool-authorization --trials 2 > /dev/null 2>&1
+    steps:
+      - run: ls -t runs/reports | head -4
+        settle: 2.0
+    narration:
+      - text: Every harness run writes a report. Here are the newest.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: grep -E 'A4-|A6-' $(ls -t runs/reports/*.md | head -1)
+        settle: 11.7
+    narration:
+      - text: Two cases from one run, side by side.
+      - text: One says blocked, every trial. The other says vulnerable, every
+          trial. Same agent, same model, same afternoon.
+      - text: The difference is that one of those doors has code in front of it.
+
+  - type: slide
+    layout: statement
+    eyebrow: The word matters
+    heading: Blocked is not the same as failed
+    body: It means the control ran every time and held every time.
+    narration:
+      - text: Read that status word carefully.
+      - text: Blocked does not mean your attack failed. It means your control
+          ran every time and held every time.
+      - text: A student who reports that as a failure has misread their own
+          evidence.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: grep -oh 'refused.\{0,55\}' runs/traces/*.jsonl | sort -u | head -2
+        settle: 6.2
+    narration:
+      - text: Now find the line where your control actually acted.
+      - text: This is the sentence you wrote, recorded at the moment it stopped
+          the call. That is what you quote.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: ls target/outbox | wc -l
+        settle: 7.2
+    narration:
+      - text: Then check the side effect. Nothing in the outbox.
+      - text: A log line says a thing was refused. An empty outbox shows nothing
+          left the building.
+
+  - type: slide
+    layout: numbered
+    eyebrow: What to submit
+    heading: Three numbers and two lines
+    items:
+      - Baseline, prompt rule, code control
+      - The status word each one printed
+      - The line where your control acted
+      - The side effect you checked
+      - One thing your control does not cover
+    narration:
+      - text: So your write-up is a small table and two quotations.
+        reveal: 2
+      - text: Three versions, the status word each printed, the line where your
+          control acted, and the side effect you checked.
+        reveal: 4
+      - text: Then one sentence naming what your control does not cover. There
+          is always something, and saying it is worth marks.
+        reveal: 5
+
+  - type: slide
+    layout: closing
+    eyebrow: One more check
+    heading: A control that breaks the job is not finished
+    body: The benign case has to still pass.
+    narration:
+      - text: One last thing, and it is the one people forget.
+      - text: Run the benign case too. A control that blocks the attack and also
+          blocks legitimate work is not a finished control.
+      - text: That is the whole difference between a rule and a control.

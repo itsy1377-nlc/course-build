@@ -39,6 +39,8 @@ from __future__ import annotations
 import json
 import shlex
 import shutil
+
+_STAGED = False
 import subprocess
 from pathlib import Path
 
@@ -236,14 +238,30 @@ def render(tape: Path, out_dir: Path, labs: Path, use_docker: bool = True,
         # on screen, which reads to a student as somebody else's machine rather
         # than as their own. The prompt is normalised for exactly this reason
         # and the output defeated it. Caught by looking at a frame.
+        # Stage ONCE per build, not once per scene.
+        #
+        # This rebuilt the tree on every render at first, which quietly broke
+        # any video whose later scene reads evidence an earlier scene's setup
+        # produced: scene two ran the harness, scene three's staging deleted
+        # the reports, and grep sat waiting on stdin with no file to read. The
+        # gates all passed and every terminal in the video was a bare
+        # continuation prompt.
+        #
+        # One process is one build, so a module flag is the right scope: fresh
+        # tree per video, shared state across its scenes.
+        global _STAGED
         stage = Path("/tmp/itsy1377/labs")
-        if stage.exists():
-            shutil.rmtree(stage, ignore_errors=True)
+        if not _STAGED:
+            if stage.exists():
+                shutil.rmtree(stage, ignore_errors=True)
+            _STAGED = True
         stage.parent.mkdir(parents=True, exist_ok=True)
-        shutil.copytree(
-            labs.resolve(), stage,
-            ignore=shutil.ignore_patterns(".git", ".venv", "wheels", "__pycache__",
-                                          "runs", "node_modules"))
+        if not stage.exists():
+            shutil.copytree(
+                labs.resolve(), stage,
+                ignore=shutil.ignore_patterns(".git", ".venv", "wheels",
+                                              "__pycache__", "runs",
+                                              "node_modules"))
         (stage / "runs").mkdir(exist_ok=True)
         # A neutral student id. The recording seeds a database and prints the
         # id back, and whoever built the video is not who the student should
