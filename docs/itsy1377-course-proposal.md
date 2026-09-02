@@ -3,6 +3,14 @@
 Seven weeks. No programming prerequisite. No certification mapping.
 Introductory by design: broad and light, and hands-on throughout.
 
+**This is the constrained proposal**, built for zero budget, no accounts, and a
+student on a locked-down laptop. A second proposal,
+`docs/itsy1377-blue-sky-proposal.md`, covers the same course in a funded
+environment with a hosted gateway and a metered model budget. The two share
+these outcomes and most of these weeks; they differ in what the environment
+allows. Read that one for what money buys, which is less than it appears and
+more interesting than expected.
+
 **AI Fundamentals is sequenced before this course**, and what this course can
 assume depends on whether that sequence is enforced or merely recommended. That
 is an open question and it is answered in section 1a, along with what changes
