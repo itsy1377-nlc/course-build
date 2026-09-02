@@ -13,8 +13,10 @@ responsibility under the contract, which is what would resolve the age question.
 
 **That premise is not true yet, and this document does not assume it is.**
 Nothing is signed. The dual-credit rights determination the premise rests on is
-item 4 of the register in section 10a and has no owner. Read the scenario as the
-condition under which this course can run, not as a description of this year.
+item 4 of the register in section 10a, which names the registrar and the school
+district as its owners; what it does not have is a signature from either. Read
+the scenario as the condition under which this course can run, not as a
+description of this year.
 
 ---
 
@@ -84,6 +86,13 @@ appends every tool result to the message list before the next step, so greying
 them taught the opposite of the lesson. The prototype now greys by position
 relative to a chosen card, which is a true statement about the run.
 
+**And the paragraph above describes two operations while the prototype does one.**
+Greying everything later in the run is position, which is built. Greying
+out-of-band evidence, the workspace and the target's own logs, needs cards that do
+not exist yet, because nothing outside the message list is drawn on the filmstrip
+at all. Section 7 costs the second half; until it ships, the blindfold answers
+"what had it been told by this point" and not "what did it never see".
+
 **The trial grid** is twenty runs of the same thing as twenty squares filling in
 live. Sometimes twenty blue. Sometimes thirteen and seven. Sample size stops
 being a rule and becomes a picture.
@@ -126,7 +135,8 @@ them as such.
 | **2** | The blindfold | Two tools with the same code and different descriptions. Which does the model pick, twenty times? Change one word and run again. Find one edit that moves the grid and one that does not, and get credit for both. Then see the model's actual input as stacked blocks with token counts, and find your own tool descriptions sitting in it | Trial grids filling square by square, side by side as edits accumulate; the context window as coloured blocks |
 | **3** | Somebody else's function | You do not write the hidden behaviour, you specify it: pick one effect from a menu of eight, set its parameters, and write the sentence of description that hides it. A generator then emits a real Python tool from your specification, and **that generated source is what your classmates receive**, with no label on it saying which effect it is. Three classmates' tools run against your agent in a sandbox, and you have forty five minutes to work out what each really does by reading the code, by probing it directly, and by watching the filmstrip and the workspace diff. The tool cards render with the field names the protocol actually uses, `name`, `description` and `inputSchema`, and one supplied paragraph says plainly what MCP is, that this manifest shape is what it standardised, that you are reading manifests over a local transport rather than running a server, and that the failure you just found is what ATLAS calls tool poisoning | Anonymous tool cards in manifest shape; the code itself; the filmstrip of your own agent behaving strangely; the workspace diff for the two effects that write |
 | **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: the same instruction in your own message instead, twenty trials again. Report both grids and state exactly what the pair does and does not establish. The four labels are the ones you will use again in week 6: injected, failed, refused, errored. Two named trials, one that fired and one that refused, each carry the field that decides the label | Two grids side by side, whichever way they fall; filmstrips that stop part way |
-| **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then write the cap, and run it again. The cap is guard one, a number. Guard two is an approval gate over the tools your own week 1 records marked irreversible, and it is where you find out that a gate does not discriminate, it delegates: it blocks the attack and it also blocks the legitimate escalation, and the count of approvals over twenty trials, multiplied out to a shift, is approval fatigue measured from your own data | The budget bar draining live; a black cap card ending a run mid-flight; an approval card pausing a run; before and after with the cost difference |
+| **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then fill in the cap, in a supplied guard function whose condition is the one
+blank you complete, and run it again. The cap is guard one, a number. Guard two is an approval gate over the tools your own week 1 records marked irreversible, and it is where you find out that a gate does not discriminate, it delegates: it blocks the attack and it also blocks the legitimate escalation, and the count of approvals over twenty trials, multiplied out to a shift, is approval fatigue measured from your own data | The budget bar draining live; a black cap card ending a run mid-flight; an approval card pausing a run; before and after with the cost difference |
 | **6** | Somebody else's agent | You are handed one of six fixed incident packs: raw trace JSONL, the target's audit export, outbox files, a slice of the gateway spend log, a credential manifest, and the previous shift's AI-written handover note. You are told which alert fired. **The filmstrip is switched off.** File a containment ticket: what the agent did in order, whether this is an incident and the one field that decides it, what gets revoked right now and what that breaks, where two records fail to reconcile, and which sentence in the handover note is wrong | The raw bytes, with stable line numbers; a containment form with closed vocabulary; the class histogram of calls once everyone has filed |
 | **7** | The gauntlet | Turn on every control you built. Then two rounds, live: your defences against the class's attacks, and your attacks against theirs | Two boards updating on the projector during play, everyone named on both |
 
@@ -159,8 +169,11 @@ and 7.
 
 **That count is small on purpose, and an earlier draft inflated it.** It
 promised six to ten student-authored functions, which no week assigns: the
-schedule assigns edits to supplied functions, one filled-in template in week 3,
-and guards in weeks 5 and 7. What makes the artifact theirs is that they changed
+schedule assigns edits to supplied functions, one effect specification in week 3
+that a generator turns into Python, and filled-in conditions in the supplied
+guards of weeks 5 and 7. An earlier version said "one filled-in template in week
+3", which contradicted section 7a's "the student does not supply Python" in the
+same document. What makes the artifact theirs is that they changed
 every part of it and can read all of it, not the number of functions in it.
 
 **The cuckoo, in week 3.** Every student specifies one tool that does what it
@@ -241,6 +254,14 @@ anti-fabrication work section 9 credits it with. On every other row a student
 working offline produces an artifact with no independent record behind it, and
 section 9's claim should be read as applying to the hosted path only.
 
+**Thirty trials, not twenty, and the same number section 8 asks for.** An
+earlier version of this rubric paid for twenty clean trials per arm while section
+8 argued that "at least thirty trials per model per case, not five" is the floor
+and that five is what produced the original ambiguity. Twenty trials against a
+true five per cent rate show zero about thirty-six per cent of the time, so the
+course would have been grading a student for making the underpowered claim it
+argues against four sections later. The number is thirty in both places now.
+
 **Week 4's rubric, which is outcome-independent rather than outcome-neutral.**
 An earlier version said all four combinations earn full credit, which review
 correctly called undefined: each arm holds fired, missed and refused trials, so
@@ -249,7 +270,7 @@ of them are on the result.
 
 | What earns it | Pts |
 |---|---:|
-| Twenty clean trials in each arm, with errored trials re-run and the re-run count reported | 4 |
+| Thirty clean trials in each arm, with errored trials re-run and the re-run count reported | 4 |
 | Every trial classified as fired, missed, refused or errored, with refusals never counted as misses | 4 |
 | Both rates reported with the denominator each rests on | 3 |
 | One sentence on what a reader may and may not conclude from the pair, correct for whatever the pair actually was | 4 |
@@ -412,7 +433,13 @@ of the room cannot write a function, they have no substrate and no recovery
 path. As designed, that is fatal rather than risky.
 
 **The fix is the rule this project already settled:** no student writes code
-from a blank file. The starter function is already written, working, and running
+from a blank file, **and that rule binds every week, not only week 1.** Week 5's
+cap and gate and week 7's controls are edits to supplied guard functions with the
+condition left blank and the surrounding code working, exactly as week 1's
+starter tool is. An earlier version of this document stated the rule in section 6
+and then wrote "write the cap, in your own code" into week 5 with no scaffold
+named, which is the same fatal flaw the rule exists to prevent, surviving in the
+two weeks nobody re-read. The starter function is already written, working, and running
 in the notebook before the student touches it. They change one line of it. The
 decorator infers everything else from the function's own signature and
 description, so nobody hand writes a schema.
@@ -1013,7 +1040,8 @@ a task somebody can complete rather than a heading.
 | 9 | **Appeals procedure** | Department | How a grade dispute uses the logs, and the consequence that the retention date is set by the appeals window rather than the term end |
 | 10 | **Continuity and staffing** | Department | Who runs the server when the instructor is absent, who holds the gateway admin credentials, and what happens to the course if the contract is not renewed. The answer to the last one is section 4a, which is why that matrix is load bearing rather than administrative |
 | 11 | **Accessibility** | Instructor with the accessibility office | Jupyter in a browser, a terminal, and a class board are three interfaces with three different accessibility profiles. Screen reader behaviour over a notebook and over harness output should be checked before a graded week depends on either |
-| 12 | **Outage policy** | Instructor, in the syllabus | A deadline auto-extends by the outage duration. Seven weeks has no slack week and census falls on day 8 |
+| 12 | **Acceptable use, authorisation and scope** | Instructor, approved by the department, signed by the student and by a guardian for dual credit | What the student is authorised to attack, which is their own agent, the instructor-provided target, and a classmate's tool inside the sandbox, and nothing else ever. That techniques taught in weeks 3, 4 and 7 are unlawful against systems they do not own. What happens if a student takes one off the sandbox. **Review found zero occurrences of acceptable use, authorisation, ethics or consent in this document**, in a course with an ITSY prefix that teaches minors to write prompt injections and stages an attack tournament. It is the first thing a state reviewer would circle |
+| 13 | **Outage policy** | Instructor, in the syllabus | A deadline auto-extends by the outage duration. Seven weeks has no slack week and census falls on day 8 |
 
 **Six of these gate collection, not two.** An earlier draft said numbers 1 and
 2. Review was right that the processing region, the student notice, the logging
