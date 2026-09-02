@@ -1,62 +1,202 @@
 # ITSY 1377, the funded proposal
 
-A second proposal, to sit beside `docs/itsy1377-course-proposal.md` rather than
-replace it. Same course, same seven weeks, same outcomes, same students. What
-changes is the environment.
+A second proposal, to sit beside `docs/itsy1377-course-proposal.md`. Same seven
+outcomes, same seven weeks, same students. Different course, because the
+environment is different.
 
-**The scenario.** A server on the school network hosts per-student Jupyter
-notebooks and labs, **each student isolated from every other**. A LiteLLM gateway runs on it, each student holding their own
-token and a budget under ten dollars for the semester. Every prompt and output
-is logged under school control and kept until grade appeals close. An AWS
-Bedrock contract supplies two or three permissively licensed open models, billed
-on usage, against three hundred dollars per class per semester. The school takes
-responsibility under the contract, which resolves the age question.
+**The scenario.** A server on the school network hosts a per-student isolated
+Jupyter notebook. A gateway gives each student their own token and a budget
+under ten dollars a semester, with all activity logged under school control. An
+AWS Bedrock contract supplies two or three permissively licensed open models
+against three hundred dollars per class. The school takes responsibility under
+the contract, which resolves the age question.
 
 ---
 
-## Status: a design under review, and not a submission
+## Status
 
-Two rounds of adversarial review. The second confirmed five corrections, found
-that four more were partial, and returned the same verdict as the first: not yet
-fit for a curriculum committee or a procurement office. That verdict stands and
-this section says why, because a proposal that hides its own review is worse
-than one that fails it.
+**An earlier version of this document took the constrained course and added
+hosted comparison columns to it.** A panel of six readers scored that worse than
+the constrained original on both interest and fun, twice, with nobody enrolling
+eagerly. The diagnosis was that comparison tables and second-model re-runs are
+what scarcity thinking produces when handed money, and that no amount of
+adjustment to a wrong frame fixes it.
 
-**Corrected and confirmed:** the run arithmetic; the false claim that the budget
-was measured from recorded traces; the statistical overclaim that model size had
-been ruled out; the silent-failure account, which was broader than the code
-supports; and the control-validity fix, which was cosmetic in the first
-revision.
+This version was designed from what the environment enables. It was one of four
+independent designs judged by a student, a practitioner and an operating
+instructor. It ranked first on interest with all three and first on fun with two,
+scoring 8.0 for fun and 8.7 for interest against the previous version's 5.8.
 
-**Corrected in this revision, after the second review:** the cost table, which
-had been left on the old token arithmetic after the allowance was raised, and
-which is a quarter to a half higher than stated; the licence finding, which was
-factually wrong in a way this document had announced loudly; the points matrix,
-whose rows summed to 100 before two weeks had been counted and which moved
-hosted evidence without removing the graded dependence on it; the workload
-figure; the claim that concurrency is free of memory; the chain detector's first
-two steps, which overclaimed what their evidence proves; and the governance
-register, which named two gating documents where six gate collection.
+**All three judges named the same fatal flaw and it is addressed in section 6.**
 
-**Not fixable in a document, and each blocks approval:**
+The environment analysis in sections 8 to 10 survives from the earlier version.
+It was corrected across two adversarial reviews and is about the environment
+rather than the course, so it carries over.
 
-1. **The gating experiment is unrun**, and it now needs a chain detector that
-   does not exist, which is a fortnight of work before the experiment starts.
-2. **The multi-tenant topology is undesigned.** The target authorises one
-   loopback port; twenty-five students on one server need network namespaces or
-   a rewritten scope check.
-3. **Server capacity is unmeasured**, and concurrency raises memory rather than
-   being free of it.
-4. **Twelve governance documents are specified and none is signed**, six of
-   which gate the collection of any student data at all, and the vendor terms
-   need more than school-official language.
+---
 
-**The honest summary is that the approval-critical additions in this document
-are specifications rather than completed decisions.** That is the correct state
-for a proposal being costed and argued, and the wrong state for one being
-submitted. Read it as the former.
+## 1. The course in one line
 
-## 0. One experiment gates everything below, and it costs under a dollar
+**In the first twenty minutes of week one you make a model call your own code,
+and for six weeks afterwards everything you attack, defend and prove is the
+agent you built.**
+
+That is the whole design. One artifact, made in week 1, carried to week 7.
+
+---
+
+## 2. What you actually look at
+
+Every panel round of the constrained course said the same thing: there is
+nothing to look at. It produced JSON lines, YAML and terminal text, because a
+terminal cannot produce anything else. A notebook can, and this is the single
+largest thing the funded environment buys.
+
+**The filmstrip** is one agent run drawn as a row of boxes, left to right in
+time order. One box per thing that happened: what the student asked, what the
+model decided, what it called and with which arguments, what came back, what it
+answered. A coloured left edge carries the meaning: blue for an action, green
+for a result, red for an error or for an action that cannot be undone. A bar
+across the top shows money spent.
+
+A student glancing at it can see whether their agent did anything irreversible
+without reading a line of JSON. The current course teaches that by having them
+read twenty thousand characters of it.
+
+**The blindfold** is one checkbox on the filmstrip. Tick it and everything the
+model never received greys out, leaving only what it did. The hardest question
+in the course, what did it actually know when it decided that, answers itself.
+
+**The trial grid** is twenty runs of the same thing as twenty squares filling in
+live. Sometimes twenty blue. Sometimes thirteen and seven. Sample size stops
+being a rule and becomes a picture.
+
+**The workspace diff** shows what a tool did to the student's own files, before
+and after, in green and red.
+
+**The boards** are projected: every student's agent in week 1, and in week 7
+every attack and every defence with names against them.
+
+**This is measured, not estimated.** A working filmstrip renderer is 68 lines of
+Python, built and rendered against a real trace from this repository. The full
+set is about 440 lines, two to three days for a working version and about a week
+to make it good. Section 7 has the breakdown. The reason it is cheap is that
+`agent/trace.py` already records everything it needs: the filmstrip is a view,
+not a feature, and the agent does not change at all.
+
+---
+
+## 3. The seven weeks
+
+| Wk | Title | What the student does | What is on screen |
+|---|---|---|---|
+| **1** | Twenty minutes | Take a working four line function, change one line of it, add one decorator, and watch a model decide by itself to call it. Then break it six ways on purpose and watch what changes: delete the description, describe a different function, make it raise, make it return far too much, cut the step limit, take the tool away. Add a second tool that writes a file, and answer the question that raises: which of your two can you undo? | The filmstrip drawing itself live; tool cards; the blindfold; twenty five agents appearing on a projected class board |
+| **2** | The blindfold | Two tools with the same code and different descriptions. Which does the model pick, twenty times? Change one word and run again. Find one edit that moves the grid and one that does not, and get credit for both. Then see the model's actual input as stacked blocks with token counts, and find your own tool descriptions sitting in it | Trial grids filling square by square, side by side as edits accumulate; the context window as coloured blocks |
+| **3** | Somebody else's function | Write a tool that genuinely does what it says and one extra thing it does not mention. Three classmates' tools are installed blind in your agent, and you have forty five minutes to work out what each really does, from the code and from what your filesystem looks like afterwards | The workspace diff; anonymous tool cards; your own agent behaving strangely |
+| **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: put the same instruction in your own message instead. If it fires there and not from the document, your instrument works and your null is real | Two grids side by side, one mixed and one solid; filmstrips that stop part way |
+| **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then write the cap, in your own code, and run it again | The budget bar draining live; a black cap card ending a run mid-flight; before and after with the cost difference |
+| **6** | It told me something false | An incident pack built from your own records across weeks 3 to 5, your own installs, your own runaway, with one intruder mixed in. An assistant summarises it. Check every line against the file it came from and mark each accepted, corrected or rejected | A timeline colouring green and red as your own checker runs |
+| **7** | The gauntlet | Turn on every control you built. Then two rounds, live: your defences against the class's attacks, and your attacks against theirs | Two boards updating on the projector during play, everyone named on both |
+
+**Week 4 is the week that must work whichever way the measurement goes.** It is
+built so that a negative result is the expected and fully creditable outcome,
+and the positive control is what makes a null mean something rather than nothing.
+If the chain never completes on any model, the student still produces a real
+finding, with an instrument they proved was live.
+
+---
+
+## 4. The three mechanics that carry it
+
+**The agent they built.** One artifact from week 1 minute 20 to week 7. Every
+attack is against a thing they made, every control is in their own code, and by
+the end it exports as a folder with a system prompt they wrote, six to ten tools
+that are their own functions, and the controls they added.
+
+**The cuckoo, in week 3.** Every student writes one tool that does what it
+claims and exactly one thing it does not mention, and receives three classmates'
+blind. All three judges called it the best single mechanic across the four
+designs. It teaches supply chain, code reading and evidence at once, it cannot
+be looked up because the answer is a classmate's, and it produces the second
+best picture in the course.
+
+**The boards.** Week 1 puts every student's agent on the wall. Week 7 puts every
+attack and defence there, live. The constrained course's own review found the
+class board its best loved mechanism and its worst placed, arriving only in the
+final week.
+
+---
+
+## 5. How the outcomes are met
+
+| # | Outcome | Where |
+|---|---|---|
+| 1 | Describe how an agentic system operates from its recorded run | Wk 1, the filmstrip of a system they assembled |
+| 2 | Interpret a short script to determine what it accesses and changes | Wk 3, reading a stranger's tool, which is the literal week |
+| 3 | Analyze a tool configuration to identify irreversible actions | Wk 1, assigning the flag to their own tools |
+| 4 | Differentiate evidence from assertion | Wk 4 and 6, their own grids and their own incident |
+| 5 | Interpret repeated-trial results including no effect | Wk 2 and 4, with the positive control making the null real |
+| 6 | Apply a control at a tool boundary and verify its effect | Wk 5 and 7, in their own code, verified against classmates |
+| 7 | Evaluate AI output against source evidence | Wk 6, against evidence generated from their own term |
+
+---
+
+## 6. The fatal flaw, and the fix
+
+**All three judges independently named the same thing: week 1 minute 5 asks a
+student to type `def` in a course with no programming prerequisite, and
+everything in weeks 2 to 7 operates on what is built in minute 20.** If a third
+of the room cannot write a function, they have no substrate and no recovery
+path. As designed, that is fatal rather than risky.
+
+**The fix is the rule this project already settled:** no student writes code
+from a blank file. The starter function is already written, working, and running
+in the notebook before the student touches it. They change one line of it. The
+decorator infers everything else from the function's own signature and
+description, so nobody hand writes a schema.
+
+What survives is the thing that matters: **it is still their code that the model
+calls**, because they changed it and they can read it. What goes is the blank
+line, which was never load bearing and was doing all the damage.
+
+**The second judge concern, that this is a lot to build, is answered by section
+7 and by the measurement in section 2.** The instructor scored deliverability 2
+out of 10 on the assumption that the visuals were a large custom build. They are
+440 lines over about a week, on top of a data format that already exists.
+
+---
+
+## 7. What has to be built
+
+| Piece | Lines | Note |
+|---|---:|---|
+| Filmstrip renderer and styling | **68, done** | prototyped against a real trace |
+| Live update in place | 40 | built into the notebook, no dependency |
+| Tool cards with schema inference | 90 | the real work: signature and docstring to schema |
+| Blindfold | 15 | a style toggle |
+| Trial grid, four way classification | 60 | hit, miss, refused, error |
+| Context window view | 50 | stacked blocks with token counts |
+| Workspace diff | 30 | wraps a standard library module |
+| Nested filmstrip | 25 | recursion once cards exist |
+| Class boards | 120 | the only piece needing shared state |
+| **Total** | **~500** | two to three days working, about a week good |
+
+**Three things that would blow that estimate.** The class boards are the only
+genuinely hard piece, because they need state shared across students. The
+notebook target must be pinned to one, since update behaviour differs between
+them. And no widget library: the prototype avoids it entirely, which avoids a
+whole category of version conflict in a shared server.
+
+**Also to build, and not visuals:** the cuckoo distribution and screening, the
+per student incident pack generator for week 6, the burnable key mechanism, and
+the week 7 board. Plus the four items in section 9 that make measurement
+trustworthy at all.
+
+---
+
+## 8. The measurement that gates week 4
+
+The chain may or may not complete on capable hosted models, and the course is built so that either answer is a good week. It is still worth knowing before the term.
 
 **The obvious reason to want this environment is wrong, or at least unmeasured.**
 The appeal is that a capable hosted model would complete the indirect injection
@@ -117,426 +257,9 @@ chain detector exists.
 **Write the course so either answer is a good week.** If the chain still does
 not complete across three hosted models at thirty trials, that is a far stronger
 finding than the constrained course has today.
-
 ---
 
-## 1. What the money actually buys, ranked
-
-**1. The model becomes a variable.** This is the strongest item and it does not
-depend on the injection landing. Today a student runs one model, so a rate is a
-fact about a system. With three behind one gateway, a student runs their own
-unchanged case across all of them and learns that susceptibility is a property
-of the model as much as of the attack, and that a finding has a scope which
-includes what you tested it on. `harness/report.py` already prints a banner
-saying every rate belongs to one exact model, temperature and prompt. Today that
-banner is a warning nobody can act on. With a gateway it becomes an experiment.
-
-**2. Variance, which is what is actually broken today.** The injection cases are
-0 of 5 on every model, payload and phrasing measured so far. That means week 3
-has no dynamic range: the student who writes a careful, well-placed injection
-and the one who writes a lazy one get the same number. Craft cannot be rewarded,
-predictions cannot be graded against outcomes, and the class board that runs
-weeks 3 to 7 shows twenty-five identical rows. A board where everyone scores the
-same is not a board, and that board was the best-reviewed hour in the course.
-**This is conditional on the gating experiment.**
-
-**3. Three records of one event, and the official one is the weakest.** With a
-gateway there are three logs of every action: the gateway record, the agent
-trace, and the target's own outbox and audit log. Only the outbox proves a
-message exists. The gateway proves only that the model asked. **The record the
-school keeps, stamped official and retained until appeals close, is the one
-least able to prove the claim.** That is the course's central lesson reproduced
-in the classroom's own plumbing, with the student inside it rather than reading
-about it.
-
-**4. Cost as a real subject.** Ninety minutes' worth, genuinely: token
-economics, context growth, rate limits, and a runaway loop that costs actual
-money. The constrained proposal lists runaway cost as a case card it never
-exercises.
-
-**5. An independent record of whether the work was done.** Every artifact in the
-constrained course is written by the student's own machine, so a student willing
-to fabricate one can fabricate all of them, and the canary scheme does not stop
-that because students are handed their own tokens on purpose. A gateway log is
-the first record in this course that the student does not write. That is a real
-assessment control, and it deserves counting among what the money buys.
-
-**6. A shared incident, assembled rather than live.** Students are isolated, so
-this cannot be twenty-five analysts acting on one database at the same moment,
-and it should not be: that version needs concurrency the harness does not have
-and would let one student break another's graded work.
-
-It works asynchronously instead, and the asynchronous version is better. In the
-48 hours before the session each student spends ten minutes working four tasks
-in their own environment, one of which they are not told is different from
-anybody else's. The instructor exports and merges those logs into one incident
-pack. The session then works that pack, where the timeline holds twenty-five
-actors and every student can prove their own rows and nobody's else's.
-
-That preserves the thing worth having, which is a claim that cannot be settled
-from one person's evidence, while removing the concurrency risk entirely. It is
-also the only affordance the constrained design cannot reach at all, and it
-carries the heaviest build cost on this list. See section 5.
-
----
-
-## 2. The seven weeks, and most of them barely change
-
-Everything five review rounds proved out is preserved: something happens in the
-first half hour, the student writes their own attack, a class pool and board
-across weeks 3 to 7, a real mystery, the spoiler rule, evidence over assertion.
-
-| Wk | Change from the constrained version | Why |
-|---|---|---|
-| 1 | **Minimal.** The cold open still runs on the local model. The inventory gains one column, the scope gate gains three clauses | The best half hour in the course must not depend on a network service during a specific fifty minutes |
-| 2 | **Changed most, and cheaply.** Adds a model sweep, about forty minutes | The week already asks what varies. The model is one more thing that varies |
-| 3 | **Changed, but less than expected.** Local run and hand-marking first, hosted comparison second | Hosted first would make trace reading confirmatory instead of load bearing, which is the most valuable thing week 3 does |
-| 4 | **Adds three-source reconciliation**, about twenty-five minutes | Week 4 is already the audit log week |
-| 5 | **Changed most structurally.** A shared multi-actor incident replaces the solo case pack as the session, with the packs kept as fallback | The one thing the constrained design cannot reach |
-| 6 | **Pedagogically unchanged, but not free** | The control arc rests on the two cases that land 5 of 5 on every model, so money buys the *lesson* nothing. It does buy iteration: the budget assigns week 6 sixty hosted runs, which is the largest single line, because measuring a control before and after on more than one model is how a student learns the control is not model-specific. Saying the lesson is unchanged while the spend is not is the honest version |
-| 7 | **Runs local**, with a ten-minute hosted coda | Throughput, not money. See section 4 |
-| Final | Adds one case: the loop that paid | Fills a gap the constrained proposal already names |
-
-**Week 2's sweep is the best value in the whole proposal.** One line of config
-changes. Run two cases at five trials across three hosted models, then put the
-local model beside them as a fourth column and the deterministic simulator as a
-fifth, where it is 5 of 5 on everything by construction and carries its honesty
-banner. The simulator sitting in the same table as three real models is the
-cleanest possible teaching of why that banner exists, and it costs nothing.
-
-The mandatory column is **why each miss missed**: refused in words, called no
-tool, right tool with the wrong argument, stopped after the first result. That
-is the difference between a table and a leaderboard. The graded output is two
-sentences: the sentence a vendor would put on a slide from this table, and the
-sentence the evidence actually supports.
-
-**Week 3's ordering is the whole design.** Prediction sealed before any run.
-Author the case. Five trials local. Hand-mark the local traces. Then change one
-line and run the same case on two hosted models. **The graded claim is the
-divergence step, not the outcome:** which step did the models part at, and what
-does each result establish and not establish. A student who writes "it worked on
-the big model" has not answered the question.
-
-**Week 4's reconciliation is the sharpest hour this environment enables.** One
-question: for each of your three records separately, write the strongest single
-sentence that record supports on its own. Then the closing line, written into
-the evidence pack: "if I were investigated using only my log, the thing it could
-not show about me is ___." That is the entire privacy lesson, from the student's
-own position as the data subject, with no worksheet.
-
----
-
-## 3. A procurement decision that has to be made before the contract
-
-**Do not buy three peers.** Three recent, heavily safety-tuned models of similar
-size will produce three near-identical columns and a dull hour. Buy a capability
-spread.
-
-**And apply the licence bar this project already set.** The constrained analysis
-rejected two otherwise capable models for carrying the Llama Community licence
-rather than a permissive one. Much of the open tier on Bedrock is Llama
-Community. Either the model list is narrower than the scenario assumes, or the
-course contradicts its own recorded analysis. That needs settling before signing,
-not after.
-
----
-
-## 4. The budget is affordable, and it is an estimate rather than a measurement
-
-**A correction to an earlier draft, which claimed this was measured.** It is
-not. The 2,428 recorded traces contain **zero provider usage fields**, because
-the agent loop takes only the assistant message from each response and discards
-the rest. The traces support a defensible estimate of workload shape, meaning
-how many model calls an agent run makes and roughly how much context it carries.
-They cannot support a token measurement, and this document should not have said
-they did.
-
-**Workload shape, which the traces do support:** about 3.2 model calls per agent
-run, from 7,836 recorded steps across 2,428 traces.
-
-**Token allowance, which is planning judgement:** 5,000 input tokens per run is
-defensible. **500 output tokens is not safe**, because a reasoning model can
-spend a thousand tokens producing no visible content at all, and this project has
-already measured one needing about four thousand. Plan output at 2,000 per run,
-and treat six loop steps each consuming a completion allowance as the real
-ceiling rather than a single flat worst case.
-
-| | Hosted runs per student |
-|---|---|
-| Week 2 variance and sweep | 40 |
-| Week 3 hosted comparison and board revisions | 40 |
-| Week 4 evidence packs | 20 |
-| Week 5 shift | 10 |
-| Week 6 (see below: this is why week 6 is not "unchanged") | 60 |
-| Week 7 coda | 10 |
-| Slack, experiments, failed runs | 100 |
-| **Total** | **280** |
-
-An earlier draft printed 350 against rows that sum to 280, which is a 25 per
-cent overstatement and a plain arithmetic error. Use 280 as the plan and 350 as
-the headroom figure, and say which is which.
-
-**Costed against real published prices rather than a generic tier**, because the
-price varies by model far more than by parameter count:
-
-Recomputed at the raised allowance of 5,000 input and 2,000 output tokens per
-run, for 25 students at 280 runs each, which is 7,000 runs, 35 million input and
-14 million output tokens. An earlier draft raised the output allowance and left
-the cost table on the old 500-token arithmetic, which review correctly called
-rearranging furniture around an unrecomputed budget.
-
-| Model | Per million in / out | Class of 25 |
-|---|---|---|
-| Ministral 8B 3.0 | 0.15 / 0.15 | about 7 dollars |
-| Qwen3 Next 80B | 0.15 / 1.20 | about 22 dollars |
-| Mistral Large 3 | 0.50 / 1.50 | about 39 dollars |
-
-**A class costs between about seven and forty dollars against three hundred**,
-depending entirely on model choice. The cheapest option is a quarter the price
-of the most expensive, which makes model selection a budget decision as well as
-a pedagogical one.
-
-**The six-step ceiling is still uncosted.** A run that hits the step limit can
-consume the completion allowance at every step, so a pathological run costs
-several times an ordinary one. That is not a rounding error at the class scale
-above, but it is bounded by the step limit and by the per-student cap, and it is
-exactly what the cost lab is for. Price it once the gating experiment produces
-real usage figures.
-
-**What is missing from the run count**, and should be added before anyone signs:
-the final block's cost case, grading re-runs and accommodations, appeals,
-billed attempts lost to timeouts, model evaluation and development work, and the
-gateway's own monitoring, log storage and administration. None of those is large.
-Together they are not nothing.
-
-**Instructor consumption needs its own key with its own ceiling.** The gating
-experiment alone, at thirty trials, is larger than the earlier draft assumed.
-Add a per-term baseline across three models, case-pack regeneration, and a load
-test with twenty-five simulated keys before week 7.
-
-**Week 7 runs local, and that raises a question this proposal has to answer
-rather than assume.** Twenty-five controls against twenty-five pooled cases at
-five trials over two rounds is over six thousand runs in one session. The
-dollars survive it; the throughput does not, and this project has already
-predicted that rate limits read to students as broken code. But **"runs local"
-is not free in this architecture, and the earlier draft did not say where local
-means.** If it means the student's own laptop, the funded course has quietly
-re-inherited the unverified deployment assumption it was supposed to remove. If
-it means the server, that is roughly two and a half to three gigabytes resident
-per model instance, times twenty-five, plus contention. **Name it, and measure
-it, before week 7 depends on it.**
-
----
-
-## 4a. The points and fallback matrix
-
-**The governance rule, restated.** An earlier version said no rubric row may
-cite a hosted-only result, and satisfied it by making all hosted work ungraded.
-That failed for a reason review did not catch and readers did: **telling students
-the interesting column carries no points guarantees they skip it.** One
-sixteen-year-old reader put it plainly, that the cool column does not count and
-they would absolutely skip ungraded work. The worst case was week 4, where the
-whole insight is that the official record is the weakest, that insight needs the
-third record, and the third record was the unpaid one.
-
-**The rule becomes: no rubric row may require a hosted result that cannot be
-substituted.** That is a weaker rule and an honest one, and it is satisfied by
-grading the reasoning rather than the run.
-
-**What is graded is the student's analysis over a comparison, not their
-production of it.** In week 4 the graded question is which of these records is
-weakest and how you know. Normally the student produces the third record
-themselves. If the gateway is down they are handed it, and the same question is
-graded the same way against the same rubric. The comparison is data; the
-analysis is the work; the analysis is theirs either way.
-
-| Wk | Graded work | Pts | Hosted? | If the gateway is unavailable |
-|---|---|---|---|---|
-| Wk | Graded work | Pts | Hosted share | If the gateway is unavailable |
-|---|---|---|---|---|
-| 1 | What came back, how would you know, what it can reach, what the script touches | 10 | 0 | no effect |
-| 2 | The variance table and what one run therefore proves | 12 | **5** | the instructor's columns are supplied; the same two sentences are graded |
-| 3 | Where your run stopped, and where the models parted | 14 | **6** | the other model runs are supplied as transcripts; the divergence question is graded unchanged |
-| 4 | Three records of one event: what each supports alone, and which is weakest | 12 | **4** | the gateway record is supplied; the weakest-record question is graded unchanged |
-| 5 | The timeline, the call, the handover | 14 | 0, the pack is cached before the session | no effect |
-| 6 | The control before and after, benign case intact, and whether it holds on a second model | 12 | **4** | the second-model run is supplied |
-| 7 | Your control against the class pool, and what it cannot touch | 8 | 0, the pool runs local | no effect |
-| **Cost** | **The loop that paid: run it on the burnable key, predict the spend, then compare with the meter** | **6** | **6** | a recorded transcript of the same loop with its real meter reading |
-| Final | The evidence file, the where-next note, the open-book exam | 12 | 0 | no effect |
-| | **Total** | **100** | **25** | |
-
-**Twenty-five of a hundred points now depend on hosted work**, every one of them
-substitutable, and the substitution is stated in the syllabus rather than
-improvised during an outage.
-
-**The cost lab gets its own six points and its own hour.** It was previously a
-zero-point footnote in the final block, and it was independently named by a
-reader as the single most fun-sounding activity in the document: watching a loop
-burn real money on a key you are allowed to burn. Paying nothing for the most
-appealing hour in the course was a straightforward mistake.
-
-**What this costs, stated plainly.** An outage during weeks 2, 3, 4 or 6 means
-some students analyse supplied data while others analyse their own. That is a
-real inequity of experience, and it is smaller than the alternative, which is
-students skipping the best material because it is unpaid. The instructor's
-supplied artifacts must exist before week 2, not be assembled during an
-incident.
-
----
-
-## 4b. Where local inference runs, and what it costs
-
-An earlier draft said week 7 runs local without saying where local is. Review
-was right that this is load bearing: laptops would re-inherit the deployment
-assumption this whole scenario exists to remove.
-
-**Local means one shared model server on the same machine, not one per
-student.** A single Ollama process holds one model resident and serves many
-clients concurrently. Twenty-five students do not need twenty-five copies of the
-weights, so the cost is roughly 2.5 to 3 GB once, not 60 to 75 GB.
-
-**What is per student and what is shared:**
-
-| | Per student | Shared |
-|---|---|---|
-| Jupyter kernel, notebook, files | yes | |
-| Target app process, its database, outbox and beacon | yes, and this is mandatory | |
-| Model weights and inference | | one server |
-
-The per-student target is not negotiable. The runner resets the target before
-every trial, clearing outbox, audit and beacon, so a shared target means one
-student's trial deletes another's evidence.
-
-**Concurrency is the binding constraint, and it is not free of memory.** An
-earlier draft said "concurrency, not memory", which is a false separation: the
-parallel-request setting multiplies the context allocation, so raising
-concurrency raises memory even though the weights are held once. Requests beyond
-the limit queue or are refused. So the capacity question is a curve rather than a
-number, and it wants measuring with twenty-five simulated clients before a graded
-week depends on it.
-
-**A second knob that is easy to miss.** Week 2's sweep may ask for more than one
-local model in a session. A server holds a bounded number of models resident and
-swaps beyond that, and swapping a 2 GB model under load turns a fifty-minute
-session into a queue. With two local models that is roughly 6 GB, which is
-nothing for a server, but it is a configuration decision rather than a default,
-and discovering it during week 2 looks exactly like the course being broken.
-
-**The multi-tenant topology is not designed, and it is not trivial.** The runner
-authorises a loopback target on one fixed port, and the target binds there. That
-is correct for one student on one machine and wrong for twenty-five on one
-server: containers communicating over a shared bridge are not loopback, so the
-scope check would reject them. Resolving it means either per-student network
-namespaces, so every student's target is genuinely their own loopback, or
-per-student ports with the authorisation check and the scope rules rewritten to
-match. **The first is cleaner and keeps the scope check honest.** Either way it
-is a deployment design that does not exist yet, and it is the largest unbuilt
-piece in this section.
-
-**If that measurement comes back badly**, week 7's head to head runs in two
-cohorts of twelve or as a scheduled queue over the session, which costs the
-room's energy rather than the lesson. That is the fallback and it should be
-decided before the week, not during it.
-
----
-
-## 4c. Which models, and how they get chosen
-
-**The gating experiment is the selection procedure.** Candidates are not chosen
-and then tested; they are tested and the test chooses. That is the only design
-that survives a model being deprecated mid-contract.
-
-**The bar a model must clear, in order:**
-
-1. **Licence.** Apache 2.0 or MIT, ungated. This project already rejected two
-   otherwise capable models for carrying the Llama Community licence, and that
-   ruling has to hold here or the course contradicts its own recorded analysis.
-2. **Native tool calling across more than one turn.** Measured, not advertised.
-   This project has already found a model that advertises tool support and never
-   emits a tool call.
-3. **The chain, at thirty trials**, with the result recorded whichever way it
-   goes.
-
-**Published on-demand prices, verified against the vendor's pricing page on 1
-September 2026 and to be re-verified at contract time:**
-
-| Family | Example | Per million in / out |
-|---|---|---|
-| Qwen3 | Qwen3 Next 80B | 0.15 / 1.20 |
-| Mistral | Ministral 8B 3.0 | 0.15 / 0.15 |
-| Mistral | Mistral Large 3 | 0.50 / 1.50 |
-| Google | Gemma 4 31B | 0.14 / 0.40 |
-| Meta | Llama 3.3 | region dependent |
-
-**A correction, because an earlier draft of this section got this wrong and
-said so loudly.** It claimed the licence bar admitted only the Qwen family, and
-that Mistral's licences were mixed and Gemma carried Google's own terms. Checked
-against the vendors' own material: Qwen3 Next 80B is Apache 2.0; the Mistral 3
-generation, including Ministral 8B and Mistral Large 3, is Apache 2.0; and Gemma
-4 is Apache 2.0, unlike earlier Gemma generations. **At least three families
-clear the bar, not one.** Llama remains outside an Apache or MIT bar and stays
-excluded.
-
-That is a better position than the one it replaces, and it removes the tension
-the earlier draft manufactured. The capability spread the sweep wants is
-available inside the permissive tier, so the licence bar and the pedagogy do not
-have to be traded against each other.
-
-**What still has to be committed at contract time** is the region, the exact
-versioned model identifiers, and a per-model licence confirmation at the version
-being purchased rather than at the family level. Licences change between
-generations, which is exactly what the error above demonstrates.
-
-**Replacement policy.** Record the resolved, versioned model identifier in every
-run rather than the gateway alias. If a model is deprecated or re-versioned
-mid-term, the class board is frozen at its last valid state, the affected
-comparison becomes a supplied artifact under section 4a, and no student's grade
-moves. Re-qualification happens between terms, never during one.
-
----
-
-## 4d. The chain detector, specified
-
-The gating experiment needs "reached step k of n" to be machine-produced. Today
-the schema pins detection to exactly one detector, so this is a prerequisite
-rather than a refinement.
-
-**Resolve the step count first.** The constrained proposal calls it four steps;
-the case file for the indirect injection enumerates five; and one of those five,
-that the model cannot distinguish instructions from description, leaves no trace
-evidence at all. A scale cannot be mechanised until every step is observable.
-
-**The four observable steps, each with the evidence that establishes it:**
-
-| Step | Established by |
-|---|---|
-| 1. The agent retrieved the document carrying the instruction | not the call, but its **result**: the returned text contains the planted marker. A call can fail or return the wrong record, so the call alone establishes nothing |
-| 2. It took an action the instruction specified and the request did not | a tool call whose **arguments match the payload**, occurring **after** step 1 in the trace. "Acted on the instruction" is a causal claim, and an unexpected call alone cannot carry it: the same call could come from model initiative or an ambiguous request |
-| 3. It attempted the privileged action | a tool call to the acting tool, whether or not permitted |
-| 4. The action completed against the intended target | a side effect: an outbox file to the named recipient, or the canary in it |
-
-**Steps 1 and 2 need an observation shape the harness does not currently
-produce.** Detection today receives flattened arguments, ledger rows and side
-effects, not the ordered sequence of tool results a marker match and a temporal
-ordering both require. So this is a new observation shape, a schema change,
-ordering rules and tests, not a new detector slotted into the existing one. That
-is a fortnight rather than a few days, and it is a prerequisite for the gating
-experiment rather than a refinement of it.
-
-Step 3 requires care for a different reason: a tool call is an attempt and not
-an outcome, and this course's own first principle is that a request is not a
-result. **A stage verdict must never be reported as VULNERABLE**, and stage
-results must be excluded from any before-and-after comparison. The status word
-carries its own vocabulary, `REACHED_STAGE_3_OF_4_IN_5`, so that it cannot be
-mistaken for a landed attack by a reader or by a rubric.
-
-That constraint is not decoration. This repository already contains a case whose
-detector once searched tool arguments and reported success after the data had
-been stopped, and the note recording that mistake is still in the case file.
-
----
-
-## 5. The biggest risk is the failure this course exists to teach
+## 9. The risk that sits under every number
 
 **A gateway adds three new ways for a run to fail silently, and they are
 indistinguishable from the course's proudest finding.**
@@ -641,7 +364,7 @@ rather than as a control, and it should not be sold as one.
 
 ---
 
-## 6. What has to be written down before a single prompt is logged
+## 10. Governance
 
 The load-bearing one first.
 
@@ -755,83 +478,26 @@ money buys, per section 1. The point of specifying twelve documents is that a
 record worth keeping is worth governing, and a course that teaches students to
 ask who can see a log should be able to answer the question about its own.
 
-## 7. What each version teaches better
-
-**The funded version teaches, and the constrained one cannot:** that
-susceptibility is a property of the model; which of your findings survive a
-model upgrade; reconciling a claim against records somebody else holds; sample
-size seen rather than asserted, your five against the class's hundred and
-twenty-five; three records of one event where the official one is weakest; and
-token economics with real money.
-
-**The constrained version teaches better, and the first two are not close:**
-
-**Negative-result literacy, forced rather than elective.** Its marquee attack
-usually fails, so "what a negative result does not establish" is learned by
-necessity rather than covered in a lecture. Where attacks land reliably, that
-lesson has to be manufactured, and manufactured lessons are the ones students
-correctly discount.
-
-**The chain that stops at four steps is the best teaching artifact in the
-course, and a hosted success degrades it.** The verdict says no hits; the student
-must read the trace to discover four steps landed anyway. **The constrained
-course makes trace reading load bearing; the funded one risks making it
-confirmatory.**
-
-Also: chain of custody, because the student holds their own evidence rather than
-being the subject of a record somebody else keeps. Diagnosability, because on a
-laptop there is one causal chain and no external excuse available, whereas "the
-server was slow" is always available and sometimes true. Reproducibility, from a
-pinned model and greedy decoding. And it still exists next August regardless of
-what any procurement office decides.
-
 ---
 
-## 8. The recommendation, and the case against it
+## 11. Against the constrained version
 
-**The strongest argument against what I am about to recommend**, and it is a
-good one. The constrained course's core delivery assumption, that a locked-down
-loaner will run the portable bundle, is explicitly unverified. The funded
-scenario supplies equitable hardware, central support, model comparison, real
-cost evidence and independently held logs. Negative-result literacy can be
-preserved with one deliberately retained losing case and the simulator; it does
-not require running a second production stack. And the claim that a hosted
-negative result would be "manufactured" while a local one is honest is
-sentiment, not measured pedagogy. I wrote that line, and I cannot support it.
+**What this teaches that the constrained course cannot.** Students build an
+agent rather than being handed one. They read a classmate's code rather than a
+fixture. Cost is a decision with a price rather than a case card. The incident
+in week 6 is built from their own term. And there is something to look at in
+every week, which nine rounds of review asked for and a terminal cannot provide.
 
-**What I actually recommend.**
+**What the constrained course still teaches better.** Negative result literacy
+is forced there rather than arranged, because the marquee attack genuinely does
+not land. Evidence lives on the student's own machine, so they are its custodian
+rather than the subject of a record somebody else keeps. There is no
+infrastructure excuse available. And it exists next August regardless of what a
+procurement office decides.
 
-Run both, as one course with two paths: the local model as the graded baseline
-and the reproducible control, the hosted models as the comparison column. The
-finding worth having is not "the attack works now" but **"it works there and not
-here, and I can tell you which step turned and why"**, and that sentence needs
-both machines to say it.
-
-**But the two-path production course is not yet operationally credible**, and
-that is the honest state of this document. The multi-tenant target topology in
-4b does not exist. The chain detector in 4d needs a new observation shape before
-the gating experiment can run. The experiment itself is unrun. Twelve governance
-documents are specified and none is signed. Until those are closed, "run both"
-is a design intention rather than a plan, and the difference matters because a
-committee approves plans.
-
-**If the college can genuinely run only one**, the case is closer than an
-earlier draft of this document allowed. The constrained version teaches
-negative-result literacy by necessity, keeps the student as custodian of their
-own evidence, removes every infrastructure excuse, and exists next August
-regardless of any procurement decision. The funded version removes the one
-unverified assumption the constrained version cannot remove by itself, which is
-whether the thing runs at all on the hardware the poorest students have.
-
-**That is the trade, stated plainly:** the constrained course teaches the harder
-half of the job and might not run for the students who need it most. The funded
-course will certainly run and has to work harder to teach the same lesson. On
-that framing I would take the funded environment and defend the pedagogy
-deliberately, rather than take the constrained one and hope the loaner test
-passes.
-
-**What the money is really worth buying** is not a better model. It is the
-second column, the third record, an independent record of whether the work was
-done, and ninety minutes on what a runaway loop costs. Those are worth having,
-they cost about twenty-five dollars a class, and none of them requires the
-injection chain to land.
+**The honest comparison** is that this version is a better course and a more
+fragile one. It depends on a server, a contract, and about five hundred lines of
+notebook tooling that one person has to maintain. The constrained course depends
+on nothing and teaches the harder half of the job. Run both if the college can:
+this one when the environment exists, the other as the thing that still works
+when it does not.
