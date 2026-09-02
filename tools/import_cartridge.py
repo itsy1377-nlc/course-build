@@ -20,6 +20,7 @@ about attacks. The tool said it worked is not evidence.
 from __future__ import annotations
 
 import argparse
+import os
 import re
 import sys
 import time
@@ -31,7 +32,9 @@ import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
 CREDENTIALS = ROOT / "canvas" / ".canvas-credentials"
-DEFAULT_CARTRIDGE = ROOT / "build" / "itsy1377.imscc"
+_VARIANT = os.environ.get("ITSY_CONTENT", "content").rsplit("/", 1)[-1]
+DEFAULT_CARTRIDGE = ROOT / "build" / (
+    f"itsy1377-{_VARIANT}.imscc" if _VARIANT != "content" else "itsy1377.imscc")
 
 
 class ImportError_(Exception):

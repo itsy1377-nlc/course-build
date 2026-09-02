@@ -1065,7 +1065,10 @@ def _manifest(course: dict, course_id: str, organizations: list[str],
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description="Build the ITSY 1377 Common Cartridge.")
-    parser.add_argument("--out", default=str(BUILD / "itsy1377.imscc"))
+    variant = CONTENT.name if CONTENT.name != "content" else ""
+    default_out = BUILD / (f"itsy1377-{variant}.imscc" if variant
+                           else "itsy1377.imscc")
+    parser.add_argument("--out", default=str(default_out))
     parser.add_argument("--session", default="fall-flex-2",
                         help="Which Flex session to date this build for.")
     parser.add_argument("--check", action="store_true",
