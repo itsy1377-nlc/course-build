@@ -175,7 +175,7 @@ modules:
       own words, aimed at a door you choose. Predict what will happen before you
       run it. Then read what the records say happened.
     outcomes: [O2, O4, O5]
-    frameworks: ["MITRE ATLAS AML.T0051"]
+    frameworks: ["MITRE ATLAS AML.T0051.001"]   # Indirect: the instruction arrives inside content the agent reads
     items:
       - {type: page, ref: w3-overview}
       - {type: page, ref: w3-content}
@@ -193,7 +193,7 @@ modules:
       address, and record what happens. Then work two tickets that have nothing
       to do with each other and read the audit log across both.
     outcomes: [O3, O4]
-    frameworks: ["OWASP LLM06 Excessive Agency"]
+    frameworks: ["OWASP LLM06 Excessive Agency", "MITRE ATLAS AML.T0053"]
     items:
       - {type: page, ref: w4-overview}
       - {type: page, ref: w4-content}

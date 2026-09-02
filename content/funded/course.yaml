@@ -176,7 +176,7 @@ modules:
       is what three classmates receive, unlabelled. You get forty five minutes to
       work out what theirs really do.
     outcomes: [O2, O3]
-    frameworks: ["MITRE ATLAS AML.T0010"]
+    frameworks: ["MITRE ATLAS AML.T0110"]   # AI Agent Tool Poisoning
     items:
       - {type: page, ref: w3-overview}
       - {type: page, ref: w3-content}
@@ -195,7 +195,7 @@ modules:
       your own message, thirty trials again. Report both grids and say exactly
       what the pair does and does not establish.
     outcomes: [O4, O5]
-    frameworks: ["MITRE ATLAS AML.T0051"]
+    frameworks: ["MITRE ATLAS AML.T0051.001"]   # Indirect
     items:
       - {type: page, ref: w4-overview}
       - {type: page, ref: w4-content}
@@ -214,7 +214,7 @@ modules:
       approval gate, guard two, where you find out that a gate does not
       discriminate, it delegates.
     outcomes: [O6, O3]
-    frameworks: ["OWASP LLM06 Excessive Agency"]
+    frameworks: ["OWASP LLM06 Excessive Agency", "MITRE ATLAS AML.T0053"]
     items:
       - {type: page, ref: w5-overview}
       - {type: page, ref: w5-content}
