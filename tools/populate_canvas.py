@@ -37,6 +37,7 @@ service.
 
 from __future__ import annotations
 
+import os
 import argparse
 import re
 import sys
@@ -52,7 +53,7 @@ from tools.dates import DateMap
 from tools.import_cartridge import Canvas, ImportError_, credentials, public_url
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / "content"
+CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 
 CANVAS_TYPE = {
     "multiple_choice": "multiple_choice_question",

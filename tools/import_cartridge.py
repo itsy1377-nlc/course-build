@@ -33,6 +33,7 @@ import yaml
 ROOT = Path(__file__).resolve().parents[1]
 CREDENTIALS = ROOT / "canvas" / ".canvas-credentials"
 _VARIANT = os.environ.get("ITSY_CONTENT", "content").rsplit("/", 1)[-1]
+CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 DEFAULT_CARTRIDGE = ROOT / "build" / (
     f"itsy1377-{_VARIANT}.imscc" if _VARIANT != "content" else "itsy1377.imscc")
 
@@ -170,7 +171,7 @@ def wait(canvas: Canvas, course_id: int, migration_id: int, timeout: int = 600) 
 
 
 def verify(canvas: Canvas, course_id: int) -> list[str]:
-    course = yaml.safe_load((ROOT / "content" / "course.yaml").read_text(encoding="utf-8"))
+    course = yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
     problems: list[str] = []
 
     modules = canvas.get(f"/courses/{course_id}/modules", include=["items"])
@@ -219,7 +220,7 @@ def verify(canvas: Canvas, course_id: int) -> list[str]:
             problems.append(f"quiz missing: {row['title']}")
             continue
         expected_questions = len(
-            yaml.safe_load((ROOT / "content" / "quizzes" / f"{row['ref']}.yaml")
+            yaml.safe_load((CONTENT / "quizzes" / f"{row['ref']}.yaml")
                            .read_text(encoding="utf-8"))["questions"])
         actual = found.get("question_count")
         if actual != expected_questions:
