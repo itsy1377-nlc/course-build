@@ -1,7 +1,12 @@
 # ITSY 1377 Agentic AI and Security Operations: proposed outcomes
 
-Seven weeks. No prerequisite. No certification mapping. Introductory by
-design: broad and light, and hands-on throughout.
+Seven weeks. No programming prerequisite. No certification mapping.
+Introductory by design: broad and light, and hands-on throughout.
+
+**AI Fundamentals is sequenced before this course**, and what this course can
+assume depends on whether that sequence is enforced or merely recommended. That
+is an open question and it is answered in section 1a, along with what changes
+either way.
 
 This replaces two earlier designs, both archived. The first chased a
 certification blueprint; the second was built around NCAE-C knowledge units
@@ -27,14 +32,6 @@ agent you do not believe what it says it did, you look at what the system
 recorded. When you *use* an agent you do not believe what it tells you either,
 you check it against the source. It is the same discipline pointed in two
 directions, and it is the through line of the course.
-
-**This course assumes AI Fundamentals.** That course is sequenced before this
-one and covers prompting, what generative AI is, the ethics and disclosure
-frame, and evaluating AI output for plausibility. This course does not re-teach
-any of it. The seam that matters is verification: Fundamentals asks whether an
-output looks wrong, and this course asks whether the record supports it.
-Plausibility, then provenance. `docs/course-sequence-articulation.md` works
-through the whole handoff, including the one place the two currently collide.
 
 **Coding agents are the agent every student will actually meet**, so they are
 taught alongside the lab's helpdesk agent rather than mentioned in passing.
@@ -81,6 +78,43 @@ and get a detail wrong, or explain a script and invent a flag. The exercise is
 verification, so the model's errors are the teaching material. A better model
 would make the lesson harder to teach, not easier.
 
+## 1a. What this course assumes, and what happens if it is wrong
+
+**AI Fundamentals covers prompting, what generative AI is, the ethics and
+disclosure frame, and evaluating AI output for plausibility.** This course
+re-teaches none of it, and is better for that: week 3 asks a student to hide an
+instruction inside a document, and one who already builds role, task, context
+and format prompts spends that week on placement and wording rather than on
+basics.
+
+The seam that matters is verification. Fundamentals asks whether an output looks
+wrong, judged from the content. This course asks whether the record supports it,
+judged from a source the output does not control. **Plausibility, then
+provenance.** `docs/course-sequence-articulation.md` works through the whole
+handoff, including the one place the two currently overlap and how to word it so
+a reviewer does not read them as the same outcome twice.
+
+**The open question is whether the sequence is enforced.** It changes what this
+course may assume:
+
+| | If AI Fundamentals is a prerequisite | If it is only recommended |
+|---|---|---|
+| Prompting | Assumed. Week 3 goes straight to placement and evasion | Week 3 needs a short prompting primer, roughly half an hour, and loses that from its own work |
+| What an AI model is | Assumed. Week 1 opens by demonstrating an agent | Week 1 needs a paragraph, not a lesson. Survivable |
+| AI use and disclosure policy | Adopted from Fundamentals, referenced not restated | This course has to state its own, which is duplication if most students have already had it |
+
+**Nothing in the outcomes changes either way.** That is what cutting them to one
+verb was for. What changes is half an hour in week 1 and half an hour in week 3,
+and the course should be built assuming the sequence is recommended rather than
+enforced, because that version also works for a student who did take it.
+
+**One policy decision to make rather than default into.** Students may use AI on
+their own coursework here, and the design makes that permitted but unprofitable:
+canary tokens are derived per student, so a classmate can share a working
+payload, which is how the field works, and cannot share the proof that it worked
+in your environment. That position should be stated in the same words
+Fundamentals uses, not invented again.
+
 ## 2. Proposed learning outcomes
 
 Upon successful completion of this course, the student will be able to:
@@ -110,12 +144,12 @@ document that went through committee. The current design uses a recipient
 allowlist over five trials; nothing in the outcomes requires that, and nothing
 breaks if it moves.
 
-**The Bloom spread is deliberate for a course with no prerequisite:** two at
+**The Bloom spread is deliberate for a course with no programming prerequisite:** two at
 Understand in the opening weeks, three at Analyze through the middle, one Apply
 and one Evaluate in the final third, after the scaffolding. Nothing sits at
 Remember, because a course that only asks students to recall would not need a
 lab; nothing sits at Create, because authoring something genuinely novel in
-seven weeks without a prerequisite would be a promise this course could not
+seven weeks without a programming prerequisite would be a promise this course could not
 keep.
 
 **Two notes a reviewer will want.**
@@ -139,7 +173,7 @@ what goes wrong with them, and 7 is using one for security work.
 | 2 | A | Does it do the same thing twice? | Send the same request five times and compare what the agent did each time. Then send five different ordinary requests and compare again. Use the starter scripts to count and compare, making the one-line change each asks for. Report what varies and what does not, and answer the question the comparison raises: if it does not do the same thing twice, what does one run prove | A comparison across ten runs, and a written answer to what one run proves |
 | 3 | B | Hide an instruction and see how far it gets | Write your own. Plant an instruction inside a ticket or a knowledge base article, in your own words, aimed at a door you choose. Predict what will happen before you run it. Run five trials, then read your own traces to score it: in each run, mark the first model decision, the first tool call, the step where your text entered, and the furthest point the agent got on the four-step scale. **Your case joins the class pool at the end of this week, and the board goes up** | The case file, the prediction, the marked traces, the four-step result, a place on the board |
 | 4 | B | Two requests and an audit log | Ask the agent, politely and with no trickery, to send a note to an outside address, and record what happens. Then run as a support agent working two tickets that have nothing to do with customer C-1002, ask for that record, and record what happens. Then read the audit log and say who it says did it | Evidence packs 1 and 2 |
-| 5 | C | The case, and the call | An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask for a timeline: claim, time, actor, and the record each claim came from. Check every row against its source. Then make the call in the handover form: was this an incident, what in the pack decides it, what did the assistant get wrong, and what would you do about it | The evidence-linked timeline and the completed handover |
+| 5 | C | The case, and the call | Open the statement you wrote in AI Fundamentals about how you verify AI output, and keep it beside you. An alert fired: mail left the company. Give the assistant read access to the evidence pack and ask for a timeline: claim, time, actor, and the record each claim came from. Check every row against its source. Then make the call in the handover form: was this an incident, what in the pack decides it, what did the assistant get wrong, and what would you do about it. Last, add one line to that statement: what changes when the thing you are checking took actions rather than writing text | The evidence-linked timeline, the completed handover, and the amended verification statement |
 | 6 | B | Build one that holds | Take the containment you recommended and build it. First as an instruction in the agent's prompt; measure it. Then in code at the tool boundary; measure again, and confirm the benign escalation still works | The control, paired before and after reports |
 | 7 | B | Head to head | Run your control against the class pool, live, in the room. The board updates as it goes. You get one revision after the first round and one more run. Then point your finished control at what happened in week 1, and report what you find | The pool standing, the revision, and two sentences on the last result |
 | Final | | The evidence file | Three findings on fixed headings, each tracing to a recorded check, plus your control with its before and after, plus what the assistant got wrong in week 5, plus a short note on what you would learn next and why. The exam is open book and evidence based: you are given a results file, a trace excerpt and an audit row you have not seen, and asked what each does and does not establish | The report; the where-next note; the exam |
@@ -396,7 +430,7 @@ about forty minutes, and without it the four questions are a ritual: a student
 who cannot tell a function call from a variable cannot say what a script
 touches, and the supervision argument the course rests on does not stand up. It
 does not teach a language beyond that, and should not pretend to in seven weeks
-with no prerequisite. What it does
+with no programming prerequisite. What it does
 instead is hand every student a short shelf and tell them plainly which one to
 open for which problem. A student who wants to go further has somewhere to go
 on the day they want it, which is the only moment that matters.
