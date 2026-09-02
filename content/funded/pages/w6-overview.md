@@ -28,6 +28,11 @@ real. This week you attack nothing.
 Clause 1 of the Rules of Engagement page in Start Here holds the full list.
 :::
 
+::: video w6-concept | Somebody else's agent
+Three minutes on reading records you did not write, and why every claim names a file, a line and a field.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

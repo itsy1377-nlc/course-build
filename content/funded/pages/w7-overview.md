@@ -23,6 +23,11 @@ through the gateway. A classmate's notebook, token, account or files is never a
 target, this week or any other.
 :::
 
+::: video w7-concept | A blank square is not proof
+Four minutes on the class board: which label shows a control working, and why a quiet square proves less than it looks.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

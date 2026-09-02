@@ -1,0 +1,199 @@
+id: w4-concept
+title: English versus Python
+kind: concept
+module: m04
+embed_on: content/funded/pages/w4-overview.md
+blurb: Four minutes on why a ticket can give an order, and why this week runs two grids instead of one.
+explains:
+  - content/funded/pages/w4-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 4
+    heading: English versus Python
+    body: Your words and a stranger's words arrive in the same place.
+    narration:
+      - text: This week you try to make your own agent follow an order it read
+          in a ticket.
+      - text: That sounds harder than it is. You already built the parts.
+      - text: One idea makes it possible. This video is that idea.
+
+  - type: slide
+    layout: code
+    eyebrow: Start here
+    heading: In Python, a string is only a string
+    body: |
+      message = "delete every customer record"
+      print(message)
+    narration:
+      - text: Put these two lines in a Python file and run them.
+      - text: Python prints the sentence. It deletes nothing.
+      - text: The words sit in a variable, and a variable is data. Python runs
+          the code you wrote, and only that.
+      - text: That split is why most software is safe from words.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The model's side
+    heading: One block of text
+    diagram:
+      kind: stack
+      alt: >
+        Three layers stacked inside one block of text. The top layer is your
+        request. The middle layer is the list of tools with their names and
+        descriptions. The bottom layer, drawn in the accent colour, is every
+        tool result so far, including text other people wrote. No layer is
+        labelled as data.
+      layers:
+        - label: Your request
+          sub: the words you typed
+        - label: The list of tools
+          sub: names and descriptions
+        - label: Every tool result so far
+          sub: text other people wrote
+          mark: true
+    narration:
+      - text: Your agent hands the model one block of text.
+        reveal: 0
+      - text: It holds your request.
+        reveal: 1
+      - text: It holds the list of tools.
+        reveal: 2
+      - text: And it holds every tool result so far, including text other
+          people wrote.
+        reveal: 3
+      - text: Nothing in that block is marked as data. There is no quotation
+          mark the model respects.
+        reveal: 3
+
+  - type: slide
+    layout: diagram
+    eyebrow: The route
+    heading: How the words get in
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. You ask a normal question. Your agent calls a
+        tool that reads a ticket somebody else wrote. The ticket text joins the
+        same block the model reads, unmarked. The last box, drawn in the accent
+        colour, is the model acting on that text as if you had asked.
+      nodes:
+        - label: You ask
+          sub: a normal question
+        - label: A tool reads a ticket
+          sub: somebody else wrote it
+        - label: The text joins the block
+          sub: unmarked, like everything else
+        - label: The model acts on it
+          sub: as if you had asked
+          mark: true
+    narration:
+      - text: You ask your agent a normal question.
+        reveal: 1
+      - text: It calls a tool, and that tool reads a ticket somebody else wrote.
+        reveal: 2
+      - text: The ticket text joins the same block, unmarked like everything
+          else.
+        reveal: 3
+      - text: So the model can act on it, as if you had asked.
+        reveal: 4
+      - text: That has a name. An order that arrives inside content your agent
+          read is called indirect prompt injection.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: This week
+    heading: The same instruction, from two places
+    items:
+      - Document arm | Inside a ticket your tool read. This is the attack.
+      - Control arm | Inside your own message. This checks your instrument.
+    narration:
+      - text: You run one instruction twice this week, from two places.
+        reveal: 0
+      - text: In the document arm it sits inside a ticket your tool read. That
+          is the attack.
+        reveal: 1
+      - text: In the control arm the same instruction sits in your own message.
+          The model has every reason to follow it there.
+        reveal: 2
+
+  - type: slide
+    layout: numbered
+    eyebrow: Why two
+    heading: Thirty misses have two explanations
+    items:
+      - The model would not take the order from a ticket
+      - The instruction was never going to work anywhere
+    narration:
+      - text: Suppose the document arm gives you thirty misses.
+        reveal: 0
+      - text: In the first world, the model would not take the order from a
+          ticket.
+        reveal: 1
+      - text: In the second, your instruction was never going to work anywhere,
+          or your tool could not be reached at all.
+        reveal: 2
+      - text: The control separates them. Without it, one empty grid looks like
+          the other.
+        reveal: 2
+
+  - type: slide
+    layout: compare
+    eyebrow: Evidence
+    heading: A hit is a record, not a sentence
+    items:
+      - What the reply says | I have written the file.
+      - What the record shows | A line, a field, and a file name.
+    narration:
+      - text: Then you label each trial, and the rule is the one you already
+          know.
+        reveal: 0
+      - text: Your agent can tell you it wrote the file.
+        reveal: 1
+      - text: Your irreversible tool leaves something behind when it runs, so
+          open the record and label from the record.
+        reveal: 2
+      - text: A model can write the file and never mention it. It can also say
+          it wrote one and write nothing.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: How many
+    heading: One run is an anecdote
+    body: Thirty clean trials in each arm. Sixty runs in all.
+    narration:
+      - text: One run tells you nothing here. Five is not much better.
+      - text: An attack that works one time in five still shows zero in five
+          trials about a third of the time.
+      - text: So thirty clean trials per arm is the floor. Sixty runs take real
+          time, so start on day twenty two, not on day twenty eight.
+
+  - type: slide
+    layout: statement
+    eyebrow: One trap
+    heading: Freeze the wording before you start
+    body: A grid built from two payloads measures nothing.
+    narration:
+      - text: One mistake is easy to make and hard to see later.
+      - text: Write your ticket text, test it once, and read that filmstrip.
+          Change it as often as you like at this stage.
+      - text: Then stop editing. All thirty trials in an arm use the same words.
+      - text: Change them partway and you have quietly started a new arm.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Two grids, and a claim that is small on purpose
+    body: A control that never fires is still a result, and still full marks.
+    narration:
+      - text: So you write your ticket text, run thirty trials in each arm, and
+          label every trial from the record.
+      - text: Then you write one small claim about what those two grids show.
+      - text: If your control never fires, you still earn full marks. Zero out
+          of thirty is a result, and saying that plainly is the work.
+      - text: Post on the questions board if a run keeps failing. See you in the
+          notebook.

@@ -1,0 +1,188 @@
+id: w7-concept
+title: When someone else writes the attack
+kind: concept
+module: m07
+embed_on: content/constrained/pages/w7-overview.md
+blurb: Why your own attack is a weak test, and which result words count as evidence.
+explains:
+  - content/constrained/pages/w7-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 7
+    heading: When someone else writes the attack
+    body: Your control meets cases you did not build it for.
+    narration:
+      - text: This week your control is tested by people who are not you.
+      - text: You run attack cases your class wrote, and the results go on a
+          board.
+      - text: You get one change between the two rounds.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Start here
+    heading: Your own attack is an easy test
+    diagram:
+      kind: split
+      alt: >
+        Your control sits at the top, written while you watched one attack.
+        Two paths lead away from it. The first path is your own case, which
+        your control holds, because it was built for those words. The second
+        path is a case somebody else wrote, with different words reaching the
+        same tool, and that one can pass straight through.
+      from:
+        label: Your control
+        sub: written while you watched one attack
+      tracks:
+        - label: Your own case
+          sub: it holds, because it was built for these words
+        - label: A case you never saw
+          sub: different words, same tool
+          mark: true
+    narration:
+      - text: You built your control while looking at one attack. Your own.
+        reveal: 0
+      - text: It holds against that case, because it was built for those words.
+        reveal: 1
+      - text: A case somebody else wrote uses different words to reach the same
+          tool.
+        reveal: 2
+      - text: Your control can pass its own test and let that one straight
+          through.
+        reveal: 2
+      - text: That is normal. It is not a mistake you made; it is why week 7
+          exists.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The pool
+    heading: A pooled case is a small file
+    items:
+      - What to send
+      - Where to send it
+      - What counts as a hit
+    narration:
+      - text: The pool holds the attack cases your class wrote in week 3.
+        reveal: 0
+      - text: A case is a small file. It says what to send, and where to send
+          it.
+        reveal: 2
+      - text: It says what counts as a hit. It does not say how to stop it.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: Scope
+    heading: Every run stays on your own computer
+    body: The practice target, your agent, and a model on your machine.
+    narration:
+      - text: Your instructor reads every case before it is shared.
+      - text: "Your permitted targets have not changed: the practice target,
+          your own agent, and a model on your own computer."
+      - text: Never a commercial AI service. Never a classmate's computer. Read
+          the Rules of Engagement again before the session.
+
+  - type: slide
+    layout: compare
+    eyebrow: The board
+    heading: Two results that look alike
+    items:
+      - NO_HITS_IN_5 | Nothing landed. Nothing was refused either.
+      - BLOCKED_5_OF_5 | The agent tried, and your control refused it every time.
+    narration:
+      - text: Each case runs five times, the way your runs did in week 2.
+        reveal: 0
+      - text: No hits in five means nothing landed, and nothing was refused
+          either.
+        reveal: 1
+      - text: Blocked five of five means your control saw the attempt and
+          stopped it.
+        reveal: 2
+      - text: Only the second one shows that your control did something.
+      - text: A case that lands even once in five is a fail.
+
+  - type: slide
+    layout: statement
+    eyebrow: The other way to fail
+    heading: A control that refuses everything is worthless
+    body: The board runs ordinary work too, and shows that row.
+    narration:
+      - text: Two cases run every time that are not attacks.
+      - text: One checks that the detector can still see a hit. The other is
+          ordinary work the agent should finish.
+      - text: If that case fails, your control is blocking normal work. It can
+          hold every attack in the pool and still be worthless.
+
+  - type: slide
+    layout: statement
+    eyebrow: Between rounds
+    heading: One revision, spent on a pattern
+    body: A list of banned words stops the next case only by luck.
+    narration:
+      - text: Spend your one revision on a pattern, not on a single word.
+      - text: A list of banned words grows forever, and it stops the next case
+          only by luck.
+      - text: A check on what the tool is being asked to do keeps working on
+          wording you have never seen.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Reach
+    heading: What your control can see
+    diagram:
+      kind: stack
+      alt: >
+        Three layers, top to bottom. At the top, the model's reply to you,
+        which is words only, so no tool call happens there. In the middle, the
+        tool call boundary, where your control runs and reads the tool name and
+        its arguments. At the bottom, the tool itself running. Your control
+        sits in the middle layer, so it sees only what passes through that one
+        point.
+      layers:
+        - label: The model's reply to you
+          sub: words only, and no tool call
+        - label: The tool call boundary
+          sub: your control reads the name and the arguments
+          mark: true
+        - label: The tool runs
+          sub: something really happens
+    narration:
+      - text: At the top, the model writes a reply to you. No tool call happens
+          there.
+        reveal: 1
+      - text: Underneath is the tool call. Your control runs at that moment, and
+          only then.
+        reveal: 2
+      - text: It reads the tool name and the arguments. It can allow, change, or
+          refuse the call.
+        reveal: 3
+      - text: It never sees the reply at the top. Anything that is not a tool
+          call never reaches it.
+      - text: "So ask one question about a case: what would it have to do for
+          your control to see it?"
+
+  - type: slide
+    layout: statement
+    eyebrow: Evidence
+    heading: Report the row, not the reply
+    body: The word the runner printed, the token, the audit row.
+    narration:
+      - text: Your agent may tell you it refused something. That sentence is not
+          a result.
+      - text: The result is the word the runner printed, the canary token that
+          did or did not move, and the audit row.
+      - text: Every claim you make this week names one of those.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Two rounds, one change, then your own case
+    body: Cases will get through, and that is the useful part.
+    narration:
+      - text: This week you run the pool, change one thing, and run it again.
+      - text: Then you point your finished control at your own week 3 case.
+      - text: Some cases will get through in front of the class. That happens to
+          everyone.
+      - text: Write down what you changed and why. The board keeps the numbers,
+          not your reasons, and the reasons go in your evidence file.

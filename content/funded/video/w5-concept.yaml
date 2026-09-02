@@ -1,0 +1,208 @@
+id: w5-concept
+title: Watch it spend
+kind: concept
+module: m05
+embed_on: content/funded/pages/w5-overview.md
+blurb: Four minutes on why every pass of the loop is billed, and what each of this week's two guards costs you.
+explains:
+  - content/funded/pages/w5-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 5
+    heading: Watch it spend
+    body: Every pass of the loop costs money, and nothing in the loop is
+      watching the money.
+    narration:
+      - text: This week you make a run spend money on purpose, and watch it
+          happen.
+      - text: Then you put two guards in its way.
+      - text: The hard part is not the code. It is saying plainly what each
+          guard cost you.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Start here
+    heading: Each pass sends all of it again
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Three boxes left to right, one for each pass of the loop, each carrying
+        more than the one before it. Pass one sends your question and the tool
+        list. Pass two sends all of that plus the first tool result. Pass three,
+        drawn in the accent colour, sends all of that again plus whatever the
+        second pass added. A return path runs from the end back to the start.
+      nodes:
+        - label: Pass one
+          sub: your question and the tool list
+        - label: Pass two
+          sub: all of that, plus the first result
+        - label: Pass three
+          sub: all of that again, plus more
+          mark: true
+      loop: the conversation keeps growing, and every pass sends the whole of it
+    narration:
+      - text: Start with the bill.
+        reveal: 0
+      - text: Every message your agent sends the model is a call, and every call
+          is billed.
+        reveal: 1
+      - text: The next pass sends all of that again, plus what the last pass
+          added.
+        reveal: 2
+      - text: So cost does not grow in a straight line. It grows as the
+          conversation grows.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: The failure
+    heading: A runaway loop is a loop with no reason to stop
+    body: Every pass hands the model something new to do.
+    narration:
+      - text: Step five sends the loop back to step one. That is normal.
+      - text: It becomes a problem when every pass hands the model something new
+          to do.
+      - text: The agent is not broken and it is not under attack. It is working,
+          and it is spending.
+      - text: You run one on purpose, on a burnable key, never on the account
+          that pays the bills.
+
+  - type: slide
+    layout: statement
+    eyebrow: Before any run
+    heading: Write your number first, in cents
+    body: A number you write afterwards is not a prediction. It is a copy of
+      the answer.
+    narration:
+      - text: Before you run anything, you write what you think it will cost, in
+          cents.
+      - text: A number you write afterwards is not a prediction. It is a copy of
+          the answer.
+      - text: Most people are wrong by a lot, and that is normal. The gap is
+          what you write about.
+
+  - type: slide
+    layout: compare
+    eyebrow: Evidence
+    heading: Two records of the same spend
+    items:
+      - Your own total | Arithmetic over the cost stamps your run printed
+      - The gateway ledger | One row per call, kept under school control
+    narration:
+      - text: Your run stamps a cost on each call, and you add those up.
+        reveal: 1
+      - text: The gateway keeps a ledger, one row per call, under school
+          control.
+        reveal: 2
+      - text: Reconciling means setting both totals side by side and naming the
+          gap. The ledger is the record.
+        reveal: 2
+
+  - type: slide
+    layout: diagram
+    eyebrow: The two guards
+    heading: They are checked at different moments
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right inside one pass of the loop. First the cap, a
+        number checked before the model call. Then the model call, which is the
+        part that is billed. Then the gate, checked before a tool runs. Last,
+        drawn in the accent colour, the tool itself running, where some actions
+        cannot be undone. A return path runs from the end back to the start.
+      nodes:
+        - label: The cap
+          sub: a number, checked before the model call
+        - label: The model call
+          sub: this is the part that is billed
+        - label: The gate
+          sub: checked before a tool runs
+        - label: The tool runs
+          sub: some tools cannot be undone
+          mark: true
+      loop: the result goes back in, and the next pass starts at the cap again
+    narration:
+      - text: Too much reach has a name, excessive agency. It is one of the
+          selected OWASP risks this course covers, from the 2026 release.
+        reveal: 0
+      - text: Spending with no ceiling is one shape. An action nobody can undo
+          is another.
+        reveal: 0
+      - text: The cap is checked first, before the model call. It is watching
+          money.
+        reveal: 2
+      - text: The gate is checked later, before a tool runs, because some tools
+          cannot be undone.
+        reveal: 4
+      - text: A cap cannot stop a cheap tool call from doing damage. A gate
+          cannot stop a run from spending. You need both.
+        reveal: 5
+
+  - type: slide
+    layout: statement
+    eyebrow: What it costs you
+    heading: A cap has no opinion
+    body: It cannot tell a runaway from a long job that was going to finish.
+    narration:
+      - text: The cap is a number. It does not know why your agent is spending.
+      - text: It cannot tell a runaway from a long job that was going to finish.
+          It stops both.
+      - text: That is the trade you make when you pick the number. Be ready to
+          say it out loud.
+
+  - type: slide
+    layout: compare
+    eyebrow: What it costs you
+    heading: The gate stops both of these
+    items:
+      - Your week 4 ticket | A stranger wrote the text. Paused and asked.
+      - An ordinary request | You asked for it yourself. Paused and asked.
+    narration:
+      - text: The gate costs you something too.
+        reveal: 0
+      - text: Run your week four ticket text with the gate on. The call is
+          blocked.
+        reveal: 1
+      - text: Now send an ordinary request that needs the same tool. It is
+          blocked as well.
+        reveal: 2
+      - text: The gate cannot tell those two apart, and it does not try.
+        reveal: 2
+      - text: It moves the decision to a person. The control is now that person,
+          not the code.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The number you build
+    heading: Somebody has to answer every one of those
+    body: Twenty runs with the gate on, then your own arithmetic about a real
+      shift.
+    narration:
+      - text: You turn the gate on, run twenty ordinary requests, and count the
+          approval cards.
+      - text: Then you name a number of requests a real shift would handle, and
+          multiply.
+      - text: A person who approves that many things stops reading them. That is
+          approval fatigue.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Predict, run, reconcile, cap, gate, count
+    body: Neither guard stops an injection. Both bound what one can reach.
+    narration:
+      - text: Neither guard stops an injection.
+      - text: What they do is limit what an attack can reach.
+      - text: So you predict, run the loop until it stops, and reconcile against
+          the ledger.
+      - text: Then you fill in one blank condition in each guard, and count the
+          approvals.
+      - text: Ten of the fifteen points need a real gateway run, so start on day
+          twenty nine.
+      - text: Post on the questions board if the gateway gives you trouble. See
+          you in the notebook.

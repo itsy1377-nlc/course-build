@@ -24,6 +24,11 @@ of Engagement page in Start Here before you run anything. The gate quiz checks
 that you have, and it also tells you what the gateway records.
 :::
 
+::: video w1-concept | Your first agent, in twenty minutes
+Four minutes on the loop, the record you cite, and why one of your two tools cannot be undone.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

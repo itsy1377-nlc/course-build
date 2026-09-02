@@ -1,0 +1,208 @@
+id: w4-concept
+title: Two requests and an audit log
+kind: concept
+module: m04
+embed_on: content/constrained/pages/w4-overview.md
+blurb: Four minutes on the request nobody had to hide, and why a log records without deciding.
+explains:
+  - content/constrained/pages/w4-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 4
+    heading: Two requests and an audit log
+    body: Nobody hides anything this week. Somebody just asks.
+    narration:
+      - text: Last week you hid an instruction where your agent would read it.
+      - text: This week nobody hides anything. Someone asks politely, and the
+          agent does it.
+      - text: That version is far more common. People talk about it much less.
+
+  - type: slide
+    layout: compare
+    eyebrow: Two paths
+    heading: Two ways an agent does the wrong thing
+    items:
+      - Someone hides an instruction | It takes planning. Week 3 showed you how.
+      - Someone simply asks | No hidden text, and no effort at all.
+    narration:
+      - text: There are two ways an agent ends up doing something it should not.
+        reveal: 0
+      - text: In the first, someone plants an instruction where the agent will
+          read it.
+        reveal: 1
+      - text: In the second, a coworker just asks. This is the one you study
+          this week.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The one idea
+    heading: You granted the permission before the request arrived
+    body: The moment a tool goes in the list, the answer is already yes.
+    narration:
+      - text: Here is the idea this week turns on.
+      - text: The moment you put a tool in the agent's list, the permission is
+          granted.
+      - text: The agent does not come back and ask you when a request arrives.
+      - text: So the question is not whether it behaves today. The question is
+          what you already allowed.
+
+  - type: slide
+    layout: numbered
+    eyebrow: A name for it
+    heading: Too much reach has a name
+    items:
+      - Too many tools, so it reaches work it never touches
+      - One tool that reaches too far, such as mail to any address
+      - Nothing standing between deciding and doing
+    narration:
+      - text: An agent that can do more than its job needs has a name,
+          excessive agency.
+        reveal: 0
+      - text: It is one of the selected OWASP risks this course covers, from the
+          2026 release. It takes three shapes.
+        reveal: 0
+      - text: First, too many tools, so the agent reaches work it never touches.
+        reveal: 1
+      - text: Second, one tool that reaches too far, such as mail that can go to
+          any address.
+        reveal: 2
+      - text: Third, nothing standing between deciding and doing.
+        reveal: 3
+      - text: None of the three needs an attacker.
+        reveal: 3
+
+  - type: slide
+    layout: diagram
+    eyebrow: The path
+    heading: Where the log sits
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Five boxes left to right. A polite request arrives. The model picks a
+        tool from the list you gave it. The third box holds nothing, because no
+        check sits there yet. The action happens. The last box is the audit log,
+        which writes its row after the action, not before it.
+      nodes:
+        - label: A request arrives
+          sub: polite and ordinary
+        - label: The model picks a tool
+          sub: from the list you gave it
+        - label: Nothing decides here
+          sub: no check, not yet
+        - label: The action happens
+          sub: the note leaves
+        - label: The log writes a row
+          sub: after the fact
+          mark: true
+    narration:
+      - text: Follow one polite request through your agent.
+        reveal: 1
+      - text: The model picks a tool from the list you gave it.
+        reveal: 2
+      - text: Now look at the third box. Nothing stands there yet.
+        reveal: 3
+      - text: No code decides whether this call is allowed. You build that part
+          in week 6.
+        reveal: 3
+      - text: So the action happens.
+        reveal: 4
+      - text: Then the log writes its row. The record comes after the action,
+          never before it.
+        reveal: 5
+
+  - type: slide
+    layout: compare
+    eyebrow: Words and code
+    heading: A sentence is not a control
+    items:
+      - Ask me first, in the prompt | Words the model reads. It changes what the model tends to do.
+      - A check before the tool runs | Code in the loop. It decides whether the call happens at all.
+    narration:
+      - text: You can write, ask me first, in the system prompt.
+        reveal: 1
+      - text: That is worth doing. It is still not a control.
+        reveal: 1
+      - text: A control is something that happens whether the model cooperates
+          or not.
+        reveal: 2
+      - text: It is code in the loop. It decides whether the call happens at
+          all.
+        reveal: 2
+
+  - type: slide
+    layout: numbered
+    eyebrow: The record
+    heading: What an audit row holds
+    items:
+      - "Time: when the request arrived"
+      - "Actor: who the caller said it was"
+      - "Action: what was asked for"
+      - "Detail: which ticket, or which customer"
+      - "Outcome: what came back"
+    narration:
+      - text: The practice target writes a row for every request that matters.
+        reveal: 0
+      - text: Each row holds five fields.
+        reveal: 5
+      - text: Read the second one again. The actor field records who the caller
+          said it was.
+        reveal: 5
+      - text: A name in a log is a claim. Remember that when you read your own
+          rows.
+        reveal: 5
+
+  - type: slide
+    layout: statement
+    eyebrow: Two jobs
+    heading: A record is not a lock
+    body: Accountability writes down who did it. Authorization decides who may.
+    narration:
+      - text: Two jobs are easy to confuse. Telling them apart is most of this
+          week.
+      - text: Accountability is writing down who did something. Authorization is
+          deciding who may.
+      - text: A log gives you the first. Only a check gives you the second.
+      - text: A system can record an action perfectly and still let anyone take
+          it.
+
+  - type: slide
+    layout: numbered
+    eyebrow: How you report it
+    heading: The evidence pack, in three parts
+    items:
+      - "The claim: one sentence saying what happened"
+      - "The record: the outbox file or the audit row, copied exactly"
+      - "The limit: one sentence on what this does not settle"
+    narration:
+      - text: You report each finding as an evidence pack. It is short.
+        reveal: 1
+      - text: The claim is one sentence saying what happened.
+        reveal: 1
+      - text: The record is the outbox file or the audit row, copied exactly.
+        reveal: 2
+      - text: The limit is one sentence on what your record does not settle.
+        reveal: 3
+      - text: The agent's reply is not the record. When they disagree, the
+          record decides.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Two requests, one log, two packs
+    body: The third line of a pack is the hard one, and that is normal.
+    narration:
+      - text: This week you send two ordinary requests and save the records for
+          both.
+      - text: Then you read the audit log across them and write your two
+          evidence packs.
+      - text: The hard part is that third line, naming what your record does
+          not settle.
+      - text: Most people find that harder than sending the requests, and that
+          is normal.
+      - text: If any one part passes two hours, stop and post on the questions
+          board with the exact text you see.

@@ -1,0 +1,195 @@
+id: w5-concept
+title: The case, and the call
+kind: concept
+module: m05
+embed_on: content/constrained/pages/w5-overview.md
+blurb: Four minutes on turning an alert into a call you can defend, one record at a time.
+explains:
+  - content/constrained/pages/w5-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 5
+    heading: The case, and the call
+    body: An assistant helps you read the evidence. You decide what it means.
+    narration:
+      - text: An alert fires on your shift. It says mail left the company.
+      - text: This week you work that case, and you make the call yourself.
+
+  - type: slide
+    layout: statement
+    eyebrow: The alert
+    heading: It says less than it sounds like
+    body: Mail left the company. That is the whole message.
+    narration:
+      - text: Read the alert again and notice how narrow it is.
+      - text: It does not say who received the mail. It does not say what was in
+          it.
+      - text: "A detector answers one narrow question, and it answers fast.
+          Your question is wider: was this an incident?"
+
+  - type: slide
+    layout: diagram
+    eyebrow: The shape of the week
+    heading: From one claim to one call
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. An alert fires with one narrow claim. The
+        assistant reads the case pack and writes a timeline of claims. You open
+        the record named on each row. You make the call and say what is
+        unsettled.
+      nodes:
+        - label: An alert fires
+          sub: one narrow claim
+        - label: The assistant reads
+          sub: it writes a timeline
+        - label: You open the records
+          sub: one row at a time
+          mark: true
+        - label: You make the call
+          sub: and say what is unsettled
+    narration:
+      - text: Here is the shape of the whole week.
+        reveal: 0
+      - text: An alert fires. One claim, and not much under it.
+        reveal: 1
+      - text: You give an assistant read access to your case pack, and it writes
+          a timeline.
+        reveal: 2
+      - text: Then you open the record behind every row. That step is yours.
+        reveal: 3
+      - text: Last, you make the call, and you say what the records do not
+          settle.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: Access
+    heading: You set what the assistant can reach
+    body: One tool. It reads files, and only the files your pack names.
+    narration:
+      - text: The assistant this week has one tool. It reads files, and only
+          the ones your pack names.
+      - text: It cannot write. It cannot send. It cannot open anything else.
+      - text: In week one you listed what an agent could reach. This week you set
+          it.
+      - text: Reading a file can be repeated with no effect, so read access is
+          the whole grant.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The timeline
+    heading: Four columns, and the last one carries the weight
+    items:
+      - Claim, one thing it says happened
+      - Time, when the record says it happened
+      - Actor, who or what did it
+      - Record, the file and the numbered line
+    narration:
+      - text: Do not ask the assistant what happened. Ask for a timeline with
+          four columns.
+        reveal: 0
+      - text: A claim, one thing the assistant says happened.
+        reveal: 1
+      - text: A time, taken from the record and not from memory.
+        reveal: 2
+      - text: "An actor: who or what did it."
+        reveal: 3
+      - text: "And a record: the file, and the numbered line the claim came
+          from."
+        reveal: 4
+      - text: That last column is the one that matters. A row with no record is
+          not evidence.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: Evidence
+    heading: Two sentences about the same run
+    items:
+      - Cites the assistant | The assistant confirmed the agent read the ticket first.
+      - Cites the record | Trace line 7 shows the ticket reader ran first.
+    narration:
+      - text: Here are two sentences a student might write.
+        reveal: 0
+      - text: The first one cites the assistant. It reports what a model
+          said.
+        reveal: 1
+      - text: The second one names a file and a line. A stranger can open it and
+          see the same thing.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The hard part
+    heading: Check every row, including the dull ones
+    body: Nine right and one wrong is harder to catch than ten wrong.
+    narration:
+      - text: Open each record the timeline names and read the line it points at.
+      - text: An assistant that gets nine rows right and one row wrong is the
+          hard case. The nine teach you to stop looking.
+      - text: This is slow work. Most people find it slow, and that is
+          normal.
+
+  - type: slide
+    layout: statement
+    eyebrow: The note
+    heading: A confident sentence is not evidence
+    body: Not from a model, and not from a person.
+    narration:
+      - text: Your pack also holds a note from an analyst working under time
+          pressure.
+      - text: It reads like a conclusion. Treat it the same way you treat any
+          other row.
+      - text: Open the record, or reject the line. A person and a model fail the
+          same test.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Limits
+    heading: Name what your evidence does not settle
+    items:
+      - Intent, because a record shows an action and not a reason
+      - Harm, because the pack cannot show who was hurt
+      - Severity, because that needs impact and scope and likelihood
+    narration:
+      - text: Some questions your pack cannot answer. Saying so is part of the
+          call.
+        reveal: 0
+      - text: Intent. A record shows an action. It does not show why anyone took
+          it.
+        reveal: 1
+      - text: Harm. You can see that a message was sent. Whether it hurt anyone
+          sits outside the pack.
+        reveal: 2
+      - text: Severity. That needs impact, scope, and how likely this is to
+          happen again. The pack holds none of the three.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: The call
+    heading: Answer with a yes or a no
+    body: An analyst who will not decide has handed the decision to the next reader.
+    narration:
+      - text: Then you make the call. Was this an incident?
+      - text: Answer yes or no. The word possibly is not a call.
+      - text: Your call is what is graded, not the number of citations.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Work the case, then name one control
+    body: Start the row checking early. It is the part that takes longest.
+    narration:
+      - text: So this week you scope the assistant, ask for the timeline, check
+          every row, and make the call.
+      - text: The handover ends with one control at the agent's tool boundary.
+          Name one thing that must be true before a tool runs.
+      - text: Write it in a sentence somebody could build, because you build it
+          yourself in week six.
+      - text: Start the checking early, and post on the questions board if you
+          get stuck.

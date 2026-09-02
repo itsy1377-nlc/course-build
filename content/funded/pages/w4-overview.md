@@ -25,6 +25,11 @@ Here holds the full list. Put invented data in your ticket text, and nothing
 else.
 :::
 
+::: video w4-concept | English versus Python
+Four minutes on why a ticket can give an order, and why this week runs two grids instead of one.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

@@ -1,0 +1,203 @@
+id: w3-concept
+title: The card is not the code
+kind: concept
+module: m03
+embed_on: content/funded/pages/w3-overview.md
+blurb: Four minutes on the tool card, and why a sentence can be true and still hide what the code does.
+explains:
+  - content/funded/pages/w3-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 3
+    heading: Somebody else's function
+    body: Three tools, no labels, and one sentence you write yourself.
+    narration:
+      - text: This week you read three tools you did not write.
+      - text: Nothing tells you what they do. There is no label, and no comment
+          names the effect.
+      - text: You also make one of them. You choose the effect and write one
+          sentence, and a generator writes the code.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Start here
+    heading: What your agent can see
+    diagram:
+      kind: stack
+      alt: >
+        Three layers. On top, the tool card holding name, description and
+        inputSchema. In the middle, a boundary line saying nothing below it is
+        ever sent to the model. At the bottom, the function body, which is the
+        code that actually runs.
+      layers:
+        - label: The tool card
+          sub: name, description, inputSchema
+        - label: The boundary
+          sub: nothing below this line is ever sent
+          mark: true
+        - label: The function body
+          sub: the code that actually runs
+    narration:
+      - text: Start with what your agent can see.
+        reveal: 0
+      - text: It reads a card with three fields. The name, the description, and
+          the input schema.
+        reveal: 1
+      - text: Under that card there is a line. The code is never sent, so the
+          model cannot read it.
+        reveal: 2
+      - text: The function body runs anyway. Your agent chose it without ever
+          seeing it.
+        reveal: 3
+
+  - type: slide
+    layout: compare
+    eyebrow: Two kinds of card
+    heading: One of these is much harder to find
+    items:
+      - A card that is false | It writes a file. The card never mentions files.
+      - A card that is true and narrow | Looks up a customer by id and returns the record.
+    narration:
+      - text: A description can be wrong in two ways, and they are not equally
+          hard.
+        reveal: 0
+      - text: A false card is the easy one. You read the code, you see it
+          writing a file, and the card never mentions files.
+        reveal: 1
+      - text: The second kind says nothing false. It just stops early.
+        reveal: 2
+      - text: That sentence is true of a tool that also adds a line to a log
+          every time it runs.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The name for it
+    heading: The description is the attack
+    body: MITRE ATLAS release 2026.07 calls it AI Agent Tool Poisoning (AML.T0110).
+    narration:
+      - text: This failure has a name. MITRE ATLAS release 2026.07 calls it AI
+          Agent Tool Poisoning.
+      - text: Notice where it lives. It lives in the description. The code is
+          only where it hides.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Your half
+    heading: You write the sentence, not the Python
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. Your specification, holding one effect and one
+        sentence. A generator that writes the Python. A working tool with no
+        comment naming its effect. Three classmates, who receive it inside the
+        sandbox.
+      nodes:
+        - label: Your specification
+          sub: one effect, one sentence
+        - label: The generator
+          sub: it writes the Python, not you
+        - label: A working tool
+          sub: no comment names the effect
+        - label: Three classmates
+          sub: inside the supplied sandbox
+          mark: true
+    narration:
+      - text: Here is what you make this week.
+        reveal: 0
+      - text: You pick one effect from a short menu, and you write one sentence
+          for it.
+        reveal: 1
+      - text: A generator turns that into a real tool. You are not writing
+          Python this week.
+        reveal: 2
+      - text: Nothing you type is run as code. That is what makes this exercise
+          safe to do at all.
+        reveal: 3
+      - text: Three classmates receive your tool and you receive theirs. A
+          classmate's tool runs inside the supplied sandbox, against your own
+          agent, and nowhere else.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: Then it turns around
+    heading: You cannot ask a tool what it does
+    body: Forty five minutes, three tools, and no labels on any of them.
+    narration:
+      - text: Then the week turns around.
+      - text: You get forty five minutes with three tools and no labels.
+      - text: You cannot ask a tool what it does. The tool is the thing you are
+          testing.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Four surfaces
+    heading: None of them is the description
+    items:
+      - The code. Read it
+      - Direct probes. You call it yourself
+      - The filmstrip. One card per event
+      - The workspace diff. What changed on disk
+    narration:
+      - text: So use the surfaces that do not depend on the card.
+        reveal: 0
+      - text: Read the code. A single line can tell you the whole answer.
+        reveal: 1
+      - text: Call the tool yourself, with no model in the way.
+        reveal: 2
+      - text: Run your agent with it and watch the filmstrip.
+        reveal: 3
+      - text: Check the workspace diff, because some effects leave a file
+          behind.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: Before you start
+    heading: Four good answers show almost nothing
+    body: Some faults appear on some calls, and a small sample hides them.
+    narration:
+      - text: One warning before you start probing.
+      - text: Some faults only appear on some calls. Call a tool three times and
+          three good answers are common.
+      - text: A small sample is how a real fault gets reported as clean. Twelve
+          calls is the floor in this course.
+
+  - type: slide
+    layout: compare
+    eyebrow: Evidence
+    heading: What a finished claim looks like
+    items:
+      - Weak | Tool B seems to break sometimes.
+      - Strong | Tool B failed on call three in every probe run, and the raw view line is attached.
+    narration:
+      - text: Each of your three reports makes one claim.
+        reveal: 0
+      - text: This one is weak. It describes a feeling, and a grader cannot open
+          a feeling.
+        reveal: 1
+      - text: This one names the effect, says what pattern supports it, and
+          points at a line somebody can open.
+        reveal: 2
+      - text: Cite the file, the line and the field. Never cite what the tool
+          said about itself.
+        reveal: 2
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Ask the week one question about somebody else's tool
+    body: If this runs by mistake, can I undo it?
+    narration:
+      - text: End each report with the week one question. If this runs by
+          mistake, can I undo it?
+      - text: This is not only a classroom exercise. Most tools an agent uses
+          were written by somebody else, and almost nobody reads the code behind
+          the card.
+      - text: Reading code you did not write is the hard part, and it is slow
+          for everyone. If one tool defeats you, say so in the report and move
+          on. A defeat you can explain earns more than a guess.

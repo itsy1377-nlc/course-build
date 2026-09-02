@@ -22,6 +22,11 @@ yourself; the course distributes them. Never a commercial AI service. Read the
 Rules of Engagement page in Start Here before you run anything.
 :::
 
+::: video w3-concept | The card is not the code
+Four minutes on the tool card, and why a sentence can be true and still hide what the code does.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

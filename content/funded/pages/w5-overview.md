@@ -25,6 +25,11 @@ another student's key. Clause 3 of the Rules of Engagement page in Start Here
 covers tokens.
 :::
 
+::: video w5-concept | Watch it spend
+Four minutes on why every pass of the loop is billed, and what each of this week's two guards costs you.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

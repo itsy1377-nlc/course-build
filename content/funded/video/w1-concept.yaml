@@ -1,0 +1,217 @@
+id: w1-concept
+title: Your first agent, in twenty minutes
+kind: concept
+module: m01
+embed_on: content/funded/pages/w1-overview.md
+blurb: Four minutes on the loop, the record you cite, and why one of your two tools cannot be undone.
+explains:
+  - content/funded/pages/w1-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 1
+    heading: Twenty minutes
+    body: Change one line. Add one line above it. Watch the model call your function.
+    narration:
+      - text: The first part of this week takes about twenty minutes.
+      - text: You change one line of working code, then add one line above it.
+      - text: Then you watch the model decide, by itself, to call your function.
+      - text: Then you break it on purpose.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Start here
+    heading: An agent is a model plus two things
+    items:
+      - A list of tools it is allowed to call
+      - A program that runs the tool when the model asks
+    narration:
+      - text: A language model reads text and writes text. That is all it does.
+        reveal: 0
+      - text: Ask a plain model to save a file, and nothing on disk changes.
+        reveal: 0
+      - text: An agent is that same model with two things added. First, a list
+          of tools it may call.
+        reveal: 1
+      - text: Second, a program that runs the tool when the model asks. That
+          program is called the loop.
+        reveal: 2
+
+  - type: slide
+    layout: diagram
+    eyebrow: The loop
+    heading: One pass, in order
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. You ask. The model decides to answer or to
+        call a tool. The tool runs. The result goes back into the conversation,
+        and that fourth box is marked. A return path runs from the end back to
+        the start, so the loop repeats.
+      nodes:
+        - label: You ask
+          sub: one message in
+        - label: The model decides
+          sub: answer, or call a tool
+        - label: The tool runs
+          sub: your function, for real
+        - label: The result goes back
+          sub: into the conversation
+          mark: true
+      loop: the model reads that result, and the loop runs again
+    narration:
+      - text: One pass of the loop. You ask for something.
+        reveal: 1
+      - text: The model replies. It answers you, or it asks to call a tool.
+        reveal: 2
+      - text: If it asked for a tool, your function runs.
+        reveal: 3
+      - text: Then the result goes back into the conversation.
+        reveal: 4
+      - text: That step is where the security problems live. Week 4 is built
+          on it.
+        reveal: 5
+
+  - type: slide
+    layout: statement
+    eyebrow: Your tool
+    heading: You start from code that already works
+    body: Four lines that run. You change one of them, and you add one.
+    narration:
+      - text: Your notebook opens with a working function of four lines.
+      - text: You change one line, and that line decides what your tool gives
+          back.
+      - text: Then you add one line above it, starting with an at sign. That
+          line is a decorator, and it registers your function as a tool.
+
+  - type: slide
+    layout: statement
+    eyebrow: Why words matter
+    heading: The model chooses, and it chooses from words
+    body: It picks a tool by reading the description you wrote for it.
+    narration:
+      - text: You never tell the agent which tool to use. The model picks.
+      - text: It picks by reading the name and the description.
+      - text: Change that sentence, and the choice can change. Week 2 measures
+          how much.
+
+  - type: slide
+    layout: diagram
+    eyebrow: One run
+    heading: Two views of the same events
+    diagram:
+      kind: split
+      alt: >
+        One agent run branching into two views of the same events. The
+        filmstrip draws one box per event, left to right in time order. The raw
+        record is the file itself, one record per line with line numbers, and
+        it is marked as the view you cite.
+      from:
+        label: One run
+        sub: everything that happened, in order
+      tracks:
+        - label: The filmstrip
+          sub: one box per event, left to right
+        - label: The raw record
+          sub: one record per line, numbered
+          mark: true
+    narration:
+      - text: Every run gives you two views.
+        reveal: 0
+      - text: The filmstrip draws one box per event, in time order.
+        reveal: 1
+      - text: Under it, one cell prints that run as the file it really is, one
+          record per line.
+        reveal: 2
+      - text: The filmstrip is for looking. The record is for citing.
+        reveal: 2
+
+  - type: slide
+    layout: compare
+    eyebrow: Two accounts
+    heading: These are not the same thing
+    items:
+      - "The agent says | I saved that file."
+      - "The record shows | No tool call on any line."
+    narration:
+      - text: A model can say it did something it did not do.
+        reveal: 0
+      - text: It can also do something and never mention it.
+        reveal: 1
+      - text: Text that sounds right is not a report. When the two disagree,
+          the record counts.
+        reveal: 2
+      - text: >-
+          So point at the record: a file, a line number, and a field.
+        reveal: 2
+
+  - type: slide
+    layout: numbered
+    eyebrow: The rest of the week
+    heading: Six breaks, on purpose
+    items:
+      - Each break is one small edit
+      - A reset cell puts the known good version back
+      - A check cell names the fault before the model runs
+    narration:
+      - text: Once your tool works, you break it six ways.
+        reveal: 0
+      - text: Each break is one small edit, and each changes something you can
+          point at.
+        reveal: 1
+      - text: Record what changed. Do not write what you expected to happen.
+        reveal: 1
+      - text: A reset cell puts the known good version back at any point.
+        reveal: 2
+      - text: A check cell reads your setup and names the fault in one
+          sentence.
+        reveal: 3
+
+  - type: slide
+    layout: numbered
+    eyebrow: Your two tools
+    heading: Ask one question about every tool
+    items:
+      - If this runs by mistake, can I undo it?
+      - Reading a file, yes. Run it twice and nothing changes
+      - Writing a file, no. Once it is written, it is written
+    narration:
+      - text: Your second tool is supplied, and it writes a file.
+        reveal: 0
+      - text: Ask one question of every tool. If this runs by mistake, can I
+          undo it?
+        reveal: 1
+      - text: Reading is fine. Run it twice and nothing changes.
+        reveal: 2
+      - text: Writing is not. An action you cannot undo is called irreversible.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: Before you run anything
+    heading: Three permitted targets, and nothing else
+    body: The practice target, your own agent, and the models behind the school gateway.
+    narration:
+      - text: This course teaches you to attack an agent.
+      - text: That is lawful on systems you own, and unlawful on systems you do
+          not.
+      - text: >-
+          You have three permitted targets: the practice target, your own
+          agent, and a model through the school gateway.
+      - text: The gateway records every prompt and every reply. Read the Rules
+          of Engagement page, then pass the gate quiz.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Run it, break it, write it down
+    body: Setup is the hard part, and taking longer than the estimate is normal.
+    narration:
+      - text: This week you make the model call your tool, run the six breaks,
+          and write up both tools.
+      - text: Setup is the hard part for most people. If any one part passes two
+          hours, stop and post on the Questions and Answers board.
+      - text: Being stuck is normal here, and it is not a sign that you do not
+          belong.

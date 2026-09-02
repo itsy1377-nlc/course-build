@@ -1,0 +1,229 @@
+id: w2-concept
+title: The blindfold
+kind: concept
+module: m02
+embed_on: content/funded/pages/w2-overview.md
+blurb: Four minutes on why the model picks from your sentence, and why one run cannot tell you anything.
+explains:
+  - content/funded/pages/w2-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 2
+    heading: The blindfold
+    body: Your agent chooses from your words. It never sees your code.
+    narration:
+      - text: "Your agent picks a tool by reading a sentence."
+      - text: "You wrote that sentence."
+      - text: "This week you measure how much it decides, thirty runs at a time."
+
+  - type: slide
+    layout: diagram
+    eyebrow: The choice
+    heading: What the model has when it picks
+    diagram:
+      kind: split
+      alt: >
+        One tool in your agent splitting into two branches. One branch is what
+        gets sent to the model: the tool name, the description you wrote, and
+        the input schema. The other branch is what is never sent: the code
+        inside the function.
+      from:
+        label: One tool in your agent
+        sub: a name, a description, a schema, and code
+      tracks:
+        - label: Sent to the model
+          sub: the name, your description, the input schema
+          mark: true
+        - label: Never sent
+          sub: the code inside the function
+    narration:
+      - text: "When your agent decides which tool to call, it has three things."
+        reveal: 0
+      - text: "The tool name, the description you wrote, and the input schema."
+        reveal: 1
+      - text: "That is the whole list. The body of the function is never sent."
+        reveal: 2
+      - text: "It is choosing with a blindfold on."
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: Week 2
+    heading: A description is not documentation
+    body: It is the control surface. Whoever writes it steers the agent.
+    narration:
+      - text: "So a description is not documentation."
+      - text: "It is the control surface. Whoever writes it steers the agent."
+
+  - type: slide
+    layout: compare
+    eyebrow: Your notebook
+    heading: Two tools, one difference
+    items:
+      - "lookup_a | Four lines of code, and one description"
+      - "lookup_b | The same four lines, a different description"
+    narration:
+      - text: "Your notebook gives you two tools this week."
+        reveal: 0
+      - text: "They run the same four lines of code and take the same input."
+        reveal: 1
+      - text: "The names say nothing. Only the descriptions differ."
+        reveal: 2
+      - text: "That is a controlled comparison."
+        reveal: 2
+      - text: "One thing differs, so anything that changes came from that one
+          thing."
+
+  - type: slide
+    layout: statement
+    eyebrow: Careful
+    heading: One run is an anecdote
+    body: Send the same request twice and you can get two different choices.
+    narration:
+      - text: "Send the same request twice and you can get two different
+          choices."
+      - text: "Nothing is broken. A model's pick is not fixed."
+      - text: "One run cannot tell you what a description does. It tells you
+          what happened once."
+
+  - type: slide
+    layout: diagram
+    eyebrow: The grid
+    heading: One request, thirty times
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. One request. Thirty trials, which is the same
+        request sent thirty times. Thirty squares, each marked A, B, neither, or
+        errored. Those squares add up to a split you can read.
+      nodes:
+        - label: One request
+          sub: written once
+        - label: Thirty trials
+          sub: the same request, thirty times
+        - label: Thirty squares
+          sub: A, B, neither, or errored
+          mark: true
+        - label: A split you can read
+          sub: how often each tool was called
+    narration:
+      - text: "So you measure instead."
+        reveal: 1
+      - text: "One line in your notebook sends the same request thirty times."
+        reveal: 2
+      - text: "Each trial fills one square: tool A, tool B, neither, or errored."
+        reveal: 3
+      - text: "An errored trial is not a result. Re-run it."
+        reveal: 3
+      - text: "Thirty finished trials give you a split you can read."
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: The still grid
+    heading: When nothing moves, say it exactly
+    items:
+      - "Do not write | This edit has no effect"
+      - "Write | This edit did not clearly move the split in thirty trials"
+    narration:
+      - text: "Some edits shift the split. Some change nothing you can see."
+        reveal: 0
+      - text: "An edit that works one time in five can look like nothing in five
+          runs."
+        reveal: 0
+      - text: "That is why thirty is the floor in this course."
+        reveal: 0
+      - text: "Never write that an edit has no effect."
+        reveal: 1
+      - text: "Write that it did not clearly move the split in thirty trials."
+        reveal: 2
+      - text: "A test that finds nothing has ruled out a large effect, not every
+          effect."
+
+  - type: slide
+    layout: diagram
+    eyebrow: The input view
+    heading: What the model was actually sent
+    diagram:
+      kind: stack
+      alt: >
+        Four stacked blocks making up the model's input, top to bottom: the
+        system prompt, both tool descriptions, your request, and every tool
+        result so far. Each block carries its own token count.
+      layers:
+        - label: The system prompt
+          sub: the rules the agent runs under
+        - label: Both tool descriptions
+          sub: your words, on every single call
+          mark: true
+        - label: Your request
+          sub: what you asked for
+        - label: Every tool result so far
+          sub: added as the run goes on
+    narration:
+      - text: "The input view shows what was really sent to the model."
+        reveal: 1
+      - text: "It is a stack of blocks, each with its own token count."
+        reveal: 2
+      - text: "A token is a chunk of text. It is how a model counts what it
+          reads."
+        reveal: 2
+      - text: "Your two descriptions are in this stack on every call."
+        reveal: 2
+      - text: "So you pay for them every time."
+        reveal: 2
+      - text: "The stack also grows as the run goes on, because results keep
+          getting added."
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: The blindfold box
+    heading: See what the agent had been told
+    body: Everything later in the run greys out. What stays lit is what it had.
+    narration:
+      - text: "The blindfold comes back now, this time for you."
+      - text: "Click a decision card on the filmstrip and tick the blindfold
+          box."
+      - text: "Everything later in the run greys out."
+      - text: "What stays lit is what the agent had been told at that moment."
+      - text: "One honest limit: the box shows what had arrived by that step."
+      - text: "It does not show what never entered the conversation."
+
+  - type: slide
+    layout: compare
+    eyebrow: Evidence
+    heading: Two things that are not the same
+    items:
+      - "What the agent says | I picked lookup_b because it was faster"
+      - "What the record shows | the file, the line, and the field naming the tool"
+    narration:
+      - text: "You can ask your agent why it picked a tool."
+        reveal: 1
+      - text: "That answer is text the model produced. It is not a record of
+          what happened."
+        reveal: 1
+      - text: "Your evidence is the raw record of the trial."
+        reveal: 2
+      - text: "The file, the line number, and the field naming the tool that
+          ran."
+        reveal: 2
+      - text: "Cite that, every time."
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Run the grid, then say what it shows
+    body: Much of this week is waiting on runs. Start a grid, then read.
+    narration:
+      - text: "This week you run a baseline grid of thirty trials."
+      - text: "Then you look for one edit that moves it, and one that does not."
+      - text: "Both count the same."
+      - text: "You also open the input view and find your own words inside it."
+      - text: "The hard part is not the code."
+      - text: "It is writing a claim that is narrow enough to be true."
+      - text: "That feels slow, and it is normal."
+      - text: "Start a grid, then read while it fills."

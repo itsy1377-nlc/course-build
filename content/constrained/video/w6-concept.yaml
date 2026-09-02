@@ -1,0 +1,175 @@
+id: w6-concept
+title: Two places to put a rule
+kind: concept
+module: m06
+embed_on: content/constrained/pages/w6-overview.md
+blurb: Three minutes on why a rule in the prompt asks, and a rule in code decides.
+explains:
+  - content/constrained/pages/w6-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 6
+    heading: Build one that holds
+    body: The same rule, written in two places, measured the same way.
+    narration:
+      - text: Last week you worked a case and recommended a containment.
+      - text: This week you build it, twice, and you measure both.
+      - text: That sounds harder than it is. You already have the parts.
+
+  - type: slide
+    layout: statement
+    eyebrow: Start here
+    heading: A control is a rule that decides whether an action runs
+    body: You have two places to put that rule.
+    narration:
+      - text: A control is a rule that decides whether an action runs.
+      - text: You have two places to put one.
+      - text: Only one of them holds, and this week you show that with numbers.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Where it sits
+    heading: The path one action takes
+    diagram:
+      kind: stack
+      alt: >
+        Four layers, top to bottom. The system prompt, where a rule is words
+        the model reads. The model choosing a tool and its arguments. The tool
+        boundary, where your code decides allow or block. The tool itself,
+        where something really happens.
+      layers:
+        - label: The system prompt
+          sub: your rule, written as words
+        - label: The model chooses
+          sub: a tool, and its arguments
+        - label: The tool boundary
+          sub: your code decides, allow or block
+          mark: true
+        - label: The tool runs
+          sub: something really happens
+    narration:
+      - text: Here is the path one action takes.
+        reveal: 0
+      - text: At the top is the system prompt. A rule written there is words.
+        reveal: 1
+      - text: The model reads those words, then picks a tool and its arguments.
+        reveal: 2
+      - text: Under that is the tool boundary. Your code runs there, before the
+          tool does.
+        reveal: 3
+      - text: Then the tool runs, and something really happens.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: In the prompt
+    heading: A rule in the prompt is advice
+    body: It arrives as words, in the same conversation as everything else.
+    narration:
+      - text: Say you add one line to the prompt. Send mail only to the customer
+          on the ticket.
+      - text: The model reads your line. It also reads the ticket and the
+          article.
+      - text: All of it arrives the same way, as words in one conversation.
+      - text: The model weighs your words against the other words. Your line
+          often wins.
+      - text: Often is the problem.
+
+  - type: slide
+    layout: compare
+    eyebrow: The difference
+    heading: Advice, and a gate
+    items:
+      - A rule in the prompt | Words that ask the model to behave
+      - A check in your code | Runs every time, and decides
+    narration:
+      - text: A rule in the prompt asks the model to behave.
+        reveal: 1
+      - text: It cannot stop a tool, because it is not the thing that runs
+          tools.
+      - text: Your code at the tool boundary is different.
+        reveal: 2
+      - text: It runs every time, and it returns allow or block, with a reason.
+      - text: The model does not get a vote there.
+      - text: Your check cannot read intent. It reads values, like the address
+          on the request.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The measurement
+    heading: Three numbers, five trials each
+    items:
+      - The baseline, with no control at all
+      - The prompt version, on its own
+      - The control in code, on its own
+    narration:
+      - text: You need three numbers, produced the same way, five trials each.
+        reveal: 0
+      - text: The baseline comes first. Without it, the number after your fix
+          means nothing.
+        reveal: 1
+      - text: Then the prompt version. Build it, even though you now know it is
+          advice.
+        reveal: 2
+      - text: It is the answer most people give, so you have to be able to argue
+          about it. Your number is the argument.
+      - text: Then take the prompt line back out, and write the control in code.
+        reveal: 3
+      - text: If both are in place, the numbers cannot tell you which one held.
+
+  - type: slide
+    layout: compare
+    eyebrow: Reading the result
+    heading: Landing once, and holding five times
+    items:
+      - An attack | Counts if it lands once in five
+      - A fix | Counts only if it holds all five
+    narration:
+      - text: An attack counts if it lands one time in five trials.
+        reveal: 1
+      - text: A fix counts only if it holds all five times.
+        reveal: 2
+      - text: A defense that works four times in five has not worked. It has
+          failed more slowly.
+
+  - type: slide
+    layout: statement
+    eyebrow: Evidence
+    heading: Where the proof lives
+    body: The blocked line in the record, and the side effect that never happened.
+    narration:
+      - text: Never write that your control worked because the agent said it
+          refused.
+      - text: Point at the record. The blocked line in the trace, with your
+          reason in it.
+      - text: Then name the side effect you checked, such as an empty outbox or
+          a canary token that never moved.
+
+  - type: slide
+    layout: statement
+    eyebrow: The second measurement
+    heading: A control that breaks the job is not finished
+    body: Ordinary work has to finish, every trial.
+    narration:
+      - text: There is a second measurement, and it is the one people forget.
+      - text: Block every message and the attack stops. So does the work.
+      - text: That control scores perfectly, and somebody turns it off within a
+          day.
+      - text: So you run a benign case as well, which is ordinary work through
+          the same door you just closed.
+      - text: It has to finish every trial.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: One function, and a few lines inside it
+    body: The code is small. Deciding what to allow is the slow part.
+    narration:
+      - text: This week you build one control and measure it three times.
+      - text: The code is small. One function, and a few lines inside it.
+      - text: Small does not mean quick. Most of your time goes into deciding
+          what to allow.
+      - text: If you pass two hours on those lines, post on the questions board
+          with your code and your error. See you in the lab.

@@ -22,6 +22,11 @@ analyst note into a commercial AI service. Read the Rules of Engagement page in
 Start Here.
 :::
 
+::: video w5-concept | The case, and the call
+Four minutes on turning an alert into a call you can defend, one record at a time.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

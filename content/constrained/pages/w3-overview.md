@@ -25,6 +25,11 @@ carries one line saying the target is authorized, and the runner will not load a
 case without it. Read the Rules of Engagement page in Start Here first.
 :::
 
+::: video w3-concept | Hide an instruction and see how far it gets
+How a planted instruction reaches the model, and the four steps you score it on.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

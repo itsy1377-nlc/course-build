@@ -1,0 +1,170 @@
+id: w2-concept
+title: Does it do the same thing twice?
+kind: concept
+module: m02
+embed_on: content/constrained/pages/w2-overview.md
+blurb: Why two runs of one request can differ, and why every count carries the number of trials with it.
+explains:
+  - content/constrained/pages/w2-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 2
+    heading: Does it do the same thing twice?
+    body: Ten runs, a table somebody can check, and a count you can defend.
+    narration:
+      - text: Last week you ran the agent once.
+      - text: This week you run it ten times and compare them.
+      - text: The question in the title sounds simple. Answering it well is the
+          work.
+
+  - type: slide
+    layout: statement
+    eyebrow: Start here
+    heading: The same request can end two different ways
+    body: Nothing is broken when that happens.
+    narration:
+      - text: Send the agent the same request twice. It may not do the same
+          thing.
+      - text: Nothing is broken when that happens. It is how these models work.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Why runs differ
+    heading: One pick, and the run goes two ways
+    diagram:
+      kind: split
+      alt: >
+        One box at the top holds the model picking its next word, where several
+        words would fit. Two arrows lead down from it to two different runs. In
+        the first run the model calls a lookup tool and reads a record. In the
+        second run it answers right away and calls no tool at all.
+      from:
+        label: The model picks the next word
+        sub: several words would fit
+      tracks:
+        - label: It calls a lookup tool
+          sub: and reads a record first
+        - label: It answers right away
+          sub: and calls no tool at all
+          mark: true
+    narration:
+      - text: Here is why. A model writes one word at a time.
+        reveal: 0
+      - text: At each step several words would fit. One of those picks is which
+          tool to call.
+        reveal: 0
+      - text: In one run it calls a lookup tool and reads a record first.
+        reveal: 1
+      - text: In another run it answers right away and calls no tool at all.
+        reveal: 2
+      - text: One different pick early changes every step after it.
+        reveal: 2
+
+  - type: slide
+    layout: numbered
+    eyebrow: How to compare
+    heading: Compare on things you can count
+    items:
+      - How many tool calls the run made
+      - Which tools it called, in order
+      - Whether the run reached a final answer
+    narration:
+      - text: Reading two traces side by side and forming an impression is slow.
+          Two people doing that get two answers.
+        reveal: 0
+      - text: So pick features you can read off every trace and write down.
+        reveal: 0
+      - text: How many tool calls the run made.
+        reveal: 1
+      - text: Which tools it called, in order.
+        reveal: 2
+      - text: Whether the run reached a final answer.
+        reveal: 3
+      - text: Each one is a number, a short list, or a yes or no. That is what
+          makes a table possible.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: One warning
+    heading: The final answer is the weakest feature
+    body: Two runs can print almost the same reply and have done different things.
+    narration:
+      - text: One warning before you start counting.
+      - text: The final answer is the weakest feature on that list.
+      - text: Two runs can print almost the same reply and have done different
+          things to get there. Compare the tool calls first.
+
+  - type: slide
+    layout: compare
+    eyebrow: Reporting it
+    heading: Two ways to write the same finding
+    items:
+      - An impression | The agent usually looks the customer up.
+      - A count | The lookup tool ran in 4 of 5 runs.
+    narration:
+      - text: Now say what you found. There are two ways to write it.
+        reveal: 0
+      - text: The agent usually looks the customer up. Nobody can check that
+          sentence.
+        reveal: 1
+      - text: The lookup tool ran in four of five runs. Your reader can open your
+          traces and count.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The limit
+    heading: Five is a small number, so say five
+    body: Zero of five is not never. Five of five is not always.
+    narration:
+      - text: Say how many trials the count came from, every time.
+      - text: Zero out of five does not mean it never happens. Five out of five
+          does not mean it always happens.
+      - text: A thing that did not happen in five runs can still happen in the
+          sixth.
+      - text: That is not a reason to stop counting. It is the reason you give
+          the number with the result.
+
+  - type: slide
+    layout: statement
+    eyebrow: Evidence
+    heading: Do not ask the agent whether it did the same thing twice
+    body: Each run starts fresh. It has no record of the other four.
+    narration:
+      - text: One habit carries over from week one.
+      - text: Do not ask the agent whether it did the same thing twice. It
+          cannot tell you.
+      - text: Each run starts fresh, so it has no record of the other four.
+      - text: A model asked about its own behavior writes plausible text about
+          it. Your evidence is the ten traces and the counts you take from them.
+
+  - type: slide
+    layout: statement
+    eyebrow: The second half
+    heading: Change one thing at a time
+    body: Same target, same agent, same model, same settings.
+    narration:
+      - text: The second half of the week sends five different requests, once
+          each.
+      - text: Only the request changes. Same target, same agent, same model,
+          same settings.
+      - text: Change two things at once and you cannot say which one caused the
+          difference you see.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Ten runs, two tables, one honest sentence
+    body: Counting by hand is slow, and noticing that is part of the lesson.
+    narration:
+      - text: This week you run the agent ten times, build two tables, and
+          count.
+      - text: Counting ten traces by hand is slow. Feeling tired of it by trace
+          six is normal, and it is worth saying so in your write up.
+      - text: It is also why the course gives you a short counting script. Read
+          it before you run it.
+      - text: Post the exact error text on the questions board if a run fails.
+          See you in the lab.

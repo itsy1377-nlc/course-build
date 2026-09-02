@@ -21,6 +21,11 @@ Never a commercial AI service. Never a system you do not own. The Rules of
 Engagement page in Start Here holds the full list.
 :::
 
+::: video w2-concept | Does it do the same thing twice?
+Why two runs of one request can differ, and why every count carries the number of trials with it.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

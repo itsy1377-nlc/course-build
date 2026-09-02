@@ -24,6 +24,11 @@ Engagement page in Start Here holds the full policy, and it applies to every run
 you make this week.
 :::
 
+::: video w6-concept | Two places to put a rule
+Three minutes on why a rule in the prompt asks, and a rule in code decides.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

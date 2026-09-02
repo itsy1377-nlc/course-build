@@ -25,6 +25,11 @@ Engagement page in Start Here again before the session. If a pooled case asks
 for anything outside those three targets, stop and tell your instructor.
 :::
 
+::: video w7-concept | When someone else writes the attack
+Why your own attack is a weak test, and which result words count as evidence.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

@@ -1,0 +1,202 @@
+id: w7-concept
+title: A blank square is not proof
+kind: concept
+module: m07
+embed_on: content/funded/pages/w7-overview.md
+blurb: "Four minutes on the class board: which label shows a control working, and why a quiet square proves less than it looks."
+explains:
+  - content/funded/pages/w7-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 7
+    heading: The gauntlet
+    body: Every control you built goes on at once, and the class tries them.
+    narration:
+      - text: This week every control you built goes on at once.
+      - text: Then the whole class tries them. Your one attack meets every
+          defence in the room.
+      - text: Nothing you win or lose this week is worth points. One idea
+          decides what you may claim.
+
+  - type: slide
+    layout: statement
+    eyebrow: Start here
+    heading: A control you have not turned on is a note
+    body: The notebook loads your guards switched off.
+    narration:
+      - text: Your guards have been switched off between weeks.
+      - text: Nothing you wrote in week 5 is running right now.
+      - text: Turning them on is one cell. Showing that each one ran is the job
+          that earns credit.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Nothing new
+    heading: Four controls, and you already built all four
+    items:
+      - The irreversibility record, from week 1
+      - The cap, from week 5
+      - The approval gate, from week 5
+      - Containment, from week 6
+    narration:
+      - text: You write nothing new this week. You turn on what is already
+          yours.
+        reveal: 0
+      - text: The irreversibility record says which tools need a person.
+        reveal: 1
+      - text: The cap ends a run that will not stop.
+        reveal: 2
+      - text: The approval gate pauses a call you cannot undo.
+        reveal: 3
+      - text: Containment takes away what the agent does not need, this time on
+          your own agent.
+        reveal: 4
+
+  - type: slide
+    layout: diagram
+    eyebrow: The board
+    heading: Your row, and your column
+    diagram:
+      kind: split
+      alt: >
+        The class board sits at the top. Every attack the class submitted is
+        run against every set of defences, inside the sandbox, on the course
+        server. Two paths lead away from it. The first is your row, read
+        across: each square is one classmate's attack meeting your controls.
+        The second is your column, read down: your single attack meeting every
+        set of defences in the room.
+      from:
+        label: The class board
+        sub: every attack against every set of defences
+      tracks:
+        - label: Your row
+          sub: the class's attacks meet your controls
+        - label: Your column
+          sub: your one attack meets every defence
+          mark: true
+    narration:
+      - text: Everyone submits attack text, and everyone's controls go on the
+          same board.
+        reveal: 0
+      - text: Read across your row. Each square is one classmate's attack
+          meeting your controls.
+        reveal: 1
+      - text: Read down your column. That is your one attack meeting every
+          defence in the room.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: Scope
+    heading: You point an attack at nobody
+    body: You hand in text, and the course runs it on its own server.
+    narration:
+      - text: You point an attack at nobody this week. You hand in text, and the
+          course runs it inside the sandbox.
+      - text: "Your permitted targets have not changed: the practice target,
+          your own agent, and the college's gateway models."
+      - text: Invent every name and number in your attack text. No real person,
+          and never a classmate's name.
+
+  - type: slide
+    layout: compare
+    eyebrow: The one idea
+    heading: Two quiet runs, and only one is yours
+    items:
+      - Blocked | The model asked. Your guard stopped the call.
+      - Failed | The model never asked. Your guard was never reached.
+    narration:
+      - text: Week 4 gave you four labels. This week adds a fifth.
+        reveal: 0
+      - text: Blocked means the model asked for the tool, and your guard stopped
+          the call.
+        reveal: 1
+      - text: Failed means the model never asked. Your guard was never reached.
+        reveal: 2
+      - text: Both look like a quiet run. Only blocked shows your control doing
+          something.
+
+  - type: slide
+    layout: statement
+    eyebrow: How much a square is worth
+    heading: Five runs a square is a hint
+    body: A blank square is not proof that your control held.
+    narration:
+      - text: Each pairing runs five times. Five is a hint, not a measurement.
+      - text: An attack that lands one time in five can still show zero across
+          five runs.
+      - text: A blank square may mean your guard held. It may also mean the
+          attack never arrived.
+      - text: So read the row before the square. A defence that stopped many
+          different attacks says more.
+
+  - type: slide
+    layout: statement
+    eyebrow: The other way to fail
+    heading: Blocking everything is not defending
+    body: An outage you built on purpose is still an outage.
+    narration:
+      - text: The easy way to stop every attack is to stop every call.
+      - text: That is not a defence. It is an outage you built on purpose.
+      - text: So the board sends ordinary requests too, next to the attacks.
+      - text: "Two numbers come back: what your controls stopped, and whether
+          your agent still does the plain job. Report both."
+
+  - type: slide
+    layout: diagram
+    eyebrow: Evidence
+    heading: The card where your guard ran
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four cards left to right, one run drawn as a filmstrip. The first card
+        is the model asking for a tool. The second card, drawn in the accent
+        colour, is your guard running and stopping the call. The third card is
+        the line the record keeps, holding the field that says the call was not
+        allowed. The fourth card is you citing that line by file, line and
+        field. In a run that failed instead, the first card is missing, so none
+        of the cards after it exist either.
+      nodes:
+        - label: The model asks for a tool
+          sub: one card on the filmstrip
+        - label: Your guard runs
+          sub: it stops the call
+          mark: true
+        - label: The record keeps a line
+          sub: the field saying the call was not allowed
+        - label: You cite it
+          sub: the file, the line, the field
+    narration:
+      - text: Open the filmstrip for a run your guard stopped. One card shows
+          the model asking for the tool.
+        reveal: 1
+      - text: Your guard runs on the next card.
+        reveal: 2
+      - text: The record keeps a line, with the field saying the call was not
+          allowed.
+        reveal: 3
+      - text: Name the file, the line and the field. "My gate worked" is not a
+          citation.
+        reveal: 4
+      - text: In a failed run, that first card is missing. There is nothing to
+          point at.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Then measure the two you write about
+    body: Thirty clean trials each, and the count under every rate.
+    narration:
+      - text: "After the rounds, pick two pairings from your row: one that held,
+          and one that did not."
+      - text: Re-run each on your own, thirty clean trials, and label every
+          trial from the record.
+      - text: Report each rate with the number of clean trials under it. That is
+          the difference between a picture and a measurement.
+      - text: If your row is blank, or everything got through, you still earn
+          full marks. What is graded is the account, not the row.
+      - text: Post on the questions board if a control will not load. See you in
+          the notebook.

@@ -25,6 +25,11 @@ requests are polite and ordinary. They are still only allowed inside the lab.
 Read the Rules of Engagement page in Start Here before you run anything.
 :::
 
+::: video w4-concept | Two requests and an audit log
+Four minutes on the request nobody had to hide, and why a log records without deciding.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

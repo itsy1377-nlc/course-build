@@ -1,0 +1,202 @@
+id: w6-concept
+title: Somebody else's agent
+kind: concept
+module: m06
+embed_on: content/funded/pages/w6-overview.md
+blurb: Three minutes on reading records you did not write, and why every claim names a file, a line and a field.
+explains:
+  - content/funded/pages/w6-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 6
+    heading: Somebody else's agent
+    body: Six files, an alert that already fired, and no picture.
+    narration:
+      - text: This week the records are not yours. Another agent ran, and other
+          systems wrote it down.
+      - text: For five weeks a filmstrip drew itself while your agent ran. This
+          week there is no picture.
+      - text: You get six fixed files, and you file a containment ticket.
+      - text: There is no code to write this week, only careful reading.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The pack
+    heading: Three systems wrote down one day
+    diagram:
+      kind: split
+      alt: >
+        One day of agent activity at the top, splitting into three tracks. The
+        agent's own trace, drawn in the accent colour, holding one line for each
+        thing it did. The target's own records, its audit export and its outbox.
+        The gateway ledger, a slice of the spend log for that day. No track
+        shares a reference number with any other.
+      from:
+        label: One day, one agent
+        sub: it ran without you
+      tracks:
+        - label: The agent's trace
+          sub: one line per thing it did
+          mark: true
+        - label: The target's records
+          sub: an audit export, and an outbox
+        - label: The gateway ledger
+          sub: a slice of the spend log
+    narration:
+      - text: Three separate systems wrote down the same day.
+        reveal: 0
+      - text: Start with the agent's own trace. One line for each thing it did.
+        reveal: 1
+      - text: "The target kept its own records: an audit export, and an outbox."
+        reveal: 2
+      - text: The gateway kept a ledger of the day's cost.
+        reveal: 3
+      - text: None of them share a reference number. Lining them up by time and
+          by value is your work.
+        reveal: 3
+      - text: Comparing two records like that is called reconciliation.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: Read this first
+    heading: The alert is a claim
+    body: It says what one system decided. It does not say what happened.
+    narration:
+      - text: You are told which alert fired. That is one system's decision.
+      - text: It is not a finding.
+      - text: One pack in six fired on an ordinary action. So check the alert
+          against the records every time.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The order
+    heading: Build your own sequence first
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. Read the records, all six files before you
+        write. Build your sequence, every action the records support. Check the
+        alert against that sequence. Make the call, drawn in the accent colour:
+        incident, or not an incident.
+      nodes:
+        - label: Read the records
+          sub: all six, before you write
+        - label: Build your sequence
+          sub: every action the records support
+        - label: Check the alert
+          sub: against what you built
+        - label: Make the call
+          sub: incident, or not an incident
+          mark: true
+    narration:
+      - text: Read all six files before you write anything.
+        reveal: 1
+      - text: "Then build your sequence: every action the records support, in
+          the order they support."
+        reveal: 2
+      - text: Then check the alert against the sequence you built.
+        reveal: 3
+      - text: Then make the call. Incident, or not an incident.
+        reveal: 4
+
+  - type: slide
+    layout: code
+    eyebrow: Evidence
+    heading: Name the file, the line, and the field
+    body: |
+      file : line : field
+      trace.jsonl : 4 : to
+    narration:
+      - text: Every claim in your ticket points at bytes.
+      - text: A trace line is long, and one line can hold three facts at once.
+      - text: The tool that ran, the address it went to, and the file it sent.
+      - text: Naming the field says which of the three you mean.
+      - text: The citation is what earns the points. A wrong call, cited
+          correctly, still earns that part in full.
+
+  - type: slide
+    layout: statement
+    eyebrow: A gap is a finding
+    heading: Sometimes the record is not there
+    body: Write NO SUCH RECORD and name the file that should have held it.
+    narration:
+      - text: Sometimes the fact that settles a pack is a record nobody wrote.
+      - text: An audit row says mail was sent, and the outbox holds nothing.
+      - text: That gap is a finding, and it needs a citation.
+      - text: An absent record carries less weight than a present one. So also
+          say what else could explain it.
+
+  - type: slide
+    layout: compare
+    eyebrow: The idea to keep
+    heading: A log is not a control
+    items:
+      - A log | Writes down what the request claimed
+      - A control | Says no while it is happening
+    narration:
+      - text: Find the operator field in the audit export.
+        reveal: 0
+      - text: It holds the name the request said it was coming from.
+        reveal: 1
+      - text: The target wrote that down faithfully. It never checked it.
+        reveal: 1
+      - text: So the record shows you what was asserted, and nothing more.
+        reveal: 1
+      - text: A log tells you afterwards. A control says no at the time.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The summary
+    heading: A model wrote the handover note
+    body: One sentence in it is wrong. Read it last.
+    narration:
+      - text: The last shift left a summary, and a model wrote it.
+      - text: One sentence in it is wrong.
+      - text: Read it last, after your own sequence is built. A sequence bends
+          to match a summary.
+      - text: Then quote the wrong sentence and cite the record that contradicts
+          it. The record decides, not the note.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The ticket
+    heading: Containment is an order, not a list
+    items:
+      - What you revoke first, and why that order
+      - What stops working when you do
+      - What revoking does not undo
+    narration:
+      - text: Last comes containment.
+        reveal: 0
+      - text: The credential manifest names things you could revoke. Your ticket
+          puts them in order and says why.
+        reveal: 1
+      - text: "Then you fill the blast radius table: what stops working, who
+          notices, and what has to be issued again."
+        reveal: 2
+      - text: Then one sentence on what revocation does not undo. Mail that has
+          left has left.
+        reveal: 3
+      - text: On some packs the right answer is that nothing should be revoked.
+          With a reason, that is a full answer.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: One pack, one ticket, every claim cited
+    body: Do not leave the pack until day forty one.
+    narration:
+      - text: So you read one pack, build a sequence, make a call, and recommend
+          containment.
+      - text: Six files take longer to read than people expect. Do not leave the
+          pack until day forty one.
+      - text: Week seven asks what your own recommendation cost, so keep your
+          ticket.
+      - text: Post on the questions board if a file does not make sense. See you
+          in the notebook.
