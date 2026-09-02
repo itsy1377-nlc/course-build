@@ -269,7 +269,12 @@ def _xml(tag: str, value: Any) -> str:
     return f"    <{tag}>{escape(str(value))}</{tag}>\n"
 
 
-VIDEO_BUILD = ROOT / "build" / "video"
+# Per course tree, matching tools/video/config.py. Two courses use the same
+# video ids, so a single build/video would have them overwriting each other,
+# and a cartridge built from it would ship the wrong course's renders.
+_VARIANT = os.environ.get("ITSY_CONTENT", "content").rsplit("/", 1)[-1]
+VIDEO_BUILD = ROOT / "build" / (
+    f"video-{_VARIANT}" if _VARIANT != "content" else "video")
 # One folder inside the course's Files, hidden the way the institutional export
 # hides its own "Uploaded Media". Hidden is not unpublished: a hidden file is
 # still served to anyone with the link, which is exactly what an embedded
