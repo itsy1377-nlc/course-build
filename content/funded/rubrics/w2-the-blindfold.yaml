@@ -1,0 +1,74 @@
+ref: w2-the-blindfold
+title: "Week 2: The blindfold"
+points: 15
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead. The ladders below would then reach nobody: not the student deciding
+# what to hand in, and not the grader picking a score.
+free_form_comments: false
+guidance: |
+  You are graded on your grids and on what you claim from them. You are not
+  graded on getting a big effect. An edit that moved nothing is worth the same
+  as an edit that moved a lot, as long as you say exactly what each one shows.
+
+  Three habits carry the points. Change one thing at a time, so the comparison
+  still means something. Re-run errored trials instead of counting them, and
+  say how many you re-ran. Cite the raw record for what a tool did, never the
+  model's own account of why it chose.
+
+  If your instructor declares the gateway unavailable, run against the mock
+  model. Keep the stamp that says a simulator produced the run, and write your
+  claim so a reader knows it came from one.
+criteria:
+  - description: Thirty finished baseline trials
+    long_description: >
+      Thirty trials with the supplied descriptions unchanged, all finished. The
+      counts are reported, the number of re-runs is reported, and the model
+      version the notebook printed is recorded.
+    points: 3
+    ratings:
+      - {points: 3, description: "Thirty finished trials, re-runs and model version reported"}
+      - {points: 2, description: "Thirty finished trials, re-runs or model version missing"}
+      - {points: 1, description: "Fewer than thirty finished trials, or errored trials counted as results"}
+      - {points: 0, description: "No baseline grid"}
+  - description: The edit that moved the split
+    long_description: >
+      One word changed and nothing else. Both grids at thirty finished trials,
+      both sets of counts given. Three edits that all moved nothing, with all
+      three grids attached, earns most of this row.
+    points: 3
+    ratings:
+      - {points: 3, description: "One word named, both grids at thirty, counts given"}
+      - {points: 2, description: "Three edits tried, none moved the split, every grid attached"}
+      - {points: 1, description: "A shift claimed that the counts do not show, or more than one word changed"}
+      - {points: 0, description: "No second grid"}
+  - description: The edit that did not move the split
+    long_description: >
+      A second edit, run to thirty finished trials, reported as a result in its
+      own right. A grid that stayed put is a finding, not a failed attempt.
+    points: 3
+    ratings:
+      - {points: 3, description: "Reported as a result, with both sets of counts"}
+      - {points: 2, description: "Reported, counts incomplete"}
+      - {points: 1, description: "Described as a failure or as a run that did not work"}
+      - {points: 0, description: "Missing"}
+  - description: Both claims, with their counts and their limits
+    long_description: >
+      One sentence per edit. Each names the counts it rests on and stays inside
+      what thirty trials on one model can carry. A claim that this edit has no
+      effect, or that wording does not matter, is outside that limit.
+    points: 4
+    ratings:
+      - {points: 4, description: "Both claims carry their counts and stay inside what the grids support"}
+      - {points: 3, description: "Both claims carry their counts, one reaches slightly past the evidence"}
+      - {points: 2, description: "Claims given with no counts behind them"}
+      - {points: 0, description: "No claims written, or a claim the grids contradict"}
+  - description: The model's input, and one raw record citation
+    long_description: >
+      Your two tool descriptions found inside the model's actual input, with the
+      token count on that block. Plus one citation for a tool call: the file
+      name, the line number, and the field naming the tool that ran.
+    points: 2
+    ratings:
+      - {points: 2, description: "Descriptions located with a token count, and a citation naming file, line and field"}
+      - {points: 1, description: "One of the two done, or a citation missing its field"}
+      - {points: 0, description: "Neither, or the model's own explanation offered instead"}

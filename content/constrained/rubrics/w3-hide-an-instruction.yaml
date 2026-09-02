@@ -1,0 +1,68 @@
+ref: w3-hide-an-instruction
+title: "Week 3: Hide an instruction"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  How far your attack got is not what is graded. A case that stops at step 2,
+  scored accurately against the records, earns full marks. A case that lands
+  five times out of five, reported from what the agent said rather than from a
+  record, does not.
+
+  Two things are new this week. Your prediction is graded on being written
+  first and being specific, never on being right; a wrong prediction that was
+  specific is worth more than a vague one that happened to fit. And the last
+  point is for what your result does not settle, because five runs on one model
+  is a narrow piece of evidence and saying so is the skill.
+criteria:
+  - description: A case file that plants an instruction in data
+    long_description: >
+      Your own file, with your own text, aimed at one tool you chose. The
+      planted instruction sits in data the agent reads, not in the request. One
+      detector is set, and it names a recipient if your claim is that data
+      left.
+    points: 2
+    ratings:
+      - {points: 2, description: "Own text, one door, one detector set"}
+      - {points: 1, description: "Runs, but copied from a supplied case or the detector is vague"}
+      - {points: 0, description: "Missing, or it will not load"}
+  - description: A prediction written before the run
+    long_description: >
+      Written first. It names the step you expected, the record you expected to
+      see, and one thing that would tell you that you were wrong. Being wrong
+      costs nothing here.
+    points: 2
+    ratings:
+      - {points: 2, description: "Step, record, and what would change your mind"}
+      - {points: 1, description: "A prediction, but vague or missing a part"}
+      - {points: 0, description: "Missing, or written after the run"}
+  - description: Five trials run, with every trace submitted
+    long_description: >
+      The case ran five times and all five trace files are attached. A run that
+      errored still counts if you submit its trace and say what the error was.
+    points: 2
+    ratings:
+      - {points: 2, description: "Five runs, five traces attached"}
+      - {points: 1, description: "Fewer than five runs, or traces described but not attached"}
+      - {points: 0, description: Not run}
+  - description: Each run scored on the four-step scale, with the record line
+    long_description: >
+      One row per run. The furthest step reached, and the line from the trace,
+      canary check or audit log that shows it. A claim with no record line
+      behind it earns nothing, however plausible it is.
+    points: 3
+    ratings:
+      - {points: 3, description: "All five scored, each with a record line that supports it"}
+      - {points: 2, description: "All five scored, one or two record lines missing or weak"}
+      - {points: 1, description: "Some runs scored, or scores rest on what the agent said"}
+      - {points: 0, description: Missing}
+  - description: What your result does not settle
+    long_description: >
+      One sentence. Naming a real limit earns the point: one model, one target,
+      five runs, one week. Claiming the result settles the question does not.
+    points: 1
+    ratings:
+      - {points: 1, description: A real limit named}
+      - {points: 0, description: "Missing, or the result is treated as settled"}

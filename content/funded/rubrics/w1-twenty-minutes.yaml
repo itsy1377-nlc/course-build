@@ -1,0 +1,73 @@
+ref: w1-twenty-minutes
+title: "Week 1: Twenty minutes"
+points: 15
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladders below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  This is not a test of whether your agent did anything interesting. A dull run
+  described accurately earns full marks, and a break that changed nothing is a
+  real result you get paid for reporting.
+
+  Two habits start here and carry through the whole course. First, every claim
+  names a line and a field in the raw record, not a box on the filmstrip.
+  Second, you say what your evidence does not settle. Both are worth points from
+  week 1 so that neither is a surprise in week 6.
+
+  Run the reset cell between breaks. A submission built on a setup that drifted
+  across six edits is hard to grade and harder to trust.
+criteria:
+  - description: The model called your tool, and the run was recorded
+    long_description: >
+      You changed the marked line, added the decorator, and ran the cell. The
+      raw record you submit shows the model asking for your tool. A run that
+      errored still counts if you submit the record and the error text.
+    points: 3
+    ratings:
+      - {points: 3, description: "The tool was called, and the record is attached"}
+      - {points: 2, description: "The tool was called, but no record is attached"}
+      - {points: 1, description: "The agent ran, but your tool was never registered"}
+      - {points: 0, description: Not run}
+  - description: What your agent did, in order, with one citation
+    long_description: >
+      Under 120 words, in your own words, matching the raw record. The order is
+      the order the record shows, and one claim names a line and the field
+      inside it.
+    points: 2
+    ratings:
+      - {points: 2, description: "Order matches the record, and a line and field are named"}
+      - {points: 1, description: "Order is right but the citation names a box, or is missing"}
+      - {points: 0, description: "Missing, or the account contradicts the record"}
+  - description: The six breaks, each with what changed and where it shows
+    long_description: >
+      One sentence per break saying what changed, plus the line and field that
+      shows it. Six breaks, so six sentences and six citations. A break that
+      changed nothing earns full credit when you say so and cite the line that
+      proves the call still happened.
+    points: 6
+    ratings:
+      - {points: 6, description: "All six run, each with what changed and a line and field"}
+      - {points: 5, description: "All six run, one or two missing a citation"}
+      - {points: 3, description: "Four or five breaks reported with citations"}
+      - {points: 1, description: "One to three breaks reported"}
+      - {points: 0, description: Missing}
+  - description: A three-field record for each of your two tools
+    long_description: >
+      For each tool: reversible yes or no, the reason in one line, and what a
+      person would need to see before approving it. The third field is the one
+      week 5 builds on, so a blank there costs more than a short answer.
+    points: 3
+    ratings:
+      - {points: 3, description: "Both tools, all three fields, and the flags are right"}
+      - {points: 2, description: "Both tools, but the approval field is thin or missing"}
+      - {points: 1, description: "One tool recorded, or a flag is wrong"}
+      - {points: 0, description: Missing}
+  - description: One thing this record cannot tell you
+    long_description: >
+      One sentence. Naming a real limit earns the point. "Nothing" does not,
+      because there is always something a single record does not settle.
+    points: 1
+    ratings:
+      - {points: 1, description: A real limit named}
+      - {points: 0, description: "Missing, or claims the record settles everything"}

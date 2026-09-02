@@ -1,0 +1,70 @@
+ref: w4-english-versus-python
+title: "Week 4: English versus Python"
+points: 15
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  None of these points are on the result. An attack that never worked, described
+  accurately, earns fifteen out of fifteen. So does one that worked every time.
+  What is graded is how you ran the pair and what you claim from it.
+
+  The case students fear is a positive control that never fires. That also earns
+  full marks, as long as you say the instrument was not shown to work and that
+  the document grid therefore cannot be read. Being unable to conclude anything,
+  and knowing it, is the outcome this week is built to produce.
+
+  Label every trial from the record the run left behind. A reply saying the tool
+  ran is not a label, and a refusal is not a failure.
+criteria:
+  - description: Thirty clean trials in each arm, with the re-runs counted
+    long_description: >
+      Thirty clean trials in the document arm and thirty in the positive
+      control. Errored trials are replaced rather than counted, and you report
+      how many replacements you needed. The exact ticket text is included and
+      it is the same text across all thirty trials of its arm.
+    points: 4
+    ratings:
+      - {points: 4, description: "Thirty clean in both arms, re-runs counted, text frozen"}
+      - {points: 3, description: "Thirty clean in both arms, re-run count missing"}
+      - {points: 2, description: "One arm short of thirty, or the text changed partway"}
+      - {points: 1, description: "Fewer than twenty clean trials in an arm"}
+      - {points: 0, description: "An arm is missing"}
+  - description: Every trial labelled from the record
+    long_description: >
+      One label per trial: injected, failed, refused or errored. Refusals are
+      counted apart from failures. You name one trial labelled injected and one
+      labelled refused, and quote the field that decided each. If neither label
+      appears, you say so and name a failed trial instead.
+    points: 4
+    ratings:
+      - {points: 4, description: "All trials labelled from the record, two named with their fields"}
+      - {points: 3, description: "All trials labelled, a named trial missing its field"}
+      - {points: 2, description: "Refusals counted as failures, or labels taken from the reply"}
+      - {points: 1, description: "Totals only, with no trial by trial labels"}
+      - {points: 0, description: "No labels"}
+  - description: Both rates, each with the number it rests on
+    long_description: >
+      A rate for the document arm and a rate for the control, each stated with
+      the count of clean trials behind it. A rate with no denominator earns part
+      of this row, because a reader cannot check it.
+    points: 3
+    ratings:
+      - {points: 3, description: "Both rates given, both denominators stated"}
+      - {points: 2, description: "Both rates given, a denominator missing"}
+      - {points: 1, description: "One rate only"}
+      - {points: 0, description: "Neither rate reported"}
+  - description: What the pair does and does not establish
+    long_description: >
+      Two to four sentences, correct for the pair you actually got. Both halves
+      are needed: what these two grids support, and what they leave open. A
+      control that never fired is fully creditable here when you say the
+      instrument was not shown to work and the document grid cannot be read.
+    points: 4
+    ratings:
+      - {points: 4, description: "Both halves, bounded to these trials and this model"}
+      - {points: 3, description: "Both halves, one of them stated loosely"}
+      - {points: 2, description: "Only what the pair supports, with no limit named"}
+      - {points: 1, description: "A claim the two grids do not carry"}
+      - {points: 0, description: "Missing"}

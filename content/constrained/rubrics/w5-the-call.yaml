@@ -1,0 +1,76 @@
+ref: w5-the-call
+title: "Week 5: The case, and the call"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  Your call is what is graded here, not the number of citations you collected.
+  A careful call that turns out to be wrong earns full marks, because the work
+  is checking each claim against its record and then deciding. A right call
+  with nothing under it does not, because nobody can act on it.
+
+  Not every student has the same case pack, so there is no answer to compare
+  against. Read your own records. Mark every row you were given, including the
+  dull ones, and write the sentence that says where your evidence stops.
+criteria:
+  - description: The assistant's access described, and what it cannot reach
+    long_description: >
+      You read the manifest and listed what the assistant may open. You wrote
+      one sentence on what it cannot reach, and why read access is enough for
+      this work.
+    points: 1
+    ratings:
+      - {points: 1, description: "Access listed, and the limit explained"}
+      - {points: 0, description: "Missing, or the limit is not named"}
+  - description: Every timeline row names a record and carries a mark
+    long_description: >
+      Each row of your checked timeline gives a claim, a time, an actor, and the
+      record the claim came from. Each row is marked accepted, corrected or
+      rejected, with a reason for every mark that is not accepted. A row citing
+      no record is marked rejected.
+    points: 3
+    ratings:
+      - {points: 3, description: "Every row checked, marked, and reasons given"}
+      - {points: 2, description: "Every row marked, some reasons thin or missing"}
+      - {points: 1, description: "Some rows unchecked, or marks with no records"}
+      - {points: 0, description: "No checked timeline"}
+  - description: The call, with the record in the pack that decides it
+    long_description: >
+      A yes or a no on whether this was an incident, and the one record that
+      decides it. Your call is judged on whether it follows from the records you
+      checked, not on whether it matches anyone else's answer.
+    points: 3
+    ratings:
+      - {points: 3, description: "A clear call, resting on a named record"}
+      - {points: 2, description: "A clear call, evidence named but loosely tied"}
+      - {points: 1, description: "No decision made, or the call cites no record"}
+      - {points: 0, description: Missing}
+  - description: One claim that did not survive checking, with the record against it
+    long_description: >
+      One claim you rejected or corrected, taken from the assistant's timeline or
+      from the analyst note, with the record that does not support it. Say which
+      source the claim came from.
+    points: 1
+    ratings:
+      - {points: 1, description: "A rejected claim, its source, and the record"}
+      - {points: 0, description: "Missing, or asserted with no record"}
+  - description: The control you would recommend, in one buildable sentence
+    long_description: >
+      One control at the agent's tool boundary: one thing that must be true
+      before a tool runs. Specific enough that somebody could build it. You build
+      this one yourself in week 6.
+    points: 1
+    ratings:
+      - {points: 1, description: "A specific control at the tool boundary"}
+      - {points: 0, description: "Missing, or too vague to build"}
+  - description: What your evidence does not settle, and what changes when it acts
+    long_description: >
+      Two sentences. One names something your records cannot answer, such as
+      intent, harm or severity. One says what changes when the thing you are
+      checking took actions rather than only writing text.
+    points: 1
+    ratings:
+      - {points: 1, description: "Both sentences written, both specific"}
+      - {points: 0, description: "Missing, or claims the pack settles everything"}

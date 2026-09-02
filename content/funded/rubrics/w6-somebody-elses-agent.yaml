@@ -1,0 +1,96 @@
+ref: w6-somebody-elses-agent
+title: "Week 6: Somebody else's agent"
+points: 15
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  Almost every line of this ticket is checked against a key that was written
+  before you opened your pack. Three sentences are read by a person. So write
+  for a reader who has the same six files open and wants to land on the same
+  bytes you did.
+
+  Cite `file:line:field` every time. A line number alone is not enough, because
+  one trace line can hold the text that arrived, the address it went to, and the
+  value that went with it. Where the deciding record is missing, write
+  `NO SUCH RECORD` and name the file that should have held it. Three of the six
+  packs turn on a record nobody wrote.
+
+  The call is graded on your citation, not on your answer. A wrong call reached
+  from correctly cited evidence earns that row in full. A right call with nothing
+  cited earns none of it. One pack in six carries an alert that fired on a normal
+  action, so `NOT AN INCIDENT` and `NO REVOCATION IS WARRANTED` are real answers
+  and each earns full credit where the records support it.
+criteria:
+  - description: The sequence, in order, every step cited to a field
+    long_description: >
+      Every action the records support, in the order they support, each one
+      cited as file, line and field. Any action the target never saw is marked
+      as such, and so is any audit row with no trace line behind it. A missed
+      step costs a step, not the row.
+    points: 2
+    ratings:
+      - {points: 2, description: "In order, every step cited to a field"}
+      - {points: 1, description: "Steps out of order, or cited to a line with no field"}
+      - {points: 0, description: "Missing, or no citations at all"}
+  - description: One sentence saying what the agent did
+    long_description: >
+      One sentence, in your own words, that matches the sequence you just cited.
+      Use one of the four labels from week 4 where it fits: injected, failed,
+      refused or errored. A sentence that goes past what you cited loses part of
+      this row.
+    points: 2
+    ratings:
+      - {points: 2, description: "One sentence, and it matches the cited sequence"}
+      - {points: 1, description: "A sentence that goes past the sequence you cited"}
+      - {points: 0, description: "Missing, or it contradicts the records"}
+  - description: The call, the citation that decides it, and one limit named
+    long_description: >
+      Incident or not an incident, the one field that decides it, and one
+      sentence naming something these records cannot settle. A wrong call
+      reached from correctly cited evidence earns this row in full. A right call
+      with nothing cited earns none of it. `NO SUCH RECORD`, naming the file
+      that should have held it, is a citation.
+    points: 4
+    ratings:
+      - {points: 4, description: "Deciding field cited, the call follows from it, one limit named"}
+      - {points: 3, description: "Deciding field cited and the call follows, no limit named"}
+      - {points: 2, description: "A field cited, but it does not decide the call"}
+      - {points: 1, description: "A line cited with no field named"}
+      - {points: 0, description: "No citation, whatever the call"}
+  - description: "Containment: the order, the item you cannot revoke, the blast radius"
+    long_description: >
+      The five items in the credential manifest, put in an order, with a reason
+      for that order. The one item that cannot be revoked is marked, with what
+      would be needed instead. The blast radius table for your first revocation
+      is filled in: what stops working, who notices, and what has to be issued
+      again. `NO REVOCATION IS WARRANTED`, with a reason, earns this row in full
+      on the packs where the records support it.
+    points: 3
+    ratings:
+      - {points: 3, description: "Ordered with reasons, the unrevocable item marked, blast radius filled"}
+      - {points: 2, description: "Ordered and marked, blast radius thin or part filled"}
+      - {points: 1, description: "A list with no order, or no blast radius at all"}
+      - {points: 0, description: "Missing"}
+  - description: "Reconciliation: one disagreement, cited on both sides"
+    long_description: >
+      One place where two of the six files do not line up, cited on both sides.
+      If they do agree, say so and show the check you ran. Naming what else
+      could explain the gap, such as a clock that is off or a retry, is part of
+      the answer.
+    points: 2
+    ratings:
+      - {points: 2, description: "Both sides cited, or agreement shown by a stated check"}
+      - {points: 1, description: "A disagreement named, only one side cited"}
+      - {points: 0, description: "Missing"}
+  - description: "The handover note: the sentence, its drift class, and the citation"
+    long_description: >
+      The one wrong sentence quoted from the handover note, its drift class
+      named from the menu on the form (unsupported, contradicted, overstated or
+      dropped), and the record that contradicts it, cited to a field.
+    points: 2
+    ratings:
+      - {points: 2, description: "Sentence quoted, drift class named, contradicting record cited"}
+      - {points: 1, description: "Sentence quoted, drift class or citation missing"}
+      - {points: 0, description: "Missing, or a sentence the records support"}

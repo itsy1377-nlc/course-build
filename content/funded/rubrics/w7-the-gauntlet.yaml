@@ -1,0 +1,72 @@
+ref: w7-the-gauntlet
+title: "Week 7: The gauntlet"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  Nothing here is scored on how your row or your column looks. A row of blocks
+  and a row of hits earn the same, described accurately. The board is a picture
+  of one afternoon, and a picture is not a measurement.
+
+  Two habits from earlier weeks decide most of these points. Every claim names a
+  file, a line and a field. Every rate carries the number of clean trials under
+  it.
+
+  One thing is new. A control only counts where the model actually asked for the
+  tool. If the model never asked, your guard was never reached, and that trial
+  is about the attack rather than about your defence. Label it failed, not
+  blocked, and you will not credit a guard for work it did not do.
+
+  Say plainly if your controls also stopped ordinary work. That is a real
+  finding about your gate, and reporting it earns the row in full.
+criteria:
+  - description: Every control on, each shown from the record
+    long_description: >
+      Your cap, your approval gate and your containment are all on, and for each
+      one you name the file, the line and the field that shows it ran. Your
+      containment says what you took out, what broke, and what taking it out
+      does not undo. You also report your one ordinary run, including the case
+      where your own controls got in its way.
+    points: 3
+    ratings:
+      - {points: 3, description: "All three on and cited from the record, ordinary run reported"}
+      - {points: 2, description: "All three on, one cited loosely or the ordinary run missing"}
+      - {points: 1, description: "Controls on, with no citation to the record"}
+      - {points: 0, description: "Controls left off, or nothing submitted"}
+  - description: One attack submitted as text, within the rules
+    long_description: >
+      One attack, submitted to the board as text plus the name of the tool it
+      aims at, and accepted by the schema check. Every name and number in it is
+      invented. It names no classmate and carries no real data.
+    points: 2
+    ratings:
+      - {points: 2, description: "Submitted, accepted, invented data throughout"}
+      - {points: 1, description: "Submitted late, or the target tool is not named"}
+      - {points: 0, description: "No attack submitted"}
+  - description: Two pairings re-run to thirty clean trials, labelled from the record
+    long_description: >
+      One pairing where your controls held and one where they did not, each
+      re-run to thirty clean trials. Every trial carries one of the five labels,
+      decided by the record rather than by the reply. Errored trials are
+      replaced and the replacements are counted. One field is quoted per
+      pairing. A row that came back all one way is fully creditable when you say
+      so and follow the alternative in the assignment.
+    points: 3
+    ratings:
+      - {points: 3, description: "Both pairings at thirty clean trials, labelled from the record, re-runs counted"}
+      - {points: 2, description: "Both pairings at thirty, re-run count or a quoted field missing"}
+      - {points: 1, description: "One pairing only, or fewer than twenty clean trials in one"}
+      - {points: 0, description: "No re-runs reported"}
+  - description: What the board and your re-runs do and do not establish
+    long_description: >
+      Three to five sentences covering both halves: what your row, your column
+      and your two rates support, and what they leave open. Five runs a square
+      is a hint, so a blank square is not proof that a control held. Both rates
+      carry the number of clean trials they rest on.
+    points: 2
+    ratings:
+      - {points: 2, description: "Both halves, bounded to these trials and this model"}
+      - {points: 1, description: "Only what the results support, with no limit named"}
+      - {points: 0, description: "Missing, or a claim the board cannot carry"}

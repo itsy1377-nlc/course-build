@@ -1,0 +1,68 @@
+ref: w2-same-thing-twice
+title: "Week 2: Five runs, and what changed"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so a student choosing what to submit would see none of the ladder
+# below, and neither would the grader choosing a score.
+free_form_comments: false
+guidance: |
+  You are graded on the comparison, not on what the agent happened to do. Five
+  runs that came out identical earn full marks when they are described
+  accurately, and so do five that came out different every time.
+
+  Two things carry most of the points. First, every claim is a count out of the
+  trials you ran, taken from your traces. Second, you say what ten runs do not
+  settle. Both are worth points now so that neither is a surprise in week 3,
+  where the same two habits decide whether an attack result means anything.
+criteria:
+  - description: Ten runs completed, with a trace kept for each
+    long_description: >
+      Five runs of the supplied request and five runs of your own requests, each
+      with its own trace file, labelled so the two sets can be told apart. A run
+      that errored still counts if you submit its trace and the error text.
+    points: 2
+    ratings:
+      - {points: 2, description: "Ten runs, ten traces submitted and labelled"}
+      - {points: 1, description: "Some runs missing, or traces described but not submitted"}
+      - {points: 0, description: "Not run"}
+  - description: The five same-request runs compared, filled from the traces
+    long_description: >
+      One row per run. The number of tool calls, the tools in order, whether the
+      run reached a final answer, and one column you chose. Every cell matches
+      what the trace for that run shows. The counting script's numbers appear
+      beside your hand count.
+    points: 3
+    ratings:
+      - {points: 3, description: "All five rows complete and matching the traces, script numbers included"}
+      - {points: 2, description: "All five rows present, script numbers missing or one column unfilled"}
+      - {points: 1, description: "Table started, or cells that contradict the traces"}
+      - {points: 0, description: "No comparison table"}
+  - description: The five requests of your own compared the same way
+    long_description: >
+      Five ordinary requests you wrote, run once each, in a second table with the
+      same columns. Any reasonable support request counts. The requests are
+      written out so a reader knows what was sent.
+    points: 1
+    ratings:
+      - {points: 1, description: "Second table present, with the five requests written out"}
+      - {points: 0, description: "Missing, or the requests are not stated"}
+  - description: What varied and what held, each pointing at a row or column
+    long_description: >
+      Under 200 words. One part that changed between runs and one part that was
+      the same in all five, each tied to the place in your table that shows it.
+      Naming a part that held is worth as much as naming one that varied.
+    points: 2
+    ratings:
+      - {points: 2, description: "Both named, each pointing at the table"}
+      - {points: 1, description: "One named, or named with no place in the table to check"}
+      - {points: 0, description: "Missing, or contradicted by your own table"}
+  - description: What one run proves, and what ten runs do not settle
+    long_description: >
+      Two or three sentences. A result stated as a count out of the trials you
+      ran, and one honest limit on what those trials establish. "Nothing is
+      unsettled" earns no credit, because ten runs always leave something open.
+    points: 2
+    ratings:
+      - {points: 2, description: "Answers both, and the result is stated as a count out of trials"}
+      - {points: 1, description: "Answers one, or answers both without any count"}
+      - {points: 0, description: "Missing, or claims ten runs settle the question"}

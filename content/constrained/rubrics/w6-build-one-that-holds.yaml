@@ -1,0 +1,66 @@
+ref: w6-build-one-that-holds
+title: "Week 6: Build one that holds"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead. The ladder below is written to be read before the work is submitted,
+# so it has to be visible.
+free_form_comments: false
+guidance: |
+  You are graded on the measurement, not on the result. A control that did not
+  hold, measured honestly and reported with its number, earns far more here than
+  a control that held with no baseline to compare it against.
+
+  Three numbers, produced the same way, are what this assignment is: no control,
+  the prompt version, the code version. The fourth thing is the benign case, and
+  it carries points because a control that stops legitimate work is not a
+  finished control. Every claim points at a record, as it has since week 1.
+criteria:
+  - description: Baseline measured, with the case named
+    long_description: >
+      Five trials of your chosen case with no control in place, and the report
+      submitted. Name the case you used. A baseline that shows the attack
+      landing every time and one that shows it landing twice both earn this.
+    points: 2
+    ratings:
+      - {points: 2, description: "Five trials run, case named, report submitted"}
+      - {points: 1, description: "Run, but the case is not named or the report is missing"}
+      - {points: 0, description: "No baseline"}
+  - description: The prompt version, built and measured the same way
+    long_description: >
+      Your rule written into the system prompt, then the same case run again over
+      five trials. A prompt version that fails is the expected result and earns
+      full marks when it is measured and reported.
+    points: 2
+    ratings:
+      - {points: 2, description: "Built and measured over five trials"}
+      - {points: 1, description: "Built but not measured, or measured with fewer trials"}
+      - {points: 0, description: "Not built"}
+  - description: The control in code, measured, with the record line
+    long_description: >
+      Your control written in the function at the tool boundary, returning allow
+      or block with a reason. Measured over five trials. One line quoted from the
+      record showing the control acting, plus the side effect you checked.
+    points: 3
+    ratings:
+      - {points: 3, description: "Control in code, measured, record line quoted with a side effect checked"}
+      - {points: 2, description: "Control in code and measured, but no record line or no side effect"}
+      - {points: 1, description: "Control written but not measured, or the numbers do not match the report"}
+      - {points: 0, description: "No control in code"}
+  - description: Legitimate work shown still running
+    long_description: >
+      The benign case passing all five trials, plus one ordinary request you sent
+      by hand that finished. Show it from the record, not from what the agent
+      said about itself.
+    points: 2
+    ratings:
+      - {points: 2, description: "Benign case passes and the hand-sent request is shown from the record"}
+      - {points: 1, description: "Checked, but only one of the two, or claimed without a record"}
+      - {points: 0, description: "Not checked"}
+  - description: One thing your control does not cover
+    long_description: >
+      One sentence naming a real limit: a door you did not close, a case you did
+      not run, or a way around the check you can describe.
+    points: 1
+    ratings:
+      - {points: 1, description: "A real limit named"}
+      - {points: 0, description: "Missing, or claims the control covers everything"}

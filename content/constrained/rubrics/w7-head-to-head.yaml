@@ -1,0 +1,70 @@
+ref: w7-head-to-head
+title: "Week 7: Head to head"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  Nothing here is graded on how well your control did. It is graded on whether
+  your account matches the record the runner wrote.
+
+  A control that held two cases out of nine, reported accurately, earns more
+  than one that held all nine by refusing ordinary work. The last task is the
+  same: a result showing your control did nothing is a real result, and the
+  points are in explaining why, not in the outcome.
+
+  One change between the rounds, and a reason for it. Three changes and a
+  better score teach you nothing about which change worked, so they are not
+  worth full marks here.
+criteria:
+  - description: Round one standing, taken from the record
+    long_description: >
+      The word the runner gave each pooled case in round one, plus the benign
+      result. Copied from the results the run wrote, not from what the agent
+      said about itself.
+    points: 2
+    ratings:
+      - {points: 2, description: "Every case reported, benign result included"}
+      - {points: 1, description: "Cases reported, benign result missing or unclear"}
+      - {points: 0, description: "Missing, or not taken from the record"}
+  - description: The shared pattern, and one change with a reason
+    long_description: >
+      What the cases that got through had in common, in one or two sentences,
+      and the single change you made because of it. The reason has to work
+      without naming any one case.
+    points: 2
+    ratings:
+      - {points: 2, description: "A pattern named, one change, reason given"}
+      - {points: 1, description: "A change with no pattern, or more than one change"}
+      - {points: 0, description: "No change, or no account of what you changed"}
+  - description: Round two compared with round one
+    long_description: >
+      Each case whose result changed, named, and the cases that did not move.
+      Cases that stayed the same carry as much information as the ones that
+      moved.
+    points: 2
+    ratings:
+      - {points: 2, description: "Both rounds compared, unmoved cases named"}
+      - {points: 1, description: "Round two reported, comparison thin or unmoved cases left out"}
+      - {points: 0, description: "Round two missing"}
+  - description: Your week 3 case, and why the control behaved that way
+    long_description: >
+      The word the runner gave your own case with the finished control in
+      place, then two sentences: what that word says happened, and why the
+      control behaved that way given where in the agent it sits. Either outcome
+      earns full marks when the explanation is right.
+    points: 3
+    ratings:
+      - {points: 3, description: "Result recorded and explained by where the control sits"}
+      - {points: 2, description: "Result recorded, explanation weak or wrong"}
+      - {points: 1, description: "Run described with no result from the record"}
+      - {points: 0, description: "Not run"}
+  - description: What these results do not settle
+    long_description: >
+      One sentence. Trial counts, errored trials, flaky results and cases
+      nobody wrote are all real limits. Naming one earns the point.
+    points: 1
+    ratings:
+      - {points: 1, description: A real limit named}
+      - {points: 0, description: "Missing, or claims the results settle it"}

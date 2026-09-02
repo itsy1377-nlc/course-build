@@ -1,0 +1,77 @@
+ref: w3-somebody-elses-function
+title: "Week 3: Somebody else's function"
+points: 15
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead. The ladder below would then reach nobody: not the student deciding
+# what to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  You are not graded on identifying three tools out of three. You are graded on
+  whether each claim you make matches the record you cite for it.
+
+  That means a wrong answer can still earn most of a report. Say what the tool
+  seemed to do, show the probes that pointed there, and cite the line. A
+  confident guess with no citation earns nothing, and "I could not tell, and
+  here is what I ruled out" earns most of the row.
+
+  Two habits carry the marks. Probe enough times that a one in three fault
+  cannot hide, and end every report with the question week 1 asked: if this ran
+  by mistake, could you undo it?
+criteria:
+  - description: Your specification, accepted and honestly described
+    long_description: >
+      You picked one effect from the menu of eight, set parameters the cell
+      accepted, and wrote a description sentence that is true about what the
+      tool returns and does not mention the effect. A sentence that is simply
+      false is easy to catch and earns less.
+    points: 3
+    ratings:
+      - {points: 3, description: "Accepted, and the description is true and hides the effect"}
+      - {points: 2, description: "Accepted, but the description names or nearly names the effect"}
+      - {points: 1, description: "Accepted, but the description is false rather than incomplete"}
+      - {points: 0, description: "Not submitted in time to be distributed"}
+  - description: What each of the three tools really does
+    long_description: >
+      One report per tool, under 200 words. Each says what the tool actually
+      does, not what its card claims. A wrong conclusion that the cited evidence
+      genuinely supports still earns most of this row, and so does a clear
+      statement that you could not tell, with what you ruled out.
+    points: 4
+    ratings:
+      - {points: 4, description: "All three identified, or defeats explained with what was ruled out"}
+      - {points: 3, description: "Two identified, the third reasoned from evidence but wrong"}
+      - {points: 2, description: "One identified, the others guessed or left blank"}
+      - {points: 1, description: "Reports written but none supported by what was observed"}
+      - {points: 0, description: "No reports"}
+  - description: One file, line and field cited for each claim
+    long_description: >
+      Every claim points at the raw record: the file, the line number the raw
+      view prints, and the field inside it. A description of an impression is
+      not a citation. "The tool seemed slow" earns nothing here.
+    points: 4
+    ratings:
+      - {points: 4, description: "Three claims, three citations naming file, line and field"}
+      - {points: 3, description: "Three citations, one missing the field or the line"}
+      - {points: 2, description: "Two claims cited, one uncited"}
+      - {points: 1, description: "One claim cited"}
+      - {points: 0, description: "No citations, or claims cite the tool's own output as proof"}
+  - description: Twelve or more direct probes per tool, with results reported
+    long_description: >
+      Direct calls you made yourself, with no model involved, and a record of
+      every call and result. Twelve is the floor because one effect on the menu
+      is wrong only one call in three.
+    points: 2
+    ratings:
+      - {points: 2, description: "Twelve or more probes on each of the three tools, results attached"}
+      - {points: 1, description: "Fewer than twelve on one or more tools, or counts not reported"}
+      - {points: 0, description: "No probe record"}
+  - description: Whether you would let each tool run unattended, with a reason
+    long_description: >
+      One judgement per tool and the reason behind it. The reason is the graded
+      part. A tool that writes a file on every call is a different risk from one
+      that returns a wrong number, and your answer should say so.
+    points: 2
+    ratings:
+      - {points: 2, description: "A judgement and a reason for all three tools"}
+      - {points: 1, description: "Judgements given for all three, reasons thin or missing"}
+      - {points: 0, description: "Missing"}
