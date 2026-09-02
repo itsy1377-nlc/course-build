@@ -42,11 +42,14 @@ rather than the course, so it carries over.
 
 ## 1. The course in one line
 
-**In the first twenty minutes of week one you make a model call your own code,
-and for six weeks afterwards everything you attack, defend and prove is the
-agent you built.**
+**In the first twenty minutes of week one you make a model call your own code.
+For five weeks everything you attack, defend and prove is the agent you built.
+Then in week 6 you are handed somebody else's, in the state a real one arrives
+in: raw records, an alert already fired, and no pretty view.**
 
-That is the whole design. One artifact, made in week 1, carried to week 7.
+One artifact from week 1 to week 5, a deliberate break in week 6, and the
+controls you wrote turned on again in week 7. The break is the point: a student
+who can only investigate their own homework has learned nothing transferable.
 
 ---
 
@@ -119,12 +122,12 @@ them as such.
 
 | Wk | Title | What the student does | What is on screen |
 |---|---|---|---|
-| **1** | Twenty minutes | Take a working four line function, change one line of it, add one decorator, and watch a model decide by itself to call it. A reset cell restores the known-good version at any point, and a check cell says in plain words what is wrong before the model is ever called. Then break it six ways on purpose and watch what changes: delete the description, describe a different function, make it raise, make it return far too much, cut the step limit, take the tool away. Add a second supplied tool that writes a file, and answer the question that raises: which of your two can you undo? | The filmstrip drawing itself live; tool cards; the blindfold; twenty five agents appearing on a projected class board |
+| **1** | Twenty minutes | Take a working four line function, change one line of it, add one decorator, and watch a model decide by itself to call it. A reset cell restores the known-good version at any point, and a check cell says in plain words what is wrong before the model is ever called. Then break it six ways on purpose and watch what changes: delete the description, describe a different function, make it raise, make it return far too much, cut the step limit, take the tool away. Add a second supplied tool that writes a file, and answer the question that raises: which of your two can you undo? Your answer is a three-field record per tool: reversible yes or no, the one-line reason, and what a person would need to see before approving it. A `show_raw()` cell opens beside every filmstrip from here on, printing the actual JSONL with stable line numbers, because from week 1 every citation in this course names a field in a file and never "the third card" | The filmstrip drawing itself live, with the raw bytes one cell below it; tool cards; the blindfold; twenty five agents appearing on a projected class board |
 | **2** | The blindfold | Two tools with the same code and different descriptions. Which does the model pick, twenty times? Change one word and run again. Find one edit that moves the grid and one that does not, and get credit for both. Then see the model's actual input as stacked blocks with token counts, and find your own tool descriptions sitting in it | Trial grids filling square by square, side by side as edits accumulate; the context window as coloured blocks |
-| **3** | Somebody else's function | You do not write the hidden behaviour, you specify it: pick one effect from a menu of eight, set its parameters, and write the sentence of description that hides it. A generator then emits a real Python tool from your specification, and **that generated source is what your classmates receive**, with no label on it saying which effect it is. Three classmates' tools run against your agent in a sandbox, and you have forty five minutes to work out what each really does by reading the code, by probing it directly, and by watching the filmstrip and the workspace diff | Anonymous tool cards; the code itself; the filmstrip of your own agent behaving strangely; the workspace diff for the two effects that write |
-| **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: the same instruction in your own message instead, twenty trials again. Report both grids and state exactly what the pair does and does not establish | Two grids side by side, whichever way they fall; filmstrips that stop part way |
-| **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then write the cap, in your own code, and run it again | The budget bar draining live; a black cap card ending a run mid-flight; before and after with the cost difference |
-| **6** | It told me something false | An incident pack built from your own records across weeks 3 to 5, your own installs, your own runaway, with one intruder mixed in. An assistant summarises it. Check every line against the file it came from and mark each accepted, corrected or rejected | A timeline colouring green and red as your own checker runs |
+| **3** | Somebody else's function | You do not write the hidden behaviour, you specify it: pick one effect from a menu of eight, set its parameters, and write the sentence of description that hides it. A generator then emits a real Python tool from your specification, and **that generated source is what your classmates receive**, with no label on it saying which effect it is. Three classmates' tools run against your agent in a sandbox, and you have forty five minutes to work out what each really does by reading the code, by probing it directly, and by watching the filmstrip and the workspace diff. The tool cards render with the field names the protocol actually uses, `name`, `description` and `inputSchema`, and one supplied paragraph says plainly what MCP is, that this manifest shape is what it standardised, that you are reading manifests over a local transport rather than running a server, and that the failure you just found is what ATLAS calls tool poisoning | Anonymous tool cards in manifest shape; the code itself; the filmstrip of your own agent behaving strangely; the workspace diff for the two effects that write |
+| **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: the same instruction in your own message instead, twenty trials again. Report both grids and state exactly what the pair does and does not establish. The four labels are the ones you will use again in week 6: injected, failed, refused, errored. Two named trials, one that fired and one that refused, each carry the field that decides the label | Two grids side by side, whichever way they fall; filmstrips that stop part way |
+| **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then write the cap, and run it again. The cap is guard one, a number. Guard two is an approval gate over the tools your own week 1 records marked irreversible, and it is where you find out that a gate does not discriminate, it delegates: it blocks the attack and it also blocks the legitimate escalation, and the count of approvals over twenty trials, multiplied out to a shift, is approval fatigue measured from your own data | The budget bar draining live; a black cap card ending a run mid-flight; an approval card pausing a run; before and after with the cost difference |
+| **6** | Somebody else's agent | You are handed one of six fixed incident packs: raw trace JSONL, the target's audit export, outbox files, a slice of the gateway spend log, a credential manifest, and the previous shift's AI-written handover note. You are told which alert fired. **The filmstrip is switched off.** File a containment ticket: what the agent did in order, whether this is an incident and the one field that decides it, what gets revoked right now and what that breaks, where two records fail to reconcile, and which sentence in the handover note is wrong | The raw bytes, with stable line numbers; a containment form with closed vocabulary; the class histogram of calls once everyone has filed |
 | **7** | The gauntlet | Turn on every control you built. Then two rounds, live: your defences against the class's attacks, and your attacks against theirs | Two boards updating on the projector during play, everyone named on both |
 
 **Week 4 is the week that must work whichever way the measurement goes.** It is
@@ -147,9 +150,10 @@ and here is what that does and does not establish. That is a smaller claim than
 
 ## 4. The three mechanics that carry it
 
-**The agent they built.** One artifact from week 1 minute 20 to week 7. Every
-attack is against a thing they made, every control is in their own code, and by
-the end it exports as a folder holding a system prompt they wrote, the three or
+**The agent they built, and the one week it is taken away.** One artifact from
+week 1 minute 20 to week 5, and again in week 7. Every attack is against a thing
+they made, every control is in their own code, and by the end it exports as a
+folder holding a system prompt they wrote, the three or
 four tools they edited or filled in, and the guard code they added in weeks 5
 and 7.
 
@@ -219,7 +223,7 @@ instructional resource. Review found exactly that and it was right.
 | **3** | Three reports on classmates' tools: what each really does, and the evidence line that shows it | 15 | Needs the sandbox on the school server, not the gateway. Unaffected by a contract lapse and blocked by a server outage |
 | **4** | The document grid, the positive-control grid, and the bounded claim the pair supports | 15 | The mock's injection-following rate is seeded per student, so some see a null and some do not. The claim is graded, not the outcome |
 | **5** | The cost prediction, the runaway trace, the cap in the student's own code, and the before-and-after difference. **Ten of these fifteen points require a real gateway run**, of any size and any outcome, reconciled against the ledger | 15 | Five points on the mock's synthetic arithmetic. The other ten wait: the outage policy extends the deadline. If the contract never lands, the row converts to the mock, the banner rides on the artifact, and the course records that it graded a simulation |
-| **6** | The incident pack checked line by line, each line accepted, corrected or rejected against the file it came from | 15 | The assistant that summarises the pack is the mock. Its planted errors are scripted rather than emergent, which makes the week easier than it should be |
+| **6** | One containment ticket on a supplied form: the sequence, the call, the containment order and blast radius, the reconciliation, and the wrong sentence in the handover note | 15 | **Unaffected.** The packs are fixed bytes authored before the term and the handover note is written by hand, so this week needs neither the gateway nor a model. It is the one week an outage cannot touch |
 | **7** | The gauntlet: attacks submitted, defences turned on, and a short account of one defence that held and one that did not | 10 | Both rounds run against the mock. Needs the class board, so a server outage blocks it |
 | | **Total** | **100** | |
 
@@ -257,6 +261,43 @@ fifteen, provided the student says the instrument was not shown to work and the
 document result is therefore uninterpretable. Being unable to conclude anything,
 and knowing it, is the outcome this course exists to produce.
 
+**Week 6's rubric, at the same granularity.** Roughly ninety per cent of the
+ticket is closed vocabulary scored against a per-pack key that was written before
+the student opened the pack. Three sentences are read by a person.
+
+| What earns it | Pts |
+|---|---:|
+| **The sequence.** Every action in the order the records support, selected from the pack's citable fields, with the one action the target never saw, or the one audit row with no trace line, marked as such. Scored by longest common subsequence, so a missed step costs a step and not the row | 2 |
+| **What happened.** One sentence saying what the agent did, consistent with the sequence just cited | 2 |
+| **The call.** Incident or not, with the one citation that decides it, plus one sentence naming something this record cannot settle. **A wrong call reached from correctly cited evidence earns this row in full; a right call with no citation earns none of it** | 4 |
+| **Containment.** A revocation order over the closed menu in the credential manifest, the one item correctly marked not revocable with its reason, and the blast radius table for the first revocation. `NO REVOCATION IS WARRANTED`, with a reason, is a first-class answer and earns the row in full on the packs where it is correct | 3 |
+| **Reconciliation.** One place two records disagree, cited on both sides, or a statement that they agree with the check that shows it | 2 |
+| **The handover note.** The wrong sentence quoted, its drift class named from the closed menu, and the citation that contradicts it | 2 |
+| | **15** |
+
+**Two things this rubric had to be built to do**, both of which review found the
+first version could not.
+
+**It has to let a student argue from absence**, because three of the six packs
+turn on a record that is not there: an empty outbox, a spend row with no trace to
+account for it, an id gap. An absent record has no line to cite, so the citation
+vocabulary carries `NO SUCH RECORD` as a selectable value, requiring the student
+to name the file that should have contained it. Without that value a student can
+reach the right conclusion by the right reasoning and have nowhere to put it.
+This repository has made the opposite mistake before, and the comment reading
+"Missing evidence is not evidence of absence" is already in the code because of
+it.
+
+**And it has to cite a field rather than a line.** Measured against the 2,428
+traces in `labs/runs/traces/`, the median trace is nine lines long and its
+ninety-fifth-percentile line is 2,443 characters, because `trace.py` embeds the
+whole tool result in the event. One line routinely holds the injection, the
+recipient and the exfiltrated value together. So the citable unit is
+`file:line:field`, the pack ships a pre-built index of every citable field, and
+the key anchors on that index. A line citation would have been unable to
+distinguish the deciding fact from its neighbours, which is the whole of rows 1
+and 3.
+
 ---
 
 ## 5. How the outcomes are met
@@ -266,10 +307,99 @@ and knowing it, is the outcome this course exists to produce.
 | 1 | Describe how an agentic system operates from its recorded run | Wk 1, the filmstrip of a system they assembled |
 | 2 | Interpret a short script to determine what it accesses and changes | Wk 3, reading a stranger's tool, which is the literal week |
 | 3 | Analyze a tool configuration to identify irreversible actions | Wk 1, assigning the flag to their own tools |
-| 4 | Differentiate evidence from assertion | Wk 4 and 6, their own grids and their own incident |
+| 4 | Differentiate evidence from assertion | Wk 4 and 6, their own grids, and a record somebody else made |
 | 5 | Interpret repeated-trial results including no effect | Wk 2 and 4, with the positive control bounding what the null supports |
-| 6 | Apply a control at a tool boundary and verify its effect | Wk 5 and 7, in their own code, verified against classmates |
-| 7 | Evaluate AI output against source evidence | Wk 6, against evidence generated from their own term |
+| 6 | Apply a control at a tool boundary and verify its effect | Wk 5 and 7, in their own code: a numeric cap and an approval gate in week 5, verified against two held-out cases, then every control turned on in week 7 |
+| 7 | Evaluate AI output against source evidence | Wk 6, the handover note against the pack it claims to summarise |
+
+---
+
+## 5a. The leg this course was missing
+
+**A six-person panel found that the phrase in the course title appeared nowhere
+in the proposal.** Verified by search of the document as it then stood:
+"security operations" appeared zero times, and so did containment, revoke,
+respond, MCP and alert; "detection" appeared twice and both were about the
+harness's internal chain detector. The student built one agent in a sandbox and
+attacked it, and never once sat in the defender's chair with somebody else's
+agent running in an environment they were responsible for. The practitioner on
+the panel put it plainly, and she was right.
+
+**What week 6 now delivers.**
+
+*Identity and credentials, in full.* Every pack carries five revocable objects
+and the student names and orders them: the gateway key, shown by alias and hash
+prefix as the spend log shows it and never in cleartext; an API key sitting in
+the system prompt with no scope, no expiry and no rotation path; a stored payment
+reference; a policy token; and the operator account whose identity the request
+merely asserted. That last one is where the lesson lands on evidence rather than
+on a comment: the audit log faithfully records who claimed to be asking, and the
+application never checks it, so the record proves what happened while nothing
+prevented it. Blast radius is a filled table rather than an adjective. And the
+sentence on what revocation does **not** undo is the one that separates an
+analyst from a student.
+
+*Detection, the analyst half.* The student reads telemetry produced by systems
+they did not design, that disagree with each other, with no shared correlation
+id. One pack in six carries an alert that fired on a benign action, so validating
+an alert against the record is real work and not a formality. That arm is this
+project's own history: case A5 reported a vulnerability five times out of five
+against an attack that never landed. It is **not** detection engineering. There
+is no rule authoring, no precision and recall, no labelled corpus, and rule
+authoring would be code from a blank file in any case.
+
+*Response, the decision half.* Containment is named, ordered and priced: what to
+revoke first, what breaks when you do, and what it does not undo. Execution is
+not here; week 7 already says "turn on every control you built", and the
+containment recommended in week 6 is one of them.
+
+*MCP, read rather than run.* Week 3's tool cards render in manifest shape and one
+paragraph names the protocol. A graduate can say they read a tool manifest and
+found the poisoned description, and can point at the field. They cannot say they
+stood up or audited a live server, and nothing here should let them imply
+otherwise.
+
+**What it does not deliver, said plainly rather than fudged.** Approval gates are
+built in week 5 and reasoned about in week 6, but no week has a student operate a
+gate under load. Multi-agent is out of this course entirely, which is why the
+nested filmstrip is deleted from the build in section 7 rather than left standing
+as an implied promise.
+
+**The off-ramp, which is the point of switching the filmstrip off.** The panel's
+sharpest cut at section 2 was that a graduate trained only on the pretty view
+cannot read a log, and that reading twenty thousand characters of JSON is the
+job. Weeks 1 to 5 build the filmstrip habit; week 6 takes it away and hands over
+the bytes. `show_raw()` sits beside every filmstrip from week 1 precisely so that
+the week 6 hand-off is a change of tool and not a change of language.
+
+**One tension this creates, booked here rather than discovered at build time.**
+This project has already measured that an accurate hedged sentence costs reading
+grade while a confident wrong one does not, and the build fails above grade 8.
+Week 6's whole vocabulary is hedged: what this record cannot settle, what could
+still have been reached, what revocation does not undo. A first draft of the
+student-facing text measured grade 10.1 with an average sentence of 18.7 words,
+against limits of 8.0 and 15. The prose has to be written to the gate, and that
+rewriting is real work that section 7 costs as prose rather than as code.
+
+**Why the packs are authored and not harvested.** The practitioner proposed
+handing a student another student's real weeks 3 to 5. That sourcing fails five
+ways, each checked against the code. `harness/runner.py` resets the target at the
+top of every trial, so after a harness run the outbox is empty and the audit
+table is cleared: a classmate's term is a directory of transcripts with the
+incident's other half already deleted. The gateway log is being determined as an
+education record and dual-credit rights over a minor's records have no owner, so
+redistributing one student's records to another is a disclosure nobody has
+signed. Census falls on day 8, so a legitimate late add has no artifacts to
+donate. One student's grade would wait on another's outage extension. And a
+classmate's five weeks may mix mock and hosted runs, which makes "the spend log
+does not reconcile" indistinguishable between an outage and an incident, which is
+the best question in the week. Her exercise was right; the sourcing was not.
+Fixed packs, authored before the term, answer all five at once, and they are also
+what makes this the one week a gateway outage cannot touch.
+
+**What is lost.** The best sentence in the old week 6 goes with it: your own term
+becomes the incident. The term-long chain now breaks for a week. That is a real
+loss of narrative coherence and it is worth booking as one.
 
 ---
 
@@ -347,8 +477,7 @@ who builds it, because that turned out to be the more useful division.
 | Trial grid, four way classification | 60 | fired, missed, refused, errored |
 | Context window view | 50 | needs the new trace event below |
 | Workspace diff, presentation only | 30 | wraps a standard library module |
-| Nested filmstrip | 25 | recursion once cards exist |
-| **Visuals** | **398** | |
+| **Visuals** | **373** | |
 
 **The recording the visuals need, which does not exist**
 
@@ -380,21 +509,33 @@ and which no earlier estimate contained**
 |---|---:|---|
 | Week 3 schema, eight-effect menu, parameter validation and the trusted executor | 140 | this is what keeps student expression out of the interpreter |
 | Week 3 source generator | 80 | emits readable Python from a specification, which is what gives classmates something to read |
-| Week 6 per-student incident pack generator | 120 | assembles a term's records with one planted intruder; an earlier draft called this "not code" |
+| Week 6 pack stamper, citable-field index and answer-key builder | 180 | six packs stamped once with stable line numbers, every citable field pre-exploded, and each key entry anchored to the shipped bytes and asserted to resolve |
+| Week 6 containment form and its closed vocabularies | 120 | the revocation menu, the drift classes, the triage labels, and `NO SUCH RECORD` |
+| Week 6 auto-scorer | 90 | longest common subsequence over the sequence, set membership over containment, key match on the rest |
+| `show_raw()` beside the filmstrip, weeks 1 to 5 | 20 | the off-ramp; prints the actual JSONL with stable line numbers |
+| Week 5 approval gate: an `ask_human` tool, an `approval` trace event, and a `gate` case kind in the harness | 95 | human-in-the-loop has no field, no event kind and no tool argument anywhere in the repository today. The new case kind is not optional: `runner.py:191` refuses an attack case whose passing condition is that the call was blocked, and routing it through `control` instead would abort the whole run at `runner.py:751` and produce no attack results at all |
+| Week 3 tool cards in manifest shape | 25 | `name`, `description`, `inputSchema` |
 | Week 1 reset and check cells | 60 | see the acceptance criteria below |
 | Week 5 burnable-key handling, student side | 40 | an earlier draft also called this "not code" |
 | Extending the existing mock model to the new scenarios | 200 | **not 130 to build one.** `agent/mock_model.py` already exists at 394 lines with the seeded determinism section 4a needs, but it was written for a different course's scenarios. An earlier estimate here costed writing from scratch what is already written, at a third of what the narrower existing version cost |
 | Class board | 300 | not 120: handles, authentication, authorisation, concurrency, moderation, model-version separation, persistence and projector-safe display |
-| **Weeks** | **~940** | |
+| **Weeks** | **~1,350** | |
 
-**Implementation subtotal: about 1,825 lines.** The mock is on the critical path
-for everything else, because it is what lets the visuals and the measurement rig
-be built and tested without a gateway.
+**Implementation subtotal: 2,208 lines.** The mock is on the critical path for
+everything else, because it is what lets the visuals and the measurement rig be
+built and tested without a gateway.
+
+**Two notes on that number.** It went up by 385 because section 5a added a week's
+worth of machinery, and it is stated exactly rather than rounded because the
+previous version said "about 1,825" while its own four subtotals summed to 1,823.
+A two-line arithmetic error in a section whose whole subject is that the estimate
+keeps being wrong is worth not repeating.
 
 **And a subtotal is not an estimate, which is the finding that matters most in
 this section.** Three rounds of review have moved this number from 500 to 1,000
-to 1,650 to 1,825, and every increase came from noticing something that was
-never counted rather than from anything growing. What is still not counted:
+to 1,650 to 1,825 to 2,208, and every increase but the last came from noticing
+something that was never counted rather than from anything growing. The last one
+is different: it is new scope, deliberately added. What is still not counted:
 
 - **Tests.** The executor in section 7a is the security boundary for week 3 and
   its safety is a property of tests rather than of anyone's reading. Nothing
@@ -406,11 +547,22 @@ never counted rather than from anything growing. What is still not counted:
   notebook environment.
 - **Accessibility remediation**, which section 10a lists as an open item across
   three interfaces with three different profiles.
+- **Grading hours.** No week in this document carries a marking estimate. Week 6
+  is designed to be cheaper to mark than the week it replaces, for four
+  structural reasons: the key is written before the student opens the pack, the
+  packs are six fixed artifacts rather than twenty-five unique ones, most of the
+  ticket is closed vocabulary, and what is learned marking one student applies to
+  the next four who drew the same pack. That is a relative claim and this
+  document has no baseline to turn it into an absolute one.
+- **Prose conformance.** Section 5a records that week 6's student-facing text
+  measured two grade levels above the gate on its first draft. Rewriting to the
+  gate is real work and none of the tables above cost it.
 
 **So the honest statement is that there is no delivery date.** The instructor's
-implementation work is roughly 1,825 lines and four to six weeks; the work
-around it is uncosted; and the IT project below has no estimate at all while
-sitting on week 3's critical path. A procurement office should read this section
+implementation work is 2,208 lines and five to eight weeks, having grown by a
+week's machinery when section 5a was added; the work around it is uncosted; and
+the IT project below has no estimate at all while sitting on week 3's critical
+path. A procurement office should read this section
 as establishing that the build is larger than one person before a term, not as
 establishing when it would be ready.
 
@@ -902,7 +1054,8 @@ ask who can see a log should be able to answer the question about its own.
 **What this teaches that the constrained course cannot.** Students build an
 agent rather than being handed one. They read a classmate's code rather than a
 fixture. Cost is a decision with a price rather than a case card. The incident
-in week 6 is built from their own term. And there is something to look at in
+in week 6 is somebody else's, arriving as raw records with an alert already
+fired, which is the condition of the job. And there is something to look at in
 every week, which nine rounds of review asked for and a terminal cannot provide.
 
 **What the constrained course still teaches better.** Negative result literacy
@@ -914,7 +1067,7 @@ procurement office decides.
 
 **The honest comparison** is that this version is a better course and a more
 fragile one. It depends on a contract, an IT-owned sandbox and broker, and about
-1,825 lines of notebook tooling that one person has to maintain, plus the
+2,208 lines of notebook tooling that one person has to maintain, plus the
 uncosted work around it. The constrained course depends on nothing and teaches
 the harder half of the job. Run both if the college can:
 this one when the environment exists, the other as the thing that still works
