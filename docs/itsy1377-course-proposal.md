@@ -28,6 +28,14 @@ recorded. When you *use* an agent you do not believe what it tells you either,
 you check it against the source. It is the same discipline pointed in two
 directions, and it is the through line of the course.
 
+**This course assumes AI Fundamentals.** That course is sequenced before this
+one and covers prompting, what generative AI is, the ethics and disclosure
+frame, and evaluating AI output for plausibility. This course does not re-teach
+any of it. The seam that matters is verification: Fundamentals asks whether an
+output looks wrong, and this course asks whether the record supports it.
+Plausibility, then provenance. `docs/course-sequence-articulation.md` works
+through the whole handoff, including the one place the two currently collide.
+
 **Coding agents are the agent every student will actually meet**, so they are
 taught alongside the lab's helpdesk agent rather than mentioned in passing.
 The point is that they are the same shape: a model, a set of tools, and a loop.
