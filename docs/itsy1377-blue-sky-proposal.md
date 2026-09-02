@@ -5,7 +5,7 @@ replace it. Same course, same seven weeks, same outcomes, same students. What
 changes is the environment.
 
 **The scenario.** A server on the school network hosts per-student Jupyter
-notebooks and labs. A LiteLLM gateway runs on it, each student holding their own
+notebooks and labs, **each student isolated from every other**. A LiteLLM gateway runs on it, each student holding their own
 token and a budget under ten dollars for the semester. Every prompt and output
 is logged under school control and kept until grade appeals close. An AWS
 Bedrock contract supplies two or three permissively licensed open models, billed
@@ -79,9 +79,22 @@ economics, context growth, rate limits, and a runaway loop that costs actual
 money. The constrained proposal lists runaway cost as a case card it never
 exercises.
 
-**5. A shared incident.** One target, twenty-five analysts, partial views. This
-is the only affordance the constrained design cannot reach at all, and it
-carries the heaviest build risk on the list. See section 5.
+**5. A shared incident, assembled rather than live.** Students are isolated, so
+this cannot be twenty-five analysts acting on one database at the same moment,
+and it should not be: that version needs concurrency the harness does not have
+and would let one student break another's graded work.
+
+It works asynchronously instead, and the asynchronous version is better. In the
+48 hours before the session each student spends ten minutes working four tasks
+in their own environment, one of which they are not told is different from
+anybody else's. The instructor exports and merges those logs into one incident
+pack. The session then works that pack, where the timeline holds twenty-five
+actors and every student can prove their own rows and nobody's else's.
+
+That preserves the thing worth having, which is a claim that cannot be settled
+from one person's evidence, while removing the concurrency risk entirely. It is
+also the only affordance the constrained design cannot reach at all, and it
+carries the heaviest build cost on this list. See section 5.
 
 ---
 
@@ -227,24 +240,44 @@ the gateway is the first thing that makes it happen at classroom scale.
    alias, and make the board refuse to mix versions. The pool stands for five
    weeks; a silently re-versioned endpoint makes it meaningless.
 
+**One question isolation raises that a shared service did not.** Twenty-five
+concurrent environments, each running a Flask target and an agent loop, is not
+heavy, but it is twenty-five of everything: processes, ports, database files and
+notebook kernels. That is a capacity question for whoever runs the server, and
+the answer wants measuring with twenty-five simulated sessions before a graded
+week depends on it, not on the morning of one. It belongs in the same load test
+as the gateway ceiling.
+
 ### Two findings that change what is possible, not just what is risky
 
-**A shared target is flatly incompatible with the harness as written.** The
-runner posts `/api/reset` before every trial, and the target clears the outbox,
-the audit log and the beacon log. Two students on one instance means one
-student's trial silently deletes the other's evidence, and the detector reports a
-clean miss on an attack that landed. Per-student instances with a preflight
-assertion that the target is the student's own, or no shared target.
+**Per-student isolation resolves the worst of these, and it is worth stating
+what it has to mean.** The runner posts `/api/reset` before every trial, and the
+target clears the outbox, the audit log and the beacon log. On one shared target
+that means a student's trial silently deletes a classmate's evidence, and the
+detector then reports a clean miss on an attack that actually landed. Isolation
+removes that entirely, provided each student gets **their own target process and
+their own database file**, not merely their own notebook against a common
+service. The preflight assertion is still worth keeping: this project has twice
+produced verdicts against the wrong tree at a scale of two, and a class is
+twenty-five.
 
-**On one server, a student can forge a classmate's proof.** Canary tokens are
-derived as a keyed hash of the term salt and the student ID, the default salt is
-published in the source, and the student sets their own ID. On isolated laptops
-nobody had a route to compute someone else's token. On a shared server with a
-public handle board, anyone who reads the salt can forge any classmate's
-evidence, and the claim that evidence cannot be copied stops being true. **The
-launcher must inject only that student's tokens, and the salt must never enter a
-student-readable environment.** This is worth doing whether or not the shared
-week ships.
+**Isolation does not fix the canary forgery problem.** That one is about
+arithmetic rather than access, and it is addressed below.
+
+**A student can still forge a classmate's proof, and isolation does not stop
+it.** Canary tokens are derived as a keyed hash of the term salt and the student
+ID, the default salt is published in the source, and the student sets their own
+ID. Forging a classmate's token requires no access to their environment at all:
+it requires the salt, which is in the source, and their ID, which is guessable.
+Isolation prevents a student from touching another's files. It does nothing
+about a student computing another's token in their own notebook and pasting it
+into their own evidence.
+
+**So the launcher must inject only that student's three tokens, and the salt must
+never enter a student-readable environment.** On laptops this was a theoretical
+concern nobody had a reason to act on. In a hosted environment with a class board
+and a common image it is the single control that keeps "evidence cannot be
+copied" true, and it is worth doing whether or not any week is shared.
 
 ---
 
