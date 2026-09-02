@@ -143,7 +143,7 @@ modules:
     items:
       - {type: page, ref: w1-overview}
       - {type: page, ref: w1-content}
-      - {type: page, ref: w1-setup}
+      - {type: page, ref: w1-setup-walkthrough}
       - {type: assignment, ref: w1-twenty-minutes}
       - {type: page, ref: w1-wrap-up}
 
@@ -180,7 +180,6 @@ modules:
     items:
       - {type: page, ref: w3-overview}
       - {type: page, ref: w3-content}
-      - {type: page, ref: w3-what-mcp-is}
       - {type: assignment, ref: w3-somebody-elses-function}
       - {type: page, ref: w3-wrap-up}
 
@@ -238,7 +237,7 @@ modules:
     items:
       - {type: page, ref: w6-overview}
       - {type: page, ref: w6-content}
-      - {type: page, ref: w6-reading-raw-records}
+      - {type: page, ref: w6-walkthrough}
       - {type: assignment, ref: w6-somebody-elses-agent}
       - {type: page, ref: w6-wrap-up}
 
@@ -258,7 +257,7 @@ modules:
       - {type: page, ref: w7-content}
       - {type: assignment, ref: w7-the-gauntlet}
       - {type: page, ref: w7-wrap-up}
-      - {type: page, ref: where-next}
+      - {type: page, ref: where-to-go-next}
       - {type: page, ref: framework-alignment}
 
 assignments:

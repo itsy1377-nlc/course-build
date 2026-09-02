@@ -89,6 +89,7 @@ PAGE_BUDGET = {
     "course-schedule":         550,   # mostly a table
     "exam-review":             450,
     "course-material":         900,   # a resource list with licences
+    "what-is-logged":          500,   # funded course only: the gateway notice
     "glossary":               1600,   # searched, not read, but not unbounded
 }
 

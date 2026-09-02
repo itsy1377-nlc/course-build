@@ -1,0 +1,62 @@
+ref: w1-first-run
+title: "Week 1: The first run, and what it could reach"
+points: 10
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  This is not a test of whether your agent did anything interesting. A dull run
+  described accurately earns full marks. What is graded is whether your answer
+  matches the record.
+
+  Two habits start here and carry through the whole course. First, every claim
+  points at a line in the trace. Second, you say what your evidence does not
+  settle. Both are worth points from week 1 so that neither is a surprise later.
+criteria:
+  - description: The agent ran and a trace exists
+    long_description: >
+      You started the practice target, sent the supplied request, and submitted
+      the trace file the run wrote. A run that errored still counts if you
+      submit the trace and the error text.
+    points: 2
+    ratings:
+      - {points: 2, description: "Ran, trace submitted"}
+      - {points: 1, description: "Ran, trace described but not submitted"}
+      - {points: 0, description: Not run}
+  - description: What it did, in order, with each tool named
+    long_description: >
+      Under 150 words, in your own words, matching the trace. Every tool the
+      agent called is named. The order is the order the trace shows.
+    points: 3
+    ratings:
+      - {points: 3, description: "Every tool named, order matches the trace"}
+      - {points: 2, description: "Every tool named, order wrong or unclear"}
+      - {points: 1, description: "Some tools named, or the account contradicts the trace"}
+      - {points: 0, description: Missing}
+  - description: One trace line quoted, with a reason
+    long_description: >
+      You copied one line from the trace and said why you picked it. Any line
+      defended with a reason earns this. There is no single right answer.
+    points: 2
+    ratings:
+      - {points: 2, description: "Line quoted, reason given"}
+      - {points: 1, description: "Line quoted, no reason, or a reason with no line"}
+      - {points: 0, description: Missing}
+  - description: Every tool listed, with what it touches and whether it can be undone
+    long_description: >
+      One row per tool. The name, one sentence on what it touches, and yes or no
+      for whether you could undo it. The yes or no is the part that matters.
+    points: 2
+    ratings:
+      - {points: 2, description: "Every tool listed and correctly marked"}
+      - {points: 1, description: "Every tool listed, one or more marked wrongly"}
+      - {points: 0, description: "Incomplete or missing"}
+  - description: One thing this run cannot tell you
+    long_description: >
+      One sentence. Naming a real limit earns the point. "Nothing" does not,
+      because there is always something a single run does not settle.
+    points: 1
+    ratings:
+      - {points: 1, description: A real limit named}
+      - {points: 0, description: "Missing, or claims the run settles everything"}
