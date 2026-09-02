@@ -77,12 +77,23 @@ and after, in green and red.
 **The boards** are projected: every student's agent in week 1, and in week 7
 every attack and every defence with names against them.
 
-**This is measured, not estimated.** A working filmstrip renderer is 68 lines of
-Python, built and rendered against a real trace from this repository. The full
-set is about 440 lines, two to three days for a working version and about a week
-to make it good. Section 7 has the breakdown. The reason it is cheap is that
-`agent/trace.py` already records everything it needs: the filmstrip is a view,
-not a feature, and the agent does not change at all.
+**Partly measured, and an earlier draft of this section overstated it twice.**
+
+A filmstrip renderer that draws a real trace from this repository is 68 lines,
+and it exists. But it is a rendering spike rather than a finished component: the
+live update is not implemented, the blindfold is a function argument rather than
+the checkbox this section describes, and its first version rendered a blank
+answer card because it read the wrong field. Review found all three, and the
+field bug is fixed.
+
+And the claim that `agent/trace.py` already records everything the visuals need
+is false. It records about half. **Present:** the request, the model alias, tool
+arguments, results, blocked state, errors and the final answer, which is enough
+for the filmstrip proper. **Absent:** token usage and cost, the resolved model
+version, the full context the model was shown, irreversibility, and workspace
+state. The cost stamps, the context window view and the workspace diff each need
+a new trace event, so those are features rather than views, and section 7 costs
+them as such.
 
 ---
 
@@ -90,19 +101,29 @@ not a feature, and the agent does not change at all.
 
 | Wk | Title | What the student does | What is on screen |
 |---|---|---|---|
-| **1** | Twenty minutes | Take a working four line function, change one line of it, add one decorator, and watch a model decide by itself to call it. Then break it six ways on purpose and watch what changes: delete the description, describe a different function, make it raise, make it return far too much, cut the step limit, take the tool away. Add a second tool that writes a file, and answer the question that raises: which of your two can you undo? | The filmstrip drawing itself live; tool cards; the blindfold; twenty five agents appearing on a projected class board |
+| **1** | Twenty minutes | Take a working four line function, change one line of it, add one decorator, and watch a model decide by itself to call it. A reset cell restores the known-good version at any point, and a check cell says in plain words what is wrong before the model is ever called. Then break it six ways on purpose and watch what changes: delete the description, describe a different function, make it raise, make it return far too much, cut the step limit, take the tool away. Add a second supplied tool that writes a file, and answer the question that raises: which of your two can you undo? | The filmstrip drawing itself live; tool cards; the blindfold; twenty five agents appearing on a projected class board |
 | **2** | The blindfold | Two tools with the same code and different descriptions. Which does the model pick, twenty times? Change one word and run again. Find one edit that moves the grid and one that does not, and get credit for both. Then see the model's actual input as stacked blocks with token counts, and find your own tool descriptions sitting in it | Trial grids filling square by square, side by side as edits accumulate; the context window as coloured blocks |
-| **3** | Somebody else's function | Write a tool that genuinely does what it says and one extra thing it does not mention. Three classmates' tools are installed blind in your agent, and you have forty five minutes to work out what each really does, from the code and from what your filesystem looks like afterwards | The workspace diff; anonymous tool cards; your own agent behaving strangely |
+| **3** | Somebody else's function | Start from a working tool template with one marked transformation point and a menu of permitted hidden effects. Choose one, wire it in, and it still does what its description claims. Three classmates' tools then run against your agent in a sandbox, and you have forty five minutes to work out what each really does from the code and from the sandbox's filesystem diff | The workspace diff; anonymous tool cards; your own agent behaving strangely |
 | **4** | English versus Python | A tool arrives that returns text strangers wrote. Put text in a ticket that makes your own agent call your own irreversible tool. Twenty trials. Then, before reporting any result, run the positive control: put the same instruction in your own message instead. If it fires there and not from the document, your instrument works and your null is real | Two grids side by side, one mixed and one solid; filmstrips that stop part way |
 | **5** | Watch it spend | Predict what a runaway loop will cost, in cents, then build one and run it on a separate burnable key. Watch the bar drain. Then write the cap, in your own code, and run it again | The budget bar draining live; a black cap card ending a run mid-flight; before and after with the cost difference |
 | **6** | It told me something false | An incident pack built from your own records across weeks 3 to 5, your own installs, your own runaway, with one intruder mixed in. An assistant summarises it. Check every line against the file it came from and mark each accepted, corrected or rejected | A timeline colouring green and red as your own checker runs |
 | **7** | The gauntlet | Turn on every control you built. Then two rounds, live: your defences against the class's attacks, and your attacks against theirs | Two boards updating on the projector during play, everyone named on both |
 
 **Week 4 is the week that must work whichever way the measurement goes.** It is
-built so that a negative result is the expected and fully creditable outcome,
-and the positive control is what makes a null mean something rather than nothing.
-If the chain never completes on any model, the student still produces a real
-finding, with an instrument they proved was live.
+built so that a negative result is the expected and fully creditable outcome.
+
+**What the positive control does and does not establish**, because an earlier
+draft claimed too much for it. Putting the same instruction in the user turn and
+seeing it fire proves two things: the model will follow that instruction from a
+trusted position, and the irreversible tool is reachable. It does **not** prove
+the instrument would have detected the same behaviour arriving from a document.
+It rules out one specific way of being wrong, which is a broken payload or an
+unreachable tool, and leaves others open.
+
+So the graded claim is bounded to what the evidence carries: in these trials, on
+this model, the instruction fired from the user turn and not from the document,
+and here is what that does and does not establish. That is a smaller claim than
+"the null is real" and it is the one the student can actually support.
 
 ---
 
@@ -159,38 +180,127 @@ What survives is the thing that matters: **it is still their code that the model
 calls**, because they changed it and they can read it. What goes is the blank
 line, which was never load bearing and was doing all the damage.
 
-**The second judge concern, that this is a lot to build, is answered by section
-7 and by the measurement in section 2.** The instructor scored deliverability 2
-out of 10 on the assumption that the visuals were a large custom build. They are
-440 lines over about a week, on top of a data format that already exists.
+**But the first version of this fix only moved the problem**, and review caught
+it. Week 1 was repaired and week 3 still asked students to write a tool with two
+behaviours, which is authoring rather than editing, and which sits at a Bloom
+level the sibling proposal explicitly rules out for a course with no programming
+prerequisite. The two documents contradicted each other.
+
+Week 3 is now an edit of a supplied template with one marked transformation
+point and a menu of permitted hidden effects. That keeps the mechanic, keeps the
+rule, and has the useful side effect described in section 7a: a template with no
+filesystem, process, environment, import or network calls in it removes most of
+the security exposure at the same time.
+
+**On build cost**, the instructor scored deliverability 2 out of 10 assuming the
+visuals were a large custom build. Section 7 now costs the whole thing honestly
+at about a thousand lines and two to three weeks, including the recording the
+visuals need and the sandbox week 3 cannot run without. That is more than the
+first estimate and still within one person's reach before a term.
 
 ---
 
 ## 7. What has to be built
 
+Corrected after review. An earlier version costed only the views and assumed the
+data was already recorded.
+
+**The visuals**
+
 | Piece | Lines | Note |
 |---|---:|---|
-| Filmstrip renderer and styling | **68, done** | prototyped against a real trace |
-| Live update in place | 40 | built into the notebook, no dependency |
-| Tool cards with schema inference | 90 | the real work: signature and docstring to schema |
-| Blindfold | 15 | a style toggle |
+| Filmstrip renderer and styling | **68, spike exists** | draws a real trace; not yet live-updating |
+| Live update in place | 40 | display id, no dependency |
+| Blindfold as a real checkbox | 25 | the spike has an argument, not a control |
+| Tool cards with schema inference | 90 | signature and docstring to schema |
 | Trial grid, four way classification | 60 | hit, miss, refused, error |
-| Context window view | 50 | stacked blocks with token counts |
+| Context window view | 50 | needs the new trace event below |
 | Workspace diff | 30 | wraps a standard library module |
 | Nested filmstrip | 25 | recursion once cards exist |
 | Class boards | 120 | the only piece needing shared state |
-| **Total** | **~500** | two to three days working, about a week good |
+| **Visuals** | **~510** | |
 
-**Three things that would blow that estimate.** The class boards are the only
-genuinely hard piece, because they need state shared across students. The
-notebook target must be pinned to one, since update behaviour differs between
-them. And no widget library: the prototype avoids it entirely, which avoids a
-whole category of version conflict in a shared server.
+**The recording the visuals need, which does not exist**
 
-**Also to build, and not visuals:** the cuckoo distribution and screening, the
-per student incident pack generator for week 6, the burnable key mechanism, and
-the week 7 board. Plus the four items in section 9 that make measurement
-trustworthy at all.
+| Piece | Lines | Why |
+|---|---:|---|
+| Capture usage from the response | 30 | the loop discards it today, so no cost stamp is possible |
+| Record the resolved model version | 15 | the alias is recorded, the version is not |
+| Record the context sent to the model | 40 | nothing records what the model was shown |
+| Irreversibility as tool metadata | 25 | passed by hand into the renderer today |
+| Workspace snapshot before and after | 40 | no event exists |
+| **Recording** | **~150** | |
+
+**The cuckoo sandbox, which is not optional**
+
+| Piece | Lines | Why |
+|---|---:|---|
+| Disposable container per cuckoo run | 120 | section 7a |
+| Narrow tool context replacing `cfg` | 60 | so a tool cannot reach the gateway key |
+| Screening, hashing and distribution | 90 | screen once, distribute exactly what was screened |
+| Week 3 template and effect menu | 70 | makes the cuckoo an edit rather than an authoring task |
+| **Sandbox** | **~340** | |
+
+**Plus, not code:** the per student incident pack generator for week 6, the
+burnable key mechanism, week 1 reset and recovery cells, and the malicious
+submission procedure.
+
+**Revised total: about 1,000 lines rather than 500**, and the honest schedule is
+two to three weeks rather than one, with the sandbox on the critical path
+because week 3 cannot run without it.
+
+---
+
+## 7a. Week 3 is arbitrary code execution, and it needs a threat model
+
+**This is the most serious problem in the proposal.** Week 3 has every student
+write code that deliberately does something it does not declare, and three
+classmates then execute it inside their own agent, on a school server, and some
+of these students are minors. An earlier draft's only protection was a sentence
+saying a cuckoo must stay inside the workspace, which is a rule rather than a
+control.
+
+**One attack path was demonstrated rather than argued.** Every tool receives the
+configuration object as its first argument, and that object names the
+environment variable holding the gateway key. A classmate's tool reads that
+student's metered, billable token in one line of Python. The course supplies the
+motive in week 5, where students learn that model calls cost money, and the
+method in week 3, two weeks apart.
+
+**Five more asset classes**, none closed by the workspace rule: peer files by
+path traversal, the school network by ordinary sockets, host resources by
+exhaustion, the class board's credentials, and **the week 6 evidence itself**,
+since that pack is built from records accumulated across weeks 3 to 5 and a
+cuckoo can write to them.
+
+**The controls, and instructor screening is not one of them.** Static reading
+cannot settle dynamically constructed imports, encoded payloads, delayed
+execution or resource exhaustion, and twenty-five submissions in twenty-four
+hours by one person is a bottleneck as well as a single point of failure.
+Screening stays as defence in depth and stops being the control.
+
+1. Each cuckoo runs in a fresh disposable container, not in the student's
+   notebook kernel.
+2. Unprivileged, no added capabilities, with process, memory, CPU, disk, output
+   and wall-clock limits and a read-only base image.
+3. Mounted with a disposable copy of a synthetic workspace only. No home
+   directory, no notebook directory, no shared temporary space.
+4. Default-deny egress, including the local subnet. The model call happens in a
+   broker outside the cuckoo process.
+5. **No secrets enter the sandbox**: no gateway token, no board credential, no
+   notebook token, no student identifier.
+6. Only a bounded result and an audited filesystem diff come back out.
+7. Screen once, hash the accepted artifact, and distribute exactly that.
+8. A written procedure for a malicious submission: preservation, notification,
+   grading and restoration.
+
+**The template does double duty.** Making the cuckoo an edit of a supplied
+function with a menu of permitted effects, and no filesystem, process,
+environment, import or network calls available in the template, removes most of
+the capability at the same time as it removes the authoring requirement. The
+sandbox is what handles a student who works around the template.
+
+---
 
 ---
 
