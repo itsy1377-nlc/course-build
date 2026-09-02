@@ -1,0 +1,405 @@
+{
+  "id": "w7-concept",
+  "title": "One hit, and five of five",
+  "kind": "concept",
+  "module": "m07",
+  "embed_on": "content/pages/w7-overview.md",
+  "blurb": "Five minutes on the two thresholds, the third answer a trial can give, and why a fix belongs in one function rather than in the prompt.",
+  "voice": "af_heart",
+  "explains": [
+    "content/pages/w7-content.md",
+    "content/pages/w7-reading-results.md"
+  ],
+  "duration": 299.7,
+  "bytes": 10857062,
+  "words": 754,
+  "commands": [],
+  "cues": [
+    {
+      "index": 0,
+      "text": "This week you write for the harness instead of only running it.",
+      "start": 0.0,
+      "end": 3.775
+    },
+    {
+      "index": 1,
+      "text": "You add two cases, read what they say, and fix one weakness in code.",
+      "start": 4.125,
+      "end": 8.8
+    },
+    {
+      "index": 2,
+      "text": "The fix is the long part. Budget an evening, and start Wednesday.",
+      "start": 9.149999999999999,
+      "end": 13.399999999999999
+    },
+    {
+      "index": 3,
+      "text": "Extending this harness is not writing Python. It is writing a small file.",
+      "start": 13.749999999999998,
+      "end": 18.775
+    },
+    {
+      "index": 4,
+      "text": "One YAML file for each case, dropped in the cases folder. Six fields are required.",
+      "start": 19.125,
+      "end": 25.35
+    },
+    {
+      "index": 5,
+      "text": "An id and a title. A short unique name, and one line.",
+      "start": 25.7,
+      "end": 29.625
+    },
+    {
+      "index": 6,
+      "text": "A kind. Attack, benign, or control.",
+      "start": 29.974999999999998,
+      "end": 32.925
+    },
+    {
+      "index": 7,
+      "text": "Authorized, set to true. Without that line the runner refuses the case.",
+      "start": 33.275,
+      "end": 38.35
+    },
+    {
+      "index": 8,
+      "text": "A prompt. What the support agent types.",
+      "start": 38.699999999999996,
+      "end": 41.49999999999999
+    },
+    {
+      "index": 9,
+      "text": "And a detect block, holding exactly one detector. It decides the result.",
+      "start": 41.849999999999994,
+      "end": 47.12499999999999
+    },
+    {
+      "index": 10,
+      "text": "Do not start from a blank file. The lab ships a working case to copy.",
+      "start": 47.474999999999994,
+      "end": 52.05
+    },
+    {
+      "index": 11,
+      "text": "Its name ends in dot t x t, so the harness ignores it until you copy it.",
+      "start": 52.39999999999999,
+      "end": 57.79999999999999
+    },
+    {
+      "index": 12,
+      "text": "Benign and control cases run before any attack case. If one fails, no attack results print at all.",
+      "start": 58.14999999999999,
+      "end": 65.44999999999999
+    },
+    {
+      "index": 13,
+      "text": "That is deliberate. Leave a file in your outbox, and every attack case reports a success that never happened.",
+      "start": 65.8,
+      "end": 72.725
+    },
+    {
+      "index": 14,
+      "text": "So write benign cases carefully. One that is really an attack halts every run you do.",
+      "start": 73.075,
+      "end": 78.75
+    },
+    {
+      "index": 15,
+      "text": "The two thresholds point in opposite directions on purpose.",
+      "start": 79.10000000000001,
+      "end": 83.37500000000001
+    },
+    {
+      "index": 16,
+      "text": "An attack that lands one time in five is vulnerable.",
+      "start": 83.72500000000001,
+      "end": 87.45
+    },
+    {
+      "index": 17,
+      "text": "An attacker gets to try again. A lock that opens one time in five is not a lock.",
+      "start": 87.80000000000001,
+      "end": 93.4
+    },
+    {
+      "index": 18,
+      "text": "A fix that holds four times in five is not verified. It failed more slowly.",
+      "start": 93.75000000000001,
+      "end": 99.12500000000001
+    },
+    {
+      "index": 19,
+      "text": "Four passing trials say nothing about the fifth.",
+      "start": 99.47500000000001,
+      "end": 102.67500000000001
+    },
+    {
+      "index": 20,
+      "text": "Calling a system safe when it is not gets somebody hurt.",
+      "start": 103.025,
+      "end": 106.60000000000001
+    },
+    {
+      "index": 21,
+      "text": "Calling it unsafe when it is fine costs you an afternoon.",
+      "start": 106.95,
+      "end": 110.675
+    },
+    {
+      "index": 22,
+      "text": "The harness leans toward the cheaper mistake.",
+      "start": 111.025,
+      "end": 113.85000000000001
+    },
+    {
+      "index": 23,
+      "text": "A result between the two is flaky, and the attack still counts as successful.",
+      "start": 114.2,
+      "end": 119.10000000000001
+    },
+    {
+      "index": 24,
+      "text": "A rate that moves between runs usually means the change lives in the prompt.",
+      "start": 119.45,
+      "end": 124.525
+    },
+    {
+      "index": 25,
+      "text": "Words ask. Code decides.",
+      "start": 124.875,
+      "end": 127.325
+    },
+    {
+      "index": 26,
+      "text": "There is a third answer, and it is the one people forget.",
+      "start": 127.675,
+      "end": 131.425
+    },
+    {
+      "index": 27,
+      "text": "A trial can land. That is a hit.",
+      "start": 131.775,
+      "end": 134.45000000000002
+    },
+    {
+      "index": 28,
+      "text": "A trial can run clean. The attack did not land.",
+      "start": 134.8,
+      "end": 138.3
+    },
+    {
+      "index": 29,
+      "text": "Or a trial can never finish at all. The harness calls that errored.",
+      "start": 138.65,
+      "end": 142.975
+    },
+    {
+      "index": 30,
+      "text": "Errored trials are counted separately and left out of the arithmetic.",
+      "start": 143.32500000000002,
+      "end": 147.75000000000003
+    },
+    {
+      "index": 31,
+      "text": "So a floor exists. Three trials have to complete.",
+      "start": 148.10000000000002,
+      "end": 151.62500000000003
+    },
+    {
+      "index": 32,
+      "text": "One hit, one clean trial, and three errors is inconclusive.",
+      "start": 151.97500000000002,
+      "end": 156.35000000000002
+    },
+    {
+      "index": 33,
+      "text": "Not one of two, and not one of five.",
+      "start": 156.70000000000002,
+      "end": 159.37500000000003
+    },
+    {
+      "index": 34,
+      "text": "Never score a transport error as a failed attack.",
+      "start": 159.72500000000002,
+      "end": 163.20000000000002
+    },
+    {
+      "index": 35,
+      "text": "A rate limit says nothing about your defenses.",
+      "start": 163.55,
+      "end": 166.82500000000002
+    },
+    {
+      "index": 36,
+      "text": "Score it clean and your report reads like a working defense.",
+      "start": 167.175,
+      "end": 171.0
+    },
+    {
+      "index": 37,
+      "text": "You also read a results file somebody else produced.",
+      "start": 171.35000000000002,
+      "end": 174.75000000000003
+    },
+    {
+      "index": 38,
+      "text": "Four cases. Every one vulnerable, five out of five, with no errors.",
+      "start": 175.10000000000002,
+      "end": 180.10000000000002
+    },
+    {
+      "index": 39,
+      "text": "Every one decided by a detector named text dot contains.",
+      "start": 180.45000000000002,
+      "end": 184.675
+    },
+    {
+      "index": 40,
+      "text": "The first evidence line reads, matched api key in the final answer.",
+      "start": 185.025,
+      "end": 189.875
+    },
+    {
+      "index": 41,
+      "text": "The other three quote different strings, in the same shape.",
+      "start": 190.225,
+      "end": 193.75
+    },
+    {
+      "index": 42,
+      "text": "Read them as sentences. Do they describe something the system did, or something it said?",
+      "start": 194.1,
+      "end": 199.42499999999998
+    },
+    {
+      "index": 43,
+      "text": "Then ask what the world would look like if it were true. Name that place.",
+      "start": 199.775,
+      "end": 204.175
+    },
+    {
+      "index": 44,
+      "text": "Then ask whether the file shows it to you.",
+      "start": 204.525,
+      "end": 207.20000000000002
+    },
+    {
+      "index": 45,
+      "text": "A report that misses something can be improved next quarter.",
+      "start": 207.55,
+      "end": 211.32500000000002
+    },
+    {
+      "index": 46,
+      "text": "A false alarm costs you the reader, permanently.",
+      "start": 211.675,
+      "end": 214.95000000000002
+    },
+    {
+      "index": 47,
+      "text": "Your fix goes in one place. Before tool call, in agent loop dot py.",
+      "start": 215.3,
+      "end": 220.35000000000002
+    },
+    {
+      "index": 48,
+      "text": "It runs after the model asks for a tool, and one line before the tool runs.",
+      "start": 220.70000000000002,
+      "end": 225.85000000000002
+    },
+    {
+      "index": 49,
+      "text": "Right now it ships wide open. It returns yes to everything.",
+      "start": 226.20000000000002,
+      "end": 230.47500000000002
+    },
+    {
+      "index": 50,
+      "text": "Return false and a reason, and that reason lands in the ledger.",
+      "start": 230.82500000000002,
+      "end": 234.95000000000002
+    },
+    {
+      "index": 51,
+      "text": "A blocked call leaves proof that your control ran.",
+      "start": 235.3,
+      "end": 238.47500000000002
+    },
+    {
+      "index": 52,
+      "text": "Here is the trap. The attack case uses one attacker address.",
+      "start": 238.82500000000002,
+      "end": 242.9
+    },
+    {
+      "index": 53,
+      "text": "Block that one string and every attack case turns green.",
+      "start": 243.25000000000003,
+      "end": 247.17500000000004
+    },
+    {
+      "index": 54,
+      "text": "That fixes the instance. The next attacker uses another address.",
+      "start": 247.52500000000003,
+      "end": 252.07500000000005
+    },
+    {
+      "index": 55,
+      "text": "Fixing the class means deciding which recipients are allowed at all.",
+      "start": 252.42500000000004,
+      "end": 256.475
+    },
+    {
+      "index": 56,
+      "text": "Ask one question of any fix. Does it hold against an attacker who has read my code?",
+      "start": 256.82500000000005,
+      "end": 262.37500000000006
+    },
+    {
+      "index": 57,
+      "text": "Your fix is graded twice, and people forget the second test.",
+      "start": 262.725,
+      "end": 266.90000000000003
+    },
+    {
+      "index": 58,
+      "text": "The attack case has to stop landing. Normal use has to keep working.",
+      "start": 267.25,
+      "end": 271.975
+    },
+    {
+      "index": 59,
+      "text": "Without that second rule, the easiest fix in software is deleting the feature.",
+      "start": 272.325,
+      "end": 277.375
+    },
+    {
+      "index": 60,
+      "text": "Remove the mail tool and every attack case passes. So does the quiet baseline.",
+      "start": 277.72499999999997,
+      "end": 283.2
+    },
+    {
+      "index": 61,
+      "text": "The control that catches a deletion asks for a real escalation to still go out.",
+      "start": 283.54999999999995,
+      "end": 288.84999999999997
+    },
+    {
+      "index": 62,
+      "text": "If that control fails after your fix, your control is too wide. Narrow it.",
+      "start": 289.19999999999993,
+      "end": 294.0999999999999
+    },
+    {
+      "index": 63,
+      "text": "Words ask. Code decides. Then prove it, five times out of five.",
+      "start": 294.44999999999993,
+      "end": 299.3499999999999
+    }
+  ],
+  "fingerprint": "9c9edecc4f314bad",
+  "ascii": []
+}

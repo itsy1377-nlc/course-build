@@ -14,6 +14,7 @@ no animation and no video filter involved.
 
 from __future__ import annotations
 
+import os
 import html
 import re
 import shutil
@@ -26,7 +27,7 @@ from markupsafe import Markup
 from . import config as _config
 
 ROOT = _config.find_root()
-VIDEO_DIR = ROOT / "content" / "video"
+VIDEO_DIR = ROOT / os.environ.get("ITSY_CONTENT", "content") / "video"
 
 WIDTH, HEIGHT = 1920, 1080
 

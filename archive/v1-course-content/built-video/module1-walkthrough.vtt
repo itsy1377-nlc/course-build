@@ -1,0 +1,204 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.100
+Module 1 asks you for three small
+functions in one file.
+
+2
+00:00:04.450 --> 00:00:08.800
+This video never opens that file. Your
+answer stays yours.
+
+3
+00:00:09.150 --> 00:00:13.100
+What it shows you is the tool that decides
+whether the three are right.
+
+4
+00:00:13.450 --> 00:00:17.275
+You can run that tool as often as you like
+before the deadline.
+
+5
+00:00:17.625 --> 00:00:21.725
+The three sit under one banner, extension
+point 3 of 5.
+
+6
+00:00:22.075 --> 00:00:26.800
+should retry asks one question. Is this
+request worth sending again?
+
+7
+00:00:27.150 --> 00:00:30.675
+backoff seconds says how long to wait
+before you try.
+
+8
+00:00:31.025 --> 00:00:35.800
+parse json content reads a reply, or says
+clearly why it could not.
+
+9
+00:00:36.150 --> 00:00:40.225
+None of the three needs a network or a
+key. They are pure logic.
+
+10
+00:00:40.575 --> 00:00:44.275
+So the whole assignment runs offline, on
+your own machine.
+
+11
+00:00:44.625 --> 00:00:49.000
+Run the tests before you write anything,
+so you know what failing looks like.
+
+12
+00:00:49.350 --> 00:00:54.275
+The output goes through tail, so you see
+the summary and no assertion detail.
+
+13
+00:00:54.625 --> 00:00:58.475
+Eleven failed, six passed. Say that count
+out loud.
+
+14
+00:00:58.825 --> 00:01:01.675
+That is a starting line, not a problem.
+
+15
+00:01:02.025 --> 00:01:04.925
+Then open the test file itself and read
+it.
+
+16
+00:01:05.275 --> 00:01:09.800
+Every failing name points at a rule the
+docstring already gave you.
+
+17
+00:01:10.150 --> 00:01:14.250
+It is the clearest statement of what your
+three functions have to do.
+
+18
+00:01:14.600 --> 00:01:18.450
+Reading it is part of the job, not a way
+around the job.
+
+19
+00:01:18.800 --> 00:01:23.725
+Here is the same command against finished
+work, with the whole output this time.
+
+20
+00:01:24.075 --> 00:01:27.150
+Seventeen passed, in well under a second.
+
+21
+00:01:27.500 --> 00:01:31.675
+No request went anywhere. That is what
+pure logic looks like.
+
+22
+00:01:32.025 --> 00:01:35.750
+There is no key to burn here and no rate
+limit to wait on.
+
+23
+00:01:36.100 --> 00:01:39.175
+So run it after every small change you
+make.
+
+24
+00:01:39.525 --> 00:01:43.250
+Now save your proof. Send the same output
+into a file.
+
+25
+00:01:43.600 --> 00:01:47.825
+Nothing printed, because the output went
+into the file instead.
+
+26
+00:01:48.175 --> 00:01:50.627
+So open the file and read it back.
+
+27
+00:01:50.627 --> 00:01:53.800
+Seventeen passed, and the file is not
+empty.
+
+28
+00:01:54.150 --> 00:01:57.975
+An empty proof file is a submission with
+no proof in it.
+
+29
+00:01:58.325 --> 00:02:01.150
+Check that before you upload, not after.
+
+30
+00:02:01.500 --> 00:02:03.675
+One warning before you start.
+
+31
+00:02:04.025 --> 00:02:06.722
+Say you write should retry so it says yes
+
+32
+00:02:06.722 --> 00:02:09.550
+to every client error, and nothing
+crashes.
+
+33
+00:02:09.900 --> 00:02:15.400
+Then a 401 arrives. Your key is not
+accepted, and your loop keeps trying.
+
+34
+00:02:15.750 --> 00:02:18.672
+Your provider's daily limit is gone in
+about
+
+35
+00:02:18.672 --> 00:02:22.125
+four seconds, on a request that could
+never succeed.
+
+36
+00:02:22.475 --> 00:02:26.350
+Then you are locked out until tomorrow,
+and the work is due tonight.
+
+37
+00:02:26.700 --> 00:02:31.150
+That is why the rule is narrow. Retry only
+what waiting can fix.
+
+38
+00:02:31.500 --> 00:02:36.775
+Upload two files. Your edited model
+client, and your saved pytest output.
+
+39
+00:02:37.125 --> 00:02:41.250
+Not the whole repository, and never the
+file that holds your key.
+
+40
+00:02:41.600 --> 00:02:46.275
+If you get stuck, paste the test name and
+the message on the Q and A board.
+
+41
+00:02:46.625 --> 00:02:49.100
+Paste the failure, not your answer.
+
+42
+00:02:49.450 --> 00:02:54.050
+Being stuck costs nobody points. Being
+quiet about it costs time.

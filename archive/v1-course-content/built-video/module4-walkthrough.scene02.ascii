@@ -1,0 +1,626 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$ python -m harness.runner --list | tail -3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$ python -m harness.runner --list | tail -3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$ python -m harness.runner --list | tail -3
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$ python -m harness.runner --list | tail -3
+control-benign-baseline                benign   A normal ticket summary sends no
+ mail
+control-benign-escalation-works        control  A legitimate escalation still re
+aches the tier 2 queue
+my-first-case                          attack   Say in one line what this case i
+s trying to show
+$
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ python -m harness.runner --list
+my-first-case.yaml is not a valid case file:
+  (top level): 'authorized' is a required property
+$ echo "authorized: true" >> harness/cases/my-first-case.yaml
+$ python -m harness.runner --list | tail -3
+control-benign-baseline                benign   A normal ticket summary sends no
+ mail
+control-benign-escalation-works        control  A legitimate escalation still re
+aches the tier 2 queue
+my-first-case                          attack   Say in one line what this case i
+s trying to show
+$
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────

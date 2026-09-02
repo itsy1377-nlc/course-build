@@ -1,0 +1,309 @@
+{
+  "id": "module2-walkthrough",
+  "title": "Registered is not allowed",
+  "kind": "walkthrough",
+  "module": "m04",
+  "embed_on": "content/assignments/module2-give-it-hands.md",
+  "blurb": "The grader you can run as often as you like, and the quiet failure that keeps a correct tool from ever running. No code on screen.",
+  "voice": "af_heart",
+  "explains": [
+    "content/assignments/module2-give-it-hands.md"
+  ],
+  "duration": 187.3,
+  "bytes": 4895609,
+  "words": 483,
+  "commands": [
+    "python -m pytest tests/test_module2.py -q | tail -3",
+    "python -m pytest tests/test_module2.py -q",
+    "grep -A6 \"allowed_tools:\" config/lab.config.yaml",
+    "python -m agent.cli \"summarize ticket T-501\"",
+    "python -m agent.cli \"summarize ticket T-501\"",
+    "python -m agent.replay | head -13"
+  ],
+  "cues": [
+    {
+      "index": 0,
+      "text": "This is what a finished Module 2 run looks like.",
+      "start": 0.0,
+      "end": 3.3
+    },
+    {
+      "index": 1,
+      "text": "You will see the tool that grades you, and one failure that looks like broken Python.",
+      "start": 3.65,
+      "end": 8.775
+    },
+    {
+      "index": 2,
+      "text": "You will not see any code, because the code is yours.",
+      "start": 9.125,
+      "end": 12.525
+    },
+    {
+      "index": 3,
+      "text": "Module 2 has two parts.",
+      "start": 12.875,
+      "end": 15.075
+    },
+    {
+      "index": 4,
+      "text": "Part one is get_customer. Its schema is already written for you.",
+      "start": 15.425,
+      "end": 19.775
+    },
+    {
+      "index": 5,
+      "text": "Part two is one tool you design yourself.",
+      "start": 20.125,
+      "end": 23.2
+    },
+    {
+      "index": 6,
+      "text": "There, the schema is the graded part, not the Python.",
+      "start": 23.55,
+      "end": 27.225
+    },
+    {
+      "index": 7,
+      "text": "Writing a function is Week 4 work.",
+      "start": 27.575,
+      "end": 30.275
+    },
+    {
+      "index": 8,
+      "text": "Writing an interface another program has to understand is new.",
+      "start": 30.625,
+      "end": 34.85
+    },
+    {
+      "index": 9,
+      "text": "The model reads your description and nothing else.",
+      "start": 35.2,
+      "end": 38.5
+    },
+    {
+      "index": 10,
+      "text": "The grader is a command, and you may run it as often as you like.",
+      "start": 38.85,
+      "end": 42.95
+    },
+    {
+      "index": 11,
+      "text": "Run it before you write anything, so you know what failing looks like.",
+      "start": 43.3,
+      "end": 47.375
+    },
+    {
+      "index": 12,
+      "text": "Five failed, one passed, seven skipped.",
+      "start": 47.724999999999994,
+      "end": 50.675
+    },
+    {
+      "index": 13,
+      "text": "The seven skipped are waiting for the tool you have not written yet.",
+      "start": 51.02499999999999,
+      "end": 54.92499999999999
+    },
+    {
+      "index": 14,
+      "text": "That is a starting line, not a problem.",
+      "start": 55.27499999999999,
+      "end": 58.12499999999999
+    },
+    {
+      "index": 15,
+      "text": "Now the same command against work that is finished.",
+      "start": 58.474999999999994,
+      "end": 61.675
+    },
+    {
+      "index": 16,
+      "text": "Thirteen passed, in well under a second.",
+      "start": 62.02499999999999,
+      "end": 64.975
+    },
+    {
+      "index": 17,
+      "text": "It is the same tool that grades you.",
+      "start": 65.32499999999999,
+      "end": 67.82499999999999
+    },
+    {
+      "index": 18,
+      "text": "So nothing is waiting to surprise you at the deadline.",
+      "start": 68.17499999999998,
+      "end": 71.62499999999999
+    },
+    {
+      "index": 19,
+      "text": "Your tool name has to go in two places.",
+      "start": 71.97499999999998,
+      "end": 74.92499999999998
+    },
+    {
+      "index": 20,
+      "text": "Here is the allowed list in the config file, with a new name on the end.",
+      "start": 75.27499999999998,
+      "end": 79.79999999999998
+    },
+    {
+      "index": 21,
+      "text": "That name was never added to TOOLS, the registry in your tools file.",
+      "start": 80.14999999999998,
+      "end": 85.14999999999998
+    },
+    {
+      "index": 22,
+      "text": "Now run the agent. It stops before it asks the model anything.",
+      "start": 85.49999999999997,
+      "end": 89.89999999999998
+    },
+    {
+      "index": 23,
+      "text": "The error names the tool that is missing, then every tool that is registered.",
+      "start": 90.24999999999997,
+      "end": 95.09999999999997
+    },
+    {
+      "index": 24,
+      "text": "Miss the other list instead and your tool is never offered to the model.",
+      "start": 95.44999999999997,
+      "end": 99.99999999999997
+    },
+    {
+      "index": 25,
+      "text": "The model never picks it, and nothing looks broken at all.",
+      "start": 100.34999999999998,
+      "end": 104.04999999999998
+    },
+    {
+      "index": 26,
+      "text": "Here is a good run. T-501 is an ordinary ticket with nothing hidden in it.",
+      "start": 104.39999999999998,
+      "end": 109.99999999999997
+    },
+    {
+      "index": 27,
+      "text": "The agent ran search_tickets and read the ticket back.",
+      "start": 110.34999999999998,
+      "end": 113.74999999999999
+    },
+    {
+      "index": 28,
+      "text": "Save this whole output. It is the run transcript the assignment asks for.",
+      "start": 114.09999999999998,
+      "end": 118.89999999999998
+    },
+    {
+      "index": 29,
+      "text": "Replay walks that same run one step at a time.",
+      "start": 119.24999999999999,
+      "end": 122.49999999999999
+    },
+    {
+      "index": 30,
+      "text": "You asked for a summary.",
+      "start": 122.84999999999998,
+      "end": 124.72499999999998
+    },
+    {
+      "index": 31,
+      "text": "The model asked for a tool, and the line under it says nothing in your program chose that.",
+      "start": 125.07499999999997,
+      "end": 130.39999999999998
+    },
+    {
+      "index": 32,
+      "text": "Then your code ran the tool and got back two hundred and thirty six characters.",
+      "start": 130.74999999999997,
+      "end": 135.82499999999996
+    },
+    {
+      "index": 33,
+      "text": "The model asks. Your code answers.",
+      "start": 136.17499999999998,
+      "end": 138.99999999999997
+    },
+    {
+      "index": 34,
+      "text": "Three failures cost the most points here.",
+      "start": 139.35,
+      "end": 142.04999999999998
+    },
+    {
+      "index": 35,
+      "text": "A schema that lies about your function.",
+      "start": 142.4,
+      "end": 145.05
+    },
+    {
+      "index": 36,
+      "text": "The autograder builds arguments from your schema and calls your function with them.",
+      "start": 145.4,
+      "end": 150.25
+    },
+    {
+      "index": 37,
+      "text": "A tool registered in one list and not the other.",
+      "start": 150.6,
+      "end": 154.125
+    },
+    {
+      "index": 38,
+      "text": "And an empty string when the call fails.",
+      "start": 154.475,
+      "end": 156.975
+    },
+    {
+      "index": 39,
+      "text": "The agent carries on as if it worked, and your log agrees with it.",
+      "start": 157.325,
+      "end": 161.625
+    },
+    {
+      "index": 40,
+      "text": "One zip file, holding five things.",
+      "start": 161.975,
+      "end": 164.75
+    },
+    {
+      "index": 41,
+      "text": "Your tools file, your config file, your run transcript, ANSWERS and AI-USE.",
+      "start": 165.1,
+      "end": 170.325
+    },
+    {
+      "index": 42,
+      "text": "No dot env file, and no runs folder.",
+      "start": 170.67499999999998,
+      "end": 173.825
+    },
+    {
+      "index": 43,
+      "text": "AI-USE needs one suggestion you turned down, with a real reason.",
+      "start": 174.17499999999998,
+      "end": 178.6
+    },
+    {
+      "index": 44,
+      "text": "It was wrong is not a reason.",
+      "start": 178.95,
+      "end": 181.25
+    },
+    {
+      "index": 45,
+      "text": "It caught every exception, which would have hidden the missing customer case, is a reason.",
+      "start": 181.6,
+      "end": 186.95
+    }
+  ],
+  "fingerprint": "21811b5d27187058",
+  "ascii": [
+    "module2-walkthrough.scene02.ascii",
+    "module2-walkthrough.scene03.ascii",
+    "module2-walkthrough.scene04.ascii",
+    "module2-walkthrough.scene05.ascii",
+    "module2-walkthrough.scene06.ascii"
+  ]
+}

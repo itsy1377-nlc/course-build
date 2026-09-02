@@ -1,0 +1,364 @@
+{
+  "id": "lab1-walkthrough",
+  "title": "Prove it runs, then predict",
+  "kind": "walkthrough",
+  "module": "m01",
+  "embed_on": "content/assignments/lab1-python-foundations.md",
+  "blurb": "Three commands at the terminal, including one that fails. It shows the first half of this lab and none of your predictions.",
+  "voice": "af_heart",
+  "explains": [
+    "content/assignments/lab1-python-foundations.md",
+    "content/pages/w1-content.md"
+  ],
+  "duration": 232.08,
+  "bytes": 5993638,
+  "words": 591,
+  "commands": [
+    "python verify_env.py | sed -n '1,15p'",
+    "python verify_env.py > verify-output.txt",
+    "tail -n 9 verify-output.txt | sed -E 's/M0-.{5}-.{5}/M0-XXXXX-XXXXX/'",
+    "python verify_env.py",
+    "cd ..",
+    "python verify_env.py | sed -n '1,3p'",
+    "python -m common.canary | sed -n '1,4p'"
+  ],
+  "cues": [
+    {
+      "index": 0,
+      "text": "Lab 1 asks you for two things. This video shows the first one.",
+      "start": 0.0,
+      "end": 4.45
+    },
+    {
+      "index": 1,
+      "text": "Nothing here needs an API key. It all runs offline.",
+      "start": 4.8,
+      "end": 8.899999999999999
+    },
+    {
+      "index": 2,
+      "text": "You are not graded on whether every check passed.",
+      "start": 9.25,
+      "end": 12.4
+    },
+    {
+      "index": 3,
+      "text": "You are graded on running it and showing the result.",
+      "start": 12.75,
+      "end": 16.0
+    },
+    {
+      "index": 4,
+      "text": "Two failed checks with honest pasted output beat a submission with nothing pasted.",
+      "start": 16.35,
+      "end": 21.85
+    },
+    {
+      "index": 5,
+      "text": "Run python verify env dot p y from the folder that holds it.",
+      "start": 22.200000000000003,
+      "end": 26.875000000000004
+    },
+    {
+      "index": 6,
+      "text": "The full output runs past one screen, so this shows the top.",
+      "start": 27.225,
+      "end": 31.35
+    },
+    {
+      "index": 7,
+      "text": "Nine checks print, one per line, each with a symbol.",
+      "start": 31.700000000000003,
+      "end": 35.275000000000006
+    },
+    {
+      "index": 8,
+      "text": "Python version passes. Then the virtual environment check warns.",
+      "start": 35.625,
+      "end": 40.225
+    },
+    {
+      "index": 9,
+      "text": "It says you are not in a virtual environment.",
+      "start": 40.575,
+      "end": 43.6
+    },
+    {
+      "index": 10,
+      "text": "A warning is not a failure, and the lab still runs.",
+      "start": 43.95,
+      "end": 47.475
+    },
+    {
+      "index": 11,
+      "text": "The arrow under it prints the fix, python dash m venv dot venv.",
+      "start": 47.825,
+      "end": 52.475
+    },
+    {
+      "index": 12,
+      "text": "Then you activate it with the line for your own system.",
+      "start": 52.825,
+      "end": 56.2
+    },
+    {
+      "index": 13,
+      "text": "The other seven checks all pass here.",
+      "start": 56.550000000000004,
+      "end": 59.225
+    },
+    {
+      "index": 14,
+      "text": "Packages, the settings file, and no key stored in it.",
+      "start": 59.575,
+      "end": 63.050000000000004
+    },
+    {
+      "index": 15,
+      "text": "Your canary tokens, the target files, and saving a file.",
+      "start": 63.400000000000006,
+      "end": 67.375
+    },
+    {
+      "index": 16,
+      "text": "The last check runs the agent, and it answered in one step.",
+      "start": 67.72500000000001,
+      "end": 71.67500000000001
+    },
+    {
+      "index": 17,
+      "text": "Now save the output, because the assignment asks you to paste it.",
+      "start": 72.025,
+      "end": 76.125
+    },
+    {
+      "index": 18,
+      "text": "The redirect writes it to a file, so nothing prints here.",
+      "start": 76.47500000000001,
+      "end": 80.17500000000001
+    },
+    {
+      "index": 19,
+      "text": "Then read the end of that file, which is the part you need.",
+      "start": 80.525,
+      "end": 84.30000000000001
+    },
+    {
+      "index": 20,
+      "text": "Everything passed, and then your Module 0 Gate code.",
+      "start": 84.65,
+      "end": 88.275
+    },
+    {
+      "index": 21,
+      "text": "The pipe into sed hides my code on purpose.",
+      "start": 88.625,
+      "end": 91.7
+    },
+    {
+      "index": 22,
+      "text": "Yours comes from your student ID, so no two are the same.",
+      "start": 92.05,
+      "end": 95.875
+    },
+    {
+      "index": 23,
+      "text": "Copy the whole line, including the letter after the last hyphen.",
+      "start": 96.225,
+      "end": 100.35
+    },
+    {
+      "index": 24,
+      "text": "Paste it into the Module 0 Gate in Canvas.",
+      "start": 100.69999999999999,
+      "end": 103.87499999999999
+    },
+    {
+      "index": 25,
+      "text": "It is due on day 3, and it is your attendance check for the term.",
+      "start": 104.225,
+      "end": 108.55
+    },
+    {
+      "index": 26,
+      "text": "The last lines look ahead to week 2, when you have an API key.",
+      "start": 108.89999999999999,
+      "end": 113.27499999999999
+    },
+    {
+      "index": 27,
+      "text": "Run this again with dash dash live and submit the code ending in L.",
+      "start": 113.62499999999999,
+      "end": 118.19999999999999
+    },
+    {
+      "index": 28,
+      "text": "Here is the failure that costs the most time and is not a real failure.",
+      "start": 118.54999999999998,
+      "end": 123.14999999999998
+    },
+    {
+      "index": 29,
+      "text": "The same command, run from the wrong folder.",
+      "start": 123.49999999999999,
+      "end": 126.57499999999999
+    },
+    {
+      "index": 30,
+      "text": "Python cannot find the file, and it prints the path it tried.",
+      "start": 126.92499999999998,
+      "end": 130.89999999999998
+    },
+    {
+      "index": 31,
+      "text": "Move back one folder and run it again.",
+      "start": 131.24999999999997,
+      "end": 134.14999999999998
+    },
+    {
+      "index": 32,
+      "text": "It works, and the check starts printing.",
+      "start": 134.49999999999997,
+      "end": 137.12499999999997
+    },
+    {
+      "index": 33,
+      "text": "If a command cannot find something, check your folder first.",
+      "start": 137.47499999999997,
+      "end": 141.32499999999996
+    },
+    {
+      "index": 34,
+      "text": "Nine times out of ten, that is the whole problem.",
+      "start": 141.67499999999995,
+      "end": 145.07499999999996
+    },
+    {
+      "index": 35,
+      "text": "One more command. Run python dash m common dot canary.",
+      "start": 145.42499999999995,
+      "end": 150.02499999999995
+    },
+    {
+      "index": 36,
+      "text": "It prints three tokens. Sysprompt, customer, and kb.",
+      "start": 150.37499999999994,
+      "end": 154.52499999999995
+    },
+    {
+      "index": 37,
+      "text": "The dash m flag runs a module by its dotted name.",
+      "start": 154.87499999999994,
+      "end": 158.74999999999994
+    },
+    {
+      "index": 38,
+      "text": "That flag is what makes the lab import lines work.",
+      "start": 159.09999999999994,
+      "end": 162.59999999999994
+    },
+    {
+      "index": 39,
+      "text": "Your three tokens are built from your student ID, so a classmate has three different ones.",
+      "start": 162.94999999999993,
+      "end": 168.37499999999994
+    },
+    {
+      "index": 40,
+      "text": "You will hunt these tokens as evidence in Week 5.",
+      "start": 168.72499999999994,
+      "end": 172.07499999999993
+    },
+    {
+      "index": 41,
+      "text": "Two easy ways to lose points here, and both are avoidable.",
+      "start": 172.42499999999993,
+      "end": 176.37499999999991
+    },
+    {
+      "index": 42,
+      "text": "The first one is predicting late.",
+      "start": 176.72499999999994,
+      "end": 179.02499999999995
+    },
+    {
+      "index": 43,
+      "text": "Running the code first, then writing that you predicted it.",
+      "start": 179.37499999999994,
+      "end": 182.94999999999993
+    },
+    {
+      "index": 44,
+      "text": "That is the one thing this lab is built to catch.",
+      "start": 183.29999999999995,
+      "end": 186.42499999999995
+    },
+    {
+      "index": 45,
+      "text": "Predicting badly is fine. Predicting late is not.",
+      "start": 186.77499999999995,
+      "end": 190.44999999999996
+    },
+    {
+      "index": 46,
+      "text": "A wrong prediction you explain in one sentence earns full credit.",
+      "start": 190.79999999999995,
+      "end": 194.97499999999997
+    },
+    {
+      "index": 47,
+      "text": "The second one is describing output instead of pasting it.",
+      "start": 195.32499999999996,
+      "end": 199.19999999999996
+    },
+    {
+      "index": 48,
+      "text": "Several graded rows are the paste itself.",
+      "start": 199.54999999999995,
+      "end": 202.54999999999995
+    },
+    {
+      "index": 49,
+      "text": "One file, four parts, in this order.",
+      "start": 202.89999999999995,
+      "end": 205.62499999999994
+    },
+    {
+      "index": 50,
+      "text": "Your environment check output, then your five predictions with reasons and the real output.",
+      "start": 205.97499999999994,
+      "end": 211.67499999999993
+    },
+    {
+      "index": 51,
+      "text": "Then your dictionary output, then your three written answers.",
+      "start": 212.02499999999995,
+      "end": 215.72499999999994
+    },
+    {
+      "index": 52,
+      "text": "That order is the order the grader reads.",
+      "start": 216.07499999999996,
+      "end": 219.02499999999995
+    },
+    {
+      "index": 53,
+      "text": "Do not upload the two python files. Everything the grader needs is pasted inside the one file.",
+      "start": 219.37499999999997,
+      "end": 225.82499999999996
+    },
+    {
+      "index": 54,
+      "text": "If setup fights you for thirty minutes, post the whole output and start Part 2 anyway.",
+      "start": 226.17499999999998,
+      "end": 231.725
+    }
+  ],
+  "fingerprint": "42e650ffe68e07a6",
+  "ascii": [
+    "lab1-walkthrough.scene01.ascii",
+    "lab1-walkthrough.scene02.ascii",
+    "lab1-walkthrough.scene03.ascii",
+    "lab1-walkthrough.scene04.ascii"
+  ]
+}

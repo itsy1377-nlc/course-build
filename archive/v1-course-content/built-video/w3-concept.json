@@ -1,0 +1,327 @@
+{
+  "id": "w3-concept",
+  "title": "The inversion",
+  "kind": "concept",
+  "module": "m03",
+  "embed_on": "content/pages/w3-overview.md",
+  "blurb": "Four minutes on the one line that hands the model your function list, and the one place in the loop that can still say no.",
+  "voice": "af_heart",
+  "explains": [
+    "content/pages/w3-content.md",
+    "content/pages/w3-annotated-skeleton.md"
+  ],
+  "duration": 240.2,
+  "bytes": 8101535,
+  "words": 655,
+  "commands": [],
+  "cues": [
+    {
+      "index": 0,
+      "text": "This week the direction flips.",
+      "start": 0.0,
+      "end": 2.2
+    },
+    {
+      "index": 1,
+      "text": "Until now your script called the model. From here the model calls your code.",
+      "start": 2.5500000000000003,
+      "end": 7.125
+    },
+    {
+      "index": 2,
+      "text": "That is one line of difference, and it changes who is in charge.",
+      "start": 7.475,
+      "end": 11.6
+    },
+    {
+      "index": 3,
+      "text": "Here is the Week 2 shape. You built the message list.",
+      "start": 11.95,
+      "end": 15.35
+    },
+    {
+      "index": 4,
+      "text": "You chose when to call the model. It produced text, and your script printed it.",
+      "start": 15.7,
+      "end": 20.5
+    },
+    {
+      "index": 5,
+      "text": "Every decision was yours.",
+      "start": 20.849999999999998,
+      "end": 22.974999999999998
+    },
+    {
+      "index": 6,
+      "text": "Now the Week 3 shape. You add one line, and you pass a list of tool schemas.",
+      "start": 23.325,
+      "end": 28.299999999999997
+    },
+    {
+      "index": 7,
+      "text": "The reply can still be text. Or it can be a request for one of your functions.",
+      "start": 28.65,
+      "end": 33.625
+    },
+    {
+      "index": 8,
+      "text": "The model did not change. The call you send did not change much either. One argument did.",
+      "start": 33.974999999999994,
+      "end": 39.8
+    },
+    {
+      "index": 9,
+      "text": "Four things moved when you added that line.",
+      "start": 40.14999999999999,
+      "end": 43.02499999999999
+    },
+    {
+      "index": 10,
+      "text": "First, you passed a menu. The model now knows what your tools are.",
+      "start": 43.37499999999999,
+      "end": 47.599999999999994
+    },
+    {
+      "index": 11,
+      "text": "Second, the reply can be a request instead of an answer. Your code checks which one arrived.",
+      "start": 47.94999999999999,
+      "end": 53.77499999999999
+    },
+    {
+      "index": 12,
+      "text": "Third, the tool name came from the model. You never typed search tickets anywhere.",
+      "start": 54.124999999999986,
+      "end": 58.999999999999986
+    },
+    {
+      "index": 13,
+      "text": "Fourth, the arguments came from the model too. You never typed that query either.",
+      "start": 59.34999999999999,
+      "end": 64.39999999999999
+    },
+    {
+      "index": 14,
+      "text": "Nothing about the model changed. What changed is where the next decision comes from.",
+      "start": 64.74999999999999,
+      "end": 69.97499999999998
+    },
+    {
+      "index": 15,
+      "text": "Here is the part that trips people up. The model did not run anything.",
+      "start": 70.32499999999999,
+      "end": 74.74999999999999
+    },
+    {
+      "index": 16,
+      "text": "It produced text. That text named a function and some arguments.",
+      "start": 75.1,
+      "end": 79.5
+    },
+    {
+      "index": 17,
+      "text": "Your Python read the text, and your Python made the call.",
+      "start": 79.85,
+      "end": 83.55
+    },
+    {
+      "index": 18,
+      "text": "You still own every line that runs. You no longer own the choice of which line runs next.",
+      "start": 83.89999999999999,
+      "end": 89.425
+    },
+    {
+      "index": 19,
+      "text": "That is the inversion, and it is what makes an agent an agent.",
+      "start": 89.77499999999999,
+      "end": 93.89999999999999
+    },
+    {
+      "index": 20,
+      "text": "If you keep one sentence from this week, keep this one.",
+      "start": 94.24999999999999,
+      "end": 97.67499999999998
+    },
+    {
+      "index": 21,
+      "text": "The model asks. Your code answers.",
+      "start": 98.02499999999999,
+      "end": 100.85
+    },
+    {
+      "index": 22,
+      "text": "Asking is free. Anyone whose text reaches the model gets to ask.",
+      "start": 101.19999999999999,
+      "end": 105.85
+    },
+    {
+      "index": 23,
+      "text": "Answering is where you decide, and deciding is where security lives.",
+      "start": 106.19999999999999,
+      "end": 110.64999999999999
+    },
+    {
+      "index": 24,
+      "text": "Now the one thing the model ever learns about a tool.",
+      "start": 110.99999999999999,
+      "end": 114.47499999999998
+    },
+    {
+      "index": 25,
+      "text": "It never sees your Python. It never sees your comments.",
+      "start": 114.82499999999999,
+      "end": 118.6
+    },
+    {
+      "index": 26,
+      "text": "It reads the schema, and that is all it gets.",
+      "start": 118.94999999999999,
+      "end": 121.94999999999999
+    },
+    {
+      "index": 27,
+      "text": "So a schema is not documentation. It is an interface, and a promise your code has to keep.",
+      "start": 122.29999999999998,
+      "end": 128.39999999999998
+    },
+    {
+      "index": 28,
+      "text": "A schema fails in three ways, and you will meet all three.",
+      "start": 128.74999999999997,
+      "end": 132.39999999999998
+    },
+    {
+      "index": 29,
+      "text": "One. A vague description, so the tool runs at the wrong moment, or never runs at all.",
+      "start": 132.74999999999997,
+      "end": 138.52499999999998
+    },
+    {
+      "index": 30,
+      "text": "Two. An argument with no description. The model invents a value, and the value it invents is wrong.",
+      "start": 138.87499999999997,
+      "end": 145.64999999999998
+    },
+    {
+      "index": 31,
+      "text": "Three. A schema that does not match the function. Your code then rejects exactly what the schema promised.",
+      "start": 145.99999999999997,
+      "end": 152.77499999999998
+    },
+    {
+      "index": 32,
+      "text": "In Module 2 you write one of these yourself. The autograder builds arguments from your schema and calls your function with them.",
+      "start": 153.12499999999997,
+      "end": 161.02499999999998
+    },
+    {
+      "index": 33,
+      "text": "You do not have to take my word for any of this.",
+      "start": 161.37499999999997,
+      "end": 164.34999999999997
+    },
+    {
+      "index": 34,
+      "text": "Run python dash m agent dot replay. It walks your last run one step at a time.",
+      "start": 164.69999999999996,
+      "end": 170.44999999999996
+    },
+    {
+      "index": 35,
+      "text": "Next to the step where the model asked for a tool, it prints one line.",
+      "start": 170.79999999999995,
+      "end": 175.22499999999997
+    },
+    {
+      "index": 36,
+      "text": "Nothing in your program chose this.",
+      "start": 175.57499999999996,
+      "end": 177.99999999999997
+    },
+    {
+      "index": 37,
+      "text": "This is the Week 1 picture with one new box in it.",
+      "start": 178.34999999999997,
+      "end": 181.82499999999996
+    },
+    {
+      "index": 38,
+      "text": "You ask.",
+      "start": 182.17499999999995,
+      "end": 183.62499999999994
+    },
+    {
+      "index": 39,
+      "text": "The model picks a tool and its arguments.",
+      "start": 183.97499999999997,
+      "end": 186.94999999999996
+    },
+    {
+      "index": 40,
+      "text": "Then before tool call decides. It runs after the arguments are parsed, one line before the tool runs.",
+      "start": 187.29999999999995,
+      "end": 194.22499999999997
+    },
+    {
+      "index": 41,
+      "text": "That gap is the last moment anything can be stopped.",
+      "start": 194.57499999999996,
+      "end": 197.89999999999995
+    },
+    {
+      "index": 42,
+      "text": "Then the tool runs. A record is read, or an email is queued, and there is no undo.",
+      "start": 198.24999999999997,
+      "end": 203.62499999999997
+    },
+    {
+      "index": 43,
+      "text": "The result becomes another message, and the loop runs again.",
+      "start": 203.97499999999997,
+      "end": 207.77499999999998
+    },
+    {
+      "index": 44,
+      "text": "Right now that function says yes to everything, every time.",
+      "start": 208.12499999999997,
+      "end": 212.12499999999997
+    },
+    {
+      "index": 45,
+      "text": "You do not change it this week.",
+      "start": 212.47499999999997,
+      "end": 214.57499999999996
+    },
+    {
+      "index": 46,
+      "text": "You come back to it in Module 4, four weeks from now.",
+      "start": 214.92499999999995,
+      "end": 218.59999999999997
+    },
+    {
+      "index": 47,
+      "text": "Learn where it sits, and remember one thing about it. A blocked call still gets a line in the ledger.",
+      "start": 218.94999999999996,
+      "end": 225.22499999999997
+    },
+    {
+      "index": 48,
+      "text": "That line is your proof the guard did something.",
+      "start": 225.57499999999996,
+      "end": 228.59999999999997
+    },
+    {
+      "index": 49,
+      "text": "Your job this week is smaller than it sounds. Get one real tool call into your log.",
+      "start": 228.94999999999996,
+      "end": 234.49999999999997
+    },
+    {
+      "index": 50,
+      "text": "That is the checkpoint, and it is pass or fail. Working code is not the bar.",
+      "start": 234.84999999999997,
+      "end": 239.87499999999997
+    }
+  ],
+  "fingerprint": "ca8d424e4f674d88",
+  "ascii": []
+}

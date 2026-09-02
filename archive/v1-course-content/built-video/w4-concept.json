@@ -1,0 +1,362 @@
+{
+  "id": "w4-concept",
+  "title": "The list only grows",
+  "kind": "concept",
+  "module": "m04",
+  "embed_on": "content/pages/w4-overview.md",
+  "blurb": "About five minutes on one run of the loop, what the message list holds at every step, and the two checks that decide whether a tool runs.",
+  "voice": "af_heart",
+  "explains": [
+    "content/pages/w4-content.md"
+  ],
+  "duration": 290.8,
+  "bytes": 10452205,
+  "words": 787,
+  "commands": [],
+  "cues": [
+    {
+      "index": 0,
+      "text": "This week you give the agent hands. You write the tools it can call.",
+      "start": 0.0,
+      "end": 4.25
+    },
+    {
+      "index": 1,
+      "text": "It is the heaviest week in the course. That is normal, not a sign of falling behind.",
+      "start": 4.6,
+      "end": 9.925
+    },
+    {
+      "index": 2,
+      "text": "First take the loop apart, and find every place a tool call can still be refused.",
+      "start": 10.274999999999999,
+      "end": 15.549999999999999
+    },
+    {
+      "index": 3,
+      "text": "The whole agent loop is one for statement. This is it.",
+      "start": 15.899999999999999,
+      "end": 19.65
+    },
+    {
+      "index": 4,
+      "text": "Send the conversation to the model. Run any tool it asked for. Put the result back. Repeat.",
+      "start": 20.0,
+      "end": 26.125
+    },
+    {
+      "index": 5,
+      "text": "It stops when the model answers in words, or at the step limit.",
+      "start": 26.475,
+      "end": 30.625
+    },
+    {
+      "index": 6,
+      "text": "max steps is six, and it is set in your lab config file. So the loop runs six times at most.",
+      "start": 30.975,
+      "end": 37.5
+    },
+    {
+      "index": 7,
+      "text": "A model that keeps asking for tools keeps getting them.",
+      "start": 37.85,
+      "end": 41.45
+    },
+    {
+      "index": 8,
+      "text": "Nothing in the model gets tired. Your quota does.",
+      "start": 41.800000000000004,
+      "end": 45.325
+    },
+    {
+      "index": 9,
+      "text": "This is the first control in this course written in code rather than in words.",
+      "start": 45.675000000000004,
+      "end": 50.7
+    },
+    {
+      "index": 10,
+      "text": "It is one number in a settings file.",
+      "start": 51.050000000000004,
+      "end": 53.6
+    },
+    {
+      "index": 11,
+      "text": "The conversation is a Python list, and it only grows.",
+      "start": 53.95,
+      "end": 57.725
+    },
+    {
+      "index": 12,
+      "text": "It starts with two entries. Your system prompt, then a question.",
+      "start": 58.075,
+      "end": 62.125
+    },
+    {
+      "index": 13,
+      "text": "Walk one run. You ask the agent to summarize ticket T-503.",
+      "start": 62.475,
+      "end": 67.175
+    },
+    {
+      "index": 14,
+      "text": "On step one the model asks for search tickets. The ticket text is added.",
+      "start": 67.525,
+      "end": 72.525
+    },
+    {
+      "index": 15,
+      "text": "On step two it asks for get customer. The customer record is added.",
+      "start": 72.875,
+      "end": 77.625
+    },
+    {
+      "index": 16,
+      "text": "On step three it asks to send an email. That result is added too.",
+      "start": 77.975,
+      "end": 82.725
+    },
+    {
+      "index": 17,
+      "text": "You never asked for an email. The ticket text did. Week 5 is about that.",
+      "start": 83.07499999999999,
+      "end": 87.975
+    },
+    {
+      "index": 18,
+      "text": "On step four the model answers in words.",
+      "start": 88.32499999999999,
+      "end": 91.37499999999999
+    },
+    {
+      "index": 19,
+      "text": "Read that last line twice, because it surprises people.",
+      "start": 91.725,
+      "end": 95.5
+    },
+    {
+      "index": 20,
+      "text": "Nothing is added on step four. The loop saves the answer and breaks.",
+      "start": 95.85,
+      "end": 100.375
+    },
+    {
+      "index": 21,
+      "text": "So the list ends at eight entries, and the final answer is not one of them. It lives in the trace file.",
+      "start": 100.725,
+      "end": 107.425
+    },
+    {
+      "index": 22,
+      "text": "Two things follow from a list that only grows.",
+      "start": 107.77499999999999,
+      "end": 110.74999999999999
+    },
+    {
+      "index": 23,
+      "text": "First, cost. Every entry is sent again on every later pass.",
+      "start": 111.1,
+      "end": 115.44999999999999
+    },
+    {
+      "index": 24,
+      "text": "A long tool result is paid for on every step after it. That is why the loop cuts results off.",
+      "start": 115.8,
+      "end": 122.14999999999999
+    },
+    {
+      "index": 25,
+      "text": "Second, trust. From step one that list holds text a stranger typed into a ticket.",
+      "start": 122.5,
+      "end": 128.175
+    },
+    {
+      "index": 26,
+      "text": "It sits right next to your system prompt, in the same format.",
+      "start": 128.525,
+      "end": 132.32500000000002
+    },
+    {
+      "index": 27,
+      "text": "Nothing in the list marks one entry as data and another as orders. That is where step three came from.",
+      "start": 132.675,
+      "end": 139.35000000000002
+    },
+    {
+      "index": 28,
+      "text": "The model sent a name. Something turns that name into running code.",
+      "start": 139.70000000000002,
+      "end": 144.12500000000003
+    },
+    {
+      "index": 29,
+      "text": "First, is the name in TOOLS, the registry that maps a name to a function?",
+      "start": 144.47500000000002,
+      "end": 149.82500000000002
+    },
+    {
+      "index": 30,
+      "text": "Second, is the name in the allowed tools list in your settings file?",
+      "start": 150.175,
+      "end": 154.425
+    },
+    {
+      "index": 31,
+      "text": "Only then does your function run, and that second check is the control.",
+      "start": 154.775,
+      "end": 159.35
+    },
+    {
+      "index": 32,
+      "text": "A model can write any tool name it likes, including one you never offered.",
+      "start": 159.70000000000002,
+      "end": 164.4
+    },
+    {
+      "index": 33,
+      "text": "A tool call is only text. Nothing stops it asking. The allowlist stops the call running.",
+      "start": 164.75000000000003,
+      "end": 170.82500000000002
+    },
+    {
+      "index": 34,
+      "text": "So Module 2 has you edit two files. Miss the second one and your tool never runs.",
+      "start": 171.17500000000004,
+      "end": 176.90000000000003
+    },
+    {
+      "index": 35,
+      "text": "Here is every place a tool call can still be refused.",
+      "start": 177.25000000000003,
+      "end": 180.92500000000004
+    },
+    {
+      "index": 36,
+      "text": "The step limit bounds how many calls there can be.",
+      "start": 181.27500000000003,
+      "end": 184.77500000000003
+    },
+    {
+      "index": 37,
+      "text": "The registry asks whether the name exists at all.",
+      "start": 185.12500000000003,
+      "end": 188.35000000000002
+    },
+    {
+      "index": 38,
+      "text": "The allowlist asks whether that tool is switched on. This layer is the control.",
+      "start": 188.70000000000002,
+      "end": 193.675
+    },
+    {
+      "index": 39,
+      "text": "And one layer sits under all of them, in your loop, one line before a tool runs.",
+      "start": 194.025,
+      "end": 199.225
+    },
+    {
+      "index": 40,
+      "text": "Right now it says yes to everything. In Week 7 you are the one who fills it in.",
+      "start": 199.57500000000002,
+      "end": 204.95000000000002
+    },
+    {
+      "index": 41,
+      "text": "Tools fail, and that is ordinary. The target app is down. A customer ID does not exist.",
+      "start": 205.3,
+      "end": 211.425
+    },
+    {
+      "index": 42,
+      "text": "When a tool raises, the failure becomes text and goes back to the model.",
+      "start": 211.775,
+      "end": 216.55
+    },
+    {
+      "index": 43,
+      "text": "The loop keeps going, and that is correct behavior.",
+      "start": 216.9,
+      "end": 220.32500000000002
+    },
+    {
+      "index": 44,
+      "text": "Now compare a tool that returns an empty string when the customer is missing.",
+      "start": 220.675,
+      "end": 225.70000000000002
+    },
+    {
+      "index": 45,
+      "text": "Nothing is raised. The model believes the record is blank and tells the user so.",
+      "start": 226.05,
+      "end": 231.525
+    },
+    {
+      "index": 46,
+      "text": "Your ledger agrees, because nothing went wrong.",
+      "start": 231.875,
+      "end": 234.925
+    },
+    {
+      "index": 47,
+      "text": "A tool that fails quietly is worse than a tool that is missing.",
+      "start": 235.275,
+      "end": 239.5
+    },
+    {
+      "index": 48,
+      "text": "So Module 2 grades your error path as heavily as your success path.",
+      "start": 239.85,
+      "end": 244.5
+    },
+    {
+      "index": 49,
+      "text": "One gap you are building on purpose.",
+      "start": 244.85,
+      "end": 247.275
+    },
+    {
+      "index": 50,
+      "text": "get customer asks the target app for a record. It never asks who is calling.",
+      "start": 247.625,
+      "end": 252.525
+    },
+    {
+      "index": 51,
+      "text": "Your own tool will not ask either. The assignment does not want that check, so do not add it.",
+      "start": 252.875,
+      "end": 258.525
+    },
+    {
+      "index": 52,
+      "text": "In Week 6 you find this gap yourself, in code you wrote. That teaches more than being told now.",
+      "start": 258.875,
+      "end": 264.925
+    },
+    {
+      "index": 53,
+      "text": "That gap already has a name. Excessive agency is capability granted without a control on its use.",
+      "start": 265.275,
+      "end": 272.075
+    },
+    {
+      "index": 54,
+      "text": "Every tool you register widens what the model can ask for. The tool list is the list of harm the system can do.",
+      "start": 272.42499999999995,
+      "end": 279.67499999999995
+    },
+    {
+      "index": 55,
+      "text": "So before you open the editor, trace one run on paper. It takes about thirty minutes.",
+      "start": 280.025,
+      "end": 285.7
+    },
+    {
+      "index": 56,
+      "text": "Students who trace first finish Module 2 in about half the time.",
+      "start": 286.04999999999995,
+      "end": 290.44999999999993
+    }
+  ],
+  "fingerprint": "88fe56a82102e288",
+  "ascii": []
+}

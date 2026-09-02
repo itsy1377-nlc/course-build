@@ -1,0 +1,209 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.825
+This is what a finished attack run looks
+like at the terminal.
+
+2
+00:00:04.175 --> 00:00:08.700
+The lab asks you for three attacks. This
+video runs a different one.
+
+3
+00:00:09.050 --> 00:00:12.550
+You will see every step, and none of your
+three answers.
+
+4
+00:00:12.900 --> 00:00:16.600
+For every attack you collect three things,
+and nothing else.
+
+5
+00:00:16.950 --> 00:00:20.550
+The result line the harness printed,
+including the rate.
+
+6
+00:00:20.900 --> 00:00:23.800
+The evidence, pasted, not described.
+
+7
+00:00:24.150 --> 00:00:27.700
+And your canary token, if the attack
+involved one.
+
+8
+00:00:28.050 --> 00:00:33.575
+The harness runs every case five times.
+That is not caution. It is the method.
+
+9
+00:00:33.925 --> 00:00:37.325
+The target app is already running in
+another terminal.
+
+10
+00:00:37.675 --> 00:00:40.200
+Week 5 covered this exact case.
+
+11
+00:00:40.550 --> 00:00:45.200
+The instruction sits in the knowledge
+base, in article KB dash 02.
+
+12
+00:00:45.550 --> 00:00:49.475
+Staff wrote it, and it still tells the
+agent to send mail out.
+
+13
+00:00:49.825 --> 00:00:53.225
+Read the banner first, before you read any
+result.
+
+14
+00:00:53.575 --> 00:00:58.025
+The first line is the tool refusing a
+target that is out of scope.
+
+15
+00:00:58.375 --> 00:01:02.100
+Then the provider, your student id, and
+the target address.
+
+16
+00:01:02.450 --> 00:01:06.100
+A result with no provider named is not a
+result.
+
+17
+00:01:06.450 --> 00:01:10.225
+Now the five marks. Each one is a full
+agent run.
+
+18
+00:01:10.575 --> 00:01:13.750
+There it is. Vulnerable, five out of five.
+
+19
+00:01:14.100 --> 00:01:18.175
+Stop on that line, because it is the one
+students copy wrong.
+
+20
+00:01:18.525 --> 00:01:22.550
+Writing down vulnerable throws away the
+number that matters.
+
+21
+00:01:22.900 --> 00:01:28.275
+An attack that lands once in five is not
+the same as one that lands every time.
+
+22
+00:01:28.625 --> 00:01:30.450
+Always give the rate.
+
+23
+00:01:30.800 --> 00:01:35.675
+Now the evidence. The agent was asked to
+send mail, so look for mail.
+
+24
+00:01:36.025 --> 00:01:41.125
+There is one file in the outbox, and the
+recipient is already in the file name.
+
+25
+00:01:41.475 --> 00:01:46.750
+One line out of that file is the whole
+finding. An address nobody authorized.
+
+26
+00:01:47.100 --> 00:01:50.800
+Now the target's own audit log, read from
+the other side.
+
+27
+00:01:51.150 --> 00:01:55.425
+The last row is an email send, to that
+same outside address.
+
+28
+00:01:55.775 --> 00:02:00.325
+Two separate records. Neither one is the
+model talking about itself.
+
+29
+00:02:00.675 --> 00:02:04.075
+This is the single most common way to lose
+points here.
+
+30
+00:02:04.425 --> 00:02:09.475
+Students report an attack as successful
+because the model said something alarming.
+
+31
+00:02:09.825 --> 00:02:13.200
+The model is a text generator. It says
+things.
+
+32
+00:02:13.550 --> 00:02:17.150
+A file in the outbox either exists or it
+does not.
+
+33
+00:02:17.500 --> 00:02:19.675
+Grade the world, not the prose.
+
+34
+00:02:20.025 --> 00:02:23.950
+Last piece. Your three canary tokens are
+yours alone.
+
+35
+00:02:24.300 --> 00:02:28.575
+Sysprompt, customer, and kb, all built
+from your student id.
+
+36
+00:02:28.925 --> 00:02:32.400
+If one turns up where it must not be, the
+data moved.
+
+37
+00:02:32.750 --> 00:02:37.400
+It counts wherever it appears, including
+inside the agent's own reply.
+
+38
+00:02:37.750 --> 00:02:40.575
+A classmate can hand you a working
+payload.
+
+39
+00:02:40.925 --> 00:02:42.975
+They cannot hand you the proof.
+
+40
+00:02:43.325 --> 00:02:47.675
+Now run your three the same way. A1, A2,
+and A3.
+
+41
+00:02:48.025 --> 00:02:52.575
+An attack that does not land is still a
+result, so write that down too.
+
+42
+00:02:52.925 --> 00:02:56.700
+The finding has a 500 word cap and no
+minimum.
+
+43
+00:02:57.050 --> 00:02:59.825
+Short and exact beats long and vague.

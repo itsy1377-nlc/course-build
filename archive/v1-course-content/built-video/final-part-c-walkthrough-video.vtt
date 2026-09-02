@@ -1,0 +1,250 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.325
+Part C is three minutes on your own
+repository.
+
+2
+00:00:03.675 --> 00:00:05.900
+Minute one is what you built.
+
+3
+00:00:06.250 --> 00:00:09.225
+Minute two is what you broke, and how you
+know.
+
+4
+00:00:09.575 --> 00:00:13.125
+Minute three is what you fixed, and what
+still remains.
+
+5
+00:00:13.475 --> 00:00:17.800
+The timings are the whole structure.
+Nothing is left for you to guess.
+
+6
+00:00:18.150 --> 00:00:22.325
+There are three ways to hand this in, and
+all three are worth the same.
+
+7
+00:00:22.675 --> 00:00:25.425
+A recording of your screen, with your
+voice.
+
+8
+00:00:25.775 --> 00:00:29.325
+A slide deck with screenshots and recorded
+audio.
+
+9
+00:00:29.675 --> 00:00:33.575
+Or a written walkthrough with screenshots
+and no audio at all.
+
+10
+00:00:33.925 --> 00:00:37.175
+The written option is full credit, not a
+fallback.
+
+11
+00:00:37.525 --> 00:00:40.125
+Choose it for any reason, or for none.
+
+12
+00:00:40.475 --> 00:00:42.300
+Start with what you built.
+
+13
+00:00:42.650 --> 00:00:47.125
+On your own screen, open your tools file
+and show the tool you designed.
+
+14
+00:00:47.475 --> 00:00:49.475
+Show its schema next to it.
+
+15
+00:00:49.825 --> 00:00:52.825
+Then say one sentence on what the tool
+does.
+
+16
+00:00:53.175 --> 00:00:56.450
+And one sentence on what it refuses to do.
+
+17
+00:00:56.800 --> 00:01:01.150
+This video never opens that file, because
+your code is yours.
+
+18
+00:01:01.500 --> 00:01:05.025
+Most people run long here, and then rush
+part three.
+
+19
+00:01:05.375 --> 00:01:08.350
+Minute two is what you broke, and how you
+know.
+
+20
+00:01:08.700 --> 00:01:13.150
+Run the harness once more before you
+record, so your numbers are current.
+
+21
+00:01:13.500 --> 00:01:17.550
+Then list your reports folder. The newest
+file is your source.
+
+22
+00:01:17.900 --> 00:01:20.425
+Print the finding for one attack case.
+
+23
+00:01:20.775 --> 00:01:25.575
+This is the knowledge base case from Week
+5, article KB dash 02.
+
+24
+00:01:25.925 --> 00:01:29.800
+Staff wrote that article, and it still
+carries an instruction.
+
+25
+00:01:30.150 --> 00:01:34.300
+Read the result off the screen.
+Vulnerable, five of five.
+
+26
+00:01:34.650 --> 00:01:40.100
+The three framework lines are labels from
+OWASP and MITRE ATLAS.
+
+27
+00:01:40.450 --> 00:01:44.100
+They are not the weakness class. That is a
+separate field.
+
+28
+00:01:44.450 --> 00:01:47.047
+The last line names the evidence. An
+
+29
+00:01:47.047 --> 00:01:50.150
+outbox file, addressed outside the
+company.
+
+30
+00:01:50.500 --> 00:01:53.950
+Now print the table row, where the Class
+column lives.
+
+31
+00:01:54.300 --> 00:01:59.025
+It reads indirect prompt injection from
+trusted internal content.
+
+32
+00:01:59.375 --> 00:02:03.425
+Now show the evidence itself, not the
+report's summary of it.
+
+33
+00:02:03.775 --> 00:02:08.375
+There is one file in the outbox, and the
+recipient is in the file name.
+
+34
+00:02:08.725 --> 00:02:12.000
+One line out of that file is the whole
+finding.
+
+35
+00:02:12.350 --> 00:02:15.675
+An address nobody at the company
+authorized.
+
+36
+00:02:16.025 --> 00:02:20.475
+Then say which weakness class it is. The
+Class column has the words.
+
+37
+00:02:20.825 --> 00:02:23.000
+Grade the world, not the prose.
+
+38
+00:02:23.350 --> 00:02:26.575
+Minute three is what you fixed, and what
+remains.
+
+39
+00:02:26.925 --> 00:02:30.775
+Show your guard on your own screen, then
+run the harness again.
+
+40
+00:02:31.125 --> 00:02:36.400
+Read the controls first. Both pass, so
+normal support work still gets through.
+
+41
+00:02:36.750 --> 00:02:39.525
+Now the same case, in your new report.
+
+42
+00:02:39.875 --> 00:02:42.500
+It reads blocked, five out of five.
+
+43
+00:02:42.850 --> 00:02:45.750
+That is not the same as an attack that
+failed.
+
+44
+00:02:46.100 --> 00:02:50.475
+The agent asked every time. Your code
+refused every time.
+
+45
+00:02:50.825 --> 00:02:54.475
+The evidence line says no message left the
+company.
+
+46
+00:02:54.825 --> 00:02:58.575
+Finish by naming one thing your fix still
+does not cover.
+
+47
+00:02:58.925 --> 00:03:02.525
+Do one practice take with a timer before
+the real one.
+
+48
+00:03:02.875 --> 00:03:07.875
+Open every file you need before you press
+record, and do not search on camera.
+
+49
+00:03:08.225 --> 00:03:11.675
+Close any browser tab that is not your own
+lab.
+
+50
+00:03:12.025 --> 00:03:16.150
+A stray tab raises a scope question about
+work that was fine.
+
+51
+00:03:16.500 --> 00:03:20.925
+If you host the file somewhere, check the
+link opens for your instructor.
+
+52
+00:03:21.275 --> 00:03:24.125
+A link nobody can open scores zero.

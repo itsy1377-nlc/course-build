@@ -1,0 +1,290 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.050
+This course is about agents and how they
+break.
+
+2
+00:00:03.400 --> 00:00:07.825
+An agent is a program that lets a language
+model call your code.
+
+3
+00:00:08.175 --> 00:00:12.050
+You extend one, you attack it, and you
+prove your fix held.
+
+4
+00:00:12.400 --> 00:00:16.200
+Before any of that, you have three days
+and one list to learn.
+
+5
+00:00:16.550 --> 00:00:21.300
+Your first deadline is the Module 0 Gate,
+and it is due on day 3.
+
+6
+00:00:21.650 --> 00:00:26.100
+It is not just a grade. It is how the
+college records that you are here.
+
+7
+00:00:26.450 --> 00:00:29.226
+Census falls on day 8. Miss the Gate and
+
+8
+00:00:29.226 --> 00:00:32.350
+you can be recorded as never having
+attended.
+
+9
+00:00:32.700 --> 00:00:36.425
+Nobody can fix that afterward, so start on
+day 1.
+
+10
+00:00:36.775 --> 00:00:39.720
+Attempts are unlimited and your best score
+
+11
+00:00:39.720 --> 00:00:42.875
+is kept. You need 100 percent to open Week
+2.
+
+12
+00:00:43.225 --> 00:00:48.700
+The first part is a quiz. Every question
+comes from the Rules of Engagement page.
+
+13
+00:00:49.050 --> 00:00:52.062
+The second part is a code. You run the
+verify
+
+14
+00:00:52.062 --> 00:00:55.275
+env script in your lab folder and it
+prints one.
+
+15
+00:00:55.625 --> 00:01:00.200
+Your code is different from your
+classmate's, so no answer key can exist.
+
+16
+00:01:00.550 --> 00:01:03.400
+The third part is a short written answer.
+
+17
+00:01:03.750 --> 00:01:07.800
+Start on day 1, because setup is the part
+that goes wrong.
+
+18
+00:01:08.150 --> 00:01:10.704
+Now the rule that matters most. Here is
+
+19
+00:01:10.704 --> 00:01:13.650
+clause 1, said out loud so you can repeat
+it.
+
+20
+00:01:14.000 --> 00:01:17.099
+You may attack the HelpDesk Lite app in
+your lab
+
+21
+00:01:17.099 --> 00:01:21.425
+repository. It runs on your computer and
+it was built to be broken.
+
+22
+00:01:21.775 --> 00:01:24.575
+You may attack your own copy of the agent.
+
+23
+00:01:24.925 --> 00:01:29.100
+And you may attack a language model
+running on your own computer.
+
+24
+00:01:29.450 --> 00:01:33.400
+That is the whole list. Nothing on it
+belongs to anyone else.
+
+25
+00:01:33.750 --> 00:01:37.006
+Security testing is legal work when
+someone has
+
+26
+00:01:37.006 --> 00:01:40.400
+said yes. The word for that yes is
+authorization.
+
+27
+00:01:40.750 --> 00:01:44.425
+This page is the yes you have, and it
+names three things.
+
+28
+00:01:44.775 --> 00:01:48.075
+Clause 2 is shorter, and it has no
+exceptions.
+
+29
+00:01:48.425 --> 00:01:53.900
+Not a commercial AI service. Not ChatGPT,
+Claude, Gemini or Groq.
+
+30
+00:01:54.250 --> 00:01:59.550
+Not a system the college owns. Not Canvas,
+not ACES, not campus Wi-Fi.
+
+31
+00:01:59.900 --> 00:02:04.025
+Not your job's systems, and not a friend's
+or a family member's.
+
+32
+00:02:04.375 --> 00:02:09.300
+I only tried it once is not a defense.
+Neither is it was already broken.
+
+33
+00:02:09.650 --> 00:02:12.373
+Breaking either clause means a zero on
+that
+
+34
+00:02:12.373 --> 00:02:15.350
+work and a referral. It can also break the
+law.
+
+35
+00:02:15.700 --> 00:02:19.275
+Your key is yours alone, and it lives in
+one place.
+
+36
+00:02:19.625 --> 00:02:22.126
+The settings file is tracked by git. A key
+
+37
+00:02:22.126 --> 00:02:24.925
+written there is published the moment you
+push.
+
+38
+00:02:25.275 --> 00:02:28.189
+So your key goes in a file named dot e n
+v,
+
+39
+00:02:28.189 --> 00:02:31.375
+and nowhere else. That file is never
+committed.
+
+40
+00:02:31.725 --> 00:02:34.625
+The lab code checks for you. It refuses to
+start
+
+41
+00:02:34.625 --> 00:02:37.525
+when it finds a credential in the settings
+file.
+
+42
+00:02:37.875 --> 00:02:41.438
+If a key ever leaks, turn it off at the
+provider and tell
+
+43
+00:02:41.438 --> 00:02:45.500
+your instructor. Nobody is in trouble for
+reporting that quickly.
+
+44
+00:02:45.850 --> 00:02:48.675
+The rhythm does not change after this
+module.
+
+45
+00:02:49.025 --> 00:02:54.050
+Every week opens with an Overview. It says
+what is due and how long it takes.
+
+46
+00:02:54.400 --> 00:02:58.050
+Then a Content page. Read it before you
+touch the lab.
+
+47
+00:02:58.400 --> 00:03:00.250
+Then the graded work.
+
+48
+00:03:00.600 --> 00:03:02.250
+Then a Wrap-up.
+
+49
+00:03:02.600 --> 00:03:06.825
+Assigned work runs 5 to 9 hours a week,
+reading included.
+
+50
+00:03:07.175 --> 00:03:10.575
+If coding is new to you, plan for 10 to
+20.
+
+51
+00:03:10.925 --> 00:03:14.100
+That is normal, not a sign of falling
+behind.
+
+52
+00:03:14.450 --> 00:03:16.987
+Set one rule now. Thirty minutes of no
+
+53
+00:03:16.987 --> 00:03:19.925
+progress, and you post on the Q and A
+board.
+
+54
+00:03:20.275 --> 00:03:25.550
+Include the exact command and the exact
+error text. Never paste your key.
+
+55
+00:03:25.900 --> 00:03:30.700
+One sentence carries this whole course.
+Scope first, technique second.
+
+56
+00:03:31.050 --> 00:03:36.125
+Permission comes before any technique you
+learn here. That order never changes.
+
+57
+00:03:36.475 --> 00:03:39.308
+So today, read the Rules of Engagement,
+set
+
+58
+00:03:39.308 --> 00:03:42.075
+up the lab, and run the environment check.
+
+59
+00:03:42.425 --> 00:03:45.171
+Then take the Gate. You have until day 3,
+
+60
+00:03:45.171 --> 00:03:48.050
+and you can retake it as often as you
+need.

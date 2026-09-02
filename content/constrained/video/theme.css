@@ -1,0 +1,137 @@
+/* The one visual theme every slide inherits.
+ *
+ * Authors never write CSS and never pick a colour. They pick a layout name and
+ * supply content. That is what keeps seventeen videos looking like one course
+ * instead of seventeen weekends.
+ *
+ * High contrast neutral, chosen for a student reading on a phone in daylight
+ * and for an accessibility checker afterwards. Measured against the ground:
+ *
+ *     ink    #16181d on #faf9f7   17.2:1   AAA at every size
+ *     mute   #5c6270 on #faf9f7    6.0:1   AA at every size
+ *     accent #b3261e on #faf9f7    6.4:1   AA at every size
+ *
+ * tools/video/check.py asserts these, so a palette edit that breaks AA fails
+ * the build rather than shipping.
+ *
+ * The accent marks the one thing that matters on a slide and nothing else. It
+ * is never decoration. If two things on a slide are red, one of them is wrong.
+ */
+:root {
+  --ground:#faf9f7; --ink:#16181d; --mute:#5c6270;
+  --accent:#b3261e; --rule:#dcd9d4; --wash:#f2f0ec;
+  --sans:"Inter","Helvetica Neue",Arial,sans-serif;
+  --mono:"JetBrains Mono","SF Mono",Menlo,monospace;
+  --pad-x:130px; --pad-y:110px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{width:1920px;height:1080px}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-feature-settings:"kern" 1,"liga" 1,"tnum" 1;-webkit-font-smoothing:antialiased;
+  padding:var(--pad-y) var(--pad-x);display:flex;flex-direction:column}
+
+/* The week marker. The accent bar is the only red on most slides. */
+.eyebrow{font-size:30px;letter-spacing:.16em;text-transform:uppercase;
+  color:var(--mute);font-weight:600;display:flex;align-items:center;gap:22px}
+.eyebrow::before{content:"";width:8px;height:34px;background:var(--accent);
+  border-radius:2px;flex:none}
+
+h1{font-size:84px;line-height:1.1;font-weight:700;letter-spacing:-.02em;
+  margin-top:44px;max-width:1450px}
+h1.big{font-size:106px}
+h1.lede{font-size:68px;font-weight:600}
+.body{font-size:46px;line-height:1.42;margin-top:40px;max-width:1400px}
+
+/* Numbered list. Items not yet reached are dimmed rather than absent, so the
+ * slide does not reflow as it reveals and the student can see how far there is
+ * still to go. */
+ol.items{list-style:none;margin-top:72px;display:flex;flex-direction:column;gap:34px}
+ol.items li{display:flex;gap:34px;align-items:baseline;font-size:44px;
+  line-height:1.32;max-width:1500px}
+ol.items li .n{font-size:40px;font-weight:700;color:var(--accent);
+  font-variant-numeric:tabular-nums;min-width:56px;flex:none}
+ol.items li.off,ol.items li.off .n{color:var(--dim)}
+
+/* Two panels set against each other. The right one carries the accent, because
+ * in this course the right-hand column is always the corrected idea. */
+.compare{margin-top:66px;display:grid;grid-template-columns:1fr 1fr;gap:48px}
+.compare .panel{background:var(--wash);border-radius:14px;padding:46px 44px;
+  border-top:6px solid var(--rule)}
+.compare .panel.mark{border-top-color:var(--accent)}
+.compare .panel h2{font-size:28px;letter-spacing:.12em;text-transform:uppercase;
+  color:var(--mute);font-weight:700;margin-bottom:22px}
+.compare .panel p{font-size:40px;line-height:1.34}
+
+pre.code{margin-top:60px;background:var(--wash);border-radius:14px;
+  border-left:6px solid var(--accent);padding:42px 46px;font-family:var(--mono);
+  font-size:34px;line-height:1.5;overflow:hidden;white-space:pre}
+
+blockquote{margin-top:60px;font-size:56px;line-height:1.3;font-weight:600;
+  max-width:1450px;border-left:8px solid var(--accent);padding-left:42px}
+
+footer{margin-top:auto;display:flex;align-items:center;gap:32px;
+  border-top:2px solid var(--rule);padding-top:30px;font-size:26px;
+  color:var(--mute);letter-spacing:.04em}
+footer .sp{margin-left:auto}
+
+/* The title card centres, because it has one job and no list to line up. */
+body.title-card{justify-content:center}
+body.title-card footer{margin-top:90px}
+
+/* ---------------------------------------------------------------------------
+ * Diagrams
+ *
+ * Authors describe structure; none of the geometry or colour below is theirs
+ * to set. A picture that quietly uses a different grey is the kind of thing
+ * nobody reports and everybody notices.
+ *
+ * The diagram owns the space between the heading and the footer and centres in
+ * it. Anchored to the top, a three node flow left a third of the frame empty.
+ * ------------------------------------------------------------------------ */
+.diagram{flex:1;display:flex;flex-direction:column;justify-content:center;padding:40px 0}
+.track{display:flex;align-items:stretch}
+.track.down{flex-direction:column;align-items:stretch}
+
+.node{flex:1;background:var(--wash);border:2px solid var(--rule);border-radius:14px;
+  padding:26px 24px;display:flex;flex-direction:column;justify-content:center;gap:8px;
+  min-height:132px}
+.node .label{font-size:33px;line-height:1.24;font-weight:600}
+.node .sub{font-size:24px;color:var(--mute);line-height:1.3}
+/* The accent marks the one node that matters, the same rule as everywhere else. */
+.node.mark{border-color:var(--accent);background:#fff;box-shadow:0 0 0 4px rgba(179,38,30,.10)}
+.node.mark .label{color:var(--accent)}
+.node.code .label{font-family:var(--mono);font-size:28px;font-weight:500}
+.node.off{background:transparent;border-color:var(--rule);box-shadow:none}
+.node.off .label,.node.off .sub{color:var(--dim)}
+
+.arrow{flex:none;width:64px;display:flex;align-items:center;justify-content:center;color:var(--mute)}
+.track.down .arrow{width:auto;height:52px}
+.track.down .arrow svg{transform:rotate(90deg)}
+.arrow svg{width:34px;height:34px}
+.arrow.off{opacity:.5}
+
+/* A return path is drawn as a route: down from the last node, back underneath,
+ * and up into the first with the arrowhead where it re-enters. A floating line
+ * with the label beside it read as a caption rather than a path. */
+.loop{position:relative;height:96px;margin:0 34px}
+.loop .path{position:absolute;inset:22px 0 auto 0;height:52px;
+  border:2px solid var(--rule);border-top:0;border-radius:0 0 16px 16px}
+.loop .head{position:absolute;left:-9px;top:14px;width:0;height:0;
+  border-left:9px solid transparent;border-right:9px solid transparent;
+  border-bottom:12px solid var(--rule)}
+.loop .text{position:absolute;left:50%;transform:translateX(-50%);top:52px;
+  background:var(--ground);padding:0 20px;color:var(--mute);font-size:25px;white-space:nowrap}
+.loop.off{opacity:.5}
+
+/* One thing becoming several. The fork is drawn, not implied. */
+.split{display:flex;flex-direction:column;align-items:center;gap:0}
+.split .source{min-width:44%}
+.split svg.fork{width:100%;height:64px;color:var(--rule);display:block}
+.split .tracks{display:flex;gap:36px;width:100%}
+.split .tracks .node{flex:1}
+
+.stack{display:flex;flex-direction:column;gap:14px}
+.stack .node{min-height:0;padding:22px 26px}
+
+.svgwrap{display:flex;align-items:center;justify-content:center;flex:1}
+.svgwrap svg{max-width:100%;max-height:560px;height:auto}

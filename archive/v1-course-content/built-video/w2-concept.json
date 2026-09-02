@@ -1,0 +1,332 @@
+{
+  "id": "w2-concept",
+  "title": "Four roles, one box",
+  "kind": "concept",
+  "module": "m02",
+  "embed_on": "content/pages/w2-overview.md",
+  "blurb": "Four and a half minutes on the request you send, the reply you read, and why a role label is not a security boundary.",
+  "voice": "af_heart",
+  "explains": [
+    "content/pages/w2-content.md"
+  ],
+  "duration": 256.4,
+  "bytes": 9101568,
+  "words": 677,
+  "commands": [],
+  "cues": [
+    {
+      "index": 0,
+      "text": "This week you put a real model on the other end of the line.",
+      "start": 0.0,
+      "end": 3.825
+    },
+    {
+      "index": 1,
+      "text": "You send one request. You read one reply.",
+      "start": 4.175,
+      "end": 7.4
+    },
+    {
+      "index": 2,
+      "text": "Both are plain JSON, and there are fewer moving parts than you expect.",
+      "start": 7.75,
+      "end": 12.525
+    },
+    {
+      "index": 3,
+      "text": "Everything you send sits in one JSON object, built in the file agent llm dot py.",
+      "start": 12.875,
+      "end": 19.3
+    },
+    {
+      "index": 4,
+      "text": "Model names the model you are calling. It comes from your settings file.",
+      "start": 19.65,
+      "end": 24.15
+    },
+    {
+      "index": 5,
+      "text": "Messages is the conversation. It is also the whole input the model gets.",
+      "start": 24.5,
+      "end": 29.675
+    },
+    {
+      "index": 6,
+      "text": "Temperature controls how much answers vary. The labs set it to zero.",
+      "start": 30.025,
+      "end": 34.65
+    },
+    {
+      "index": 7,
+      "text": "Max tokens caps how long the reply can be.",
+      "start": 35.0,
+      "end": 38.175
+    },
+    {
+      "index": 8,
+      "text": "One call to post sends that object. It waits sixty seconds, then gives up instead of hanging forever.",
+      "start": 38.525,
+      "end": 45.275
+    },
+    {
+      "index": 9,
+      "text": "That is the only place your labs talk to a model over the network.",
+      "start": 45.625,
+      "end": 49.9
+    },
+    {
+      "index": 10,
+      "text": "Every entry in that list has a role and some content.",
+      "start": 50.25,
+      "end": 53.875
+    },
+    {
+      "index": 11,
+      "text": "System holds your instructions to the agent.",
+      "start": 54.225,
+      "end": 57.275
+    },
+    {
+      "index": 12,
+      "text": "User is the person asking.",
+      "start": 57.625,
+      "end": 59.925
+    },
+    {
+      "index": 13,
+      "text": "Assistant is what the model already said.",
+      "start": 60.275,
+      "end": 63.275
+    },
+    {
+      "index": 14,
+      "text": "And tool is a result your own code handed back.",
+      "start": 63.625,
+      "end": 67.05
+    },
+    {
+      "index": 15,
+      "text": "Now the fact this course is built on.",
+      "start": 67.4,
+      "end": 69.92500000000001
+    },
+    {
+      "index": 16,
+      "text": "All four arrive in one list, as text, in one request.",
+      "start": 70.275,
+      "end": 74.22500000000001
+    },
+    {
+      "index": 17,
+      "text": "Models are trained to weight those labels, and that does help.",
+      "start": 74.575,
+      "end": 78.25
+    },
+    {
+      "index": 18,
+      "text": "But a label is a hint carried inside the text, not a wall around it.",
+      "start": 78.60000000000001,
+      "end": 83.25000000000001
+    },
+    {
+      "index": 19,
+      "text": "Your instructions and a stranger's ticket travel in the same box.",
+      "start": 83.60000000000001,
+      "end": 87.9
+    },
+    {
+      "index": 20,
+      "text": "That is not a bug you can patch. It is the shape of the interface.",
+      "start": 88.25000000000001,
+      "end": 92.40000000000002
+    },
+    {
+      "index": 21,
+      "text": "Now the reply, which is also JSON.",
+      "start": 92.75000000000001,
+      "end": 96.00000000000001
+    },
+    {
+      "index": 22,
+      "text": "The text you want is four levels down. Response, then choices, then zero, then message, then content.",
+      "start": 96.35000000000001,
+      "end": 103.15
+    },
+    {
+      "index": 23,
+      "text": "You will write that chain many times this term.",
+      "start": 103.50000000000001,
+      "end": 106.27500000000002
+    },
+    {
+      "index": 24,
+      "text": "Choices is a list because the API can return more than one answer.",
+      "start": 106.62500000000001,
+      "end": 111.40000000000002
+    },
+    {
+      "index": 25,
+      "text": "Here it always returns one, so the index is always zero.",
+      "start": 111.75000000000001,
+      "end": 115.90000000000002
+    },
+    {
+      "index": 26,
+      "text": "Your lab code has a function called message of that does this lookup for you.",
+      "start": 116.25000000000001,
+      "end": 121.10000000000001
+    },
+    {
+      "index": 27,
+      "text": "It catches a missing key and says so, rather than failing four levels deep.",
+      "start": 121.45000000000002,
+      "end": 126.15000000000002
+    },
+    {
+      "index": 28,
+      "text": "Look at the shape of that message, because the rest of the course lives inside it.",
+      "start": 126.50000000000001,
+      "end": 131.175
+    },
+    {
+      "index": 29,
+      "text": "One way, the message carries content. That is text written for a person to read.",
+      "start": 131.525,
+      "end": 136.85
+    },
+    {
+      "index": 30,
+      "text": "The other way, it carries tool calls. That is a request for your code to run something.",
+      "start": 137.20000000000002,
+      "end": 142.675
+    },
+    {
+      "index": 31,
+      "text": "When the model wants a tool, content is null and the finish reason becomes tool calls.",
+      "start": 143.025,
+      "end": 148.55
+    },
+    {
+      "index": 32,
+      "text": "Tool calls is a list, because the model can ask for several at once.",
+      "start": 148.9,
+      "end": 153.475
+    },
+    {
+      "index": 33,
+      "text": "Here is the line that costs people the most time this week.",
+      "start": 153.82500000000002,
+      "end": 157.25000000000003
+    },
+    {
+      "index": 34,
+      "text": "A tool call carries arguments, and on screen they look like a dictionary.",
+      "start": 157.60000000000002,
+      "end": 162.35000000000002
+    },
+    {
+      "index": 35,
+      "text": "They are a string. So asking for args of query raises a TypeError.",
+      "start": 162.70000000000002,
+      "end": 167.275
+    },
+    {
+      "index": 36,
+      "text": "You call json dot loads on that string first, and then you have a dictionary.",
+      "start": 167.62500000000003,
+      "end": 172.55000000000004
+    },
+    {
+      "index": 37,
+      "text": "Now notice who wrote that string. The model did, after reading whatever your last tool returned.",
+      "start": 172.90000000000003,
+      "end": 179.12500000000003
+    },
+    {
+      "index": 38,
+      "text": "That may have been a ticket a stranger typed. Hold on to that until Week 5.",
+      "start": 179.47500000000002,
+      "end": 184.35000000000002
+    },
+    {
+      "index": 39,
+      "text": "Two kinds of failure, and telling them apart is Module 1.",
+      "start": 184.70000000000002,
+      "end": 188.675
+    },
+    {
+      "index": 40,
+      "text": "A 429 means you went too fast. A 503 is a bad moment on the server. Both are worth another try.",
+      "start": 189.025,
+      "end": 197.725
+    },
+    {
+      "index": 41,
+      "text": "A 401 means your key is not accepted.",
+      "start": 198.07500000000002,
+      "end": 201.70000000000002
+    },
+    {
+      "index": 42,
+      "text": "Retrying that one burns your whole daily quota in about four seconds, on a request that could never succeed.",
+      "start": 202.05,
+      "end": 208.875
+    },
+    {
+      "index": 43,
+      "text": "Then you are locked out until tomorrow, and the assignment is due tonight.",
+      "start": 209.22500000000002,
+      "end": 213.425
+    },
+    {
+      "index": 44,
+      "text": "So Module 1 asks you to decide, in code, which errors get a second try.",
+      "start": 213.77500000000003,
+      "end": 218.77500000000003
+    },
+    {
+      "index": 45,
+      "text": "One last habit, and it comes from the same careful thinking.",
+      "start": 219.12500000000003,
+      "end": 223.12500000000003
+    },
+    {
+      "index": 46,
+      "text": "Every package in your labs is pinned to an exact version.",
+      "start": 223.47500000000002,
+      "end": 227.50000000000003
+    },
+    {
+      "index": 47,
+      "text": "Pip install downloads and runs code written by strangers. Six of them you chose. Eighteen you have never heard of.",
+      "start": 227.85000000000002,
+      "end": 235.35000000000002
+    },
+    {
+      "index": 48,
+      "text": "That risk has a name in this course. LLM04, Supply Chain.",
+      "start": 235.70000000000002,
+      "end": 240.525
+    },
+    {
+      "index": 49,
+      "text": "So set up your key on day eight, not day fourteen. Signups can take a day.",
+      "start": 240.87500000000003,
+      "end": 245.72500000000002
+    },
+    {
+      "index": 50,
+      "text": "Your key goes in the file named dot e n v, and nowhere else.",
+      "start": 246.07500000000002,
+      "end": 250.20000000000002
+    },
+    {
+      "index": 51,
+      "text": "Then write the three functions in Module 1. Nothing in them needs a network or a key.",
+      "start": 250.55,
+      "end": 256.0
+    }
+  ],
+  "fingerprint": "6949004c03623793",
+  "ascii": []
+}

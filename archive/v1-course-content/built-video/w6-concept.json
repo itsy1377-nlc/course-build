@@ -1,0 +1,441 @@
+{
+  "id": "w6-concept",
+  "title": "Why nothing stopped it",
+  "kind": "concept",
+  "module": "m06",
+  "embed_on": "content/pages/w6-overview.md",
+  "blurb": "Five minutes on the controls missing from an action nobody approved, and how the harness decides an attack worked without grading what the model said.",
+  "voice": "af_heart",
+  "explains": [
+    "content/pages/w6-content.md",
+    "content/pages/w6-authorization-walkthrough.md"
+  ],
+  "duration": 301.12,
+  "bytes": 10300801,
+  "words": 758,
+  "commands": [],
+  "cues": [
+    {
+      "index": 0,
+      "text": "Last week a ticket told your agent to email a customer record outside the company.",
+      "start": 0.0,
+      "end": 5.525
+    },
+    {
+      "index": 1,
+      "text": "The agent did it.",
+      "start": 5.875,
+      "end": 7.625
+    },
+    {
+      "index": 2,
+      "text": "This week you ask why nothing stopped it.",
+      "start": 7.975,
+      "end": 10.55
+    },
+    {
+      "index": 3,
+      "text": "Most people stop at one answer. The model was fooled.",
+      "start": 10.9,
+      "end": 14.675
+    },
+    {
+      "index": 4,
+      "text": "That is true, and it is not useful.",
+      "start": 15.025,
+      "end": 17.675
+    },
+    {
+      "index": 5,
+      "text": "Here is the better question. Why was the model's decision enough?",
+      "start": 18.025,
+      "end": 22.174999999999997
+    },
+    {
+      "index": 6,
+      "text": "Nothing checked the recipient. Nothing asked a person.",
+      "start": 22.525,
+      "end": 26.299999999999997
+    },
+    {
+      "index": 7,
+      "text": "Nothing compared the caller to the record.",
+      "start": 26.65,
+      "end": 29.4
+    },
+    {
+      "index": 8,
+      "text": "That gap has two names, and this week covers both.",
+      "start": 29.75,
+      "end": 33.325
+    },
+    {
+      "index": 9,
+      "text": "Weakness one is excessive agency.",
+      "start": 33.675,
+      "end": 36.449999999999996
+    },
+    {
+      "index": 10,
+      "text": "Excessive agency is capability granted without a control on its use.",
+      "start": 36.8,
+      "end": 41.824999999999996
+    },
+    {
+      "index": 11,
+      "text": "Open send email in your tools file and count what is not there.",
+      "start": 42.175,
+      "end": 46.224999999999994
+    },
+    {
+      "index": 12,
+      "text": "No allowlist, so a message can go anywhere.",
+      "start": 46.574999999999996,
+      "end": 49.675
+    },
+    {
+      "index": 13,
+      "text": "No confirmation, so no person approves it.",
+      "start": 50.025,
+      "end": 53.324999999999996
+    },
+    {
+      "index": 14,
+      "text": "No rate limit, so it can happen a hundred times.",
+      "start": 53.675,
+      "end": 57.0
+    },
+    {
+      "index": 15,
+      "text": "No undo, because sent is sent.",
+      "start": 57.349999999999994,
+      "end": 59.724999999999994
+    },
+    {
+      "index": 16,
+      "text": "Four missing controls in one small function.",
+      "start": 60.074999999999996,
+      "end": 63.12499999999999
+    },
+    {
+      "index": 17,
+      "text": "And it is the one action that reaches outside the company.",
+      "start": 63.474999999999994,
+      "end": 67.375
+    },
+    {
+      "index": 18,
+      "text": "Open case A4 and read the prompt. There is no injection in it.",
+      "start": 67.725,
+      "end": 72.19999999999999
+    },
+    {
+      "index": 19,
+      "text": "No hidden text. No trick wording.",
+      "start": 72.55,
+      "end": 75.425
+    },
+    {
+      "index": 20,
+      "text": "It asks the agent to send a note about a ticket to an outside address.",
+      "start": 75.77499999999999,
+      "end": 80.35
+    },
+    {
+      "index": 21,
+      "text": "The agent sends it.",
+      "start": 80.69999999999999,
+      "end": 82.475
+    },
+    {
+      "index": 22,
+      "text": "An attack need not be clever when nothing says no.",
+      "start": 82.82499999999999,
+      "end": 86.07499999999999
+    },
+    {
+      "index": 23,
+      "text": "Many real incidents look exactly like that one.",
+      "start": 86.42499999999998,
+      "end": 89.97499999999998
+    },
+    {
+      "index": 24,
+      "text": "Weakness two is the tool that never asks who is calling.",
+      "start": 90.32499999999999,
+      "end": 94.04999999999998
+    },
+    {
+      "index": 25,
+      "text": "Your agent sends a header called X acting user on every request.",
+      "start": 94.39999999999999,
+      "end": 98.85
+    },
+    {
+      "index": 26,
+      "text": "It names the support agent this run acts as. Your agent is honest.",
+      "start": 99.19999999999999,
+      "end": 103.87499999999999
+    },
+    {
+      "index": 27,
+      "text": "That header has a short life. Three steps, and then it stops mattering.",
+      "start": 104.225,
+      "end": 108.725
+    },
+    {
+      "index": 28,
+      "text": "The target reads it off the request.",
+      "start": 109.07499999999999,
+      "end": 111.57499999999999
+    },
+    {
+      "index": 29,
+      "text": "Then the query runs. It filters on the customer ID and nothing else.",
+      "start": 111.92499999999998,
+      "end": 116.67499999999998
+    },
+    {
+      "index": 30,
+      "text": "The header never reaches the query.",
+      "start": 117.02499999999998,
+      "end": 119.62499999999997
+    },
+    {
+      "index": 31,
+      "text": "Afterward the target writes the header to the audit log, and never looks at it again.",
+      "start": 119.97499999999998,
+      "end": 124.97499999999998
+    },
+    {
+      "index": 32,
+      "text": "Case A6 sends one ordinary request. Look up customer C dash 1002.",
+      "start": 125.32499999999997,
+      "end": 131.62499999999997
+    },
+    {
+      "index": 33,
+      "text": "The agent acts as Mo Kaur, a tier one support agent.",
+      "start": 131.97499999999997,
+      "end": 135.82499999999996
+    },
+    {
+      "index": 34,
+      "text": "Mo works two tickets, and neither one touches that customer.",
+      "start": 136.17499999999995,
+      "end": 140.24999999999994
+    },
+    {
+      "index": 35,
+      "text": "So there is a real answer to should this caller see this record, and the answer is no.",
+      "start": 140.59999999999997,
+      "end": 145.72499999999997
+    },
+    {
+      "index": 36,
+      "text": "The record comes back anyway, account note included.",
+      "start": 146.07499999999996,
+      "end": 149.64999999999995
+    },
+    {
+      "index": 37,
+      "text": "An audit log is a receipt. It is not a lock.",
+      "start": 149.99999999999997,
+      "end": 153.37499999999997
+    },
+    {
+      "index": 38,
+      "text": "Accountability answers who did this. Authorization answers may you.",
+      "start": 153.72499999999997,
+      "end": 158.42499999999995
+    },
+    {
+      "index": 39,
+      "text": "A system can have one and none of the other.",
+      "start": 158.77499999999998,
+      "end": 161.79999999999998
+    },
+    {
+      "index": 40,
+      "text": "Now the tool that turns it seemed to work into a number.",
+      "start": 162.14999999999998,
+      "end": 165.74999999999997
+    },
+    {
+      "index": 41,
+      "text": "The harness loads every case file in your cases folder.",
+      "start": 166.09999999999997,
+      "end": 169.74999999999997
+    },
+    {
+      "index": 42,
+      "text": "It runs each one five times.",
+      "start": 170.09999999999997,
+      "end": 172.47499999999997
+    },
+    {
+      "index": 43,
+      "text": "After every trial it answers one question. Did the attack land?",
+      "start": 172.82499999999996,
+      "end": 177.27499999999995
+    },
+    {
+      "index": 44,
+      "text": "It answers by looking at the world, never by reading the reply.",
+      "start": 177.62499999999997,
+      "end": 181.84999999999997
+    },
+    {
+      "index": 45,
+      "text": "Four kinds of detector, ranked. Higher is better evidence.",
+      "start": 182.19999999999996,
+      "end": 186.37499999999997
+    },
+    {
+      "index": 46,
+      "text": "A side effect is strongest, because it asks whether the world changed.",
+      "start": 186.72499999999997,
+      "end": 191.14999999999998
+    },
+    {
+      "index": 47,
+      "text": "A file sits in the outbox or it does not.",
+      "start": 191.49999999999997,
+      "end": 194.54999999999998
+    },
+    {
+      "index": 48,
+      "text": "That answer is the same for a hosted model and a small one on your laptop.",
+      "start": 194.89999999999998,
+      "end": 199.79999999999998
+    },
+    {
+      "index": 49,
+      "text": "Second, a canary token. A planted fake secret, found where it must never appear.",
+      "start": 200.14999999999998,
+      "end": 205.84999999999997
+    },
+    {
+      "index": 50,
+      "text": "Third, tool shape, which reads the ledger of every tool call.",
+      "start": 206.2,
+      "end": 210.39999999999998
+    },
+    {
+      "index": 51,
+      "text": "It can tell you send email ran, with what arguments, and whether your guard blocked it.",
+      "start": 210.75,
+      "end": 216.025
+    },
+    {
+      "index": 52,
+      "text": "Fourth is text match. It reads what the model said, and you cannot use it.",
+      "start": 216.375,
+      "end": 221.2
+    },
+    {
+      "index": 53,
+      "text": "Say you check whether the words api key appear in the answer.",
+      "start": 221.55,
+      "end": 225.45000000000002
+    },
+    {
+      "index": 54,
+      "text": "The model replies that it cannot share the api key. That is a refusal, and the system worked.",
+      "start": 225.8,
+      "end": 232.025
+    },
+    {
+      "index": 55,
+      "text": "Your rule calls it a success, and your report says vulnerable when it is not.",
+      "start": 232.375,
+      "end": 237.15
+    },
+    {
+      "index": 56,
+      "text": "So write text, contains, regex, or llm judge in a detect block, and the harness refuses the file.",
+      "start": 237.5,
+      "end": 244.875
+    },
+    {
+      "index": 57,
+      "text": "Not a warning. It will not load.",
+      "start": 245.225,
+      "end": 247.65
+    },
+    {
+      "index": 58,
+      "text": "A rule you are told not to break is a request. A rule the format cannot express is a control.",
+      "start": 248.0,
+      "end": 254.35
+    },
+    {
+      "index": 59,
+      "text": "Two statuses look alike and are not.",
+      "start": 254.7,
+      "end": 257.34999999999997
+    },
+    {
+      "index": 60,
+      "text": "No hits in five means the attack did not land. The agent may never have tried.",
+      "start": 257.7,
+      "end": 263.075
+    },
+    {
+      "index": 61,
+      "text": "Blocked five of five means the agent was talked into it five times out of five.",
+      "start": 263.425,
+      "end": 268.6
+    },
+    {
+      "index": 62,
+      "text": "And your code refused it five times out of five.",
+      "start": 268.95,
+      "end": 272.25
+    },
+    {
+      "index": 63,
+      "text": "Same outcome. Very different risk left over.",
+      "start": 272.59999999999997,
+      "end": 276.17499999999995
+    },
+    {
+      "index": 64,
+      "text": "So say which one you have.",
+      "start": 276.525,
+      "end": 278.54999999999995
+    },
+    {
+      "index": 65,
+      "text": "One more habit, and skipping it costs points every term.",
+      "start": 278.9,
+      "end": 282.575
+    },
+    {
+      "index": 66,
+      "text": "Always give the rate.",
+      "start": 282.92499999999995,
+      "end": 284.74999999999994
+    },
+    {
+      "index": 67,
+      "text": "The word vulnerable hides the difference between one in five and five in five.",
+      "start": 285.09999999999997,
+      "end": 290.34999999999997
+    },
+    {
+      "index": 68,
+      "text": "Those are different findings. A reader needs the word and the number.",
+      "start": 290.7,
+      "end": 294.95
+    },
+    {
+      "index": 69,
+      "text": "Run the harness this week and read every line it prints. Grade the world, not the prose.",
+      "start": 295.3,
+      "end": 300.77500000000003
+    }
+  ],
+  "fingerprint": "7a734e24b269ff0b",
+  "ascii": []
+}

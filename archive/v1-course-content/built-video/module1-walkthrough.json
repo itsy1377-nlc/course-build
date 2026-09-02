@@ -1,0 +1,264 @@
+{
+  "id": "module1-walkthrough",
+  "title": "The tests are the assignment",
+  "kind": "walkthrough",
+  "module": "m02",
+  "embed_on": "content/assignments/module1-talk-to-the-model.md",
+  "blurb": "Three minutes at the terminal. It shows the tool that grades you, and never opens the file you are writing.",
+  "voice": "af_heart",
+  "explains": [
+    "content/assignments/module1-talk-to-the-model.md",
+    "content/pages/w2-content.md"
+  ],
+  "duration": 174.4,
+  "bytes": 5208060,
+  "words": 456,
+  "commands": [
+    "python -m pytest tests/test_module1.py -q | tail -3",
+    "python -m pytest tests/test_module1.py -q",
+    "python -m pytest tests/test_module1.py -q > module1-pytest.txt",
+    "cat module1-pytest.txt"
+  ],
+  "cues": [
+    {
+      "index": 0,
+      "text": "Module 1 asks you for three small functions in one file.",
+      "start": 0.0,
+      "end": 4.1
+    },
+    {
+      "index": 1,
+      "text": "This video never opens that file. Your answer stays yours.",
+      "start": 4.449999999999999,
+      "end": 8.799999999999999
+    },
+    {
+      "index": 2,
+      "text": "What it shows you is the tool that decides whether the three are right.",
+      "start": 9.149999999999999,
+      "end": 13.099999999999998
+    },
+    {
+      "index": 3,
+      "text": "You can run that tool as often as you like before the deadline.",
+      "start": 13.45,
+      "end": 17.275
+    },
+    {
+      "index": 4,
+      "text": "The three sit under one banner, extension point 3 of 5.",
+      "start": 17.625,
+      "end": 21.725
+    },
+    {
+      "index": 5,
+      "text": "should retry asks one question. Is this request worth sending again?",
+      "start": 22.075,
+      "end": 26.799999999999997
+    },
+    {
+      "index": 6,
+      "text": "backoff seconds says how long to wait before you try.",
+      "start": 27.15,
+      "end": 30.674999999999997
+    },
+    {
+      "index": 7,
+      "text": "parse json content reads a reply, or says clearly why it could not.",
+      "start": 31.025,
+      "end": 35.8
+    },
+    {
+      "index": 8,
+      "text": "None of the three needs a network or a key. They are pure logic.",
+      "start": 36.15,
+      "end": 40.225
+    },
+    {
+      "index": 9,
+      "text": "So the whole assignment runs offline, on your own machine.",
+      "start": 40.574999999999996,
+      "end": 44.275
+    },
+    {
+      "index": 10,
+      "text": "Run the tests before you write anything, so you know what failing looks like.",
+      "start": 44.62499999999999,
+      "end": 48.99999999999999
+    },
+    {
+      "index": 11,
+      "text": "The output goes through tail, so you see the summary and no assertion detail.",
+      "start": 49.349999999999994,
+      "end": 54.27499999999999
+    },
+    {
+      "index": 12,
+      "text": "Eleven failed, six passed. Say that count out loud.",
+      "start": 54.62499999999999,
+      "end": 58.474999999999994
+    },
+    {
+      "index": 13,
+      "text": "That is a starting line, not a problem.",
+      "start": 58.824999999999996,
+      "end": 61.675
+    },
+    {
+      "index": 14,
+      "text": "Then open the test file itself and read it.",
+      "start": 62.025,
+      "end": 64.925
+    },
+    {
+      "index": 15,
+      "text": "Every failing name points at a rule the docstring already gave you.",
+      "start": 65.275,
+      "end": 69.80000000000001
+    },
+    {
+      "index": 16,
+      "text": "It is the clearest statement of what your three functions have to do.",
+      "start": 70.15,
+      "end": 74.25
+    },
+    {
+      "index": 17,
+      "text": "Reading it is part of the job, not a way around the job.",
+      "start": 74.60000000000001,
+      "end": 78.45
+    },
+    {
+      "index": 18,
+      "text": "Here is the same command against finished work, with the whole output this time.",
+      "start": 78.80000000000001,
+      "end": 83.72500000000001
+    },
+    {
+      "index": 19,
+      "text": "Seventeen passed, in well under a second.",
+      "start": 84.07500000000002,
+      "end": 87.15000000000002
+    },
+    {
+      "index": 20,
+      "text": "No request went anywhere. That is what pure logic looks like.",
+      "start": 87.50000000000001,
+      "end": 91.67500000000001
+    },
+    {
+      "index": 21,
+      "text": "There is no key to burn here and no rate limit to wait on.",
+      "start": 92.02500000000002,
+      "end": 95.75000000000001
+    },
+    {
+      "index": 22,
+      "text": "So run it after every small change you make.",
+      "start": 96.10000000000002,
+      "end": 99.17500000000003
+    },
+    {
+      "index": 23,
+      "text": "Now save your proof. Send the same output into a file.",
+      "start": 99.52500000000002,
+      "end": 103.25000000000001
+    },
+    {
+      "index": 24,
+      "text": "Nothing printed, because the output went into the file instead.",
+      "start": 103.60000000000002,
+      "end": 107.82500000000002
+    },
+    {
+      "index": 25,
+      "text": "So open the file and read it back. Seventeen passed, and the file is not empty.",
+      "start": 108.17500000000003,
+      "end": 113.80000000000003
+    },
+    {
+      "index": 26,
+      "text": "An empty proof file is a submission with no proof in it.",
+      "start": 114.15000000000002,
+      "end": 117.97500000000002
+    },
+    {
+      "index": 27,
+      "text": "Check that before you upload, not after.",
+      "start": 118.32500000000002,
+      "end": 121.15000000000002
+    },
+    {
+      "index": 28,
+      "text": "One warning before you start.",
+      "start": 121.50000000000001,
+      "end": 123.67500000000001
+    },
+    {
+      "index": 29,
+      "text": "Say you write should retry so it says yes to every client error, and nothing crashes.",
+      "start": 124.02500000000002,
+      "end": 129.55
+    },
+    {
+      "index": 30,
+      "text": "Then a 401 arrives. Your key is not accepted, and your loop keeps trying.",
+      "start": 129.90000000000003,
+      "end": 135.40000000000003
+    },
+    {
+      "index": 31,
+      "text": "Your provider's daily limit is gone in about four seconds, on a request that could never succeed.",
+      "start": 135.75000000000003,
+      "end": 142.12500000000003
+    },
+    {
+      "index": 32,
+      "text": "Then you are locked out until tomorrow, and the work is due tonight.",
+      "start": 142.47500000000002,
+      "end": 146.35000000000002
+    },
+    {
+      "index": 33,
+      "text": "That is why the rule is narrow. Retry only what waiting can fix.",
+      "start": 146.70000000000002,
+      "end": 151.15
+    },
+    {
+      "index": 34,
+      "text": "Upload two files. Your edited model client, and your saved pytest output.",
+      "start": 151.50000000000003,
+      "end": 156.77500000000003
+    },
+    {
+      "index": 35,
+      "text": "Not the whole repository, and never the file that holds your key.",
+      "start": 157.12500000000003,
+      "end": 161.25000000000003
+    },
+    {
+      "index": 36,
+      "text": "If you get stuck, paste the test name and the message on the Q and A board.",
+      "start": 161.60000000000002,
+      "end": 166.27500000000003
+    },
+    {
+      "index": 37,
+      "text": "Paste the failure, not your answer.",
+      "start": 166.62500000000003,
+      "end": 169.10000000000002
+    },
+    {
+      "index": 38,
+      "text": "Being stuck costs nobody points. Being quiet about it costs time.",
+      "start": 169.45000000000002,
+      "end": 174.05
+    }
+  ],
+  "fingerprint": "c5179f8290987bb5",
+  "ascii": [
+    "module1-walkthrough.scene02.ascii",
+    "module1-walkthrough.scene04.ascii",
+    "module1-walkthrough.scene05.ascii"
+  ]
+}

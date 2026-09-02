@@ -1,0 +1,28 @@
+# What the video pipeline needs to know about the funded course.
+# Build with:  ITSY_CONTENT=content/funded python3 -m tools.video.build --all
+
+course_code: ITSY 1377
+course_name: Agentic AI and Security Operations (Funded)
+
+voice: kokoro:af_heart
+
+# code_dir is DELIBERATELY OMITTED, which makes terminal scenes unavailable.
+#
+# This course has no runnable lab code. labs/ still holds the previous version
+# of the course and is awaiting rebuild, so there is nothing a walkthrough could
+# honestly record. Recording against the old course's code would produce a video
+# showing students a shell they will never see, which is worse than having no
+# walkthrough at all.
+#
+# When the labs for this course exist, set code_dir to them, add recorder_base
+# and recorder_image, and the walkthrough videos become buildable. Until then
+# every video here is slide only, and the pipeline refuses terminal scenes
+# rather than silently recording the wrong thing.
+
+# Declared empty on purpose rather than left unset. There are no learner-produced
+# answer files in this repository yet, because there are no labs. An unset value
+# would fail the no-spoiler gate, which is correct behaviour for a check that can
+# see nothing; an explicit empty list records that somebody decided.
+answer_globs: []
+
+library_budget_mb: 400

@@ -1,0 +1,180 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.375
+This checkpoint has one bar, and it is a
+low one.
+
+2
+00:00:03.725 --> 00:00:08.325
+One real tool call, with a real tool name,
+pasted from your own log.
+
+3
+00:00:08.675 --> 00:00:12.125
+Not a good tool. Not a finished agent. One
+call.
+
+4
+00:00:12.475 --> 00:00:16.025
+It is pass or fail, and it is worth twenty
+points.
+
+5
+00:00:16.375 --> 00:00:20.125
+Nobody grades it on quality, elegance or
+completeness.
+
+6
+00:00:20.475 --> 00:00:24.900
+The target app runs in a second terminal.
+Check that it is up first.
+
+7
+00:00:25.250 --> 00:00:30.075
+It answers ok, service helpdesk lite. That
+is all you need from it.
+
+8
+00:00:30.425 --> 00:00:33.575
+Now ask the agent for something that needs
+a tool.
+
+9
+00:00:33.925 --> 00:00:36.747
+Ticket T-501 is an ordinary one. A
+
+10
+00:00:36.747 --> 00:00:40.400
+customer cannot sign in to the parts
+portal.
+
+11
+00:00:40.750 --> 00:00:44.325
+Nothing is hidden in it. That comes later
+in the course.
+
+12
+00:00:44.675 --> 00:00:50.475
+The shipped config uses the offline mock
+provider, so this works with no API key.
+
+13
+00:00:50.825 --> 00:00:54.975
+The tools still reach the target app, so
+the app has to be running.
+
+14
+00:00:55.325 --> 00:01:00.575
+Read the first line. Your code ran search
+tickets. That is one real tool call.
+
+15
+00:01:00.925 --> 00:01:03.520
+Every tool call your agent has ever made
+
+16
+00:01:03.520 --> 00:01:06.375
+lands in the ledger file, one call per
+line.
+
+17
+00:01:06.725 --> 00:01:09.575
+The last line is the run you just watched.
+
+18
+00:01:09.925 --> 00:01:12.794
+Read the fields out loud. Allowed is true.
+
+19
+00:01:12.794 --> 00:01:15.800
+Tool holds a real tool name, search
+tickets.
+
+20
+00:01:16.150 --> 00:01:19.125
+Step is one, and ts is your timestamp.
+
+21
+00:01:19.475 --> 00:01:23.625
+Copy the whole line. Do not tidy it,
+retype it, or shorten it.
+
+22
+00:01:23.975 --> 00:01:27.975
+Two things fail this checkpoint, and both
+are easy to avoid.
+
+23
+00:01:28.325 --> 00:01:32.250
+An edited ledger line stops proving that a
+run happened.
+
+24
+00:01:32.600 --> 00:01:37.750
+If you tidy the JSON or drop the
+timestamp, it is no longer evidence.
+
+25
+00:01:38.100 --> 00:01:42.025
+Second, a schema for a tool your ledger
+line does not name.
+
+26
+00:01:42.375 --> 00:01:45.975
+Step three asks you to paste the schema
+from the registry.
+
+27
+00:01:46.325 --> 00:01:49.375
+Check that the two names match before you
+submit.
+
+28
+00:01:49.725 --> 00:01:53.275
+If your own agent will not run, take the
+fallback path.
+
+29
+00:01:53.625 --> 00:01:56.600
+Fetch the instructor branch, then switch
+to it.
+
+30
+00:01:56.950 --> 00:02:01.925
+It is published on day eighteen, three
+days before this is due, and it works.
+
+31
+00:02:02.275 --> 00:02:06.175
+It is worth the same twenty points as any
+other submission.
+
+32
+00:02:06.525 --> 00:02:10.800
+Telling your instructor you used it is the
+whole reason it exists.
+
+33
+00:02:11.150 --> 00:02:14.650
+Last, the status sentence at the bottom of
+your page.
+
+34
+00:02:15.000 --> 00:02:19.575
+Write, I am not stuck. Or write, I am
+stuck on, and then be specific.
+
+35
+00:02:19.925 --> 00:02:24.825
+The target app refusing to start on
+Windows is useful. Everything is not.
+
+36
+00:02:25.175 --> 00:02:27.775
+Nobody loses points for being stuck.
+
+37
+00:02:28.125 --> 00:02:32.950
+That sentence is how your instructor finds
+you before it costs you a grade.

@@ -23,6 +23,12 @@ Engagement page in Start Here before you run anything. The gate quiz checks that
 you have.
 :::
 
+::: video w1-concept | What an agent actually is
+Four minutes on the loop, and why the record matters more than the summary.
+Watch it before the lesson page. Captions and a full transcript are on the
+player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

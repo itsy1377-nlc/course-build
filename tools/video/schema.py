@@ -20,6 +20,7 @@ Authoring cues means the timing is exact.
 
 from __future__ import annotations
 
+import os
 import re
 from dataclasses import dataclass, field
 from pathlib import Path
@@ -29,7 +30,7 @@ import yaml
 from . import config as _config
 
 ROOT = _config.find_root()
-VIDEO_DIR = ROOT / "content" / "video"
+VIDEO_DIR = ROOT / os.environ.get("ITSY_CONTENT", "content") / "video"
 
 LAYOUTS = {"title", "statement", "numbered", "compare", "code", "closing", "diagram"}
 DIAGRAM_KINDS = {"flow", "split", "stack", "svg"}

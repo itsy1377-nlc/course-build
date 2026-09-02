@@ -1,0 +1,167 @@
+id: w1-concept
+title: What an agent actually is
+kind: concept
+module: m01
+embed_on: content/constrained/pages/w1-overview.md
+blurb: Four minutes on the loop, and why the record matters more than the summary.
+explains:
+  - content/constrained/pages/w1-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 1
+    heading: What an agent actually is
+    body: A model, a list of tools, and a loop that runs them.
+    narration:
+      - text: Welcome to week one.
+      - text: By the end of this video you will know what an agent is, and what
+          it is not.
+
+  - type: slide
+    layout: statement
+    eyebrow: Start here
+    heading: A model on its own cannot do anything
+    body: It reads text. It writes text. That is all.
+    narration:
+      - text: A language model reads text and writes text. That is the whole of
+          what it does.
+      - text: Ask a plain model to send an email, and it writes you a nice reply
+          about sending an email. Nothing leaves the room.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Week 1
+    heading: An agent adds two things
+    items:
+      - A list of tools it is allowed to call
+      - A program that actually runs the tool
+    narration:
+      - text: An agent is that same model with two things added.
+        reveal: 0
+      - text: First, a list of tools it is allowed to call.
+        reveal: 1
+      - text: Second, a program that runs the tool when the model asks for it.
+          That program is called the loop.
+        reveal: 2
+
+  - type: slide
+    layout: diagram
+    eyebrow: The loop
+    heading: One pass, in order
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. You ask. The model decides and picks a tool.
+        The tool runs. The result goes back into the conversation. A return
+        path runs from the end back to the start, so the loop repeats.
+      nodes:
+        - label: You ask
+          sub: one message in
+        - label: The model decides
+          sub: answer, or call a tool
+        - label: The tool runs
+          sub: something really happens
+        - label: The result goes back
+          sub: into the conversation
+          mark: true
+      loop: the model reads the result and the loop runs again
+    narration:
+      - text: Here is one pass of the loop.
+        reveal: 1
+      - text: The model replies. It either answers you, or it asks to call a
+          tool.
+        reveal: 2
+      - text: If it asked for a tool, that tool runs. Something really happens.
+        reveal: 3
+      - text: Then the result goes back into the conversation.
+        reveal: 4
+      - text: And the loop runs again, with that result now in front of the
+          model.
+        reveal: 5
+
+  - type: slide
+    layout: statement
+    eyebrow: Why it matters
+    heading: That last step is where the security problems live
+    body: Whatever a tool returns becomes the model's next input.
+    narration:
+      - text: That last step is where the security problems live.
+      - text: Whatever a tool returns goes straight into the model's next input.
+      - text: If a tool returns text somebody else wrote, the model reads it.
+          You will spend week three on exactly that.
+
+  - type: slide
+    layout: statement
+    eyebrow: Week 1
+    heading: The model chooses, and it chooses from words
+    body: It picks a tool by reading the description you wrote for it.
+    narration:
+      - text: You do not tell the agent which tool to use. The model picks.
+      - text: It picks by reading the name and the description you wrote.
+      - text: Sit with that. The thing deciding whether to send mail is deciding
+          from a sentence you typed.
+
+  - type: slide
+    layout: compare
+    eyebrow: Evidence
+    heading: Two things that are not the same
+    items:
+      - What the agent says | I have sent that email.
+      - What the record shows | No send in the trace.
+    narration:
+      - text: Every run in this course writes a record called a trace.
+        reveal: 0
+      - text: The agent can tell you it sent an email.
+        reveal: 1
+      - text: The trace can show that nothing was sent. When they disagree, the
+          record is right.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The habit
+    heading: Point at the line
+    body: Never write that something happened because the agent said so.
+    narration:
+      - text: So here is the habit this whole course is built on.
+      - text: Never write that something happened because the agent said so.
+          Point at the line in the record.
+      - text: A model can say it did something it did not do. It can also do
+          something it never mentions. Neither one is lying. It writes text that
+          sounds right, and text that sounds right is not a report.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Your first task
+    heading: Ask one question about every tool
+    items:
+      - If this runs by mistake, can I undo it?
+      - Reading a file, yes. Run it twice, nothing changes
+      - Sending mail, no. Once it has left, it has left
+    narration:
+      - text: Which brings you to your first real security task this week.
+        reveal: 0
+      - text: Look at any tool and ask one question. If this runs by mistake,
+          can I undo it?
+        reveal: 1
+      - text: Reading a file is fine. Run it twice and nothing changes.
+        reveal: 2
+      - text: Sending mail is not. Once mail has left, it has left. An action
+          you cannot undo is called irreversible.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Run it, read the record, list what it can reach
+    body: Setup is the hard part, and taking two hours is normal.
+    narration:
+      - text: This week you will run the agent once, read its record, and list
+          every tool it can reach.
+      - text: Setup is the hardest part of week one for most people. If it takes
+          two hours, that is normal, and it is not a sign you do not belong
+          here.
+      - text: Post on the questions board and somebody will help. See you in the
+          lab.

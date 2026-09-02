@@ -22,9 +22,26 @@ from dataclasses import dataclass, field
 from functools import lru_cache
 from pathlib import Path
 
+import os
+
 import yaml
 
 CONFIG_NAME = "config.yaml"
+
+def _content_rel() -> str:
+    """The course tree this build is for, relative to the project root.
+
+    Two courses live side by side in this project, so the video directory is
+    per course rather than a single content/video/. Defaults to the historical
+    single-course layout.
+    """
+    return os.environ.get("ITSY_CONTENT", "content")
+
+
+def _video_rel() -> Path:
+    return Path(_content_rel()) / "video"
+
+
 
 
 def find_root(start: Path | None = None) -> Path:
@@ -35,7 +52,7 @@ def find_root(start: Path | None = None) -> Path:
     """
     here = (start or Path(__file__)).resolve()
     for candidate in [here, *here.parents]:
-        if (candidate / "content" / "video").is_dir():
+        if (candidate / _video_rel()).is_dir():
             return candidate
     # Fall back to the historical layout, tools/video/ inside the project.
     return Path(__file__).resolve().parents[2]
@@ -66,15 +83,21 @@ class Config:
 
     @property
     def video_dir(self) -> Path:
-        return self.root / "content" / "video"
+        return self.root / _video_rel()
 
     @property
     def build_dir(self) -> Path:
-        return self.root / "build" / "video"
+        # Per course tree, because two courses in one project use the same
+        # video ids and would otherwise overwrite each other's renders.
+        rel = _content_rel()
+        suffix = "" if rel == "content" else "-" + rel.rsplit("/", 1)[-1]
+        return self.root / "build" / f"video{suffix}"
 
     @property
     def cache_dir(self) -> Path:
-        return self.root / "build" / "video-cache"
+        rel = _content_rel()
+        suffix = "" if rel == "content" else "-" + rel.rsplit("/", 1)[-1]
+        return self.root / "build" / f"video-cache{suffix}"
 
     @property
     def records_terminal(self) -> bool:
@@ -91,7 +114,7 @@ class Config:
 @lru_cache(maxsize=1)
 def load(root: Path | None = None) -> Config:
     root = root or find_root()
-    path = root / "content" / "video" / CONFIG_NAME
+    path = root / _video_rel() / CONFIG_NAME
     raw = {}
     if path.exists():
         raw = yaml.safe_load(path.read_text(encoding="utf-8")) or {}

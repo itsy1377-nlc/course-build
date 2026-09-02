@@ -1,0 +1,420 @@
+{
+  "id": "module4-walkthrough",
+  "title": "The numbers you cannot get back",
+  "kind": "walkthrough",
+  "module": "m07",
+  "embed_on": "content/assignments/module4-fix-it.md",
+  "blurb": "Four minutes at the terminal, on a case you are not submitting. One result moves from vulnerable to blocked, and you see the proof behind the status word.",
+  "voice": "af_heart",
+  "explains": [
+    "content/assignments/module4-fix-it.md",
+    "content/pages/w7-reading-results.md"
+  ],
+  "duration": 254.96,
+  "bytes": 6535081,
+  "words": 661,
+  "commands": [
+    "python -m harness.runner --list",
+    "echo \"authorized: true\" >> harness/cases/my-first-case.yaml",
+    "python -m harness.runner --list | tail -3",
+    "python -m harness.runner --case A4-excessive-agency-no-confirmation",
+    "python -m harness.runner --case A4-excessive-agency-no-confirmation",
+    "python -m agent.replay | grep -B4 -A4 STOPPED",
+    "python -m pytest tests/test_module4.py -q > module4-tests.txt",
+    "cat module4-tests.txt"
+  ],
+  "cues": [
+    {
+      "index": 0,
+      "text": "Module 4 has one rule about order.",
+      "start": 0.0,
+      "end": 2.95
+    },
+    {
+      "index": 1,
+      "text": "You save the before numbers first, because a fix erases them.",
+      "start": 3.3000000000000003,
+      "end": 7.425000000000001
+    },
+    {
+      "index": 2,
+      "text": "This video runs case A4, which is not a case you submit.",
+      "start": 7.775,
+      "end": 12.100000000000001
+    },
+    {
+      "index": 3,
+      "text": "So nothing on screen here is your work.",
+      "start": 12.45,
+      "end": 15.024999999999999
+    },
+    {
+      "index": 4,
+      "text": "Three steps, and the order is the point.",
+      "start": 15.375,
+      "end": 18.125
+    },
+    {
+      "index": 5,
+      "text": "First you add your two attack cases.",
+      "start": 18.475,
+      "end": 21.075000000000003
+    },
+    {
+      "index": 6,
+      "text": "Then you run the harness and save the before numbers.",
+      "start": 21.425,
+      "end": 24.925
+    },
+    {
+      "index": 7,
+      "text": "Only then do you change the code.",
+      "start": 25.275000000000002,
+      "end": 27.55
+    },
+    {
+      "index": 8,
+      "text": "Do it in the other order and the before run is gone.",
+      "start": 27.900000000000002,
+      "end": 31.525000000000002
+    },
+    {
+      "index": 9,
+      "text": "Write your case files, then check that the harness loaded them.",
+      "start": 31.875000000000004,
+      "end": 35.650000000000006
+    },
+    {
+      "index": 10,
+      "text": "This one was rejected. The message names the file and the field.",
+      "start": 36.0,
+      "end": 40.15
+    },
+    {
+      "index": 11,
+      "text": "It is missing a required property, called authorized.",
+      "start": 40.5,
+      "end": 44.2
+    },
+    {
+      "index": 12,
+      "text": "One bad case file stops the whole run, and no results print.",
+      "start": 44.55,
+      "end": 48.8
+    },
+    {
+      "index": 13,
+      "text": "Add the missing line, then list the cases again.",
+      "start": 49.15,
+      "end": 52.4
+    },
+    {
+      "index": 14,
+      "text": "Now it loads, next to the cases the course ships with.",
+      "start": 52.75,
+      "end": 56.325
+    },
+    {
+      "index": 15,
+      "text": "The id and title are still the placeholders from the template.",
+      "start": 56.675,
+      "end": 60.625
+    },
+    {
+      "index": 16,
+      "text": "Break a case file on purpose once, just to see what it says.",
+      "start": 60.974999999999994,
+      "end": 64.875
+    },
+    {
+      "index": 17,
+      "text": "Now the before run, on case A4.",
+      "start": 65.225,
+      "end": 68.05
+    },
+    {
+      "index": 18,
+      "text": "Read the banner first, the same as in Week 6.",
+      "start": 68.39999999999999,
+      "end": 71.69999999999999
+    },
+    {
+      "index": 19,
+      "text": "The provider, your student id, and the target address.",
+      "start": 72.05,
+      "end": 75.5
+    },
+    {
+      "index": 20,
+      "text": "The target line has to name your own computer. It goes in your report.",
+      "start": 75.85,
+      "end": 80.39999999999999
+    },
+    {
+      "index": 21,
+      "text": "Then five marks, one for each full agent run.",
+      "start": 80.75,
+      "end": 84.2
+    },
+    {
+      "index": 22,
+      "text": "Every one is an X, which means the attack landed.",
+      "start": 84.55,
+      "end": 88.1
+    },
+    {
+      "index": 23,
+      "text": "The status reads VULNERABLE, five out of five.",
+      "start": 88.45,
+      "end": 91.825
+    },
+    {
+      "index": 24,
+      "text": "Save that results file now, before you touch any code.",
+      "start": 92.175,
+      "end": 95.825
+    },
+    {
+      "index": 25,
+      "text": "The fix is in place. Same case, same command.",
+      "start": 96.175,
+      "end": 99.725
+    },
+    {
+      "index": 26,
+      "text": "The marks are dots now. A dot is a finished trial with no hit.",
+      "start": 100.075,
+      "end": 104.3
+    },
+    {
+      "index": 27,
+      "text": "The status reads BLOCKED five of five, with zero hits.",
+      "start": 104.65,
+      "end": 108.525
+    },
+    {
+      "index": 28,
+      "text": "Read that carefully. It does not mean the attack failed.",
+      "start": 108.875,
+      "end": 112.375
+    },
+    {
+      "index": 29,
+      "text": "The summary line says it plainly. The agent still tried every time.",
+      "start": 112.725,
+      "end": 117.35
+    },
+    {
+      "index": 30,
+      "text": "It was steered into asking on all five runs.",
+      "start": 117.69999999999999,
+      "end": 120.67499999999998
+    },
+    {
+      "index": 31,
+      "text": "One small function refused, on all five runs.",
+      "start": 121.02499999999999,
+      "end": 124.57499999999999
+    },
+    {
+      "index": 32,
+      "text": "Those two results look alike on a page. They are not the same.",
+      "start": 124.925,
+      "end": 128.9
+    },
+    {
+      "index": 33,
+      "text": "The first one says the attack never landed.",
+      "start": 129.25,
+      "end": 132.35
+    },
+    {
+      "index": 34,
+      "text": "The agent may never even have tried.",
+      "start": 132.7,
+      "end": 135.475
+    },
+    {
+      "index": 35,
+      "text": "The second says the agent asked every time, and your code said no.",
+      "start": 135.825,
+      "end": 140.325
+    },
+    {
+      "index": 36,
+      "text": "A report that prints them the same way hides the one that matters.",
+      "start": 140.67499999999998,
+      "end": 144.89999999999998
+    },
+    {
+      "index": 37,
+      "text": "A status word is a summary. Here is the proof behind it.",
+      "start": 145.24999999999997,
+      "end": 149.14999999999998
+    },
+    {
+      "index": 38,
+      "text": "Replay walks the run. These are the two steps that matter.",
+      "start": 149.49999999999997,
+      "end": 153.42499999999998
+    },
+    {
+      "index": 39,
+      "text": "Step two. The model asked your code to run the mail tool.",
+      "start": 153.77499999999998,
+      "end": 157.62499999999997
+    },
+    {
+      "index": 40,
+      "text": "Step three. Your guard stopped it, and prints the reason your code gave.",
+      "start": 157.97499999999997,
+      "end": 162.27499999999998
+    },
+    {
+      "index": 41,
+      "text": "The address was not on the allowlist, so the call never ran.",
+      "start": 162.62499999999997,
+      "end": 166.54999999999998
+    },
+    {
+      "index": 42,
+      "text": "Choosing what goes on that list is part of your work.",
+      "start": 166.89999999999998,
+      "end": 170.22499999999997
+    },
+    {
+      "index": 43,
+      "text": "Then the line that matters. The model asked. Your code said no.",
+      "start": 170.575,
+      "end": 174.77499999999998
+    },
+    {
+      "index": 44,
+      "text": "That reason sits in your ledger, so a blocked call leaves proof.",
+      "start": 175.125,
+      "end": 179.025
+    },
+    {
+      "index": 45,
+      "text": "It shows your control ran. It does not show the model changing its mind.",
+      "start": 179.375,
+      "end": 183.975
+    },
+    {
+      "index": 46,
+      "text": "Last command. The Module 4 tests.",
+      "start": 184.325,
+      "end": 187.325
+    },
+    {
+      "index": 47,
+      "text": "Run them as often as you like. It is the same tool that grades you.",
+      "start": 187.67499999999998,
+      "end": 192.2
+    },
+    {
+      "index": 48,
+      "text": "Send the output to a file, so you have proof to paste.",
+      "start": 192.54999999999998,
+      "end": 196.02499999999998
+    },
+    {
+      "index": 49,
+      "text": "Then read the file back. Seven passed, in under a second.",
+      "start": 196.37499999999997,
+      "end": 200.32499999999996
+    },
+    {
+      "index": 50,
+      "text": "Paste that into your report, passing or not.",
+      "start": 200.67499999999998,
+      "end": 203.825
+    },
+    {
+      "index": 51,
+      "text": "A failing line you explain is worth more than no line at all.",
+      "start": 204.17499999999998,
+      "end": 208.14999999999998
+    },
+    {
+      "index": 52,
+      "text": "One last thing, and it costs people points every term.",
+      "start": 208.49999999999997,
+      "end": 212.24999999999997
+    },
+    {
+      "index": 53,
+      "text": "Your fix is graded on two suites, not one.",
+      "start": 212.59999999999997,
+      "end": 215.69999999999996
+    },
+    {
+      "index": 54,
+      "text": "The attack has to stop landing.",
+      "start": 216.04999999999995,
+      "end": 218.39999999999995
+    },
+    {
+      "index": 55,
+      "text": "And normal work has to keep going.",
+      "start": 218.74999999999994,
+      "end": 221.32499999999993
+    },
+    {
+      "index": 56,
+      "text": "Delete the mail tool and every attack case passes.",
+      "start": 221.67499999999995,
+      "end": 225.32499999999996
+    },
+    {
+      "index": 57,
+      "text": "That is why a second control checks that a real escalation still goes out.",
+      "start": 225.67499999999995,
+      "end": 230.52499999999995
+    },
+    {
+      "index": 58,
+      "text": "If that control fails after your fix, your rule is too wide.",
+      "start": 230.87499999999994,
+      "end": 234.99999999999994
+    },
+    {
+      "index": 59,
+      "text": "Narrow it until the control passes and the attacks still do not land.",
+      "start": 235.34999999999994,
+      "end": 239.84999999999994
+    },
+    {
+      "index": 60,
+      "text": "Then the last question, in 150 words or fewer.",
+      "start": 240.19999999999993,
+      "end": 244.09999999999994
+    },
+    {
+      "index": 61,
+      "text": "What defect do you know remains in your fix?",
+      "start": 244.44999999999993,
+      "end": 247.12499999999994
+    },
+    {
+      "index": 62,
+      "text": "An allowed address that forwards somewhere else is one honest answer.",
+      "start": 247.47499999999994,
+      "end": 251.84999999999994
+    },
+    {
+      "index": 63,
+      "text": "An answer of none scores zero.",
+      "start": 252.19999999999993,
+      "end": 254.59999999999994
+    }
+  ],
+  "fingerprint": "7267085cf5f58970",
+  "ascii": [
+    "module4-walkthrough.scene02.ascii",
+    "module4-walkthrough.scene03.ascii",
+    "module4-walkthrough.scene04.ascii",
+    "module4-walkthrough.scene06.ascii",
+    "module4-walkthrough.scene07.ascii"
+  ]
+}

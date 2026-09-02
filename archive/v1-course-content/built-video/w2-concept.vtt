@@ -1,0 +1,300 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.825
+This week you put a real model on the
+other end of the line.
+
+2
+00:00:04.175 --> 00:00:07.400
+You send one request. You read one reply.
+
+3
+00:00:07.750 --> 00:00:12.525
+Both are plain JSON, and there are fewer
+moving parts than you expect.
+
+4
+00:00:12.875 --> 00:00:15.803
+Everything you send sits in one JSON
+
+5
+00:00:15.803 --> 00:00:19.300
+object, built in the file agent llm dot
+py.
+
+6
+00:00:19.650 --> 00:00:24.150
+Model names the model you are calling. It
+comes from your settings file.
+
+7
+00:00:24.500 --> 00:00:29.675
+Messages is the conversation. It is also
+the whole input the model gets.
+
+8
+00:00:30.025 --> 00:00:34.650
+Temperature controls how much answers
+vary. The labs set it to zero.
+
+9
+00:00:35.000 --> 00:00:38.175
+Max tokens caps how long the reply can be.
+
+10
+00:00:38.525 --> 00:00:41.900
+One call to post sends that object. It
+waits sixty
+
+11
+00:00:41.900 --> 00:00:45.275
+seconds, then gives up instead of hanging
+forever.
+
+12
+00:00:45.625 --> 00:00:49.900
+That is the only place your labs talk to a
+model over the network.
+
+13
+00:00:50.250 --> 00:00:53.875
+Every entry in that list has a role and
+some content.
+
+14
+00:00:54.225 --> 00:00:57.275
+System holds your instructions to the
+agent.
+
+15
+00:00:57.625 --> 00:00:59.925
+User is the person asking.
+
+16
+00:01:00.275 --> 00:01:03.275
+Assistant is what the model already said.
+
+17
+00:01:03.625 --> 00:01:07.050
+And tool is a result your own code handed
+back.
+
+18
+00:01:07.400 --> 00:01:09.925
+Now the fact this course is built on.
+
+19
+00:01:10.275 --> 00:01:14.225
+All four arrive in one list, as text, in
+one request.
+
+20
+00:01:14.575 --> 00:01:18.250
+Models are trained to weight those labels,
+and that does help.
+
+21
+00:01:18.600 --> 00:01:23.250
+But a label is a hint carried inside the
+text, not a wall around it.
+
+22
+00:01:23.600 --> 00:01:27.900
+Your instructions and a stranger's ticket
+travel in the same box.
+
+23
+00:01:28.250 --> 00:01:32.400
+That is not a bug you can patch. It is the
+shape of the interface.
+
+24
+00:01:32.750 --> 00:01:36.000
+Now the reply, which is also JSON.
+
+25
+00:01:36.350 --> 00:01:39.614
+The text you want is four levels down.
+Response,
+
+26
+00:01:39.614 --> 00:01:43.150
+then choices, then zero, then message,
+then content.
+
+27
+00:01:43.500 --> 00:01:46.275
+You will write that chain many times this
+term.
+
+28
+00:01:46.625 --> 00:01:51.400
+Choices is a list because the API can
+return more than one answer.
+
+29
+00:01:51.750 --> 00:01:55.900
+Here it always returns one, so the index
+is always zero.
+
+30
+00:01:56.250 --> 00:02:01.100
+Your lab code has a function called
+message of that does this lookup for you.
+
+31
+00:02:01.450 --> 00:02:06.150
+It catches a missing key and says so,
+rather than failing four levels deep.
+
+32
+00:02:06.500 --> 00:02:11.175
+Look at the shape of that message, because
+the rest of the course lives inside it.
+
+33
+00:02:11.525 --> 00:02:16.850
+One way, the message carries content. That
+is text written for a person to read.
+
+34
+00:02:17.200 --> 00:02:19.874
+The other way, it carries tool calls. That
+
+35
+00:02:19.874 --> 00:02:22.675
+is a request for your code to run
+something.
+
+36
+00:02:23.025 --> 00:02:25.560
+When the model wants a tool, content is
+
+37
+00:02:25.560 --> 00:02:28.550
+null and the finish reason becomes tool
+calls.
+
+38
+00:02:28.900 --> 00:02:33.475
+Tool calls is a list, because the model
+can ask for several at once.
+
+39
+00:02:33.825 --> 00:02:37.250
+Here is the line that costs people the
+most time this week.
+
+40
+00:02:37.600 --> 00:02:42.350
+A tool call carries arguments, and on
+screen they look like a dictionary.
+
+41
+00:02:42.700 --> 00:02:47.275
+They are a string. So asking for args of
+query raises a TypeError.
+
+42
+00:02:47.625 --> 00:02:52.550
+You call json dot loads on that string
+first, and then you have a dictionary.
+
+43
+00:02:52.900 --> 00:02:56.045
+Now notice who wrote that string. The
+model did,
+
+44
+00:02:56.045 --> 00:02:59.125
+after reading whatever your last tool
+returned.
+
+45
+00:02:59.475 --> 00:03:04.350
+That may have been a ticket a stranger
+typed. Hold on to that until Week 5.
+
+46
+00:03:04.700 --> 00:03:08.675
+Two kinds of failure, and telling them
+apart is Module 1.
+
+47
+00:03:09.025 --> 00:03:13.190
+A 429 means you went too fast. A 503 is a
+bad
+
+48
+00:03:13.190 --> 00:03:17.725
+moment on the server. Both are worth
+another try.
+
+49
+00:03:18.075 --> 00:03:21.700
+A 401 means your key is not accepted.
+
+50
+00:03:22.050 --> 00:03:25.175
+Retrying that one burns your whole daily
+quota in
+
+51
+00:03:25.175 --> 00:03:28.875
+about four seconds, on a request that
+could never succeed.
+
+52
+00:03:29.225 --> 00:03:33.425
+Then you are locked out until tomorrow,
+and the assignment is due tonight.
+
+53
+00:03:33.775 --> 00:03:38.775
+So Module 1 asks you to decide, in code,
+which errors get a second try.
+
+54
+00:03:39.125 --> 00:03:43.125
+One last habit, and it comes from the same
+careful thinking.
+
+55
+00:03:43.475 --> 00:03:47.500
+Every package in your labs is pinned to an
+exact version.
+
+56
+00:03:47.850 --> 00:03:51.633
+Pip install downloads and runs code
+written by strangers.
+
+57
+00:03:51.633 --> 00:03:55.350
+Six of them you chose. Eighteen you have
+never heard of.
+
+58
+00:03:55.700 --> 00:04:00.525
+That risk has a name in this course.
+LLM04, Supply Chain.
+
+59
+00:04:00.875 --> 00:04:05.725
+So set up your key on day eight, not day
+fourteen. Signups can take a day.
+
+60
+00:04:06.075 --> 00:04:10.200
+Your key goes in the file named dot e n v,
+and nowhere else.
+
+61
+00:04:10.550 --> 00:04:13.145
+Then write the three functions in Module
+
+62
+00:04:13.145 --> 00:04:16.000
+1. Nothing in them needs a network or a
+key.

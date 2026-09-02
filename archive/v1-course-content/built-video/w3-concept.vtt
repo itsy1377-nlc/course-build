@@ -1,0 +1,300 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:02.200
+This week the direction flips.
+
+2
+00:00:02.550 --> 00:00:07.125
+Until now your script called the model.
+From here the model calls your code.
+
+3
+00:00:07.475 --> 00:00:11.600
+That is one line of difference, and it
+changes who is in charge.
+
+4
+00:00:11.950 --> 00:00:15.350
+Here is the Week 2 shape. You built the
+message list.
+
+5
+00:00:15.700 --> 00:00:20.500
+You chose when to call the model. It
+produced text, and your script printed it.
+
+6
+00:00:20.850 --> 00:00:22.975
+Every decision was yours.
+
+7
+00:00:23.325 --> 00:00:28.300
+Now the Week 3 shape. You add one line,
+and you pass a list of tool schemas.
+
+8
+00:00:28.650 --> 00:00:33.625
+The reply can still be text. Or it can be
+a request for one of your functions.
+
+9
+00:00:33.975 --> 00:00:36.821
+The model did not change. The call you
+send
+
+10
+00:00:36.821 --> 00:00:39.800
+did not change much either. One argument
+did.
+
+11
+00:00:40.150 --> 00:00:43.025
+Four things moved when you added that
+line.
+
+12
+00:00:43.375 --> 00:00:47.600
+First, you passed a menu. The model now
+knows what your tools are.
+
+13
+00:00:47.950 --> 00:00:50.830
+Second, the reply can be a request instead
+of
+
+14
+00:00:50.830 --> 00:00:53.775
+an answer. Your code checks which one
+arrived.
+
+15
+00:00:54.125 --> 00:00:59.000
+Third, the tool name came from the model.
+You never typed search tickets anywhere.
+
+16
+00:00:59.350 --> 00:01:04.400
+Fourth, the arguments came from the model
+too. You never typed that query either.
+
+17
+00:01:04.750 --> 00:01:07.079
+Nothing about the model changed. What
+
+18
+00:01:07.079 --> 00:01:09.975
+changed is where the next decision comes
+from.
+
+19
+00:01:10.325 --> 00:01:14.750
+Here is the part that trips people up. The
+model did not run anything.
+
+20
+00:01:15.100 --> 00:01:19.500
+It produced text. That text named a
+function and some arguments.
+
+21
+00:01:19.850 --> 00:01:23.550
+Your Python read the text, and your Python
+made the call.
+
+22
+00:01:23.900 --> 00:01:26.537
+You still own every line that runs. You no
+
+23
+00:01:26.537 --> 00:01:29.425
+longer own the choice of which line runs
+next.
+
+24
+00:01:29.775 --> 00:01:33.900
+That is the inversion, and it is what
+makes an agent an agent.
+
+25
+00:01:34.250 --> 00:01:37.675
+If you keep one sentence from this week,
+keep this one.
+
+26
+00:01:38.025 --> 00:01:40.850
+The model asks. Your code answers.
+
+27
+00:01:41.200 --> 00:01:45.850
+Asking is free. Anyone whose text reaches
+the model gets to ask.
+
+28
+00:01:46.200 --> 00:01:50.650
+Answering is where you decide, and
+deciding is where security lives.
+
+29
+00:01:51.000 --> 00:01:54.475
+Now the one thing the model ever learns
+about a tool.
+
+30
+00:01:54.825 --> 00:01:58.600
+It never sees your Python. It never sees
+your comments.
+
+31
+00:01:58.950 --> 00:02:01.950
+It reads the schema, and that is all it
+gets.
+
+32
+00:02:02.300 --> 00:02:05.179
+So a schema is not documentation. It is an
+
+33
+00:02:05.179 --> 00:02:08.400
+interface, and a promise your code has to
+keep.
+
+34
+00:02:08.750 --> 00:02:12.400
+A schema fails in three ways, and you will
+meet all three.
+
+35
+00:02:12.750 --> 00:02:18.525
+One. A vague description, so the tool runs
+at the wrong moment, or never runs at all.
+
+36
+00:02:18.875 --> 00:02:22.124
+Two. An argument with no description. The
+model
+
+37
+00:02:22.124 --> 00:02:25.650
+invents a value, and the value it invents
+is wrong.
+
+38
+00:02:26.000 --> 00:02:29.162
+Three. A schema that does not match the
+function.
+
+39
+00:02:29.162 --> 00:02:32.775
+Your code then rejects exactly what the
+schema promised.
+
+40
+00:02:33.125 --> 00:02:36.795
+In Module 2 you write one of these
+yourself. The autograder
+
+41
+00:02:36.795 --> 00:02:41.025
+builds arguments from your schema and
+calls your function with them.
+
+42
+00:02:41.375 --> 00:02:44.350
+You do not have to take my word for any of
+this.
+
+43
+00:02:44.700 --> 00:02:50.450
+Run python dash m agent dot replay. It
+walks your last run one step at a time.
+
+44
+00:02:50.800 --> 00:02:55.225
+Next to the step where the model asked for
+a tool, it prints one line.
+
+45
+00:02:55.575 --> 00:02:58.000
+Nothing in your program chose this.
+
+46
+00:02:58.350 --> 00:03:01.825
+This is the Week 1 picture with one new
+box in it.
+
+47
+00:03:02.175 --> 00:03:03.625
+You ask.
+
+48
+00:03:03.975 --> 00:03:06.950
+The model picks a tool and its arguments.
+
+49
+00:03:07.300 --> 00:03:10.624
+Then before tool call decides. It runs
+after the
+
+50
+00:03:10.624 --> 00:03:14.225
+arguments are parsed, one line before the
+tool runs.
+
+51
+00:03:14.575 --> 00:03:17.900
+That gap is the last moment anything can
+be stopped.
+
+52
+00:03:18.250 --> 00:03:23.625
+Then the tool runs. A record is read, or
+an email is queued, and there is no undo.
+
+53
+00:03:23.975 --> 00:03:27.775
+The result becomes another message, and
+the loop runs again.
+
+54
+00:03:28.125 --> 00:03:32.125
+Right now that function says yes to
+everything, every time.
+
+55
+00:03:32.475 --> 00:03:34.575
+You do not change it this week.
+
+56
+00:03:34.925 --> 00:03:38.600
+You come back to it in Module 4, four
+weeks from now.
+
+57
+00:03:38.950 --> 00:03:42.025
+Learn where it sits, and remember one
+thing about
+
+58
+00:03:42.025 --> 00:03:45.225
+it. A blocked call still gets a line in
+the ledger.
+
+59
+00:03:45.575 --> 00:03:48.600
+That line is your proof the guard did
+something.
+
+60
+00:03:48.950 --> 00:03:51.454
+Your job this week is smaller than it
+
+61
+00:03:51.454 --> 00:03:54.500
+sounds. Get one real tool call into your
+log.
+
+62
+00:03:54.850 --> 00:03:59.875
+That is the checkpoint, and it is pass or
+fail. Working code is not the bar.

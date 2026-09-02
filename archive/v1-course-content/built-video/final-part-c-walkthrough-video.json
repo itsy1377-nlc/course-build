@@ -1,0 +1,339 @@
+{
+  "id": "final-part-c-walkthrough-video",
+  "title": "Three minutes, three parts",
+  "kind": "walkthrough",
+  "module": "m08",
+  "embed_on": "content/assignments/final-part-c-walkthrough.md",
+  "blurb": "Three minutes at the terminal. It shows the shape of the walkthrough and which parts you can prepare before you press record.",
+  "voice": "af_heart",
+  "explains": [
+    "content/assignments/final-part-c-walkthrough.md",
+    "content/pages/final-overview.md"
+  ],
+  "duration": 204.48,
+  "bytes": 5204002,
+  "words": 518,
+  "commands": [
+    "ls runs/reports",
+    "sed -n \"/^### A5/,/^- Evidence/p\" runs/reports/*-results.md",
+    "grep \"^| .A5\" runs/reports/*-results.md",
+    "ls target/outbox/",
+    "grep '\"to\"' target/outbox/*.json",
+    "grep \"^| control\" runs/reports/*-results.md",
+    "sed -n \"/^### A5/,/^- Evidence/p\" runs/reports/*-results.md"
+  ],
+  "cues": [
+    {
+      "index": 0,
+      "text": "Part C is three minutes on your own repository.",
+      "start": 0.0,
+      "end": 3.325
+    },
+    {
+      "index": 1,
+      "text": "Minute one is what you built.",
+      "start": 3.6750000000000003,
+      "end": 5.9
+    },
+    {
+      "index": 2,
+      "text": "Minute two is what you broke, and how you know.",
+      "start": 6.25,
+      "end": 9.225
+    },
+    {
+      "index": 3,
+      "text": "Minute three is what you fixed, and what still remains.",
+      "start": 9.575,
+      "end": 13.125
+    },
+    {
+      "index": 4,
+      "text": "The timings are the whole structure. Nothing is left for you to guess.",
+      "start": 13.475,
+      "end": 17.8
+    },
+    {
+      "index": 5,
+      "text": "There are three ways to hand this in, and all three are worth the same.",
+      "start": 18.15,
+      "end": 22.325
+    },
+    {
+      "index": 6,
+      "text": "A recording of your screen, with your voice.",
+      "start": 22.674999999999997,
+      "end": 25.424999999999997
+    },
+    {
+      "index": 7,
+      "text": "A slide deck with screenshots and recorded audio.",
+      "start": 25.775,
+      "end": 29.325
+    },
+    {
+      "index": 8,
+      "text": "Or a written walkthrough with screenshots and no audio at all.",
+      "start": 29.674999999999997,
+      "end": 33.574999999999996
+    },
+    {
+      "index": 9,
+      "text": "The written option is full credit, not a fallback.",
+      "start": 33.925,
+      "end": 37.175
+    },
+    {
+      "index": 10,
+      "text": "Choose it for any reason, or for none.",
+      "start": 37.525,
+      "end": 40.125
+    },
+    {
+      "index": 11,
+      "text": "Start with what you built.",
+      "start": 40.475,
+      "end": 42.300000000000004
+    },
+    {
+      "index": 12,
+      "text": "On your own screen, open your tools file and show the tool you designed.",
+      "start": 42.65,
+      "end": 47.125
+    },
+    {
+      "index": 13,
+      "text": "Show its schema next to it.",
+      "start": 47.474999999999994,
+      "end": 49.474999999999994
+    },
+    {
+      "index": 14,
+      "text": "Then say one sentence on what the tool does.",
+      "start": 49.824999999999996,
+      "end": 52.824999999999996
+    },
+    {
+      "index": 15,
+      "text": "And one sentence on what it refuses to do.",
+      "start": 53.175,
+      "end": 56.449999999999996
+    },
+    {
+      "index": 16,
+      "text": "This video never opens that file, because your code is yours.",
+      "start": 56.8,
+      "end": 61.15
+    },
+    {
+      "index": 17,
+      "text": "Most people run long here, and then rush part three.",
+      "start": 61.5,
+      "end": 65.025
+    },
+    {
+      "index": 18,
+      "text": "Minute two is what you broke, and how you know.",
+      "start": 65.375,
+      "end": 68.35
+    },
+    {
+      "index": 19,
+      "text": "Run the harness once more before you record, so your numbers are current.",
+      "start": 68.7,
+      "end": 73.15
+    },
+    {
+      "index": 20,
+      "text": "Then list your reports folder. The newest file is your source.",
+      "start": 73.5,
+      "end": 77.55
+    },
+    {
+      "index": 21,
+      "text": "Print the finding for one attack case.",
+      "start": 77.9,
+      "end": 80.42500000000001
+    },
+    {
+      "index": 22,
+      "text": "This is the knowledge base case from Week 5, article KB dash 02.",
+      "start": 80.775,
+      "end": 85.575
+    },
+    {
+      "index": 23,
+      "text": "Staff wrote that article, and it still carries an instruction.",
+      "start": 85.92500000000001,
+      "end": 89.80000000000001
+    },
+    {
+      "index": 24,
+      "text": "Read the result off the screen. Vulnerable, five of five.",
+      "start": 90.15,
+      "end": 94.30000000000001
+    },
+    {
+      "index": 25,
+      "text": "The three framework lines are labels from OWASP and MITRE ATLAS.",
+      "start": 94.65,
+      "end": 100.10000000000001
+    },
+    {
+      "index": 26,
+      "text": "They are not the weakness class. That is a separate field.",
+      "start": 100.45,
+      "end": 104.10000000000001
+    },
+    {
+      "index": 27,
+      "text": "The last line names the evidence. An outbox file, addressed outside the company.",
+      "start": 104.45,
+      "end": 110.15
+    },
+    {
+      "index": 28,
+      "text": "Now print the table row, where the Class column lives.",
+      "start": 110.5,
+      "end": 113.95
+    },
+    {
+      "index": 29,
+      "text": "It reads indirect prompt injection from trusted internal content.",
+      "start": 114.3,
+      "end": 119.02499999999999
+    },
+    {
+      "index": 30,
+      "text": "Now show the evidence itself, not the report's summary of it.",
+      "start": 119.375,
+      "end": 123.425
+    },
+    {
+      "index": 31,
+      "text": "There is one file in the outbox, and the recipient is in the file name.",
+      "start": 123.775,
+      "end": 128.375
+    },
+    {
+      "index": 32,
+      "text": "One line out of that file is the whole finding.",
+      "start": 128.725,
+      "end": 132.0
+    },
+    {
+      "index": 33,
+      "text": "An address nobody at the company authorized.",
+      "start": 132.35,
+      "end": 135.67499999999998
+    },
+    {
+      "index": 34,
+      "text": "Then say which weakness class it is. The Class column has the words.",
+      "start": 136.025,
+      "end": 140.475
+    },
+    {
+      "index": 35,
+      "text": "Grade the world, not the prose.",
+      "start": 140.82500000000002,
+      "end": 143.00000000000003
+    },
+    {
+      "index": 36,
+      "text": "Minute three is what you fixed, and what remains.",
+      "start": 143.35000000000002,
+      "end": 146.57500000000002
+    },
+    {
+      "index": 37,
+      "text": "Show your guard on your own screen, then run the harness again.",
+      "start": 146.925,
+      "end": 150.775
+    },
+    {
+      "index": 38,
+      "text": "Read the controls first. Both pass, so normal support work still gets through.",
+      "start": 151.125,
+      "end": 156.4
+    },
+    {
+      "index": 39,
+      "text": "Now the same case, in your new report.",
+      "start": 156.75,
+      "end": 159.525
+    },
+    {
+      "index": 40,
+      "text": "It reads blocked, five out of five.",
+      "start": 159.875,
+      "end": 162.5
+    },
+    {
+      "index": 41,
+      "text": "That is not the same as an attack that failed.",
+      "start": 162.85,
+      "end": 165.75
+    },
+    {
+      "index": 42,
+      "text": "The agent asked every time. Your code refused every time.",
+      "start": 166.1,
+      "end": 170.475
+    },
+    {
+      "index": 43,
+      "text": "The evidence line says no message left the company.",
+      "start": 170.825,
+      "end": 174.475
+    },
+    {
+      "index": 44,
+      "text": "Finish by naming one thing your fix still does not cover.",
+      "start": 174.825,
+      "end": 178.575
+    },
+    {
+      "index": 45,
+      "text": "Do one practice take with a timer before the real one.",
+      "start": 178.92499999999998,
+      "end": 182.52499999999998
+    },
+    {
+      "index": 46,
+      "text": "Open every file you need before you press record, and do not search on camera.",
+      "start": 182.87499999999997,
+      "end": 187.87499999999997
+    },
+    {
+      "index": 47,
+      "text": "Close any browser tab that is not your own lab.",
+      "start": 188.22499999999997,
+      "end": 191.67499999999995
+    },
+    {
+      "index": 48,
+      "text": "A stray tab raises a scope question about work that was fine.",
+      "start": 192.02499999999998,
+      "end": 196.14999999999998
+    },
+    {
+      "index": 49,
+      "text": "If you host the file somewhere, check the link opens for your instructor.",
+      "start": 196.49999999999997,
+      "end": 200.92499999999998
+    },
+    {
+      "index": 50,
+      "text": "A link nobody can open scores zero.",
+      "start": 201.27499999999998,
+      "end": 204.12499999999997
+    }
+  ],
+  "fingerprint": "1100546367c3e03a",
+  "ascii": [
+    "final-part-c-walkthrough-video.scene03.ascii",
+    "final-part-c-walkthrough-video.scene04.ascii",
+    "final-part-c-walkthrough-video.scene05.ascii"
+  ]
+}

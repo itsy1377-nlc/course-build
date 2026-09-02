@@ -1,0 +1,350 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:04.475
+Day fifty to day fifty five. Nothing new
+is taught in this block.
+
+2
+00:00:04.825 --> 00:00:09.225
+You hand in three things, and all three
+come from work you already did.
+
+3
+00:00:09.575 --> 00:00:12.900
+Here is what each one asks for, and in
+what order.
+
+4
+00:00:13.250 --> 00:00:17.225
+Start with the date that takes points away
+rather than giving them.
+
+5
+00:00:17.575 --> 00:00:22.400
+Day fifty one is the hard close on late
+work from weeks one through seven.
+
+6
+00:00:22.750 --> 00:00:26.800
+After that day those points are gone.
+Clear that backlog first.
+
+7
+00:00:27.150 --> 00:00:30.800
+Day fifty two is Part B, the findings
+report.
+
+8
+00:00:31.150 --> 00:00:34.025
+Day fifty four is Part A, the exam.
+
+9
+00:00:34.375 --> 00:00:39.350
+The same day, Part C, a three minute
+walkthrough of your own repository.
+
+10
+00:00:39.700 --> 00:00:44.150
+The report lands first on purpose. Writing
+it is exam review.
+
+11
+00:00:44.500 --> 00:00:47.875
+Before you write anything, run the harness
+once more.
+
+12
+00:00:48.225 --> 00:00:51.700
+Seed the target, start the app, then run
+the whole suite.
+
+13
+00:00:52.050 --> 00:00:56.925
+Your newest file in the reports folder is
+the source for every number you quote.
+
+14
+00:00:57.275 --> 00:01:01.600
+Do not quote a run from last week. Your
+code has changed since then.
+
+15
+00:01:01.950 --> 00:01:04.673
+Both findings are written on the same
+eight
+
+16
+00:01:04.673 --> 00:01:07.775
+headings. Do not rename one, and do not
+skip one.
+
+17
+00:01:08.125 --> 00:01:12.700
+An empty heading tells you what is missing
+before your reader finds it.
+
+18
+00:01:13.050 --> 00:01:17.575
+What was tested, and how. The case, the
+prompt, and how many trials.
+
+19
+00:01:17.925 --> 00:01:20.225
+Authorization basis. The clause that
+
+20
+00:01:20.225 --> 00:01:23.100
+allowed the test, and the address you
+tested.
+
+21
+00:01:23.450 --> 00:01:27.950
+Evidence. A side effect, an audit row, or
+a canary, pasted in.
+
+22
+00:01:28.300 --> 00:01:31.600
+Framework identifiers. The OWASP entries
+and
+
+23
+00:01:31.600 --> 00:01:35.275
+the ATLAS techniques, copied from your
+case file.
+
+24
+00:01:35.625 --> 00:01:39.950
+Severity. One rating from the table, and
+the reason you chose it.
+
+25
+00:01:40.300 --> 00:01:45.725
+Remediation applied. The change you made,
+and the file and function you made it in.
+
+26
+00:01:46.075 --> 00:01:51.375
+Verification. The re-run result with its
+rate, next to the benign baseline.
+
+27
+00:01:51.725 --> 00:01:56.750
+What still remains. The defect you know is
+left. This heading is never blank.
+
+28
+00:01:57.100 --> 00:02:01.075
+Finding one is the fix you built and
+verified in Part A.
+
+29
+00:02:01.425 --> 00:02:05.350
+Finding two you specify in writing, and
+you do not build it.
+
+30
+00:02:05.700 --> 00:02:10.650
+Pick a second weakness your harness found,
+then write the fix instead of building it.
+
+31
+00:02:11.000 --> 00:02:13.750
+Name the file and the function you would
+change.
+
+32
+00:02:14.100 --> 00:02:16.250
+Say what rule you would put there.
+
+33
+00:02:16.600 --> 00:02:19.700
+Name the case you would run, and how many
+trials.
+
+34
+00:02:20.050 --> 00:02:22.700
+Say what the detector would have to look
+at.
+
+35
+00:02:23.050 --> 00:02:27.025
+Then say which result counts as fixed, and
+which one does not.
+
+36
+00:02:27.375 --> 00:02:32.575
+The bar is one sentence. A classmate could
+build it without asking you a question.
+
+37
+00:02:32.925 --> 00:02:36.875
+The Verification heading needs two
+results, side by side.
+
+38
+00:02:37.225 --> 00:02:40.350
+First, the attack case re-run, with its
+rate.
+
+39
+00:02:40.700 --> 00:02:45.125
+Second, the benign baseline, showing that
+ordinary use still works.
+
+40
+00:02:45.475 --> 00:02:48.500
+One result without the other proves
+nothing.
+
+41
+00:02:48.850 --> 00:02:52.025
+Three things sink reports that are
+otherwise good.
+
+42
+00:02:52.375 --> 00:02:56.675
+First, evidence that is only the model's
+account of what it did.
+
+43
+00:02:57.025 --> 00:03:01.500
+Quote the outbox file, the audit row, or
+your canary token instead.
+
+44
+00:03:01.850 --> 00:03:04.025
+Grade the world, not the prose.
+
+45
+00:03:04.375 --> 00:03:07.675
+Second, a status word with no rate next to
+it.
+
+46
+00:03:08.025 --> 00:03:10.598
+Vulnerable hides the gap between one of
+
+47
+00:03:10.598 --> 00:03:13.500
+five and five of five. Always give the
+rate.
+
+48
+00:03:13.850 --> 00:03:17.375
+Third, a verification with only half the
+picture.
+
+49
+00:03:17.725 --> 00:03:21.550
+The attack blocked, and the benign
+baseline never mentioned.
+
+50
+00:03:21.900 --> 00:03:25.575
+The report has a nine hundred word cap and
+it is hard.
+
+51
+00:03:25.925 --> 00:03:29.700
+Nothing after word nine hundred is read or
+graded.
+
+52
+00:03:30.050 --> 00:03:34.650
+There is no minimum. A short exact report
+beats a long vague one.
+
+53
+00:03:35.000 --> 00:03:39.325
+The last question is separate, and it gets
+one hundred fifty words.
+
+54
+00:03:39.675 --> 00:03:42.825
+It asks what defect you know remains in
+your fix.
+
+55
+00:03:43.175 --> 00:03:48.325
+Every control has an edge it does not
+cover. An answer of none scores zero.
+
+56
+00:03:48.675 --> 00:03:52.500
+The exam is three hours, one attempt, and
+open book.
+
+57
+00:03:52.850 --> 00:03:55.893
+Some items show an agent setup you have
+never
+
+58
+00:03:55.893 --> 00:03:59.275
+run, so practice on a case file you did
+not write.
+
+59
+00:03:59.625 --> 00:04:02.750
+Then name the weakness class. There are
+three of them.
+
+60
+00:04:03.100 --> 00:04:05.988
+Prompt injection is text the model treats
+as
+
+61
+00:04:05.988 --> 00:04:08.875
+an instruction when it was meant to be
+data.
+
+62
+00:04:09.225 --> 00:04:13.725
+Excessive agency is the agent taking an
+action nobody approved.
+
+63
+00:04:14.075 --> 00:04:18.900
+Insecure tool authorization is the tool
+never asking who is calling.
+
+64
+00:04:19.250 --> 00:04:24.125
+For each one, say what evidence proves it,
+and what fix holds five of five.
+
+65
+00:04:24.475 --> 00:04:27.875
+If you are behind right now, you still
+finish this course.
+
+66
+00:04:28.225 --> 00:04:32.825
+On day fifty, pull the harness working
+branch your instructor published.
+
+67
+00:04:33.175 --> 00:04:37.025
+Run it against your target and collect
+real results from it.
+
+68
+00:04:37.375 --> 00:04:43.125
+Then say so in your report. That caps the
+artifact at eighty percent, never a zero.
+
+69
+00:04:43.475 --> 00:04:48.825
+People use that branch every term. That is
+normal, not a sign of falling behind.
+
+70
+00:04:49.175 --> 00:04:51.803
+One last time, the sentence this course
+
+71
+00:04:51.803 --> 00:04:54.700
+opened with. Scope first, technique
+second.

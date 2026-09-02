@@ -1,0 +1,224 @@
+WEBVTT
+
+1
+00:00:00.000 --> 00:00:03.300
+This is what a finished Module 2 run looks
+like.
+
+2
+00:00:03.650 --> 00:00:08.775
+You will see the tool that grades you, and
+one failure that looks like broken Python.
+
+3
+00:00:09.125 --> 00:00:12.525
+You will not see any code, because the
+code is yours.
+
+4
+00:00:12.875 --> 00:00:15.075
+Module 2 has two parts.
+
+5
+00:00:15.425 --> 00:00:19.775
+Part one is get_customer. Its schema is
+already written for you.
+
+6
+00:00:20.125 --> 00:00:23.200
+Part two is one tool you design yourself.
+
+7
+00:00:23.550 --> 00:00:27.225
+There, the schema is the graded part, not
+the Python.
+
+8
+00:00:27.575 --> 00:00:30.275
+Writing a function is Week 4 work.
+
+9
+00:00:30.625 --> 00:00:34.850
+Writing an interface another program has
+to understand is new.
+
+10
+00:00:35.200 --> 00:00:38.500
+The model reads your description and
+nothing else.
+
+11
+00:00:38.850 --> 00:00:42.950
+The grader is a command, and you may run
+it as often as you like.
+
+12
+00:00:43.300 --> 00:00:47.375
+Run it before you write anything, so you
+know what failing looks like.
+
+13
+00:00:47.725 --> 00:00:50.675
+Five failed, one passed, seven skipped.
+
+14
+00:00:51.025 --> 00:00:54.925
+The seven skipped are waiting for the tool
+you have not written yet.
+
+15
+00:00:55.275 --> 00:00:58.125
+That is a starting line, not a problem.
+
+16
+00:00:58.475 --> 00:01:01.675
+Now the same command against work that is
+finished.
+
+17
+00:01:02.025 --> 00:01:04.975
+Thirteen passed, in well under a second.
+
+18
+00:01:05.325 --> 00:01:07.825
+It is the same tool that grades you.
+
+19
+00:01:08.175 --> 00:01:11.625
+So nothing is waiting to surprise you at
+the deadline.
+
+20
+00:01:11.975 --> 00:01:14.925
+Your tool name has to go in two places.
+
+21
+00:01:15.275 --> 00:01:19.800
+Here is the allowed list in the config
+file, with a new name on the end.
+
+22
+00:01:20.150 --> 00:01:25.150
+That name was never added to TOOLS, the
+registry in your tools file.
+
+23
+00:01:25.500 --> 00:01:29.900
+Now run the agent. It stops before it asks
+the model anything.
+
+24
+00:01:30.250 --> 00:01:35.100
+The error names the tool that is missing,
+then every tool that is registered.
+
+25
+00:01:35.450 --> 00:01:40.000
+Miss the other list instead and your tool
+is never offered to the model.
+
+26
+00:01:40.350 --> 00:01:44.050
+The model never picks it, and nothing
+looks broken at all.
+
+27
+00:01:44.400 --> 00:01:50.000
+Here is a good run. T-501 is an ordinary
+ticket with nothing hidden in it.
+
+28
+00:01:50.350 --> 00:01:53.750
+The agent ran search_tickets and read the
+ticket back.
+
+29
+00:01:54.100 --> 00:01:58.900
+Save this whole output. It is the run
+transcript the assignment asks for.
+
+30
+00:01:59.250 --> 00:02:02.500
+Replay walks that same run one step at a
+time.
+
+31
+00:02:02.850 --> 00:02:04.725
+You asked for a summary.
+
+32
+00:02:05.075 --> 00:02:07.468
+The model asked for a tool, and the line
+
+33
+00:02:07.468 --> 00:02:10.400
+under it says nothing in your program
+chose that.
+
+34
+00:02:10.750 --> 00:02:15.825
+Then your code ran the tool and got back
+two hundred and thirty six characters.
+
+35
+00:02:16.175 --> 00:02:19.000
+The model asks. Your code answers.
+
+36
+00:02:19.350 --> 00:02:22.050
+Three failures cost the most points here.
+
+37
+00:02:22.400 --> 00:02:25.050
+A schema that lies about your function.
+
+38
+00:02:25.400 --> 00:02:30.250
+The autograder builds arguments from your
+schema and calls your function with them.
+
+39
+00:02:30.600 --> 00:02:34.125
+A tool registered in one list and not the
+other.
+
+40
+00:02:34.475 --> 00:02:36.975
+And an empty string when the call fails.
+
+41
+00:02:37.325 --> 00:02:41.625
+The agent carries on as if it worked, and
+your log agrees with it.
+
+42
+00:02:41.975 --> 00:02:44.750
+One zip file, holding five things.
+
+43
+00:02:45.100 --> 00:02:50.325
+Your tools file, your config file, your
+run transcript, ANSWERS and AI-USE.
+
+44
+00:02:50.675 --> 00:02:53.825
+No dot env file, and no runs folder.
+
+45
+00:02:54.175 --> 00:02:58.600
+AI-USE needs one suggestion you turned
+down, with a real reason.
+
+46
+00:02:58.950 --> 00:03:01.250
+It was wrong is not a reason.
+
+47
+00:03:01.600 --> 00:03:04.185
+It caught every exception, which would
+have
+
+48
+00:03:04.185 --> 00:03:06.950
+hidden the missing customer case, is a
+reason.

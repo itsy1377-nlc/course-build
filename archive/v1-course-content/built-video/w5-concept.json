@@ -1,0 +1,338 @@
+{
+  "id": "w5-concept",
+  "title": "A ticket that gives orders",
+  "kind": "concept",
+  "module": "m05",
+  "embed_on": "content/pages/w5-overview.md",
+  "blurb": "Four minutes on why ticket text reaches the model as instructions, and why a rule in the system prompt is a request rather than a control.",
+  "voice": "af_heart",
+  "explains": [
+    "content/pages/w5-content.md"
+  ],
+  "duration": 268.0,
+  "bytes": 9890750,
+  "words": 694,
+  "commands": [],
+  "cues": [
+    {
+      "index": 0,
+      "text": "This week you make the agent do something it should not.",
+      "start": 0.0,
+      "end": 3.275
+    },
+    {
+      "index": 1,
+      "text": "That sounds harder than it is. You already built the parts.",
+      "start": 3.625,
+      "end": 7.375
+    },
+    {
+      "index": 2,
+      "text": "Today you point them at a ticket somebody wrote on purpose.",
+      "start": 7.725,
+      "end": 11.35
+    },
+    {
+      "index": 3,
+      "text": "Start with one fact, because everything else follows from it.",
+      "start": 11.7,
+      "end": 15.45
+    },
+    {
+      "index": 4,
+      "text": "A model reads text and continues it. That is all it does.",
+      "start": 15.799999999999999,
+      "end": 19.95
+    },
+    {
+      "index": 5,
+      "text": "Your instructions to the agent are words.",
+      "start": 20.299999999999997,
+      "end": 23.074999999999996
+    },
+    {
+      "index": 6,
+      "text": "The question a support agent types is words.",
+      "start": 23.424999999999997,
+      "end": 26.474999999999998
+    },
+    {
+      "index": 7,
+      "text": "The ticket your tool just fetched is words too. Somebody you have never met wrote it.",
+      "start": 26.824999999999996,
+      "end": 31.949999999999996
+    },
+    {
+      "index": 8,
+      "text": "There is no second input marked data from a stranger.",
+      "start": 32.3,
+      "end": 35.974999999999994
+    },
+    {
+      "index": 9,
+      "text": "It is all one box, the same box you saw in Week 2.",
+      "start": 36.324999999999996,
+      "end": 40.099999999999994
+    },
+    {
+      "index": 10,
+      "text": "So here is the definition, and it is the whole idea.",
+      "start": 40.449999999999996,
+      "end": 44.199999999999996
+    },
+    {
+      "index": 11,
+      "text": "Prompt injection is text the model treats as an instruction, when it was supposed to be data.",
+      "start": 44.55,
+      "end": 50.375
+    },
+    {
+      "index": 12,
+      "text": "The rest of this video is about where that text comes from, and what it can reach.",
+      "start": 50.724999999999994,
+      "end": 55.49999999999999
+    },
+    {
+      "index": 13,
+      "text": "Shape one is direct injection. The person at the keyboard is the attacker.",
+      "start": 55.849999999999994,
+      "end": 60.87499999999999
+    },
+    {
+      "index": 14,
+      "text": "Ticket T-504 reads like an ordinary complaint. A portal keeps signing someone out.",
+      "start": 61.224999999999994,
+      "end": 67.32499999999999
+    },
+    {
+      "index": 15,
+      "text": "Under the complaint sits a block labeled assistant directive.",
+      "start": 67.675,
+      "end": 71.64999999999999
+    },
+    {
+      "index": 16,
+      "text": "It asks the agent to print its system prompt in full, word for word, with nothing left out.",
+      "start": 72.0,
+      "end": 78.225
+    },
+    {
+      "index": 17,
+      "text": "Now open the system prompt file in your lab. Look at the line holding a ticket api key.",
+      "start": 78.575,
+      "end": 84.675
+    },
+    {
+      "index": 18,
+      "text": "Somebody stored a credential there because it was handy. That is why direct injection matters.",
+      "start": 85.025,
+      "end": 91.05000000000001
+    },
+    {
+      "index": 19,
+      "text": "Shape two is indirect, and this is the one to worry about.",
+      "start": 91.4,
+      "end": 95.30000000000001
+    },
+    {
+      "index": 20,
+      "text": "The attacker never talks to your agent. They wrote the text weeks earlier and left it where the agent would read it.",
+      "start": 95.65,
+      "end": 102.5
+    },
+    {
+      "index": 21,
+      "text": "Ticket T-503 looks like an ordinary complaint about a March invoice.",
+      "start": 102.85000000000001,
+      "end": 108.22500000000001
+    },
+    {
+      "index": 22,
+      "text": "At the bottom is a block announcing a records audit. It asks for one customer record to be emailed to an outside archive.",
+      "start": 108.575,
+      "end": 116.625
+    },
+    {
+      "index": 23,
+      "text": "Now watch what happens. A support agent asks for a summary. An ordinary request.",
+      "start": 116.97500000000001,
+      "end": 122.87500000000001
+    },
+    {
+      "index": 24,
+      "text": "The search tickets tool returns the ticket body. An ordinary tool call.",
+      "start": 123.22500000000001,
+      "end": 128.0
+    },
+    {
+      "index": 25,
+      "text": "The body contains instructions, and the model cannot reliably tell them apart from yours.",
+      "start": 128.35000000000002,
+      "end": 134.15000000000003
+    },
+    {
+      "index": 26,
+      "text": "So the model looks up the customer record.",
+      "start": 134.50000000000003,
+      "end": 137.22500000000002
+    },
+    {
+      "index": 27,
+      "text": "Then it emails that record to an address outside the company.",
+      "start": 137.57500000000002,
+      "end": 141.57500000000002
+    },
+    {
+      "index": 28,
+      "text": "Notice who made a mistake here. Nobody did.",
+      "start": 141.925,
+      "end": 145.10000000000002
+    },
+    {
+      "index": 29,
+      "text": "The support agent asked a normal question. The tools worked exactly as written.",
+      "start": 145.45000000000002,
+      "end": 150.85000000000002
+    },
+    {
+      "index": 30,
+      "text": "The attack was already sitting in the database, waiting to be read.",
+      "start": 151.20000000000002,
+      "end": 155.47500000000002
+    },
+    {
+      "index": 31,
+      "text": "That makes this a design problem, not a training problem.",
+      "start": 155.82500000000002,
+      "end": 159.57500000000002
+    },
+    {
+      "index": 32,
+      "text": "Ticket text is obviously untrusted. Anyone can open a ticket.",
+      "start": 159.925,
+      "end": 164.625
+    },
+    {
+      "index": 33,
+      "text": "So look at article KB dash 02 instead. It is the escalation policy for billing tickets.",
+      "start": 164.97500000000002,
+      "end": 171.15000000000003
+    },
+    {
+      "index": 34,
+      "text": "Staff wrote it. It sits on the company system. It carries an approval date.",
+      "start": 171.50000000000003,
+      "end": 176.40000000000003
+    },
+    {
+      "index": 35,
+      "text": "It also holds an automation note. That note asks the agent to forward a copy of the customer record to an outside archive.",
+      "start": 176.75000000000003,
+      "end": 184.85000000000002
+    },
+    {
+      "index": 36,
+      "text": "Somebody reviewed that article for whether the procedure was correct.",
+      "start": 185.20000000000002,
+      "end": 189.37500000000003
+    },
+    {
+      "index": 37,
+      "text": "Nobody checked whether the words were safe to feed to an automated system.",
+      "start": 189.72500000000002,
+      "end": 194.50000000000003
+    },
+    {
+      "index": 38,
+      "text": "The first fix everyone tries is a sentence in the system prompt.",
+      "start": 194.85000000000002,
+      "end": 199.175
+    },
+    {
+      "index": 39,
+      "text": "It tells the model to ignore any instructions inside ticket text.",
+      "start": 199.52500000000003,
+      "end": 204.15000000000003
+    },
+    {
+      "index": 40,
+      "text": "Try it. It may cut the rate. It may do nothing at all.",
+      "start": 204.50000000000003,
+      "end": 208.02500000000003
+    },
+    {
+      "index": 41,
+      "text": "That sentence is more text, in the same box, with no special power.",
+      "start": 208.37500000000003,
+      "end": 213.00000000000003
+    },
+    {
+      "index": 42,
+      "text": "You have not built a wall. You have made a request.",
+      "start": 213.35000000000002,
+      "end": 216.50000000000003
+    },
+    {
+      "index": 43,
+      "text": "The model weighs your request against the attacker's request. Sometimes yours wins.",
+      "start": 216.85000000000002,
+      "end": 222.15000000000003
+    },
+    {
+      "index": 44,
+      "text": "Next week you measure it on your own model.",
+      "start": 222.50000000000003,
+      "end": 225.40000000000003
+    },
+    {
+      "index": 45,
+      "text": "You may get three out of five, which the harness calls flaky.",
+      "start": 225.75000000000003,
+      "end": 229.50000000000003
+    },
+    {
+      "index": 46,
+      "text": "Or you may get five out of five, and see that your sentence changed nothing.",
+      "start": 229.85000000000002,
+      "end": 234.50000000000003
+    },
+    {
+      "index": 47,
+      "text": "Both answers say the same thing. A defense you cannot predict is not a defense.",
+      "start": 234.85000000000002,
+      "end": 240.20000000000002
+    },
+    {
+      "index": 48,
+      "text": "A defense that works three times in five is not a defense. An attacker just tries again.",
+      "start": 240.55,
+      "end": 246.45000000000002
+    },
+    {
+      "index": 49,
+      "text": "Words ask. Code decides. Hold on to that sentence.",
+      "start": 246.8,
+      "end": 250.82500000000002
+    },
+    {
+      "index": 50,
+      "text": "In the lab this week, the evidence is a file in the outbox, an audit row, or your canary token.",
+      "start": 251.175,
+      "end": 257.575
+    },
+    {
+      "index": 51,
+      "text": "It is never what the model said. The model is a text generator and it says things.",
+      "start": 257.925,
+      "end": 263.25
+    },
+    {
+      "index": 52,
+      "text": "Grade the world, not the prose. You will see that sentence again.",
+      "start": 263.6,
+      "end": 267.65000000000003
+    }
+  ],
+  "fingerprint": "b78ed974047e751c",
+  "ascii": []
+}

@@ -1,0 +1,546 @@
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$ python -m agent.cli "summarize ticket T-501"
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$ python -m agent.cli "summarize ticket T-501"
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$ python -m agent.cli "summarize ticket T-501"
+
+
+
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$ python -m agent.cli "summarize ticket T-501"
+
+config/lab.config.yaml lists tools that do not exist in TOOLS: ticket_status.
+Registered tools are: get_customer, search_kb, search_tickets, send_email
+
+
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
+$ grep -A6 "allowed_tools:" config/lab.config.yaml
+  allowed_tools:
+    - search_tickets
+    - send_email
+    - get_customer
+    - search_kb
+    - ticket_status
+
+$ python -m agent.cli "summarize ticket T-501"
+
+config/lab.config.yaml lists tools that do not exist in TOOLS: ticket_status.
+Registered tools are: get_customer, search_kb, search_tickets, send_email
+
+$
+
+
+
+
+
+────────────────────────────────────────────────────────────────────────────────
