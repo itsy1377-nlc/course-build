@@ -23,6 +23,7 @@ is written down twice.
 
 from __future__ import annotations
 
+import os
 import argparse
 import re
 import shutil
@@ -40,7 +41,7 @@ from tools.dates import DateMap
 from tools.qti import ident
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / "content"
+CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 BUILD = ROOT / "build"
 
 CC_NS = "http://www.imsglobal.org/xsd/imsccv1p1/imscp_v1p1"

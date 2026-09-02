@@ -25,6 +25,7 @@ instead of taking the claim on faith.
 
 from __future__ import annotations
 
+import os
 import argparse
 import json
 import re
@@ -35,7 +36,7 @@ from pathlib import Path
 import textstat
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / "content"
+CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 
 MAX_GRADE = 8.0
 TARGET_GRADE = 7.0

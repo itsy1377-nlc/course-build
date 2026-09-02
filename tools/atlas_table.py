@@ -25,6 +25,7 @@ how the wrong name gets copied forward.
 
 from __future__ import annotations
 
+import os
 import argparse
 import re
 import sys
@@ -33,9 +34,11 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / "content"
+CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 LABS = ROOT / "labs"
-NAMES_FILE = CONTENT / "_shared" / "atlas-2026.07.yaml"
+# Shared infrastructure lives at content/ root and serves both course trees.
+SHARED = ROOT / "content" / "_shared"
+NAMES_FILE = SHARED / "atlas-2026.07.yaml"
 
 ATLAS_RE = re.compile(r"\bAML\.T\d{4}(?:\.\d{3})?\b")
 

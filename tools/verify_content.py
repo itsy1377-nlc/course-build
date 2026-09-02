@@ -32,6 +32,7 @@ that was true when it was written.
 
 from __future__ import annotations
 
+import os
 import argparse
 import json
 import re
@@ -41,7 +42,7 @@ from pathlib import Path
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / "content"
+CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 LABS = ROOT / "labs"
 
 
