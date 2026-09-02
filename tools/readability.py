@@ -89,7 +89,12 @@ PAGE_BUDGET = {
     "course-schedule":         550,   # mostly a table
     "exam-review":             450,
     "course-material":         900,   # a resource list with licences
-    "what-is-logged":          500,   # funded course only: the gateway notice
+    # Funded course only. Six things the registrar-approved notice has to carry
+    # (what is captured, who reads it, for how long, how a student sees their
+    # own, how they ask for removal, and what the answer will be), plus the
+    # warning about pasting real data. Same budget as course-policies, which is
+    # the comparable page, rather than the 500 first guessed at.
+    "what-is-logged":          650,
     "glossary":               1600,   # searched, not read, but not unbounded
 }
 
