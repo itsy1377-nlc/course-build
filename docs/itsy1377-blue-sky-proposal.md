@@ -79,7 +79,14 @@ economics, context growth, rate limits, and a runaway loop that costs actual
 money. The constrained proposal lists runaway cost as a case card it never
 exercises.
 
-**5. A shared incident, assembled rather than live.** Students are isolated, so
+**5. An independent record of whether the work was done.** Every artifact in the
+constrained course is written by the student's own machine, so a student willing
+to fabricate one can fabricate all of them, and the canary scheme does not stop
+that because students are handed their own tokens on purpose. A gateway log is
+the first record in this course that the student does not write. That is a real
+assessment control, and it deserves counting among what the money buys.
+
+**6. A shared incident, assembled rather than live.** Students are isolated, so
 this cannot be twenty-five analysts acting on one database at the same moment,
 and it should not be: that version needs concurrency the harness does not have
 and would let one student break another's graded work.
@@ -261,23 +268,44 @@ service. The preflight assertion is still worth keeping: this project has twice
 produced verdicts against the wrong tree at a scale of two, and a class is
 twenty-five.
 
-**Isolation does not fix the canary forgery problem.** That one is about
-arithmetic rather than access, and it is addressed below.
+**On the canary question, an earlier draft of this section was wrong.** The
+correction is below, and it turns out to favour this proposal rather than count
+against it.
 
-**A student can still forge a classmate's proof, and isolation does not stop
-it.** Canary tokens are derived as a keyed hash of the term salt and the student
-ID, the default salt is published in the source, and the student sets their own
-ID. Forging a classmate's token requires no access to their environment at all:
-it requires the salt, which is in the source, and their ID, which is guessable.
-Isolation prevents a student from touching another's files. It does nothing
-about a student computing another's token in their own notebook and pasting it
-into their own evidence.
+**A note correcting an earlier draft of this section.** It called classmate
+token forgery a new hosted risk. That was wrong twice over, and the correction
+is more useful than the claim was.
 
-**So the launcher must inject only that student's three tokens, and the salt must
-never enter a student-readable environment.** On laptops this was a theoretical
-concern nobody had a reason to act on. In a hosted environment with a class board
-and a common image it is the single control that keeps "evidence cannot be
-copied" true, and it is worth doing whether or not any week is shared.
+It is not much of a threat, because forging a classmate's token would need their
+student ID and would achieve nothing anyway. The anti-copying property is that a
+classmate can hand you a working payload, which is fine and is how the field
+works, and cannot hand you the proof it worked in *your* environment, because
+that proof carries *your* token. To cheat, a student does not need anybody
+else's token. They need their own.
+
+And their own was never a secret. `common/canary.py` prints it when run
+directly, `show_my_tokens.py` is a week 1 starter script whose whole purpose is
+printing it, and students need it from week 3 onward to find their own evidence.
+**Fabricating your own evidence has always been possible, in both versions of
+this course, by design.** The canary scheme was never a control against
+fabrication. It is a control against copying, and at copying it works.
+
+**What is genuinely new here is the first real control against fabrication, and
+it sits on the funded side.** A gateway log independently records whether a
+student made the model calls at all. A fabricated outbox file carrying a
+correctly computed token sits beside a gateway record showing no traffic in that
+window, or traffic that does not match. Nothing on an isolated laptop can do
+that, because every record is written by the student's own machine and a student
+willing to fabricate one will fabricate the rest.
+
+That belongs in the proposal rather than in a security footnote: **the honest
+anti-cheating argument for the funded version is the log, not the canary.** It
+should also be said plainly to students in the week 1 notice, because a control
+nobody knows about deters nobody, and one students discover later feels like a
+trap.
+
+The salt is still worth keeping out of the student environment, as tidiness
+rather than as a control, and it should not be sold as one.
 
 ---
 
