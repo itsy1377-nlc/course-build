@@ -46,20 +46,6 @@ control that only recognises the cases it has already seen fails the next one,
 and this assignment is graded on the reason for your change.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Round one standing recorded from the results, benign result included | 2 |
-| The shared pattern named, and one change made with a reason | 2 |
-| Round two compared with round one, including what did not move | 2 |
-| Your week 3 case: the result word, and why the control behaved that way | 3 |
-| One sentence naming what these results do not settle | 1 |
-| **Total** | **10** |
-
-A control that holds nothing, reported accurately, earns more here than a
-control that holds everything and blocks normal work.
-:::
-
 ::: submit | How to Submit
 Submit one file, text or PDF. Put your name at the top and your answers under
 the numbered headings from the directions. Attach the results from both rounds

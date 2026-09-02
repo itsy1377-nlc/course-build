@@ -35,20 +35,6 @@ and Answers board with the exact error text. Do not retype the error from memory
 and do not post a photograph of your screen; copy the text.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| The agent ran and a trace exists | 2 |
-| What it did, in order, with each tool named, matching the trace | 3 |
-| One trace line quoted, with a reason it was chosen | 2 |
-| Every tool listed, with what it touches and whether it can be undone | 2 |
-| One sentence naming something this run cannot tell you | 1 |
-| **Total** | **10** |
-
-You are graded on whether your answer matches the record, not on what the agent
-did. An unremarkable run described accurately earns full marks.
-:::
-
 ::: submit | How to Submit
 Submit one file. A text file or a PDF is fine. Put your name at the top, then
 your answers under the numbered headings from the directions. Attach your trace

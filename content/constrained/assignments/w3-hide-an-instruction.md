@@ -41,20 +41,6 @@ Report the step you reached and the line that shows it. Do not change your
 prediction afterward to match the result.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| A case file that plants an instruction in data, with one detector | 2 |
-| A prediction written first, naming a step and a record | 2 |
-| Five trials run, with all five traces submitted | 2 |
-| Each run scored on the four-step scale, with the record line for each | 3 |
-| One sentence on what your result does not settle | 1 |
-| **Total** | **10** |
-
-You are graded on how well you read your own records. An attack that stopped at
-step 2, scored accurately, earns full marks.
-:::
-
 ::: submit | How to Submit
 Submit two things. First, one text file or PDF with your name at the top, holding
 your case file, your prediction, your score table and your closing sentence,

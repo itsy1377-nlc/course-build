@@ -40,21 +40,6 @@ already earned. If your guard raises an error, the run blocks the call and
 records the error, so read the reason before you assume the control worked.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Baseline measured over five trials, case named, report submitted | 2 |
-| The prompt version built and measured the same way | 2 |
-| The control in code, measured, with the record line that shows it acting | 3 |
-| Legitimate work shown still running, from the record | 2 |
-| One sentence naming what your control does not cover | 1 |
-| **Total** | **10** |
-
-You are graded on the measurement, not on the result. A control that did not hold,
-measured honestly and reported with its number, earns far more than a claim with
-no baseline behind it.
-:::
-
 ::: submit | How to Submit
 Submit one file with your write-up: a text file or a PDF, your name at the top,
 answers under the numbered headings above. Attach your three reports and your

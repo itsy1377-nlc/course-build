@@ -58,19 +58,6 @@ your setup and your labelling, and it supports nothing about a real model. Say
 that in your last sentences and you lose no points.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Thirty clean trials in each arm, errored trials re-run, re-run count reported | 4 |
-| Every trial labelled from the record, with refusals kept apart from failures | 4 |
-| Both rates reported, each with the number of clean trials it rests on | 3 |
-| What the pair does and does not establish, correct for the pair you got | 4 |
-| **Total** | **15** |
-
-No points ride on whether the attack worked. A grid of thirty misses, described
-accurately, earns the same as a grid full of hits.
-:::
-
 ::: submit | How to Submit
 Submit one file, text or PDF, with your name at the top and your answers under
 the numbered headings above. Paste your exact ticket text into it. Attach both

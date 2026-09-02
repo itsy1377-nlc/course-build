@@ -65,17 +65,6 @@ earns most of the marks for that tool. A confident guess with no citation earns
 none of them.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Your specification accepted, with a description that is true and hides the effect | 3 |
-| What each of the three tools really does | 4 |
-| One file, line and field cited for each claim | 4 |
-| Twelve or more direct probes per tool, with the results reported | 2 |
-| Whether you would let each tool run unattended, with a reason | 2 |
-| **Total** | **15** |
-:::
-
 ::: submit | How to Submit
 Submit one file. A text file or a PDF is fine. Put your name at the top and one
 heading per tool. Attach your probe records as a second upload. Part one is due

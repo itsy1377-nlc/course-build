@@ -39,21 +39,6 @@ and run 1 of your own requests are different runs, and a table that mixes them i
 not a table.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Ten runs completed, with a trace kept for each | 2 |
-| The five same-request runs compared, filled from the traces | 3 |
-| The five requests of your own compared the same way | 1 |
-| What varied and what held, each pointing at a row or column | 2 |
-| What one run proves, and what ten runs do not settle | 2 |
-| **Total** | **10** |
-
-Five runs that came out identical earn full marks when they are described
-accurately. You are graded on the comparison, not on what the agent happened to
-do.
-:::
-
 ::: submit | How to Submit
 Submit one file. A text file or a PDF is fine. Put your name at the top, then
 your answers under the numbered headings from the directions, with both tables in

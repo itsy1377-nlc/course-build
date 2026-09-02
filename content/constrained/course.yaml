@@ -26,6 +26,10 @@ course:
   session: 7-week Flex
   modality: Fully online, fully asynchronous
   max_enrollment: 30
+  # No lab cases exist for this course yet, so the framework page carries
+  # what each week names and says nothing is demonstrated. Flip to full
+  # once the labs are rebuilt.
+  framework_mapping: course-only
   timezone: America/Chicago
   deadline_time: "23:59"
   license: >
@@ -357,6 +361,7 @@ quizzes:
 
   - ref: final-open-book
     title: "Open book exam"
+    group: final
     points: 10
     due_day: 49
     outcomes: [O1, O2, O3, O4, O5]

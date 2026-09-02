@@ -303,8 +303,32 @@ def check_named_only_stays_in_prose(findings: list[Finding]) -> None:
 
 
 def check_mapping_is_generated(findings: list[Finding]) -> None:
-    """The generated tables match what the sources say right now."""
+    """The generated tables match what the sources say right now.
+
+    A course declares which mode it is in. `framework_mapping: course-only`
+    means it has no lab cases yet, so the page carries what each week names and
+    says plainly that nothing demonstrates it. The full mode additionally checks
+    every claim against a case that produces evidence for it.
+    """
+    import yaml as _yaml
     from tools import atlas_table
+    course = _yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
+    mode = (course.get("course") or {}).get("framework_mapping", "full")
+    target = CONTENT / "pages" / "framework-alignment.md"
+    if mode == "course-only":
+        if not target.exists():
+            findings.append(Finding(
+                target.relative_to(ROOT).as_posix(), "does not exist",
+                "Run `python -m tools.atlas_table --course-only --write`."))
+            return
+        current = target.read_text(encoding="utf-8")
+        block = atlas_table.build_course_only()
+        if block not in current:
+            findings.append(Finding(
+                target.relative_to(ROOT).as_posix(),
+                "the framework mapping is out of date",
+                "Run `python -m tools.atlas_table --course-only --write`."))
+        return
     for problem in atlas_table.apply(write=False):
         findings.append(Finding("tools/atlas_table.py", problem,
                                 "Run `python -m tools.atlas_table --write`."))
@@ -474,7 +498,9 @@ def check_lab_data(findings: list[Finding]) -> None:
                          .read_text(encoding="utf-8"))
     ticket_ids = {t["id"] for t in tickets}
 
-    for path in _all_authored() + [CONTENT / "AUTHORING.md", CONTENT / "QUIZZES.md"]:
+    # Shared infrastructure lives at content/ root and serves both course trees.
+    shared_docs = [ROOT / "content" / "AUTHORING.md", ROOT / "content" / "QUIZZES.md"]
+    for path in _all_authored() + [p for p in shared_docs if p.exists()]:
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
         for cid in sorted(set(re.findall(r"\bC-\d{4}\b", text))):

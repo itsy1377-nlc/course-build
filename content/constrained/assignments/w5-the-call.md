@@ -39,22 +39,6 @@ so use it for step 6 when it is the note that does not hold. Say which source
 your rejected claim came from.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| The assistant's access described, and what it cannot reach | 1 |
-| Every timeline row names a record and carries a mark | 3 |
-| The call, with the record in the pack that decides it | 3 |
-| One claim that did not survive checking, with the record against it | 1 |
-| The control you would recommend, in one buildable sentence | 1 |
-| What your evidence does not settle, and what changes when it acts | 1 |
-| **Total** | **10** |
-
-You are graded on whether your call follows from the records you checked, not on
-whether it matches anyone else's. A careful call that turns out to be wrong
-earns full marks. A right call with nothing under it does not.
-:::
-
 ::: submit | How to Submit
 Submit two files. First, your checked timeline with every row marked. Second,
 your completed handover form with the two closing sentences at the end. A text

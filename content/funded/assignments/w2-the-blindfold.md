@@ -44,20 +44,6 @@ notebook stamps your file to say a simulator made it. Your written claim has to
 say so too. Your reasoning is graded either way.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Thirty finished baseline trials, re-runs counted, model version recorded | 3 |
-| The edit that moved the split: the word named, both grids, both counts | 3 |
-| The edit that did not move it, reported as a result and not as a failure | 3 |
-| Both claims written with their counts and their limits | 4 |
-| Your descriptions found in the model's input, with a token count and one raw record citation | 2 |
-| **Total** | **15** |
-
-You are graded on the grids and on what you claim from them. A pair of grids
-that barely differ, described exactly, is worth as much as a pair that jumps.
-:::
-
 ::: submit | How to Submit
 Submit one file, text or PDF, with your name at the top and your answers under
 the numbered headings above. Attach your grids as a second upload: the baseline

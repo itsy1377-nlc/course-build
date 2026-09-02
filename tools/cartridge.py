@@ -122,24 +122,31 @@ def check(course: dict, notes: list[str] | None = None) -> list[str]:
     # a particular point total, but that every item's share of its group is the
     # share the design intended.
     #
-    # The convention here is points equal to weight times ten, which makes an
-    # item's point value readable directly as a percentage of the course. When
-    # a group drifts off that, nothing is broken; every item in it is just
-    # worth slightly more or less than its number suggests. That is worth
-    # saying out loud rather than failing on, because the alternative is
-    # refusing to add a fifteen point activity to a course that needs one.
+    # What has to be true is that a group's share of the course's points equals
+    # its weight. An earlier version asserted points == weight * 10, which is
+    # the same statement only for a 1000 point course. Both rebuilt courses
+    # total 100 points, where an item's point value already reads directly as a
+    # percentage, and the old form failed all eight groups while every one of
+    # them was exactly right.
+    total_points = sum(r.get("points", 0) for r in by_ref.values()
+                       if r.get("group") and not r.get("omit_from_final_grade"))
+    total_weight = sum(g["weight"] for g in course["assignment_groups"])
     for group in course["assignment_groups"]:
         members = [r for r in by_ref.values()
                    if r.get("group") == group["id"] and not r.get("omit_from_final_grade")]
         points = sum(r.get("points", 0) for r in members)
-        if points and points != group["weight"] * 10:
-            drift = points - group["weight"] * 10
-            note = (f"group '{group['id']}' is weighted {group['weight']}% across "
-                    f"{points} points, {drift:+d} from the weight-times-ten "
-                    f"convention. Every item in it is worth "
-                    f"{group['weight'] * 10 / points:.3f} of its face value as a "
+        if not points or not total_points or not total_weight:
+            continue
+        point_share = 100.0 * points / total_points
+        weight_share = 100.0 * group["weight"] / total_weight
+        drift = point_share - weight_share
+        if abs(drift) > 0.01:
+            note = (f"group '{group['id']}' carries {points} of {total_points} "
+                    f"points, which is {point_share:.1f}% of the course, but is "
+                    f"weighted {weight_share:.1f}%. Every item in it is worth "
+                    f"{weight_share / point_share:.3f} of its face value as a "
                     f"share of the course.")
-            if abs(drift) > group["weight"] * 10 * 0.1:
+            if abs(drift) > weight_share * 0.1:
                 problems.append(note + " That is more than ten percent adrift, "
                                        "which is far enough to be an accident.")
             else:

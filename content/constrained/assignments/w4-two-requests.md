@@ -43,21 +43,6 @@ screen. If your agent refuses one of these requests, that is a result, not a
 failure. Save the records for the refusal and report it the same way.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Both requests ran and their records are attached | 2 |
-| Evidence pack 1: claim, record, and what it does not settle | 3 |
-| Evidence pack 2: claim, record, and what it does not settle | 2 |
-| What the audit log says about who did each thing | 2 |
-| Which action could not be undone, and where a check would sit | 1 |
-| **Total** | **10** |
-
-You are graded on whether your report matches the records. What your agent chose
-to do is not the test. A dull run, reported the way the records show it, earns
-full marks.
-:::
-
 ::: submit | How to Submit
 Submit one file. A text file or a PDF is fine. Put your name at the top, then
 your answers under the numbered headings from the directions. Attach your saved

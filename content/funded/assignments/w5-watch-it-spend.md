@@ -58,20 +58,6 @@ before any call, and the approval count works against the offline model. The
 notebook stamps any report it produces that way, and the stamp stays on it.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Your prediction in cents, written first, with its arithmetic | 3 |
-| Your cost total beside the gateway ledger row, with any gap named | 4 |
-| The cap filled in, the run it ended, and the cost before and after | 3 |
-| The gate blocking both runs, each cited from the record | 3 |
-| The approval count, multiplied to a shift, with one limit named | 2 |
-| **Total** | **15** |
-
-The middle three rows are the ten points that need a real gateway run. Any size
-and any outcome counts. A prediction that was badly wrong loses nothing.
-:::
-
 ::: submit | How to Submit
 Submit one file, text or PDF, with your name at the top and your answers under
 the numbered headings above. Paste both filled-in guard conditions into it.

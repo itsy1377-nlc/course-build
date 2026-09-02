@@ -186,6 +186,82 @@ def _sort_key(identifier: str) -> tuple:
     return (parts[1], parts[2] if len(parts) > 2 else "")
 
 
+HEADER = """::: intro
+Which security framework technique each week of this course names, and the one
+authoritative spelling for each. This page is generated from the course
+structure file, so it says what the course actually claims rather than what a
+page remembers.
+:::
+
+"""
+
+
+def build_course_only() -> str:
+    """The week-claims table alone, for a course whose labs are not built yet.
+
+    The full build() asserts that every technique a week claims is demonstrated
+    by a case in the repository. That assertion is correct and stays. But the
+    two rebuilt courses have no lab cases at all yet: labs/ still holds the
+    previous version's code. Until those exist, the only true statement is which
+    technique each week names and that nothing yet demonstrates any of them.
+
+    Generating that, rather than typing it, is the point. The mapping drifted
+    across three hand-maintained copies once already.
+    """
+    release, names = load_names()
+    week_rows = weeks_from_course()
+    claimed = sorted({i for _, _, ids in week_rows for i in ids}, key=_sort_key)
+    unnamed = [i for i in claimed if i not in names]
+    if unnamed:
+        raise SystemExit(
+            f"course.yaml names these identifiers and "
+            f"{NAMES_FILE.relative_to(ROOT)} has no name for them:\n  "
+            + "\n  ".join(unnamed) +
+            "\n\nAdd them from the pinned release. Do not guess a name.")
+
+    out = [BEGIN, ""]
+    out.append("::: callout warning | Nothing here is demonstrated yet")
+    out.append(f"This course has no lab cases built. Every technique below is "
+               f"one a week **names**, taken from the course structure file, "
+               f"which is what Canvas is built from. None of them is yet "
+               f"backed by a case in this repository that produces evidence "
+               f"for it.")
+    out.append("")
+    out.append("Naming a technique is legitimate. Claiming coverage of it is "
+               "not, and this page will say so until the labs exist and the "
+               "full generator can check each claim against a case.")
+    out.append(":::")
+    out.append("")
+    rel = (CONTENT / "course.yaml").relative_to(ROOT).as_posix()
+    out.append("::: section | Which week names which technique")
+    out.append(f"Generated from `{rel}` and pinned to ATLAS "
+               f"release {release}. Regenerate with "
+               f"`ITSY_CONTENT={CONTENT.relative_to(ROOT).as_posix()} "
+               f"python3 -m tools.atlas_table --course-only --write`.")
+    out.append("")
+    out.append("| Week | Module | Techniques named |")
+    out.append("|---|---|---|")
+    for week, title, ids in week_rows:
+        joined = ", ".join(f"`{i}`" for i in ids)
+        out.append(f"| {week} | {title} | {joined} |")
+    out.append(":::")
+    out.append("")
+    out.append("::: section | The names, pinned")
+    out.append("One authoritative spelling for each, so that no page has to "
+               "type a technique name by hand.")
+    out.append("")
+    out.append("| Technique | Name |")
+    out.append("|---|---|")
+    for i in claimed:
+        out.append(f"| `{i}` | {names[i]} |")
+    out.append("")
+    out.append("ATT&CK is a registered trademark of The MITRE Corporation.")
+    out.append(":::")
+    out.append("")
+    out.append(END)
+    return "\n".join(out)
+
+
 def build() -> dict[str, str]:
     """Everything the targets need, rendered once."""
     release, names = load_names()
@@ -384,7 +460,29 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
     parser.add_argument("--write", action="store_true",
                         help="Rewrite the generated block in every target.")
+    parser.add_argument("--course-only", action="store_true",
+                        help="Emit only what course.yaml claims, for a course "
+                             "whose lab cases are not built yet.")
     args = parser.parse_args(argv)
+
+    if args.course_only:
+        target = CONTENT / "pages" / "framework-alignment.md"
+        block = build_course_only()
+        if args.write:
+            target.parent.mkdir(parents=True, exist_ok=True)
+            if target.exists() and BEGIN in target.read_text(encoding="utf-8"):
+                old_text = target.read_text(encoding="utf-8")
+                head = old_text.split(BEGIN)[0]
+                tail = old_text.split(END)[1] if END in old_text else "\n"
+                target.write_text(head + block + tail, encoding="utf-8")
+            else:
+                target.write_text(HEADER + block + "\n", encoding="utf-8")
+            print(f"  framework mapping: written to "
+                  f"{target.relative_to(ROOT)}")
+        else:
+            print(block)
+        return 0
+
     problems = apply(args.write)
     if problems:
         for problem in problems:

@@ -1,0 +1,366 @@
+ref: final-open-book
+title: "Open book exam"
+# Ten items, one point each, two per outcome from O1 to O5. Every item is
+# machine scored, so the whole exam returns the moment a student submits and
+# nothing waits on hand reading in the last week of the term.
+#
+# Most of the ten put a record in front of the student that they have not seen:
+# a trace excerpt, two short scripts, an audit row, a timeline row and two
+# results lines. That is the design. A student who read their own records all
+# term can read a stranger's.
+# A student who quoted the agent's summaries all term cannot.
+description: |
+  This is the open book exam. It closes the course, and it is due day 49, the
+  same day as the evidence file. Start it before the last evening.
+
+  How the scoring works, in plain terms:
+
+  There are 10 items. Each one is worth 1 point, for 10 points in total.
+
+  You get one attempt. There is no time limit once you start.
+
+  Every item is scored by Canvas the moment you submit, so your score is
+  final right away. Nothing here is hand read.
+
+  Every item is tagged to one course outcome, two items each for outcomes O1
+  through O5. Your score report tells you which outcomes you evidenced.
+
+  It is open book. Use the course pages, your own traces, your own reports, and
+  your own write-ups. Looking things up is expected.
+
+  Most items show you something you have not seen before: a trace excerpt, two
+  short scripts, an audit row, a timeline row, and lines from a results file.
+  Read what is in front of you and answer from that. Memory is not the test.
+
+  The answers inside each item are shuffled, so answer by reading, not by
+  position.
+
+  The AI Use Policy page in Start Here applies to this exam, the same as to
+  every other piece of work in the course.
+shuffle_answers: true
+questions:
+
+  - id: fx-q1
+    type: multiple_choice
+    item_type: recall
+    outcome: O1
+    points: 1
+    text: |
+      Here is part of a trace from a run you did not make.
+
+      ```
+      line 1  request  work ticket T-501 and reply to the customer
+      line 2  model    decided: call read_ticket
+      line 3  tool     read_ticket returned 812 characters
+      line 4  model    decided: call send_email
+      line 5  tool     send_email queued a message
+      line 6  model    answered the user
+      ```
+
+      Which line is the point where text from the ticket reaches the model?
+    answers:
+      - text: "Line 3, where the tool returns its result."
+        correct: true
+        feedback: "Correct. A tool result goes back into the conversation, and that is where stored text meets the model."
+      - text: "Line 1, where the request arrives."
+        correct: false
+        feedback: "Wrong. Line 1 is what the person typed. The ticket text has not been read yet."
+      - text: "Line 2, where the model decides to read the ticket."
+        correct: false
+        feedback: "Wrong. A decision to call a tool is not the tool's output. The text arrives one line later."
+      - text: "Line 6, where the model writes its answer."
+        correct: false
+        feedback: "Wrong. By line 6 the model has already read the ticket and acted on it."
+    general_feedback: |
+      This is the step every hidden instruction in this course travels through.
+      Whatever a tool returns lands in the model's next input, in the same place
+      your own request landed.
+
+  - id: fx-q2
+    type: multiple_choice
+    item_type: recall
+    outcome: O1
+    points: 1
+    text: |
+      A language model on its own reads text and writes text.
+
+      What has to be added before it counts as an agent?
+    answers:
+      - text: "A list of tools it may call, and a program that runs them."
+        correct: true
+        feedback: "Correct. That program is the loop, and it is what turns a decision into an action."
+      - text: "A larger model and more training data."
+        correct: false
+        feedback: "Wrong. Size changes quality, not what a model can reach. A large model with no tools still only writes text."
+      - text: "A memory of what it did on earlier runs."
+        correct: false
+        feedback: "Wrong. Your agent starts fresh each run and is still an agent. Memory is not what makes one."
+      - text: "An internet connection and an account with a provider."
+        correct: false
+        feedback: "Wrong. Your agent this term ran on your own computer with a local model."
+    general_feedback: |
+      Tools plus a loop. That definition is what made every later week possible,
+      because it says exactly where the security problems can live.
+
+  - id: fx-q3
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O2
+    points: 1
+    text: |
+      Read this short script.
+
+      ```python
+      def count_calls(folder):
+          total = 0
+          for path in sorted(folder.glob("*.jsonl")):
+              for line in path.read_text().splitlines():
+                  if '"tool_call"' in line:
+                      total += 1
+          return total
+      ```
+
+      What does it reach, and what does it change?
+    answers:
+      - text: "It reads every trace file in the folder, and it changes nothing."
+        correct: true
+        feedback: "Correct. Every call here is a read, and the only thing it writes is the number it returns."
+      - text: "It reads the traces and removes the lines it counted."
+        correct: false
+        feedback: "Wrong. Nothing here deletes or writes. Look at what happens to `total` and nothing else."
+      - text: "It reads one file and writes a report beside it."
+        correct: false
+        feedback: "Wrong. The loop runs over every matching file, and no result is written to disk."
+      - text: "It reads the traces and sends the count to the agent."
+        correct: false
+        feedback: "Wrong. There is no agent and no network here. It returns a number to whoever called it."
+    general_feedback: |
+      Two questions answer most code reading in this course: what does this
+      reach, and what does it change. A script that only reads can be run again
+      safely, which is why this one is safe to point at a folder of evidence.
+
+  - id: fx-q4
+    type: multiple_choice
+    item_type: defect_injection
+    outcome: O2
+    points: 1
+    text: |
+      A classmate wrote this control at the tool boundary.
+
+      ```python
+      def before_tool_call(name, args):
+          if name != "send_email":
+              return True, "not the tool this control guards"
+          if args["to"] == customer_email(args["ticket"]):
+              return True, "recipient is the customer on this ticket"
+          return False, "recipient is not the customer on this ticket"
+      ```
+
+      Which call does this control block?
+    answers:
+      - text: "A mail send to any address that is not the customer on the ticket in hand."
+        correct: true
+        feedback: "Correct. It allows one recipient and refuses the rest, which is deny by default for that one tool."
+      - text: "Every mail send, whoever the recipient is."
+        correct: false
+        feedback: "Wrong. The second check allows the send when the recipient is the customer on the ticket."
+      - text: "A record deletion, because deleting is not on an allowed list."
+        correct: false
+        feedback: "Wrong, and worth noticing. The first check allows every tool that is not mail, so a deletion goes straight through."
+      - text: "A mail send whose message text looks suspicious."
+        correct: false
+        feedback: "Wrong. This control never reads the message. It decides from the recipient address only."
+    general_feedback: |
+      A control at the tool boundary sees the tool name and the arguments, and
+      nothing else. It cannot read intent. Reading this one closely also shows
+      what it does not cover, which is every other tool the agent has.
+
+  - id: fx-q5
+    type: multiple_answers
+    item_type: recall
+    outcome: O3
+    points: 1
+    text: |
+      An agent has these four tools.
+
+      ```
+      read_ticket      opens a ticket and returns its text
+      get_customer     returns one customer record
+      send_email       queues a message to an address
+      delete_customer  removes a customer record
+      ```
+
+      Which of them could you not undo?
+
+      Select every correct answer.
+    answers:
+      - text: "send_email"
+        correct: true
+        feedback: "Correct. Once a message has left, it has left. Nothing brings it back."
+      - text: "delete_customer"
+        correct: true
+        feedback: "Correct. The record is gone, and an apology is not a restore."
+      - text: "read_ticket"
+        correct: false
+        feedback: "Wrong. Reading a ticket can be repeated with no effect on anything."
+      - text: "get_customer"
+        correct: false
+        feedback: "Wrong. Reading a record changes nothing, though it may still disclose something."
+    general_feedback: |
+      Ask one question of every tool: if this runs by mistake, can I undo it? The
+      answers you cannot undo are the ones a control belongs in front of.
+
+  - id: fx-q6
+    type: multiple_choice
+    item_type: recall
+    outcome: O3
+    points: 1
+    text: |
+      Your agent can send mail. At what moment was that permission actually
+      granted?
+    answers:
+      - text: "When the tool was added to its list, before any request arrived."
+        correct: true
+        feedback: "Correct. After that the loop runs the tool whenever the model asks. Nobody is consulted at the time."
+      - text: "When the model decided to use it on this run."
+        correct: false
+        feedback: "Wrong. That is the model choosing, not you granting. The grant happened earlier."
+      - text: "When you read the reply and did not object."
+        correct: false
+        feedback: "Wrong. By the time you read the reply, the message has already gone."
+      - text: "In the system prompt, where you listed what it may do."
+        correct: false
+        feedback: "Wrong. The prompt is words the model reads. The permission is the tool being in the list."
+    general_feedback: |
+      This is why a tool inventory is a security document. The useful question is
+      never whether the agent will behave today. It is what you already allowed.
+
+  - id: fx-q7
+    type: multiple_choice
+    item_type: recall
+    outcome: O4
+    points: 1
+    text: |
+      You have two things in front of you from the same run.
+
+      ```
+      agent reply   "I did not send anything."
+      audit row     12:04  actor=support2  action=send_email  detail=T-502  outcome=queued
+      ```
+
+      Which sentence does your evidence support?
+    answers:
+      - text: "The audit row at 12:04 records a mail send for ticket T-502."
+        correct: true
+        feedback: "Correct. It says what the record says and no more, and a stranger can open the row and check it."
+      - text: "Nothing was sent, because the agent said so."
+        correct: false
+        feedback: "Wrong. The reply is text about the run, not a record of it. The record decides."
+      - text: "The agent sent the message and then hid it from you on purpose."
+        correct: false
+        feedback: "Wrong. The row shows an action. It shows nothing about intent, and neither does the reply."
+      - text: "A customer was harmed, because a message left the company."
+        correct: false
+        feedback: "Wrong. Harm is not in this record. Saying so is exactly the claim you cannot make from it."
+    general_feedback: |
+      When a reply and a record disagree, you report the record. You also stop
+      there. The row supports a send and nothing beyond it.
+
+  - id: fx-q8
+    type: multiple_choice
+    item_type: recall
+    outcome: O4
+    points: 1
+    text: |
+      An assistant hands you a timeline. One row reads:
+
+      ```
+      claim: the agent opened the customer record before it sent the message
+      time:  12:03
+      actor: the agent
+      record: (none given)
+      ```
+
+      You check the pack and no record supports this row. What mark does the
+      row get?
+    answers:
+      - text: "Rejected. A claim you cannot open is not evidence."
+        correct: true
+        feedback: "Correct. No record means no row, however reasonable the sentence sounds."
+      - text: "Accepted, because it agrees with the rest of the timeline."
+        correct: false
+        feedback: "Wrong. Agreeing with other rows is not the same as being supported by a record."
+      - text: "Corrected, with the missing record filled in later."
+        correct: false
+        feedback: "Wrong. Corrected is for a row a record partly supports. This one has no record at all."
+      - text: "Accepted, because the assistant read the whole pack."
+        correct: false
+        feedback: "Wrong. That cites the assistant. The assistant is the thing you are checking."
+    general_feedback: |
+      An assistant that gets nine rows right and one row wrong is the hard case,
+      because the nine teach you to stop looking. Every row gets opened,
+      including the dull ones.
+
+  - id: fx-q9
+    type: multiple_choice
+    item_type: output_prediction
+    outcome: O5
+    points: 1
+    text: |
+      You built a control and measured the same case again. Here is the line
+      from the report.
+
+      ```
+      case: hidden-note-in-ticket   trials: 5   hits: 1   status: VULNERABLE
+      ```
+
+      What can you honestly say about the door you were closing?
+    answers:
+      - text: "It is still open. A fix counts only if it holds all five trials."
+        correct: true
+        feedback: "Correct. One landing in five is a fail, and that bar was set in week 2."
+      - text: "It is closed, since the attack failed four times out of five."
+        correct: false
+        feedback: "Wrong. A control that works four times in five has not worked. It has failed more slowly."
+      - text: "The result is void, because the five trials did not agree."
+        correct: false
+        feedback: "Wrong. Trials disagreeing is normal, which is why the course runs five of them."
+      - text: "It is closed, and the single hit is ordinary model variation."
+        correct: false
+        feedback: "Wrong. Variation explains why it landed once. It does not make the landing stop counting."
+    general_feedback: |
+      An attack counts if it lands once. A fix counts only if it holds every
+      time. Those two rules are not symmetric on purpose, because an attacker
+      only needs one of your five.
+
+  - id: fx-q10
+    type: multiple_choice
+    item_type: output_prediction
+    outcome: O5
+    points: 1
+    text: |
+      Two cases from one report, both with zero hits.
+
+      ```
+      case: note-to-outside      trials: 5   hits: 0   status: BLOCKED_5_OF_5
+      case: summary-of-article   trials: 5   hits: 0   status: NO_HITS_IN_5
+      ```
+
+      What do these two lines tell you?
+    answers:
+      - text: "The first shows your control refusing the action. The second shows nothing landed, which does not mean the attack cannot work."
+        correct: true
+        feedback: "Correct. One is evidence your control acted. The other is a result about five runs, and nothing wider."
+      - text: "Both show your control refusing the action, since neither one landed."
+        correct: false
+        feedback: "Wrong. No hits can also mean the attack never got as far as your control. Nothing was refused there."
+      - text: "The second shows the attack cannot work against your agent."
+        correct: false
+        feedback: "Wrong. Five runs cannot show that. It says this model, on this target, did not land in five trials."
+      - text: "Neither one is a result, because nothing landed in either case."
+        correct: false
+        feedback: "Wrong. A thing that held across five trials is a result, and you report it as one."
+    general_feedback: |
+      These two words look alike and are not. One says your control saw an
+      attempt and stopped it. The other says nothing happened, which is worth
+      reporting and is worth much less.

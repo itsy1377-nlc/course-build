@@ -1,0 +1,452 @@
+# ITSY 1377, funded course. The Start Here gate.
+#
+# Zero points on purpose. course.yaml carries points: 0 and grading_type:
+# pass_fail, so every item below carries points: 0 and the two totals agree.
+#
+# On the outcome tags. This gate is a prerequisite, not outcome evidence. It
+# checks that a student has read two pages and that their notebook opens. The
+# validator requires an outcome tag on every item, so each item carries the
+# nearest real outcome from course.yaml: O1 for the environment check, O3 for
+# scope and blast radius, O4 for the record and what it is evidence of. None of
+# it reaches the graded per-outcome matrix, because none of it carries points.
+#
+# Three items are hand read: the notebook code, the own-words item, and the
+# acknowledgment. About twenty seconds a student, so about ten minutes for a
+# section of 25. Each is justified in its own note.
+
+ref: m0-gate
+title: "Start Here: the scope, safety and logging gate"
+description: |
+  Week 1 does not open until you pass this. It does three jobs.
+
+  1. It records that you read the Rules of Engagement page and accept it.
+  2. It records that you read the What Is Logged page, so you know what this
+     course keeps before you type anything into it.
+  3. It shows that your notebook opens and runs.
+
+  There are 14 items and no time limit. There is no attempt limit. You may
+  retake it as many times as you need, and a wrong answer costs you nothing.
+
+  This quiz is worth zero points. Canvas will show 0 out of 0 when you submit,
+  and that is correct. What matters is that every item is marked right.
+
+  Three items are read by your instructor rather than by Canvas: the code from
+  your notebook, one item in your own words, and the acknowledgment at the end.
+  Those three stay unmarked until your instructor reads them. That is expected.
+  It is not an error and it is not a low score.
+
+  Before you start, open the Start Here notebook on the school server and run
+  the first cell. It prints a short code. You need it for the first item.
+
+  Read the Rules of Engagement page and the What Is Logged page first. Both are
+  in this module. Every scope item asks you to name the clause.
+
+  AI help is allowed here and it will not help much. The code comes from your
+  own notebook, and the clause numbers come from your own course.
+
+  Due day 3.
+shuffle_answers: true
+questions:
+
+  - id: m0-q1
+    type: essay
+    item_type: indexical
+    outcome: O1
+    points: 0
+    text: |
+      Open the Start Here notebook on the school server. Run the first cell,
+      the one marked check. It prints two lines, like this:
+
+      ```
+      Start Here check: ready
+      Your gate code: NLC-7F2A9-4C1B8
+      ```
+
+      Paste your code below, exactly as it printed.
+
+      Every student gets a different code, because it is built from your
+      student ID. No answer key exists, and no model can produce yours.
+
+      This cell does not call a model and does not spend your budget. It only
+      shows that your notebook opens and runs. Your token is checked later, in
+      the week 1 setup walkthrough.
+
+      If the check finds a problem, the code still prints, with a letter and a
+      number added, like NLC-7F2A9-4C1B8-F1. Paste that one. It is accepted
+      here, it counts, and it tells your instructor what to fix.
+    note: >
+      Essay rather than short answer, on purpose. The code is built from the
+      student's own ID, so no accepted list can exist, and a short answer item
+      with an empty key would mark every correct code wrong. An essay item is
+      never auto marked, which is the behaviour this needs. The instructor
+      recomputes the expected value from the roster ID, which takes seconds for
+      a whole section. Hand reading cost is about five seconds a student.
+    general_feedback: |
+      A code ending in a letter and a number is still a valid code. It says how
+      many checks did not pass. Read what the cell printed above the code,
+      because it names the fault in one sentence.
+
+      If you are stuck for more than 20 minutes, post the whole output on the
+      Questions and Answers board. Never post your gateway token.
+
+  - id: m0-q2
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      Clause 1 of the Rules of Engagement lists what you may attack this term.
+
+      Which list is the complete one?
+    answers:
+      - text: "The practice target in your own notebook, the agent you build, a classmate's tool inside the week 3 sandbox, and the college's models through the gateway using your own token."
+        correct: true
+        feedback: "Correct. Those are the four items in clause 1, and the list is closed."
+      - text: "Anything running on the school network, because the college owns it."
+        correct: false
+        feedback: "Wrong. Clause 2 names the college's own systems, including the notebook server. Owning a thing is not the same as authorizing a test on it. Reread clause 1 and clause 2."
+      - text: "The four in clause 1, plus any AI service you pay for yourself."
+        correct: false
+        feedback: "Wrong. Clause 2 says an AI service you signed up for yourself is never covered. Reread the first item of clause 2."
+      - text: "The four in clause 1, plus a classmate's notebook if they say yes."
+        correct: false
+        feedback: "Wrong. Clause 2 names another student's notebook directly, and a classmate cannot authorize it. Reread the last item of clause 2."
+    general_feedback: |
+      Clause 1 is a closed list of four. If a target is not on it, the answer is
+      no. Your authorization comes from that page, not from whoever said yes.
+
+  - id: m0-q3
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      You pay for a chatbot subscription at home. You want to try a prompt
+      injection on it, on your own account and your own time.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 2 says an AI service you signed up for yourself is never a permitted target."
+        correct: true
+        feedback: "Correct. The gateway is on the clause 1 list because the college arranged it. A personal account is not, and it never becomes so."
+      - text: "Yes, because you pay for it, so the account is yours."
+        correct: false
+        feedback: "Wrong. You own the account, not the service. Clause 2 says paying does not authorize testing. Reread clause 2."
+      - text: "Yes, as long as you do it outside class and never submit it."
+        correct: false
+        feedback: "Wrong. Clause 1 sets no time window and clause 2 makes no exception for private work. Reread clause 1."
+      - text: "Yes, because the gateway is a paid service too, so the two are the same."
+        correct: false
+        feedback: "Wrong. The gateway is on the clause 1 list and your home account is not. That difference is the whole clause. Reread clause 1 item 4 and clause 2."
+    general_feedback: |
+      The difference here is not technical. It is who authorized the test. The
+      college arranged the gateway. Nobody arranged your home account.
+
+  - id: m0-q4
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      In week 3 you receive a tool a classmate specified. You want to open their
+      notebook and see how they built it.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 2 says another student's notebook, token, account and files are never a target."
+        correct: true
+        feedback: "Correct. Week 3 gives you their tool inside the sandbox. It does not give you their environment."
+      - text: "Yes, because week 3 is about investigating a classmate's code."
+        correct: false
+        feedback: "Wrong. Clause 7 says the tool runs inside the supplied sandbox, and their notebook is not the sandbox. Reread clause 2 and clause 7."
+      - text: "Yes, if you only read and change nothing."
+        correct: false
+        feedback: "Wrong. Clause 2 makes no exception for reading. Reread the last item of clause 2."
+      - text: "Yes, if they give you permission first."
+        correct: false
+        feedback: "Wrong. A classmate cannot authorize access to a college system. Reread clause 2."
+    general_feedback: |
+      Week 3 hands you a tool, unlabelled, inside a sandbox. Everything you are
+      meant to find is in that tool. Nothing you need is in anyone's notebook.
+
+  - id: m0-q5
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      Your token stops working an hour before a deadline. A classmate offers you
+      theirs so you can finish.
+
+      Is that permitted?
+    answers:
+      - text: "No. Clause 3 says your token is yours alone, and you never use anyone else's."
+        correct: true
+        feedback: "Correct. Clause 3 has no deadline exception. Message your instructor instead. A token problem is a normal problem with a normal fix."
+      - text: "Yes, for one run, because a deadline is a good reason."
+        correct: false
+        feedback: "Wrong. Clause 3 lists no exception for a deadline. Ask for an extension instead. Reread clause 3."
+      - text: "Yes, because the college pays either way, so the money is the same."
+        correct: false
+        feedback: "Wrong. Every call is recorded against the token that made it, so their record would carry your work. Reread clause 3."
+      - text: "Yes, as long as you tell your instructor afterwards."
+        correct: false
+        feedback: "Wrong. Clause 3 says do not use anyone else's token. It does not offer a way to tell somebody later. Reread clause 3."
+    general_feedback: |
+      Every call made with your token is recorded against you. That record is
+      what clears you if your work is ever questioned. It only works if the
+      token is yours.
+
+  - id: m0-q6
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      You are stuck, so you post a picture of your whole notebook window on the
+      Questions and Answers board. Your gateway token is on screen in it.
+
+      What went wrong, and what do you do now?
+    answers:
+      - text: "Clause 3 was broken. Tell your instructor the same minute, so the token is turned off and a new one is issued."
+        correct: true
+        feedback: "Correct. A token in a picture is still a token. Reporting it quickly is what limits the damage, and nobody is in trouble for reporting quickly."
+      - text: "Nothing went wrong, because a picture is not text."
+        correct: false
+        feedback: "Wrong. A token is just as readable in a picture. Reread clause 3."
+      - text: "Delete the post and say nothing, because it was only up for a minute."
+        correct: false
+        feedback: "Wrong. Deleting a post does not undo what was already seen, and the token still works. Reread clause 3."
+      - text: "Change your Canvas password and carry on."
+        correct: false
+        feedback: "Wrong. Your Canvas password and your gateway token are two different things. Reread clause 3."
+    general_feedback: |
+      Your token is metered. Anyone who has it can spend against your budget,
+      and every call is recorded under your name. That is why the Questions and
+      Answers board says never post one.
+
+  - id: m0-q7
+    type: multiple_choice
+    item_type: recall
+    outcome: O4
+    points: 0
+    text: |
+      The What Is Logged page names three things that are recorded when you work
+      in this course.
+
+      Which three?
+    answers:
+      - text: "Your prompts, the replies, and usage: which model, how many tokens, what it cost, and when."
+        correct: true
+        feedback: "Correct. Your notebook files and your submitted work are kept the way any coursework is. The prompts and replies are the new part."
+      - text: "Only your submitted work, the way any course keeps assignments."
+        correct: false
+        feedback: "Wrong. Prompts and replies are recorded too, and that is the part the page exists to tell you about. Reread the What Is Logged page."
+      - text: "Only the cost, because the point is watching the budget."
+        correct: false
+        feedback: "Wrong. Cost is one of the three. Your prompts and the replies are the other two. Reread the What Is Logged page."
+      - text: "Nothing, unless your instructor turns recording on for one student."
+        correct: false
+        feedback: "Wrong. Recording is on for everyone, all the time. Reread the What Is Logged page."
+    general_feedback: |
+      Assume everything you type in this course is written down. That is the
+      short version of the whole page.
+
+  - id: m0-q8
+    type: multiple_choice
+    item_type: recall
+    outcome: O4
+    points: 0
+    text: |
+      How long does the college keep your prompts and the replies?
+    answers:
+      - text: "Until the window for appealing a grade has closed. A scheduled job deletes them after that."
+        correct: true
+        feedback: "Correct. The page says the deletion is scheduled and somebody is responsible for running it."
+      - text: "Until the end of the term."
+        correct: false
+        feedback: "Wrong. An appeal can run past the end of the term, so the record has to outlast the grade. Reread the What Is Logged page."
+      - text: "Forever."
+        correct: false
+        feedback: "Wrong. There is a deletion step, and it is scheduled. Reread the What Is Logged page."
+      - text: "Until you ask for them to be deleted."
+        correct: false
+        feedback: "Wrong. You cannot ask for early deletion, and the page says why. Reread the What Is Logged page."
+    general_feedback: |
+      A retention rule with no deletion step is just a filing cabinet. That is
+      why the page names a date the records go away, and a job that removes them.
+
+  - id: m0-q9
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O4
+    points: 0
+    text: |
+      You paste a real password into a prompt by accident.
+
+      What does the What Is Logged page tell you to do, and what will happen?
+    answers:
+      - text: "Tell your instructor the same day. It cannot simply be pulled back out, but it can be flagged, its access restricted, and deleted on schedule."
+        correct: true
+        feedback: "Correct. Telling somebody quickly is what makes those three steps possible. Change the password as well."
+      - text: "Nothing. Delete the notebook cell, and the record goes with it."
+        correct: false
+        feedback: "Wrong. The record sits outside your notebook. Deleting the cell changes nothing. Reread the warning on the What Is Logged page."
+      - text: "Ask your instructor to delete that record, and it will be removed."
+        correct: false
+        feedback: "Wrong. Early deletion is not available, because these records are the evidence in a grade appeal. Reread the What Is Logged page."
+      - text: "Say nothing, because reporting it will get you in trouble."
+        correct: false
+        feedback: "Wrong. Reporting quickly is exactly what the page asks for, and it is what limits the harm. Reread the warning on the What Is Logged page."
+    general_feedback: |
+      Do both, and do them the same day. Change the password, then tell your
+      instructor. Neither one is a substitute for the other.
+
+  - id: m0-q10
+    type: multiple_choice
+    item_type: recall
+    outcome: O4
+    points: 0
+    text: |
+      Who can read your prompts and the replies?
+    answers:
+      - text: "Your instructor, for two named purposes, and the college staff who run the servers."
+        correct: true
+        feedback: "Correct. Your instructor records a reason each time they open one student's prompts. The log has its own log."
+      - text: "Anyone in the class, because the notebooks share a server."
+        correct: false
+        feedback: "Wrong. Your records are not shared with the class. Reread the What Is Logged page."
+      - text: "Nobody. They are stored but never read."
+        correct: false
+        feedback: "Wrong. They are read, for two purposes the page names. Reread the What Is Logged page."
+      - text: "Whoever asks, because the college owns the server."
+        correct: false
+        feedback: "Wrong. The page names two groups and nobody else. Reread the What Is Logged page."
+    general_feedback: |
+      Recording a reason for each look is the same idea you study in week 4,
+      applied to this course. You may ask who has read yours. That question has
+      an answer.
+
+  - id: m0-q11
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O4
+    points: 0
+    text: |
+      You ask for your prompts from week 2 to be deleted early.
+
+      What answer does the What Is Logged page say you will get?
+    answers:
+      - text: "No. Those records are the evidence in a grade appeal, including one you might want to make."
+        correct: true
+        feedback: "Correct. You can still ask to see your own records, and your instructor will show you."
+      - text: "Yes, on request, once the term has ended."
+        correct: false
+        feedback: "Wrong. The page says early deletion is not available. Reread the section on what you can ask for."
+      - text: "Yes, but only for prompts that contain a mistake."
+        correct: false
+        feedback: "Wrong. There is no such exception. Reread the section on what you can ask for."
+      - text: "No, and you may not see them either."
+        correct: false
+        feedback: "Wrong. You can ask to see your own records and you will be shown them. Reread the section on what you can ask for."
+    general_feedback: |
+      The page gives you a decided answer instead of an improvised one. If you
+      are under 18, the rules about who holds rights over these records come
+      from the college registrar, and you can ask to be put in touch.
+
+  - id: m0-q12
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      While working in your notebook you notice what looks like a real weakness
+      in the school's notebook server.
+
+      What does clause 5 tell you to do?
+    answers:
+      - text: "Stop, write down what you saw, and tell your instructor."
+        correct: true
+        feedback: "Correct. Those are the three steps, in that order. Clause 5 says reporting a weakness in the course's own systems is welcomed, not penalised."
+      - text: "Test it a few more times, so you are sure before you report it."
+        correct: false
+        feedback: "Wrong. Step 1 is stop. Noticing is one thing and testing is another. Reread clause 5."
+      - text: "Post it on the Questions and Answers board so the class can learn from it."
+        correct: false
+        feedback: "Wrong. That publishes a live weakness to a room. Tell your instructor instead. Reread clause 5."
+      - text: "Ignore it, because the notebook server is out of scope."
+        correct: false
+        feedback: "Wrong. Out of scope means do not test it. It does not mean do not report it. Reread clause 5."
+    general_feedback: |
+      Reporting is the skill. Testing first is not, even when your intent is
+      good. Reporting through the right channel is what protects you.
+
+  - id: m0-q13
+    type: essay
+    item_type: scope_classification
+    outcome: O4
+    points: 0
+    text: |
+      In two or three sentences, in your own words, say what this course records
+      when you use a model, and who can read it.
+
+      Do not copy a sentence from the What Is Logged page. Write it the way you
+      would say it to a classmate who asked you.
+    note: >
+      Essay is required because the whole point is the student's own wording. A
+      keyword match would grade the phrasing and a multiple choice item would
+      hand them the answer. It is also the item that shows an instructor, early,
+      whether a student has understood the notice or only clicked past it. Hand
+      reading cost is about ten seconds a student, so about five minutes for a
+      section of 25.
+    general_feedback: |
+      Keep your sentence. If a question about your work comes up later in the
+      term, this is where you and your instructor started from the same
+      understanding.
+
+  - id: m0-q14
+    type: essay
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      This is your signature. Type the block below into the answer box. Fill in
+      your own name and the day of the course you are taking this on. Type it
+      out yourself rather than copying and pasting.
+
+      ```
+      I have read the Rules of Engagement page and the What Is Logged page in
+      full.
+
+      I understand that I may work with four things: the practice target in my
+      own notebook, the agent I build, a classmate's tool inside the week 3
+      sandbox, and the college's models through the gateway using my own token.
+
+      I understand that an AI service I signed up for myself is never a
+      permitted target, and that another student's notebook, token, account or
+      files are never a permitted target.
+
+      I understand that my gateway token is mine alone, that it spends real
+      money, and that I never share it or use anyone else's.
+
+      I understand that every prompt I send and every reply I get is recorded,
+      that my instructor and the staff who run the servers can read it, and that
+      it is kept until the grade appeal window closes.
+
+      I understand that breaking these rules is handled under the district's
+      academic integrity policy.
+
+      Name:
+      Day:
+      ```
+    note: >
+      Essay is required because this is a signed acknowledgment and the typed
+      signature is the artifact. A multiple choice item cannot produce one. It
+      is also the reason the gate exists: the funded course cannot start a
+      student on a logged gateway without a record that the notice was read.
+      Hand reading cost is near zero. The instructor scans for the name and the
+      day, about five seconds a student.
+    general_feedback: |
+      Keep a copy of what you typed. If a question about scope comes up later in
+      the term, this is the document you and your instructor both point at. In
+      real security work, a signed rules of engagement does exactly this job.

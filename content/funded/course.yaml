@@ -29,6 +29,10 @@ course:
   session: 7-week Flex
   modality: Hybrid; hosted notebooks on the school network
   max_enrollment: 25
+  # No lab cases exist for this course yet, so the framework page carries
+  # what each week names and says nothing is demonstrated. Flip to full
+  # once the labs are rebuilt.
+  framework_mapping: course-only
   timezone: America/Chicago
   deadline_time: "23:59"
   license: >

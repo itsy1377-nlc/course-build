@@ -64,19 +64,6 @@ your controls and your labelling, and nothing about a real model. Say so in your
 last sentences and you lose no points.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| Every control on, each shown from the record, with the ordinary run reported | 3 |
-| One attack submitted as text, within the rules, aimed at a named tool | 2 |
-| Two pairings re-run to thirty clean trials, labelled from the record | 3 |
-| What your row, your column and your re-runs do and do not establish | 2 |
-| **Total** | **10** |
-
-Nothing here is scored on whether your controls held or your attack landed. A
-row of blocks and a row of hits earn the same, described accurately.
-:::
-
 ::: submit | How to Submit
 Submit one file, text or PDF, with your name at the top and your answers under
 the numbered headings above. Paste your exact attack text into it. Attach your

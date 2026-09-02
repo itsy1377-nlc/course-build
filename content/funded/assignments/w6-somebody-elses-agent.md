@@ -56,22 +56,6 @@ where the records support it. Revoking a key on a benign alert costs somebody a
 working day.
 :::
 
-::: grading | Grading Criteria
-| What earns it | Points |
-|---|---|
-| The sequence, in order, every step cited to a field | 2 |
-| One sentence saying what the agent did, matching that sequence | 2 |
-| The call, the citation that decides it, and one limit named | 4 |
-| Containment: the order, the item you cannot revoke, the blast radius | 3 |
-| Reconciliation: one disagreement cited on both sides, or the check | 2 |
-| The handover note: the sentence, its drift class, and the citation | 2 |
-| **Total** | **15** |
-
-The call is graded on your citation, not on your answer. A wrong call reached
-from correctly cited evidence earns that row in full. A right call with nothing
-cited earns none of it.
-:::
-
 ::: submit | How to Submit
 Submit the form the notebook exports, as one file. Put your name and your pack
 number at the top. Paste the same ticket into the text box so a grader can read

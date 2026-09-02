@@ -1,0 +1,87 @@
+ref: final-evidence-file
+title: "The evidence file"
+points: 20
+# Canvas hides every rating level when this is true and shows a bare comment box
+# instead, so the ladder below would reach nobody: not the student deciding what
+# to submit, and not the grader choosing a score.
+free_form_comments: false
+guidance: |
+  This report is built from records you already have. Nothing here asks for a
+  new attack, and no criterion below is worth more when your attack landed than
+  when it stopped early.
+
+  What is graded is the same thing that was graded in week 1, at the size of a
+  whole course. Every claim names a record a stranger could open, and every
+  finding says what it does not settle. A quiet result read accurately beats a
+  strong claim with nothing under it, every time.
+
+  Three findings, from three different weeks, keeps the file honest. One week
+  can go badly for reasons that have nothing to do with you. Three cannot.
+criteria:
+  - description: Three findings from three different weeks, each on the four sub-headings
+    long_description: >
+      Three findings, taken from three different weeks between week 3 and week
+      7. Each one uses the same four sub-headings in the same order: what you
+      ran, what the record shows, what it does not settle, and what you would
+      change. Naming a real limit earns the third sub-heading. "Nothing" does
+      not.
+    points: 6
+    ratings:
+      - {points: 6, description: "Three findings, three weeks, all four sub-headings on each"}
+      - {points: 4, description: "Three findings, one sub-heading missing or two from one week"}
+      - {points: 2, description: "Two findings, or sub-headings used loosely"}
+      - {points: 0, description: "One finding or none"}
+  - description: A record line quoted for every finding, copied from your own runs
+    long_description: >
+      Each finding quotes one line from your own trace, report, audit log or
+      outbox, copied rather than retyped. A finding whose evidence is the
+      agent's own words earns nothing here, whatever the agent said.
+    points: 3
+    ratings:
+      - {points: 3, description: "Every finding quotes a record line from the student's own runs"}
+      - {points: 2, description: "One finding quotes nothing, or quotes a summary instead of a record"}
+      - {points: 1, description: "Only one finding quotes a record"}
+      - {points: 0, description: "No record lines, or the evidence is what the agent said"}
+  - description: Your control, with the before and after numbers and the benign result
+    long_description: >
+      One sentence naming the tool, the argument the control checks, and what it
+      allows. Then the table: the version, the trials out of five it landed in,
+      and the word the report printed. The benign result is part of this, since
+      a control that stops ordinary work is not finished.
+    points: 4
+    ratings:
+      - {points: 4, description: "Control named, before and after both given, benign result included"}
+      - {points: 3, description: "Control named and measured, benign result missing"}
+      - {points: 2, description: "Only one number, or no baseline to compare against"}
+      - {points: 0, description: "No measurement, or a claim with no numbers"}
+  - description: The record line that shows your control acting, with its reason
+    long_description: >
+      One line from a record showing the control decide: the blocked call with
+      your reason in it, an empty outbox, or a canary token that never moved. A
+      refusal written by the model is not this line.
+    points: 2
+    ratings:
+      - {points: 2, description: "A record line showing the control decide, with its reason"}
+      - {points: 1, description: "A line quoted, but it shows the model refusing rather than the control acting"}
+      - {points: 0, description: "Missing"}
+  - description: One week 5 claim that did not survive checking, with the record against it
+    long_description: >
+      Name one claim from your week 5 case that you corrected or rejected. Give
+      the record that decides it, and say how you caught it. The claim may come
+      from the assistant or from the analyst note, as long as you say which.
+    points: 3
+    ratings:
+      - {points: 3, description: "The claim, the record against it, and how it was caught"}
+      - {points: 2, description: "The claim and the record, with no account of how it was caught"}
+      - {points: 1, description: "A claim named with no record behind the correction"}
+      - {points: 0, description: "Missing, or every claim reported as accepted with no checking shown"}
+  - description: What you would learn next, and why
+    long_description: >
+      One skill, in two or three sentences, with your reason for picking it and
+      one place in this file where it would have helped. A list of topics with
+      no reason does not earn this.
+    points: 2
+    ratings:
+      - {points: 2, description: "One skill, a reason, and where it would have helped"}
+      - {points: 1, description: "A skill named with no reason or no place it would have helped"}
+      - {points: 0, description: "Missing"}

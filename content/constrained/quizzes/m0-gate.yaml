@@ -1,0 +1,405 @@
+ref: m0-gate
+title: "Start Here: the scope and safety gate"
+# Worth zero points on purpose. This gate is course policy, not outcome
+# evidence, so the outcome tag on each item is the nearest honest fit rather
+# than a claim: scope items are tagged O3, because what you may reach is the
+# question O3 asks about an agent, and the two environment items are tagged O1.
+# Zero points means nothing here moves a student's outcome scores either way.
+#
+# Twelve of the thirteen items are machine scored, so a student with no attempt
+# limit can retake the gate and see what they missed at once. The thirteenth
+# collects the code their own computer printed, which no answer key can hold.
+# The walkthrough already tells them to paste it here, so the gate has to have
+# somewhere to paste it.
+description: |
+  This gate does two jobs. It records that you have read and accepted the Rules
+  of Engagement. It confirms that your own computer can run the labs.
+
+  How the scoring works, in plain terms:
+
+  It is worth zero points. It cannot raise or lower your grade.
+
+  It is marked pass or fail. You pass when every item is right.
+
+  There is no attempt limit and no time limit. Take it as many times as you
+  like. A wrong answer costs you nothing but another attempt.
+
+  Canvas scores every item except one, the moment you submit. The exception is
+  the item that asks for the code your own computer printed. Canvas cannot score
+  that, because the code comes from your run rather than from an answer key.
+  Your instructor checks it. So a finished paper can show one item still open,
+  and that is what correct looks like here.
+
+  You have to pass this gate before the week 1 assignment opens. It is due day
+  3, and it is one of the first things to do in this course.
+
+  Before you start, do two things. Read the Rules of Engagement page in Start
+  Here, because every scope item comes from it. Then work through the week 1
+  setup walkthrough, because two items ask what your own check printed.
+
+  If your setup is not finished yet, take this gate now for the scope items and
+  take it again when your check runs. Nothing is lost by taking it twice.
+
+  If a check will not pass, do not guess. Post the exact text on the Questions
+  and Answers board. Being stuck at setup is normal, and this gate is not the
+  place to work it out.
+
+  Keep the course pages open while you answer. That is expected, not cheating.
+shuffle_answers: true
+questions:
+
+  - id: m0-q1
+    type: multiple_answers
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      Which of these may you attack in this course?
+
+      Select every correct answer.
+    answers:
+      - text: "The practice target this course gives you"
+        correct: true
+        feedback: "Correct. It is the first of the three permitted targets in clause 1."
+      - text: "The agent you build in this course"
+        correct: true
+        feedback: "Correct. It is the second of the three permitted targets in clause 1."
+      - text: "A language model running on your own computer"
+        correct: true
+        feedback: "Correct. It is the third of the three permitted targets in clause 1."
+      - text: "A public AI chatbot or any hosted model service"
+        correct: false
+        feedback: "Wrong. A commercial AI service is never permitted, for any reason. Reread clause 2."
+      - text: "A classmate's computer, if the classmate agrees"
+        correct: false
+        feedback: "Wrong. Clause 1 is a closed list of three, and a classmate's computer is not on it."
+      - text: "A system at your job, if you have an account on it"
+        correct: false
+        feedback: "Wrong. An account is not authorization. Clause 2 covers anything you do not own."
+    general_feedback: |
+      Clause 1 is a list of exactly three things. If a target is not on that
+      list, the answer is no. That is the whole rule, and it is the one thing
+      to remember from the Rules of Engagement.
+
+  - id: m0-q2
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      You want to compare your results. You try the same hidden instruction on
+      a free public AI chatbot to see whether it behaves the same way.
+
+      Is that permitted?
+    answers:
+      - text: "No. A commercial AI service is never a permitted target."
+        correct: true
+        feedback: "Correct. Clause 2 names public chatbots and hosted model services directly."
+      - text: "Yes, because the free tier costs nobody anything."
+        correct: false
+        feedback: "Wrong. Nothing in clause 2 depends on price. Reread clause 2."
+      - text: "Yes, because you are comparing rather than attacking."
+        correct: false
+        feedback: "Wrong. Sending an attack to see what happens is testing, whatever you call it. Reread clause 2."
+      - text: "Yes, if you send it only once and keep nothing."
+        correct: false
+        feedback: "Wrong. The page says plainly that trying it once is not a defence. Reread clause 2."
+    general_feedback: |
+      This is the one that catches people, and the Rules of Engagement page
+      says so. Testing somebody else's service is unauthorized testing. Your
+      practice target was built so you never need to.
+
+  - id: m0-q3
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      A friend wrote a small chat assistant of their own. They say you are
+      welcome to try your attacks on it.
+
+      Is that permitted?
+    answers:
+      - text: "No. Their assistant is not one of the three permitted targets."
+        correct: true
+        feedback: "Correct. Clause 1 is a closed list, and permission from a friend does not add to it."
+      - text: "Yes, because the owner said yes."
+        correct: false
+        feedback: "Wrong. Your authorization comes from clause 1, not from a friend. Reread clause 1."
+      - text: "Yes, because it is not a commercial service."
+        correct: false
+        feedback: "Wrong. Clause 2 covers far more than commercial services. Anything off the clause 1 list is out."
+      - text: "Yes, if you tell your instructor afterwards."
+        correct: false
+        feedback: "Wrong. There is no version of this that becomes allowed later. Reread clause 1."
+    general_feedback: |
+      A verbal yes from a friend is not authorization, and in real work it would
+      not protect you either. Written scope, agreed before the work, is what
+      does. That is what clause 1 is.
+
+  - id: m0-q4
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      You want your lab to feel realistic, so you paste a real support ticket
+      from work into the practice target, with the customer's name and address
+      in it.
+
+      Is that permitted?
+    answers:
+      - text: "No. Real personal data never goes into the practice target."
+        correct: true
+        feedback: "Correct. Clause 3 says the target holds invented records only, and keeping it that way is what makes it safe to break."
+      - text: "Yes, because the target runs only on your own computer."
+        correct: false
+        feedback: "Wrong. Clause 3 does not depend on where the target runs. Reread clause 3."
+      - text: "Yes, if you change the customer's last name first."
+        correct: false
+        feedback: "Wrong. A partly changed real record is still a real person's record. Reread clause 3."
+      - text: "Yes, because the attacks need realistic content to work."
+        correct: false
+        feedback: "Wrong. The supplied tickets already carry everything the labs need. Reread clause 3."
+    general_feedback: |
+      Everything in the practice target is invented, and that is the point. You
+      are going to break this system on purpose. Nothing in it should belong to
+      a real person, including you.
+
+  - id: m0-q5
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      At work you notice that an internal page lets anyone read other people's
+      records. You are fairly sure it is a real problem.
+
+      What does the Rules of Engagement page tell you to do?
+    answers:
+      - text: "Stop, write down what you saw, and tell your instructor."
+        correct: true
+        feedback: "Correct. Those are the three steps in clause 4, in that order."
+      - text: "Try it a few more times to be certain, then report it."
+        correct: false
+        feedback: "Wrong. Step 1 is stop. Noticing is one thing and testing is another. Reread clause 4."
+      - text: "Open one other person's record so you have proof."
+        correct: false
+        feedback: "Wrong. That is the test clause 4 tells you not to run, even with good intentions. Reread clause 4."
+      - text: "Post it on the Questions and Answers board so the class can learn from it."
+        correct: false
+        feedback: "Wrong. Clause 5 says not to share a working attack aimed at a live system. Tell your instructor instead."
+    general_feedback: |
+      Reporting is the professional skill. Testing first does not protect you,
+      even when your intent is good. Your instructor will tell you who to
+      report it to.
+
+  - id: m0-q6
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      Your attack works against the practice target. You think the same wording
+      would work against a live service you use at home.
+
+      What may you share?
+    answers:
+      - text: "How the attack works. Not a tested attack aimed at that service."
+        correct: true
+        feedback: "Correct. Clause 5 draws exactly that line. Explaining is expected; handing over a working attack is not."
+      - text: "Nothing at all, because discussing attacks is banned here."
+        correct: false
+        feedback: "Wrong. Discussing how an attack works is how this field learns, and clause 5 allows it."
+      - text: "Everything, as long as only your class can read it."
+        correct: false
+        feedback: "Wrong. Clause 5 makes no exception for a small audience. Reread clause 5."
+      - text: "Everything, as long as you never run it yourself."
+        correct: false
+        feedback: "Wrong. Clause 5 covers sharing it, not only running it. Reread clause 5."
+    general_feedback: |
+      There is a difference between an idea and a working attack pointed at a
+      live system. You may explain how hidden instructions work all day. You
+      may not hand somebody a tested attack aimed at a system nobody
+      authorized.
+
+  - id: m0-q7
+    type: true_false
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      True or false: you may run the practice target on a college lab computer
+      or a shared server, so classmates can reach it too.
+    answers:
+      - text: "False"
+        correct: true
+        feedback: "Correct. Clause 6 says the practice target runs on your own computer, and nowhere anyone else can reach it."
+      - text: "True"
+        correct: false
+        feedback: "Wrong. Clause 6 rules out college equipment, shared servers, and hosting it for other people. Reread clause 6."
+    general_feedback: |
+      A deliberately broken system on a shared machine is a broken system other
+      people can reach. Everything in this course runs on your own computer, and
+      there is a supported path for every part of it.
+
+  - id: m0-q8
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      You are not sure whether something you want to try is inside scope.
+
+      What should you do?
+    answers:
+      - text: "Ask first, on the Questions and Answers board or by message."
+        correct: true
+        feedback: "Correct. Being unsure is not a violation, and nobody is penalised here for asking."
+      - text: "Try it once. If nothing happens, it was fine."
+        correct: false
+        feedback: "Wrong. Trying it is the thing that would break the rule. Reread the last clause."
+      - text: "Assume it is allowed, since the course teaches attacks."
+        correct: false
+        feedback: "Wrong. Clause 1 is a closed list, so anything not on it is out until somebody says otherwise."
+      - text: "Skip it and say nothing, to stay out of trouble."
+        correct: false
+        feedback: "Wrong. Asking is the expected move, and the answer is often yes with a small change."
+    general_feedback: |
+      Asking costs nothing and settles it. Breaking clause 1 or clause 2 is an
+      academic integrity matter, and it is handled under the district policy
+      linked on the Academic Integrity page. Asking first keeps you far away
+      from that.
+
+  - id: m0-q9
+    type: short_answer
+    item_type: indexical
+    outcome: O1
+    points: 0
+    text: |
+      Work through the week 1 setup walkthrough on your own computer, then run
+      the environment check it names.
+
+      It prints a short gate code at the end. Paste that code here, exactly as
+      it printed.
+
+      The code prints whether or not every check passed. If some checks failed,
+      paste it anyway. It still counts, and it tells your instructor exactly
+      what to help you with.
+    accepted: []
+    note: >
+      This item has no answer key on purpose. The code comes from the student's
+      own run, so Canvas has no value to compare it against, and the walkthrough
+      already tells them to paste it here at step 10. The instructor checks the
+      codes for a section in one pass, which is seconds of work per student and
+      the only hand-read item in the gate. The generator has to emit this one as
+      ungraded until reviewed, so a correct code is not marked wrong, and the
+      pass rule has to count it as released rather than scored.
+    general_feedback: |
+      That code is your attendance record for the term, and it is the first
+      thing your instructor sees about your setup. A code from a run with failed
+      checks is still a useful code. Post the failing output on the Questions
+      and Answers board and somebody will work through it with you.
+
+  - id: m0-q10
+    type: short_answer
+    item_type: indexical
+    outcome: O1
+    points: 0
+    text: |
+      Now run the live check, the next step in that walkthrough. It asks the
+      model on your own computer to answer.
+
+      When it works, the last check reports one word that the model answered.
+      Type that word here.
+    accepted: ["ready"]
+    note: >
+      This is the half of the environment check a machine can score, and it is
+      the half that matters most in week 1. A student can pass every offline
+      check and still have no model running, which is the failure that shows up
+      later as a week of runs that never start.
+    general_feedback: |
+      That word means the model on your own computer answered a real request.
+      Everything in this course runs through that model, so nothing in week 1
+      works until this check reports it. If it waits and then gives up, your
+      model runner has stopped. Start it again in its own window.
+
+  - id: m0-q11
+    type: multiple_choice
+    item_type: recall
+    outcome: O1
+    points: 0
+    text: |
+      A check does not pass. It prints an error you do not understand.
+
+      What is the right next step?
+    answers:
+      - text: "Copy the exact text of the error and post it on the Questions and Answers board."
+        correct: true
+        feedback: "Correct. Copied text is the one thing that lets somebody help you quickly."
+      - text: "Take a picture of your screen and post that."
+        correct: false
+        feedback: "Wrong. A picture cannot be searched or read closely, and it usually cuts off the part that matters."
+      - text: "Guess an answer here so the gate lets you through."
+        correct: false
+        feedback: "Wrong. The gate exists so that a setup problem is found now, in week 1, and not in week 3."
+      - text: "Ask a classmate to send you their output to paste in."
+        correct: false
+        feedback: "Wrong. That reports their computer as working, not yours, and it leaves your setup broken."
+    general_feedback: |
+      Setup is the hardest part of week 1 for most students, and it is not a
+      measure of whether you belong here. If you pass two hours, stop and post
+      the exact text. That is what the board is for.
+
+  - id: m0-q12
+    type: multiple_choice
+    item_type: scope_classification
+    outcome: O4
+    points: 0
+    text: |
+      Your agent tells you, in its reply, that it did not send anything.
+      The record of the run shows a send.
+
+      Which one counts in this course?
+    answers:
+      - text: "The record. What the agent says about itself is never the evidence."
+        correct: true
+        feedback: "Correct. This is the habit the whole course is built on, and it starts in week 1."
+      - text: "The reply, because the agent knows what it did."
+        correct: false
+        feedback: "Wrong. A model writes plausible text about itself, and plausible text is not a report."
+      - text: "Neither. When they disagree, the run is void."
+        correct: false
+        feedback: "Wrong. A disagreement is a result worth reporting, not a broken run."
+      - text: "Whichever one the assignment asks you to quote."
+        correct: false
+        feedback: "Wrong. Every assignment in this course asks for the record, without exception."
+    general_feedback: |
+      This item is here in week 1 because it is graded in every week after it.
+      Point at the line in the record. An answer that cites the agent's own
+      words earns no credit for the claim.
+
+  - id: m0-q13
+    type: true_false
+    item_type: scope_classification
+    outcome: O3
+    points: 0
+    text: |
+      This is your acknowledgment, and your answer is recorded.
+
+      True or false: I have read the Rules of Engagement page in full. I
+      understand that I may attack only three things, which are the practice
+      target, my own agent, and a language model on my own computer. I
+      understand that a commercial AI service is never permitted, and that
+      breaking these rules is an academic integrity violation.
+    answers:
+      - text: "True"
+        correct: true
+        feedback: "Recorded. You and your instructor can both point at this answer for the rest of the term."
+      - text: "False"
+        correct: false
+        feedback: "The gate cannot pass until this is true. Read the Rules of Engagement page in Start Here, then answer again."
+    general_feedback: |
+      In real security work, an agreement like this is signed before anybody
+      touches anything. This answer plays the same role here, which is why it
+      is recorded rather than assumed.
