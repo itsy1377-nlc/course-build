@@ -14,6 +14,31 @@ responsibility under the contract, which resolves the age question.
 
 ---
 
+## Status: not yet fit for a committee or a procurement office
+
+Adversarial review found ten defects, three of them plain errors of mine, and
+the verdict was that this document is not yet fit to put in front of either. It
+has been corrected where correction was possible in a document, and the
+remainder are recorded here rather than smoothed over.
+
+**Corrected in this revision:** the run count said 350 against rows summing to
+280; the budget claimed to be measured from recorded traces which contain no
+usage data at all; the gating experiment's arithmetic did not match its own
+procedure and its statistical claim was overstated; the silent-failure account
+was broader than the code supports; the control fix was cosmetic; week 6 was
+called unchanged while carrying the largest hosted spend; and a governance rule
+forbidding hosted-only graded work was broken by four graded activities in the
+same document.
+
+**Still outstanding, and each blocks approval:** a points and fallback matrix;
+a powered gating experiment with a real chain detector; a decision on where
+local inference runs and measured capacity for it; exact models, versions,
+regions, licences and prices with a replacement policy; and the records,
+minors, access, deletion, incident response, appeals, staffing and
+accessibility plans named in section 6.
+
+**Read this as a design under review, not a submission.**
+
 ## 0. One experiment gates everything below, and it costs under a dollar
 
 **The obvious reason to want this environment is wrong, or at least unmeasured.**
@@ -33,15 +58,48 @@ post-training targets hardest. **Capability and susceptibility plausibly move in
 opposite directions on that last step.** A better model may be less likely to
 comply, not more.
 
-**So before a page is written:** run the three injection cases at five trials
-against each candidate Bedrock model, through `build/modeltest/student_run.py`
-and not a purpose-built rig. That is about ninety runs, roughly half a million
-tokens, under a dollar, and two hours of wall clock.
+**But "model size was ruled out" is overstated, and the correction matters.**
+Zero hits in five trials has a 95 per cent upper bound of roughly 45 per cent on
+the true rate. An attack that succeeds one time in five shows zero in five about
+a third of the time. Five trials cannot rule out a capability effect; they can
+only fail to find one. The evidence is also confounded: at least one of those
+models does not complete the two-turn loop at all, so its zero says nothing
+about recipient refusal.
 
-**Write the course so either answer is a good week.** If the chain still does not
-complete across three hosted models, that is a stronger finding than the
-constrained course has today: three columns of zeros with three different
-reasons for the zeros. It costs nothing to be ready for that.
+The honest statement is that the direction is unknown and the cheap evidence
+leans against the optimistic reading. That is still a reason to measure before
+building, and not a reason to claim the answer.
+
+**So before a page is written, run a powered experiment rather than a screen.**
+The version in an earlier draft of this document was incoherent: it said ninety
+runs for three cases at five trials across three models, which is forty-five,
+and it named a harness runner that cannot select individual cases and would
+instead run the full suite at one hundred and eight. Neither number matched the
+procedure.
+
+What is actually needed:
+
+- **At least thirty trials per model per case**, not five. Five is what produced
+  the ambiguity in the first place.
+- **An ordered chain detector**, so "reached step 3 of 5" is machine-produced
+  rather than hand-marked. The schema currently pins detection to exactly one
+  detector, so this is a prerequisite rather than a nicety.
+- **A refusal and failure classifier**, so a refusal is not counted as a miss.
+- **Positive tool-capability controls**, so a model that cannot drive the loop
+  is not mistaken for one that declined.
+- **Resolved model versions recorded**, randomised run order, and a repeat on a
+  second day.
+
+Cost is still small: roughly 270 runs at about 5,500 tokens is under 1.5 million
+tokens, which is a few dollars at current open-model prices. **Two hours is the
+part that is not credible**, since a local 8B probe measured 25 seconds per call
+and hosted latency and quotas are unknown. Budget a day, and budget separately
+for classifying the misses, which is the part that cannot be automated until the
+chain detector exists.
+
+**Write the course so either answer is a good week.** If the chain still does
+not complete across three hosted models at thirty trials, that is a far stronger
+finding than the constrained course has today.
 
 ---
 
@@ -118,7 +176,7 @@ across weeks 3 to 7, a real mystery, the spoiler rule, evidence over assertion.
 | 3 | **Changed, but less than expected.** Local run and hand-marking first, hosted comparison second | Hosted first would make trace reading confirmatory instead of load bearing, which is the most valuable thing week 3 does |
 | 4 | **Adds three-source reconciliation**, about twenty-five minutes | Week 4 is already the audit log week |
 | 5 | **Changed most structurally.** A shared multi-actor incident replaces the solo case pack as the session, with the packs kept as fallback | The one thing the constrained design cannot reach |
-| 6 | **Unchanged, deliberately** | The control arc rests on the two cases that land 5 of 5 on every model. Money buys week 6 nothing, and saying so is the honest part of this proposal |
+| 6 | **Pedagogically unchanged, but not free** | The control arc rests on the two cases that land 5 of 5 on every model, so money buys the *lesson* nothing. It does buy iteration: the budget assigns week 6 sixty hosted runs, which is the largest single line, because measuring a control before and after on more than one model is how a student learns the control is not model-specific. Saying the lesson is unchanged while the spend is not is the honest version |
 | 7 | **Runs local**, with a ten-minute hosted coda | Throughput, not money. See section 4 |
 | Final | Adds one case: the loop that paid | Fills a gap the constrained proposal already names |
 
@@ -166,10 +224,25 @@ not after.
 
 ---
 
-## 4. The budget works, by a wide margin
+## 4. The budget is affordable, and it is an estimate rather than a measurement
 
-Measured from 2,428 recorded traces rather than estimated. Plan on 5,000 input
-and 500 output tokens per agent run, 8,000 worst case.
+**A correction to an earlier draft, which claimed this was measured.** It is
+not. The 2,428 recorded traces contain **zero provider usage fields**, because
+the agent loop takes only the assistant message from each response and discards
+the rest. The traces support a defensible estimate of workload shape, meaning
+how many model calls an agent run makes and roughly how much context it carries.
+They cannot support a token measurement, and this document should not have said
+they did.
+
+**Workload shape, which the traces do support:** about 2.9 model calls per agent
+run across 7,055 inferred requests.
+
+**Token allowance, which is planning judgement:** 5,000 input tokens per run is
+defensible. **500 output tokens is not safe**, because a reasoning model can
+spend a thousand tokens producing no visible content at all, and this project has
+already measured one needing about four thousand. Plan output at 2,000 per run,
+and treat six loop steps each consuming a completion allowance as the real
+ceiling rather than a single flat worst case.
 
 | | Hosted runs per student |
 |---|---|
@@ -177,39 +250,51 @@ and 500 output tokens per agent run, 8,000 worst case.
 | Week 3 hosted comparison and board revisions | 40 |
 | Week 4 evidence packs | 20 |
 | Week 5 shift | 10 |
-| Week 6 control iterations | 60 |
+| Week 6 (see below: this is why week 6 is not "unchanged") | 60 |
 | Week 7 coda | 10 |
 | Slack, experiments, failed runs | 100 |
-| **Total** | **about 350** |
+| **Total** | **280** |
 
-At mid-tier open-weight prices that is well under a dollar per student, and at
-70B-class prices about a dollar. **A class of twenty-five costs roughly ten to
-thirty dollars against a three hundred dollar budget.** Prices must be verified
-at contract time rather than carried from this document.
+An earlier draft printed 350 against rows that sum to 280, which is a 25 per
+cent overstatement and a plain arithmetic error. Use 280 as the plan and 350 as
+the headroom figure, and say which is which.
 
-**Two things the arithmetic reveals.**
+**Costed against real published prices rather than a generic tier**, because the
+price varies by model far more than by parameter count:
 
-The ten dollar per student cap is about ten times larger than the course needs,
-which means it will never bind in normal use and will only ever be hit by a
-runaway loop. That makes it a good teaching instrument and a poor guardrail: set
-a separate, small, deliberately burnable key for the cost lab rather than letting
-a student spend their working budget on it.
+| Model | Price per million in / out | 280 runs |
+|---|---|---|
+| Ministral 8B | 0.15 / 0.15 | about 6 dollars a class |
+| Qwen3 Next 80B | 0.15 / 1.20 | about 9 dollars a class |
+| Mistral Large 3 | 0.50 / 1.50 | about 23 dollars a class |
 
-**Instructor consumption is unbudgeted in every version of this**, and needs its
-own key with its own ceiling: the gating sweep, a per-term baseline across three
-models, case-pack regeneration, and a load test with twenty-five simulated keys
-before week 7. Call it five dollars and give it a separate line.
+**A class of twenty-five costs somewhere between six and twenty-five dollars
+against three hundred**, depending entirely on which models are chosen. Verify
+every price and region at contract time; none of these should be carried forward
+from this document.
 
-**Week 7 runs local, and this is the recommendation most likely to be argued
-with.** Twenty-five controls against twenty-five pooled cases at five trials over
-two rounds is over six thousand runs inside one hundred-minute session. The
-dollars survive that; the throughput does not, and this project already predicted
-that rate limits read to students as broken code. Local is free, unthrottled,
-deterministic, and cannot be broken by a classmate. Then a ten-minute hosted
-coda: point your finished control at a second model and find the allowlist blocks
-the disallowed recipient regardless of which model asked. Before and after
-identical across models, while the attack rates were not. That is the strongest
-available evidence for where controls belong, for about three cents.
+**What is missing from the run count**, and should be added before anyone signs:
+the final block's cost case, grading re-runs and accommodations, appeals,
+billed attempts lost to timeouts, model evaluation and development work, and the
+gateway's own monitoring, log storage and administration. None of those is large.
+Together they are not nothing.
+
+**Instructor consumption needs its own key with its own ceiling.** The gating
+experiment alone, at thirty trials, is larger than the earlier draft assumed.
+Add a per-term baseline across three models, case-pack regeneration, and a load
+test with twenty-five simulated keys before week 7.
+
+**Week 7 runs local, and that raises a question this proposal has to answer
+rather than assume.** Twenty-five controls against twenty-five pooled cases at
+five trials over two rounds is over six thousand runs in one session. The
+dollars survive it; the throughput does not, and this project has already
+predicted that rate limits read to students as broken code. But **"runs local"
+is not free in this architecture, and the earlier draft did not say where local
+means.** If it means the student's own laptop, the funded course has quietly
+re-inherited the unverified deployment assumption it was supposed to remove. If
+it means the server, that is roughly two and a half to three gigabytes resident
+per model instance, times twenty-five, plus contention. **Name it, and measure
+it, before week 7 depends on it.**
 
 ---
 
@@ -218,9 +303,12 @@ available evidence for where controls belong, for about three cents.
 **A gateway adds three new ways for a run to fail silently, and they are
 indistinguishable from the course's proudest finding.**
 
-A content filter, a provider refusal, a rate limit, or a student hitting their
-budget cap can each return a well-formed response with empty or declining
-content. `agent/llm.py` returns that message and raises nothing. The loop then
+**Narrower than an earlier draft claimed, and the narrowing matters.** An
+ordinary rate limit arrives as a non-200 response, which the transport layer
+raises on and the runner counts as an errored trial. That path is safe. What is
+not safe is any failure that arrives as a well-formed 200 carrying empty or
+declining content, which is what a content filter, a policy refusal, and some
+budget-cap configurations produce. `agent/llm.py` returns that message and raises nothing. The loop then
 produces a run with no tool calls. **That is not an errored trial**, so it enters
 the denominator as completed with zero hits, and the verdict reads
 `NO_HITS_IN_5`: exactly what a correctly conducted test of an attack that did not
@@ -240,7 +328,13 @@ the gateway is the first thing that makes it happen at classroom scale.
 1. A refusal and failure classifier with a distinct `REFUSED` status, separate
    from an errored trial and from a clean miss. Nothing else matters if this is
    skipped.
-2. Put the sample size in the control verdict too.
+2. **Fix control validity, not only its display.** An earlier draft proposed
+   putting the sample size into the control verdict. That makes an invalid
+   result legible rather than making it invalid: the harness accepts three hits
+   out of three completed trials after two errored, because its floor is three,
+   and printing `OK 3/3` does not change that. **A control must be inconclusive
+   unless every requested trial completes**, or errored trials must be re-run
+   until five clean ones exist.
 3. Capture token usage from the model response, which the loop currently
    discards, so a report can be reconciled against the gateway ledger.
 4. Record the resolved, versioned model identifier rather than the gateway
@@ -315,9 +409,24 @@ The load-bearing one first.
 
 **No learning outcome and no rubric row may cite a hosted-only result.** That
 single rule means a contract lapse, an outage, a deprecation, or a model that
-refuses everything costs the course pages rather than a re-approval. It is also
-what keeps the local model and the simulator as live paths rather than
-decorative ones.
+refuses everything costs the course pages rather than a re-approval.
+
+**And an earlier draft of this proposal broke that rule four times over**, which
+review caught and which is worth recording rather than quietly fixing. Week 2
+graded conclusions drawn from the hosted sweep. Week 3 graded the hosted
+divergence step. Week 4 required gateway reconciliation. The final block added a
+cost case that only exists on the meter. Every one of those is hosted-only work
+carrying points, in a document whose load-bearing governance rule says it may
+not.
+
+**The resolution is a points and fallback matrix, published with the syllabus**,
+and it has to be built rather than asserted. For each graded artifact: the
+points it carries, whether it is reachable on the local path, and if it is not,
+the supplied evidence a student receives when the gateway is unavailable. The
+honest version is probably that hosted work carries participation credit and
+feeds a graded artifact that can also be produced locally, so that an outage
+costs a student a comparison rather than a grade. That is a real design
+constraint on weeks 2, 3 and 4, and it is not yet done.
 
 Then, and these are gating rather than advisable:
 
@@ -387,23 +496,49 @@ what any procurement office decides.
 
 ---
 
-## 8. The recommendation
+## 8. The recommendation, and the case against it
 
-**Run both, as one course with two paths, rather than choosing.**
+**The strongest argument against what I am about to recommend**, and it is a
+good one. The constrained course's core delivery assumption, that a locked-down
+loaner will run the portable bundle, is explicitly unverified. The funded
+scenario supplies equitable hardware, central support, model comparison, real
+cost evidence and independently held logs. Negative-result literacy can be
+preserved with one deliberately retained losing case and the simulator; it does
+not require running a second production stack. And the claim that a hosted
+negative result would be "manufactured" while a local one is honest is
+sentiment, not measured pedagogy. I wrote that line, and I cannot support it.
 
-Keep the local model as the graded default and the reproducible baseline. Add
-the hosted models as the comparison column. The finding worth having is not "the
-attack works now" but **"it works there and not here, and I can tell you which
-step turned and why"**, and that sentence needs both machines to say it.
+**What I actually recommend.**
 
-If the college can genuinely run only one, run the constrained course. Not from
-caution: it teaches the harder half of the job and cannot be talked out of it,
-every genuinely new thing the funded version buys is an upgrade to an hour
-rather than a week, and its most seductive lesson, that the big model fell for
-it, is the one a student is most likely to misread as "the fix is a better
-model". That is exactly wrong, and refuting it is what weeks 6 and 7 are for.
+Run both, as one course with two paths: the local model as the graded baseline
+and the reproducible control, the hosted models as the comparison column. The
+finding worth having is not "the attack works now" but **"it works there and not
+here, and I can tell you which step turned and why"**, and that sentence needs
+both machines to say it.
+
+**But the two-path production course is not yet operationally credible**, and
+that is the honest state of this document. Section 4 does not say where local
+inference runs. Section 6 has a governance rule that sections 2 and 4 break.
+The control validity fix was cosmetic until this revision. Until those are
+closed, "run both" is a design intention rather than a plan.
+
+**If the college can genuinely run only one**, the case is closer than an
+earlier draft of this document allowed. The constrained version teaches
+negative-result literacy by necessity, keeps the student as custodian of their
+own evidence, removes every infrastructure excuse, and exists next August
+regardless of any procurement decision. The funded version removes the one
+unverified assumption the constrained version cannot remove by itself, which is
+whether the thing runs at all on the hardware the poorest students have.
+
+**That is the trade, stated plainly:** the constrained course teaches the harder
+half of the job and might not run for the students who need it most. The funded
+course will certainly run and has to work harder to teach the same lesson. On
+that framing I would take the funded environment and defend the pedagogy
+deliberately, rather than take the constrained one and hope the loaner test
+passes.
 
 **What the money is really worth buying** is not a better model. It is the
-second column, the third record, and ninety minutes on what a runaway loop
-costs. Those are worth having, they cost about thirty dollars a class, and they
-do not require the injection chain to land.
+second column, the third record, an independent record of whether the work was
+done, and ninety minutes on what a runaway loop costs. Those are worth having,
+they cost about twenty-five dollars a class, and none of them requires the
+injection chain to land.
