@@ -219,7 +219,21 @@ def render(tape: Path, out_dir: Path, labs: Path, use_docker: bool = True,
             "-w", "/tapes", RECORDER_IMAGE, "bash", "-c", bootstrap,
         ]
     else:
-        command = ["vhs", tape.name]
+        # Host recording. The tape says /work because that is the container's
+        # mount point, and nothing creates it out here, so every scene died
+        # with "no such file or directory" before this branch existed. Rewrite
+        # the path to the real lab tree and run the setup lines, which the
+        # docker branch does in its bootstrap and this one previously skipped
+        # entirely.
+        host_tape = out_dir / f"{stem}.host.tape"
+        host_tape.write_text(
+            tape.read_text(encoding="utf-8").replace("/work", str(labs.resolve())),
+            encoding="utf-8")
+        prelude = "\n".join(setup) + "\n" if setup else ""
+        command = ["bash", "-c",
+                   f"cd {shlex.quote(str(labs.resolve()))}\n{prelude}"
+                   f"cd {shlex.quote(str(out_dir.resolve()))} && "
+                   f"vhs {shlex.quote(host_tape.name)}"]
 
     result = subprocess.run(command, cwd=out_dir, capture_output=True, text=True)
     mp4, ascii_path = out_dir / f"{stem}-raw.mp4", out_dir / f"{stem}.ascii"

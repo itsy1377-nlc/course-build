@@ -105,10 +105,30 @@ class Config:
         return self.code_dir is not None and self.code_dir.is_dir()
 
     def answer_files(self) -> list[Path]:
+        """Resolve answer_globs, preferring code_dir over the project root.
+
+        config.yaml.example pairs `code_dir: labs` with
+        `answer_globs: solution/**/*.py`, which reads as code_dir relative and
+        is how anyone filling in that file will write it. This resolved from
+        the project root only, so those patterns matched nothing and the gate
+        failed with "those patterns match no files" while the files sat one
+        directory down. Both bases are searched now, code_dir first, so a
+        config written either way finds its files.
+        """
+        bases = [b for b in (self.code_dir, self.root) if b]
         found: list[Path] = []
         for pattern in self.answer_globs:
-            found.extend(sorted(self.root.glob(pattern)))
-        return [p for p in found if p.is_file()]
+            for base in bases:
+                hits = sorted(base.glob(pattern))
+                if hits:
+                    found.extend(hits)
+                    break
+        seen, unique = set(), []
+        for p in found:
+            if p.is_file() and p.resolve() not in seen:
+                seen.add(p.resolve())
+                unique.append(p)
+        return unique
 
 
 @lru_cache(maxsize=1)

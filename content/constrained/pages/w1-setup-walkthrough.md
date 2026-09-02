@@ -4,6 +4,11 @@ order. Each one says what success looks like, and what to do when it does not
 work.
 :::
 
+::: video w1-walkthrough | Your first run, start to finish
+What a working setup looks like, and where the record of your run lives.
+Captions and a full transcript are on the player.
+:::
+
 ::: callout time | How long this takes
 | Part | Minutes |
 |---|---|
