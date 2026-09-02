@@ -16,6 +16,12 @@ voice: kokoro:af_heart
 # same command sees the same thing.
 code_dir: labs
 
+# Recordings run inside the image students develop in, not on the host. That is
+# what makes the shell in the video their shell: same Debian, same Python 3.12,
+# same package versions. The host fallback still works with --no-docker.
+recorder_base: mcr.microsoft.com/devcontainers/python:3.12-bookworm
+recorder_image: itsy1377/recorder:latest
+
 # Work a learner produces themselves. The no-spoiler gate reads the captured
 # terminal text and fails if a substantial line from any of these appears on
 # camera, so a walkthrough can show output and never source.

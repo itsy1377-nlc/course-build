@@ -238,6 +238,11 @@ def render(tape: Path, out_dir: Path, labs: Path, use_docker: bool = True,
         # on screen, which reads to a student as somebody else's machine rather
         # than as their own. The prompt is normalised for exactly this reason
         # and the output defeated it. Caught by looking at a frame.
+        # HOST FALLBACK ONLY. Prefer the container: it gives a neutral /work
+        # path and the student's actual shell for free, which is what this
+        # staging is reaching for and never quite gets. Keep it for machines
+        # with no Docker.
+        #
         # Stage ONCE per build, not once per scene.
         #
         # This rebuilt the tree on every render at first, which quietly broke
