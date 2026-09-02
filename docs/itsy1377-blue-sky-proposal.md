@@ -330,47 +330,57 @@ it, before week 7 depends on it.**
 
 ## 4a. The points and fallback matrix
 
-The governance rule is that no rubric row may cite a hosted-only result. An
-earlier draft's attempt at this failed review on three counts, all correct: its
-rows summed to 100 before week 7 and the final, it omitted two hosted
-activities, and moving hosted evidence into an instructor-supplied file changed
-where the evidence came from without removing the graded claim's dependence on
-it.
+**The governance rule, restated.** An earlier version said no rubric row may
+cite a hosted-only result, and satisfied it by making all hosted work ungraded.
+That failed for a reason review did not catch and readers did: **telling students
+the interesting column carries no points guarantees they skip it.** One
+sixteen-year-old reader put it plainly, that the cool column does not count and
+they would absolutely skip ungraded work. The worst case was week 4, where the
+whole insight is that the official record is the weakest, that insight needs the
+third record, and the third record was the unpaid one.
 
-**The fix is to change what is graded, not where the evidence comes from.** In
-every week, the graded question is answerable from the student's own local
-evidence. The hosted comparison enriches the answer and is never required to
-produce it.
+**The rule becomes: no rubric row may require a hosted result that cannot be
+substituted.** That is a weaker rule and an honest one, and it is satisfied by
+grading the reasoning rather than the run.
 
-| Wk | Graded question, answerable locally | Pts | Hosted enrichment, ungraded |
-|---|---|---|---|
-| 1 | What came back, how would you know, what can it reach, what does this script touch | 12 | none |
-| 2 | Does it do the same thing twice, and what does one run therefore prove | 12 | the same table with three more columns |
-| 3 | Where did **your** run stop on the four-step scale, and what does that establish and not establish | 16 | the same case on two other models, and where they parted |
-| 4 | Two records of one event: what does each support on its own | 12 | a third record, and which of the three is weakest |
-| 5 | The timeline, the call, and the handover | 18 | none: the pack is a file and is cached before the session |
-| 6 | The control, measured before and after, benign case intact | 16 | the same control against a second model |
-| 7 | Your control against the class pool, and what it cannot touch | 8 | a ten-minute cross-model coda |
-| Final | The evidence file, the where-next note, the exam | 6 | the cost case, run on the burnable key |
-| | **Total** | **100** | |
+**What is graded is the student's analysis over a comparison, not their
+production of it.** In week 4 the graded question is which of these records is
+weakest and how you know. Normally the student produces the third record
+themselves. If the gateway is down they are handed it, and the same question is
+graded the same way against the same rubric. The comparison is data; the
+analysis is the work; the analysis is theirs either way.
 
-**Three consequences, stated because they are the price of the rule.**
+| Wk | Graded work | Pts | Hosted? | If the gateway is unavailable |
+|---|---|---|---|---|
+| Wk | Graded work | Pts | Hosted share | If the gateway is unavailable |
+|---|---|---|---|---|
+| 1 | What came back, how would you know, what it can reach, what the script touches | 10 | 0 | no effect |
+| 2 | The variance table and what one run therefore proves | 12 | **5** | the instructor's columns are supplied; the same two sentences are graded |
+| 3 | Where your run stopped, and where the models parted | 14 | **6** | the other model runs are supplied as transcripts; the divergence question is graded unchanged |
+| 4 | Three records of one event: what each supports alone, and which is weakest | 12 | **4** | the gateway record is supplied; the weakest-record question is graded unchanged |
+| 5 | The timeline, the call, the handover | 14 | 0, the pack is cached before the session | no effect |
+| 6 | The control before and after, benign case intact, and whether it holds on a second model | 12 | **4** | the second-model run is supplied |
+| 7 | Your control against the class pool, and what it cannot touch | 8 | 0, the pool runs local | no effect |
+| **Cost** | **The loop that paid: run it on the burnable key, predict the spend, then compare with the meter** | **6** | **6** | a recorded transcript of the same loop with its real meter reading |
+| Final | The evidence file, the where-next note, the open-book exam | 12 | 0 | no effect |
+| | **Total** | **100** | **25** | |
 
-**Week 3's graded claim is now about the student's own run**, not about
-divergence between models. Divergence is the enrichment. That is a real
-reduction in what the hosted path is graded on, and it is the honest way to keep
-the governance rule true.
+**Twenty-five of a hundred points now depend on hosted work**, every one of them
+substitutable, and the substitution is stated in the syllabus rather than
+improvised during an outage.
 
-**Week 4 grades two records, not three.** The lesson that the official record is
-the weakest needs the third, so an outage costs that specific insight. The
-graded question, what does each record support alone, survives on two.
+**The cost lab gets its own six points and its own hour.** It was previously a
+zero-point footnote in the final block, and it was independently named by a
+reader as the single most fun-sounding activity in the document: watching a loop
+burn real money on a key you are allowed to burn. Paying nothing for the most
+appealing hour in the course was a straightforward mistake.
 
-**Participation credit is not used anywhere**, because participation credit that
-moves a grade is points wearing a different hat, and review was right to say so.
-
-**The instructor still holds a supplied version of every hosted artifact**,
-built from their own run at the start of term. That is four files, and it means
-an outage costs a student an enrichment rather than an assignment.
+**What this costs, stated plainly.** An outage during weeks 2, 3, 4 or 6 means
+some students analyse supplied data while others analyse their own. That is a
+real inequity of experience, and it is smaller than the alternative, which is
+students skipping the best material because it is unpaid. The instructor's
+supplied artifacts must exist before week 2, not be assembled during an
+incident.
 
 ---
 
@@ -635,9 +645,11 @@ rather than as a control, and it should not be sold as one.
 
 The load-bearing one first.
 
-**No learning outcome and no rubric row may cite a hosted-only result.** That
+**No rubric row may require a hosted result that cannot be substituted.** That
 single rule means a contract lapse, an outage, a deprecation, or a model that
-refuses everything costs the course pages rather than a re-approval.
+refuses everything costs the course a substitution rather than a re-approval.
+Section 4a shows how it is satisfied while hosted work still carries points,
+which an earlier version got wrong in the other direction.
 
 **And an earlier draft of this proposal broke that rule four times over**, which
 review caught and which is worth recording rather than quietly fixing. Week 2
