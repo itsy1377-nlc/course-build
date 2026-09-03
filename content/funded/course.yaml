@@ -98,16 +98,19 @@ outcomes:
 assignment_groups:
   - id: foundations
     title: "Part A: What an agent is"
-    weight: 30
+    weight: 26
   - id: investigations
     title: "Part B: What goes wrong"
-    weight: 30
+    weight: 26
   - id: operations
     title: "Part C: Using one for the work"
-    weight: 30
+    weight: 26
   - id: gauntlet
     title: The gauntlet
     weight: 10
+  - id: final
+    title: Final exam
+    weight: 12
 
 modules:
 
@@ -245,6 +248,19 @@ modules:
       - {type: assignment, ref: w6-somebody-elses-agent}
       - {type: page, ref: w6-wrap-up}
 
+  - id: m-final
+    title: "Final Block"
+    unlock_day: 43
+    days: [43, 49]
+    focus: >
+      The open book exam that closes the course. It puts records in front of you
+      that you have not seen before, and asks the same questions you have been
+      answering about your own all term.
+    outcomes: [O1, O2, O3, O4, O5]
+    items:
+      - {type: page, ref: final-overview}
+      - {type: quiz, ref: final-open-book}
+
   - id: m07
     title: "Week 7: The gauntlet"
     unlock_day: 43
@@ -269,7 +285,7 @@ assignments:
   - ref: w1-twenty-minutes
     title: "Week 1: Twenty minutes"
     group: foundations
-    points: 15
+    points: 13
     due_day: 7
     submission_types: [online_text_entry, online_upload]
     outcomes: [O1, O3]
@@ -280,7 +296,7 @@ assignments:
   - ref: w2-the-blindfold
     title: "Week 2: The blindfold"
     group: foundations
-    points: 15
+    points: 13
     due_day: 14
     submission_types: [online_text_entry, online_upload]
     outcomes: [O1, O5]
@@ -289,7 +305,7 @@ assignments:
   - ref: w3-somebody-elses-function
     title: "Week 3: Somebody else's function"
     group: investigations
-    points: 15
+    points: 13
     due_day: 21
     submission_types: [online_text_entry, online_upload]
     outcomes: [O2, O3]
@@ -298,7 +314,7 @@ assignments:
   - ref: w4-english-versus-python
     title: "Week 4: English versus Python"
     group: investigations
-    points: 15
+    points: 13
     due_day: 28
     submission_types: [online_text_entry, online_upload]
     outcomes: [O4, O5]
@@ -307,13 +323,13 @@ assignments:
   - ref: w5-watch-it-spend
     title: "Week 5: Watch it spend"
     group: operations
-    points: 15
+    points: 13
     due_day: 35
     submission_types: [online_text_entry, online_upload]
     outcomes: [O6, O3]
     rubric: w5-watch-it-spend
     note: >
-      Ten of these fifteen points require a real gateway run, of any size and any
+      Eight of these thirteen points require a real gateway run, of any size and any
       outcome, reconciled against the ledger. This is the only row in the course
       that does. If the gateway is unavailable the outage policy extends the
       deadline; it does not substitute.
@@ -321,7 +337,7 @@ assignments:
   - ref: w6-somebody-elses-agent
     title: "Week 6: Somebody else's agent"
     group: operations
-    points: 15
+    points: 13
     due_day: 42
     submission_types: [online_text_entry, online_upload]
     outcomes: [O1, O4, O7]
@@ -337,6 +353,13 @@ assignments:
     rubric: w7-the-gauntlet
 
 quizzes:
+  - ref: final-open-book
+    title: "Open book exam"
+    group: final
+    points: 12
+    due_day: 49
+    outcomes: [O1, O2, O3, O4, O5]
+
   - ref: m0-gate
     title: "Start Here: the scope, safety and logging gate"
     group: foundations

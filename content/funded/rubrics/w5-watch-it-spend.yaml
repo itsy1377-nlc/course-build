@@ -1,82 +1,109 @@
 ref: w5-watch-it-spend
-title: "Week 5: Watch it spend"
-points: 15
-# Canvas hides every rating level when this is true and shows a bare comment box
-# instead, so the ladder below would reach nobody: not the student deciding what
-# to submit, and not the grader choosing a score.
+title: 'Week 5: Watch it spend'
+points: 13
 free_form_comments: false
-guidance: |
-  A prediction that was badly wrong costs you nothing. Most people are wrong by
+guidance: 'A prediction that was badly wrong costs you nothing. Most people are wrong by
+
   a lot on the first one, because the conversation grows on every pass and that
+
   is easy to leave out of the arithmetic. What is graded is that you wrote a
+
   number first and then said where the gap came from.
 
+
   Ten of these fifteen points are graded from a session the gateway recorded:
+
   the ledger row, the cap and the gate. Any size of run counts and any outcome
+
   counts. If your instructor declares the gateway down, those three rows wait
+
   and the deadline moves. They are not replaced by an offline run, because a
+
   simulator has no ledger and the ledger is the evidence here.
 
+
   The gate row is where most of the thinking is. Blocking your week 4 attack is
+
   half the answer. The other half is the ordinary request that needed the same
+
   tool and was blocked too. Say what the gate moved, and to whom.
+
+  '
 criteria:
-  - description: The prediction, written first, with its arithmetic
-    long_description: >
-      A number in cents, written before any run, with the arithmetic shown: the
-      price for the model you picked, your step limit, and the size of the
-      conversation. Being wrong costs nothing. Saying where the gap came from is
-      what earns the top rating.
-    points: 3
-    ratings:
-      - {points: 3, description: "Prediction, arithmetic shown, gap accounted for"}
-      - {points: 2, description: "Prediction and arithmetic, gap not explained"}
-      - {points: 1, description: "A number with no arithmetic behind it"}
-      - {points: 0, description: "Missing, or written after the run"}
-  - description: Your cost total beside the gateway ledger row
-    long_description: >
-      Two records of the same run, side by side: the total you added up from the
-      cost stamps, and the total the gateway ledger shows. If they disagree, the
-      gap is stated. Graded from a session the gateway recorded, of any size and
-      any outcome.
-    points: 4
-    ratings:
-      - {points: 4, description: "Both totals given, gap named or agreement stated"}
-      - {points: 3, description: "Both totals given, a disagreement left unremarked"}
-      - {points: 2, description: "One total only, from the notebook or the ledger"}
-      - {points: 1, description: "A cost claimed with neither record shown"}
-      - {points: 0, description: "No gateway run to reconcile"}
-  - description: The cap filled in, and the cost before and after
-    long_description: >
-      The blank condition in the budget guard is filled in and the run ends on
-      it. You name the line in the record where the cap ended the run, and you
-      report the cost of the run before the cap and after it, with the
-      difference in cents.
-    points: 3
-    ratings:
-      - {points: 3, description: "Cap works, record line named, both costs and the difference"}
-      - {points: 2, description: "Cap works, costs given, no record line named"}
-      - {points: 1, description: "Condition filled in but the run does not stop on it"}
-      - {points: 0, description: "Missing"}
-  - description: The gate blocking both runs, each cited
-    long_description: >
-      The approval guard covers the tools your week 1 record marked
-      irreversible. Two runs are reported: your week 4 ticket text, and an
-      ordinary request that needed the same tool for a good reason. Both were
-      blocked, and you cite the approval event line for each.
-    points: 3
-    ratings:
-      - {points: 3, description: "Both runs blocked, both approval lines cited"}
-      - {points: 2, description: "Both runs blocked, one line missing or uncited"}
-      - {points: 1, description: "Only the attack run reported"}
-      - {points: 0, description: "Gate not working, or no runs reported"}
-  - description: The approval count, multiplied to a shift
-    long_description: >
-      The count of approval cards over twenty runs, multiplied out to a shift
-      size you name and source. One sentence says what the number does not
-      settle, which is anything about a shift you did not observe.
-    points: 2
-    ratings:
-      - {points: 2, description: "Count, shift size named, one limit stated"}
-      - {points: 1, description: "Count given, no shift arithmetic or no limit"}
-      - {points: 0, description: "Missing"}
+- description: The prediction, written first, with its arithmetic
+  long_description: 'A number in cents, written before any run, with the arithmetic shown:
+    the price for the model you picked, your step limit, and the size of the conversation.
+    Being wrong costs nothing. Saying where the gap came from is what earns the top rating.
+
+    '
+  points: 2
+  ratings:
+  - points: 2
+    description: Prediction, arithmetic shown, gap accounted for
+  - points: 1
+    description: A number with no arithmetic behind it
+  - points: 0
+    description: Missing, or written after the run
+- description: Your cost total beside the gateway ledger row
+  long_description: 'Two records of the same run, side by side: the total you added up from
+    the cost stamps, and the total the gateway ledger shows. If they disagree, the gap is
+    stated. Graded from a session the gateway recorded, of any size and any outcome.
+
+    '
+  points: 3
+  ratings:
+  - points: 3
+    description: Both totals given, gap named or agreement stated
+  - points: 2
+    description: One total only, from the notebook or the ledger
+  - points: 1
+    description: A cost claimed with neither record shown
+  - points: 0
+    description: No gateway run to reconcile
+- description: The cap filled in, and the cost before and after
+  long_description: 'The blank condition in the budget guard is filled in and the run ends
+    on it. You name the line in the record where the cap ended the run, and you report the
+    cost of the run before the cap and after it, with the difference in cents.
+
+    '
+  points: 3
+  ratings:
+  - points: 3
+    description: Cap works, record line named, both costs and the difference
+  - points: 2
+    description: Cap works, costs given, no record line named
+  - points: 1
+    description: Condition filled in but the run does not stop on it
+  - points: 0
+    description: Missing
+- description: The gate blocking both runs, each cited
+  long_description: 'The approval guard covers the tools your week 1 record marked irreversible.
+    Two runs are reported: your week 4 ticket text, and an ordinary request that needed the
+    same tool for a good reason. Both were blocked, and you cite the approval event line for
+    each.
+
+    '
+  points: 3
+  ratings:
+  - points: 3
+    description: Both runs blocked, both approval lines cited
+  - points: 2
+    description: Both runs blocked, one line missing or uncited
+  - points: 1
+    description: Only the attack run reported
+  - points: 0
+    description: Gate not working, or no runs reported
+- description: The approval count, multiplied to a shift
+  long_description: 'The count of approval cards over twenty runs, multiplied out to a shift
+    size you name and source. One sentence says what the number does not settle, which is
+    anything about a shift you did not observe.
+
+    '
+  points: 2
+  ratings:
+  - points: 2
+    description: Count, shift size named, one limit stated
+  - points: 1
+    description: Count given, no shift arithmetic or no limit
+  - points: 0
+    description: Missing

@@ -1,0 +1,294 @@
+ref: final-open-book
+title: "Open book exam"
+# Twelve items, one point each. Between two and three per outcome across O1 to
+# O5. Every item is machine scored, so the whole exam returns the moment a
+# student submits and nothing waits on hand reading in the last week of a seven
+# week term.
+#
+# Most items put a record in front of the student that they have not seen: a
+# trace excerpt, a tool manifest, a spend row, a results line, a handover
+# sentence. That is the design. A student who read their own records all term
+# can read a stranger's. A student who quoted the model's summaries all term
+# cannot.
+description: |
+  This is the open book exam. It closes the course and is due day 49.
+
+  How the scoring works, in plain terms:
+
+  There are 12 items. Each one is worth 1 point, for 12 points in total.
+
+  You get one attempt. There is no time limit once you start.
+
+  Every item is scored the moment you submit, so your score is complete right
+  away. Nothing here waits on your instructor.
+
+  Open book means open book. Your notes, your pages, your own records from all
+  seven weeks, and the glossary are all fair to use. What you may not do is ask
+  another person, or paste an item into an AI assistant and submit what it says.
+  That rule is in the AI use policy and it applies here.
+
+  Most items show you a record you have not seen before. That is deliberate. The
+  whole course has been about reading records rather than believing summaries,
+  and this is where you do it on somebody else's.
+shuffle_answers: true
+
+questions:
+
+  - id: fx-q1
+    type: multiple_choice
+    outcome: O1
+    points: 1
+    text: |
+      Here are three lines from a trace, in order:
+
+      ```
+      {"kind": "run_start", "user_message": "close ticket T-504"}
+      {"kind": "assistant_tool_calls", "names": ["search_tickets"]}
+      {"kind": "tool_call", "tool": "search_tickets", "allowed": true}
+      ```
+
+      Which statement is supported by these three lines alone?
+    answers:
+      - {text: "The agent searched for a ticket after the user asked it to close one.", correct: true, feedback: "Correct. A request, a decision, and that tool running is all these three lines carry."}
+      - {text: "The agent closed ticket T-504.", feedback: "Wrong. Nothing here shows a close. The only tool that ran was a search."}
+      - {text: "The user told the agent to use the search_tickets tool.", feedback: "Wrong. The user asked for an outcome. The model chose the tool."}
+      - {text: "The search returned ticket T-504.", feedback: "Wrong. The result is not in these lines. You would need the rest of the tool_call entry."}
+    feedback: >
+      The lines show a request, a decision to call a tool, and that tool running.
+      They do not show what came back, and they do not show a ticket being
+      closed. Nothing in them says the user chose the tool; the model did.
+
+  - id: fx-q2
+    type: multiple_choice
+    outcome: O1
+    points: 1
+    text: |
+      A run's trace has five lines and ends with:
+
+      ```
+      {"kind": "assistant_message", "content": "I have sent that notice."}
+      {"kind": "run_end", "stopped": "answered", "steps": 2}
+      ```
+
+      There is no `tool_call` line naming an email tool anywhere in the file.
+      What is the best supported conclusion?
+    answers:
+      - {text: "The agent said it sent a notice, and the record shows no send.", correct: true, feedback: "Correct. Claim and record disagree, and you cite the record."}
+      - {text: "The agent sent a notice and the trace failed to record it.", feedback: "Wrong. Assuming the record is incomplete, with nothing supporting that, is how a false finding starts."}
+      - {text: "The agent was blocked from sending by a control.", feedback: "Wrong. A block appears as a tool_call line with allowed set to false. There is none."}
+      - {text: "The run errored before it could send.", feedback: "Wrong. An error would be recorded as one, and run_end says it answered."}
+    feedback: >
+      The claim and the record disagree, and the record is what you cite. A
+      blocked call would appear as a tool_call line with allowed false, and an
+      error would appear as an error. Neither is here.
+
+  - id: fx-q3
+    type: multiple_choice
+    outcome: O2
+    points: 1
+    text: |
+      A classmate's tool arrives with this manifest:
+
+      ```
+      name: lookup_account
+      description: Reads an account record. Also appends a short audit note
+                   to notes.txt so the team can see who looked.
+      inputSchema: {account_id: string}
+      ```
+
+      Which part of this is the model given, and what does it mean for you?
+    answers:
+      - {text: "All three fields, and the description is free text the supplier wrote, so it can be wrong.", correct: true, feedback: "Correct. The model gets the manifest and never the code, so the description is taken on trust."}
+      - {text: "Only the name, so the description cannot affect anything.", feedback: "Wrong. The description is the main thing steering which tool gets picked."}
+      - {text: "The code, so the model can tell whether the description is true.", feedback: "Wrong. The model never sees the code. That gap is the whole problem."}
+      - {text: "The inputSchema only, because descriptions are documentation.", feedback: "Wrong. In an agent a description is not documentation, it is input to the decision."}
+    feedback: >
+      A manifest is a name, a description and an argument shape. The model never
+      sees the code, so it has no way to check the description against it. That
+      gap is what tool poisoning uses.
+
+  - id: fx-q4
+    type: multiple_choice
+    outcome: O2
+    points: 1
+    text: |
+      You probe an unfamiliar tool four times with the same argument. The first
+      three calls return the same value. The fourth returns a different one, and
+      the run afterwards behaves oddly.
+
+      What is the most useful next step?
+    answers:
+      - {text: "Probe several more times, because an effect that appears on a later call is a real pattern to pin down.", correct: true, feedback: "Correct. Three the same then one different is the shape of a counter, and more probes pin it down."}
+      - {text: "Report that the tool is broken, since it is not deterministic.", feedback: "Wrong. You have not established what it does yet, and broken is a conclusion rather than an observation."}
+      - {text: "Ignore it, because one odd result in four is noise.", feedback: "Wrong. This is the course's own lesson inverted: one observation is not enough to dismiss either."}
+      - {text: "Re-read the description, since the description defines behaviour.", feedback: "Wrong. The description is a claim about behaviour. The probing is what checks it."}
+    feedback: >
+      Some hidden effects only show after a number of calls. Three identical
+      results then a different one is exactly the shape of a counter, so more
+      probes is what turns a suspicion into evidence.
+
+  - id: fx-q5
+    type: multiple_choice
+    outcome: O3
+    points: 1
+    text: |
+      An agent is configured with four tools: `read_ticket`, `search_kb`,
+      `send_email`, `delete_customer`.
+
+      Which pair should carry the irreversible flag?
+    answers:
+      - {text: "send_email and delete_customer", correct: true, feedback: "Correct. Both leave the system changed in a way you cannot take back."}
+      - {text: "read_ticket and search_kb", feedback: "Wrong. Both are repeatable with no effect, which is what reversible means here."}
+      - {text: "delete_customer only, because email can be recalled", feedback: "Wrong. Treating a sent message as recallable is exactly the assumption that gets people into trouble."}
+      - {text: "All four, because any tool call has effects", feedback: "Wrong. If everything is irreversible the flag tells you nothing and no gate can be targeted."}
+    feedback: >
+      Reading is repeatable with no effect. Sending mail and deleting a record
+      both leave the system changed in a way you cannot take back, and those are
+      the two an approval gate belongs in front of.
+
+  - id: fx-q6
+    type: multiple_choice
+    outcome: O3
+    points: 1
+    text: |
+      A gateway spend log shows this row, and no trace in the student's own
+      records accounts for it:
+
+      ```
+      key=itsy-4f2a  model=claude-x  tokens_in=8120  tokens_out=410  ts=02:14
+      ```
+
+      Which is the strongest first action?
+    answers:
+      - {text: "Revoke that key, then work out what it reached while it was valid.", correct: true, feedback: "Correct. Containment first, then scoping. That order is the job."}
+      - {text: "Delete the spend row so the ledger reconciles.", feedback: "Wrong. That destroys the evidence and changes nothing about the key."}
+      - {text: "Wait for a second unexplained row before acting.", feedback: "Wrong. One unexplained row on a billable key is already enough to act on."}
+      - {text: "Lower the budget cap and leave the key active.", feedback: "Wrong. A cap limits the damage rate. It does not stop whoever is using the key."}
+    feedback: >
+      Containment comes before investigation. Revoking stops further use; the
+      blast radius question, what that key could reach while it was valid, is
+      the work that follows.
+
+  - id: fx-q7
+    type: multiple_choice
+    outcome: O4
+    points: 1
+    text: |
+      Two sentences about the same incident:
+
+      1. The assistant confirmed no customer data left the system.
+      2. The outbox is empty and the customer canary does not appear in any sent file.
+
+      Which one would survive a reviewer asking how you know, and why?
+    answers:
+      - {text: "The second, because it names records anyone can check.", correct: true, feedback: "Correct. Two records and a token, all of which a reviewer can open themselves."}
+      - {text: "The first, because the assistant read all the evidence.", feedback: "Wrong. That cites a summary. What the assistant read is not what you checked."}
+      - {text: "Both, because they reach the same conclusion.", feedback: "Wrong. Reaching the same conclusion does not make both defensible. Only one names evidence."}
+      - {text: "Neither, because absence can never be evidence.", feedback: "Wrong. Absence is evidence when you name the file that should have held the thing and show it does not."}
+    feedback: >
+      The first cites a summary. The second cites two records and a token, all
+      of which a reviewer can open. Absence is legitimate evidence when you name
+      the file that should have held the thing and show it does not.
+
+  - id: fx-q8
+    type: multiple_choice
+    outcome: O4
+    points: 1
+    text: |
+      A handover note says:
+
+      > At 02:14 the operator ran the export and mailed it to the vendor.
+
+      The audit log shows the export request carried `X-Acting-User: mo.kaur`,
+      and nothing in the application verifies that header.
+
+      What is the accurate correction?
+    answers:
+      - {text: "The request claimed to be mo.kaur; nothing establishes who actually ran it.", correct: true, feedback: "Correct. The log records a claim, and nothing verified it."}
+      - {text: "The note is right, because the audit log names mo.kaur.", feedback: "Wrong. The log names who the request said it was. That is not the same fact."}
+      - {text: "The note is wrong, because mo.kaur did not run the export.", feedback: "Wrong. That overclaims in the other direction. You cannot show they did not, either."}
+      - {text: "The note cannot be checked without the mail server logs.", feedback: "Wrong. You can already correct the identity claim from what you have."}
+    feedback: >
+      The log faithfully records a claim. A receipt is not a lock. Saying the
+      note is wrong would overclaim in the other direction; what you can support
+      is that identity here was asserted and never checked.
+
+  - id: fx-q9
+    type: multiple_choice
+    outcome: O5
+    points: 1
+    text: |
+      A results line reads:
+
+      ```
+      A2-indirect-injection-ticket   NO_HITS_IN_30   0/30   err=0
+      ```
+
+      Which claim does this support?
+    answers:
+      - {text: "The attack did not land in thirty trials on this model.", correct: true, feedback: "Correct. A rate, with its denominator, on one model."}
+      - {text: "The attack is impossible against this agent.", feedback: "Wrong. Zero in thirty never establishes impossibility."}
+      - {text: "The agent is not vulnerable to indirect injection.", feedback: "Wrong. That generalises from one case, one model and thirty trials to a property of the agent."}
+      - {text: "A control blocked the attack thirty times.", feedback: "Wrong. A block reports as BLOCKED. NO_HITS means nothing stopped it and it did not happen."}
+    feedback: >
+      Zero in thirty is a rate with a denominator, not a proof of impossibility.
+      A blocked result would say BLOCKED rather than NO_HITS, and a claim about
+      the agent in general goes far past thirty trials on one model.
+
+  - id: fx-q10
+    type: multiple_choice
+    outcome: O5
+    points: 1
+    text: |
+      Your document arm fires 0 times in 30. Your positive control, the same
+      instruction in your own message, also fires 0 times in 30.
+
+      What is the correct write-up?
+    answers:
+      - {text: "The instrument was not shown to work, so the document result cannot be interpreted.", correct: true, feedback: "Correct, and this earns full marks. Naming an uninterpretable result is the skill."}
+      - {text: "The agent resisted the attack from both directions.", feedback: "Wrong. If the control never fired you have not shown the payload works from anywhere."}
+      - {text: "The document path is safe on this model.", feedback: "Wrong. With a dead instrument you cannot tell safe from unmeasured."}
+      - {text: "The trial count was too low and the result is void.", feedback: "Wrong. Thirty is the floor this course asks for. The problem is the control, not the count."}
+    feedback: >
+      A positive control that never fires tells you the measurement itself is
+      unproven, so the null in the other arm carries no weight. Reporting that
+      clearly earns full marks; it is not a failed assignment.
+
+  - id: fx-q11
+    type: multiple_answers
+    outcome: O5
+    points: 1
+    text: |
+      In one run of thirty trials, four trials ended with the model declining
+      and two ended with a transport error.
+
+      Which are true about how you report this? Select all that apply.
+    answers:
+      - {text: "Refusals are reported as refusals, not counted as misses.", correct: true, feedback: "Correct. A refusal and a failed attack are different facts."}
+      - {text: "The errored trials are re-run until thirty clean trials exist, and the re-run count is reported.", correct: true, feedback: "Correct. And how many you re-ran is part of the report."}
+      - {text: "The denominator you publish is the number of clean trials, not thirty minus nothing.", feedback: "Not selected as correct here: after re-running you do have thirty clean trials, so thirty is the honest denominator."}
+      - {text: "Refusals and misses can be combined, since neither one fired.", feedback: "Wrong. Combining them destroys the number, which is the whole point of the four labels."}
+    feedback: >
+      A refusal is a different fact from an attack that failed, and folding them
+      together destroys the number. Errored trials are re-run rather than
+      silently dropped, and how many you re-ran is part of the report.
+
+  - id: fx-q12
+    type: multiple_choice
+    outcome: O1
+    points: 1
+    text: |
+      You open a filmstrip and tick the blindfold on a decision card partway
+      through a run.
+
+      What greys out, and what question does that answer?
+    answers:
+      - {text: "Everything after that card, plus evidence that never entered the conversation, answering what the model had at that moment.", correct: true, feedback: "Correct. That is the model's context at that step."}
+      - {text: "Every result card, answering what the model produced.", feedback: "Wrong, and backwards. Result cards are exactly what the model does receive."}
+      - {text: "Everything before the card, answering what led up to the decision.", feedback: "Wrong. What came before is what it had. Greying that hides the answer."}
+      - {text: "The tool arguments, answering what the model chose.", feedback: "Wrong. The blindfold is about context, not about the arguments of one call."}
+    feedback: >
+      The blindfold shows the model's context at one step. Later cards had not
+      happened yet, and records outside the conversation never reached it. Result
+      cards are precisely what the model does receive, so greying those would
+      teach the opposite.

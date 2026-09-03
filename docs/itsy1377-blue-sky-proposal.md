@@ -192,6 +192,12 @@ final week.
 
 ## 4a. Points, and what happens when the gateway is not there
 
+**The college requires a final exam and an earlier version of this matrix had
+none.** All hundred points sat in the seven weeks, which is a defensible
+assessment design and not a permitted one. The weekly rows are thirteen points
+now rather than fifteen, and the twelve that frees up carry an open book exam in
+a final block. The sibling course already had one; only this one was missing it.
+
 Two earlier drafts referred to this section as the answer to the governance rule
 in section 10 and to the continuity question in section 10a, and it did not
 exist. Review was right that this is the load-bearing missing piece: without it
@@ -231,13 +237,14 @@ instructional resource. Review found exactly that and it was right.
 
 | Wk | Graded artifact | Pts | If the gateway is unavailable |
 |---|---|---:|---|
-| **1** | The working agent, the six deliberate breaks with what changed in each, and the irreversibility flag on each tool with a one-line reason | 15 | The mock drives the same six breaks. Break behaviour is scripted, so this week is nearly identical either way |
-| **2** | Two description edits, one that moved the trial grid and one that did not, both grids attached, and the student's account of why | 15 | The mock's tool choice is a seeded function of the description text, so an edit moves the grid or does not. The reading of the grid is what is graded |
-| **3** | Three reports on classmates' tools: what each really does, and the evidence line that shows it | 15 | Needs the sandbox on the school server, not the gateway. Unaffected by a contract lapse and blocked by a server outage |
-| **4** | The document grid, the positive-control grid, and the bounded claim the pair supports | 15 | The mock's injection-following rate is seeded per student, so some see a null and some do not. The claim is graded, not the outcome |
-| **5** | The cost prediction, the runaway trace, the cap in the student's own code, and the before-and-after difference. **Ten of these fifteen points require a real gateway run**, of any size and any outcome, reconciled against the ledger | 15 | Five points on the mock's synthetic arithmetic. The other ten wait: the outage policy extends the deadline. If the contract never lands, the row converts to the mock, the banner rides on the artifact, and the course records that it graded a simulation |
+| **1** | The working agent, the six deliberate breaks with what changed in each, and the irreversibility flag on each tool with a one-line reason | 13 | The mock drives the same six breaks. Break behaviour is scripted, so this week is nearly identical either way |
+| **2** | Two description edits, one that moved the trial grid and one that did not, both grids attached, and the student's account of why | 13 | The mock's tool choice is a seeded function of the description text, so an edit moves the grid or does not. The reading of the grid is what is graded |
+| **3** | Three reports on classmates' tools: what each really does, and the evidence line that shows it | 13 | Needs the sandbox on the school server, not the gateway. Unaffected by a contract lapse and blocked by a server outage |
+| **4** | The document grid, the positive-control grid, and the bounded claim the pair supports | 13 | The mock's injection-following rate is seeded per student, so some see a null and some do not. The claim is graded, not the outcome |
+| **5** | The cost prediction, the runaway trace, the cap in the student's own code, and the before-and-after difference. **Eight of these thirteen points require a real gateway run**, of any size and any outcome, reconciled against the ledger | 15 | Five points on the mock's synthetic arithmetic. The other ten wait: the outage policy extends the deadline. If the contract never lands, the row converts to the mock, the banner rides on the artifact, and the course records that it graded a simulation |
 | **6** | One containment ticket on a supplied form: the sequence, the call, the containment order and blast radius, the reconciliation, and the wrong sentence in the handover note | 15 | **Unaffected.** The packs are fixed bytes authored before the term and the handover note is written by hand, so this week needs neither the gateway nor a model. It is the one week an outage cannot touch |
 | **7** | The gauntlet: attacks submitted, defences turned on, and a short account of one defence that held and one that did not | 10 | Both rounds run against the mock. Needs the class board, so a server outage blocks it |
+| **Final** | The open book exam. Twelve machine-scored items, two or three per outcome across O1 to O5, each putting a record the student has not seen in front of them | 12 | **Unaffected.** The items are authored and the records are fixed, so this needs neither the gateway nor a model |
 | | **Total** | **100** | |
 
 **Two claims an earlier version of this table made that were false.** It said
