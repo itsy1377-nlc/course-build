@@ -210,7 +210,20 @@ def render(tape: Path, out_dir: Path, labs: Path, use_docker: bool = True,
             "tar -C /src --exclude=.git --exclude=.venv --exclude=wheels -cf - . "
             "| tar -C /work -xf - && "
             f"cd {shlex.quote(scene_cwd(tape))} 2>/dev/null || cd /work; "
+            # The model runs on the host. Inside the container 127.0.0.1 is the
+            # container, so every agent.cli scene recorded a connection error
+            # instead of a run, and did it fast enough to look like a timing
+            # problem rather than a broken recording.
+            "sed -i 's|127\\.0\\.0\\.1:11434|host.docker.internal:11434|g' "
+            "config/lab.config.yaml 2>/dev/null || true; "
             "python -m target.seed >/dev/null 2>&1; "
+            # Every scene is its own container run, so a target started
+            # in one scene's setup is gone by the next one. A scene that
+            # asks the agent about a ticket then records the model
+            # apologising that the service is unreachable. Start it here
+            # so every scene has one, and let a scene's own setup start
+            # a second harmlessly.
+            "(python -m target.app >/tmp/target.log 2>&1 &); sleep 4; "
             f"\n{prelude}"
             f"cd /tapes && vhs {shlex.quote(tape.name)}"
         )

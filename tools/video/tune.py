@@ -38,18 +38,24 @@ import yaml
 WORDS_PER_SECOND = 2.6      # Kokoro at the configured voice
 TYPING_SECONDS_PER_CHAR = 0.055   # Set TypingSpeed 55ms in tape.py
 PRE_ENTER_PAUSE = 0.45
-SHELL_OVERHEAD = 0.6        # prompt redraw, capture settling
+SHELL_OVERHEAD = 0.35        # prompt redraw, capture settling
 
 # How long a command itself takes before output lands. Anything not matched
 # here is assumed instant, which is true of ls, wc, cut and friends.
 RUNTIME_HINTS = (
-    (re.compile(r"agent\.cli|harness\.runner"), 12.0),
+    # Order matters: the first match wins, so the cheap --list forms come
+    # before the expensive ones they would otherwise match.
+    (re.compile(r"harness\.runner.*--list"), 1.5),
+    (re.compile(r"agent\.replay\s+--list"), 1.3),
+    (re.compile(r"agent\.replay"), 1.5),
+    (re.compile(r"agent\.cli"), 3.5),    # measured: granite answers a simple
+                                      # request in about three seconds
+    (re.compile(r"harness\.runner"), 12.0),
     (re.compile(r"target\.seed"), 2.0),
-    (re.compile(r"agent\.replay"), 1.2),
-    (re.compile(r"curl"), 0.8),
+    (re.compile(r"curl"), 0.9),
 )
 
-MIN_SETTLE = 2.0
+MIN_SETTLE = 1.5
 MAX_SETTLE = 16.0
 
 

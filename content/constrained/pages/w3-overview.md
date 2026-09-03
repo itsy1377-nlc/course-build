@@ -30,6 +30,11 @@ How a planted instruction reaches the model, and the four steps you score it on.
 Captions and a full transcript are on the player.
 :::
 
+::: video w3-walkthrough | An instruction hidden in content
+A shipped case, run and read, so you can see the shape before you write your own.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

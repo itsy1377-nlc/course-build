@@ -1,0 +1,111 @@
+id: w5-walkthrough
+title: A loop that will not stop
+kind: walkthrough
+module: m05
+embed_on: content/funded/pages/w5-overview.md
+blurb: What a runaway looks like from the inside, and the two guards that end it.
+explains:
+  - content/funded/pages/w5-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 5
+    heading: A loop that will not stop
+    body: Predict the cost first. Then build one and watch.
+    narration:
+      - text: This week you predict what a runaway agent costs, in cents, before
+          you build one.
+      - text: Then you build it, watch the money move, and write the guard that
+          ends it.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Why it runs away
+    heading: Nothing in the loop says stop
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Three boxes with a return path. The model asks for a tool, the tool
+        runs, the result goes back, and the loop repeats with no condition that
+        ends it.
+      nodes:
+        - label: Model asks
+          sub: for a tool
+        - label: Tool runs
+          sub: and costs a call
+        - label: Result goes back
+          sub: and it asks again
+          mark: true
+      loop: nothing here decides to stop
+    narration:
+      - text: The loop has no natural end.
+        reveal: 2
+      - text: Every pass costs a model call, and the result of one pass is the
+          input to the next.
+        reveal: 3
+      - text: If nothing says stop, nothing stops.
+        reveal: 4
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/f5app.log 2>&1 &
+      - sleep 5
+    steps:
+      - run: python -m agent.cli Keep checking every ticket until you are certain
+        settle: 4.3
+    narration:
+      - text: Here is a request with no clear finish line.
+      - text: Watch how many steps it takes before something ends it. What ended
+          it was a limit, not the model deciding it was done.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: python -m agent.replay
+        settle: 7.6
+    narration:
+      - text: The replay shows the same run step by step, and the reason it
+          stopped.
+      - text: On a metered gateway every one of those steps is a line on a bill.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Two guards
+    heading: One counts, one asks
+    items:
+      - A cap, which is a number you fill in
+      - A gate, which asks a person first
+    narration:
+      - text: You build two guards this week.
+        reveal: 1
+      - text: A cap is a number. When spending passes it, the run ends.
+        reveal: 2
+      - text: A gate is different. It pauses before an irreversible action and
+          asks a person.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The finding
+    heading: A gate does not discriminate, it delegates
+    body: It stops the attack. It also stops the legitimate escalation.
+    narration:
+      - text: Here is what you will discover from your own numbers.
+      - text: The gate blocks the attack, and it blocks the legitimate
+          escalation too, because it cannot tell them apart. It hands that
+          judgement to a person.
+      - text: Multiply your approval count out to a full shift and you have
+          measured approval fatigue, from your own data.
+
+  - type: slide
+    layout: closing
+    eyebrow: Ten of the fifteen
+    heading: This week needs a real call
+    body: Any size, any outcome, reconciled against the ledger.
+    narration:
+      - text: Ten of this week's fifteen points need one real gateway run, of
+          any size and any outcome, reconciled against the ledger.
+      - text: It is the only row in the course that does, and it is here because
+          a simulated bill teaches nothing about a real one.

@@ -1,0 +1,111 @@
+id: w3-walkthrough
+title: What the model is handed
+kind: walkthrough
+module: m03
+embed_on: content/funded/pages/w3-overview.md
+blurb: The tool manifest, and why a description you did not write is a supply chain problem.
+explains:
+  - content/funded/pages/w3-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 3
+    heading: What the model is handed
+    body: A name, a description, and a shape for the arguments.
+    narration:
+      - text: This week you receive three tools three classmates specified, with
+          no label saying what they really do.
+      - text: To read one, you first have to know what the model itself is
+          given.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/f3app.log 2>&1 &
+      - sleep 5
+      - python -m agent.cli Summarize ticket T-503 for me > /dev/null 2>&1
+    steps:
+      - run: python -m agent.replay
+        settle: 10.7
+    narration:
+      - text: Look at the top of this run. It lists the tools offered to the
+          model.
+      - text: That list, with a description for each, is the whole of what the
+          model knows about them. It never sees the code.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The shape of it
+    heading: Three fields, one of them is prose
+    diagram:
+      kind: stack
+      alt: >
+        Three stacked layers labelled name, description and inputSchema. The
+        description layer is marked, with a note that it is free text written
+        by whoever supplied the tool.
+      layers:
+        - label: name
+          sub: what to call it
+        - label: description
+          sub: free text, written by whoever supplied the tool
+          mark: true
+        - label: inputSchema
+          sub: the shape of the arguments
+    narration:
+      - text: A tool manifest has three parts.
+        reveal: 1
+      - text: A name, a description, and the shape of the arguments.
+        reveal: 3
+      - text: The middle one is free text written by whoever supplied the tool,
+          and the model treats it as true.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: The name for this
+    heading: This is the supply chain problem
+    body: You are trusting a stranger's sentence about a stranger's code.
+    narration:
+      - text: This shape is what the industry standardised on, and it is what
+          MCP servers publish.
+      - text: When you add somebody else's tool, you are trusting their sentence
+          about their code. ATLAS calls the abuse of that tool poisoning.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: ls target/outbox
+        settle: 4.9
+    narration:
+      - text: So when you investigate a classmate's tool, do not stop at reading
+          it. Check what it touched.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Forty five minutes
+    heading: Four places to look
+    items:
+      - The code you were given
+      - The tool run directly, several times
+      - The filmstrip of a run that used it
+      - The workspace diff, if anything wrote
+    narration:
+      - text: You get forty five minutes and three tools.
+        reveal: 1
+      - text: Read the code. Probe the tool directly, more than once, because
+          some effects only appear on a later call.
+        reveal: 2
+      - text: Watch the filmstrip of a run that used it, and check the diff if
+          anything wrote to disk.
+        reveal: 4
+
+  - type: slide
+    layout: closing
+    eyebrow: What to hand in
+    heading: What it does, and the line that proves it
+    body: A claim without a citation is a guess.
+    narration:
+      - text: For each of the three, say what it really does and give the one
+          piece of evidence that shows it.
+      - text: A claim with no citation is a guess, and this week is where that
+          stops being acceptable.

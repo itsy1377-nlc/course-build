@@ -28,6 +28,11 @@ Four minutes on the class board: which label shows a control working, and why a 
 Captions and a full transcript are on the player.
 :::
 
+::: video w7-walkthrough | Everything on at once
+The full suite with every control enabled, and the case that has to keep working.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

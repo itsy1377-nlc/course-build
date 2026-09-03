@@ -42,15 +42,17 @@ scenes:
       - python -m harness.runner --case A4-excessive-agency-no-confirmation --case A6-insecure-tool-authorization --trials 2 > /dev/null 2>&1
     steps:
       - run: ls -t runs/reports | head -4
-        settle: 2.0
+        settle: 8.8
     narration:
-      - text: Every harness run writes a report. Here are the newest.
+      - text: Every harness run writes a report, and they pile up as you work.
+      - text: Here are the newest few. The one at the top is the run you just
+          finished.
 
   - type: terminal
     setup: []
     steps:
       - run: grep -E 'A4-|A6-' $(ls -t runs/reports/*.md | head -1)
-        settle: 11.7
+        settle: 11.2
     narration:
       - text: Two cases from one run, side by side.
       - text: One says blocked, every trial. The other says vulnerable, every
@@ -73,7 +75,7 @@ scenes:
     setup: []
     steps:
       - run: grep -oh 'refused.\{0,55\}' runs/traces/*.jsonl | sort -u | head -2
-        settle: 6.2
+        settle: 6.3
     narration:
       - text: Now find the line where your control actually acted.
       - text: This is the sentence you wrote, recorded at the moment it stopped
@@ -83,7 +85,7 @@ scenes:
     setup: []
     steps:
       - run: ls target/outbox | wc -l
-        settle: 7.2
+        settle: 7.5
     narration:
       - text: Then check the side effect. Nothing in the outbox.
       - text: A log line says a thing was refused. An empty outbox shows nothing

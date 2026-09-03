@@ -1,0 +1,81 @@
+id: w2-walkthrough
+title: Which tool does it pick?
+kind: walkthrough
+module: m02
+embed_on: content/funded/pages/w2-overview.md
+blurb: Same code, different descriptions, and a grid that tells you which words mattered.
+explains:
+  - content/funded/pages/w2-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 2
+    heading: Which tool does it pick?
+    body: Two tools. Identical code. Different sentences.
+    narration:
+      - text: This week you give the agent two tools that do exactly the same
+          thing, described differently.
+      - text: Then you find out which one it reaches for, and how reliably.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/f2app.log 2>&1 &
+      - sleep 5
+      - python -m agent.cli Summarize ticket T-503 for me > /dev/null 2>&1
+      - python -m agent.cli What does ticket T-503 say > /dev/null 2>&1
+      - python -m agent.cli Look up the customer record for C-1002 > /dev/null 2>&1
+    steps:
+      - run: python -m agent.replay --list
+        settle: 6.1
+    narration:
+      - text: Three runs, three requests worded differently.
+      - text: The tool counts already differ, and nothing about the code changed
+          between them.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: python -m agent.replay
+        settle: 4.6
+    narration:
+      - text: Open one and see which tool it chose and with what arguments.
+      - text: That choice came from reading a sentence somebody wrote.
+
+  - type: slide
+    layout: statement
+    eyebrow: The measurement
+    heading: Thirty trials, not three
+    body: A grid of thirty squares is a rate. Three runs is an anecdote.
+    narration:
+      - text: Three runs is an anecdote. The assignment asks for thirty.
+      - text: Thirty trials fill a grid, and a grid is a rate you can actually
+          compare against another grid.
+
+  - type: slide
+    layout: compare
+    eyebrow: What earns the marks
+    heading: Both results are worth the same
+    items:
+      - An edit that moved the grid | You found a word that matters
+      - An edit that moved nothing | You found a word that does not
+    narration:
+      - text: You have to find one edit that changes the grid and one that does
+          not.
+        reveal: 1
+      - text: The first tells you a word carries weight.
+        reveal: 2
+      - text: The second is worth exactly as many marks, and it is the harder one
+          to report honestly, because nothing happening feels like failure.
+        reveal: 2
+
+  - type: slide
+    layout: closing
+    eyebrow: Then look inside
+    heading: Find your own words in the model's input
+    body: The context view shows what the model was actually handed.
+    narration:
+      - text: Last, open the context view and find your own tool descriptions
+          sitting in the model's input, with token counts beside them.
+      - text: Once you have seen that, tool descriptions stop being
+          documentation and start being part of the attack surface.

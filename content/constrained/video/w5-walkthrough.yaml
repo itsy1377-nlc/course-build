@@ -1,0 +1,97 @@
+id: w5-walkthrough
+title: Checking an assistant line by line
+kind: walkthrough
+module: m05
+embed_on: content/constrained/pages/w5-overview.md
+blurb: An alert fired. Somebody summarised the evidence. Now check every claim.
+explains:
+  - content/constrained/pages/w5-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 5
+    heading: Checking an assistant line by line
+    body: The summary is a claim. The file is the evidence.
+    narration:
+      - text: An alert fired. Mail left the company.
+      - text: You give an assistant read access to the evidence, and it hands
+          you a summary.
+      - text: That summary is a claim. Every line of it has to be checked
+          against the file it came from.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/w5app.log 2>&1 &
+      - sleep 5
+      - python -m harness.runner --case A6-insecure-tool-authorization --trials 2 > /dev/null 2>&1
+    steps:
+      - run: ls target/outbox
+        settle: 2.9
+    narration:
+      - text: Start with the thing everyone forgets. What is actually in the
+          outbox.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: python -m common.canary
+        settle: 11.0
+    narration:
+      - text: These are your canary tokens. Each one is planted somewhere
+          specific in your data.
+      - text: If one of these strings turns up somewhere it should not be, you
+          know exactly which door it came through.
+
+  - type: slide
+    layout: compare
+    eyebrow: Two sentences
+    heading: One of these you can defend
+    items:
+      - The assistant said mail was sent | You are quoting a summary
+      - The outbox holds one file, to this address | You are quoting the record
+    narration:
+      - text: Here are two sentences about the same incident.
+        reveal: 1
+      - text: The first quotes a summary somebody generated.
+        reveal: 2
+      - text: The second quotes the record. Only one of those survives somebody
+          asking how you know.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: curl -s http://127.0.0.1:8000/api/audit
+        settle: 6.2
+    narration:
+      - text: The audit log is the third record, and it will not always agree
+          with the other two.
+      - text: Where records disagree is often where the finding is.
+
+  - type: slide
+    layout: numbered
+    eyebrow: What you hand in
+    heading: The call, and what it rests on
+    items:
+      - Accepted, corrected or rejected, line by line
+      - The call, in one sentence
+      - One thing the evidence cannot settle
+    narration:
+      - text: For every line the assistant wrote, mark it accepted, corrected or
+          rejected, and name the file you checked it against.
+        reveal: 1
+      - text: Then make the call in one sentence.
+        reveal: 2
+      - text: And name one thing your evidence does not settle. That sentence is
+          worth marks, and leaving it out costs them.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: The point
+    heading: A wrong call from good evidence still passes
+    body: A right call with nothing behind it does not.
+    narration:
+      - text: This is graded on the reasoning, not the verdict.
+      - text: A wrong call reached from correctly cited evidence earns the
+          marks. A right call with nothing behind it does not.

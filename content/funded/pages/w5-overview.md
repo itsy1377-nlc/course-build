@@ -30,6 +30,11 @@ Four minutes on why every pass of the loop is billed, and what each of this week
 Captions and a full transcript are on the player.
 :::
 
+::: video w5-walkthrough | A loop that will not stop
+What a runaway looks like from the inside, and the two guards that end it.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

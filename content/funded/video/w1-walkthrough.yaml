@@ -1,0 +1,100 @@
+id: w1-walkthrough
+title: Twenty minutes, start to finish
+kind: walkthrough
+module: m01
+embed_on: content/funded/pages/w1-setup-walkthrough.md
+blurb: One function, one decorator, and a model deciding to call it.
+explains:
+  - content/funded/pages/w1-setup-walkthrough.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 1
+    heading: Twenty minutes, start to finish
+    body: You change one line. The model does the rest by itself.
+    narration:
+      - text: Twenty minutes from opening your notebook to watching a model call
+          your own code.
+      - text: You will not write a function from nothing. You change one line of
+          one that already works.
+
+  - type: slide
+    layout: numbered
+    eyebrow: What you actually do
+    heading: Three edits, and none of them are from scratch
+    items:
+      - Change one line in a working four line function
+      - Add one decorator above it
+      - Run it, and watch the model decide
+    narration:
+      - text: Three edits.
+        reveal: 1
+      - text: Change one line in a function that already runs. Add one decorator
+          above it, which tells the agent this function may be called.
+        reveal: 2
+      - text: Then run, and the model decides on its own whether to use it.
+        reveal: 3
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/f1app.log 2>&1 &
+      - sleep 5
+    steps:
+      - run: python -m agent.cli Summarize ticket T-503 for me
+        settle: 4.9
+    narration:
+      - text: Here it goes. You asked for a summary.
+      - text: Nothing in your code chose a tool. The model read the descriptions
+          and picked one.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: python -m agent.replay
+        settle: 10.3
+    narration:
+      - text: The replay walks the same run in plain language.
+      - text: Read the line that says the model asked for a tool. That is the
+          hardest idea in the course, and it is right there in one sentence.
+
+  - type: slide
+    layout: statement
+    eyebrow: Then break it
+    heading: Six deliberate breaks
+    body: Delete the description. Make it raise. Take the tool away.
+    narration:
+      - text: Then you break it six ways on purpose and watch what changes each
+          time.
+      - text: Delete the description and the model stops picking it. Make it
+          fail and watch what the agent does next.
+      - text: A reset cell puts everything back whenever you want, so there is
+          nothing you can break permanently.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The security part
+    heading: Then answer one question per tool
+    items:
+      - Can I undo this?
+      - Why, in one line
+      - What would a person need to see before approving it?
+    narration:
+      - text: Finally the part that makes this a security course.
+        reveal: 1
+      - text: For every tool, can you undo it, and why.
+        reveal: 2
+      - text: And what a person would need to see before approving it. You will
+          use that third answer again in week five when you build the gate.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If it fights you
+    heading: Ask early, not at midnight
+    body: The check cell tells you what is wrong before the model is involved.
+    narration:
+      - text: If something does not run, use the check cell first. It says in
+          plain words what is wrong before a model is ever called.
+      - text: If that does not settle it, post on the questions board. Being
+          stuck in week one is normal and it is not a verdict on you.

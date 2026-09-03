@@ -1,0 +1,82 @@
+id: w7-walkthrough
+title: Turning every control on
+kind: walkthrough
+module: m07
+embed_on: content/constrained/pages/w7-overview.md
+blurb: The controls report, and the benign case that has to keep passing.
+explains:
+  - content/constrained/pages/w7-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 7
+    heading: Turning every control on
+    body: Your defences against the class, and theirs against you.
+    narration:
+      - text: Last week you built one control and measured it.
+      - text: This week every control goes on at once, and the class points
+          their attacks at it.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/w7app.log 2>&1 &
+      - sleep 5
+      - python -m harness.runner --trials 2 > /dev/null 2>&1
+    steps:
+      - run: grep -A4 Controls $(ls -t runs/reports/*.md | head -1)
+        settle: 6.2
+    narration:
+      - text: Every report opens with the controls, and this is why.
+      - text: If a control failed, nothing else in the report can be trusted,
+          and the run stops.
+
+  - type: slide
+    layout: statement
+    eyebrow: The rule
+    heading: A control that breaks the job is not a control
+    body: The benign case has to pass on every trial.
+    narration:
+      - text: The benign escalation is an ordinary, legitimate request.
+      - text: If your defences block that too, you have not secured the agent.
+          You have broken it.
+      - text: Passing the attack and failing the benign case is the most common
+          way this week goes wrong.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: grep -cE 'VULNERABLE|BLOCKED|NO_HITS' $(ls -t runs/reports/*.md | head -1)
+        settle: 3.6
+    narration:
+      - text: Then count your verdicts across the whole suite.
+      - text: One number per case, and every one of them has a denominator
+          behind it.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Round one, then round two
+    heading: You get one revision
+    items:
+      - Run your control against the class pool
+      - Read what got through and why
+      - One revision, then one more run
+    narration:
+      - text: The round is live.
+        reveal: 1
+      - text: Read what got through and, more usefully, why.
+        reveal: 2
+      - text: You get one revision and one more run. Changing something you
+          cannot explain is how people lose ground in round two.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: Then the evidence file
+    heading: Point your finished control at week 3
+    body: Does it stop the instruction you wrote yourself?
+    narration:
+      - text: Finally, point your finished control back at the attack you wrote
+          in week three.
+      - text: Does it hold against your own work? Whatever the answer, that
+          measurement goes in your evidence file with its numbers.

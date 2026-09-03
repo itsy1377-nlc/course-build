@@ -1,0 +1,85 @@
+id: w2-walkthrough
+title: Five runs of the same request
+kind: walkthrough
+module: m02
+embed_on: content/constrained/pages/w2-overview.md
+blurb: What varies between runs, and why one run never settles anything.
+explains:
+  - content/constrained/pages/w2-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 2
+    heading: Five runs of the same request
+    body: Same words in. Not the same run out.
+    narration:
+      - text: This week you send one request several times and compare what the
+          agent did each time.
+      - text: Same words going in. Not the same run coming out.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/w2app.log 2>&1 &
+      - sleep 5
+      - python -m agent.cli Summarize ticket T-503 for me > /dev/null 2>&1
+      - python -m agent.cli Summarize ticket T-503 for me > /dev/null 2>&1
+      - python -m agent.cli Summarize ticket T-503 for me > /dev/null 2>&1
+      - python -m agent.cli Which customer opened ticket T-503 > /dev/null 2>&1
+    steps:
+      - run: python -m agent.replay --list
+        settle: 5.9
+    narration:
+      - text: Here are four runs. Three of them sent exactly the same request.
+      - text: Look at the tool call counts. They are not all the same number.
+
+  - type: slide
+    layout: statement
+    eyebrow: Not a bug
+    heading: A model is not a function
+    body: Same input, different path, same afternoon.
+    narration:
+      - text: If this were an ordinary program you would file a bug.
+      - text: It is not a bug. A model picks its next move from probabilities,
+          so the same request can take a different path each time.
+      - text: Your job is not to make that go away. It is to measure it.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: python -m agent.replay
+        settle: 6.7
+    narration:
+      - text: Open one run and read what it actually did.
+      - text: Then open another and compare. That comparison is the whole
+          assignment.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The word
+    heading: One run is a trial, not a result
+    items:
+      - One run tells you something happened once
+      - Five runs tell you roughly how often
+      - Zero out of five is not the same as impossible
+    narration:
+      - text: This is where the course starts using the word trial.
+        reveal: 1
+      - text: One run tells you a thing happened once. Five tell you roughly how
+          often.
+        reveal: 2
+      - text: And zero out of five never means impossible. It means you did not
+          see it in five.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Report what varied, not what you hoped
+    body: Five runs, what changed between them, and one sentence on what that means.
+    narration:
+      - text: Run the same request five times, then five different ordinary
+          requests.
+      - text: Report what changed between runs, what stayed the same, and one
+          sentence on what a single run can and cannot tell you.
+      - text: Being precise about that is the habit every later week rests on.

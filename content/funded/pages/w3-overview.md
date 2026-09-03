@@ -27,6 +27,11 @@ Four minutes on the tool card, and why a sentence can be true and still hide wha
 Captions and a full transcript are on the player.
 :::
 
+::: video w3-walkthrough | What the model is handed
+The tool manifest, and why a description you did not write is a supply chain problem.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

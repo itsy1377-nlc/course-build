@@ -1,0 +1,106 @@
+id: w3-walkthrough
+title: An instruction hidden in content
+kind: walkthrough
+module: m03
+embed_on: content/constrained/pages/w3-overview.md
+blurb: A shipped case, run and read, so you can see the shape before you write your own.
+explains:
+  - content/constrained/pages/w3-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 3
+    heading: An instruction hidden in content
+    body: The agent reads a record. The record tells it to do something.
+    narration:
+      - text: This week you plant an instruction inside content the agent reads,
+          and see how far it gets.
+      - text: You will write your own. First, watch a shipped one so you know
+          what the shape looks like.
+
+  - type: slide
+    layout: diagram
+    eyebrow: Why it works at all
+    heading: Where the instruction gets in
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. A ticket holds text. A tool reads it. The
+        result is added to the conversation. The model reads it as instruction.
+      nodes:
+        - label: A ticket
+          sub: somebody else wrote it
+        - label: A tool reads it
+          sub: doing its job
+        - label: Result joins the chat
+          sub: as ordinary text
+          mark: true
+        - label: The model reads it
+          sub: and cannot tell it apart
+    narration:
+      - text: The ticket is data written by somebody else.
+        reveal: 1
+      - text: A tool reads it, which is the tool doing its job.
+        reveal: 2
+      - text: The result gets added to the conversation as ordinary text.
+        reveal: 3
+      - text: And nothing marks it as data rather than instruction. That is the
+          whole vulnerability.
+        reveal: 4
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/w3app.log 2>&1 &
+      - sleep 5
+      - python -m harness.runner --case A5-trusted-internal-kb-injection --trials 2 > /dev/null 2>&1
+    steps:
+      - run: python -m harness.runner --list
+        settle: 4.5
+    narration:
+      - text: The harness ships eight cases. This is the catalogue.
+      - text: You will not submit any of these. Yours is the one you write.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: grep -E 'A5-' $(ls -t runs/reports/*.md | head -1)
+        settle: 7.6
+    narration:
+      - text: Here is the result for a case that hides an instruction in a staff
+          written article.
+      - text: Read the status word and the rate together. Neither one means
+          anything alone.
+
+  - type: slide
+    layout: statement
+    eyebrow: The important part
+    heading: The record decides, not the answer
+    body: Look for the side effect, not for what the agent told you.
+    narration:
+      - text: Whatever the agent replied on screen is not your evidence.
+      - text: Your evidence is a side effect, such as a file in the outbox, a canary
+          token that moved, a row in the audit log.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: ls target/outbox
+        settle: 7.9
+    narration:
+      - text: So check the outbox. If mail left, there is a file here.
+      - text: An empty listing is a finding too, and you report it as one.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: Predict first, then run
+    body: Write down what you expect before you see it.
+    narration:
+      - text: Write your instruction, name the door you are aiming at, and
+          predict what will happen before you run anything.
+      - text: Then run it, read the records, and say whether your prediction
+          held.
+      - text: Being wrong and saying why is worth full marks. Guessing right and
+          not knowing why is not.

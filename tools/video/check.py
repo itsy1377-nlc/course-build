@@ -9,6 +9,7 @@ terminal text, the rendered stylesheet, the built file sizes, the manifest.
 
 from __future__ import annotations
 
+import os
 import json
 import re
 import subprocess
@@ -83,7 +84,11 @@ def check_embedded(videos: list[schema.Video], problems: list[str]) -> None:
     """Every ::: video block resolves, and every scene list is actually used."""
     known = {v.id: v for v in videos}
     embedded: set[str] = set()
-    for page in sorted((ROOT / "content").rglob("*.md")):
+    # Only this course tree. Scanning all of content/ made the constrained
+    # run fail on a funded page and the reverse, because each course has
+    # its own videos and its own pages.
+    for page in sorted((ROOT / os.environ.get("ITSY_CONTENT", "content"))
+                       .rglob("*.md")):
         for video_id in schema.embedded_ids(page.read_text(encoding="utf-8")):
             embedded.add(video_id)
             if video_id not in known:

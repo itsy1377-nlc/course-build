@@ -27,6 +27,11 @@ Four minutes on turning an alert into a call you can defend, one record at a tim
 Captions and a full transcript are on the player.
 :::
 
+::: video w5-walkthrough | Checking an assistant line by line
+An alert fired. Somebody summarised the evidence. Now check every claim.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

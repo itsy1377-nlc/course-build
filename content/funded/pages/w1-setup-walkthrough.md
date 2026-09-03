@@ -1,3 +1,8 @@
+::: video w1-walkthrough | Twenty minutes, start to finish
+One function, one decorator, and a model deciding to call it.
+Captions and a full transcript are on the player.
+:::
+
 ::: keyfacts | The short version
 | Question | Answer |
 |---|---|

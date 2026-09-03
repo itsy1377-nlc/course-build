@@ -41,7 +41,7 @@ scenes:
     steps:
       - run: python -m target.seed
         wait: "Start the app"
-        settle: 13.0
+        settle: 10.3
     narration:
       - text: First, build your own copy of the practice data.
       - text: This makes customers, tickets and articles that belong to you.
@@ -55,7 +55,7 @@ scenes:
     steps:
       - run: curl -s http://127.0.0.1:8000/api/health
         wait: "db_path"
-        settle: 8.0
+        settle: 7.3
     narration:
       - text: In your first window, start the target and leave it running.
       - text: Then check it is alive. If you see this, the target is up and
@@ -90,9 +90,9 @@ scenes:
   - type: terminal
     setup: []
     steps:
-      - run: python -m agent.cli "Summarize ticket T-1001 for me"
+      - run: python -m agent.cli "Summarize ticket T-503 for me"
         wait: "\\$|>"
-        settle: 8.0
+        settle: 7.1
     narration:
       - text: Here it goes. The agent reads your request, decides it needs the
           ticket, calls the tool that reads tickets, and answers from what came
@@ -116,9 +116,9 @@ scenes:
     setup: []
     steps:
       - run: ls -t runs/traces | head -3
-        settle: 4.0
+        settle: 3.1
       - run: wc -l runs/traces/$(ls -t runs/traces | head -1)
-        settle: 4.0
+        settle: 3.1
     narration:
       - text: Your traces live in this folder, newest first.
       - text: Each one is a small file with one line per thing that happened.

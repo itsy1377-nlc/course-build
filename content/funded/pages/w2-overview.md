@@ -29,6 +29,11 @@ Four minutes on why the model picks from your sentence, and why one run cannot t
 Captions and a full transcript are on the player.
 :::
 
+::: video w2-walkthrough | Which tool does it pick?
+Same code, different descriptions, and a grid that tells you which words mattered.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

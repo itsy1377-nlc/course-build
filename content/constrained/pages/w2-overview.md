@@ -26,6 +26,11 @@ Why two runs of one request can differ, and why every count carries the number o
 Captions and a full transcript are on the player.
 :::
 
+::: video w2-walkthrough | Five runs of the same request
+What varies between runs, and why one run never settles anything.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

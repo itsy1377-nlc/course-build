@@ -30,6 +30,11 @@ Why your own attack is a weak test, and which result words count as evidence.
 Captions and a full transcript are on the player.
 :::
 
+::: video w7-walkthrough | Turning every control on
+The controls report, and the benign case that has to keep passing.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

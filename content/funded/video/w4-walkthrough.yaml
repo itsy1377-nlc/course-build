@@ -1,0 +1,93 @@
+id: w4-walkthrough
+title: Two arms, and what they prove
+kind: walkthrough
+module: m04
+embed_on: content/funded/pages/w4-overview.md
+blurb: The document arm, the positive control, and the claim the pair actually supports.
+explains:
+  - content/funded/pages/w4-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 4
+    heading: Two arms, and what they prove
+    body: Thirty trials each. Neither number means much alone.
+    narration:
+      - text: This week you run the same instruction two ways and compare.
+      - text: Thirty trials in each arm, and neither number means much on its
+          own.
+
+  - type: slide
+    layout: compare
+    eyebrow: The design
+    heading: The same words, from two places
+    items:
+      - In a document the agent reads | The attack you are testing
+      - In your own message | The positive control
+    narration:
+      - text: First arm, the instruction is hidden in a document the agent
+          reads.
+        reveal: 1
+      - text: Second arm, you say the same thing yourself, in your own message.
+        reveal: 2
+      - text: That second arm is the positive control, and without it the first
+          number is uninterpretable.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/f4app.log 2>&1 &
+      - sleep 5
+      - python -m harness.runner --case A2-indirect-injection-ticket --case A4-excessive-agency-no-confirmation --trials 2 > /dev/null 2>&1
+    steps:
+      - run: grep -E 'A2-|A4-' $(ls -t runs/reports/*.md | head -1)
+        settle: 8.2
+    narration:
+      - text: Here are two shipped cases run together, so you can see what a
+          pair of results looks like side by side.
+      - text: Different status words, different rates, same afternoon and same
+          model.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Four labels
+    heading: A trial is one of four things
+    items:
+      - Injected, it fired
+      - Missed, it did not
+      - Refused, the model declined
+      - Errored, the run broke
+    narration:
+      - text: Every trial gets exactly one of four labels.
+        reveal: 2
+      - text: A refusal is not a miss. The model declining is a different fact
+          from the attack failing, and counting them together destroys your
+          number.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: The honest sentence
+    heading: What a null actually supports
+    body: It fired from the user turn and not from the document, in these trials, on this model.
+    narration:
+      - text: Suppose the document arm never fires and the control does.
+      - text: That does not prove documents are safe. It proves that in these
+          trials, on this model, the instruction fired from a trusted position
+          and not from the document.
+      - text: Write that sentence, with both denominators. It is the whole
+          deliverable.
+
+  - type: slide
+    layout: closing
+    eyebrow: The one people fear
+    heading: A control that never fires still earns full marks
+    body: Provided you say the instrument was not shown to work.
+    narration:
+      - text: And here is the case students worry about most. Your positive control
+          never fires either.
+      - text: That earns full marks, provided you say plainly that the
+          instrument was not shown to work, so the document result cannot be
+          interpreted.
+      - text: Being unable to conclude, and knowing it, is the outcome this week
+          is built to produce.

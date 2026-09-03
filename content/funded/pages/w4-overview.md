@@ -30,6 +30,11 @@ Four minutes on why a ticket can give an order, and why this week runs two grids
 Captions and a full transcript are on the player.
 :::
 
+::: video w4-walkthrough | Two arms, and what they prove
+The document arm, the positive control, and the claim the pair actually supports.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

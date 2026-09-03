@@ -30,6 +30,11 @@ Four minutes on the request nobody had to hide, and why a log records without de
 Captions and a full transcript are on the player.
 :::
 
+::: video w4-walkthrough | Reading the audit log
+What the target wrote down while your agent worked, and what it did not.
+Captions and a full transcript are on the player.
+:::
+
 ::: tasks | Tasks
 | # | Task | Where | Due |
 |---|---|---|---|

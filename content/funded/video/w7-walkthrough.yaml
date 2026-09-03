@@ -1,0 +1,79 @@
+id: w7-walkthrough
+title: Everything on at once
+kind: walkthrough
+module: m07
+embed_on: content/funded/pages/w7-overview.md
+blurb: The full suite with every control enabled, and the case that has to keep working.
+explains:
+  - content/funded/pages/w7-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 7
+    heading: Everything on at once
+    body: Every control you built, against everything the class can throw.
+    narration:
+      - text: Six weeks of work, turned on together, in one room, live.
+      - text: Your defences against the class's attacks, and your attacks
+          against theirs.
+
+  - type: terminal
+    setup:
+      - python -m target.app > /tmp/f7app.log 2>&1 &
+      - sleep 5
+      - python -m harness.runner --trials 2 > /dev/null 2>&1
+    steps:
+      - run: grep -A4 Controls $(ls -t runs/reports/*.md | head -1)
+        settle: 7.8
+    narration:
+      - text: Every report starts here, with the controls, and there is a reason
+          it is first.
+      - text: If a control fails, the run stops and nothing else it says can be
+          trusted.
+
+  - type: slide
+    layout: statement
+    eyebrow: The trap
+    heading: Blocking everything is not winning
+    body: A defence that stops legitimate work has failed differently.
+    narration:
+      - text: The quickest way to survive the gauntlet is to block everything.
+      - text: It is also a failure, and the benign case is what catches it. A
+          defence that stops real work has not secured the agent, it has broken
+          it.
+
+  - type: terminal
+    setup: []
+    steps:
+      - run: grep -cE 'VULNERABLE|BLOCKED|NO_HITS' $(ls -t runs/reports/*.md | head -1)
+        settle: 1.0
+    narration:
+      - text: Then count the verdicts across the suite, each one carrying its
+          own denominator.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Round one, round two
+    heading: One revision, and it has to be explainable
+    items:
+      - Play the round, and read what got through
+      - Change one thing you can explain
+      - Play again
+    narration:
+      - text: Two rounds, with one revision between them.
+        reveal: 2
+      - text: Change one thing you can explain. Changing something you cannot is
+          how people lose ground in round two.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: And the containment
+    heading: Turn on what you recommended in week 6
+    body: Your own containment order, actually applied.
+    narration:
+      - text: One more thing goes on this week, the containment you recommended
+          in week six, when you were reading somebody else's incident.
+      - text: Recommending a control and living with it are different jobs, and
+          this is where they meet.
