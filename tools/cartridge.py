@@ -384,6 +384,13 @@ def _files_meta(entries: list[tuple[str, str]]) -> str:
             '</fileMeta>\n')
 
 
+def _staging_dir(root):
+    """Per course tree. This was shared, and it silently replaced one course's
+    pages with the other's after an otherwise correct import."""
+    rel = os.environ.get("ITSY_CONTENT", "content").rsplit("/", 1)[-1]
+    return root / "build" / ("cartridge" if rel == "content" else f"cartridge-{rel}")
+
+
 def build(out_path: Path, session: str = "fall-flex-2", quiet: bool = False) -> Path:
     course = load_course()
     notes: list[str] = []
@@ -397,7 +404,7 @@ def build(out_path: Path, session: str = "fall-flex-2", quiet: bool = False) -> 
 
     dates = DateMap(session)
     titles = _titles(course)
-    staging = BUILD / "cartridge"
+    staging = _staging_dir(ROOT)
     if staging.exists():
         shutil.rmtree(staging)
     (staging / "course_settings").mkdir(parents=True)

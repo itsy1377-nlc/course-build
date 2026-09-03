@@ -55,6 +55,14 @@ from tools.import_cartridge import Canvas, ImportError_, credentials, public_url
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
 
+def _staging_dir(root):
+    """Per course tree. This was shared between the two courses, and the second
+    build's pages were written over the first course after a correct import."""
+    rel = os.environ.get("ITSY_CONTENT", "content").rsplit("/", 1)[-1]
+    return root / "build" / ("cartridge" if rel == "content" else f"cartridge-{rel}")
+
+
+
 CANVAS_TYPE = {
     "multiple_choice": "multiple_choice_question",
     "true_false": "true_false_question",
@@ -333,7 +341,7 @@ def _staged_assignments() -> dict[str, str]:
     folder, and the title is the only stable key shared with the API, so it is
     read back out of the document Canvas was given.
     """
-    staging = ROOT / "build" / "cartridge"
+    staging = _staging_dir(ROOT)
     out: dict[str, str] = {}
     if not staging.exists():
         return out
@@ -371,7 +379,7 @@ def _staged_html() -> dict[str, str]:
     same content the import uploaded, still carrying its $IMS-CC-FILEBASE$
     tokens, which repair() then resolves against the live files.
     """
-    staging = ROOT / "build" / "cartridge" / "wiki_content"
+    staging = _staging_dir(ROOT) / "wiki_content"
     if not staging.exists():
         return {}
     return {path.stem: path.read_text(encoding="utf-8") for path in staging.glob("*.html")}
