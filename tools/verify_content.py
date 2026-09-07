@@ -37,13 +37,44 @@ import argparse
 import json
 import re
 import sys
+from functools import lru_cache
 from pathlib import Path
 
 import yaml
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
-LABS = ROOT / "labs"
+
+
+def _content_root() -> Path:
+    """Which course this is checking.
+
+    This tool is shared by three courses. Two live at the repository root under
+    content/funded and content/constrained; the third lives in builder/ and has
+    its own content root, its own docs/ and its own lab/.
+
+    Everything below used to hang off ROOT, so running it against builder/
+    checked builder's pages while reading the SIBLING courses' docs/ and
+    labs/. It reported ATLAS findings from another course and said nothing
+    about this one. Same failure as the readability tool had, and the same
+    fix: derive the whole tree from the course being checked.
+    """
+    named = os.environ.get("ITSY_CONTENT")
+    if named:
+        return ROOT / named
+    here = Path.cwd() / "content"
+    if (here / "course.yaml").is_file():
+        return here          # a course that lives in a subdirectory
+    return ROOT / "content"
+
+
+CONTENT = _content_root()
+# The course's own tree, which is ROOT for the two sibling courses and
+# builder/ for this one. docs/ and the lab code are siblings of content/.
+COURSE = CONTENT.parent
+# builder/ calls it lab/; the older trees call it labs/. Take whichever exists
+# so a missing directory does not silently make every path check vacuous.
+LABS = next((COURSE / n for n in ("labs", "lab") if (COURSE / n).is_dir()),
+            COURSE / "labs")
 
 
 class Finding:
@@ -103,6 +134,23 @@ STUDENT_CREATES = {
 }
 
 
+@lru_cache(maxsize=1)
+def _student_creates() -> frozenset[str]:
+    """The names above, plus whatever this course declares for itself.
+
+    The set was written for the two courses at the repository root and named
+    their artifacts only. Pointing this tool at builder/ made every "turn in
+    week3_grounding.json" line a finding, sixteen of them, none real. A gate
+    that cries wolf sixteen times is a gate people learn to scroll past.
+    """
+    names = set(STUDENT_CREATES)
+    spec = CONTENT / "course.yaml"
+    if spec.is_file():
+        raw = yaml.safe_load(spec.read_text(encoding="utf-8")) or {}
+        names.update(str(n) for n in raw.get("student_creates") or [])
+    return frozenset(names)
+
+
 def check_commands(findings: list[Finding]) -> None:
     for path in _all_authored():
         text = path.read_text(encoding="utf-8")
@@ -119,9 +167,9 @@ def check_commands(findings: list[Finding]) -> None:
                     where, f"tells a student to run `python -m {module}`, "
                            f"which does not exist in labs/"))
         for script in set(SCRIPT_RE.findall(text)):
-            if Path(script).name in STUDENT_CREATES:
+            if Path(script).name in _student_creates():
                 continue
-            if not (LABS / script).exists() and not (ROOT / script).exists():
+            if not (LABS / script).exists() and not (COURSE / script).exists():
                 findings.append(Finding(
                     where, f"tells a student to run `python {script}`, "
                            f"which does not exist"))
@@ -145,9 +193,9 @@ def check_paths(findings: list[Finding]) -> None:
                     "In the student repository, labs/ IS the root. Drop the prefix."))
                 cited = cited[len("labs/"):]
             name = Path(cited).name
-            if "*" in cited or cited.startswith((".", "runs/")) or name in STUDENT_CREATES:
+            if "*" in cited or cited.startswith((".", "runs/")) or name in _student_creates():
                 continue
-            if (LABS / cited).exists() or (ROOT / cited).exists():
+            if (LABS / cited).exists() or (COURSE / cited).exists():
                 continue
             # Prose often names a file by its basename alone: "open llm.py".
             # That is how people talk, so resolve it that way, and only
@@ -240,7 +288,7 @@ def _mapping_documents() -> list[Path]:
     checked anyway, because the wrong claim survived for as long as it did by
     sitting in exactly these files where no gate was looking.
     """
-    docs = ROOT / "docs"
+    docs = COURSE / "docs"
     # archive/ is deliberately excluded. Those documents are snapshots of what
     # was believed when they were written, and holding a snapshot to today's
     # case files would either falsify the record or block the build on history.
@@ -315,6 +363,16 @@ def check_mapping_is_generated(findings: list[Finding]) -> None:
     course = _yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
     mode = (course.get("course") or {}).get("framework_mapping", "full")
     target = CONTENT / "pages" / "framework-alignment.md"
+    if mode == "none":
+        # A course that cites no framework has no table to generate. Say so,
+        # rather than reporting "ok" and letting a reader think the mapping was
+        # checked, and rather than crashing on shared data it never needed.
+        if target.exists():
+            findings.append(Finding(
+                target.relative_to(ROOT).as_posix(),
+                "exists, but the course declares framework_mapping: none",
+                "Either delete the page or declare the mode it is really in."))
+        return
     if mode == "course-only":
         if not target.exists():
             findings.append(Finding(
@@ -353,7 +411,14 @@ def _runner_statuses() -> set[str]:
     """
     import ast
 
-    source = (LABS / "harness" / "runner.py").read_text(encoding="utf-8")
+    runner = LABS / "harness" / "runner.py"
+    if not runner.is_file():
+        # This course has no attack-run harness. Returning an empty set makes
+        # check_statuses report any status token it finds, which is the right
+        # answer: a page claiming MITIGATED with nothing to produce it is the
+        # failure this check exists for.
+        return set()
+    source = runner.read_text(encoding="utf-8")
     tree = ast.parse(source)
     found: set[str] = set()
 
@@ -393,6 +458,17 @@ def _runner_statuses() -> set[str]:
 
 def check_statuses(findings: list[Finding]) -> None:
     known = _runner_statuses() | {"ERRORED", "FLAKY", "OK", "NO_HITS", "BLOCKED"}
+    if not (LABS / "harness" / "runner.py").is_file():
+        # Say which case this is. A course with no harness and no status tokens
+        # is fine; the same silence would otherwise be indistinguishable from a
+        # check that ran and found nothing, which is how three vacuous gates in
+        # this repository came to report "ok" for months.
+        used = {t for p in _all_authored()
+                for t in STATUS_RE.findall(p.read_text(encoding="utf-8"))}
+        if not used:
+            print("  (no attack-run harness in this course, and no status "
+                  "tokens in its content: nothing to check)")
+            return
     for path in _all_authored():
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
@@ -491,15 +567,30 @@ def check_points(findings: list[Finding]) -> None:
 
 
 def check_lab_data(findings: list[Finding]) -> None:
-    customers = json.loads((LABS / "target" / "seed" / "customers.json")
-                           .read_text(encoding="utf-8"))
+    seed = LABS / "target" / "seed"
+    if not (seed / "customers.json").is_file():
+        # No seeded target application in this course. The ids this check
+        # polices are C-#### and T-###; if the content never uses one there is
+        # nothing to verify, and saying so beats printing "ok".
+        used = {m for p in _all_authored()
+                for m in re.findall(r"\bC-\d{4}\b|\bT-\d{3}\b",
+                                    p.read_text(encoding="utf-8"))}
+        if not used:
+            print("  (no seeded target app in this course, and no C-/T- ids "
+                  "in its content: nothing to check)")
+            return
+        findings.append(Finding(
+            "content", f"cites seed ids {', '.join(sorted(used))} but "
+            f"{seed.relative_to(ROOT).as_posix()} does not exist"))
+        return
+    customers = json.loads((seed / "customers.json").read_text(encoding="utf-8"))
     ids = {c["id"] for c in customers}
-    tickets = json.loads((LABS / "target" / "seed" / "tickets.json")
-                         .read_text(encoding="utf-8"))
+    tickets = json.loads((seed / "tickets.json").read_text(encoding="utf-8"))
     ticket_ids = {t["id"] for t in tickets}
 
     # Shared infrastructure lives at content/ root and serves both course trees.
-    shared_docs = [ROOT / "content" / "AUTHORING.md", ROOT / "content" / "QUIZZES.md"]
+    shared_docs = [CONTENT / "AUTHORING.md", CONTENT / "QUIZZES.md",
+                   ROOT / "content" / "AUTHORING.md", ROOT / "content" / "QUIZZES.md"]
     for path in _all_authored() + [p for p in shared_docs if p.exists()]:
         text = path.read_text(encoding="utf-8")
         where = path.relative_to(ROOT).as_posix()
@@ -561,6 +652,18 @@ def check_quiz_points(findings: list[Finding]) -> None:
                 f"items add to {total:g} points, course.yaml says {row['points']}"))
 
 
+# Checks that only mean something for a course with the attack-run harness.
+# Skipping them is announced rather than silent: an inapplicable check and a
+# check that quietly found nothing look identical in a log, and this repository
+# has already shipped three gates that reported "ok" while examining no files.
+HARNESS_CHECKS = {"case file field names",
+                  "no case file discards a repeated key"}
+
+
+def _has_harness() -> bool:
+    return (LABS / "harness").is_dir()
+
+
 CHECKS = [
     ("commands students are told to run", check_commands),
     ("file paths cited in the content", check_paths),
@@ -586,6 +689,9 @@ def main(argv: list[str] | None = None) -> int:
     total = 0
     for label, check in CHECKS:
         if args.only and args.only not in label:
+            continue
+        if label in HARNESS_CHECKS and not _has_harness():
+            print(f"\n{label}: skipped, this course has no lab/harness")
             continue
         findings: list[Finding] = []
         check(findings)

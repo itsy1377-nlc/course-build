@@ -26,6 +26,7 @@ reach students. A promise is not a control.
 from __future__ import annotations
 
 import argparse
+import os
 import subprocess
 import sys
 import time
@@ -82,8 +83,12 @@ def main(argv: list[str] | None = None) -> int:
 
     # Only worth running when the pipeline is installed. A contributor who has
     # not built any video should not be blocked by a gate about video.
-    if (ROOT / "tools" / "video" / ".venv").exists() and any(
-            (ROOT / "content" / "video").glob("*.yaml")):
+    # The course tree is chosen by ITSY_CONTENT, exactly as it is for every
+    # other gate. A hardcoded content/video pointed at no tree at all when a
+    # course lived somewhere else, so the video gate stayed silent instead of
+    # failing on pages that embed a video id no scene list produces.
+    video_dir = ROOT / os.environ.get("ITSY_CONTENT", "content") / "video"
+    if (ROOT / "tools" / "video" / ".venv").exists() and any(video_dir.glob("*.yaml")):
         checks.append(("video is current, captioned, and gives nothing away",
                        [video_python, "-m", "tools.video.check"], ROOT, None))
 

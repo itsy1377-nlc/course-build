@@ -10,6 +10,11 @@
 course:
   name: Agentic AI and Security Operations
   code: ITSY-1377-000
+  # This course teaches prompt injection through its own corpus rather than
+  # by citing MITRE ATLAS, and carries no framework-alignment page. Declared
+  # rather than left absent, because the default is 'full' and that made the
+  # gate try to regenerate a table this course does not have.
+  framework_mapping: none
   canvas_id: 6
   # Canvas weights the groups; points then set weight inside a group.
   apply_group_weights: true
@@ -168,6 +173,20 @@ never_ship:
   - week5_loop_test.py
   - week6_injection_test.py
   - weekly-answer-keys.md
+
+# Files the student produces by running a lab. They are absent from this
+# repository on purpose, so a page telling somebody to make one is correct
+# rather than broken. Declared here rather than guessed, for the same reason
+# student_files is an allowlist: a gate that infers this from the filesystem
+# passes whenever the filesystem happens to agree with it.
+student_creates:
+  - week1_first_calls.txt
+  - week2_classification.json
+  - week3_grounding.json
+  - week4_tool_calls.json
+  - week5_loop_trace.json
+  - week6_guardrails.json
+  - week7_triage_report.txt
 
 modules:
   # Module order follows the template: Orientation, Student Resources, Q & A,

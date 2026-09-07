@@ -36,11 +36,62 @@ from pathlib import Path
 import textstat
 
 ROOT = Path(__file__).resolve().parents[1]
-CONTENT = ROOT / os.environ.get("ITSY_CONTENT", "content")
+
+
+def _content_root() -> Path:
+    """Which course this is measuring, and say so out loud.
+
+    This tool is shared by three courses. Two live at the repository root
+    under content/funded and content/constrained, so a default of ROOT/content
+    finds both. The third lives in builder/ and has its own content root.
+
+    Defaulting to ROOT/content while standing in builder/ measured the two
+    SIBLING courses and reported them as passing. That is worse than failing:
+    the page budgets never ran on the course being edited, and a reading over
+    its limit went unnoticed through a day of edits.
+    """
+    named = os.environ.get("ITSY_CONTENT")
+    if named:
+        return ROOT / named
+    here = Path.cwd() / "content"
+    if (here / "course.yaml").is_file():
+        return here          # a course that lives in a subdirectory
+    return ROOT / "content"
+
+
+CONTENT = _content_root()
 
 MAX_GRADE = 8.0
 TARGET_GRADE = 7.0
 MAX_SENTENCE_WORDS = 15.0
+
+# A second bar, for documents staff read rather than students.
+#
+# The ceilings above are written for a page a student reads in a browser. They
+# are the wrong ceilings for a blueprint, a spec, an instructor guide or a
+# memo, which are read the way a professional reads a reference document.
+# Holding those to nine word sentences makes them worse.
+#
+# The numbers come from docs/writing-standard.md section 1.1. They were being
+# asserted in a status note and checked by hand, because this tool had no
+# notion of them: it applied the student ceilings to every staff document, so a
+# 6,852 word contract read as over a 1,400 word page budget and a 16.6 word
+# average sentence read as a failure when the bar is 18.
+STAFF_MAX_GRADE = 9.5
+STAFF_MAX_SENTENCE_WORDS = 18.0
+STAFF_LONGEST_SENTENCE = 45
+
+# The user's own words, kept verbatim on purpose. Neither bar applies.
+VERBATIM_STEMS = {"build-prompt-v1.3", "program-manager-suggested-outcomes"}
+
+
+def is_staff_doc(path: Path) -> bool:
+    """True for a document written for staff rather than for a student."""
+    try:
+        path.resolve().relative_to(CONTENT.resolve())
+    except ValueError:
+        return True
+    return False
 
 # How long a page is allowed to be, by what kind of page it is.
 #
@@ -95,7 +146,13 @@ PAGE_BUDGET = {
     # warning about pasting real data. Same budget as course-policies, which is
     # the comparable page, rather than the 500 first guessed at.
     "what-is-logged":          650,
-    "glossary":               1600,   # searched, not read, but not unbounded
+    # A glossary is a reference page: nobody reads it end to end, and the page
+    # says so. Its budget is a cap on sprawl, not a cap on how many terms the
+    # course may teach. content/AUTHORING.md section 6 promises 112 terms are
+    # available without redefinition, and the entries for them do not fit in
+    # 1,600 weighted words. Raised rather than cutting a term a student needs
+    # to fit a number chosen before the terms existed.
+    "glossary":               1800,   # searched, not read, but not unbounded
 }
 
 # Pages whose job is to be complete rather than short: reference material an
@@ -160,6 +217,16 @@ class PageReport:
     budget: int = 0
 
 
+def _terminate(marker: re.Pattern, text: str) -> str:
+    """End every line that starts with `marker`, unless it already ends."""
+    out = []
+    for line in text.split("\n"):
+        if marker.match(line) and line.rstrip() and line.rstrip()[-1] not in ".?!:;,":
+            line = line.rstrip() + "."
+        out.append(line)
+    return "\n".join(out)
+
+
 def strip_for_measurement(text: str) -> tuple[str, int]:
     """Remove everything a readability formula would score dishonestly."""
     before = len(text)
@@ -173,7 +240,18 @@ def strip_for_measurement(text: str) -> tuple[str, int]:
     text = INLINE_CODE_RE.sub(" ", text)
     text = PATH_RE.sub(" ", text)
     text = FRAMEWORK_RE.sub(" ", text)
+    # A heading and a list item each end a unit of reading, but neither carries
+    # terminating punctuation. Stripping the marker alone glued them to what
+    # followed, so the splitter saw one enormous sentence: four bullets under a
+    # colon measured as a single 74 word sentence whose real prose was 20.
+    # Every document with a colon-introduced list failed on an artifact.
+    #
+    # Terminating them costs nothing and is the truer reading: a bullet is a
+    # unit a reader takes in on its own, so counting it as one is closer to
+    # what the measure is for than gluing four together.
+    text = _terminate(HEADING_RE, text)
     text = HEADING_RE.sub("", text)
+    text = _terminate(LIST_MARKER_RE, text)
     text = LIST_MARKER_RE.sub("", text)
     text = re.sub(r"[*_#>]+", " ", text)
     text = re.sub(r"[ \t]+", " ", text)
@@ -186,7 +264,7 @@ def _sentences(text: str) -> list[str]:
     return [p.strip() for p in parts if len(p.split()) >= 3]
 
 
-def check_text(text: str, name: str, limit: float, enforced: bool) -> PageReport:
+def check_text(text: str, name: str, limit: float, enforced: bool, staff: bool = False) -> PageReport:
     clean, excluded = strip_for_measurement(text)
     sentences = _sentences(clean)
     words = len(clean.split())
@@ -208,13 +286,16 @@ def check_text(text: str, name: str, limit: float, enforced: bool) -> PageReport
             f"grade level {grade} is above the limit of {limit}. Shorten sentences "
             f"and replace long words where a short one exists."
         )
-    if average > MAX_SENTENCE_WORDS:
+    max_avg = STAFF_MAX_SENTENCE_WORDS if staff else MAX_SENTENCE_WORDS
+    max_one = STAFF_LONGEST_SENTENCE if staff else 40
+    if average > max_avg:
         problems.append(
-            f"average sentence is {average} words, and the limit is {MAX_SENTENCE_WORDS}. "
+            f"average sentence is {average} words, and the limit is {max_avg}. "
             f"Split the long ones."
         )
-    if max(lengths) > 40:
-        problems.append(f"one sentence is {max(lengths)} words long. Break it up.")
+    if max(lengths) > max_one:
+        problems.append(f"one sentence is {max(lengths)} words long, and the limit "
+                        f"is {max_one}. Break it up.")
 
     return PageReport(
         path=name, enforced=enforced, limit=limit, words=words, sentences=len(sentences),
@@ -232,8 +313,25 @@ ORIENTATION = {"welcome-start-here", "meet-your-instructor", "course-policies",
 
 
 def page_kind(path: Path) -> str | None:
-    """What kind of page this is, which decides how long it may be."""
+    """What kind of page this is, which decides how long it may be.
+
+    A length budget is a statement about a page a student reads in a browser.
+    It means nothing for a document written for the program manager or for a
+    curriculum committee, and applying one anyway produced a false failure on
+    every file under docs/: code-ledger.md is a 6,852 word contract that lists
+    every function in the course, and it was being marked over a 1,400 word
+    student page budget.
+
+    So anything outside the content directory carries no budget. The reading
+    grade, the sentence length and the paragraph length are still measured and
+    still reported, because those are the program manager bar and they do
+    apply. Only the page length stops being enforced.
+    """
     stem = path.stem
+    try:
+        path.resolve().relative_to(CONTENT.resolve())
+    except ValueError:
+        return None
     if stem in NO_BUDGET:
         return None
     if path.parent.name == "assignments":
@@ -297,12 +395,32 @@ def _paragraphs(text: str) -> list[str]:
     return out
 
 
+def label_for(path: Path) -> str:
+    """The name to print for a file: repo-relative when it is inside the repo.
+
+    --file used to be handed straight to relative_to(), which raises on a
+    relative path, so `--file builder/content/pages/w3-content.md` died in a
+    traceback and only an absolute path worked. That is the form a person
+    types, and the form every authoring instruction gives, so the gate was
+    unusable exactly where it is most needed. Resolve first, and fall back to
+    the path as given for a file outside the repository.
+    """
+    resolved = path.resolve()
+    try:
+        return str(resolved.relative_to(ROOT))
+    except ValueError:
+        return str(path)
+
+
 def check_file(path: Path) -> PageReport:
     stem = path.stem
-    enforced = stem not in EXEMPT_STEMS
-    limit = STRICTER.get(stem, MAX_GRADE)
+    staff = is_staff_doc(path)
+    # The user's own words, kept verbatim. Neither bar applies to them.
+    enforced = stem not in EXEMPT_STEMS and stem not in VERBATIM_STEMS
+    default_grade = STAFF_MAX_GRADE if staff else MAX_GRADE
+    limit = STRICTER.get(stem, default_grade)
     text = path.read_text(encoding="utf-8")
-    report = check_text(text, str(path.relative_to(ROOT)), limit, enforced)
+    report = check_text(text, label_for(path), limit, enforced, staff=staff)
 
     kind = page_kind(path)
     report.kind = kind or "reference"
@@ -367,6 +485,13 @@ def main(argv: list[str] | None = None) -> int:
             print(text)
             return 0 if not failures else 1
 
+    # Say which tree this measured. Without this line the tool reported a
+    # sibling course as passing for a whole day of edits to a different one.
+    try:
+        shown = CONTENT.relative_to(ROOT)
+    except ValueError:
+        shown = CONTENT
+    print(f"measuring: {shown}")
     print(f"{'page':50} {'kind':12} {'grade':>6} {'words':>6} {'budget':>7}")
     print("-" * 88)
     for report in sorted(reports, key=lambda r: (r.passed, -r.body_words)):

@@ -144,17 +144,67 @@ def check_captions(videos: list[schema.Video], problems: list[str]) -> None:
                             f"runs {duration:.1f}s. {duration - last:.1f}s is uncaptioned.")
 
 
+def _code_lines(path) -> list[str]:
+    """The real source lines of an answer file, whatever it is stored in.
+
+    A .py file is its own source. A notebook is JSON, and reading it as text
+    yields lines like `    "def build_facts(parsed):\n",` which carry escaped
+    newlines and wrapping quotes. Nothing on a slide or in a terminal can ever
+    equal one of those, so a gate comparing against them cannot fire, and it
+    reports clean because it found nothing rather than because nothing leaked.
+
+    Measured on this course: 3,265 of 3,265 lines extracted from the seven
+    solution notebooks were in JSON string form. The notebooks have to be
+    decoded, so they are.
+    """
+    text = path.read_text(encoding="utf-8", errors="ignore")
+    if path.suffix != ".ipynb":
+        return text.splitlines()
+    try:
+        notebook = json.loads(text)
+    except ValueError:
+        return text.splitlines()
+    out: list[str] = []
+    for cell in notebook.get("cells", []):
+        if cell.get("cell_type") != "code":
+            continue
+        source = cell.get("source")
+        if isinstance(source, list):
+            out.extend("".join(source).splitlines())
+        elif isinstance(source, str):
+            out.extend(source.splitlines())
+    return out
+
+
 def _solution_lines() -> set[str]:  # noqa: D401
     """Every distinctive line of the worked solution and the extension points."""
     lines: set[str] = set()
     for path in _CFG.answer_files():
-            for line in path.read_text(encoding="utf-8", errors="ignore").splitlines():
-                stripped = line.strip()
-                # Short or comment-only lines match by accident. A real leak is
-                # a substantial line of code.
-                if len(stripped) >= 24 and not stripped.startswith("#"):
-                    lines.add(stripped)
+        for line in _code_lines(path):
+            stripped = line.strip()
+            # Short or comment-only lines match by accident. A real leak is
+            # a substantial line of code.
+            if len(stripped) >= 24 and not stripped.startswith("#"):
+                lines.add(stripped)
     return lines
+
+
+def check_answer_globs(problems: list[str]) -> None:
+    """Every answer pattern has to find its files, or the gate below is blind.
+
+    check_no_spoilers compares the captured screen against the lines in the
+    answer files. A pattern that matches nothing contributes no lines, and the
+    gate then passes because there was nothing to find rather than because
+    nothing leaked. Those two look identical in the output, so they are told
+    apart here instead.
+    """
+    missing = _CFG.unmatched_answer_globs()
+    if missing:
+        _fail(problems, "answer_globs match no files: " + ", ".join(missing)
+              + ". The no-spoiler gate reads those files, so it is checking "
+                "less than the config says it is.")
+    if not _CFG.answer_files():
+        _fail(problems, "no answer files at all, so the no-spoiler gate cannot fire")
 
 
 def check_no_spoilers(videos: list[schema.Video], problems: list[str]) -> None:
@@ -228,17 +278,96 @@ def check_no_readers(videos: list[schema.Video], problems: list[str]) -> None:
                                     f"Reading source on screen hands over the answer.")
 
 
+# The identifiers a course uses for the cases a lab collects. The first is the
+# A1..A6 / control naming two courses in this repository use. The second and
+# third are ITSY 1377's corpus emails, which appear either as a full slug
+# (013-vetchmoor-census-correction) or as prose (email 018, emails 001 and 004).
+# A gate that knows only one course's naming reports clean on every other
+# course, which is what happened here: the A1..A6 pattern matches nothing in
+# ITSY 1377, so this check had never examined anything.
+_CASE_PATTERNS = [
+    re.compile(r"\b((?:A[1-6]|control)-[a-z0-9-]+)"),
+    re.compile(r"\b(\d{3}-[a-z][a-z0-9-]{2,})\b"),
+]
+_EMAIL_PROSE = re.compile(r"\bemails?\s+((?:\d{3})(?:\s*(?:,|and|or)\s*\d{3})*)",
+                          re.IGNORECASE)
+
+
+def _cases(text: str) -> set[str]:
+    """Every case identifier in a piece of text, normalised to its number."""
+    found: set[str] = set()
+    for pattern in _CASE_PATTERNS:
+        for hit in pattern.findall(text):
+            found.add(hit.split("-")[0] if hit[:3].isdigit() else hit)
+    for run in _EMAIL_PROSE.findall(text):
+        found.update(re.findall(r"\d{3}", run))
+    return found
+
+
+def _demonstrated_text(video: schema.Video) -> str:
+    """What a walkthrough actually DEMONSTRATES, which is not what it mentions.
+
+    The distinction is the whole check. "The fence record for email 013 is
+    there" is an instruction to look at your own export file; it does not run
+    013. Counting a mention as a demonstration fails a video for telling the
+    student what to check, which is what a walkthrough is for.
+
+    So: anything typed on camera, plus the body of a code scene and the items
+    of a compare scene, which are where a walkthrough shows output. Narration
+    and numbered checklists are excluded, because that is where a video names
+    a case rather than running it.
+    """
+    parts: list[str] = list(video.commands)
+    for scene in video.scenes:
+        if scene.layout in ("code", "compare"):
+            parts.append(scene.body)
+            parts += scene.items
+    return "\n".join(p for p in parts if p)
+
+
+def _run_record_case(video: schema.Video) -> set[str]:
+    """The case a walkthrough's recorded run used, when the course records one.
+
+    This course writes content/video/runs/wN.json when it produces the real
+    run a walkthrough shows. That file names the email, so it is the plainest
+    possible answer to "what does this video demonstrate" and it beats reading
+    the slides. Courses that record nothing fall back to the slides.
+    """
+    match = re.match(r"^(w\d)-", video.id)
+    if not match:
+        return set()
+    path = schema.VIDEO_DIR / "runs" / f"{match.group(1)}.json"
+    if not path.exists():
+        return set()
+    try:
+        record = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:
+        return set()
+    # The run records were written by five different agents and carry the case
+    # under four different keys. A reader that knows one of them silently falls
+    # back to scanning slides, which is a weaker check that then passes by
+    # luck. Look under all of them, and say nothing rather than guess.
+    email = record.get("email_id")
+    if not email:
+        held = record.get("email") or record.get("featured_email")
+        if isinstance(held, str):
+            email = held
+        elif isinstance(held, dict):
+            email = held.get("corpus_id") or held.get("id")
+    email = str(email or "").strip()
+    return {email.split("-")[0]} if email else set()
+
+
 def check_not_own_assignment(videos: list[schema.Video], problems: list[str]) -> None:
     """A walkthrough must not demonstrate the cases its own assignment collects."""
-    case_re = re.compile(r"\b((?:A[1-6]|control)-[a-z0-9-]+)")
     for video in videos:
         if video.kind != "walkthrough":
             continue
         page = ROOT / video.embed_on
         if not page.exists():
             continue
-        assigned = set(case_re.findall(page.read_text(encoding="utf-8")))
-        shown = {case for command in video.commands for case in case_re.findall(command)}
+        assigned = _cases(page.read_text(encoding="utf-8"))
+        shown = _run_record_case(video) or _cases(_demonstrated_text(video))
         overlap = assigned & shown
         if overlap:
             _fail(problems, f"{video.id} demonstrates {', '.join(sorted(overlap))}, which "
@@ -247,19 +376,38 @@ def check_not_own_assignment(videos: list[schema.Video], problems: list[str]) ->
 
 
 def check_commands_resolve(videos: list[schema.Video], problems: list[str]) -> None:
-    """A command typed on camera has to exist, the same rule pages already follow."""
+    """A command typed on camera has to exist, the same rule pages already follow.
+
+    Two ways this reported "ok" while checking nothing. It matched only
+    `python -m`, so a scene running `python lab.py` was invisible to it; and
+    every scene list in this course is slides, so the loop body never ran at
+    all. Neither was distinguishable from a pass. It now says which case it is
+    and understands both command shapes.
+    """
     module_re = re.compile(r"python\s+-m\s+([a-zA-Z0-9_.]+)")
+    script_re = re.compile(r"python[0-9.]*\s+([a-zA-Z0-9_./-]+\.py)")
+    where = LABS.name if LABS.name else str(LABS)
+    checked = 0
     for video in videos:
         for command in video.commands + video.hidden_commands:
             for module in module_re.findall(command):
                 if module.split(".")[0] in INSTALLED_MODULES:
                     continue
+                checked += 1
                 relative = Path(module.replace(".", "/"))
                 if not ((LABS / relative).with_suffix(".py").exists()
                         or (LABS / relative / "__init__.py").exists()
                         or (LABS / relative).is_dir()):
                     _fail(problems, f"{video.id} runs `python -m {module}`, which does "
-                                    f"not resolve in labs/")
+                                    f"not resolve in {where}/")
+            for script in script_re.findall(command):
+                checked += 1
+                if not (LABS / script).exists() and not any(LABS.rglob(Path(script).name)):
+                    _fail(problems, f"{video.id} runs `python {script}`, which does "
+                                    f"not resolve in {where}/")
+    if not checked:
+        print(f"  (no commands are typed on camera in {len(videos)} scene list(s): "
+              f"nothing to resolve)")
 
 
 def check_size(videos: list[schema.Video], problems: list[str]) -> None:
@@ -291,10 +439,11 @@ def main(argv: list[str] | None = None) -> int:
         ("every declared video is built", lambda: check_built(videos, problems)),
         ("no video is stale against its page", lambda: check_freshness(videos, problems)),
         ("captions cover the audio", lambda: check_captions(videos, problems)),
+        ("answer files the no-spoiler gate reads all exist", lambda: check_answer_globs(problems)),
         ("no solution source on screen", lambda: check_no_spoilers(videos, problems)),
         ("no reader run against source", lambda: check_no_readers(videos, problems)),
         ("no walkthrough runs its own cases", lambda: check_not_own_assignment(videos, problems)),
-        ("commands resolve in labs/", lambda: check_commands_resolve(videos, problems)),
+        ("commands typed on camera resolve", lambda: check_commands_resolve(videos, problems)),
         ("library fits the course quota", lambda: check_size(videos, problems)),
     ]
     for label, run in checks:

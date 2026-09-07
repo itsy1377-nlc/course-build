@@ -38,6 +38,20 @@ def _content_rel() -> str:
     return os.environ.get("ITSY_CONTENT", "content")
 
 
+def _variant_suffix() -> str:
+    """The per-course suffix on build/video and build/video-cache.
+
+    This has to agree with tools/cartridge.py, which reads the same variable
+    and takes the last path segment before comparing it. Comparing the whole
+    relative path instead sent a course tree at builder/content to
+    build/video-content while the cartridge builder looked in build/video, so
+    a page carrying a video block failed with "has not been built" even after
+    the video rendered. Both now compare the last segment.
+    """
+    variant = _content_rel().rsplit("/", 1)[-1]
+    return "" if variant == "content" else "-" + variant
+
+
 def _video_rel() -> Path:
     return Path(_content_rel()) / "video"
 
@@ -89,15 +103,11 @@ class Config:
     def build_dir(self) -> Path:
         # Per course tree, because two courses in one project use the same
         # video ids and would otherwise overwrite each other's renders.
-        rel = _content_rel()
-        suffix = "" if rel == "content" else "-" + rel.rsplit("/", 1)[-1]
-        return self.root / "build" / f"video{suffix}"
+        return self.root / "build" / f"video{_variant_suffix()}"
 
     @property
     def cache_dir(self) -> Path:
-        rel = _content_rel()
-        suffix = "" if rel == "content" else "-" + rel.rsplit("/", 1)[-1]
-        return self.root / "build" / f"video-cache{suffix}"
+        return self.root / "build" / f"video-cache{_variant_suffix()}"
 
     @property
     def records_terminal(self) -> bool:
@@ -129,6 +139,27 @@ class Config:
                 seen.add(p.resolve())
                 unique.append(p)
         return unique
+
+    def unmatched_answer_globs(self) -> list[str]:
+        """Answer patterns that found nothing under any base.
+
+        answer_files() drops a pattern that matches nothing and says so to
+        nobody. That is silence in the one place it cannot be afforded: this
+        list is what the no-spoiler gate compares the captured screen against,
+        so a pattern pointing at the wrong folder means the gate runs, passes,
+        and has checked nothing. It happened. ITSY 1377 pointed
+        `solutions/**/*.ipynb` at a folder one level outside both bases, a
+        third pattern matched, and the gate reported clean while every solution
+        notebook was invisible to it.
+
+        The gate now fails on anything this returns.
+        """
+        bases = [b for b in (self.code_dir, self.root) if b]
+        missing = []
+        for pattern in self.answer_globs:
+            if not any(any(base.glob(pattern)) for base in bases):
+                missing.append(pattern)
+        return missing
 
 
 @lru_cache(maxsize=1)
