@@ -28,19 +28,19 @@ This week your agent asks for four names.
 | `confidence` | a number from 0 to 1 |
 | `indicators` | short facts that support the verdict |
 
-A **verdict** is the agent's judgment on one email. Two values are allowed and nothing else. That is what lets your code group forty answers into two piles.
+A **verdict** is the agent's judgment on one email. Two values are allowed and nothing else. That's what lets your code group forty answers into two piles.
 
-A **category** is the kind of email the agent thinks this is. The seven kinds come from one file in the course corpus. In week 7 you score your agent against that same list. So the words you ask for now are the words you are measured on later.
+A **category** is the kind of email the agent thinks this is. The seven kinds come from one file in the course corpus. In week 7 you score your agent against that same list. So the words you ask for now are the words you're measured on later.
 
 **Confidence** is a number saying how sure the model is. It runs from 0 to 1. Read it as the model's own report, not as a fact about the email. A high number on a wrong answer is still wrong. The number is good for sorting, and for picking out the ones a person should see.
 
-An **indicator** is one short fact behind the verdict, such as a web address that imitates a real one. Ask for a few of these, not an essay. They are the part a person can check.
+An **indicator** is one short fact behind the verdict, such as a web address that imitates a real one. Ask for a few of these, not an essay. They're the part a person can check.
 :::
 
 ::: section | Text that looks like a dictionary is not one
-The model sends back characters. That is all it can send. A reply arrives over the network as text.
+The model sends back characters. That's all it can send. A reply arrives over the network as text.
 
-JSON is a plain text way to write named values. A line of JSON can look exactly like a Python dictionary. It is still text until your code loads it.
+JSON is a plain text way to write named values. A line of JSON can look exactly like a Python dictionary. It's still text until your code loads it.
 
 ```json
 {"verdict": "malicious", "category": "credential_phish",
@@ -48,7 +48,7 @@ JSON is a plain text way to write named values. A line of JSON can look exactly 
  "indicators": ["asks for a password", "web address imitates a real one"]}
 ```
 
-You cannot ask that for its `verdict` yet. Ask, and Python hands you one character. `json.loads()` is the step that turns the text into a dictionary. After it runs, `answer["verdict"]` works.
+You can't ask that for its `verdict` yet. Ask, and Python hands you one character. `json.loads()` is the step that turns the text into a dictionary. After it runs, `answer["verdict"]` works.
 
 Week 0 section 4 covers this move. Sidebar 2B runs it again on a weather reading.
 :::
@@ -84,7 +84,7 @@ A reply can load cleanly and still be no use.
 
 Nothing downstream can act on `phishing_attempt`. A count by category would grow an eighth column that nobody asked for.
 
-Loading is not checking. Loading asks one question: is this text JSON? Checking asks a different one: is this an answer I can act on?
+Loading isn't checking. Loading asks one question: is this text JSON? Checking asks a different one: is this an answer I can act on?
 
 You need both, in that order. Nothing can be checked until the text is a dictionary.
 :::
@@ -102,7 +102,7 @@ Run the **Week 2 sidebar notebook** before you open the lab. All three parts use
 
 2A reads values out of a dictionary by name. 2B turns a line of JSON text into a dictionary. 2C asks a fake gauge up to three times and stops on the first good reading.
 
-The lab does those same three moves on email. The names are different, so you cannot paste sidebar code into the lab.
+The lab does those same three moves on email. The names are different, so you can't paste sidebar code into the lab.
 :::
 
 ::: section | Read part 2 next
@@ -112,7 +112,7 @@ Read it before you open the lab.
 :::
 
 ::: reading | The JSON standard
-This is the standard that defines JSON itself. It is short, and free to read with no account. Read section 1 and section 4, which covers objects.
+This is the standard that defines JSON itself. It's short, and free to read with no account. Read section 1 and section 4, which covers objects.
 
 Ask yourself one thing while you read. Does the standard say anything about which names an object must carry?
 

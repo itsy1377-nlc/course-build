@@ -37,13 +37,13 @@ It previews the week and names that week's common sticking point. Read it before
 :::
 
 ::: section | Grades
-Click **Grades** in the left menu. It lists every graded item, what it is worth, and what you scored.
+Click **Grades** in the left menu. It lists every graded item, what it's worth, and what you scored.
 
 The list fills in as work is graded. Lab scores arrive within one week of the due date.
 :::
 
 ::: section | Feedback
-Feedback does not sit on the Grades list. Open the graded item itself and look under your score.
+Feedback doesn't sit on the Grades list. Open the graded item itself and look under your score.
 
-For a lab, that is the rubric with a comment on each row. A rubric is the table of criteria your work is scored against. For a discussion, the comment appears under your post. Read the rubric before you submit, not after.
+For a lab, that's the rubric with a comment on each row. A rubric is the table of criteria your work is scored against. For a discussion, the comment appears under your post. Read the rubric before you submit, not after.
 :::

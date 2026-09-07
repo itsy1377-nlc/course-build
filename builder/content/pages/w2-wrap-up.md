@@ -1,5 +1,5 @@
 ::: intro
-Week 2 is done. Your agent now answers in a fixed shape, and your code checks that shape before it trusts the answer. Here is what you covered, what you built, and what comes next.
+Week 2 is done. Your agent now answers in a fixed shape, and your code checks that shape before it trusts the answer. Here's what you covered, what you built, and what comes next.
 :::
 
 ::: learned | What you learned
@@ -13,7 +13,7 @@ Week 2 is done. Your agent now answers in a fixed shape, and your code checks th
 | Reasoning block | Text the model writes to itself, stripped before the load |
 | Retry | Asking again, with the reported problems added to the prompt |
 
-Two of those carry the whole week. Loading is not checking. And a retry that sends the same request twice is a retry you paid for and learned nothing from.
+Two of those carry the whole week. Loading isn't checking. And a retry that sends the same request twice is a retry you paid for and learned nothing from.
 :::
 
 ::: did | What you did
@@ -24,7 +24,7 @@ Two of those carry the whole week. Loading is not checking. And a retry that sen
 - You classified four emails and recorded every try, good or bad.
 - You exported `week2_classification.json` and read the file you turned in.
 
-That file holds the check result on every try, including the ones that passed first time. That is the evidence a grader reads without opening your notebook.
+That file holds the check result on every try, including the ones that passed first time. That's the evidence a grader reads without opening your notebook.
 :::
 
 ::: checkpoint | Check yourself
@@ -44,7 +44,7 @@ Answer these five before you move on. The answer sits under each one.
 
 4. Your first try failed. What must the second prompt carry?
 
-    The problems your check reported, in plain words. Without them you are sending the same request again.
+    The problems your check reported, in plain words. Without them you're sending the same request again.
 
 5. All three tries failed. What does your function hand back?
 
@@ -52,7 +52,7 @@ Answer these five before you move on. The answer sits under each one.
 :::
 
 ::: next
-Take the **Week 2 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+Take the **Week 2 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
 Post to the **Week 2 discussion** and reply to one classmate.
 

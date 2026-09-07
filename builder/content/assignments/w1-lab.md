@@ -5,16 +5,16 @@ Eleven to fourteen lines of your own code, in two clearly marked TODO cells. Eve
 :::
 
 ::: directions
-Work down the notebook in order. Run every cell, including the ones you did not write.
+Work down the notebook in order. Run every cell, including the ones you didn't write.
 
-1. Open the **Week 1 lab notebook** at **notebook.bashtion.dev**. It is already there, so there is nothing to download. Read the first two markdown cells.
+1. Open the **Week 1 lab notebook** at **notebook.bashtion.dev**. It's already there, so there's nothing to download. Read the first two markdown cells.
 2. Paste your key into the configuration cell, on the line reading `API_KEY = ""`, then run that cell. It prints **pasted in** once it has your key. If it still says NOT PASTED IN YET, check that you pasted between the two quotation marks.
 3. Run the token counter cell, then the cell holding `send_request()` and `save_artifact()`. Read both. You use them in every week of this course.
 4. Read the markdown cell that says what `ask_model()` has to do.
-5. Fill in **TODO 1**, cell 7. Your `ask_model()` builds the request, merges in `MODEL_EXTRAS`, calls `send_request()`, and returns the answer text. That is 8 to 10 lines.
+5. Fill in **TODO 1**, cell 7. Your `ask_model()` builds the request, merges in `MODEL_EXTRAS`, calls `send_request()`, and returns the answer text. That's 8 to 10 lines.
 6. Run the check cell, cell 8. It asks the model one plain question. An answer plus a token line means your function works.
 7. Run cell 9. It reads email 001 and prints the subject, the sender and the first part of the body.
-8. Fill in **TODO 2**, cell 10. Send that body to the model with the instruction the cell gives you, then print the answer. That is 3 to 4 lines. The instruction is one sentence:
+8. Fill in **TODO 2**, cell 10. Send that body to the model with the instruction the cell gives you, then print the answer. That's 3 to 4 lines. The instruction is one sentence:
 
 ```
 Read the email below. In two sentences, say whether it looks like a phishing attempt, and why.
@@ -41,8 +41,8 @@ If a cell fails, read the last line of the traceback first. The **If something b
 ::: submit
 Three things, and nothing else. No folders, no zip files, no links.
 
-1. **One screenshot.** Capture the output of cell 11, the temperature comparison. One image, with all six answers readable in it. That cell prints no key material, so it is safe to capture. If six answers do not fit, lower your browser zoom and capture again.
-2. **One file.** `week1_first_calls.txt`, attached as a file. Cell 14 writes it and names it. Find it in the file list on the left, right-click it, choose **Download**, then attach it here. Do not paste its text into the box.
+1. **One screenshot.** Capture the output of cell 11, the temperature comparison. One image, with all six answers readable in it. That cell prints no key material, so it's safe to capture. If six answers don't fit, lower your browser zoom and capture again.
+2. **One file.** `week1_first_calls.txt`, attached as a file. Cell 14 writes it and names it. Find it in the file list on the left, right-click it, choose **Download**, then attach it here. Don't paste its text into the box.
 3. **One written answer**, typed into the submission box. Answer all three questions in 3 to 5 sentences.
 
 > Answer all three questions in 3 to 5 sentences. (1) Which of your six answers differed most, and at which temperature? (2) What happened to the token count on email 002, and why? (3) What would you check before trusting this answer in a real ticket?

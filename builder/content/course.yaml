@@ -344,19 +344,3 @@ modules:
       # week 8 is not allowed to add. The wrap-up closes the course; it teaches
       # nothing new and it does not review exam items.
       - {type: page, ref: w8-wrap-up,  title: "Week 8 wrap-up"}
-
-  # ------------------------------------------------------------------
-  # A test module, added for review. It is not part of the taught course.
-  # It holds a warmer rewrite of the three week 1 pages, and the same
-  # overview script narrated by two engines so the voices can be judged
-  # side by side. Nothing here replaces module 1: every ref below is a
-  # test- page that exists only for this comparison. To remove the
-  # experiment, delete this module and the content/pages/test-w1-*.md and
-  # content/video/test-w1-*.yaml files.
-  # ------------------------------------------------------------------
-  - name: "Test: Module 1 rewritten (review only)"
-    published: true
-    items:
-      - {type: page, ref: test-w1-overview, title: "TEST Week 1 overview (warm rewrite)"}
-      - {type: page, ref: test-w1-content, title: "TEST Week 1 reading (warm rewrite)"}
-      - {type: page, ref: test-w1-wrap-up, title: "TEST Week 1 wrap-up (warm rewrite)"}

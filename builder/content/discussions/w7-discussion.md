@@ -12,10 +12,10 @@ Open your week 7 report. Find three numbers: your accuracy, your false positive 
 Post by Thursday. Do three things.
 
 1. Give your three numbers. Name one email your agent got wrong. Say which error it was.
-2. Pick one use case from this week's reading. Do not pick phishing. Your choices are alert triage, log review, documentation, scripting help, vulnerability research, or incident response support.
-3. Name one part of your agent you would have to change for that use case. Say what the change is. Say why it is needed.
+2. Pick one use case from this week's reading. Don't pick phishing. Your choices are alert triage, log review, documentation, scripting help, vulnerability research, or incident response support.
+3. Name one part of your agent you would have to change for that use case. Say what the change is. Say why it's needed.
 
-Then reply to one classmate by Sunday at 11:59 PM Central. Pick someone who chose a different use case. Say one thing their change would break or fix in your own agent. Use one number from your own report. A reply that only agrees does not count.
+Then reply to one classmate by Sunday at 11:59 PM Central. Pick someone who chose a different use case. Say one thing their change would break or fix in your own agent. Use one number from your own report. A reply that only agrees doesn't count.
 
 Keep your post near 150 words. Keep your reply near 60 words.
 
@@ -33,9 +33,9 @@ If your run got all twenty right, say so. Then use the email your agent was leas
 :::
 
 ::: section | The reply
-Pick a post nobody has answered, and one whose use case is not yours. Say what their change would break or fix in your agent, with one of your own numbers.
+Pick a post nobody has answered, and one whose use case isn't yours. Say what their change would break or fix in your agent, with one of your own numbers.
 
-"Same here, good post" is not a reply and earns no points.
+"Same here, good post" isn't a reply and earns no points.
 :::
 
 ::: grading | Grading Criteria

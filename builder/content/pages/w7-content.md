@@ -1,5 +1,5 @@
 ::: intro
-Your agent already judges an email and decides when a person must see it. This week it writes that judgment down, and you measure how often it is right.
+Your agent already judges an email and decides when a person must see it. This week it writes that judgment down, and you measure how often it's right.
 
 Give this page 42 minutes, including 10 for the source at the end.
 :::
@@ -9,7 +9,7 @@ About four minutes. One week 7 run: twenty emails, twenty notes, the score repor
 :::
 
 ::: section | Part one. Who reads a triage note
-A **triage note** is the short written record an analyst leaves after judging one email. It is read later, by someone who was not there.
+A **triage note** is the short written record an analyst leaves after judging one email. It's read later, by someone who wasn't there.
 
 The next person to open the ticket wants the judgment and the facts behind it. Five lines are for them. The person who reported the email wants to know whether she was right, and the last line is for her.
 
@@ -36,9 +36,9 @@ The action is one of five set values, and it has to fit the verdict. Your note p
 ::: section | The last line is not for you
 A **plain-language summary** is two short sentences for the person who reported the email, written in everyday words.
 
-Priya Castellanos in accounts payable is not an analyst. Write "spf softfail" and she has learned nothing. She wants to know whether anything happened to her, and what happens now.
+Priya Castellanos in accounts payable isn't an analyst. Write "spf softfail" and she has learned nothing. She wants to know whether anything happened to her, and what happens now.
 
-The model writes those two sentences itself, and `write_note()` places them. A person reads them before anyone acts, because a generated summary reads as confident whether or not it is correct.
+The model writes those two sentences itself, and `write_note()` places them. A person reads them before anyone acts, because a generated summary reads as confident whether or not it's correct.
 :::
 
 ::: section | One finished note
@@ -57,7 +57,7 @@ computer, and we are checking whether anyone else got a copy.
 
 Every indicator on the third line names something your code pulled out. The summary names no header and no tool.
 
-Your wording and your numbers will differ. The six lines will not.
+Your wording and your numbers will differ. The six lines won't.
 :::
 
 ::: section | Part two. A judgment is not a measurement
@@ -77,13 +77,13 @@ Devin Crowmarden is Pellgrave's whole security team.
 
 A false positive spends his morning on a message that was fine. Enough of those and he stops believing the agent.
 
-A false negative sends an attack back to the reporter marked safe. Priya reads that it is fine, and opens the file.
+A false negative sends an attack back to the reporter marked safe. Priya reads that it's fine, and opens the file.
 
 So the two counts are never added together. Three wrong out of twenty tells you nothing. Two false positives with one false negative is a different problem from one with two.
 :::
 
 ::: section | One score block
-Here is one score block. Yours will not match it.
+Here's one score block. Yours won't match it.
 
 ```text
 Scored against answer key phase0-1.0
@@ -133,7 +133,7 @@ Seven jobs, and the third answer never changed. A person checks it.
 ::: section | The sidebar, then the lab
 Run the **Week 7 sidebar notebook** first. It uses a bakery yield log: four bakes, with rolls planned and rolls made. 7A counts the bakes that hit their number. 7B counts the two ways a bake missed, then divides for the rate.
 
-Then open the lab. It runs the batch and writes `week7_triage_report.txt`. Sidebar code pasted into it fails. The name is wrong, and renaming does not help. The sidebar reads `planned` and `made` from one list. The lab reads a verdict from a row and checks it against the answer key.
+Then open the lab. It runs the batch and writes `week7_triage_report.txt`. Sidebar code pasted into it fails. The name is wrong, and renaming doesn't help. The sidebar reads `planned` and `made` from one list. The lab reads a verdict from a row and checks it against the answer key.
 :::
 
 ::: reading | One source to open
@@ -141,7 +141,7 @@ A free framework document from a United States standards agency, on managing the
 
 Ask yourself one thing while you read. What does it say every accuracy measurement should be paired with?
 
-Ten minutes. Skim it, do not study it.
+Ten minutes. Skim it, don't study it.
 
 [Artificial Intelligence Risk Management Framework (AI RMF 1.0)](https://www.nist.gov/publications/artificial-intelligence-risk-management-framework-ai-rmf-10)
 :::

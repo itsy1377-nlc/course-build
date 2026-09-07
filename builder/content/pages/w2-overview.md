@@ -1,5 +1,5 @@
 ::: intro
-Last week your code got words back from the model. Words are fine for a person to read. Your code cannot sort them, count them or score them. This week you ask for a fixed set of named values instead, and you check them before you use them.
+Last week your code got words back from the model. Words are fine for a person to read. Your code can't sort them, count them or score them. This week you ask for a fixed set of named values instead, and you check them before you use them.
 :::
 
 ::: video w2-overview | What week 2 adds
@@ -7,7 +7,7 @@ About four minutes. What a strict answer looks like, and why your code checks on
 :::
 
 ::: objectives
-By the end of this module, you will be able to:
+By the end of this module, you'll be able to:
 
 - **2.1** Turn the model's reply into a dictionary your code can read. (CLO2)
 - **2.2** Check each model answer against the course output schema. (CLO2)

@@ -1,13 +1,13 @@
 ::: intro
-Your agent judges an email now, and it knows when to hand one to a person. Nothing yet says how often it is right. This week it writes each judgment down as a fixed six-line note, reads twenty new emails in one sitting, and you score every call it made.
+Your agent judges an email now, and it knows when to hand one to a person. Nothing yet says how often it's right. This week it writes each judgment down as a fixed six-line note, reads twenty new emails in one sitting, and you score every call it made.
 :::
 
 ::: video w7-overview | What week 7 adds
-About three minutes. What a triage note holds, and why a judgment is not a measurement.
+About three minutes. What a triage note holds, and why a judgment isn't a measurement.
 :::
 
 ::: objectives
-By the end of this module, you will be able to:
+By the end of this module, you'll be able to:
 
 - **7.1** Write a six-line triage note for all twenty emails. (CLO5)
 - **7.2** Report your accuracy and your two kinds of error. (CLO6)
@@ -48,9 +48,9 @@ The batch line is mostly reading. Twenty emails take under two minutes of machin
 :::
 
 ::: next
-Start with the sidebar. It counts bakes in a bakery yield log. That is the same counting and dividing `score_batch()` does, on different data.
+Start with the sidebar. It counts bakes in a bakery yield log. That's the same counting and dividing `score_batch()` does, on different data.
 
 Then read the week 7 reading, and keep it open beside the lab. The finished note and the score block in it are what you check your own output against.
 
-Week 8 adds nothing new. It is the final exam only.
+Week 8 adds nothing new. It's the final exam only.
 :::

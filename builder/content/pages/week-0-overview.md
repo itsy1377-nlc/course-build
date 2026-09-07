@@ -1,5 +1,5 @@
 ::: intro
-Week 0 is the Python on-ramp. It is optional, ungraded, and open all term. Start with the self-assessment. Your score tells you plainly whether to work through week 0 or skip it.
+Week 0 is the Python on-ramp. It's optional, ungraded, and open all term. Start with the self-assessment. Your score tells you plainly whether to work through week 0 or skip it.
 :::
 
 ::: keyfacts
@@ -15,7 +15,7 @@ Week 0 is the Python on-ramp. It is optional, ungraded, and open all term. Start
 :::
 
 ::: section | What week 0 is for
-Every week from week 1 on asks you to write Python. This course does not assume you have written any.
+Every week from week 1 on asks you to write Python. This course doesn't assume you've written any.
 
 Ten sections, ten building blocks. Week 0 teaches every construct the TODO cells in weeks 1 to 7 ask you to write. Pre-written cells sometimes use more. You only have to read those.
 
@@ -31,13 +31,13 @@ You can also come back later. Week 0 stays open all term. If week 4 breaks somet
 :::
 
 ::: steps | Start here
-1. Take the **Week 0 self-assessment**. Ten questions, about ten minutes. It is not graded, and you can retake it as often as you like.
+1. Take the **Week 0 self-assessment**. Ten questions, about ten minutes. It isn't graded, and you can retake it as often as you like.
 2. Read your score. 9 or 10 right: skip week 0 and start week 1. 6, 7 or 8 right: work the sections your missed questions name, about one to two hours. 5 or fewer: work the whole notebook in order, about five hours.
 3. Open **Week 0 notebook: Python on-ramp**. Run every cell from the top.
 :::
 
 ::: section | What the notebook leaves out
-You do not need these for this course. You do not have to go find them.
+You don't need these for this course. You don't have to go find them.
 
 - Classes and objects.
 - Comprehensions.
@@ -51,7 +51,7 @@ Every line you write in a lab uses only what is in the notebook.
 :::
 
 ::: next
-Open week 1 when you are ready. You do not have to finish week 0 first.
+Open week 1 when you're ready. You don't have to finish week 0 first.
 
 Week 0 stays open all term, and every week's sidebar points back to a section in it. Section 10 covers how to read an error message. Read that one even if you skip the rest.
 

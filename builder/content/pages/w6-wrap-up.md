@@ -1,5 +1,5 @@
 ::: intro
-Week 6 is done. Your agent treats the email body as evidence now, and it hands the doubtful cases to a person. Here is what you covered and what comes next.
+Week 6 is done. Your agent treats the email body as evidence now, and it hands the doubtful cases to a person. Here's what you covered and what comes next.
 :::
 
 ::: learned | What you learned
@@ -55,13 +55,13 @@ Answer these six before you move on. Each answer names the reading section it co
 
 6. Email 023 asks for the recipient's report history in the answer. Which risk is that?
 
-    Data exposure. Your schema names the four fields an answer may carry, and `schema_errors()` calls any other name a key that does not belong. From data exposure.
+    Data exposure. Your schema names the four fields an answer may carry, and `schema_errors()` calls any other name a key that doesn't belong. From data exposure.
 :::
 
 ::: next
-Take the **Week 6 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+Take the **Week 6 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
 Post to the **Week 6 discussion** and reply to one classmate. It asks for the rule your guardrails were missing, and what it costs you on email 015.
 
-Week 7 asks what this week cannot. Nothing yet says how often your agent is right. Next week it writes each judgment in a fixed shape. It reads twenty emails it has never seen, and you score every call.
+Week 7 asks what this week can't. Nothing yet says how often your agent is right. Next week it writes each judgment in a fixed shape. It reads twenty emails it has never seen, and you score every call.
 :::

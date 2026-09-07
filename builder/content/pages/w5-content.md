@@ -9,7 +9,7 @@ A full week 5 run: six emails, six traces, and the uncapped run that costs many 
 :::
 
 ::: section | One step is three actions
-**A bounded loop is a loop that cannot run forever, because a rule and a cap both end it.**
+**A bounded loop is a loop that can't run forever, because a rule and a cap both end it.**
 
 One step is three actions, in a fixed order.
 
@@ -17,17 +17,17 @@ One step is three actions, in a fixed order.
 2. It decides which single tool it wants next.
 3. Your code runs that tool and hands the result back.
 
-Observe, decide, act. That is one **step**. Then the loop begins again.
+Observe, decide, act. That's one **step**. Then the loop begins again.
 
 Week 4 gave you one round. Week 5 lets your agent go around again.
 
-It cannot go around forever. `MAX_STEPS` is set to 4. That number is the **step cap**. Three tools exist under a cap of four, which leaves room for one wasted step and no more.
+It can't go around forever. `MAX_STEPS` is set to 4. That number is the **step cap**. Three tools exist under a cap of four, which leaves room for one wasted step and no more.
 :::
 
 ::: section | The stop condition is a rule in your code
 Most runs finish well before the cap. One tool result can settle the case on its own.
 
-**A stop condition is the written rule that ends a run early.** In your notebook it is `decisive_stop()`, and it arrives pre-written. Hand it a tool name, a tool result and the parsed email. It hands back a reason, or nothing.
+**A stop condition is the written rule that ends a run early.** In your notebook it's `decisive_stop()`, and it arrives pre-written. Hand it a tool name, a tool result and the parsed email. It hands back a reason, or nothing.
 
 Week 2 gave stop reason a different meaning: why the model stopped writing. A loop stop reason says why a run ended. There are five of those and no sixth.
 
@@ -63,7 +63,7 @@ Email 004 has no link in it at all. `check_urls` has nothing to check, so it nev
 
 A model can still ask for it, and smaller models do. Your code responds with an empty result. The step still counts. The run reaches three steps instead of two, and the third one taught it nothing.
 
-A step you cannot use is a step you paid for. Your written answer asks which second tool your own agent picked on 004.
+A step you can't use is a step you paid for. Your written answer asks which second tool your own agent picked on 004.
 :::
 
 ::: section | Why a runaway loop gets more expensive every pass
@@ -73,7 +73,7 @@ Cost is the reason it matters. Every request carries the whole conversation so f
 
 The first request is about 1,500 tokens. Each finished step adds roughly another 100 tokens to every request after it.
 
-So step twenty carries nineteen turns of history that step one did not. Over twenty steps you pay for 190 extra pieces of history, not 20. **The cost grows faster than the step count.**
+So step twenty carries nineteen turns of history that step one didn't. Over twenty steps you pay for 190 extra pieces of history, not 20. **The cost grows faster than the step count.**
 
 Your notebook runs one of these deliberately. It takes email 012, removes the cap and the test for tools left, and stops hard at twenty steps. Then it prints that total beside the capped run. Nothing in the longer run is smarter.
 :::
@@ -83,9 +83,9 @@ The stop condition ends a run that got its answer. The cap ends the run that nev
 
 The usual case is the model asking again for a tool it already used. Your code runs it again and the step still counts. At four steps `out_of_room()` returns `step_cap`.
 
-That is not a convenience. It is a threshold on how many times the agent may act. It stops one bad run from spending a week of tokens.
+That isn't a convenience. It's a threshold on how many times the agent may act. It stops one bad run from spending a week of tokens.
 
-A control also needs an owner. At Pellgrave that is Devin Crowmarden, the security analyst. He sets the cap, reviews the traces, and turns the agent off when it works outside what it was built for.
+A control also needs an owner. At Pellgrave that's Devin Crowmarden, the security analyst. He sets the cap, reviews the traces, and turns the agent off when it works outside what it was built for.
 
 Published guidance asks for exactly that: a way to stop a system acting outside its intended use, owned by a named person.
 
@@ -131,7 +131,7 @@ Four questions about the two runs above. The answer sits under each one.
 
     Step 3. It named who received the mail, which settles no verdict and cost an entire request.
 
-4. Neither run came near the cap. What is the cap for, then?
+4. Neither run came near the cap. What's the cap for, then?
 
     For the run that meets no stop condition, usually the model asking again for a tool it already ran.
 :::
@@ -139,7 +139,7 @@ Four questions about the two runs above. The answer sits under each one.
 ::: section | The sidebar
 Run the **Week 5 sidebar notebook** before the lab. It rides a bus route of four stops and records how late the bus is at each one.
 
-It carries a counter, a cap of three legs, and a rule that ends the ride early. Your lab loop has that same shape. The names differ, so sidebar code pasted into the lab will not run.
+It carries a counter, a cap of three legs, and a rule that ends the ride early. Your lab loop has that same shape. The names differ, so sidebar code pasted into the lab won't run.
 :::
 
 ::: section | Then open the lab

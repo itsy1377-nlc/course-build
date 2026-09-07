@@ -1,5 +1,5 @@
 ::: intro
-Week 8 is the final exam and nothing else. There is no reading, no lab, no discussion and no video. The exam sets no new objectives, so this page lists none. It measures the ones weeks 1 through 7 already set.
+Week 8 is the final exam and nothing else. There's no reading, no lab, no discussion and no video. The exam sets no new objectives, so this page lists none. It measures the ones weeks 1 through 7 already set.
 :::
 
 ::: section | What the exam is
@@ -14,11 +14,11 @@ Week 8 is the final exam and nothing else. There is no reading, no lab, no discu
 | Opens | Day 50, Monday 12:00 AM |
 | Due and closes | Day 56, Sunday 11:59 PM |
 
-The window is seven days wide and nothing else is due inside it. You get one attempt, so open the exam when you have a clear ninety minutes.
+The window is seven days wide and nothing else is due inside it. You get one attempt, so open the exam when you've a clear ninety minutes.
 
 **Open book here means your own work.** Your notebooks, your export files, the weekly readings and the email files are all allowed. None of them is a shortcut. The questions ask what your own runs showed you, so an open file helps only if you did the work that filled it.
 
-Eleven of the emails on this exam are new. They are not in the set you worked with, and nobody has run an agent on one. Each question hands you the facts and asks what your agent should report.
+Eleven of the emails on this exam are new. They aren't in the set you worked with, and nobody has run an agent on one. Each question hands you the facts and asks what your agent should report.
 :::
 
 ::: tasks

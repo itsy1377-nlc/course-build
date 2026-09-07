@@ -32,11 +32,11 @@ The Student Code of Conduct sits in the college student handbook, in the rights 
 :::
 
 ::: section | How this applies here
-Using an AI assistant on your code is not cheating here. The **Using AI in this course** page authorizes it in writing. It asks one thing: add a line saying what you asked for.
+Using an AI assistant on your code isn't cheating here. The **Using AI in this course** page authorizes it in writing. It asks one thing: add a line saying what you asked for.
 
 Three rules follow from the list above.
 
-1. Your numbers come from your own run. Numbers you did not produce count as fabrication.
+1. Your numbers come from your own run. Numbers you didn't produce count as fabrication.
 2. Your written answer and your post are yours. Turning in what a classmate saw counts as plagiarism.
 3. Labs are your own work. You can talk an approach through with a classmate.
 :::
@@ -44,7 +44,7 @@ Three rules follow from the list above.
 ::: section | What sharing is fine
 You can post an error message and ask what it means. You can compare what your agent did with what a classmate's agent did. You can point a classmate at the cell that fixed your run.
 
-What you cannot do is send your notebook, send your export file, or write your answer from numbers that are not yours.
+What you can't do is send your notebook, send your export file, or write your answer from numbers that aren't yours.
 :::
 
 ::: callout note | Ask first

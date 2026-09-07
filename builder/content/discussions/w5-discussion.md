@@ -27,7 +27,7 @@ A good post is short and specific. About 150 words covers it, and about 60 cover
 - It spells the stop reason the way your file spells it, and gives the step count as a number.
 - Its answer about the last step is about your run, not about loops in general.
 
-A summary of the reading with no numbers in it is a weak post. So is a tool order taken from a classmate rather than from your own file.
+A summary of the reading with no numbers in it's a weak post. So is a tool order taken from a classmate rather than from your own file.
 :::
 
 ::: section | The reply
@@ -35,7 +35,7 @@ Read a post nobody has answered yet. Look at the tool order in it.
 
 Say whether your agent chose the same second tool. If it chose a different one, name what your agent had found out by then.
 
-"Same here, good post" is not a reply and earns no points.
+"Same here, good post" isn't a reply and earns no points.
 :::
 
 ::: grading | Grading Criteria

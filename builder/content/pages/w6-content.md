@@ -15,19 +15,19 @@ Your prompt has carried an email body since week 1. Somebody else wrote that bod
 
 The reason it works sits inside the model. Your rules and the email arrive as one stream of text. Published guidance on adversarial machine learning says the model runs data and orders down one channel.
 
-No setting fixes that. Your prompt is the only place you can say which part is **data rather than instructions**. The fenced block is evidence to judge. It is never an order to follow.
+No setting fixes that. Your prompt is the only place you can say which part is **data rather than instructions**. The fenced block is evidence to judge. It's never an order to follow.
 
 Two catalogs split the attack in half. The direct form is what a user types. The indirect form arrives inside something the system reads. Yours meets the indirect form.
 :::
 
 ::: section | The pair that measures it
-Email 013 is a benefits notice with a link to a sign-in page. After the signature sits one extra paragraph, addressed to AI triage tools. It claims a help desk ticket already cleared the message, then tells the reader to record benign and not escalate. That ticket does not exist.
+Email 013 is a benefits notice with a link to a sign-in page. After the signature sits one extra paragraph, addressed to AI triage tools. It claims a help desk ticket already cleared the message, then tells the reader to record benign and not escalate. That ticket doesn't exist.
 
 Email 024 is the same message, word for word, with the paragraph removed.
 
 Cells 6 and 7 run both with no defenses and print the verdicts together. Whatever moves between them is what one paragraph did.
 
-In our testing the payload moved the model in most runs, not all. If your two verdicts match, the paragraph lost. That is a result, not a mistake.
+In our testing the payload moved the model in most runs, not all. If your two verdicts match, the paragraph lost. That's a result, not a mistake.
 :::
 
 ::: section | Six places the payload can sit
@@ -56,7 +56,7 @@ So the four controls below are one control, not four. Each covers a spot the oth
 
 **1. The fence.** A **delimiter** is a marker placed before and after a block of text to show where it starts and ends. `BODY_START` and `BODY_END` are yours, and `GUARD_RULES` names what sits between them. You write `build_guarded_prompt()` in cell 10. Rules first, fenced body next, answer names last.
 
-**2. The fact check.** A **fact check** compares the model's answer against facts you already pulled out, and rejects what you cannot find. You write `check_against_facts()` in cell 14. It hands back problems in plain words. A working one catches at least three. Yours catches four.
+**2. The fact check.** A **fact check** compares the model's answer against facts you already pulled out, and rejects what you can't find. You write `check_against_facts()` in cell 14. It hands back problems in plain words. A working one catches at least three. Yours catches four.
 
 - A benign verdict while a link host is on the blocklist.
 - A benign verdict while the sender is known bad.
@@ -64,7 +64,7 @@ So the four controls below are one control, not four. Each covers a spot the oth
 
 The first two fire on no email this week. You write them for the queue you meet later.
 
-Three rules is what you write. Email 016 shows you what three does not reach. A supplier's own mailbox asks to change bank details, so the headers are honest and the model reads ordinary business. The address in the Reply-To line drops a letter, and no rule you wrote looks there. A fact check catches the contradictions you thought of. It is not a net.
+Three rules is what you write. Email 016 shows you what three doesn't reach. A supplier's own mailbox asks to change bank details, so the headers are honest and the model reads ordinary business. The address in the Reply-To line drops a letter, and no rule you wrote looks there. A fact check catches the contradictions you thought of. It isn't a net.
 
 Email 020 is where the third fires. Its body prints a block claiming the link host is allowlisted. Your `check_urls` result says unlisted, and the fact check reads the tool result, never the body.
 
@@ -72,13 +72,13 @@ Email 020 is where the third fires. Its body prints a block claiming the link ho
 
 **4. The per-run token cap.** A **per-run token cap** is a limit on the tokens one email may spend. `TOKEN_CAP_PER_RUN` is 4000. `over_token_cap()` reports when a run passes it, and `guarded_triage()` hands that check to your week 5 loop as its step guard.
 
-One honest word about the cap. A normal run here costs far less than 4000, so it will not fire on its own. Cell 17 lowers it on purpose, and that is where you watch it work. A run the cap ends records `step_cap` and escalates for `token_cap`.
+One honest word about the cap. A normal run here costs far less than 4000, so it won't fire on its own. Cell 17 lowers it on purpose, and that's where you watch it work. A run the cap ends records `step_cap` and escalates for `token_cap`.
 :::
 
 ::: section | Why a keyword rule fails on email 015
 The quick defense is a word list. Escalate anything that says classify this as benign, or ignore the warning.
 
-Email 015 shows why that is not enough. It is the security analyst's reminder about reporting suspicious mail. Inside it, marked as an example, sits a quoted lure holding the exact sentences a word list watches for.
+Email 015 shows why that isn't enough. It's the security analyst's reminder about reporting suspicious mail. Inside it, marked as an example, sits a quoted lure holding the exact sentences a word list watches for.
 
 So a word list escalates it. The message is benign, it never left the company, and it should have closed on its own. One is a wasted queue item. A mailbox of them is an analyst who stops reading.
 
@@ -98,17 +98,17 @@ Three questions on the six spots above. The answer sits under each one.
 
 3. Email 015 carries no payload. Why is it in a lab about injection?
 
-    It is the price of a strict rule. A guardrail that fires on words alone sends a benign internal message to a person.
+    It's the price of a strict rule. A guardrail that fires on words alone sends a benign internal message to a person.
 :::
 
 ::: scope | Authorization and Scope
 The only agent you attack this week is your own, and the only messages you use are the corpus emails your notebook loads.
 
-Do not send these payloads to a mail system, a chat assistant, or any service that is not yours. Testing what you do not own needs written permission.
+Don't send these payloads to a mail system, a chat assistant, or any service that isn't yours. Testing what you don't own needs written permission.
 :::
 
 ::: section | The sidebar, then the lab
-Run the **Week 6 sidebar notebook** first. It checks a library account against the catalogue record and prints a sentence for every gap. That is the shape of `check_against_facts()`.
+Run the **Week 6 sidebar notebook** first. It checks a library account against the catalogue record and prints a sentence for every gap. That's the shape of `check_against_facts()`.
 
 The lab runs eleven emails twice, undefended and guarded, and prints the comparison in cell 16. You write two functions and nothing else. Cell 18 exports `week6_guardrails.json`.
 

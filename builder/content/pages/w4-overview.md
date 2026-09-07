@@ -1,5 +1,5 @@
 ::: intro
-Until now your agent has judged each email from the facts you sent with it. Some emails do not settle there. This week the model may ask for one more fact first. It names one of three tools. Your code runs that tool and hands the answer back.
+Until now your agent has judged each email from the facts you sent with it. Some emails don't settle there. This week the model may ask for one more fact first. It names one of three tools. Your code runs that tool and hands the answer back.
 :::
 
 ::: video w4-overview | What week 4 adds
@@ -7,7 +7,7 @@ About three minutes. What a tool call is, and why your code runs every one of th
 :::
 
 ::: objectives
-By the end of this module, you will be able to:
+By the end of this module, you'll be able to:
 
 - **4.1** Write one function that runs the tool the model names. (CLO3)
 - **4.2** Build the message that carries a tool result back to the model. (CLO3)

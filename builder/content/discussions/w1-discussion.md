@@ -1,11 +1,11 @@
 ::: intro
-This discussion needs your own exported file. Two students will not have the same six answers, because the model does not repeat itself exactly. So there is no general answer to give here.
+This discussion needs your own exported file. Two students won't have the same six answers, because the model doesn't repeat itself exactly. So there's no general answer to give here.
 
 Plan 15 to 20 minutes for the whole thing, your post and your reply together.
 :::
 
 ::: directions
-**Where you have already met AI at work**
+**Where you've already met AI at work**
 
 Post by Thursday. Reply to one classmate by Sunday at 11:59 PM Central.
 
@@ -13,11 +13,11 @@ Write about 150 words in your post. Write about 60 words in your reply.
 
 **Part 1. Your own results.**
 
-Open your file `week1_first_calls.txt`. Find the six answers your notebook gave to the same email. Quote one short line from one answer. Say which temperature produced it. Then name one thing that answer got right. Name one thing it got wrong or left out. Use your own file. Do not use a classmate's.
+Open your file `week1_first_calls.txt`. Find the six answers your notebook gave to the same email. Quote one short line from one answer. Say which temperature produced it. Then name one thing that answer got right. Name one thing it got wrong or left out. Use your own file. Don't use a classmate's.
 
-**Part 2. Where you have met this before.**
+**Part 2. Where you've met this before.**
 
-Name one place you have already met AI in IT work or security work. It can be from a job, from school, from home, or from the news. Then say which of these three kinds it was.
+Name one place you've already met AI in IT work or security work. It can be from a job, from school, from home, or from the news. Then say which of these three kinds it was.
 
 - Scoring AI, which sorts or rates something. A spam filter is one.
 - Generative AI, which writes new text or code. A chat assistant is one.
@@ -27,13 +27,13 @@ Then name one part of a security operations center that your example touched. Pi
 
 **Your reply.**
 
-Reply to one classmate who named a different kind than you did. In two or three sentences, say what would change in their example if the tool were agentic. Point to a line in their post. A reply that only agrees does not count.
+Reply to one classmate who named a different kind than you did. In two or three sentences, say what would change in their example if the tool were agentic. Point to a line in their post. A reply that only agrees doesn't count.
 
 You may use AI help on this post. If you do, add one line saying what you asked it.
 :::
 
 ::: section | What a strong post has in it
-- A quoted line that is short, and clearly taken from your own file.
+- A quoted line that's short, and clearly taken from your own file.
 - The temperature beside it, either 0.2 or 1.0.
 - One thing the answer got right, said plainly.
 - One thing it missed, said plainly. "It was vague" is weaker than "it never mentioned the link."
@@ -58,5 +58,5 @@ Post in this discussion. Nothing is attached and nothing is uploaded.
 2. Read what other people posted. Find one whose example is a different kind from yours.
 3. Reply to that post by Sunday 11:59 PM Central.
 
-A reply that only agrees earns no points. Point to a line in the post you are answering.
+A reply that only agrees earns no points. Point to a line in the post you're answering.
 :::

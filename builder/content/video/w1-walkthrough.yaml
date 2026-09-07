@@ -17,7 +17,7 @@ scenes:
     narration:
       - This is what a finished week 1 run looks like.
       - It runs on a different email than the two in your lab, so nothing here is your answer.
-      - What to take from it is the shape. When your run looks like this, it worked.
+      - What to take from it is the shape. When your run looks like this, it's working.
 
   - type: slide
     layout: numbered
@@ -31,7 +31,7 @@ scenes:
       - One answer for the second email
       - The token totals
     narration:
-      - text: Your notebook writes one file. It has six sections and they arrive in this order.
+      - text: Your notebook writes one file. It's got six sections, and they arrive in this order.
         reveal: 1
       - text: The model you were configured with, then the prompt you sent.
         reveal: 2
@@ -41,7 +41,7 @@ scenes:
         reveal: 4
       - text: Then one answer for the second email, and the token totals at the end.
         reveal: 6
-      - text: If a section is missing, a cell did not run. Run the notebook from the top.
+      - text: If a section is missing, a cell didn't run. Start again from the top.
         reveal: 6
 
   - type: slide
@@ -53,11 +53,11 @@ scenes:
 
       "No, it does not look like a phishing attempt."
     narration:
-      - Here is a real answer, from a real run, on that other email.
-      - The model says it is not a phishing attempt.
-      - It is wrong. That email is a fake signing request from a domain the company already blocked.
+      - Here's a real answer, from a real run, on that other email.
+      - The model says it isn't a phishing attempt.
+      - It's wrong. That email is a fake signing request from a domain the company had already blocked.
       - Nothing went wrong in the code. The model was given the body of the message and nothing else.
-      - Remember that. It is the reason week 3 exists.
+      - Remember that one. It's the reason week 3 exists.
 
   - type: slide
     layout: compare
@@ -71,11 +71,11 @@ scenes:
         reveal: 1
       - text: One answer took 337 tokens. The other took 68.
         reveal: 2
-      - text: Same prompt, same setting, five times the length.
+      - text: Same prompt, same setting, and five times the length.
         reveal: 2
       - text: If your six answers all match exactly, look again at the temperature you passed.
         reveal: 2
-      - text: If they vary like this, your run is working.
+      - text: If they vary like this, your run's working.
 
   - type: slide
     layout: numbered
@@ -88,13 +88,13 @@ scenes:
     narration:
       - text: Three things to check before you turn it in.
         reveal: 1
-      - text: First, the token line at the end is not zero. A zero means no call reached the model.
+      - text: First, the token line at the end isn't zero. A zero means no call reached the model.
         reveal: 1
-      - text: Second, your six answers are not identical to each other.
+      - text: Second, your six answers aren't identical to each other.
         reveal: 2
       - text: Third, your screenshot shows all six answers, not just the first two.
         reveal: 3
-      - text: That last one is the most common thing people lose points on.
+      - text: That last one's the most common thing people lose points on.
         reveal: 3
 
   - type: slide
@@ -104,5 +104,5 @@ scenes:
     body: A zero token count means the call never left. An unwritten function message means a cell above was not run.
     narration:
       - If the token count is zero, the call never left your notebook. Check the message the configuration cell printed.
-      - If your file says the function is not written yet, run the cells above it from the top.
+      - If your file says the function isn't written yet, run the cells above it from the top.
       - If neither of those is it, post in the question board. Somebody else has hit the same thing.

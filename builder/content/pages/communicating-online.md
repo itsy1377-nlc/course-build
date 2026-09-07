@@ -13,7 +13,7 @@ This page says how people talk to each other here: in the weekly discussion, and
 :::
 
 ::: section | The weekly discussion
-Each discussion asks about your own work. You post one specific thing your agent did: what it got wrong, what surprised you, or what you had to change. General opinion about AI is not the assignment.
+Each discussion asks about your own work. You post one specific thing your agent did: what it got wrong, what surprised you, or what you had to change. General opinion about AI isn't the assignment.
 
 Then reply to one classmate. A reply counts when it adds something. Say what they saw, compare it to your own run, and offer a reason the two differ. "Good post" adds nothing.
 

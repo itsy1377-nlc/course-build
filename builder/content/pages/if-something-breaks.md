@@ -1,5 +1,5 @@
 ::: intro
-A cell failed and you are stuck. This page is the two-minute version of what to do. It is the same card that opens the week 0 notebook, so you can reach it from any week without hunting.
+A cell failed and you're stuck. This page is the two-minute version of what to do. It's the same card that opens the week 0 notebook, so you can reach it from any week without hunting.
 :::
 
 ::: keyfacts
@@ -13,15 +13,15 @@ A cell failed and you are stuck. This page is the two-minute version of what to 
 :::
 
 ::: steps | Do this now
-1. Read the last line of the error first. Everything above it is context.
-2. Name the error type. It is the word before the colon on that last line.
+1. Read the last line of the error first. Everything above it's context.
+2. Name the error type. It's the word before the colon on that last line.
 3. Find your line. Look for the last line that names your own cell.
 4. Print the value on the line above the one that failed.
 5. Change one thing. Run it again.
 :::
 
 ::: section | Six errors you will meet
-Python prints a block of text when a line of code fails. That block is called a traceback. Its last line names the error type. Here is what each type usually means.
+Python prints a block of text when a line of code fails. That block is called a traceback. Its last line names the error type. Here's what each type usually means.
 
 | Error type | What it usually means |
 |---|---|
@@ -34,21 +34,21 @@ Python prints a block of text when a line of code fails. That block is called a 
 :::
 
 ::: callout tip | The one that costs the most time
-In a notebook, the cell that shows the error is not always the cell that is wrong.
+In a notebook, the cell that shows the error isn't always the cell that's wrong.
 
-Cells run in the order you click them. A name made in a cell you never ran does not exist. You can see it on the screen. Python has still never heard of it.
+Cells run in the order you click them. A name made in a cell you never ran doesn't exist. You can see it on the screen. Python has still never heard of it.
 
-The fix, in order. Run the cells above the failing one, from the top. If that does not do it, restart the notebook and run every cell in order. Then read the error again.
+The fix, in order. Run the cells above the failing one, from the top. If that doesn't do it, restart the notebook and run every cell in order. Then read the error again.
 :::
 
 ::: section | Three things not to do
-1. Do not retype the whole cell. The message already names the line that failed.
-2. Do not delete the error and try something else at random. Read it first.
-3. Do not paste your whole notebook into an AI assistant before you read the last line. The course AI policy allows AI help with disclosure. It works far better when you can say which error you got.
+1. Don't retype the whole cell. The message already names the line that failed.
+2. Don't delete the error and try something else at random. Read it first.
+3. Don't paste your whole notebook into an AI assistant before you read the last line. The course AI policy allows AI help with disclosure. It works far better when you can say which error you got.
 :::
 
 ::: section | Where the full version lives
 Section 10 of the week 0 notebook walks all of this in detail. It shows one traceback labeled part by part. It then breaks each of these six errors on purpose, so you read the real message and then the fix.
 
-Read that section even if you skip the rest of week 0. It is the most useful half hour in the on-ramp.
+Read that section even if you skip the rest of week 0. It's the most useful half hour in the on-ramp.
 :::

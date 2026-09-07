@@ -18,7 +18,7 @@ You write Python in this course, and you should use an AI assistant while you do
 
 Ask it to explain an error message. Ask it why a loop stops early, or what one line of code actually does. Ask it for a smaller example than the one in front of you.
 
-This is not merely allowed; it is part of the point. You are learning to work with AI, and code is a safe place to practice that.
+This isn't merely allowed; it's part of the point. You're learning to work with AI, and code is a safe place to practice that.
 
 You still run every cell yourself. A cell is one block in a notebook that you run on its own. Code you pasted but never ran gives you no screenshot and no file to hand in.
 :::
@@ -34,15 +34,15 @@ You may ask an assistant to fix your spelling or tighten a sentence. The observa
 :::
 
 ::: callout warning | A classmate's numbers are not your numbers
-This is the one thing that does not work here.
+This is the one thing that doesn't work here.
 
 Every lab writes an export file from your own run. That file holds your token counts and your model answers. A token count is how much text one call used. In week 7 it holds your accuracy too.
 
-None of it will match anyone else's. If your written answer describes numbers your file does not hold, the answer is wrong. Your grader reads the file and the answer side by side.
+None of it will match anyone else's. If your written answer describes numbers your file doesn't hold, the answer is wrong. Your grader reads the file and the answer side by side.
 :::
 
 ::: steps | How to say what you used
-1. Finish the answer or post you are submitting.
+1. Finish the answer or post you're submitting.
 2. Start a new line and write **AI use**.
 3. Say in one sentence what you asked an assistant for.
 4. Write **AI use: none** if you used no AI at all.
@@ -53,11 +53,11 @@ None of it will match anyone else's. If your written answer describes numbers yo
 - AI use: I asked an assistant to shorten my second sentence.
 - AI use: none.
 
-You do not need to name a tool version or paste what you typed. The line does not count toward your three to five sentences. Writing it costs you nothing, and skipping it breaks course policy.
+You don't need to name a tool version or paste what you typed. The line doesn't count toward your three to five sentences. Writing it costs you nothing, and skipping it breaks course policy.
 :::
 
 ::: section | Why the course works this way
-Security teams already run AI tools, and hidden use is hard for a reviewer to check. This course grades what you noticed about your own agent, which is the part an assistant cannot do for you.
+Security teams already run AI tools, and hidden use is hard for a reviewer to check. This course grades what you noticed about your own agent, which is the part an assistant can't do for you.
 :::
 
 ::: section | Where this sits

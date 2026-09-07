@@ -1,5 +1,5 @@
 ::: intro
-The course is over. Here is what you built, what you have to show for it, what this course did not cover, and where the work goes next.
+The course is over. Here's what you built, what you've to show for it, what this course didn't cover, and where the work goes next.
 :::
 
 ::: learned | What you learned
@@ -41,20 +41,20 @@ Seven weeks is a narrow slice. Knowing where its edges are is part of knowing wh
 - **One model, called one way.** The course never covered how a model is built or trained, and you never changed one.
 - **A notebook, not a service.** Your agent runs when you run it. Nothing starts it on a schedule, and nothing files its notes into a real ticket.
 - **Invented mail, fixed lookups.** The three tools read a file that ships with the course. Neither the mail nor the lookups came from a live system.
-- **Twenty emails is a small measurement.** Real accuracy work uses far more, and it is repeated as the mail changes.
+- **Twenty emails is a small measurement.** Real accuracy work uses far more, and it's repeated as the mail changes.
 - **A narrow slice of Python.** The course left out files, packages, classes and the command line on purpose.
 - **The agent's own security.** The course set three things for you: who may run it, where its key lives, and what it records for a later review.
 - **What happens after escalation.** The investigation, the response and the report a team writes come after the point where your agent stops.
 :::
 
 ::: next
-**Keep your files.** Your work sits on the notebook server until the term closes. Before the last day, download the seven export files and your notebooks, and put them somewhere you control. They are yours.
+**Keep your files.** Your work sits on the notebook server until the term closes. Before the last day, download the seven export files and your notebooks, and put them somewhere you control. They're yours.
 
-They are also evidence. If someone asks whether you have used AI on real work, hand them `week7_triage_report.txt`. It holds twenty judgments and the score behind them.
+They're also evidence. If someone asks whether you've used AI on real work, hand them `week7_triage_report.txt`. It holds twenty judgments and the score behind them.
 
-**Where this goes in a security job.** A first analyst role is mostly four jobs. Read reported mail. Check what a header really says. Write the note that goes in the ticket. Know which cases a person has to see. You did all four this term. The tools change from one employer to the next. Those four questions do not.
+**Where this goes in a security job.** A first analyst role is mostly four jobs. Read reported mail. Check what a header really says. Write the note that goes in the ticket. Know which cases a person has to see. You did all four this term. The tools change from one employer to the next. Those four questions don't.
 
-Four habits are worth keeping. Pull the facts before you judge. Check the shape of an answer before you read it. Ask who verified a claim before you act on it. And put a number on how often you are right.
+Four habits are worth keeping. Pull the facts before you judge. Check the shape of an answer before you read it. Ask who verified a claim before you act on it. And put a number on how often you're right.
 
 Thank you for the term.
 :::

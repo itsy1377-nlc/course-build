@@ -1,5 +1,5 @@
 ::: intro
-This board is about what your own agent did. Every part of the prompt asks for something out of your own exported file, so do the lab first. There is no general opinion to give here.
+This board is about what your own agent did. Every part of the prompt asks for something out of your own exported file, so do the lab first. There's no general opinion to give here.
 :::
 
 ::: directions
@@ -16,7 +16,7 @@ In your post, give all four of these.
 
 If every email passed on the first try, say so. Then post the email your agent was least sure about. Give its confidence number. Say whether you agree with it.
 
-Then reply to one classmate. Compare their failed try to your own. Name one thing that was the same and one thing that was different. A reply that only agrees does not count.
+Then reply to one classmate. Compare their failed try to your own. Name one thing that was the same and one thing that was different. A reply that only agrees doesn't count.
 
 You may use AI help on this post. If you do, add one line saying what you asked it.
 :::
@@ -35,11 +35,11 @@ A clean run is a fine post. Every email passing on try one is a real result. Say
 :::
 
 ::: section | The reply
-Read a post that is not already answered. Compare their failed try to your own.
+Read a post that isn't already answered. Compare their failed try to your own.
 
 Name one thing that was the same and one thing that was different. Then say what you take from the difference. Sixty words is enough.
 
-"Same here, good post" is not a reply and earns no points.
+"Same here, good post" isn't a reply and earns no points.
 :::
 
 ::: grading | Grading Criteria

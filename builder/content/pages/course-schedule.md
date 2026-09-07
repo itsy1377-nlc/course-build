@@ -1,5 +1,5 @@
 ::: intro
-This page is the whole course on one screen. It shows what each week adds, what you turn in, and the day it is due.
+This page is the whole course on one screen. It shows what each week adds, what you turn in, and the day it's due.
 :::
 
 ::: keyfacts
@@ -16,9 +16,9 @@ This page is the whole course on one screen. It shows what each week adds, what 
 ::: section | Almost nothing locks
 Every module in this course is available on day one. Almost nothing locks when a due date passes.
 
-So if you fall behind, you can still open any week and turn its work in. Each week's notebook arrives with working code for every week before it. A rough week does not end the course.
+So if you fall behind, you can still open any week and turn its work in. Each week's notebook arrives with working code for every week before it. A rough week doesn't end the course.
 
-The final exam is the one exception. It opens on the Monday of week 8. It closes Sunday at 11:59 PM, when it is due.
+The final exam is the one exception. It opens on the Monday of week 8. It closes Sunday at 11:59 PM, when it's due.
 :::
 
 ::: section | The eight weeks
@@ -38,7 +38,7 @@ The final exam is the one exception. It opens on the Monday of week 8. It closes
 ::: section | What a day number means
 Day 1 is the Monday the term opens. Day 7 is the Sunday that closes week 1, and every week after it closes seven days later.
 
-Canvas carries the calendar date as well. You will find it on the assignment itself and on your Canvas calendar, and that date is the one your submission is measured against. The day numbers on this page are here so the schedule reads the same in every term.
+Canvas carries the calendar date as well. You'll find it on the assignment itself and on your Canvas calendar, and that date is the one your submission is measured against. The day numbers on this page are here so the schedule reads the same in every term.
 :::
 
 ::: callout time | What one week asks of you
@@ -66,7 +66,7 @@ Every week from 1 to 7 is laid out the same way, so you learn the pattern once.
 ::: callout tip | Falling behind
 Do the lab first if a week gets difficult. Labs carry 60 percent of your grade, and each one prepares the capability you add next week.
 
-Then message your instructor through the Canvas Inbox or your ACES student email. Say which week you are on and what stopped you.
+Then message your instructor through the Canvas Inbox or your ACES student email. Say which week you're on and what stopped you.
 :::
 
 ::: section | Words you do not know yet

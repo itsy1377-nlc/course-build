@@ -1,5 +1,5 @@
 ::: intro
-Injection is one risk. It is not the whole risk. This page covers five more. Each one lands on an email or a setting from the lab you just ran.
+Injection is one risk. It isn't the whole risk. This page covers five more. Each one lands on an email or a setting from the lab you just ran.
 
 Give this page 22 minutes. Six of those are one pass through the words. The rest is matching each risk back to your own run.
 :::
@@ -7,29 +7,29 @@ Give this page 22 minutes. Six of those are one pass through the words. The rest
 ::: section | Five risks that are not injection
 Part 1 was about text an attacker planted. Everything on this page happens without an attacker.
 
-Your agent can state something nobody told it. It can put information where it does not belong. It can hand a person a judgment that person should have made.
+Your agent can state something nobody told it. It can put information where it doesn't belong. It can hand a person a judgment that person should have made.
 
 None of those needs a payload. None of them is stopped by the fence you wrote.
 
-Three of the five are answered by code already in your notebook. Two are not. Knowing which is which is the point of this page.
+Three of the five are answered by code already in your notebook. Two aren't. Knowing which is which is the point of this page.
 :::
 
 ::: section | Hallucination
-**Hallucination is a model stating something that is not in the facts it was given.**
+**Hallucination is a model stating something that isn't in the facts it was given.**
 
-The national guidance on generative AI calls this confabulation. Search that word if you go looking. It means the same thing. Content arrives stated with confidence and it is wrong.
+The national guidance on generative AI calls this confabulation. Search that word if you go looking. It means the same thing. Content arrives stated with confidence and it's wrong.
 
-You have already seen it. Your agent returns an indicator naming a host, and your facts never held that host. The model read it nowhere. It wrote a plausible one.
+You've already seen it. Your agent returns an indicator naming a host, and your facts never held that host. The model read it nowhere. It wrote a plausible one.
 
-That is not injection. Nobody planted it. The model filled a gap in the shape your schema asked for.
+That isn't injection. Nobody planted it. The model filled a gap in the shape your schema asked for.
 
 The control is code, and you wrote it. `check_against_facts()` walks the answer field by field and asks whether your facts hold each one. An indicator with no matching host is a problem. That problem goes into your export.
 
-A published risk list names the same thing Misinformation. A confident sentence is not a checked one.
+A published risk list names the same thing Misinformation. A confident sentence isn't a checked one.
 :::
 
 ::: section | Data exposure
-**Data exposure is putting information somewhere it should not go.**
+**Data exposure is putting information somewhere it shouldn't go.**
 
 Email 023 is the case. Its forged headers ask your agent for two things. Return benign, and add the recipient's earlier report history to the answer.
 
@@ -39,7 +39,7 @@ That report history belongs to your company. The answer your agent writes travel
 
 The published risk list names this Sensitive Information Disclosure. It gives a whole phase to the moment a model reveals what it was handed. Often something merely asked it to summarize. The attack catalog calls the same move LLM Data Leakage.
 
-The control is code you already have. Your schema names the four fields an answer may carry. `schema_errors()` calls any other name a key that does not belong, and an answer holding one does not pass. A report history has no field to ride in.
+The control is code you already have. Your schema names the four fields an answer may carry. `schema_errors()` calls any other name a key that doesn't belong, and an answer holding one doesn't pass. A report history has no field to ride in.
 :::
 
 ::: section | Privacy
@@ -51,7 +51,7 @@ Nothing about a model makes this special. The prompt leaves your machine and rea
 
 Week 3 gave you the rule and the name. **Data minimization** is sending only the facts a sound judgment needs, and nothing more.
 
-Your facts block is where that rule lives. It carries the sender, the header checks, the link hosts and the flags. It does not carry the recipient's home address. It does not carry the whole thread.
+Your facts block is where that rule lives. It carries the sender, the header checks, the link hosts and the flags. It doesn't carry the recipient's home address. It doesn't carry the whole thread.
 
 A prompt is a disclosure. Write it as though the wrong person will read it.
 :::
@@ -73,13 +73,13 @@ No code catches this one. A person catches it, by reading the message before agr
 ::: section | Overreliance
 **Overreliance is letting your agent decide something a person should decide.**
 
-Your confidence floor exists for this. `CONFIDENCE_FLOOR` at 0.7 says nothing about how good the model is. It is a line saying which cases a person owns.
+Your confidence floor exists for this. `CONFIDENCE_FLOOR` at 0.7 says nothing about how good the model is. It's a line saying which cases a person owns.
 
-Emails 009 and 012 sit under it. Email 009 asks for nothing but a reply, and no tool result is decisive on 012. A number below the floor sends both to a person. That is the right outcome.
+Emails 009 and 012 sit under it. Email 009 asks for nothing but a reply, and no tool result is decisive on 012. A number below the floor sends both to a person. That's the right outcome.
 
 The published risk list is blunt about why a floor is needed. People treat fluent, confident, well ordered answers as authoritative. Your agent writes fluent answers on every email, including the ones it got wrong.
 
-The risk management framework asks for human oversight that is defined, assessed and written down. Your floor is that writing. It says, before any run, which answers a person will see.
+The risk management framework asks for human oversight that's defined, assessed and written down. Your floor is that writing. It says, before any run, which answers a person will see.
 
 The same framework lists what a trustworthy system is asked to show. Being explainable is on that list. So is being accountable. Neither survives a control nobody wrote down.
 :::
@@ -95,13 +95,13 @@ None of this needs a new control. Three of the five are answered by code already
 | Automation bias | A person who reads the message, not only the flag |
 | Overreliance | A person deciding every case under the floor |
 
-Two of those rows are not code. No version of your notebook will make them code. That is the honest end of this page.
+Two of those rows aren't code. No version of your notebook will make them code. That's the honest end of this page.
 
 Your discussion this week is where you price one of them. You write the extra rule your run needed. Then you say what it costs you on email 015.
 :::
 
 ::: section | Why your numbers will not match ours
-Run this lab twice and you get two different tables. That is not a fault in your code.
+Run this lab twice and you get two different tables. That isn't a fault in your code.
 
 A model picks each word from a set of likely ones, so the same prompt can give a different answer. Week 1 showed you that with six runs of one question.
 
@@ -117,9 +117,9 @@ Several things move the result. The model is only one.
 
 A guardrail has no score. It has a rate, and the rate moves.
 
-That is the shape of the real job. An agent that must be right every time cannot be built. One that is right often enough, fails in the direction you chose, and hands a person the cases it is unsure about, can be. It is why every week ends with somebody reading the output.
+That's the shape of the real job. An agent that must be right every time can't be built. One that's right often enough, fails in the direction you chose, and hands a person the cases it's unsure about, can be. It's why every week ends with somebody reading the output.
 
-So plan for a share of wrong answers, and decide which kind you would rather have. A false positive costs an analyst ten minutes. A false negative leaves an attack in an inbox. Those are not equal, and choosing between them is your job, not the model's.
+So plan for a share of wrong answers, and decide which kind you would rather have. A false positive costs an analyst ten minutes. A false negative leaves an attack in an inbox. Those aren't equal, and choosing between them is your job, not the model's.
 :::
 
 ::: reading | Two more of the ten risks

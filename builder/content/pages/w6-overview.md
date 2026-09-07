@@ -9,7 +9,7 @@ About three minutes. Where the attacker's text hides, the four controls you add,
 :::
 
 ::: objectives
-By the end of this module, you will be able to:
+By the end of this module, you'll be able to:
 
 - **6.1** Build a guarded prompt that treats the email body as data. (CLO4)
 - **6.2** Compare your agent's verdict on the injected email with its clean twin. (CLO4)
@@ -44,7 +44,7 @@ The lab is the long line, and it takes the top of its range. Two of its nineteen
 :::
 
 ::: next
-Start with the sidebar. It checks a library account against the catalogue record. That is the shape the lab's second TODO cell needs.
+Start with the sidebar. It checks a library account against the catalogue record. That's the shape the lab's second TODO cell needs.
 
 Then read both parts of this week's reading, and keep them open beside the lab. Part 1 names the six places a payload hides. Part 2 covers the risks that arrive with no attacker at all.
 

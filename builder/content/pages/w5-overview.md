@@ -7,7 +7,7 @@ About four minutes. One step drawn as observe, decide and act, the rule that end
 :::
 
 ::: objectives
-By the end of this module, you will be able to:
+By the end of this module, you'll be able to:
 
 - **5.1** Build a triage loop with a four-step cap and a stop condition. (CLO3)
 - **5.2** Record the tool order and stop reason for six triage runs. (CLO3)
@@ -45,5 +45,5 @@ Start with the sidebar. It rides a bus route of four stops and ends the ride ear
 
 Then read the week 5 reading, and keep it open beside the lab. The two worked runs at the end are what you check your own runs against.
 
-This is the hardest week in the course, so start early. Post on the Q and A board the first time you are stuck for twenty minutes.
+This is the hardest week in the course, so start early. Post on the Q and A board the first time you're stuck for twenty minutes.
 :::

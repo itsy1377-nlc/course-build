@@ -16,22 +16,22 @@ This page covers the two places you work: your browser and the college's noteboo
 ::: section | What counts as a computer
 A laptop or a desktop is what you want. Canvas and the notebook server both run in an ordinary web browser, so keep your browser up to date.
 
-A phone or a tablet is not enough for the labs. You type code, save a screenshot and upload files. That work needs a keyboard and a full screen.
+A phone or a tablet isn't enough for the labs. You type code, save a screenshot and upload files. That work needs a keyboard and a full screen.
 :::
 
 ::: section | The notebook server
 A notebook is a web page where you write and run Python. A cell is one block in a notebook that you run on its own. The college hosts the notebook server for you.
 
-So there is nothing to download, nothing to set up, and no administrator rights to ask for. You open the server from a link on each week's lab page.
+So there's nothing to download, nothing to set up, and no administrator rights to ask for. You open the server from a link on each week's lab page.
 
-Your work is saved in the browser you used, on the computer you used. It is not kept at the college, so you download a backup each week. The page **Using the notebook server** shows you how, and it takes a minute.
+Your work is saved in the browser you used, on the computer you used. It isn't kept at the college, so you download a backup each week. The page **Using the notebook server** shows you how, and it takes a minute.
 :::
 
 ::: steps | If a notebook will not open
 1. Reload the page. A dropped connection can cause this.
 2. Close the tab and open the notebook server again.
-3. Check whether Canvas itself loads. If Canvas is down too, the notebook is not the problem.
-4. Do not switch browsers to test it. Your work is in the browser you have been using.
+3. Check whether Canvas itself loads. If Canvas is down too, the notebook isn't the problem.
+4. Don't switch browsers to test it. Your work is in the browser you've been using.
 5. Email your instructor. Say what you tried and what the screen said.
 :::
 
@@ -48,5 +48,5 @@ The help desk handles your ACES password, your browser, pop-up blocker settings 
 :::
 
 ::: callout note | Trouble is not a dead end
-Technology fails sometimes. Start early enough that one bad evening does not decide your grade. If something outside your control stops you, tell your instructor while it is happening rather than after. The page **Syllabus, policies and grades** covers late work.
+Technology fails sometimes. Start early enough that one bad evening doesn't decide your grade. If something outside your control stops you, tell your instructor while it's happening rather than after. The page **Syllabus, policies and grades** covers late work.
 :::

@@ -18,7 +18,7 @@ Your instructor posts one announcement a week. It previews the week and names th
 
 Your instructor reads the weekly discussion board and joins the conversation there. Labs come back with a grade and a comment on each rubric row.
 
-There are no live meetings in this course, so you are never waiting on one.
+There are no live meetings in this course, so you're never waiting on one.
 :::
 
 ::: steps | Writing a message that gets a fast answer
@@ -29,5 +29,5 @@ There are no live meetings in this course, so you are never waiting on one.
 :::
 
 ::: callout note | Ask early
-A question you ask on Wednesday is worth more than the same question on Sunday night. Asking costs you nothing, and no question here is too small.
+A question you ask on Wednesday is worth more than the same question on Sunday night. Asking costs you nothing, and no question here's too small.
 :::

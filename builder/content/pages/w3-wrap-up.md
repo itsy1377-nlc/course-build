@@ -1,5 +1,5 @@
 ::: intro
-Week 3 is done. Your agent now sends facts about the message, not the message alone. Here is what you covered, what you built, and what comes next.
+Week 3 is done. Your agent now sends facts about the message, not the message alone. Here's what you covered, what you built, and what comes next.
 :::
 
 ::: learned | What you learned
@@ -14,7 +14,7 @@ Week 3 is done. Your agent now sends facts about the message, not the message al
 | Known-good domains and the playbook | Your organization's own hosts, and the rules it triages by |
 | Data minimization | Sending only what the decision needs |
 
-Two of those carry the week. A passed check is one answered question, not a clean message. And every line you send is a line you have handed to an outside service.
+Two of those carry the week. A passed check is one answered question, not a clean message. And every line you send is a line you've handed to an outside service.
 :::
 
 ::: did | What you did
@@ -37,29 +37,29 @@ Answer these six before you move on. Each answer sits under its question, with t
 
 2. A message claims your own domain and fails DMARC. What does that say?
 
-    It did not come from the domain it names. That is a fact to send, not a verdict. From what a passed check really means.
+    It didn't come from the domain it names. That's a fact to send, not a verdict. From what a passed check really means.
 
 3. A link host is on no list you hold. Is it clean?
 
-    No. It is unknown, which is a different answer. Week 4 gives your agent a way to look one up. From where the links point.
+    No. It's unknown, which is a different answer. Week 4 gives your agent a way to look one up. From where the links point.
 
 4. Why does mail sent inside the company carry no check results?
 
-    Your gateway checks what arrives from outside. Nothing ran, so nothing was written down. Missing is not failed. From what a passed check really means.
+    Your gateway checks what arrives from outside. Nothing ran, so nothing was written down. Missing isn't failed. From what a passed check really means.
 
 5. Suppose email 005 read as malicious on the body alone and benign with your facts. What moved it?
 
     The three checks passed, and the name matches the supplier's own domain. Only the urgent wording was left. From two emails, and the reason for all this.
 
-6. You have a log line instead of an email. What changes?
+6. You've a log line instead of an email. What changes?
 
     The field names. You still drop what no judgment needs and send the rest in one steady shape. From the same move on a log line.
 :::
 
 ::: next
-Take the **Week 3 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+Take the **Week 3 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
 Post to the **Week 3 discussion** and reply to one classmate.
 
-Week 4 lets the model ask for a fact you did not send. It names what it wants, and your code goes and gets it. You write the part that runs it.
+Week 4 lets the model ask for a fact you didn't send. It names what it wants, and your code goes and gets it. You write the part that runs it.
 :::

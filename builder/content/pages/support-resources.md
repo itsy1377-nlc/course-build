@@ -32,11 +32,11 @@ Send course questions through the Canvas Inbox or your ACES student email. Those
 
 Name the week, the notebook and the cell. Paste the last line of the error. That one line usually decides the answer, so it saves you a whole reply cycle.
 
-Expect an answer in 24 to 48 hours. Weekends and holidays do not count. Lab scores and written feedback arrive within one week of the due date.
+Expect an answer in 24 to 48 hours. Weekends and holidays don't count. Lab scores and written feedback arrive within one week of the due date.
 :::
 
 ::: section | Campus and Canvas support
-Some problems belong to the college rather than to this course. A password reset, a browser that will not load Canvas, or a laptop you need to borrow are all help desk work.
+Some problems belong to the college rather than to this course. A password reset, a browser that won't load Canvas, or a laptop you need to borrow are all help desk work.
 
 Click **Help** in the left menu for Canvas support. The page **Your computer and the notebook server**, in Student Resources, carries the district and college help desk numbers, the email address and the hours.
 :::

@@ -18,7 +18,7 @@ In your post, do three things.
 3. Say what your model listed as its indicators for that email. Did it name the
    fact you pasted?
 
-Then reply to one classmate. Look at the line they pasted. Say what your own run on that same email did. Name a number or a line from your own output. A reply that only agrees does not count.
+Then reply to one classmate. Look at the line they pasted. Say what your own run on that same email did. Name a number or a line from your own output. A reply that only agrees doesn't count.
 
 Write about 150 words in your post. Write about 60 words in your reply. Use your own results only.
 
@@ -43,7 +43,7 @@ Read a post nobody has answered yet. Find the line that classmate pasted. Then l
 
 Say what your own run did on it. Name a number or a line from your own output.
 
-"Same here, good post" is not a reply and earns no points.
+"Same here, good post" isn't a reply and earns no points.
 :::
 
 ::: grading | Grading Criteria

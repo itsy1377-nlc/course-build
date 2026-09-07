@@ -8,13 +8,13 @@ Twelve to fifteen lines of your own code, in two clearly marked TODO cells. Ever
 1. Open the **Week 3 lab notebook**. Run every cell from the top, in order. Stop when you reach the first TODO cell.
 2. Read the output of cell 7. It parses email 005 and prints every key the parser hands back.
 3. Read cell 8. It says which facts a verdict needs, and which ones are exposure with no payoff.
-4. Fill in **TODO 1**, cell 9. Your `build_facts(parsed)` picks the facts worth sending out of the parsed email and returns them as one flat dictionary. That is 8 to 10 lines.
+4. Fill in **TODO 1**, cell 9. Your `build_facts(parsed)` picks the facts worth sending out of the parsed email and returns them as one flat dictionary. That's 8 to 10 lines.
 5. Run cell 10, the check cell. It runs your function on emails 005 and 016 and prints both results side by side. Fix your function until each fact you meant to send is there.
-6. Fill in **TODO 2**, cell 11. Your `format_facts(facts)` walks `FACT_ORDER` and builds one labeled text block, using the label `FACT_LABELS` gives each key. That is 4 to 5 lines.
+6. Fill in **TODO 2**, cell 11. Your `format_facts(facts)` walks `FACT_ORDER` and builds one labeled text block, using the label `FACT_LABELS` gives each key. That's 4 to 5 lines.
 7. Run cell 12, the second check cell. It prints the finished facts block for email 016 and counts its characters. Read that count. Every call now carries it.
-8. Read cell 13. It defines `build_grounded_prompt()`, `classify_grounded()` and `compare_runs()`. You do not write these. You call them.
+8. Read cell 13. It defines `build_grounded_prompt()`, `classify_grounded()` and `compare_runs()`. You don't write these. You call them.
 9. Run cell 14. It runs all six emails both ways and prints the comparison table. **This is the cell you screenshot.**
-10. Look at the rows for emails 019 and 016. Those two were built to move in opposite directions. Say what your own run did with them, whichever way it went. A row that did not move is a result, not a mistake.
+10. Look at the rows for emails 019 and 016. Those two were built to move in opposite directions. Say what your own run did with them, whichever way it went. A row that didn't move is a result, not a mistake.
 11. Fix what breaks. Read the last line of any traceback first. It names the error type and the thing that failed.
 12. Run cell 15, the export cell. It writes `week3_grounding.json` and prints the full path and the first few lines.
 13. Open that file and read it. Every email carries both verdicts, both confidence numbers, and the exact facts block you sent.
@@ -23,7 +23,7 @@ Twelve to fifteen lines of your own code, in two clearly marked TODO cells. Ever
 ::: callout warning | Two things that stop this lab
 Send the parser's values, not your own words. A fact you retype by hand is a fact you can get wrong, and the grader reads what is in the file.
 
-Do not send everything the parser returns. Cell 12 prints the size of your block. Each line in it is a line you have disclosed.
+Don't send everything the parser returns. Cell 12 prints the size of your block. Each line in it's a line you've disclosed.
 :::
 
 ::: grading | Grading Criteria
@@ -43,13 +43,13 @@ Nothing is graded by running your notebook. The three items you turn in carry al
 ::: submit
 Three items. Nothing else. No zip file, no folder, no link to a repository.
 
-1. **A screenshot.** One image of the output of cell 14, the cell that runs all six emails both ways. It has to show all six rows, each with the email id and both verdicts, plus the token line under them. Capture the whole output in one image. If the rows do not fit, lower your browser zoom and capture again.
-2. **One file.** `week3_grounding.json`, attached as itself. Cell 15 prints its full path and its first few lines, so you can see exactly what you are attaching.
+1. **A screenshot.** One image of the output of cell 14, the cell that runs all six emails both ways. It has to show all six rows, each with the email id and both verdicts, plus the token line under them. Capture the whole output in one image. If the rows don't fit, lower your browser zoom and capture again.
+2. **One file.** `week3_grounding.json`, attached as itself. Cell 15 prints its full path and its first few lines, so you can see exactly what you're attaching.
 3. **A written answer**, typed into the submission box. Three to five sentences. Answer this:
 
-    Name one fact you chose not to send to the model. Say why a sound verdict does not need it. Then name the one fact that changed a verdict in your run. Give the email id.
+    Name one fact you chose not to send to the model. Say why a sound verdict doesn't need it. Then name the one fact that changed a verdict in your run. Give the email id.
 
-Do not screenshot the configuration cell. Your key is pasted into it, so a picture of that cell shows your key to anyone who sees it. Screenshot only the cell this assignment names. If your key does end up in a post or an image, tell your instructor so it can be replaced.
+Don't screenshot the configuration cell. Your key is pasted into it, so a picture of that cell shows your key to anyone who sees it. Screenshot only the cell this assignment names. If your key does end up in a post or an image, tell your instructor so it can be replaced.
 
 Due day 21, Sunday 11:59 PM Central.
 :::

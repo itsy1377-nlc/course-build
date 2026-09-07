@@ -1,5 +1,5 @@
 ::: intro
-Week 4 is done. Your agent can ask for a fact now, and your code is what goes and gets it. Here is what you covered, what you built, and what comes next.
+Week 4 is done. Your agent can ask for a fact now, and your code is what goes and gets it. Here's what you covered, what you built, and what comes next.
 :::
 
 ::: learned | What you learned
@@ -36,13 +36,13 @@ Answer these six before you move on. Each answer sits under its question, with t
 
 2. The request arrives with `arguments` in it. Why load that before you use it?
 
-    It is text that only looks like a dictionary. `json.loads()` turns it into one. From what a request looks like.
+    It's text that only looks like a dictionary. `json.loads()` turns it into one. From what a request looks like.
 
 3. Which tool tells you whether the recipient is an executive?
 
     `lookup_recipient()`. Reputation is about the sender. `check_urls()` is about link hosts. From why the three tools are plain Python.
 
-4. The model names a tool you do not have. What should `run_tool()` do?
+4. The model names a tool you don't have. What should `run_tool()` do?
 
     Return a plain sentence saying so. An unknown name is a normal condition, not a crash. From what a request looks like.
 
@@ -56,7 +56,7 @@ Answer these six before you move on. Each answer sits under its question, with t
 :::
 
 ::: next
-Take the **Week 4 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+Take the **Week 4 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
 Post to the **Week 4 discussion** and reply to one classmate.
 

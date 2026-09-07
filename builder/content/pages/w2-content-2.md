@@ -1,15 +1,15 @@
 ::: intro
 Part 1 covered the shape you ask for and the check that proves you got it. This page covers the other half: what your code does when the answer comes back wrong.
 
-Give this page 22 minutes. With part 1 that is the 42 minutes of reading this week.
+Give this page 22 minutes. With part 1 that's the 42 minutes of reading this week.
 :::
 
 ::: section | A wrong shape is a normal condition
-**Malformed output is an answer that does not match the shape you asked for.**
+**Malformed output is an answer that doesn't match the shape you asked for.**
 
-It is not a rare bug. It is a normal condition, and your code handles it like any other.
+It isn't a rare bug. It's a normal condition, and your code handles it like any other.
 
-Nothing in the model promises you a shape. It writes one likely character after another. A schema in the prompt makes the right shape far more likely. It does not make it certain.
+Nothing in the model promises you a shape. It writes one likely character after another. A schema in the prompt makes the right shape far more likely. It doesn't make it certain.
 
 Three shapes turn up, and the lab shows you all three.
 
@@ -20,7 +20,7 @@ Here is the classification you asked for:
 {"verdict": "benign", "category": "spam", "confidence": 0.6}
 ```
 
-Your load fails on the first word, because "Here" is not the start of any JSON object. The answer itself was fine. It just did not arrive alone.
+Your load fails on the first word, because "Here" isn't the start of any JSON object. The answer itself was fine. It just didn't arrive alone.
 
 **Cut off partway.** The answer stops in the middle, so the brackets never close.
 
@@ -38,7 +38,7 @@ content: ""      stop reason: length
 
 A **stop reason** is the short label saying why the model stopped writing. `length` means it ran into the token limit you set. A **reasoning block** is text a model writes to itself before its answer. When the model spends the whole limit on that block, the answer never starts.
 
-This is measured, not imagined. In one set of course tests, at one token limit, most runs came back empty with a stop reason of `length`. Another set would not give the same count. Your notebook turns the reasoning block off, so your own runs should not look like that.
+This is measured, not imagined. In one set of course tests, at one token limit, most runs came back empty with a stop reason of `length`. Another set wouldn't give the same count. Your notebook turns the reasoning block off, so your own runs shouldn't look like that.
 
 `strip_reasoning()` arrives written for you. It takes off a leading reasoning block, a stray closing tag and any code fences. Run it before you load. It fixes the first shape outright, and it costs nothing on the other two.
 :::
@@ -46,9 +46,9 @@ This is measured, not imagined. In one set of course tests, at one token limit, 
 ::: section | The retry, and the one rule that makes it work
 **A retry is asking again when the answer came back in the wrong shape.**
 
-One rule decides whether a retry is worth the call. **Send the problem back with the request.** Do not send the same request twice.
+One rule decides whether a retry is worth the call. **Send the problem back with the request.** Don't send the same request twice.
 
-An unchanged request gives the model nothing new. It is free to make the same mistake again. Adding the problems changes the prompt, so it changes the odds.
+An unchanged request gives the model nothing new. It's free to make the same mistake again. Adding the problems changes the prompt, so it changes the odds.
 
 Your second prompt carries the plain words your check reported. It reads something like this.
 
@@ -58,43 +58,43 @@ Your last answer had these problems. Fix them.
   vendor_fraud, malware_delivery, spam, legit_external, legit_internal
 ```
 
-Now the model has something to fix. It is being told what was wrong, in the same words your own code used.
+Now the model has something to fix. It's being told what was wrong, in the same words your own code used.
 
-Cap the tries. Three is the cap this lab uses. A cap is not pessimism. It is the line between a loop that ends and a loop that does not. Week 5 makes that idea the whole subject.
+Cap the tries. Three is the cap this lab uses. A cap isn't pessimism. It's the line between a loop that ends and a loop that doesn't. Week 5 makes that idea the whole subject.
 
-A retry does not fix everything. It fixes shape. It does not make a wrong verdict right, because a well shaped answer passes the check whether or not the judgment is any good. Week 7 is where you measure that.
+A retry doesn't fix everything. It fixes shape. It doesn't make a wrong verdict right, because a well shaped answer passes the check whether or not the judgment is any good. Week 7 is where you measure that.
 :::
 
 ::: section | When the tries run out
 A loop that runs out of tries still has to do something. Never nothing.
 
-Your `classify_email()` returns `None` when no try passed. That is a plain signal, and the code that called it can read it.
+Your `classify_email()` returns `None` when no try passed. That's a plain signal, and the code that called it can read it.
 
 Three things then have to be true.
 
 1. The failure is recorded, with the problems that caused it.
-2. The run keeps going. One bad email does not stop the other three.
+2. The run keeps going. One bad email doesn't stop the other three.
 3. Nothing downstream treats `None` as a verdict.
 
-The third one matters most on a real team. An email with no usable answer is not benign. It is unanswered, and a person picks it up.
+The third one matters most on a real team. An email with no usable answer isn't benign. It's unanswered, and a person picks it up.
 
-That is why your lab records every try, good or bad. A grader reads your file and sees that the check ran. You read it later and see what the model actually said.
+That's why your lab records every try, good or bad. A grader reads your file and sees that the check ran. You read it later and see what the model actually said.
 
-Write the failure down where a person will find it. An email your agent could not answer is work nobody has done yet. Nobody knows that unless the file says so.
+Write the failure down where a person will find it. An email your agent couldn't answer is work nobody has done yet. Nobody knows that unless the file says so.
 :::
 
 ::: callout note | Stop and think
-Your first try fails the check. You are about to ask again.
+Your first try fails the check. You're about to ask again.
 
-What goes into the second prompt that was not in the first? Answer before you read the next line.
+What goes into the second prompt that wasn't in the first? Answer before you read the next line.
 
-The problems your check reported. Without them you have sent the same request twice and paid for it twice.
+The problems your check reported. Without them you've sent the same request twice and paid for it twice.
 :::
 
 ::: section | Every retry is another paid call
 Each try costs tokens. An email that takes three tries costs about three times an email that takes one.
 
-Four emails is small. Four thousand is not, and that is the size a real queue runs at. Retries are the line item that grows fastest when nobody is watching it.
+Four emails is small. Four thousand isn't, and that's the size a real queue runs at. Retries are the line item that grows fastest when nobody is watching it.
 
 Two habits are worth building now.
 
@@ -113,7 +113,7 @@ Keep both reading pages open beside the notebook.
 :::
 
 ::: reading | Why output gets checked
-This is one entry, named Improper Output Handling, from a list of the ten most common security problems in software that uses a language model. It is published by a nonprofit that writes open security guidance.
+This is one entry, named Improper Output Handling, from a list of the ten most common security problems in software that uses a language model. It's published by a nonprofit that writes open security guidance.
 
 Read the summary and the prevention steps. Ask yourself one thing while you read. Which prevention step is the schema check you build this week?
 

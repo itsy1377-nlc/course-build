@@ -17,7 +17,7 @@ This page is the course syllabus. It says what the course covers, what it asks o
 :::
 
 ::: section | What this course is
-You build one working agent, a week at a time. An agent is a program that sends text to a model, reads the answer, and acts on it. It is a phishing email triage assistant.
+You build one working agent, a week at a time. An agent is a program that sends text to a model, reads the answer, and acts on it. It's a phishing email triage assistant.
 
 It reads a reported email, gathers the facts that matter, and writes a note an analyst can act on.
 
@@ -25,9 +25,9 @@ Seven weeks each add one capability to that agent. Week 8 is the final exam and 
 :::
 
 ::: section | What you need before you start
-The prerequisite is the college's AI literacy course. It teaches you to write a prompt and judge an AI answer, and it is enforced.
+The prerequisite is the college's AI literacy course. It teaches you to write a prompt and judge an AI answer, and it's enforced.
 
-That course teaches no programming. This one asks a few lines of Python every week. Week 0 closes that gap, and it is open from day one. It asks 4 to 6 hours.
+That course teaches no programming. This one asks a few lines of Python every week. Week 0 closes that gap, and it's open from day one. It asks 4 to 6 hours.
 :::
 
 ::: objectives | Course learning objectives
@@ -51,7 +51,7 @@ Four groups make up your grade. Each is worth a set percent, whatever its points
 | Discussions | 12 | Seven discussion boards, 20 points each |
 | Self-checks | 8 | Seven short quizzes, 12 points each |
 
-Week 0 and the weekly Python sidebars are not graded. The syllabus acknowledgment is not graded and does not appear in your grades. It is still required.
+Week 0 and the weekly Python sidebars aren't graded. The syllabus acknowledgment isn't graded and doesn't appear in your grades. It's still required.
 :::
 
 ::: section | The letter you earn
@@ -71,7 +71,7 @@ Send messages through the Canvas Inbox or your ACES student email. You get an an
 :::
 
 ::: callout note | Your token budget
-A token is a chunk of text, roughly four characters. It is the unit the AI model is billed in.
+A token is a chunk of text, roughly four characters. It's the unit the AI model is billed in.
 
 Your instructor sets your budget. Every notebook shows a running count.
 
@@ -81,7 +81,7 @@ If you run out, message your instructor through the Canvas Inbox or your ACES st
 ::: section | Late work and resubmission
 Your instructor states the late work and resubmission policy in the first announcement of the term. Read it before your first lab is due.
 
-One thing is settled now. Nothing in this course locks except the final exam, so you can still open and submit any week's work. The exam opens on the Monday of week 8 and closes when it is due.
+One thing is settled now. Nothing in this course locks except the final exam, so you can still open and submit any week's work. The exam opens on the Monday of week 8 and closes when it's due.
 :::
 
 ::: callout warning | Protect your privacy
@@ -92,7 +92,7 @@ Keep these out of Canvas, the boards and your notebooks.
 - A classmate's personal details.
 - Real mail from work, unless you remove the names.
 
-Do not share course material outside this course.
+Don't share course material outside this course.
 :::
 
 ::: section | AI tools

@@ -11,11 +11,11 @@ About four minutes. Six emails run twice, the table that compares the two runs, 
 ::: section | The model is not a detector
 **Grounding is sending the facts about a message instead of the message alone.** A **facts block** is a short labeled list of those facts, written into the prompt.
 
-Start with what the model cannot do. It never opens the mail file, it runs no checks, and it looks nothing up.
+Start with what the model can't do. It never opens the mail file, it runs no checks, and it looks nothing up.
 
-It reads the text you sent and hands back a judgment, so it is a judgment layer over facts you pulled out yourself. Whatever you leave out does not exist to it.
+It reads the text you sent and hands back a judgment, so it's a judgment layer over facts you pulled out yourself. Whatever you leave out doesn't exist to it.
 
-Week 2 sent the body alone, so your verdict rested on wording. A confident answer is not evidence.
+Week 2 sent the body alone, so your verdict rested on wording. A confident answer isn't evidence.
 :::
 
 ::: section | Two emails, and the reason for all this
@@ -27,9 +27,9 @@ The truth runs the other way. 019 is your own finance director, and the message 
 :::
 
 ::: section | The email that does not settle this week
-Email 005 does not settle this week, and that is not your code. The two facts that clear it are that Slatemoor is an approved supplier, and that the link host is theirs. Neither is a header, so no facts block can carry them.
+Email 005 doesn't settle this week, and that isn't your code. The two facts that clear it are that Slatemoor is an approved supplier, and that the link host is theirs. Neither is a header, so no facts block can carry them.
 
-They arrive in week 5, when your agent can ask two tools for itself. Grounding is not the last thing you add. It is the first.
+They arrive in week 5, when your agent can ask two tools for itself. Grounding isn't the last thing you add. It's the first.
 
 ::: section | What goes in the facts block
 A **header** is one named line above the body, such as `From:` or `Subject:`. Your mail gateway adds headers of its own before a message reaches a mailbox.
@@ -84,7 +84,7 @@ Authentication-Results: mx.pellgrave.example;
 
 That one claims your own help desk and fails all three. Both results are facts, and neither is a verdict.
 
-One case has no results at all. Pellgrave's gateway checks what arrives from outside, so mail sent inside the company carries no such header. Missing is not failed.
+One case has no results at all. Pellgrave's gateway checks what arrives from outside, so mail sent inside the company carries no such header. Missing isn't failed.
 :::
 
 ::: section | The name over the address
@@ -106,13 +106,13 @@ The host decides where a click lands, not the words on the button. So the host i
 
 Your prompt carries two shipped files beside the facts. The **known-good domain** list names Pellgrave's own domain and its own web hosts, and the **playbook** holds the eleven rules Pellgrave triage follows.
 
-One rule matters most here. A host that is not on the known-good list is unknown rather than clean. Week 4 gives your agent a way to look one up.
+One rule matters most here. A host that isn't on the known-good list is unknown rather than clean. Week 4 gives your agent a way to look one up.
 :::
 
 ::: section | What you leave out is also a decision
 **Data minimization means keeping and sending the least data the work needs.**
 
-Every line you add to a prompt is a line you have handed to an outside service. The model runs on somebody else's computers, so whatever you send, you have disclosed.
+Every line you add to a prompt is a line you've handed to an outside service. The model runs on somebody else's computers, so whatever you send, you've disclosed.
 
 The parser hands back far more than the table above. Ask two questions of anything else.
 
@@ -135,7 +135,7 @@ Log work named those two steps long before anyone sent text to a model. Dropping
 :::
 
 ::: section | The sidebar, then the lab
-Run the **Week 3 sidebar notebook** first. It builds one line per student for a class sign-in sheet, out of several fields, in an order you choose. That is the move `format_facts()` makes. The names differ, so sidebar code pasted into the lab fails.
+Run the **Week 3 sidebar notebook** first. It builds one line per student for a class sign-in sheet, out of several fields, in an order you choose. That's the move `format_facts()` makes. The names differ, so sidebar code pasted into the lab fails.
 
 In the lab, cell 14 runs all six emails both ways and prints the comparison table.
 :::
@@ -145,7 +145,7 @@ This is a free guide to email security from a United States standards agency. Re
 
 Ask yourself one thing while you read. If all three checks passed, what has still not been checked?
 
-Ten minutes. You are skimming this, not studying it.
+Ten minutes. You're skimming this, not studying it.
 
 [Trustworthy Email, NIST SP 800-177 Revision 1](https://csrc.nist.gov/pubs/sp/800/177/r1/final)
 :::

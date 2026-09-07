@@ -1,5 +1,5 @@
 ::: intro
-Week 5 is done. Your agent takes more than one step now, and your own code decides when it stops. Here is what you covered, what you built, and what comes next.
+Week 5 is done. Your agent takes more than one step now, and your own code decides when it stops. Here's what you covered, what you built, and what comes next.
 :::
 
 ::: learned | What you learned
@@ -35,7 +35,7 @@ Answer these six before you move on. Each answer sits under its question, with w
 
 2. What makes a stop condition explicit?
 
-    It is written in your code, not left to the model. `decisive_stop()` returns a reason, or nothing. From the stop condition is a rule in your code.
+    It's written in your code, not left to the model. `decisive_stop()` returns a reason, or nothing. From the stop condition is a rule in your code.
 
 3. The model asks again for a tool it already ran. Why is the cap needed there?
 
@@ -51,11 +51,11 @@ Answer these six before you move on. Each answer sits under its question, with w
 
 6. The model answers instead of asking for a tool. What does your loop do?
 
-    `first_call()` keeps the answer, then names the first tool the run has not used. The run carries on. From the Week 5 lab notebook, cell 9.
+    `first_call()` keeps the answer, then names the first tool the run hasn't used. The run carries on. From the Week 5 lab notebook, cell 9.
 :::
 
 ::: next
-Take the **Week 5 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+Take the **Week 5 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
 Post to the **Week 5 discussion** and reply to one classmate.
 

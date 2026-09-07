@@ -1,5 +1,5 @@
 ::: intro
-You reached the end of the on-ramp. Here is what you covered, what you did, and where each piece lands in the course.
+You reached the end of the on-ramp. Here's what you covered, what you did, and where each piece lands in the course.
 :::
 
 ::: learned | What you learned
@@ -25,11 +25,11 @@ Ten building blocks, in the order the course needs them.
 - You wrote a short answer of your own, with the answer sitting right below it.
 - You broke six errors on purpose and read what Python said.
 
-You have run every construct the TODO cells ask you to write. Pre-written cells sometimes use more than this. You only have to read those.
+You've run every construct the TODO cells ask you to write. Pre-written cells sometimes use more than this. You only have to read those.
 :::
 
 ::: checkpoint | Check yourself
-Can you do these five things without looking them up? If one gives you pause, open that section again. Nothing here is graded.
+Can you do these five things without looking them up? If one gives you pause, open that section again. Nothing here's graded.
 
 1. Store a value in a name, then change what it holds.
 2. Call a function and keep what it hands back.
@@ -39,7 +39,7 @@ Can you do these five things without looking them up? If one gives you pause, op
 :::
 
 ::: next
-1. Take the **Week 0 self-assessment** again if you want a second read on your score. It is not graded, and you can retake it freely.
+1. Take the **Week 0 self-assessment** again if you want a second read on your score. It isn't graded, and you can retake it freely.
 2. Open week 1.
 3. Keep the notebook open in another tab. Every week's sidebar points back to a section in it.
 

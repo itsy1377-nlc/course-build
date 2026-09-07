@@ -20,7 +20,7 @@ The email files, the data files and the notebooks ship with the course too. You 
 :::
 
 ::: section | What you do need
-A laptop or a desktop, an internet connection, and an up-to-date web browser. A phone or a tablet is not enough for the labs, because you type code and upload files.
+A laptop or a desktop, an internet connection, and an up-to-date web browser. A phone or a tablet isn't enough for the labs, because you type code and upload files.
 
 The college hosts the notebook server where you write Python. You open it from a link on each week's lab page. Nothing installs on your computer, and you need no administrator rights.
 
@@ -28,7 +28,7 @@ The page **Your computer and the notebook server** covers all of this in more de
 :::
 
 ::: callout note | About buying course materials
-> A student of this institution is not under any obligation to purchase a textbook from a college-affiliated bookstore. The same textbook may also be available from an independent retailer, including an online retailer.
+> A student of this institution isn't under any obligation to purchase a textbook from a college-affiliated bookstore. The same textbook may also be available from an independent retailer, including an online retailer.
 
-This course assigns no textbook, so there is nothing to buy from any seller.
+This course assigns no textbook, so there's nothing to buy from any seller.
 :::

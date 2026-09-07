@@ -9,7 +9,7 @@ This post has two halves. Do the first half before you open your file.
 
 **Half one. Your prediction.**
 
-Take email 018. Read it on the lab page. Do not open `week4_tool_calls.json` yet.
+Take email 018. Read it on the lab page. Don't open `week4_tool_calls.json` yet.
 
 Name the one tool you would have asked for on that email. Say in one sentence what you expected it to come back with.
 
@@ -19,7 +19,7 @@ Now open your file. Name the tool your agent actually asked for. Paste the one f
 
 Then say who was right, you or your agent, and how you know. Two or three sentences.
 
-Then reply to one classmate whose prediction missed. Say which fact in their own pasted result settles it. Use one line from your own file too. A reply that only agrees does not count.
+Then reply to one classmate whose prediction missed. Say which fact in their own pasted result settles it. Use one line from your own file too. A reply that only agrees doesn't count.
 
 Post by Thursday. Reply to one classmate by Sunday at 11:59 PM Central.
 
@@ -46,7 +46,7 @@ Read a post nobody has answered yet. Pick one whose prediction missed. Find the 
 
 Then add one line from your own file on the same email.
 
-"Same here, good post" is not a reply and earns no points.
+"Same here, good post" isn't a reply and earns no points.
 :::
 
 ::: grading | Grading Criteria

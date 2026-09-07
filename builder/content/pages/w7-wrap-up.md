@@ -1,5 +1,5 @@
 ::: intro
-Week 7 is done. Your agent writes its judgment down now, and you know how often that judgment is right. Here is what you covered, what you built, and what comes next.
+Week 7 is done. Your agent writes its judgment down now, and you know how often that judgment is right. Here's what you covered, what you built, and what comes next.
 :::
 
 ::: learned | What you learned
@@ -13,7 +13,7 @@ Week 7 is done. Your agent writes its judgment down now, and you know how often 
 | Escalation agreement | How often its yes or no matched the answer key |
 | Use case | One job people give an AI tool |
 
-Two of those carry the week. A judgment is not a measurement. And the two error counts are never added together, because they cost different things.
+Two of those carry the week. A judgment isn't a measurement. And the two error counts are never added together, because they cost different things.
 :::
 
 ::: did | What you did
@@ -58,11 +58,11 @@ Answer these six before you move on. Each answer sits under its question, with t
 ::: section | Would a bigger model have done better?
 We ran the same batch on `granite-8b`, at about three times the cost. It scored a little worse than 3B on our run. One run is one sample, so yours will differ.
 
-It wins on a bare body. Behind your facts block and tools, it does not. Size pays for judgement on thin evidence. You spent four weeks making it good.
+It wins on a bare body. Behind your facts block and tools, it doesn't. Size pays for judgement on thin evidence. You spent four weeks making it good.
 :::
 
 ::: next
-Take the **Week 7 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+Take the **Week 7 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
 Post to the **Week 7 discussion** and reply to one classmate. Both parts ask for numbers out of your own report.
 

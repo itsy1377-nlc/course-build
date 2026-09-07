@@ -11,7 +11,7 @@ This page defines every technical word this course uses.
 :::
 
 ::: section | How to use this page
-You do not read this page from top to bottom. You come here when a word stops you. Search it with Control and F, or Command and F on a Mac. **Start** in the last column means the orientation pages at the front of the course. **0** means the optional week 0 on-ramp.
+You don't read this page from top to bottom. You come here when a word stops you. Search it with Control and F, or Command and F on a Mac. **Start** in the last column means the orientation pages at the front of the course. **0** means the optional week 0 on-ramp.
 :::
 
 ::: section | A to B

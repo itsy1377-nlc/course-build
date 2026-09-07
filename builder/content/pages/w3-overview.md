@@ -1,13 +1,13 @@
 ::: intro
-Right now your agent sends the whole email body and nothing else. The body is the part an attacker writes, so a verdict built on it is really a verdict about tone. This week you send facts beside it: who really sent the message, whether the checks on the sender passed, and where the links point.
+Right now your agent sends the whole email body and nothing else. The body is the part an attacker writes, so a verdict built on it's really a verdict about tone. This week you send facts beside it: who really sent the message, whether the checks on the sender passed, and where the links point.
 :::
 
 ::: video w3-overview | What week 3 adds
-About three minutes. Why the body alone is not enough, and what a facts block puts in front of the model instead.
+About three minutes. Why the body alone isn't enough, and what a facts block puts in front of the model instead.
 :::
 
 ::: objectives
-By the end of this module, you will be able to:
+By the end of this module, you'll be able to:
 
 - **3.1** Extract the sender, header, link and mail-check facts into one facts block. (CLO1)
 - **3.2** Report which verdicts changed after you added the facts block. (CLO1)
@@ -42,7 +42,7 @@ The lab is the long line. Two of its sixteen cells are yours to write, and the r
 :::
 
 ::: next
-Start with the sidebar. It builds one sign-in line for a class roster, out of several fields, in an order you set. That is the move your second TODO cell makes.
+Start with the sidebar. It builds one sign-in line for a class roster, out of several fields, in an order you set. That's the move your second TODO cell makes.
 
 Then read the week 3 reading, and keep it open beside the lab.
 

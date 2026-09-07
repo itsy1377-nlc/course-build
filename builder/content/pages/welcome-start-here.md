@@ -20,9 +20,9 @@ You build one working agent. An agent is a program that sends text to a model, r
 
 Phishing is a message written to trick you into giving up a password or a payment. Triage means sorting reported items so the ones needing a person get one first.
 
-Your agent reads a reported email, asks a model whether it is an attack, then checks the answer. A model is the AI service your code sends text to.
+Your agent reads a reported email, asks a model whether it's an attack, then checks the answer. A model is the AI service your code sends text to.
 
-Each week adds one capability to that same agent. In week 1 it is small and it works. By week 7 it is much larger and still works.
+Each week adds one capability to that same agent. In week 1 it's small and it works. By week 7 it's much larger and still works.
 :::
 
 ::: callout note | Start with the week 0 self-assessment
@@ -32,7 +32,7 @@ Ten short questions. Your score says whether to work through week 0 or skip it. 
 ::: steps | Do these three things first
 1. Take the week 0 self-assessment.
 2. Post to the **Introduce yourself** board.
-3. Read the syllabus, then take the syllabus acknowledgment. It is ungraded and still required.
+3. Read the syllabus, then take the syllabus acknowledgment. It's ungraded and still required.
 :::
 
 ::: section | Your work carries forward
@@ -40,9 +40,9 @@ The notebook server keeps your work all term. Every week's starter notebook also
 :::
 
 ::: steps | After a week that went badly
-1. Submit what you have. Every lab rubric scores several parts, so partial work still earns points.
-2. Open the next week on time. Do not wait until you have fixed the week before.
-3. Use the starter notebook's ready-made cells for what you could not finish.
+1. Submit what you've. Every lab rubric scores several parts, so partial work still earns points.
+2. Open the next week on time. Don't wait until you've fixed the week before.
+3. Use the starter notebook's ready-made cells for what you couldn't finish.
 4. Email your instructor. Name the week and the cell that stopped you.
 5. Go back to the unfinished week later. Every week stays open all term. Your instructor states the late work policy in the first announcement of the term.
 :::
