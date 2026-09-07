@@ -32,6 +32,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import re
 import subprocess
 import sys
@@ -46,8 +47,16 @@ CORPUS = BUILDER / "corpus"
 sys.path.insert(0, str(CORPUS / "tools"))
 from parse_eml import parse_eml  # noqa: E402
 
-BASE_URL = "http://localhost:11434/v1"
-TAGS_URL = "http://localhost:11434/api/tags"
+# The serving stack moved from a local ollama to the LiteLLM proxy in front of
+# DeepInfra, and these scripts did not move with it. They asked an ollama that
+# is no longer running, so neither of them could be run at all, which is most
+# of why week 6's guardrail claims still have no evidence.
+#
+# The key is read from the environment and never written into a result file,
+# a log line or an error message.
+BASE_URL = os.environ.get("ITSY1377_BASE_URL", "https://api.bashtion.dev/v1")
+API_KEY = os.environ.get("ITSY1377_API_KEY", "")
+MODELS_URL = BASE_URL.rstrip("/") + "/models"
 STEP_CAP = 4
 
 WEEK5_IDS = [
@@ -229,18 +238,24 @@ class Endpoint:
             "model": self.model,
             "messages": messages,
             "max_tokens": max_tokens,
-            "temperature": 0 if self.model.startswith("granite4.1") else 1.0,
+            # The old stack had a 4.1 and a 4.2 that wanted different
+            # sampling. On the proxy every served model is a 4.2, so this is
+            # one setting rather than a branch on a name that no longer exists.
+            "temperature": 0.0,
         }
-        if not self.model.startswith("granite4.1"):
-            body["top_p"] = 0.95
         if tools:
             body["tools"] = tools
         if self.reasoning is not None:
             body["reasoning_effort"] = self.reasoning
         data = json.dumps(body).encode()
         req = urllib.request.Request(
-            BASE_URL + "/chat/completions", data=data,
-            headers={"Content-Type": "application/json"}, method="POST")
+            BASE_URL.rstrip("/") + "/chat/completions", data=data,
+            headers={"Content-Type": "application/json",
+                     "Authorization": "Bearer " + API_KEY,
+                     # So a run of this script is identifiable in the proxy's
+                     # spend log, and never mistaken for student traffic.
+                     "User-Agent": "itsy1377-eval/week5-week6"},
+            method="POST")
         started = time.monotonic()
         try:
             with urllib.request.urlopen(req, timeout=300) as r:
@@ -535,22 +550,33 @@ def score(run: dict, record: dict, variant: str) -> dict:
 def assert_world(models: list[str]) -> dict:
     """Nothing is measured until the world is what the measurement assumes."""
     facts = {"checked_at": datetime.now(timezone.utc).isoformat(timespec="seconds")}
+    if not API_KEY:
+        sys.exit("REFUSING TO MEASURE: ITSY1377_API_KEY is not set. Export a "
+                 "key with budget for the two granite models.")
+    req = urllib.request.Request(
+        MODELS_URL, headers={"Authorization": "Bearer " + API_KEY,
+                             "User-Agent": "itsy1377-eval/week5-week6"})
     try:
-        facts["ollama_version"] = subprocess.run(["ollama", "--version"], capture_output=True, text=True, timeout=20).stdout.strip()
+        with urllib.request.urlopen(req, timeout=30) as r:
+            listing = json.loads(r.read())
+    except urllib.error.HTTPError as e:
+        # Never echo the response body here: a 401 from the proxy can carry
+        # the key back in its message.
+        sys.exit(f"REFUSING TO MEASURE: {MODELS_URL} answered HTTP {e.code}")
     except Exception as e:  # noqa: BLE001
-        sys.exit(f"REFUSING TO MEASURE: cannot run ollama: {e}")
-    try:
-        with urllib.request.urlopen(TAGS_URL, timeout=20) as r:
-            tags = json.loads(r.read())
-    except Exception as e:  # noqa: BLE001
-        sys.exit(f"REFUSING TO MEASURE: {TAGS_URL} did not answer: {e}")
-    served = {m["name"]: m for m in tags.get("models", [])}
+        sys.exit(f"REFUSING TO MEASURE: {MODELS_URL} did not answer: "
+                 f"{type(e).__name__}")
+    served = sorted(m["id"] for m in listing.get("data", []))
     facts["endpoint"] = BASE_URL
-    facts["models_served"] = sorted(served)
+    facts["models_served"] = served
     for m in models:
         if m not in served:
-            sys.exit(f"REFUSING TO MEASURE: {m} is not served. Present: {sorted(served)}")
-        facts.setdefault("model_digests", {})[m] = served[m].get("digest", "")[:16]
+            sys.exit(f"REFUSING TO MEASURE: {m} is not served. Present: {served}")
+    # The old stack reported a digest per model, which pinned exactly what
+    # answered. A hosted proxy does not expose one, so the run records what it
+    # can prove instead: the endpoint, the listing, and the model string the
+    # server echoes back in every response.
+    facts["model_digests"] = {m: "not exposed by the proxy" for m in models}
     facts["note"] = ("Tool results come from spec/corpus-spec.json tool_expectations, which "
                      "lab/tools/check_tools.py asserts the shipped tools reproduce exactly.")
     return facts
@@ -571,33 +597,33 @@ def main() -> int:
 
     if args.smoke:
         ids = [i for i in manifest if find_eml(i)][:3]
-        configs = [{"name": "smoke-4.1", "model": "granite4.1:3b", "reasoning": None, "variant": "free", "trials": 1}]
+        configs = [{"name": "smoke", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 1}]
     else:
         ids = WEEK5_IDS
         configs = [
-            {"name": "granite4.1-free", "model": "granite4.1:3b", "reasoning": None, "variant": "free", "trials": 5},
-            {"name": "granite4.1-guided", "model": "granite4.1:3b", "reasoning": None, "variant": "guided", "trials": 5},
-            {"name": "granite4.2-noreason-free", "model": "granite4.2:3b", "reasoning": "none", "variant": "free", "trials": 5},
-            {"name": "granite4.2-noreason-guided", "model": "granite4.2:3b", "reasoning": "none", "variant": "guided", "trials": 5},
-            {"name": "granite4.2-reason-free", "model": "granite4.2:3b", "reasoning": None, "variant": "free", "trials": 3},
+            {"name": "granite4.1-free", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "free", "trials": 5},
+            {"name": "granite4.1-guided", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "guided", "trials": 5},
+            {"name": "granite4.2-noreason-free", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "free", "trials": 5},
+            {"name": "granite4.2-noreason-guided", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "guided", "trials": 5},
+            {"name": "granite4.2-reason-free", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 3},
         ]
     if args.all:
         ids = WEEK5_IDS
         configs = configs + [
-            {"name": "granite4.1-coded", "model": "granite4.1:3b", "reasoning": None, "variant": "coded", "trials": 5},
-            {"name": "granite4.2-noreason-coded", "model": "granite4.2:3b", "reasoning": "none", "variant": "coded", "trials": 5},
-            {"name": "granite4.1-coded-anchored", "model": "granite4.1:3b", "reasoning": None, "variant": "coded_anchored", "trials": 5},
-            {"name": "granite4.2-noreason-coded-anchored", "model": "granite4.2:3b", "reasoning": "none", "variant": "coded_anchored", "trials": 5},
-            {"name": "granite4.2-reason-free-4096", "model": "granite4.2:3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
-            {"name": "granite4.2-reason-coded-4096", "model": "granite4.2:3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.1-coded", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "coded", "trials": 5},
+            {"name": "granite4.2-noreason-coded", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "coded", "trials": 5},
+            {"name": "granite4.1-coded-anchored", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "coded_anchored", "trials": 5},
+            {"name": "granite4.2-noreason-coded-anchored", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "coded_anchored", "trials": 5},
+            {"name": "granite4.2-reason-free-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.2-reason-coded-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
         ]
     if args.supplement:
         ids = WEEK5_IDS
         configs = [
-            {"name": "granite4.1-coded", "model": "granite4.1:3b", "reasoning": None, "variant": "coded", "trials": 5},
-            {"name": "granite4.2-noreason-coded", "model": "granite4.2:3b", "reasoning": "none", "variant": "coded", "trials": 5},
-            {"name": "granite4.2-reason-free-4096", "model": "granite4.2:3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
-            {"name": "granite4.2-reason-coded-4096", "model": "granite4.2:3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.1-coded", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "coded", "trials": 5},
+            {"name": "granite4.2-noreason-coded", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "coded", "trials": 5},
+            {"name": "granite4.2-reason-free-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.2-reason-coded-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
         ]
 
     missing = [i for i in ids if not find_eml(i)]
