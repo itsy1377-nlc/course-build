@@ -140,6 +140,13 @@ PAGE_BUDGET = {
     "course-schedule":         550,   # mostly a table
     "exam-review":             450,
     "course-material":         900,   # a resource list with licences
+    # 575, not the 550 a wrap-up gets. The model comparison used to read "it
+    # scored 16 of 20 against your 19", which quoted one measured run as the
+    # student's own result. That contradicts week 1, which teaches that one
+    # answer is a sample and not a fact, and the models are probabilistic
+    # enough that the promised 19 was never safe. Saying so honestly costs
+    # words on a page that was already exactly full.
+    "w7-wrap-up":              575,
     # Funded course only. Six things the registrar-approved notice has to carry
     # (what is captured, who reads it, for how long, how a student sees their
     # own, how they ask for removal, and what the answer will be), plus the

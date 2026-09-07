@@ -38,7 +38,7 @@ content: ""      stop reason: length
 
 A **stop reason** is the short label saying why the model stopped writing. `length` means it ran into the token limit you set. A **reasoning block** is text a model writes to itself before its answer. When the model spends the whole limit on that block, the answer never starts.
 
-This is measured, not imagined. In the course tests, at one token limit, 4 of 6 runs came back empty with a stop reason of `length`. Your notebook turns the reasoning block off, so your own runs should not look like that.
+This is measured, not imagined. In one set of course tests, at one token limit, most runs came back empty with a stop reason of `length`. Another set would not give the same count. Your notebook turns the reasoning block off, so your own runs should not look like that.
 
 `strip_reasoning()` arrives written for you. It takes off a leading reasoning block, a stray closing tag and any code fences. Run it before you load. It fixes the first shape outright, and it costs nothing on the other two.
 :::

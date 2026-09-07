@@ -56,7 +56,7 @@ Answer these six before you move on. Each answer sits under its question, with t
 :::
 
 ::: section | Would a bigger model have done better?
-We ran your batch on `granite-8b`. It scored 16 of 20 against your 19, at three times the cost.
+We ran the same batch on `granite-8b`, at about three times the cost. It scored a little worse than 3B on our run. One run is one sample, so yours will differ.
 
 It wins on a bare body. Behind your facts block and tools, it does not. Size pays for judgement on thin evidence. You spent four weeks making it good.
 :::
@@ -66,5 +66,5 @@ Take the **Week 7 self-check** if you have not yet. It is 12 points, unlimited t
 
 Post to the **Week 7 discussion** and reply to one classmate. Both parts ask for numbers out of your own report.
 
-Week 8 is the final exam and nothing else. No new reading, no new lab, no new video. Thirty questions, one point each, one attempt, due Day 55. It asks about all seven weeks, so your notebooks are the study guide.
+Week 8 is the final exam and nothing else. No new reading, no new lab, no new video. Forty questions worth 30 points, one attempt, due Day 55. It asks about all seven weeks, so your notebooks are the study guide.
 :::

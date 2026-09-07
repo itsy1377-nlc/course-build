@@ -83,7 +83,7 @@ So the two counts are never added together. Three wrong out of twenty tells you 
 :::
 
 ::: section | One score block
-Here is one score block.
+Here is one score block. Yours will not match it.
 
 ```text
 Scored against answer key phase0-1.0
@@ -95,7 +95,7 @@ False negatives: 1
 Escalation agreement: 18 of 20
 ```
 
-Those three counts add to twenty, which is your check that the counting worked.
+Those three counts add to twenty, which checks that the counting worked.
 
 Escalation agreement is the share of the twenty where the agent's yes or no matched the answer key. It gets its own line because it asks a different question. Accuracy asks whether the agent judged an email correctly. This asks whether it sent the right cases to a person.
 

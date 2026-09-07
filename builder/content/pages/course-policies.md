@@ -47,7 +47,7 @@ Four groups make up your grade. Each is worth a set percent, whatever its points
 | Group | Percent | What is in it |
 |---|---|---|
 | Labs | 60 | Seven labs, one a week, 100 points each |
-| Final exam | 20 | One exam in week 8, 30 questions |
+| Final exam | 20 | One exam in week 8, 40 questions |
 | Discussions | 12 | Seven discussion boards, 20 points each |
 | Self-checks | 8 | Seven short quizzes, 12 points each |
 

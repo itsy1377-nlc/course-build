@@ -41,7 +41,11 @@ Week 2 gave stop reason a different meaning: why the model stopped writing. A lo
 
 The first three come from a settled case. The last two say the run ran out of room.
 
-The rule lives in your code, not in the model. The course measurement explains the difference. A model left to decide when to stop kept calling tools after it already had its answer. It produced the correct whole path 25 times in 60. With the stop condition in code, runs ended for the right reason 136 times in 138.
+The rule lives in your code, not in the model. The course measurement explains the difference.
+
+A model left to decide when to stop kept calling tools after it already had its answer. It produced the correct whole path in well under half of those runs. With the stop condition in code, nearly every run ended for the right reason.
+
+Those counts come from one set of tests, so read the direction rather than the figures.
 :::
 
 ::: section | The agent picks its next tool from what it just read

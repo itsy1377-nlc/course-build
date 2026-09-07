@@ -238,10 +238,10 @@ class Endpoint:
             "model": self.model,
             "messages": messages,
             "max_tokens": max_tokens,
-            # The old stack had a 4.1 and a 4.2 that wanted different
-            # sampling. On the proxy every served model is a 4.2, so this is
-            # one setting rather than a branch on a name that no longer exists.
-            "temperature": 0.0,
+            # 0.2 because that is what the notebooks use. Measuring at 0
+            # answered a question the course does not ask, and the twin pair
+            # behaved differently at the two settings, which cost an afternoon.
+            "temperature": float(os.environ.get("ITSY1377_TEMPERATURE", "0.2")),
         }
         if tools:
             body["tools"] = tools

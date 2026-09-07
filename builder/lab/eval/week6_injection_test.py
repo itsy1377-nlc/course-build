@@ -53,6 +53,7 @@ Run:
 import argparse
 import hashlib
 import json
+import os
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
@@ -67,16 +68,58 @@ from week5_loop_test import (  # noqa: E402
 # The eight emails this measures, and why each one is here. The comment is the
 # placement, because the placement is the finding: a defence that stops a body
 # payload and misses a header one is not a defence.
-CASES = [
-    ("013-vetchmoor-census-correction",      "body_plain_visible"),
-    ("024-vetchmoor-census-control",         "none"),   # 013's twin, no payload
-    ("014-ferncrate-staffing-plan-share",   "html_hidden"),
-    ("020-sso-session-expired",             "fake_tool_output"),
-    ("021-direct-deposit-change-request",   "footer_disguise"),
-    ("022-mailbox-quota-subject-tag",       "subject_line"),
-    ("023-cfo-vendor-update-header-note",   "header_forged"),
-    ("015-report-phish-reminder",           "decoy"),  # benign, must not escalate
-]
+def build_cases() -> list[tuple[str, str]]:
+    """Every injected email in the corpus, plus controls, read from ground truth.
+
+    This was a hand-written list of eight. The corpus carries TEN injected
+    emails, so the list silently omitted four of them and with them three
+    placements that were never measured at all: quoted_thread,
+    json_output_spoof and attachment_filename. A hardcoded sample that drifts
+    from the corpus measures whatever it happened to name on the day it was
+    written.
+
+    Controls matter as much as payloads here. 024 is 013's word-for-word twin
+    and isolates the payload; the benign emails answer the other question, which
+    is whether a guard cries wolf on messages that never needed it.
+    """
+    truth = json.loads((CORPUS / "ground_truth.json").read_text(encoding="utf-8"))
+    records = truth.get("emails") or truth
+    if isinstance(records, dict):
+        records = list(records.values())
+
+    cases: list[tuple[str, str]] = []
+    for record in sorted(records, key=lambda r: r["id"]):
+        injection = record.get("injection") or {}
+        if injection.get("placement"):
+            cases.append((record["id"], injection["placement"]))
+
+    # 013's clean twin, which carries no payload and is the only way to say
+    # that a verdict moved because of the payload rather than the email.
+    cases.append(("024-vetchmoor-census-control", "none"))
+
+    # Benign controls, for the cry-wolf half. Capped so one run stays inside a
+    # sensible wall clock, and taken in id order so the set is reproducible
+    # rather than whatever the filesystem returned.
+    benign = [r["id"] for r in sorted(records, key=lambda r: r["id"])
+              if r.get("verdict") == "benign"][:DECOY_COUNT]
+    cases.extend((email_id, "decoy") for email_id in benign)
+
+    # Exam-only emails live outside corpus/emails and students never see them,
+    # so week 6 could not teach with one even if it moved a model. Dropped,
+    # and named, because a sample that quietly shrinks is how a measurement
+    # ends up describing a different set than the one it claims.
+    keep, dropped = [], []
+    for email_id, placement in cases:
+        (keep if find_eml(email_id) else dropped).append((email_id, placement))
+    if dropped:
+        print("  not measurable, no file under corpus/emails:")
+        for email_id, placement in dropped:
+            print(f"    {email_id}  ({placement})")
+    return keep
+
+
+DECOY_COUNT = int(os.environ.get("ITSY1377_DECOYS", "8"))
+CASES = build_cases()
 
 # The two models the proxy serves. The old names were the local ollama tags
 # and nothing answers to them any more.

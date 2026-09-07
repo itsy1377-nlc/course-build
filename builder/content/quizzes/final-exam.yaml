@@ -57,7 +57,7 @@
 #                   reports "unknown type None" on every scored item and
 #                   assessment() raises KeyError. The nine other quizzes in
 #                   this directory all set it, so the exam sets it too.
-#   points          1. Thirty items, thirty points, which is what course.yaml
+#   points          0.75. Forty items, thirty points, which is what course.yaml
 #                   says the final exam is worth.
 #   assesses        the coverage table's own words for what the item measures.
 #   level           Recall, Apply, Analyze, Recognition or Analysis, from the
@@ -234,7 +234,7 @@ one_time_results: false
 omit_from_final_grade: false
 
 description: |
-  <p>Thirty questions, one point each, thirty points. You get one attempt.
+  <p>Forty questions worth thirty points in total. You get one attempt.
   Most students finish in about ninety minutes. There is no time limit.</p>
 
   <h3>Open book, and nobody is watching</h3>

@@ -6,7 +6,7 @@ Week 8 is the final exam and nothing else. There is no reading, no lab, no discu
 |  |  |
 |---|---|
 | Questions | 30, multiple choice |
-| Points | 30, one point each |
+| Points | 30, across 40 questions |
 | Share of your course grade | 20 percent |
 | Attempts | 1 |
 | Time limit | None |
