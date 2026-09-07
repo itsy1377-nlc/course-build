@@ -19,7 +19,7 @@ scenes:
       - Last week your agent asked for one tool, read the result, and answered. That was one round.
       - This week it may go around again, up to four times.
       - After each result it picks what to ask for next, and your code says when the run ends.
-      - That is all week 5 adds. No new tool, no new field. Only the loop.
+      - That's all week 5 adds. No new tool, no new field. Only the loop.
 
   - type: slide
     layout: diagram
@@ -43,7 +43,7 @@ scenes:
           mark: true
       loop: the result becomes the next thing it looks at
     narration:
-      - text: Here is one step.
+      - text: Here's one step.
         reveal: 1
       - text: The agent looks at what it has so far.
         reveal: 1
@@ -51,11 +51,11 @@ scenes:
         reveal: 2
       - text: Your code runs that tool and hands the result back.
         reveal: 3
-      - text: Observe, decide, act. That is one step.
+      - text: Observe, decide, act. That's one step.
         reveal: 3
       - text: Then it begins again, with one more result than it had before.
         reveal: 4
-      - text: It may do that four times. It cannot do it five.
+      - text: It may do that four times. It can't do it five.
         reveal: 4
 
   - type: slide
@@ -85,9 +85,9 @@ scenes:
     heading: The run that learns nothing costs the most
     body: Every call carries the whole conversation so far, so each step makes every later step more expensive than the one before it.
     narration:
-      - Here is the part that surprises people.
+      - Here's the part that surprises people.
       - Every call carries the whole conversation so far. The instructions, the facts, the email, and every turn already taken.
-      - So step four carries three turns of history that step one did not, and it pays for all three.
+      - So step four carries three turns of history that step one didn't, and it pays for all three.
       - Take the cap off and let a run reach twenty steps, and you pay for a hundred and ninety turns of history, not twenty.
       - The cost grows faster than the step count.
       - A loop that keeps going with nothing new to learn is the most expensive thing you can build here.

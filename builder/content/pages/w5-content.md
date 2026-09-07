@@ -1,5 +1,7 @@
 ::: intro
-Until now your agent asked for one tool and answered. This week it may ask four times. It picks the next tool from the result it just read. This page covers the loop, the rule that ends it, and the cap that catches the rest.
+Until now your agent asked for one tool and answered. This week it can ask four times, picking the next tool from the result it just read. The hard part isn't the asking. It's knowing when to stop.
+
+This page covers the loop, the rule that ends it, and the cap that catches the rest.
 
 Give this page 40 minutes. Six of those are a single pass through the words. The rest is the two worked runs and the four questions under them.
 :::

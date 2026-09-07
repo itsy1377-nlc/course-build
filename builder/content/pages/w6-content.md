@@ -1,5 +1,7 @@
 ::: intro
-Your agent reads text a stranger wrote. Then it acts on what it read. This page covers what goes wrong there, where the attacker's text hides, and the four controls you build this week.
+Your agent reads text a stranger wrote, then acts on what it read. That sentence is the whole problem, and this week is what you do about it.
+
+This page covers what goes wrong there, where the attacker's text hides, and the four controls you build.
 
 Give this page 23 minutes. Six of those are one pass through the words. The rest is the six payload spots and the decoy case.
 :::

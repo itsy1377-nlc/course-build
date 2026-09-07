@@ -71,7 +71,7 @@ scenes:
         reveal: 2
       - text: The truth runs the other way, and only the facts show it.
         reveal: 2
-      - text: So facts are not a way to add suspicion. They move verdicts in both directions.
+      - text: So facts aren't a way to add suspicion. They move verdicts in both directions.
         reveal: 2
 
   - type: slide
@@ -80,7 +80,7 @@ scenes:
     heading: All three checks can pass on a malicious message
     body: A pass says the message really came from the domain it names, and that somebody set that domain up properly. Sometimes that somebody is the attacker.
     narration:
-      - Here is the part that surprises people.
+      - Here's the part that surprises people.
       - One of this week's emails passes all three sender checks and is malicious anyway.
       - A pass only says the message really came from the domain it names.
       - It also says somebody set that domain up properly. That somebody can be the attacker.
@@ -116,7 +116,7 @@ scenes:
     narration:
       - Start with the sidebar notebook.
       - It builds one line per student for a class sign in sheet, in an order you choose.
-      - That is the move your second cell makes, on different names.
+      - That's the move your second cell makes, on different names.
       - Then the reading, then the lab. Keep the reading open beside the notebook.
       - Two cells are yours this week, about twelve to fifteen lines. The rest arrives working.
       - The lab is the long line, about two and three quarter hours. Give it two sittings.

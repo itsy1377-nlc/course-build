@@ -16,7 +16,7 @@ scenes:
     body: This runs on an email that is not in your lab set, so nothing here is your answer. The shape is what to copy.
     narration:
       - This is what a finished week 3 run looks like.
-      - It runs on one email that is not in your lab set, so nothing here is your answer.
+      - It runs on one email that isn't in your lab set, so nothing here's your answer.
       - The same model judges it twice. Once on the body alone, then again with your facts block.
 
   - type: slide
@@ -34,8 +34,8 @@ scenes:
 
       A.
     narration:
-      - Here is the entire message. Two hundred and fifty-one characters.
-      - Read what is not in it. No link, no attachment, no address you could check. It is signed with one letter.
+      - Here's the entire message. Two hundred and fifty-one characters.
+      - Read what isn't in it. No link, no attachment, no address you could check. It's signed with one letter.
       - The body never says who sent this.
       - Week 2 sent these words alone, and the person who wrote them chose every one.
 
@@ -53,7 +53,7 @@ scenes:
         reveal: 1
       - text: Every value came out of the parser. All three checks passed.
         reveal: 2
-      - text: Then this line. The name belongs to the company. The address does not.
+      - text: Then this line. The name belongs to the company. The address doesn't.
         reveal: 3
       - text: The rest says where a click would land, and what the gateway already decided. It let this through.
         reveal: 4
@@ -93,10 +93,10 @@ scenes:
                        "Subject: Are you available?"]
       }
     narration:
-      - Here is the grounded answer, exactly as it came back.
+      - Here's the grounded answer, exactly as it came back.
       - The first indicator is a line out of your own facts block, read back to you.
       - The model listed the display name mismatch in all eleven grounded runs, and listed it first in ten.
-      - Nothing in the body could have told it that. Week 2 could not have got this right.
+      - Nothing in the body could have told it that. Week 2 couldn't have got this right.
 
   - type: slide
     layout: statement
@@ -107,8 +107,8 @@ scenes:
       - Now the part to be honest about.
       - The truth for this email is business email compromise. The model said credential phish in every grounded run.
       - Your schema check passed it anyway, because credential phish is an allowed category.
-      - Grounding fixed the verdict. It did not fix the label.
-      - A check on the shape still cannot tell you the content is right.
+      - Grounding fixed the verdict. It didn't fix the label.
+      - A check on the shape still can't tell you the content is right.
 
   - type: slide
     layout: numbered
@@ -136,6 +136,6 @@ scenes:
     heading: Three things that come up this week
     body: A name that is not defined, a facts block that grew, and a verdict that did not move.
     narration:
-      - If a name is not defined, a cell above it never ran. Restart the kernel and run every cell from the top.
+      - If a name isn't defined, a cell above it never ran. Restart the kernel and run every cell from the top.
       - If your facts block is far bigger than this one, you sent everything the parser returns. Cell twelve prints its size, so read it.
-      - And if a verdict does not move, that is not a bug. No credit depends on which way one moved.
+      - And if a verdict doesn't move, that isn't a bug. No credit depends on which way one moved.

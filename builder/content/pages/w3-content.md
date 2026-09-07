@@ -1,5 +1,7 @@
 ::: intro
-Your agent still sends the whole email body and nothing else. This week you choose what goes in beside it. This page covers which facts a verdict needs, and what each extra line in the prompt costs you.
+Your agent still sends the whole email body and nothing else. This week you choose what goes in beside it, and that choice turns out to be most of the job.
+
+This page covers which facts a verdict needs, and what each extra line in the prompt costs you.
 
 Give this page 45 minutes.
 :::

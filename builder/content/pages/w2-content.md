@@ -1,5 +1,7 @@
 ::: intro
-Last week the model answered you in sentences. This week it answers in named values, and your code reads them one at a time. This page covers what that shape is and why your code needs it. Part 2 covers what to do when the shape comes back wrong.
+Last week the model answered you in sentences. A sentence reads well, and your code can't do anything with it, so this week the answer comes back as named values your code reads one at a time.
+
+This page covers what that shape is and why your code needs it. Part 2 covers what to do when the shape comes back wrong, because sooner or later it will.
 
 Give this page 20 minutes. Part 2 takes another 22.
 :::

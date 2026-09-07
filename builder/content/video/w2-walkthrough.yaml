@@ -17,7 +17,7 @@ scenes:
     narration:
       - This is what a finished week 2 run looks like.
       - As before, it runs on a different email than the ones in your lab.
-      - Watch two things. The shape of the answer, and the one problem the check cannot catch.
+      - Watch two things. The shape of the answer, and the one problem the check can't catch.
 
   - type: slide
     layout: code
@@ -32,10 +32,10 @@ scenes:
                        "larkseal-docs.example"]
       }
     narration:
-      - Here is a real reply, from a real run.
+      - Here's a real reply, from a real run.
       - Four named values. A verdict, a category, a confidence number, and a short list of indicators.
       - Your code turns that text into a dictionary and reads any field it wants.
-      - This one arrived clean on the first try. Yours will not always, and that is fine.
+      - This one arrived clean on the first try. Yours won't always, and that's fine.
 
   - type: slide
     layout: compare
@@ -47,11 +47,11 @@ scenes:
     narration:
       - text: This is the same email you saw in the week 1 walkthrough.
         reveal: 1
-      - text: Last week, asked in plain words, the model said it was not a phishing attempt. That was wrong.
+      - text: Last week, asked in plain words, the model said it wasn't a phishing attempt. That was wrong.
         reveal: 1
-      - text: This week, asked for named values, it says malicious with high confidence. That is right.
+      - text: This week, asked for named values, it says malicious with high confidence. That's right.
         reveal: 2
-      - text: Asking for a fixed shape changed the answer. That is worth sitting with.
+      - text: Asking for a fixed shape changed the answer. That's worth sitting with.
 
   - type: slide
     layout: statement
@@ -62,8 +62,8 @@ scenes:
       - Now the part to watch for.
       - The category in that answer is wrong. The email is a credential phish. The model called it vendor fraud.
       - Your schema check passed it anyway, because every field was present and the right type.
-      - A check on the shape cannot tell you the content is right.
-      - That is the whole reason this course keeps going after week 2.
+      - A check on the shape can't tell you the content is right.
+      - That's the whole reason this course keeps going after week 2.
 
   - type: slide
     layout: numbered
@@ -78,11 +78,11 @@ scenes:
         reveal: 1
       - text: First, all four emails have an answer in your exported file.
         reveal: 1
-      - text: Second, the attempt log is there. If a retry fired, that is good, not bad. Leave it in.
+      - text: Second, the attempt log is there. If a retry fired, that's good, not bad. Leave it in.
         reveal: 2
       - text: Third, your written answer names a field from your own output and says what it said.
         reveal: 3
-      - text: A general sentence about JSON will not earn the points. Your own numbers will.
+      - text: A general sentence about JSON won't earn the points. Your own numbers will.
         reveal: 3
 
   - type: slide
@@ -94,4 +94,4 @@ scenes:
       - Two failures are common, and your code is built for both.
       - The model wraps the JSON in a sentence, or it leaves out a field.
       - When that happens your code says what was wrong and asks again.
-      - Watch the attempt log show it. That is your program working.
+      - Watch the attempt log show it. That's your program working.

@@ -16,7 +16,7 @@ scenes:
     body: One real run, on an email your lab does not use. Three steps, a stop reason, and one mistake that only the trace shows.
     narration:
       - This is what a finished week 5 run looks like.
-      - It runs on an email your lab does not use, so nothing here is your answer.
+      - It runs on an email your lab doesn't use, so nothing here's your answer.
       - Watch two things. The shape of a finished trace, and the one mistake only the trace shows.
 
   - type: slide
@@ -28,7 +28,7 @@ scenes:
       - check_urls, and the one link host came back unlisted
       - lookup_recipient, and the record came back empty
     narration:
-      - text: Your notebook prints one table per email, one row per step. Here is one of them.
+      - text: Your notebook prints one table per email, one row per step. Here's one of them.
         reveal: 1
       - text: Step one asked the sender reputation tool. The domain came back unknown. That settles nothing.
         reveal: 1
@@ -62,12 +62,12 @@ scenes:
                  "role": null, "mailbox_type": "unknown",
                  ...}
     narration:
-      - Here is step three, as the exported file records it, with the result trimmed to four fields.
+      - Here's step three, as the exported file records it, with the result trimmed to four fields.
       - Look at the arguments line. The agent asked the recipient lookup about Tobias.
-      - Tobias is the name in the greeting. It is not the address the agent was handed.
+      - Tobias is the name in the greeting. It isn't the address the agent was handed.
       - That mail went to a shared payroll mailbox. The lookup holds no record under a first name, so it answered with an empty one.
       - The step count is right. The stop reason is right. The answer is empty, and only the arguments say why.
-      - Open your file and read it. Do not trust the step count on its own.
+      - Open your file and read it. Don't trust the step count on its own.
 
   - type: slide
     layout: compare
@@ -81,7 +81,7 @@ scenes:
         reveal: 1
       - text: Between runs, nothing you would read off the screen. Same steps, same order, same total.
         reveal: 1
-      - text: Which tool your agent picks second is its choice. You are not graded on picking the same one.
+      - text: Which tool your agent picks second is its choice. You aren't graded on picking the same one.
         reveal: 1
       - text: Inside the run, the cost climbed. 1,755 tokens, then 1,912, then 1,975.
         reveal: 2
@@ -116,6 +116,6 @@ scenes:
     narration:
       - Three failures are worth knowing before you start.
       - If every run of yours ends at four steps on step cap, your while line is missing a test. A step has to be left, and a usable tool has to be left. Both.
-      - If your agent asks for the link check on the email with no link, it gets an empty result and the step still counts. That is the model choosing badly, not your code failing. Name the tool your run picked and you keep the points.
-      - If a name is not defined, a cell above it never ran. Restart the kernel and run every cell from the top.
+      - If your agent asks for the link check on the email with no link, it gets an empty result and the step still counts. That's the model choosing badly, not your code failing. Name the tool your run picked and you keep the points.
+      - If a name isn't defined, a cell above it never ran. Restart the kernel and run every cell from the top.
       - If none of those is it, post on the question board. This is the hardest week in the course.

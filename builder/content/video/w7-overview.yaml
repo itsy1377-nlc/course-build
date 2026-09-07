@@ -19,7 +19,7 @@ scenes:
       - Your agent already judges a reported email, and it knows when to hand one to a person.
       - This week it writes that judgment down.
       - Every verdict comes back as a note, six lines long, that somebody else can act on.
-      - That is the one thing it gains. Nothing else changes.
+      - That's the one thing it gains. Nothing else changes.
 
   - type: slide
     layout: diagram
@@ -44,15 +44,15 @@ scenes:
         - label: One block of numbers
           sub: scored against an answer key
     narration:
-      - text: Here is the shape of the week.
+      - text: Here's the shape of the week.
         reveal: 1
-      - text: Twenty emails you have not seen before. Ten are malicious and ten are benign.
+      - text: Twenty emails you haven't seen before. Ten are malicious and ten are benign.
         reveal: 1
-      - text: They go to the agent you already built. It is not changed this week.
+      - text: They go to the agent you already built. It isn't changed this week.
         reveal: 2
       - text: Each one comes back as a six-line note.
         reveal: 3
-      - text: Then you score all twenty against an answer key. That part is not a new ability. It is you measuring the agent you have.
+      - text: Then you score all twenty against an answer key. That part isn't a new ability. It's you measuring the agent you've.
         reveal: 4
 
   - type: slide
@@ -84,11 +84,11 @@ scenes:
     heading: Being wrong here costs you nothing
     body: The answer key ships inside your notebook. No part of your grade comes from a correct verdict.
     narration:
-      - Here is the part that surprises people.
+      - Here's the part that surprises people.
       - The answer key for all twenty emails ships inside your own notebook.
-      - That is fine, because no part of your grade comes from a correct verdict.
-      - Your agent will get some of the twenty wrong. What is graded is your notes and the honesty of your numbers.
-      - A system that judges is not the same as a system you can trust. Measuring closes that gap.
+      - That's fine, because no part of your grade comes from a correct verdict.
+      - Your agent will get some of the twenty wrong. What's graded is your notes and the honesty of your numbers.
+      - A system that judges isn't the same as a system you can trust. Measuring closes that gap.
 
   - type: slide
     layout: compare
@@ -114,8 +114,8 @@ scenes:
     body: The sidebar notebook, then the reading, then the lab. Two cells in the lab are yours to write, so give it two sittings.
     narration:
       - Start with the sidebar notebook. Two short parts, about twenty five minutes.
-      - It counts bakes in a bakery yield log. That is the same counting and dividing your lab does.
-      - Then the reading. Keep it open beside the lab. The finished note in it is what you check yours against.
+      - It counts bakes in a bakery yield log. That's the same counting and dividing your lab does.
+      - Then the reading. Keep it open beside the lab. The finished note in it's what you check yours against.
       - Then the lab. Two cells are yours, so give it two sittings.
       - Watch the walkthrough video first. It shows what a finished run looks like.
-      - Week 8 adds nothing new. It is the final exam only.
+      - Week 8 adds nothing new. It's the final exam only.

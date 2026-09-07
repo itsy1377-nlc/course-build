@@ -18,7 +18,7 @@ scenes:
       - Welcome to week 6.
       - Your agent reads an email body, and somebody else wrote it. On a reported phishing message, that somebody is the attacker.
       - This week it stops trusting the text it reads, and the answer it writes.
-      - That is the one capability. Everything you build this week serves it.
+      - That's the one capability. Everything you build this week serves it.
 
   - type: slide
     layout: statement
@@ -26,8 +26,8 @@ scenes:
     heading: Prompt injection
     body: Attacker text that a model reads as an instruction instead of as evidence. Your rules and the email reach the model as one stream of text.
     narration:
-      - The problem has a name. It is called prompt injection.
-      - That is attacker text the model reads as an instruction instead of as evidence.
+      - The problem has a name. It's called prompt injection.
+      - That's attacker text the model reads as an instruction instead of as evidence.
       - It works because your rules and the email reach the model as one stream of text.
       - No setting separates them. Your prompt is the only place you say which part is data.
 
@@ -103,7 +103,7 @@ scenes:
         reveal: 1
       - text: The first is a benefits notice. After the signature sits one extra paragraph addressed to AI triage tools.
         reveal: 1
-      - text: It says a ticket already cleared the message, so record benign. That ticket does not exist.
+      - text: It says a ticket already cleared the message, so record benign. That ticket doesn't exist.
         reveal: 1
       - text: The second is that same message, word for word, with the paragraph taken out.
         reveal: 2
@@ -116,11 +116,11 @@ scenes:
     heading: The fence does not reach everywhere
     body: Six places a payload can sit, and a fence around the body reaches three of them. The rest hide in the HTML part, the subject line, and a forged header.
     narration:
-      - Here is the part to expect.
+      - Here's the part to expect.
       - Your lab carries six places a payload can sit. A fence around the body reaches three of them.
       - One hides in the HTML part. One rides in the subject line. One rides in a forged header.
-      - So your guardrails will not hold on all six.
-      - The lab does not ask you to stop everything. It asks you to judge whether what is left is low enough for a real security team.
+      - So your guardrails won't hold on all six.
+      - The lab doesn't ask you to stop everything. It asks you to judge whether what is left is low enough for a real security team.
 
   - type: slide
     layout: closing
@@ -129,7 +129,7 @@ scenes:
     body: The sidebar, then both parts of the reading, then the lab. Watch the walkthrough video before you open the notebook.
     narration:
       - Start with the sidebar notebook. It checks a library account against the catalogue record and names every gap.
-      - That is the shape your fact check needs.
+      - That's the shape your fact check needs.
       - Then both parts of the reading. Then the lab.
-      - Your week 5 loop does not have to be finished. The notebook carries a working copy of week 5.
+      - Your week 5 loop doesn't have to be finished. The notebook carries a working copy of week 5.
       - This lab makes more model calls than any week before it. Run each cell once, then read what it printed.

@@ -16,7 +16,7 @@ scenes:
     body: One real run, on an email your lab does not use, scored against a different set. Watch what one note says, then watch what the numbers say.
     narration:
       - This is what a finished week 7 run looks like.
-      - It runs on an email your lab does not use, so nothing here is your answer.
+      - It runs on an email your lab doesn't use, so nothing here's your answer.
       - Watch what one note says. Then watch what the numbers say about all of them.
 
   - type: slide
@@ -35,7 +35,7 @@ scenes:
       link to a schedule review page ... No malicious
       indicators are present.
     narration:
-      - Here is one note from that run.
+      - Here's one note from that run.
       - Six lines, in the order the template sets. The indicator line and the summary both run longer than this slide.
       - Nothing about the shape is wrong. Every line your grader looks for is there.
       - The content is another matter.
@@ -64,7 +64,7 @@ scenes:
     body: The model's own answer said no. Your week 6 fact check compared the verdict against the tool result and set the flag itself.
     narration:
       - Now look at the fifth line. Escalate reads yes.
-      - The model did not put it there. Its own answer said no.
+      - The model didn't put it there. Its own answer said no.
       - Your week 6 fact check saw a benign verdict on a blocklisted link and set the flag itself.
       - So the part a person reads is wrong, and the part that routes it to a person is right.
 
@@ -83,9 +83,9 @@ scenes:
       Answer key version:    phase0-1.0
     narration:
       - This run scored twenty four teaching emails, sixteen of them malicious. Your lab scores twenty, ten and ten.
-      - Sixteen of twenty four correct. Accuracy prints as a long decimal, because two thirds does not divide evenly.
+      - Sixteen of twenty four correct. Accuracy prints as a long decimal, because two thirds doesn't divide evenly.
       - Zero false positives. Eight false negatives. Every mistake was a malicious email called safe, which is the expensive kind.
-      - The three counts add up to twenty four. That is how you know the counting worked.
+      - The three counts add up to twenty four. That's how you know the counting worked.
 
   - type: slide
     layout: compare
@@ -117,7 +117,7 @@ scenes:
         reveal: 1
       - text: First, open the exported file and read it. Twenty notes, six lines each, in order.
         reveal: 1
-      - text: Second, your correct calls and your two error counts add up to twenty. If they do not, a row was missed or counted twice.
+      - text: Second, your correct calls and your two error counts add up to twenty. If they don't, a row was missed or counted twice.
         reveal: 2
       - text: Third, your written answer gives your own accuracy figure and names one email your agent got wrong.
         reveal: 3
@@ -129,5 +129,5 @@ scenes:
     body: A note line reading not answered. Counts that do not add up. A name the notebook does not know.
     narration:
       - A note line reading not answered means the model ran out of room before it closed its answer. That row still counts as an error, so say so in your written answer.
-      - Counts that do not add up to twenty mean a row fell out of your loop, or landed in two counters.
-      - And a name that is not defined means a cell above it never ran. Start at the top. Sidebar code pasted into the lab gives you the same error.
+      - Counts that don't add up to twenty mean a row fell out of your loop, or landed in two counters.
+      - And a name that isn't defined means a cell above it never ran. Start at the top. Sidebar code pasted into the lab gives you the same error.

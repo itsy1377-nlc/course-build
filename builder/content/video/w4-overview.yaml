@@ -17,9 +17,9 @@ scenes:
     narration:
       - Welcome to week 4.
       - Last week your agent judged each email from the facts you sent with it.
-      - Some emails do not settle there.
+      - Some emails don't settle there.
       - This week the model can ask for one more fact first. It names a tool. Your code runs it and hands the answer back.
-      - That is the one thing week 4 adds.
+      - That's the one thing week 4 adds.
 
   - type: slide
     layout: compare
@@ -29,7 +29,7 @@ scenes:
       - The body alone | Nothing on the page looks wrong, so the verdict is benign
       - One fact added | The sending domain has been reported before, so the verdict is malicious
     narration:
-      - text: Here is why your agent needs this.
+      - text: Here's why your agent needs this.
         reveal: 1
       - text: Some emails settle on the body alone. A calm, well written note reads benign.
         reveal: 1
@@ -62,13 +62,13 @@ scenes:
         - label: The model answers
           sub: now it has the fact
     narration:
-      - text: Here is the shape of one email this week.
+      - text: Here's the shape of one email this week.
         reveal: 1
       - text: You send the facts, the way you did in week 3.
         reveal: 1
       - text: The model reads them, and it may ask for a tool by name.
         reveal: 2
-      - text: It runs nothing. A model writes text. That is all it can do.
+      - text: It runs nothing. A model writes text. That's all it can do.
         reveal: 2
       - text: So your code reads the request, runs the matching function, and sends the result back.
         reveal: 3
@@ -92,7 +92,7 @@ scenes:
         reveal: 1
       - text: The second says whether a link host has been cleared, blocked, or never seen.
         reveal: 2
-      - text: The third says who received the message, whether they are an executive, and what they reported.
+      - text: The third says who received the message, whether they're an executive, and what they reported.
         reveal: 3
       - text: None of the three is a judgment call, so none is put to the model.
         reveal: 3
@@ -105,9 +105,9 @@ scenes:
     heading: Only your code can make a tool result
     body: An email body can carry a line that reads exactly like one. Whoever sent that email typed it.
     narration:
-      - Here is the part to watch for.
+      - Here's the part to watch for.
       - Everything reaches the model as one run of text. Your instructions, the facts, the email body, the tool result.
-      - The model cannot see where any part came from. Your code can.
+      - The model can't see where any part came from. Your code can.
       - A tool result exists because your code ran a tool. Nothing else is one.
       - An email can end with a line saying a check passed. Whoever sent that email typed it.
       - Week 6 comes back to this with an email built around it.

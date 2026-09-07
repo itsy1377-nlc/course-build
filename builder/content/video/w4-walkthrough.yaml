@@ -16,7 +16,7 @@ scenes:
     body: One email, one tool call, and a verdict that changes. This runs on an email your lab does not use, so nothing here is your answer.
     narration:
       - This is what a finished week 4 run looks like.
-      - It runs on an email your lab does not use, so nothing here is your answer.
+      - It runs on an email your lab doesn't use, so nothing here's your answer.
       - One email, one tool call, and a verdict that changes. Watch the verdict.
 
   - type: slide
@@ -31,9 +31,9 @@ scenes:
       }
     narration:
       - The email is a past due statement from a parts supplier.
-      - Here is what the agent said with week 3's capability alone. Facts block, playbook, known good hosts, no tools.
+      - Here's what the agent said with week 3's capability alone. Facts block, playbook, known good hosts, no tools.
       - Malicious, at confidence 0.85. It said that in twenty runs out of twenty.
-      - It is wrong. The answer key says this one is benign.
+      - It's wrong. The answer key says this one is benign.
       - The category moved around. Credential phish in eighteen runs, vendor fraud in two. The verdict never moved.
 
   - type: slide
@@ -60,7 +60,7 @@ scenes:
     narration:
       - Your code read that request, picked the matching function, and ran it.
       - The record came back trusted. First seen in June 2022. 96 messages in 90 days. Two earlier reports, and the last closed benign.
-      - None of that is in the email, and none of it is in the facts block. Asking was the only way to get it.
+      - None of that's in the email, and none of it's in the facts block. Asking was the only way to get it.
       - Then your message carried the result back, with the model's own call id copied across. The two ids matched in twenty runs out of twenty.
 
   - type: slide
@@ -71,13 +71,13 @@ scenes:
       - Without the tool | malicious, confidence 0.85
       - With the tool | benign, legit external, confidence 0.95
     narration:
-      - text: Without the tool, malicious, in twenty runs out of twenty. Week 3's capability was not enough for this email.
+      - text: Without the tool, malicious, in twenty runs out of twenty. Week 3's capability wasn't enough for this email.
         reveal: 1
       - text: With the tool, benign and legit external, at confidence 0.95, in twenty runs out of twenty.
         reveal: 2
       - text: The answer key says benign and legit external. Right on both fields.
         reveal: 2
-      - text: Nothing about the model changed. It got one fact it did not have before.
+      - text: Nothing about the model changed. It got one fact it didn't have before.
         reveal: 2
 
   - type: slide
@@ -86,9 +86,9 @@ scenes:
     heading: The tool name can change. The flip should not.
     body: In eighteen runs the model asked about the sender. In two it asked about the link host. Both answers land on benign.
     narration:
-      - Your run will not match this one line for line.
+      - Your run won't match this one line for line.
       - In eighteen runs out of twenty the model asked for check sender reputation. In the other two it asked for check urls. Both land on benign.
-      - The indicators change wording every run. The verdict, the category and the confidence do not.
+      - The indicators change wording every run. The verdict, the category and the confidence don't.
       - One email with tools costs two model calls. The comparison adds a third. This run came to 4,242 tokens.
       - The fallback never ran here, zero runs out of twenty. It still can. If your model answers in sentences instead, your file records that and earns the same credit.
 
@@ -111,7 +111,7 @@ scenes:
         reveal: 2
       - text: Third, your written answer names one email, one tool, and one fact the tool returned.
         reveal: 3
-      - text: A general sentence about tool calls will not earn the points. Your own fact will.
+      - text: A general sentence about tool calls won't earn the points. Your own fact will.
         reveal: 3
 
   - type: slide
@@ -123,4 +123,4 @@ scenes:
       - Three failures are common this week, and all three are in your own code.
       - The arguments arrive as text, not as a dictionary. Turn that text into a dictionary before you read a value out of it.
       - An unknown tool name has to return a plain sentence. Raise an error instead, and one missing name ends the run for all six emails.
-      - And if the two call ids do not match, your message did not carry the model's own id back. Copy it across unchanged.
+      - And if the two call ids don't match, your message didn't carry the model's own id back. Copy it across unchanged.

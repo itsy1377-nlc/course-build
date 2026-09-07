@@ -17,7 +17,7 @@ scenes:
     narration:
       - Welcome to week 2.
       - Last week your code got words back from the model. A person can read words.
-      - Your code cannot sort them, count them, or add them up.
+      - Your code can't sort them, count them, or add them up.
       - This week you ask for something your code can actually use.
 
   - type: slide
@@ -28,7 +28,7 @@ scenes:
       - A paragraph | This looks like a phishing attempt because the link does not match the sender.
       - Named values | verdict, category, confidence, indicators
     narration:
-      - text: Here is the same judgment written two ways.
+      - text: Here's the same judgment written two ways.
         reveal: 1
       - text: On the left, a sentence. Useful to read, useless to a program.
         reveal: 1
@@ -44,9 +44,9 @@ scenes:
     heading: JSON is a dictionary written as text
     body: You already used dictionaries in week 0. JSON is the same thing, spelled out so it can travel in a message.
     narration:
-      - The shape has a name. It is called JSON.
-      - If that word is new, it is simpler than it sounds.
-      - It is a dictionary, the kind you used in week 0, written out as text so it can travel inside a message.
+      - The shape has a name. It's called JSON.
+      - If that word is new, it's simpler than it sounds.
+      - It's a dictionary, the kind you used in week 0, written out as text so it can travel inside a message.
       - You ask the model for JSON. Then your code turns that text back into a dictionary.
 
   - type: slide
@@ -75,11 +75,11 @@ scenes:
     heading: A broken answer is normal, not a failure
     body: The model will hand you something malformed sometimes. Handling it is the work, not a sign that you did something wrong.
     narration:
-      - Here is the thing to hold on to this week.
+      - Here's the thing to hold on to this week.
       - Sometimes the model will hand you something broken. Missing a field, or wrapped in extra text.
-      - That is normal. It is not a sign that you did something wrong.
-      - Handling it is the work. Any real system that talks to a model has this exact code in it.
-      - So when your retry fires, that is your program working, not failing.
+      - That's normal. It isn't a sign that you did something wrong.
+      - Handling it's the work. Any real system that talks to a model has this exact code in it.
+      - So when your retry fires, that's your program working, not failing.
 
   - type: slide
     layout: closing
@@ -90,4 +90,4 @@ scenes:
       - Start with the sidebar notebook. It covers dictionaries, JSON as text, and how to try something again when it fails.
       - Then the reading, then the lab.
       - Everything you wrote in week 1 arrives already working in this week's notebook.
-      - So if last week did not finish, you can still start this one today.
+      - So if last week didn't finish, you can still start this one today.

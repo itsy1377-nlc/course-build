@@ -1,5 +1,7 @@
 ::: intro
-Your agent already judges an email and decides when a person must see it. This week it writes that judgment down, and you measure how often it's right.
+Your agent already judges an email and decides when a person must see it. This week it writes that judgment down for somebody else to act on, and you measure how often it's right.
+
+The measuring surprises people.
 
 Give this page 42 minutes, including 10 for the source at the end.
 :::

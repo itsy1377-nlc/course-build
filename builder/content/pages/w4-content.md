@@ -1,5 +1,7 @@
 ::: intro
-Last week your agent sent the facts and got a verdict back. This week it may ask for something first. The model names a tool, your code runs it, and the answer goes back to the model.
+Last week your agent sent the facts and got a verdict back. This week it can ask for something first. The model names a tool, your code runs it, and the answer goes back to the model.
+
+That exchange is what people mean when they say agent.
 
 Give this page 40 minutes. Six of those are the reading. The rest is one worked example, two tables and one document to open.
 :::

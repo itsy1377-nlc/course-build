@@ -16,8 +16,8 @@ scenes:
     body: This runs on a different email than the two in your lab, so nothing here is your answer. The shape is what to copy.
     narration:
       - This is what a finished week 1 run looks like.
-      - It runs on a different email than the two in your lab, so nothing here is your answer.
-      - What to take from it is the shape. When your run looks like this, it's working.
+      - It runs on a different email than the two in your lab, so nothing here's your answer.
+      - What to take from it's the shape. When your run looks like this, it's working.
 
   - type: slide
     layout: numbered
