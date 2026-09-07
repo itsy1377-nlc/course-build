@@ -1,0 +1,121 @@
+id: w7-overview
+title: What week 7 adds
+kind: concept
+module: m07
+embed_on: builder/content/pages/w7-overview.md
+blurb: The six lines your agent starts writing, why a judgment is not a measurement, and why being wrong here costs you nothing.
+explains:
+  - builder/content/pages/w7-overview.md
+  - builder/content/pages/w7-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 7
+    heading: Write the judgment down
+    body: Your agent gains one thing this week. It writes each verdict as a fixed six-line note another person can act on.
+    narration:
+      - Welcome to week 7.
+      - Your agent already judges a reported email, and it knows when to hand one to a person.
+      - This week it writes that judgment down.
+      - Every verdict comes back as a note, six lines long, that somebody else can act on.
+      - That is the one thing it gains. Nothing else changes.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The shape of the week
+    heading: The same agent, twenty times, then a number
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. Twenty new emails go to the agent built in
+        week 6, which is unchanged. Each email comes back as a six-line note,
+        drawn as the one new part. The twenty notes are then scored against an
+        answer key, which gives one block of numbers.
+      nodes:
+        - label: Twenty new emails
+          sub: ten malicious, ten benign
+        - label: The agent you already built
+          sub: not changed this week
+        - label: A six-line note each
+          sub: the one thing added
+          mark: true
+        - label: One block of numbers
+          sub: scored against an answer key
+    narration:
+      - text: Here is the shape of the week.
+        reveal: 1
+      - text: Twenty emails you have not seen before. Ten are malicious and ten are benign.
+        reveal: 1
+      - text: They go to the agent you already built. It is not changed this week.
+        reveal: 2
+      - text: Each one comes back as a six-line note.
+        reveal: 3
+      - text: Then you score all twenty against an answer key. That part is not a new ability. It is you measuring the agent you have.
+        reveal: 4
+
+  - type: slide
+    layout: numbered
+    eyebrow: The note
+    heading: Six lines, always in this order
+    items:
+      - Verdict
+      - Confidence
+      - Indicators
+      - Recommended action
+      - Escalate, yes or no
+      - Summary, in everyday words
+    narration:
+      - text: The note holds six lines, and they never move.
+        reveal: 1
+      - text: A verdict, how sure the model is, and the facts behind it.
+        reveal: 3
+      - text: Then what happens to the email next, and whether a person has to see it.
+        reveal: 5
+      - text: Then two plain sentences. Your agent already writes four of these lines. The action and the summary are new.
+        reveal: 6
+      - text: That last line is for the employee who reported the email, not for another analyst.
+        reveal: 6
+
+  - type: slide
+    layout: statement
+    eyebrow: The surprise
+    heading: Being wrong here costs you nothing
+    body: The answer key ships inside your notebook. No part of your grade comes from a correct verdict.
+    narration:
+      - Here is the part that surprises people.
+      - The answer key for all twenty emails ships inside your own notebook.
+      - That is fine, because no part of your grade comes from a correct verdict.
+      - Your agent will get some of the twenty wrong. What is graded is your notes and the honesty of your numbers.
+      - A system that judges is not the same as a system you can trust. Measuring closes that gap.
+
+  - type: slide
+    layout: compare
+    eyebrow: What you count
+    heading: Two errors, never added together
+    items:
+      - A false positive | A benign email your agent called malicious
+      - A false negative | A malicious email your agent called benign
+    narration:
+      - text: You count two kinds of error, and you keep them apart.
+        reveal: 1
+      - text: A false positive is a benign email your agent called malicious. It costs an analyst a morning.
+        reveal: 1
+      - text: A false negative is a malicious email your agent called benign. It sends an attack back to the person who reported it, marked safe.
+        reveal: 2
+      - text: So three wrong out of twenty tells you nothing on its own. Which three is the whole question.
+        reveal: 2
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do first
+    body: The sidebar notebook, then the reading, then the lab. Two cells in the lab are yours to write, so give it two sittings.
+    narration:
+      - Start with the sidebar notebook. Two short parts, about twenty five minutes.
+      - It counts bakes in a bakery yield log. That is the same counting and dividing your lab does.
+      - Then the reading. Keep it open beside the lab. The finished note in it is what you check yours against.
+      - Then the lab. Two cells are yours, so give it two sittings.
+      - Watch the walkthrough video first. It shows what a finished run looks like.
+      - Week 8 adds nothing new. It is the final exam only.

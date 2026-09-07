@@ -1,0 +1,121 @@
+Return-Path: <marcus@peakwright-leads.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id b7a58cf4-f281-4682-b3bc-4b141d56a879
+  for <l.vashti@pellgrave.example>; Mon, 20 Apr 2026 08:40:09 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=peakwright-leads.example;
+  dkim=pass header.d=peakwright-leads.example header.s=pw1
+    header.i=@peakwright-leads.example;
+  dmarc=pass header.from=peakwright-leads.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  marcus@peakwright-leads.example designates 203.0.113.170 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.170;
+  envelope-from="marcus@peakwright-leads.example";
+  helo=mail.peakwright-leads.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 7.2
+X-Sentrywick-Message-UID: 7618e712ab6f
+X-Sentrywick-Reported-By: l.vashti@pellgrave.example
+Received: from mail.peakwright-leads.example
+  (mail.peakwright-leads.example [203.0.113.170])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 7618e712ab6f;
+  Mon, 20 Apr 2026 08:40:07 -0500
+Received: from PW-SALES-0217.peakwright-leads.example ([192.0.2.119])
+  by mail.peakwright-leads.example with ESMTPSA id bf865d50;
+  Mon, 20 Apr 2026 13:40:04 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=peakwright-leads.example; s=pw1; t=1776692400;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=1kRwMpQgzKV6rocB5KxrsllipbQU8FPXRVcDNlPJsiA=;
+  b=ftXEZGBBXIa6M6Fo16lwhLQ4N7SuKwDCQuu0UTTqKeCBNHHV0aq10NtZPxjHI67jvnrvwO8/
+   wU5hEndYCQL0bbjIGs+Qlyr7gYTIgWqiieQhJo/XA1K2ijn/RFjQeiXX8PStFyNn2uiG8zvi
+   1RUs0Eug7GBRK8z+Qe8zEBcI92mY1gGT1A/RuNwsFzUM6NLYuqlgvH4kMkqhxnAaDXOpumDU
+   OiIi22uoUu8nshzgZLNl8DMqOOJNn0jAOZMCCYZ/a6UCFgP0umhnb11O/6NOU66G/J2uyYCE
+   mUvETEEb2FDJuqduYh6s6QA2SYVqE8qPimg0GxqS2zv9dCOcByGxPg==
+Date: Mon, 20 Apr 2026 08:40:00 -0500
+From: Marcus at Peakwright <marcus@peakwright-leads.example>
+To: Lenora Vashti <l.vashti@pellgrave.example>
+Subject: Quick question about pellgrave.example's search ranking
+Message-ID: <20260420134000.bd7b4d9b4ab6@mail.peakwright-leads.example>
+X-Mailer: Marrowdale Mail 5.2
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_b049d7c0568a"
+
+--=_swk_b049d7c0568a
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hi Lenora,
+
+I was putting together a short list of mechanical contractors in the
+region this week and pellgrave.example came up, so I ran a few of the
+searches your buyers would run. Two smaller shops sit above you on
+every one of them.
+
+The three I tried were industrial chiller repair, boiler service
+contract and emergency HVAC service. Neither of the two shops ahead of
+you has more pages than you do, which usually means your own service
+pages are competing with each other rather than losing on content.
+That is the cheap kind of problem to have.
+
+I run a free 15 minute audit for a few contractors a month. It is a
+screen share, there is no slide deck, and you keep the notes whether or
+not you ever work with us. Most of what turns up is title text and
+internal linking, which your own web person can fix in an afternoon.
+
+Is that worth 15 minutes to you? My calendar is open, so pick
+whatever slot suits you:
+
+https://peakwright-leads.example/book/marcus
+
+If this isn't relevant, just let me know and I'll stop. I would rather
+hear that once than keep turning up in your inbox.
+
+Best,
+
+Marcus Oyelaran-Pike
+Peakwright Leads
+555-0172 ext. 118
+--=_swk_b049d7c0568a
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background-color:#ffffff;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:18px auto;padding:0=
+ 22px;font-family:sans-serif;font-size:15px;line-height:1.5;color:#1f1f1f;">
+<p>Hi Lenora,</p>
+<p>I was putting together a short list of mechanical contractors in the=
+ region this week and pellgrave.example came up, so I ran a few of the=
+ searches your buyers would run. Two smaller shops sit above you on every=
+ one of them.</p>
+<p>The three I tried were industrial chiller repair, boiler service=
+ contract and emergency HVAC service. Neither of the two shops ahead of you=
+ has more pages than you do, which usually means your own service pages are=
+ competing with each other rather than losing on content. That is the cheap=
+ kind of problem to have.</p>
+<p>I run a free 15 minute audit for a few contractors a month. It is a=
+ screen share, there is no slide deck, and you keep the notes whether or=
+ not you ever work with us. Most of what turns up is title text and=
+ internal linking, which your own web person can fix in an afternoon.</p>
+<p>Is that worth 15 minutes to you? My calendar is open, so pick whatever=
+ slot suits you:</p>
+<p><a href=3D"https://peakwright-leads.example/book/marcus">
+https://peakwright-leads.example/book/marcus</a></p>
+<p>If this isn't relevant, just let me know and I'll stop. I would rather=
+ hear that once than keep turning up in your inbox.</p>
+<p>Best,</p>
+<p>Marcus Oyelaran-Pike<br>Peakwright Leads<br>555-0172 ext. 118</p>
+</div>
+</body>
+</html>
+--=_swk_b049d7c0568a--

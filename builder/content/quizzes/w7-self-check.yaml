@@ -1,0 +1,446 @@
+# Week 7 self-check. Eight multiple choice items, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, in the Self-Checks group, which is
+#                   8 percent of the course grade across all seven weeks.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all eight.
+#   points          1.5. Eight questions, twelve points. Section 10 of the week
+#                   7 spec sets eight items and course.yaml sets twelve points,
+#                   so the value is twelve divided by eight. Canvas stores a
+#                   decimal here, as it already does for the five week 4 items.
+#   section         which page section or which notebook cell the answer
+#                   comes from.
+#   outcome         "none". Self-checks report into no Canvas Outcome. The
+#                   graded evidence for CLO5 and CLO6 is the week 7 lab rubric,
+#                   criterion 2 and criterion 3, which the alignment matrix
+#                   records as the primary evidence for both. A second reporter
+#                   here would contradict it, because the outcome calculation
+#                   is most recent score. The key is present because the export
+#                   tooling requires one on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the section or the cell to reopen, because the attempts are unlimited and the
+# point of the quiz is to send a student back to the right paragraph.
+#
+# ITEM COVERAGE, from section 10 of the week 7 spec. One item gives a note with
+# a line missing and asks which line. Two give a printed result table and ask
+# whether a named miss is a false positive or a false negative. One asks why
+# escalation agreement is reported apart from verdict accuracy. Four sit on
+# breadth topic B2: each describes a security job and asks which of the seven
+# use cases it is, and what fact the tool would need first.
+#
+# THE ORDER IS THE READING'S, NOT THE SPEC TABLE'S. The spec table lists the
+# four B2 items first. They sit last here, so the items arrive in the order the
+# page taught them: the note, then the two errors, then the seven jobs. The
+# counts are the spec's, unchanged.
+#
+# ONE DEVIATION, FLAGGED. Section 10 of the week 7 spec says two attempts.
+# Every other self-check in this course is unlimited, and a student reads the
+# seven as one set, so this one is unlimited too. Easy to change back.
+#
+# Every stem is drawn from this course's own material: the six line note, the
+# twenty batch emails 026 to 045, the answer key that ships with them, and the
+# report cell 14 prints. None can be answered from general phishing knowledge.
+
+title: Week 7 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Eight short questions on week 7. They take about twelve minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is worth 12 points. You may take it as many times as you like,
+  and your highest score is the one that counts.</p>
+
+  <p>Every answer, right or wrong, names the section or the cell to reopen.
+  Use those names. Missing one twice is a sign to go back and read, not a sign
+  to guess again.</p>
+
+  <p>Take it after the reading and the lab. Four of these read output your
+  own notebook prints.</p>
+
+  <p>The last four use one term from part three. A use case is one job people
+  give an AI tool. The final exam asks four questions about those seven jobs,
+  so they are worth settling now.</p>
+
+questions:
+
+  - id: w7-q1
+    name: Question 1. The line that is missing
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part one, why the six lines never move"
+    outcome: "none"
+    text: |
+      <p>Here is one of the twenty notes from a week 7 report file. It covers
+      email 041, the search ranking pitch.</p>
+      <pre><code>Verdict: benign
+      Confidence: 0.81
+      Indicators: all three sender checks pass; sender domain first seen today; gateway spam score 7.2
+      Escalate: no
+      Summary: This was a sales pitch from a company that wants your business,
+      not an attack. Nothing happened to your account, and you can delete the
+      message.
+      </code></pre>
+      <p>One of the six lines is missing. Which one, and where does it
+      belong?</p>
+    answers:
+      - text: >-
+          The recommended action, between the indicators and the escalate
+          line.
+        correct: true
+        feedback: >-
+          Right. The note says what the email is and never says what to do
+          about it. For this one the action is
+          <code>close_spam_reply_to_reporter</code>, which closes it and
+          replies to the reporter. Cell 6 prints the fixed order and one
+          finished example. Week 7 reading, part one, why the six lines never
+          move.
+      - text: The confidence, between the verdict and the indicators.
+        correct: false
+        feedback: >-
+          No. The confidence is there, on the second line, reading 0.81. Read
+          the note against the six line order in cell 6. Week 7 reading, part
+          one, why the six lines never move.
+      - text: The escalate line, after the summary.
+        correct: false
+        feedback: >-
+          No. The escalate line is there, reading no. It belongs above the
+          summary, not after it. Cell 6 prints the order. Week 7
+          reading, part one, why the six lines never move.
+      - text: The indicators, between the confidence and the recommended action.
+        correct: false
+        feedback: >-
+          No. The indicators are there, on the third line. They name three
+          facts your code pulled out. Week 7 reading, part one, why the six
+          lines never move.
+
+  - id: w7-q2
+    name: Question 2. Naming the error, one
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part two, the two errors, and what each one costs"
+    outcome: "none"
+    text: |
+      <p>Cell 15 prints every email your agent got wrong, with the answer key
+      beside it. One run printed this.</p>
+      <pre><code>039-cfo-pay-marlstone-today    key: benign      agent: malicious
+      034-cfo-vendor-setup-thread    key: malicious   agent: benign
+      </code></pre>
+      <p>Take the first row. Which kind of error is it?</p>
+    answers:
+      - text: A false positive, a benign email the agent called malicious.
+        correct: true
+        feedback: >-
+          Right. Email 039 is a genuine internal note about paying an invoice
+          on time. A false positive spends Devin Crowmarden's morning on a
+          message that was fine. Week 7 reading, part two, the two errors, and
+          what each one costs.
+      - text: A false negative, a malicious email the agent called benign.
+        correct: false
+        feedback: >-
+          No. That is the second row, email 034. Read the key column first,
+          then the agent column. Week 7 reading, part two, the two errors, and
+          what each one costs.
+      - text: >-
+          Neither, as long as the agent escalated it, because a person then
+          saw it.
+        correct: false
+        feedback: >-
+          No. Escalation is counted on its own line, and it does not repair a
+          wrong verdict. Your <code>score_batch()</code> compares verdicts.
+          Week 7 reading, part two, one score block.
+      - text: Neither, because the answer key marks 039 as hard.
+        correct: false
+        feedback: >-
+          No. Difficulty is a note about the email, not a scoring rule. All
+          twenty are scored the same way. Week 7 reading, part two, a judgment
+          is not a measurement.
+
+  - id: w7-q3
+    name: Question 3. Naming the error, two
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part two, the two errors, and what each one costs"
+    outcome: "none"
+    text: |
+      <p>A second run printed this from cell 15.</p>
+      <pre><code>030-ceo-mailbox-early-favor    key: malicious   agent: benign
+      045-job-applicant-portfolio    key: benign      agent: malicious
+      </code></pre>
+      <p>Take the first row again. Which kind of error is it, and what does it
+      cost Pellgrave?</p>
+    answers:
+      - text: >-
+          A false negative. The person who reported it is told a real attack
+          was safe.
+        correct: true
+        feedback: >-
+          Right. Email 030 asks for a favor, and it comes from the chief
+          executive's own mailbox. Beatrix Onwuka is told it is safe, and acts
+          on it. Week 7 reading, part two, the two errors, and what each one
+          costs.
+      - text: A false positive. Devin spends time on a message that was fine.
+        correct: false
+        feedback: >-
+          No. That is the second row, email 045, the job application. The
+          agent called a benign email malicious there. Week 7 reading, part
+          two, the two errors, and what each one costs.
+      - text: >-
+          A false negative. Devin spends his morning on a message that was
+          fine.
+        correct: false
+        feedback: >-
+          Half right. The kind is correct and the cost is not. A false
+          negative sends an attack back to the reporter marked safe. The
+          wasted morning is what a false positive costs. Week 7 reading, part
+          two, the two errors, and what each one costs.
+      - text: >-
+          Two wrong out of twenty. Accuracy reports that, and the two kinds
+          add together.
+        correct: false
+        feedback: >-
+          No. The two counts are never added together, because they cost
+          different things. Two false positives with one false negative is a
+          different problem from one with two. Week 7 reading, part two, the
+          two errors, and what each one costs.
+
+  - id: w7-q4
+    name: Question 4. Why escalation agreement stands apart
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part two, one score block"
+    outcome: "none"
+    text: |
+      <p>Cell 14 prints escalation agreement on its own line, under accuracy.
+      It is the share of the twenty where your agent's escalate line matched
+      the answer key.</p>
+      <p>Email 043 is the signed remittance change letter. The answer key calls
+      it benign, and its escalate flag is yes. Why is escalation agreement
+      kept apart from accuracy?</p>
+    answers:
+      - text: >-
+          The two ask different questions. Accuracy asks whether the verdict
+          was right. Escalation agreement asks whether the right cases reached
+          a person.
+        correct: true
+        feedback: >-
+          Right. Email 043 shows why. The playbook wants a phone call on any
+          bank change, whatever the verdict. So a benign email still goes to
+          a person. Week 7 reading, part two, one score block.
+      - text: >-
+          Because only a malicious email is escalated, so accuracy already
+          covers the escalate line.
+        correct: false
+        feedback: >-
+          No. Email 043 is benign and still escalates. The verdict and the
+          escalation are two decisions. Either one can be wrong on its own.
+          Week 7 reading, part two, one score block.
+      - text: >-
+          Because escalation is a person's judgment, so no code can score it
+          against the answer key.
+        correct: false
+        feedback: >-
+          No. The pre-written <code>report_scores()</code> scores it against
+          the answer key, the same way your <code>score_batch()</code> scores
+          verdicts. Week 7 reading, part two, one score block.
+      - text: >-
+          Because it is counted over a different set of emails than accuracy
+          is.
+        correct: false
+        feedback: >-
+          No. Both are counted over the same twenty, which is why cell 14
+          prints them together. Week 7 reading, part two, one score block.
+
+  - id: w7-q5
+    name: Question 5. Which job is this, one
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part three, three jobs that sort what already arrived"
+    outcome: "none"
+    text: |
+      <p>More alerts land in Devin Crowmarden's queue on a Monday than he can
+      work in a day. He wants a tool that puts them in the order he should
+      work them. Each one comes back with a reason. The tool closes
+      nothing.</p>
+      <p>Which of this week's seven use cases is that, and what would it need
+      first?</p>
+    answers:
+      - text: >-
+          Alert triage. It needs the alert, the asset the alert names, and
+          what normal looks like there.
+        correct: true
+        feedback: >-
+          Right. An order with a reason for each, and an analyst still works
+          the ticket. Week 7 reading, part three, three jobs that sort what
+          already arrived.
+      - text: >-
+          Alert triage. It needs the answer key for the alerts, so it can
+          learn the right order.
+        correct: false
+        feedback: >-
+          The job is right and the fact is not. A live queue has no answer key.
+          Your batch had one because the corpus was built with one. Week 7
+          reading, part three, three jobs that sort what already arrived.
+      - text: >-
+          Log review. It needs the log lines and what normal looks like there.
+        correct: false
+        feedback: >-
+          No. Log review starts with lines nobody reads. These alerts already
+          raised a hand, and the job is ordering them. Week 7 reading, part
+          three, three jobs that sort what already arrived.
+      - text: >-
+          Incident response support. It needs the evidence already collected.
+        correct: false
+        feedback: >-
+          No. That job runs during an incident and drafts a timeline or a list
+          of next steps. Nothing here is an incident yet. Week 7 reading, part
+          three, two jobs that help you decide what is next.
+
+  - id: w7-q6
+    name: Question 6. Which job is this, two
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part three, three jobs that sort what already arrived"
+    outcome: "none"
+    text: |
+      <p>The Pellgrave mail gateway writes thousands of ordinary lines a day
+      and nobody reads them. Devin wants a tool that hands back only the few
+      lines worth a look.</p>
+      <p>Which use case is that, and what would it need first?</p>
+    answers:
+      - text: >-
+          Log review. It needs those lines, and what normal looks like
+          there. You learn normal by reading part of the log daily.
+        correct: true
+        feedback: >-
+          Right. Without normal, nothing in a log is unusual. Week 7 reading,
+          part three, three jobs that sort what already arrived.
+      - text: >-
+          Log review. It needs one day of lines only, because normal changes
+          too fast to be worth learning.
+        correct: false
+        feedback: >-
+          The job is right and the fact is not. Knowing normal is the whole
+          basis for calling a line unusual. You build it by reading part of
+          the log daily. Week 7 reading, part three, three jobs that sort
+          what already arrived.
+      - text: >-
+          Alert triage. It needs the alert and the asset the alert names.
+        correct: false
+        feedback: >-
+          No. A log line is a record that something happened. An alert is a
+          record that something looked worth a person's time. Nothing here
+          raised a hand yet. Week 7 reading, part three, three jobs that sort
+          what already arrived.
+      - text: >-
+          Phishing analysis. It needs the headers, the links and the sender
+          history.
+        correct: false
+        feedback: >-
+          No. That is the job you built, and it starts from one reported
+          email. This one starts from a whole day of gateway lines. Week 7
+          reading, part three, three jobs that sort what already arrived.
+
+  - id: w7-q7
+    name: Question 7. Which job is this, three
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part three, two jobs where the tool writes a draft"
+    outcome: "none"
+    text: |
+      <p>A Pellgrave ticket is closed. Everything found and everything done is
+      written in it. Devin wants a draft of the summary in the shape his
+      team uses. He will read it and post it.</p>
+      <p>Which use case is that, and what would it need first?</p>
+    answers:
+      - text: >-
+          Documentation. It needs the facts already recorded, and nothing
+          else.
+        correct: true
+        feedback: >-
+          Right. The facts are in the ticket, and the tool shapes them. The
+          ticket owner reads the draft first. Week 7 reading, part three, two
+          jobs where the tool writes a draft.
+      - text: >-
+          Documentation. It needs the raw gateway lines behind the ticket, so
+          it can check the facts itself.
+        correct: false
+        feedback: >-
+          The job is right and the fact is not. The draft is written from what
+          is already recorded. Checking is the ticket owner's job when they
+          read it. Week 7 reading, part three, two jobs where the tool writes
+          a draft.
+      - text: Incident response support. It needs the evidence collected so far.
+        correct: false
+        feedback: >-
+          No. That job runs while an incident is open. It drafts a timeline
+          or a list of next steps. This ticket is closed. Week 7 reading, part
+          three, two jobs that help you decide what is next.
+      - text: Alert triage. It needs the alert and what normal looks like there.
+        correct: false
+        feedback: >-
+          No. Nothing is being put in order here. One closed ticket is being
+          written up. Week 7 reading, part three, three jobs that sort what
+          already arrived.
+
+  - id: w7-q8
+    name: Question 8. Which job is this, four
+    type: multiple_choice
+    points: 1.5
+    section: "Week 7 reading, part three, two jobs that help you decide what is next"
+    outcome: "none"
+    text: |
+      <p>A new weakness in a piece of software has just been published. Devin
+      wants to know what it means for the machines Pellgrave runs. He also
+      wants a place for it in his queue.</p>
+      <p>Which use case is that, and what would it need first?</p>
+    answers:
+      - text: >-
+          Vulnerability research. It needs a list of the software Pellgrave
+          runs, with versions.
+        correct: true
+        feedback: >-
+          Right. The answer is about your machines, so the tool has to know
+          what you run. Weaknesses already used in attacks go first. Week 7
+          reading, part three, two jobs that help you decide what is next.
+      - text: >-
+          Vulnerability research. It needs the published entry and nothing
+          else, because the entry names the product.
+        correct: false
+        feedback: >-
+          The job is right and the fact is not. Every entry names a product.
+          That is exactly why you have to know what you run. Week 7 reading,
+          part three, two jobs that help you decide what is next.
+      - text: >-
+          Incident response support. It needs the evidence already collected.
+        correct: false
+        feedback: >-
+          No. Nothing has happened here. That job runs during an incident, on
+          evidence someone collected. Week 7 reading, part three, two jobs
+          that help you decide what is next.
+      - text: Alert triage. It needs the alert and what normal looks like there.
+        correct: false
+        feedback: >-
+          No. No alert was raised. Something was published about software, and
+          the question is what it means for Pellgrave. Week 7 reading, part
+          three, two jobs that help you decide what is next.

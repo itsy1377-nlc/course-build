@@ -1,0 +1,162 @@
+# Week 5 lab rubric. Four criteria, 100 points, four levels each.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the rubric
+#   points          the total. Every lab in this course is 100, which is what
+#                   makes the seven labs weigh equally inside the Labs group.
+#   criteria        a list. One entry per criterion, in the order a grader
+#                   reads.
+#
+# EVERY CRITERION CARRIES
+#
+#   description       the criterion name, as the week 5 spec and the alignment
+#                     matrix word it. Not reworded here.
+#   long_description  what earns full credit, in the words the assignment page
+#                     shows the student. The two must stay identical.
+#   points            the criterion total, and the top level's points.
+#   outcome           the Canvas Outcome key this criterion posts a result to,
+#                     from content/course.yaml. Present on one criterion only.
+#                     See the note below on the Canvas limit.
+#   levels            four, highest first. The top level equals the criterion
+#                     points. The four map onto the course mastery scale:
+#                     Exceeds, Meets, Approaches, and Beginning or no evidence,
+#                     which are 4, 3, 2 and 0. Criterion 2 scales that by ten
+#                     and the other three scale it by five, so every division
+#                     is exact and no level is rounded.
+#
+# WHY ONLY ONE CRITERION CARRIES AN OUTCOME LINK. Canvas allows a given Outcome
+# to align to at most one criterion in a rubric. A rubric that aligns the same
+# Outcome twice is refused, and the refusal is silent: the API answers HTTP 200
+# and creates nothing at all. Measured against the live instance on 4 September
+# 2026, one link succeeds and two or more produce no rubric. That silence
+# already cost the week 1 lab its rubric.
+#
+# So CLO3 links to criterion 2, Bounded tool loop, and to nothing else here.
+# Criterion 2 is the one that measures the Outcome directly. CLO3 asks the
+# student to build an agent that selects and runs triage tools in a bounded
+# loop to reach a verdict, and criterion 2 reads exactly that out of the
+# exported file: the tools the agent selected, in the order it ran them, a step
+# count inside the cap, and the reason the loop stopped. It is the primary
+# evidence for CLO3 in this course, which is what the alignment matrix records.
+#
+# Criteria 3 and 4 are written as week expectations and carry no Outcome link.
+# Both score what the student reported about their own run rather than the loop
+# itself, and reporting what you saw is a non-CLO expectation under section 11
+# of docs/phase1-blueprint/alignment-matrix.md and its closing section.
+# Criterion 1 is submission completeness, the same non-CLO expectation every
+# week carries.
+#
+# TWO SCALES ON ONE ROW. Criterion 2's four level labels are the course mastery
+# scale, so the rating the grader picks is what Canvas records against the
+# Outcome, on 4, 3, 2 and 0. The criterion points on the same row are what the
+# grade uses, on 40, 30, 20 and 0. The grader picks once and both follow. The
+# criterion points are never reported as the outcome result.
+#
+# NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
+# screenshot, the exported file and the written answer.
+
+title: "Week 5 lab: let it choose"
+points: 100
+
+criteria:
+
+  - description: Submission completeness
+    long_description: >-
+      All three items are present and readable.
+    points: 20
+    levels:
+      - description: >-
+          Full. All three items are present and readable. The screenshot shows
+          all six trace tables and the token total under the last one. The file
+          is attached as itself, under the name the export cell gave it. The
+          written answer is in the box.
+        points: 20
+      - description: >-
+          Nearly full. All three items are here. One is hard to read. The
+          screenshot cuts off one table or the token total.
+        points: 15
+      - description: >-
+          Partial. One of the three items is missing. Or the screenshot cannot
+          be read at all.
+        points: 10
+      - description: >-
+          Missing. Two or three of the items are absent. Or a zip file, a
+          folder or a link arrived instead of the file.
+        points: 0
+
+  - description: Bounded tool loop
+    long_description: >-
+      The file holds six runs. Each shows an ordered tool list, a step count of
+      four or fewer, and one of the five stop reasons.
+    points: 40
+    outcome: CLO3
+    levels:
+      - description: >-
+          Exceeds standard. The file holds all six runs. Each one lists the
+          tools it ran in order, a step count of four or fewer, and one of the
+          five stop reasons. A reader can follow from the record why each run
+          ended where it did.
+        points: 40
+      - description: >-
+          Meets standard. The file holds all six runs. Each carries its tools
+          in order and a step count of four or fewer. One run is missing its
+          stop reason, or one stop reason is not one of the five.
+        points: 30
+      - description: >-
+          Approaching standard. The file holds fewer than six runs. Or runs
+          with steps recorded and no stop reason on any of them. Or a run that
+          took more steps than the cap allows. It shows the loop ran. It does
+          not show that a rule or a cap ended it.
+        points: 20
+      - description: >-
+          No evidence. No file. Or a file holding no runs.
+        points: 0
+
+  - description: Reading your own trace
+    long_description: >-
+      The written answer names the correct step count, stop reason and second
+      tool from your own file.
+    points: 20
+    levels:
+      - description: >-
+          Full. The written answer names the email that used the most steps,
+          gives that step count and its stop reason, and names the second tool
+          the agent chose on email 004. Every value matches the attached file.
+        points: 20
+      - description: >-
+          Nearly full. All three values are named. One of them does not match
+          the attached file.
+        points: 15
+      - description: >-
+          Partial. Only one of the three values is named. Or the answer
+          describes the run in general terms and gives no value of its own.
+        points: 10
+      - description: >-
+          No evidence. The written answer says nothing about the trace. Or
+          there is no written answer.
+        points: 0
+
+  - description: Cost of an uncapped run
+    long_description: >-
+      The written answer gives both token totals and says what the cap saved.
+    points: 20
+    levels:
+      - description: >-
+          Full. Both token totals are given, the capped run and the uncapped
+          run, and both match the attached file. The answer says what the cap
+          saved, as a number of tokens or as a comparison of the two.
+        points: 20
+      - description: >-
+          Nearly full. Both totals are given and the answer does not say what
+          the cap saved. Or one total is given with a clear statement of what
+          the cap saved.
+        points: 15
+      - description: >-
+          Partial. One token total is given and nothing is said about the cap.
+          Or the answer says the cap saved tokens and gives no number.
+        points: 10
+      - description: >-
+          No evidence. No token total, and nothing about the cap. Or there is
+          no written answer.
+        points: 0

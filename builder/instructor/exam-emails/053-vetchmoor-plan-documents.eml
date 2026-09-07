@@ -1,0 +1,123 @@
+Return-Path: <plandocs@vetchmoorbenefits.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id a9e86bad-7937-449d-950f-99129640430a
+  for <t.nkemelu@pellgrave.example>; Tue, 28 Apr 2026 13:52:41 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=softfail smtp.mailfrom=vetchmoorbenefits.example;
+  dkim=none;
+  dmarc=fail header.from=vetchmoorbenefits.example policy.dmarc=quarantine
+Received-SPF: softfail (mx.pellgrave.example: domain of transitioning
+  plandocs@vetchmoorbenefits.example does not designate 198.51.100.180 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.180;
+  envelope-from="plandocs@vetchmoorbenefits.example";
+  helo=docs-relay.hostedforms-nine.example; identity=mailfrom; mechanism=~all
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: released-from-quarantine
+X-Sentrywick-Spam-Score: 5.2
+X-Sentrywick-Message-UID: 64a14321dd93
+X-Sentrywick-Reported-By: t.nkemelu@pellgrave.example
+Received: from docs-relay.hostedforms-nine.example
+  (docs-relay.hostedforms-nine.example [198.51.100.180])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 64a14321dd93;
+  Tue, 28 Apr 2026 10:20:06 -0500
+Received: from docgen-04.hostedforms-nine.example ([192.0.2.148])
+  by docs-relay.hostedforms-nine.example with ESMTP id b7335ccf;
+  Tue, 28 Apr 2026 15:20:02 +0000
+Date: Tue, 28 Apr 2026 10:20:00 -0500
+From: Vetchmoor Benefits Plan Documents <plandocs@vetchmoorbenefits.example>
+To: Tobias Nkemelu <t.nkemelu@pellgrave.example>
+Subject: 2026 summary plan descriptions ready for download
+Message-ID: <20260428152000.0cbb440ce2ca@docs-relay.hostedforms-nine.example>
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_3c9525cdd9df"
+
+--=_part_3c9525cdd9df
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Vetchmoor Benefits, plan document delivery
+
+Hello Tobias,
+
+The 2026 summary plan descriptions for Pellgrave Mechanical Group are
+finished and posted to your client page. They cover the four plans you
+renewed in February, and they replace the 2025 set, which stays on the
+page under Prior years.
+
+Open the plan documents page:
+https://vetchmoorbenefits.example/clients/pellgrave/plan-documents
+
+This year's set:
+
+2026 SPD, medical and prescription plan
+2026 SPD, dental and vision plans
+2026 SPD, group life and long term disability
+2026 SPD, health savings account
+Summary of material modifications, medical plan, effective 1/1/26
+
+A plan sponsor hands a summary plan description to a participant within
+30 days of a written request, and to a newly covered participant within
+90 days of the day coverage starts. Print ready copies and a mail merge
+file for your enrollment packets are on the same page.
+
+If a plan name or a group number looks wrong for your groups, reply to
+this message and your account team will pick it up.
+
+Vetchmoor Benefits, plan document service
+Client service desk 555-0192
+Sent to the plan contact on file for Pellgrave Mechanical Group.
+Replies to this address reach the client service desk.
+--=_part_3c9525cdd9df
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f2f4f5;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:0 auto;padding:24px;
+  background:#ffffff;font-family:sans-serif;font-size:15px;
+  line-height:1.5;color:#1f1f1f;">
+<p style=3D"margin:0 0 18px 0;font-size:17px;font-weight:bold;
+  color:#1d5a52;">Vetchmoor Benefits, plan document delivery</p>
+<p>Hello Tobias,</p>
+<p>The 2026 summary plan descriptions for Pellgrave Mechanical Group are=
+ finished and posted to your client page. They cover the four plans you=
+ renewed in February, and they replace the 2025 set, which stays on the=
+ page under Prior years.</p>
+<p><a=
+ href=3D"https://vetchmoorbenefits.example/clients/pellgrave/plan-documents"
+  style=3D"display:inline-block;padding:10px 22px;background:#1d5a52;
+  color:#ffffff;text-decoration:none;border-radius:4px;"
+  >Open the plan documents page</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the button does not open,
+the address is=
+ https://vetchmoorbenefits.example/clients/pellgrave/plan-documents</p>
+<p>This year's set:</p>
+<p>2026 SPD, medical and prescription plan<br>
+2026 SPD, dental and vision plans<br>
+2026 SPD, group life and long term disability<br>
+2026 SPD, health savings account<br>
+Summary of material modifications, medical plan, effective 1/1/26</p>
+<p>A plan sponsor hands a summary plan description to a participant within=
+ 30 days of a written request, and to a newly covered participant within 90=
+ days of the day coverage starts. Print ready copies and a mail merge file=
+ for your enrollment packets are on the same page.</p>
+<p>If a plan name or a group number looks wrong for your groups, reply to=
+ this message and your account team will pick it up.</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">Vetchmoor Benefits, plan=
+ document service<br>
+Client service desk 555-0192<br>
+Sent to the plan contact on file for Pellgrave Mechanical Group.<br>
+Replies to this address reach the client service desk.</p>
+</div>
+</body>
+</html>
+--=_part_3c9525cdd9df--

@@ -1,0 +1,134 @@
+# Week 1 lab rubric. Four criteria, 100 points, four levels each.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the rubric
+#   points          the total. Every lab in this course is 100, which is what
+#                   makes the seven labs weigh equally inside the Labs group.
+#   criteria        a list. One entry per criterion.
+#
+# EVERY CRITERION CARRIES
+#
+#   description       the short name a grader scans for
+#   long_description  what the criterion actually measures, in one or two
+#                     plain sentences
+#   points            the criterion total, and the top level's points
+#   outcome           the Canvas Outcome key this criterion posts a result to.
+#                     Present on one criterion only. See the note below on the
+#                     Canvas limit of one criterion per Outcome per rubric.
+#   levels            four, highest first. The top level equals the criterion
+#                     points. The four map straight onto the course mastery
+#                     scale: 25 is Exceeds, 19 is Meets, 13 is Approaches, 6 is
+#                     Beginning.
+#
+# WHY ONLY ONE CRITERION CARRIES AN OUTCOME LINK. Canvas allows a given Outcome
+# to align to at most one criterion in a rubric. A rubric that aligns the same
+# Outcome twice is refused, and the refusal is silent: the API answers HTTP 200
+# and creates nothing at all. Measured against the live instance on 4 September
+# 2026, one link succeeds and two or more produce no rubric.
+#
+# So the criterion that best measures CLO2 carries the link, and that is
+# "First judgment", because CLO2 is about validating the model's output before
+# trusting it. The other two measure week 1 expectations rather than a course
+# outcome: whether the code ran, and whether the student reported what they
+# saw. Week 1 is supporting evidence in any case. The alignment matrix places
+# primary evidence for CLO2 on the week 2 lab.
+#
+# EVERY CRITERION IS GRADEABLE FROM THE SCREENSHOT, THE EXPORTED FILE AND THE
+# WRITTEN ANSWER. Nobody opens or runs a student's notebook to grade this.
+
+title: Week 1 lab, your first model call
+points: 100
+
+criteria:
+
+  - description: Submission completeness
+    long_description: >-
+      Screenshot, file and written answer are all present and readable.
+    points: 25
+    levels:
+      - description: >-
+          All three are here. The screenshot shows all six answers and is
+          readable. The file is attached as a file. The written answer is in
+          the box.
+        points: 25
+      - description: >-
+          All three are here, but one is hard to read. The screenshot may cut
+          off one or two of the six answers.
+        points: 19
+      - description: >-
+          One of the three is missing, or the screenshot cannot be read.
+        points: 13
+      - description: >-
+          Two of the three are missing, or a zip file or a link was turned in
+          instead of the file.
+        points: 6
+
+  - description: The call works
+    long_description: >-
+      The file shows six answers for email 001. It shows one answer for email
+      002. Both show the prompt text you used.
+    points: 25
+    levels:
+      - description: >-
+          The file shows six answers for email 001 and one answer for email
+          002. The prompt text is shown with both, and all seven answers came
+          back from the model.
+        points: 25
+      - description: >-
+          The file shows both prompts and all seven answer slots filled, but
+          one or two of the seven hold a notebook error message instead of an
+          answer from the model.
+        points: 19
+      - description: >-
+          Three or more of the seven answer slots hold an error message
+          instead of an answer from the model.
+        points: 13
+      - description: >-
+          Every answer slot holds the unwritten-function placeholder, or no
+          call in the file reached the model at all.
+        points: 6
+
+  - description: Variation reported
+    long_description: >-
+      The written answer names which answer differed most and at which
+      temperature.
+    points: 25
+    levels:
+      - description: >-
+          The written answer names which of the six answers differed most, and
+          gives the temperature that produced it.
+        points: 25
+      - description: >-
+          The written answer names the answer that differed most but gives no
+          temperature, or gives a temperature but names no answer.
+        points: 19
+      - description: >-
+          The written answer says the six answers varied, but points to no
+          particular one.
+        points: 13
+      - description: >-
+          The written answer does not say anything about the six answers.
+        points: 6
+
+  - description: First judgment
+    long_description: >-
+      The written answer names one specific thing to check before trusting the
+      answer.
+    points: 25
+    outcome: CLO2
+    levels:
+      - description: >-
+          The written answer names one specific thing to check, and says why
+          that check matters for this email.
+        points: 25
+      - description: >-
+          The written answer names one specific thing to check.
+        points: 19
+      - description: >-
+          The written answer names only a general check, such as making sure
+          the answer is right.
+        points: 13
+      - description: >-
+          The written answer names nothing to check.
+        points: 6

@@ -1,0 +1,63 @@
+Return-Path: <r.palomares@pellgrave.example>
+Received: from mail.pellgrave.example (mail.pellgrave.example [10.20.4.25])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 0bb82105-6a2c-4f24-8042-6ed598843d37
+  for <p.castellanos@pellgrave.example>; Thu, 23 Apr 2026 11:40:02 -0500
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Message-UID: 6c25923b53d7
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+Received: from PMG-LT-1042.corp.pellgrave.example ([10.20.30.142])
+  by mail.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPSA
+  id 6c25923b53d7; Thu, 23 Apr 2026 11:40:01 -0500
+Date: Thu, 23 Apr 2026 11:40:00 -0500
+From: Rutger Palomares <r.palomares@pellgrave.example>
+To: Priya Castellanos <p.castellanos@pellgrave.example>
+Subject: Marlstone invoice: pay today before the 2 PM cutoff
+Message-ID: <20260423164000.65b1c543d383@mail.pellgrave.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_a8194afbb953"
+
+--=_swk_a8194afbb953
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Priya,
+
+Marlstone's April billing, 2026-04-PMG against PO 20388, is queued for
+next week's run. Please pay today instead, in the 2 PM run, so the
+fleet lease stays current into May.
+
+Call me at ext. 4102 before the 2 PM cutoff and we will confirm the
+amount together before you release it. Nothing else about it changes:
+same vendor, same terms, only the run it goes out on.
+
+I am in the plant review from one o'clock, so the earlier you can
+catch me the better.
+
+Thanks,
+Rutger
+
+Rutger Palomares
+Chief Financial Officer, Pellgrave Mechanical Group, ext. 4102
+--=_swk_a8194afbb953
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body>
+<p>Priya,</p>
+<p>Marlstone's April billing, 2026-04-PMG against PO 20388, is queued for
+next week's run. Please pay today instead, in the 2 PM run, so the
+fleet lease stays current into May.</p>
+<p>Call me at ext. 4102 before the 2 PM cutoff and we will confirm the
+amount together before you release it. Nothing else about it changes:
+same vendor, same terms, only the run it goes out on.</p>
+<p>I am in the plant review from one o'clock, so the earlier you can
+catch me the better.</p>
+<p>Thanks,<br>
+Rutger</p>
+<p>Rutger Palomares<br>
+Chief Financial Officer, Pellgrave Mechanical Group, ext. 4102</p>
+</body>
+</html>
+--=_swk_a8194afbb953--

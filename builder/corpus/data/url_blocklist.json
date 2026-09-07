@@ -1,0 +1,55 @@
+{
+  "$comment": "Hosts the SOC blocks. check_urls returns blocklisted for these. Entries marked decoy never appear in the corpus.",
+  "hosts": [
+    {
+      "host": "larkseal-docs.example",
+      "added": "2026-03-19",
+      "reason": "Fake e-signature share notices; two reports closed malicious in March"
+    },
+    {
+      "host": "dl.quickdrop-files.example",
+      "added": "2026-03-19",
+      "reason": "Malware download host in a file-share lure; reported by p.castellanos"
+    },
+    {
+      "host": "secure-doc-viewer.example",
+      "added": "2026-03-19",
+      "reason": "Credential-harvest page; reported by l.vashti"
+    },
+    {
+      "host": "release.sentrywick-release.example",
+      "added": "2026-04-09",
+      "reason": "Fake quarantine release page seen at a peer company; added from a threat-sharing feed"
+    },
+    {
+      "host": "mfa-reset-center.example",
+      "added": "2026-02-26",
+      "reason": "Fake authenticator re-registration page (decoy)"
+    },
+    {
+      "host": "pkg-delivery-status.example",
+      "added": "2026-01-15",
+      "reason": "Fake delivery exception page (decoy)"
+    },
+    {
+      "host": "voicemail-transcripts.example",
+      "added": "2026-02-02",
+      "reason": "Fake voicemail notice host (decoy)"
+    },
+    {
+      "host": "secure-fax-delivery.example",
+      "added": "2026-03-10",
+      "reason": "Fake fax notice host (decoy)"
+    },
+    {
+      "host": "storage-quota-alerts.example",
+      "added": "2026-03-24",
+      "reason": "Fake mailbox quota page (decoy)"
+    },
+    {
+      "host": "kelfrith-title-escrow.example",
+      "added": "2026-04-01",
+      "reason": "Lookalike of a title company; wire-fraud lure (decoy)"
+    }
+  ]
+}

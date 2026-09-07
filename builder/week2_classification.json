@@ -1,0 +1,90 @@
+{
+  "week": 2,
+  "model": "granite4.2:3b",
+  "emails": [
+    {
+      "email_id": "001",
+      "answer": null,
+      "schema_ok": false,
+      "problems": [
+        "the answer is not a JSON object"
+      ],
+      "tries": 0,
+      "tokens": 0,
+      "attempts": []
+    },
+    {
+      "email_id": "002",
+      "answer": null,
+      "schema_ok": false,
+      "problems": [
+        "the answer is not a JSON object"
+      ],
+      "tries": 0,
+      "tokens": 0,
+      "attempts": []
+    },
+    {
+      "email_id": "003",
+      "answer": null,
+      "schema_ok": false,
+      "problems": [
+        "the answer is not a JSON object"
+      ],
+      "tries": 0,
+      "tokens": 0,
+      "attempts": []
+    },
+    {
+      "email_id": "004",
+      "answer": null,
+      "schema_ok": false,
+      "problems": [
+        "the answer is not a JSON object"
+      ],
+      "tries": 0,
+      "tokens": 0,
+      "attempts": []
+    }
+  ],
+  "sample_checks": [
+    {
+      "sample": "clean answer, with a reasoning block in front",
+      "parsed_ok": false,
+      "extracted": null,
+      "problems": [
+        "the answer is not a JSON object"
+      ]
+    },
+    {
+      "sample": "answer wrapped in extra words",
+      "parsed_ok": false,
+      "extracted": null,
+      "problems": [
+        "the answer is not a JSON object"
+      ]
+    },
+    {
+      "sample": "answer cut off partway",
+      "parsed_ok": false,
+      "extracted": null,
+      "problems": [
+        "the answer is not a JSON object"
+      ]
+    },
+    {
+      "sample": "empty answer, stop reason length",
+      "parsed_ok": false,
+      "extracted": null,
+      "problems": [
+        "the answer is not a JSON object"
+      ]
+    }
+  ],
+  "tokens": {
+    "prompt": 0,
+    "answer": 0,
+    "total": 0,
+    "calls": 0
+  }
+}

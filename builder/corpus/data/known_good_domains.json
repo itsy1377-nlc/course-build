@@ -1,0 +1,19 @@
+{
+  "$comment": "The list of known-good internal domains sent to the model in week 3. Vendors are not here; they live in sender_reputation.json with status trusted.",
+  "organization": "pellgrave.example",
+  "internal_suffix": ".pellgrave.example",
+  "internal_hosts": [
+    "portal.pellgrave.example",
+    "helpdesk.pellgrave.example",
+    "fieldapp.pellgrave.example",
+    "quarantine.pellgrave.example",
+    "mail.pellgrave.example",
+    "mx.pellgrave.example",
+    "webaccess.pellgrave.example",
+    "mailstore-01.pellgrave.example",
+    "mailstore-02.pellgrave.example",
+    "helpdesk-app.corp.pellgrave.example",
+    "intranet.pellgrave.example"
+  ],
+  "rule": "Any From domain equal to the organization on the internal path, and any link host in this list or ending in the internal suffix, is internal. Internal mail carries no Authentication-Results header; missing is not failed."
+}

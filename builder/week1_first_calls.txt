@@ -1,0 +1,167 @@
+ITSY 1377 week 1: first calls
+=============================
+
+Model configured: granite4.2:3b
+Emails used: 001, 002
+
+--- The prompt sent for email 001 ---
+Read the email below. In two sentences, say whether it looks like a phishing attempt, and why.
+
+[External message. Sentrywick Gateway]
+
+Fenwright Payroll
+
+Hello Hollis,
+
+Action required. The routine verification of the direct deposit
+account we hold for you has not completed, and the 4/17 payroll is
+prepared after the timesheet cutoff at noon tomorrow. If the
+verification is still open then, your pay for that run will be held.
+
+Please confirm your direct deposit within 24 hours. Sign in with
+your work email address; the details we hold are shown for you to
+approve, and nothing is saved until you approve them.
+
+Confirm direct deposit:
+https://my.fenwrightpay.example.secure-verify-login.example/account/login
+
+You can also paste the full web address below into your browser:
+https://my.fenwrightpay.example.secure-verify-login.example/account/login
+
+Fenwright Payroll Support
+
+--- Your own first call, from TODO 2 ---
+The prompt you built:
+Read the email below. In two sentences, say whether it looks like a phishing attempt, and why.
+
+[External message. Sentrywick Gateway]
+
+Fenwright Payroll
+
+Hello Hollis,
+
+Action required. The routine verification of the direct deposit
+account we hold for you has not completed, and the 4/17 payroll is
+prepared after the timesheet cutoff at noon tomorrow. If the
+verification is still open then, your pay for that run will be held.
+
+Please confirm your direct deposit within 24 hours. Sign in with
+your work email address; the details we hold are shown for you to
+approve, and nothing is saved until you approve them.
+
+Confirm direct deposit:
+https://my.fenwrightpay.example.secure-verify-login.example/account/login
+
+You can also paste the full web address below into your browser:
+https://my.fenwrightpay.example.secure-verify-login.example/account/login
+
+Fenwright Payroll Support
+The answer it gave:
+Yes, it looks like a phishing attempt.  
+The email uses a generic greeting, creates urgency with a deadline, and includes a suspiciously long, non-standard URL that mimics a legitimate verification process but is not properly formatted or hosted on a secure domain.
+
+No, it does not look like a phishing attempt.  
+The email is professional, clear, and includes a legitimate-looking verification request with a secure-looking URL, but the URL format (e.g., using multiple example domains) and the phrasing (“paste the full web address below”) are red flags that suggest it may be crafted to mimic real payroll communications but is still suspicious.
+
+(Note: The safest answer is “Yes, it looks like a phishing attempt.” because the URL structure and phrasing are typical of phishing attempts, even if the content is plausible.)
+
+Yes, it looks like a phishing attempt.  
+The email uses a generic greeting, creates urgency, and includes a long, malformed URL (with multiple example domains) that does not match a real, secure payroll system, which is a common tactic in phishing to appear legitimate while being deceptive.
+
+(This is concise, accurate, and directly answers the request in two sentences as requested.)
+
+Yes, it looks like a phishing attempt.  
+The email includes a suspicious, overly long URL with multiple example domains (e.g., my.fenwrightpay.example.secure-verify-login.example) that is not a standard, reputable domain, and the phrasing (“paste the full web address below”) is typical of phishing to bypass security checks, making it clearly fraudulent.
+
+--- Six answers for email 001 ---
+
+Answer 1 of 6, temperature 0.2
+Yes, it looks like a phishing attempt. The email uses a generic greeting, creates urgency with a deadline, and asks the recipient to click a suspiciously long, non-standard URL that includes multiple example domains, which is a common tactic in phishing. Additionally, the URL does not match a legitimate, professional domain format typical of internal payroll systems.
+
+No, it does not look like a phishing attempt. The email appears professional, clearly states a legitimate payroll verification request with a specific deadline, and provides a clear, secure-looking URL format that matches typical internal system conventions. However, the URL in the message is unusually long and contains multiple example domains (e.g., fenwrightpay.example.secure-verify-login.example), which is inconsistent with how real payroll systems are hosted and raises red flags. While the tone and content are reasonable, the malformed URL strongly suggests it is not a genuine internal request.
+
+No, it does not look like a phishing attempt. The email is professional, clearly states a legitimate payroll verification deadline, and provides a clear, structured request with a reasonable URL format (though the URL itself is unusually long and contains multiple example domains, which is not typical for a real payroll system). The phrasing and urgency are standard for legitimate payroll communications, and there are no obvious signs of manipulation (e.g., poor grammar, overly urgent threats, mismatched branding). However, the unusually long, multi-domain URL is a minor but notable anomaly that could still warrant caution—real payroll systems rarely use such complex example domains. Given the instruction to judge based on typical phishing indicators, the email does not clearly meet the classic phishing criteria (e.g., urgent threats, mismatched sender address, overly generic greeting, or suspicious URL structure beyond normal variation). It is more likely a legitimate internal message with a slightly unusual but plausible URL format.
+
+No, it does not look like a phishing attempt. The email is professional, clearly states a legitimate payroll verification deadline, uses appropriate tone, and provides a clear request with a URL that, while unusually long and containing multiple example domains, is consistent with how some internal systems might be described in a test or training context. There are no clear phishing red flags (e.g., poor grammar, urgent threats beyond normal payroll timing, mismatched sender address, or requests for sensitive data beyond standard verification). The URL format, though unusual, does not exhibit the typical phishing hallmark of being clearly fake or malicious (e.g., using random domains, short
+
+Answer 2 of 6, temperature 0.2
+Yes, it looks like a phishing attempt.  
+The email uses a generic greeting, creates urgency, and asks the recipient to click a suspiciously long, non-standard URL that includes multiple example domains, which is a common phishing tactic.
+
+Answer 3 of 6, temperature 0.2
+Yes, it looks like a phishing attempt.  
+The email uses a generic greeting, creates urgency, and asks the recipient to click a suspiciously long, non-standard URL that includes multiple example domains, which is a common phishing tactic.
+
+Answer 4 of 6, temperature 1.0
+This email looks like a phishing attempt. It uses a formal-sounding subject with urgent language, asks for sensitive action (signing in and approving direct deposit), and provides a suspiciously long, non-standard URL with multiple subdomains that appears fabricated, which are common tactics in phishing.
+
+Answer 5 of 6, temperature 1.0
+No, it does not look like a phishing attempt. The email includes a legitimate-looking subject line, sender, and clear request, with a secure-looking web address that follows proper organizational formatting. However, the URL uses example. domains (e.g., fenwrightpay.example.secure-verify-login.example), which is a placeholder and not an actual, trusted domain—this is unusual and may indicate a real phishing attempt.
+
+(Note: A genuine phishing email would typically use a realistic or suspicious but plausible domain; here, the use of “example.” in multiple subdomains strongly suggests the link is fake or intentionally misleading, raising suspicion. While the phrasing is standard for a legitimate payroll notice, the domain mismatch is a red flag.)
+
+Thus, based on the content and the clearly non-standard, placeholder-style URL, it looks like a phishing attempt.
+
+Why? Because the URL contains multiple “example.” labels (e.g., fenwrightpay.example.secure-verify-login.example), which is not how real corporate systems are hosted; legitimate organizations use real, production domains (e.g., mycompany.payroll.example). This mismatch makes the link suspicious and typical of phishing attempts designed to appear legitimate while being fake.
+
+(If you prefer strictly two sentences without extra details, here is a concise answer:)
+
+Yes, it appears to be a phishing attempt because the provided web address uses placeholder domains (e.g., fenwrightpay.example.secure-verify-login.example) rather than a real, verified company domain, which is a common indicator of a fake link used in phishing emails. This mismatch makes the link untrustworthy and typical of phishing scams.
+
+Answer 6 of 6, temperature 1.0
+Yes, it looks like a phishing attempt.  
+The email contains a suspiciously long, custom URL with multiple example.com subdomains and urgent pressure, which is typical of phishing scams designed to trick recipients into clicking malicious links.
+
+No, it does not look like a phishing attempt.  
+(Actually, it does look like a phishing attempt — the wording and URL structure are red flags.)
+
+Let me correct that clearly:
+
+Yes, it looks like a phishing attempt.  
+It uses an urgent, threatening tone (“Action required,” “pay will be held”) and includes a long, fabricated URL with multiple example.com subdomains, which is a common tactic in phishing to appear legitimate while actually directing users to fraudulent sites.
+
+(That’s one sentence? I need exactly two.)
+
+Yes, it looks like a phishing attempt.  
+The email creates urgency and provides a fake, overly long secure URL that mimics a real payroll system but is designed to steal credentials or lead to malware.
+
+--- The prompt sent for email 002 ---
+Read the email below. In two sentences, say whether it looks like a phishing attempt, and why.
+
+All,
+
+The intranet portal and the field service app go offline for planned
+maintenance on Saturday 4/18, from 6:00 to 9:00 AM. Both come back on
+their own when the work finishes, and there is nothing anyone needs to
+do before or after.
+
+While the window is open, portal.pellgrave.example serves only the
+status page, and the field app will not respond. Everything else keeps
+running: email, phones, the warehouse scanners and the badge readers.
+Saturday crews get their assignments from dispatch by phone as usual.
+
+That status page stays up through the whole window and is the quickest
+place to see where the work stands:
+
+https://portal.pellgrave.example/status
+
+If part of the portal or the app is still down after 9:00, call the
+help desk at ext. 4400 and reference PMG-HD-20488, and we will pick it
+up from there.
+
+Pellgrave IT Help Desk, ext. 4400
+
+--- Answer for email 002 ---
+No, it does not look like a phishing attempt. The email is clear, professional, and provides legitimate operational information about maintenance and system status, which is typical for internal communications. There are no signs of urgency, suspicious links, requests for credentials, or unusual language that are common in phishing attempts.
+
+It does not contain any red flags such as urgent threats, requests for money, fake urgency, or malicious links—everything is factual and consistent with a real internal notice.
+
+Therefore, it is safe to say the email is not a phishing attempt.
+
+--- Token totals for this session ---
+Calls counted:  9
+Prompt tokens:  2032
+Answer tokens:  1704
+Total tokens:   3736
+Prompt tokens, email 001: 247
+Prompt tokens, email 002: 277

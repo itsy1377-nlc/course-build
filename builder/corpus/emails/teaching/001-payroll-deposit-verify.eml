@@ -1,0 +1,112 @@
+Return-Path: <support@fenwright-pay.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id e56fbae3-17f6-4f7d-b296-592b8ee159a5
+  for <h.quintanilla@pellgrave.example>; Mon, 13 Apr 2026 07:41:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=fenwright-pay.example;
+  dkim=pass header.d=fenwright-pay.example header.s=k1
+    header.i=@fenwright-pay.example;
+  dmarc=pass header.from=fenwright-pay.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  support@fenwright-pay.example designates 203.0.113.150 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.150;
+  envelope-from="support@fenwright-pay.example";
+  helo=mail.fenwright-pay.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.9
+X-Sentrywick-Message-UID: 06a264e622b6
+X-Sentrywick-Reported-By: h.quintanilla@pellgrave.example
+Received: from mail.fenwright-pay.example
+  (mail.fenwright-pay.example [203.0.113.150])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 06a264e622b6;
+  Mon, 13 Apr 2026 07:41:05 -0500
+Received: from WEB-CLIENT-7.fenwright-pay.example ([192.0.2.151])
+  by mail.fenwright-pay.example with ESMTPSA id b935a4fa;
+  Mon, 13 Apr 2026 12:41:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=fenwright-pay.example; s=k1; t=1776084062;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=AYwdOuHRccH8SA60dZhK0hZppUsySoquLKz1HCFTHqU=;
+  b=8DuqfW7lg9MeyOSWy+dwCuBVZepjYoEikhaE5M+sqINUJ/ZsKS2OucI4oGoyOsjx5UcwOCyM
+   DjSK80CBHIkVVvPgiC2JhawNOCL3d/F36Oelc2LQBSomKVlpaVzfVePLZ3NxPGfUdgmqQ8o1
+   LDT++3nur39fwSqqagxO/3f2jqXyvHOOlC6L3zHqpMx1z6Z9xuhoIqI0LzQbVc3LrhPND89H
+   eFhllEIcqvaKkeOlX5m9HZrGFwxIdPJhUM0KS0zktTPy1EUr5AiEH2Bts+uSg3Kp7V7dYMGB
+   ocRHMeLMCd23F54CA7TWIauzrUbHU6xlms+hqE3MJ85LnA0ZeNGIRg==
+Date: Mon, 13 Apr 2026 07:41:00 -0500
+From: Fenwright Payroll Support <support@fenwright-pay.example>
+To: Hollis Quintanilla <h.quintanilla@pellgrave.example>
+Subject: Action required: confirm your direct deposit before the 4/17 payroll
+Message-ID: <20260413124100.3e6f5249fccb@mail.fenwright-pay.example>
+X-Priority: 1
+Importance: high
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_fwp_0dd07f92d5bf"
+
+--=_fwp_0dd07f92d5bf
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Fenwright Payroll
+
+Hello Hollis,
+
+Action required. The routine verification of the direct deposit
+account we hold for you has not completed, and the 4/17 payroll is
+prepared after the timesheet cutoff at noon tomorrow. If the
+verification is still open then, your pay for that run will be held.
+
+Please confirm your direct deposit within 24 hours. Sign in with
+your work email address; the details we hold are shown for you to
+approve, and nothing is saved until you approve them.
+
+Confirm direct deposit:
+https://my.fenwrightpay.example.secure-verify-login.example/account/login
+
+You can also paste the full web address below into your browser:
+https://my.fenwrightpay.example.secure-verify-login.example/account/login
+
+Fenwright Payroll Support
+--=_fwp_0dd07f92d5bf
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#f2f4f6;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 20px=
+ 0;font-size:20px;font-weight:bold;color:#1b4f8a;">Fenwright Payroll</p>
+<p>Hello Hollis,</p>
+<p>Action required. The routine verification of the direct deposit account=
+ we hold for you has not completed, and the 4/17 payroll is prepared after=
+ the timesheet cutoff at noon tomorrow. If the verification is still open=
+ then, your pay for that run will be held.</p>
+<p>Please confirm your direct deposit within 24 hours. Sign in with your=
+ work email address; the details we hold are shown for you to approve, and=
+ nothing is saved until you approve them.</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://my.fenwrightpay.example.secure-verify-login.example/accoun=
+t/login" style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#1b4f8a;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Confirm direct deposit</a></p>
+<p style=3D"font-size:13px;color:#555555;">You can also paste the full web=
+ address below into your=
+ browser:<br>https://my.fenwrightpay.example.secure-verify-login.example/ac=
+count/login</p>
+<p style=3D"margin-top:28px;padding-top:12px;border-top:1px solid=
+ #d9dee3;font-size:13px;color:#444444;">Fenwright Payroll Support</p>
+</div>
+</body>
+</html>
+--=_fwp_0dd07f92d5bf--

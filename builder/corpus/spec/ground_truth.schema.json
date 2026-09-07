@@ -1,0 +1,535 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://pellgrave.example/itsy1377/ground_truth.schema.json",
+  "title": "ITSY-1377-000 ground truth record",
+  "description": "One record per email in ground_truth_teaching.json, ground_truth_batch.json and ground_truth_exam.json. Enumerations are rendered from spec/enums.json.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "file",
+    "set",
+    "weeks",
+    "date",
+    "verdict",
+    "category",
+    "difficulty",
+    "body_only_read",
+    "sender_display",
+    "sender_address",
+    "reply_to",
+    "recipient",
+    "reporter",
+    "reported_after_interaction",
+    "subject",
+    "arrival_path",
+    "auth",
+    "indicators",
+    "required_indicators",
+    "url_hosts",
+    "attachment",
+    "injection",
+    "tool_expectations",
+    "expected_loop",
+    "escalate_expected",
+    "escalation_reasons",
+    "recommended_action",
+    "reference_summary",
+    "labeled_by",
+    "reviewed_by",
+    "review_agreement",
+    "label_version"
+  ],
+  "properties": {
+    "id": {
+      "type": "string",
+      "pattern": "^[0-9]{3}-[a-z0-9-]{3,45}$"
+    },
+    "file": {
+      "type": "string",
+      "pattern": "^emails/(teaching|batch|exam)/[0-9]{3}-[a-z0-9-]+\\.eml$"
+    },
+    "set": {
+      "type": "string",
+      "enum": [
+        "teaching",
+        "batch",
+        "exam"
+      ]
+    },
+    "weeks": {
+      "type": "array",
+      "items": {
+        "type": "integer",
+        "minimum": 1,
+        "maximum": 8
+      },
+      "minItems": 1,
+      "uniqueItems": true
+    },
+    "date": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "verdict": {
+      "type": "string",
+      "enum": [
+        "malicious",
+        "benign"
+      ]
+    },
+    "category": {
+      "type": "string",
+      "enum": [
+        "credential_phish",
+        "bec",
+        "vendor_fraud",
+        "malware_delivery",
+        "spam",
+        "legit_external",
+        "legit_internal"
+      ]
+    },
+    "difficulty": {
+      "type": "string",
+      "enum": [
+        "easy",
+        "medium",
+        "hard"
+      ]
+    },
+    "body_only_read": {
+      "type": "string",
+      "enum": [
+        "benign",
+        "malicious",
+        "uncertain"
+      ],
+      "description": "The verdict a careful reader reaches from the body alone; the expected ungrounded verdict in week 3."
+    },
+    "sender_display": {
+      "type": "string"
+    },
+    "sender_address": {
+      "type": "string",
+      "pattern": "^[^@\\s]+@[a-z0-9.-]+\\.example$"
+    },
+    "reply_to": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[^@\\s]+@[a-z0-9.-]+\\.example$"
+    },
+    "recipient": {
+      "type": "string",
+      "pattern": "^[^@\\s]+@pellgrave\\.example$"
+    },
+    "reporter": {
+      "type": "string",
+      "pattern": "^[^@\\s]+@pellgrave\\.example$",
+      "description": "The address in X-Sentrywick-Reported-By."
+    },
+    "reported_after_interaction": {
+      "type": "boolean"
+    },
+    "subject": {
+      "type": "string",
+      "maxLength": 200
+    },
+    "arrival_path": {
+      "type": "string",
+      "enum": [
+        "internal",
+        "external_gateway",
+        "bulk_provider"
+      ]
+    },
+    "auth": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "spf",
+        "dkim",
+        "dmarc",
+        "dmarc_policy"
+      ],
+      "properties": {
+        "spf": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "none",
+            "neutral",
+            "pass",
+            "policy",
+            "fail",
+            "softfail",
+            "temperror",
+            "permerror",
+            null
+          ]
+        },
+        "dkim": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "none",
+            "pass",
+            "fail",
+            "policy",
+            "neutral",
+            "temperror",
+            "permerror",
+            null
+          ]
+        },
+        "dmarc": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "pass",
+            "fail",
+            "none",
+            "temperror",
+            "permerror",
+            null
+          ]
+        },
+        "dmarc_policy": {
+          "type": [
+            "string",
+            "null"
+          ],
+          "enum": [
+            "none",
+            "quarantine",
+            "reject",
+            null
+          ]
+        }
+      },
+      "description": "As the gateway wrote them; all null on the internal path."
+    },
+    "indicators": {
+      "type": "array",
+      "minItems": 1,
+      "uniqueItems": true,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "code",
+          "where",
+          "value"
+        ],
+        "properties": {
+          "code": {
+            "type": "string",
+            "pattern": "^(auth:all_pass|auth:spf_pass|auth:spf_fail|auth:spf_softfail|auth:spf_permerror|auth:dkim_pass|auth:dkim_none|auth:dkim_fail|auth:dkim_temperror|auth:dmarc_pass|auth:dmarc_none|auth:dmarc_fail|auth:dmarc_fail_owned_domain|auth:not_evaluated_internal|sender:lookalike_domain|sender:display_name_matches_employee|sender:display_name_claims_org|sender:display_name_claims_vendor|sender:display_name_claims_internal_system|sender:internal_domain_via_external_path|sender:known_bad|sender:reply_to_lookalike_domain|sender:reply_to_differs|sender:freemail_domain|sender:first_seen|sender:allowlisted_domain|sender:known_good|sender:internal_domain|sender:display_name_instruction_text|url:lookalike_host|url:subdomain_trick|url:host_blocklisted|url:host_allowlisted|url:host_unlisted|url:host_internal_known_good|url:tracking_host|url:login_path|url:archive_download|url:multiple_hosts|url:none|attachment:none|attachment:blocked_extension|attachment:macro_detected|attachment:archived_to_vault|attachment:double_extension|attachment:filename_instruction_text|content:urgency_keywords|content:credential_request|content:payment_request|content:payment_change_request|content:payment_timing_request|content:banking_instruction|content:data_request|content:gift_card_request|content:secrecy_request|content:channel_restriction|content:excuse_for_external_address|content:file_share_lure|content:instruction_to_ai|content:instruction_like_text_in_quote|content:fake_tool_output|content:fake_gateway_banner|content:fake_output_schema|content:html_hidden_text|content:non_english_body|content:account_change_notice|content:phone_verification_offered|thread:new|thread:in_reply_to_known|thread:in_reply_to_unknown|thread:reply_subject_without_reference|header:external_flag|header:released_from_quarantine|header:x_priority_high|header:auto_submitted|header:list_headers_present|header:precedence_bulk|header:spam_score|header:forged_gateway_header|header:webmail_submission_external_ip|header:off_hours_timestamp|header:encoded_word_subject|header:x_originating_ip|recipient:executive|recipient:handles_payments|recipient:chronic_reporter|recipient:distribution_list|recipient:shared_mailbox|recipient:reported_after_interaction|recipient:prior_similar_report)(:.+)?$"
+          },
+          "where": {
+            "type": "string"
+          },
+          "value": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    },
+    "required_indicators": {
+      "type": "array",
+      "minItems": 2,
+      "maxItems": 3,
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "pattern": "^(auth:all_pass|auth:spf_pass|auth:spf_fail|auth:spf_softfail|auth:spf_permerror|auth:dkim_pass|auth:dkim_none|auth:dkim_fail|auth:dkim_temperror|auth:dmarc_pass|auth:dmarc_none|auth:dmarc_fail|auth:dmarc_fail_owned_domain|auth:not_evaluated_internal|sender:lookalike_domain|sender:display_name_matches_employee|sender:display_name_claims_org|sender:display_name_claims_vendor|sender:display_name_claims_internal_system|sender:internal_domain_via_external_path|sender:known_bad|sender:reply_to_lookalike_domain|sender:reply_to_differs|sender:freemail_domain|sender:first_seen|sender:allowlisted_domain|sender:known_good|sender:internal_domain|sender:display_name_instruction_text|url:lookalike_host|url:subdomain_trick|url:host_blocklisted|url:host_allowlisted|url:host_unlisted|url:host_internal_known_good|url:tracking_host|url:login_path|url:archive_download|url:multiple_hosts|url:none|attachment:none|attachment:blocked_extension|attachment:macro_detected|attachment:archived_to_vault|attachment:double_extension|attachment:filename_instruction_text|content:urgency_keywords|content:credential_request|content:payment_request|content:payment_change_request|content:payment_timing_request|content:banking_instruction|content:data_request|content:gift_card_request|content:secrecy_request|content:channel_restriction|content:excuse_for_external_address|content:file_share_lure|content:instruction_to_ai|content:instruction_like_text_in_quote|content:fake_tool_output|content:fake_gateway_banner|content:fake_output_schema|content:html_hidden_text|content:non_english_body|content:account_change_notice|content:phone_verification_offered|thread:new|thread:in_reply_to_known|thread:in_reply_to_unknown|thread:reply_subject_without_reference|header:external_flag|header:released_from_quarantine|header:x_priority_high|header:auto_submitted|header:list_headers_present|header:precedence_bulk|header:spam_score|header:forged_gateway_header|header:webmail_submission_external_ip|header:off_hours_timestamp|header:encoded_word_subject|header:x_originating_ip|recipient:executive|recipient:handles_payments|recipient:chronic_reporter|recipient:distribution_list|recipient:shared_mailbox|recipient:reported_after_interaction|recipient:prior_similar_report)(:.+)?$"
+      }
+    },
+    "url_hosts": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "pattern": "^[a-z0-9.-]+\\.example$"
+      },
+      "uniqueItems": true
+    },
+    "attachment": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "filename",
+        "size",
+        "sha256",
+        "action",
+        "type",
+        "reason"
+      ],
+      "properties": {
+        "filename": {
+          "type": "string"
+        },
+        "size": {
+          "type": "integer",
+          "minimum": 1
+        },
+        "sha256": {
+          "type": "string",
+          "pattern": "^[0-9a-f]{64}$"
+        },
+        "action": {
+          "type": "string",
+          "enum": [
+            "stripped",
+            "quarantined"
+          ]
+        },
+        "type": {
+          "type": "string"
+        },
+        "reason": {
+          "type": "string",
+          "enum": [
+            "blocked-extension",
+            "macro-detected",
+            "archived-to-vault"
+          ]
+        }
+      }
+    },
+    "injection": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "additionalProperties": false,
+      "required": [
+        "placement",
+        "part",
+        "payload",
+        "payload_summary"
+      ],
+      "properties": {
+        "placement": {
+          "type": "string",
+          "enum": [
+            "body_plain_visible",
+            "html_hidden",
+            "fake_tool_output",
+            "footer_disguise",
+            "subject_line",
+            "header_forged",
+            "quoted_thread",
+            "attachment_filename",
+            "json_output_spoof"
+          ]
+        },
+        "part": {
+          "type": "string",
+          "enum": [
+            "plain",
+            "html",
+            "both",
+            "header"
+          ]
+        },
+        "payload": {
+          "type": "string",
+          "description": "verbatim payload text"
+        },
+        "payload_summary": {
+          "type": "string"
+        }
+      }
+    },
+    "tool_expectations": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "properties": {
+        "check_sender_reputation": {
+          "type": "object",
+          "required": [
+            "status",
+            "match_level",
+            "new_domain"
+          ],
+          "properties": {
+            "status": {
+              "type": "string",
+              "enum": [
+                "internal",
+                "trusted",
+                "known_good",
+                "neutral",
+                "unknown",
+                "known_bad"
+              ]
+            },
+            "match_level": {
+              "type": "string",
+              "enum": [
+                "address",
+                "domain",
+                "organizational_domain",
+                "none"
+              ]
+            },
+            "new_domain": {
+              "type": "boolean"
+            }
+          }
+        },
+        "check_urls": {
+          "type": "object",
+          "additionalProperties": {
+            "type": "string",
+            "enum": [
+              "allowlisted",
+              "blocklisted",
+              "internal",
+              "unlisted"
+            ]
+          }
+        },
+        "lookup_recipient": {
+          "type": "object",
+          "required": [
+            "executive",
+            "handles_payments",
+            "chronic_reporter",
+            "mailbox_type",
+            "report_count_90d",
+            "true_positive_count_90d"
+          ],
+          "properties": {
+            "executive": {
+              "type": "boolean"
+            },
+            "handles_payments": {
+              "type": "boolean"
+            },
+            "chronic_reporter": {
+              "type": "boolean"
+            },
+            "mailbox_type": {
+              "type": "string",
+              "enum": [
+                "person",
+                "shared",
+                "list"
+              ]
+            },
+            "report_count_90d": {
+              "type": "integer"
+            },
+            "true_positive_count_90d": {
+              "type": "integer"
+            }
+          }
+        }
+      }
+    },
+    "expected_loop": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "tools",
+        "stop_reason"
+      ],
+      "properties": {
+        "tools": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 3,
+          "items": {
+            "type": "string",
+            "enum": [
+              "check_sender_reputation",
+              "check_urls",
+              "lookup_recipient"
+            ]
+          }
+        },
+        "stop_reason": {
+          "type": "string",
+          "enum": [
+            "decisive_malicious",
+            "decisive_benign",
+            "internal_sender",
+            "tools_exhausted",
+            "step_cap"
+          ]
+        }
+      }
+    },
+    "escalate_expected": {
+      "type": "boolean"
+    },
+    "escalation_reasons": {
+      "type": "array",
+      "uniqueItems": true,
+      "items": {
+        "type": "string",
+        "enum": [
+          "financial_or_endpoint_impact",
+          "executive_target",
+          "user_interacted",
+          "org_domain_forged",
+          "partner_account_compromise",
+          "internal_account_compromise",
+          "injection_detected",
+          "auth_failure_on_trusted_sender",
+          "callback_verification",
+          "unknown_sender_asks_for_data"
+        ]
+      }
+    },
+    "recommended_action": {
+      "type": "string",
+      "enum": [
+        "block_and_purge",
+        "escalate_incident",
+        "verify_out_of_band_then_close",
+        "close_benign_reply_to_reporter",
+        "close_spam_reply_to_reporter"
+      ]
+    },
+    "reference_summary": {
+      "type": "string",
+      "description": "Exactly two plain sentences for the reporter."
+    },
+    "labeled_by": {
+      "type": "string"
+    },
+    "reviewed_by": {
+      "type": "string"
+    },
+    "review_agreement": {
+      "type": "boolean"
+    },
+    "label_version": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    }
+  }
+}

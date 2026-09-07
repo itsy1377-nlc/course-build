@@ -1,0 +1,125 @@
+Return-Path: <facilities@rookmeremedical.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 5c02d0f8-6e64-48d7-8124-e87b00cea8fe
+  for <h.quintanilla@pellgrave.example>; Fri, 24 Apr 2026 07:19:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=permerror smtp.mailfrom=rookmeremedical.example;
+  dkim=pass header.d=rookmeremedical.example header.s=rm1
+    header.i=@rookmeremedical.example;
+  dmarc=pass header.from=rookmeremedical.example policy.dmarc=none
+Received-SPF: permerror (mx.pellgrave.example: permanent error while
+  evaluating the SPF record of rookmeremedical.example: DNS lookup
+  limit exceeded) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.90;
+  envelope-from="facilities@rookmeremedical.example";
+  helo=mail.rookmeremedical.example; identity=mailfrom
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 5.0
+X-Sentrywick-Message-UID: 6b49930fe37b
+X-Sentrywick-Reported-By: h.quintanilla@pellgrave.example
+Received: from mail.rookmeremedical.example
+  (mail.rookmeremedical.example [203.0.113.90])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 6b49930fe37b;
+  Fri, 24 Apr 2026 07:19:05 -0500
+Received: from RMP-FAC-0231.rookmeremedical.example ([192.0.2.118])
+  by mail.rookmeremedical.example with ESMTPSA id 9ae551f5;
+  Fri, 24 Apr 2026 12:19:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=rookmeremedical.example; s=rm1; t=1777033142;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=akodkIseGDErRjxKic/ZeFPFMGBk5WGvB07yJpHx6e8=;
+  b=F74y372AHajCM8Fm+x0ARVaaiLy9iS0I+lD3bmWkTx263uFq+2NlEq3NSsUUW202/36pVCFb
+   LhOTAP5tRh61JbA7sPB7N2idmN20vTNZM/ntm6gNaBn9pFngcHMBrqO5SgXHwELCJj/N7C+n
+   QqVBVWmWSFcFgObK2wDDMYxCkGL2qWgLBrNY3SXmrcJVdLSQnBxm4Ic++qDcUjLNwiGGnaEA
+   Bneba+6sIv9xD5++78/485aUlEcgBnLy8a3m47cHdH0X1+eT2fDf+ryj5Le7uhbpaGZmF0tu
+   vSX0RgJIqzMfqt6qjM9yK2l6T/NAmg5MduwC3IIJu8k8r3XL9ntwVA==
+Date: Fri, 24 Apr 2026 07:19:00 -0500
+From: Rookmere Medical Plaza Facilities <facilities@rookmeremedical.example>
+To: Hollis Quintanilla <h.quintanilla@pellgrave.example>
+Subject: Chiller 2 alarm again this morning, can someone come out today?
+Message-ID: <20260424121900.531274700ef9@mail.rookmeremedical.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_12769798ac8a"
+
+--=_part_12769798ac8a
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hello Hollis,
+
+Chiller 2 tripped the high pressure alarm again at 6:10 this morning
+and the panel locked it out. Our building mechanic reset it once, it
+ran about twenty minutes and dropped out again, so we have left it
+off rather than keep cycling the machine.
+
+That leaves us on chiller 1 alone. The west corridor is already warm,
+imaging has called twice about their room temperatures, and by the
+middle of the afternoon the second floor will be uncomfortable for the
+patients waiting in it. We have clinic running until 6.
+
+Is there any chance of getting a technician out here today? This is
+the third alarm on that machine since the end of March and I would
+rather someone looked at the head pressure properly than have us keep
+resetting the panel and hoping.
+
+If nobody is free, please tell me as soon as possible and I will chase
+portable units for imaging instead. Sorry to land this on you first
+thing.
+
+Whoever comes out can reach the plant room on extension 2140. Give it
+a call on the way in and I will meet you at the north dock with the
+keys, because the service corridor stays locked until 7.
+
+Thanks,
+
+Curtis Nwachukwu-Bell
+Facilities Supervisor
+Rookmere Medical Plaza
+555-0139, ext. 2140
+--=_part_12769798ac8a
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background-color:#f5f5f5;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:18px auto;padding:20px=
+ 24px;background-color:#ffffff;border:1px solid=
+ #d8dcdf;font-family:sans-serif;font-size:15px;line-height:1.5;color:#1f1f1=
+f;">
+<p style=3D"margin:0 0 16px=
+ 0;font-size:17px;font-weight:bold;color:#1d4f6c;">Rookmere Medical=
+ Plaza</p>
+<p>Hello Hollis,</p>
+<p>Chiller 2 tripped the high pressure alarm again at 6:10 this morning and=
+ the panel locked it out. Our building mechanic reset it once, it ran about=
+ twenty minutes and dropped out again, so we have left it off rather than=
+ keep cycling the machine.</p>
+<p>That leaves us on chiller 1 alone. The west corridor is already warm,=
+ imaging has called twice about their room temperatures, and by the middle=
+ of the afternoon the second floor will be uncomfortable for the patients=
+ waiting in it. We have clinic running until 6.</p>
+<p>Is there any chance of getting a technician out here today? This is the=
+ third alarm on that machine since the end of March and I would rather=
+ someone looked at the head pressure properly than have us keep resetting=
+ the panel and hoping.</p>
+<p>If nobody is free, please tell me as soon as possible and I will chase=
+ portable units for imaging instead. Sorry to land this on you first=
+ thing.</p>
+<p>Whoever comes out can reach the plant room on extension 2140. Give it a=
+ call on the way in and I will meet you at the north dock with the keys,=
+ because the service corridor stays locked until 7.</p>
+<p>Thanks,</p>
+<p style=3D"color:#555555;">Curtis Nwachukwu-Bell<br>Facilities=
+ Supervisor<br>Rookmere Medical Plaza<br>555-0139, ext. 2140</p>
+</div>
+</body>
+</html>
+--=_part_12769798ac8a--

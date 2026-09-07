@@ -1,0 +1,90 @@
+Return-Path: <r.solheim@hollinvalepm.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 6ccacffc-5b98-4312-a8c4-01d5d13f6c8b
+  for <h.quintanilla@pellgrave.example>; Wed, 15 Apr 2026 14:38:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=hollinvalepm.example;
+  dkim=pass header.d=hollinvalepm.example header.s=hv1
+    header.i=@hollinvalepm.example;
+  dmarc=pass header.from=hollinvalepm.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  r.solheim@hollinvalepm.example designates 203.0.113.96 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.96;
+  envelope-from="r.solheim@hollinvalepm.example";
+  helo=mail.hollinvalepm.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.0
+X-Sentrywick-Message-UID: 376a5fece819
+X-Sentrywick-Reported-By: h.quintanilla@pellgrave.example
+Received: from mail.hollinvalepm.example
+  (mail.hollinvalepm.example [203.0.113.96])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 376a5fece819;
+  Wed, 15 Apr 2026 14:38:05 -0500
+Received: from webmail.hollinvalepm.example ([192.0.2.88])
+  by mail.hollinvalepm.example with ESMTPSA id d6ee3fee;
+  Wed, 15 Apr 2026 19:38:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=hollinvalepm.example; s=hv1; t=1776281882;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=sgwTLNerfayJ9RZIGk+830vK5yZymhTq2NA9u5p4ROg=;
+  b=Oc6kicWNEON4KbClZKH8Da3OjhVINK9ey4mcyxRHfYHrrUnMxKsvwiVeDm8v0TdeatKSF+pC
+   3zu6OENvtaLbP0z8YQ59s/EGURq/DNzRNDKJ8gQNpvr7bB6KHtcY7QAMMvf5Io2WfwZ3/cdH
+   MFWiaVfadVcLT+mCmOSiUt0cFTbcJBxLQhOUm6sOU5m4sFCod+OPD+2qHF8MVchU9LpPuWm9
+   UAwuKRX4PCAOa/33wId4PUUDvPCVbnnBjs5upCOWgb7w7SNp7J0XWzTaPSXjqadrc8HmbA8a
+   p44woYSafeep8Ue01DlBUS0CBlORE12tCZh7LJVfhGPXa5aPaef9JQ==
+Date: Wed, 15 Apr 2026 14:38:00 -0500
+From: Renata Solheim <r.solheim@hollinvalepm.example>
+To: Hollis Quintanilla <h.quintanilla@pellgrave.example>
+Subject: Re: Updated site access schedule for the Hollinvale properties
+Message-ID: <20260415193800.535743e17e37@webmail.hollinvalepm.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_6791a5495e7a"
+
+--=_part_6791a5495e7a
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hollis,
+
+The access schedule for the three properties changed for next week.
+Please review it here and confirm you can still make the Tuesday slots.
+
+Review schedule: https://secure-doc-viewer.example/view/hollinvale-schedule
+
+Thanks,
+Renata
+
+Renata Solheim
+Property Manager, Hollinvale Property Management
+555-0128
+--=_part_6791a5495e7a
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;font-family:sans-serif;font-size:15px;line-hei=
+ght:1.5;color:#1f1f1f;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"padding:16px 18px;">
+<p>Hollis,</p>
+<p>The access schedule for the three properties changed for next week.=
+ Please review it here and confirm you can still make the Tuesday slots.</p>
+<p><a=
+ href=3D"https://secure-doc-viewer.example/view/hollinvale-schedule">Review=
+ schedule</a></p>
+<p>Thanks,<br>Renata</p>
+<p style=3D"color:#555555;">Renata Solheim<br>Property Manager, Hollinvale=
+ Property Management<br>555-0128</p>
+</div>
+</body>
+</html>
+--=_part_6791a5495e7a--

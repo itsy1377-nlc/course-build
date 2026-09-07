@@ -1,0 +1,268 @@
+# Week 1 self-check. Six multiple choice items, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, inside the 8 percent the seven
+#                   self-checks carry together.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all six.
+#   points          2. Six questions, 12 points.
+#   section         where the answer is taught.
+#   outcome         "none". Breadth topics carry no course learning objective
+#                   and no Canvas Outcome, and a Classic Quiz posts no outcome
+#                   result. The key is here because the export tooling requires
+#                   one on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# WHAT THE SIX COVER. Three sit on breadth topic B3, the parts of a security
+# operations center: one gives a line and asks which part it is, one asks where
+# this course's agent sits, one asks who receives an escalated ticket. Two sit
+# on B1, the three kinds of AI. One covers the token counter.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# where to go back to, because in an asynchronous course the feedback is the
+# only teaching a student gets after answering wrong.
+
+title: Week 1 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Six short questions on this week's reading and your first model call.
+  They take about twelve minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This is low stakes on purpose. Take it as many times as you like. Your
+  highest score is the one that counts.</p>
+
+  <p>Each answer names where that idea is taught. Use those names. Go back,
+  read that part again, and take the quiz again.</p>
+
+  <p>Five of the six ideas here come back on the final exam, so it is worth
+  getting them settled now rather than in week 8.</p>
+
+questions:
+
+  - id: w1-q1
+    name: Question 1. A log or an alert
+    type: multiple_choice
+    points: 2
+    section: "Week 1 reading, part one, the things that tell you something happened"
+    outcome: "none"
+    text: |
+      <p>The Pellgrave mail gateway writes this line for a message it just
+      scanned: sender checked, no links, delivered. It writes thousands like it
+      every day, and nobody reads them.</p>
+      <p>Which part of a security operations center is that line?</p>
+    answers:
+      - text: A log
+        correct: true
+        feedback: >-
+          Right. A log is a record that something happened. Most log lines are
+          ordinary and nobody reads them. See part one of the week 1 reading,
+          the things that tell you something happened.
+      - text: An alert
+        correct: false
+        feedback: >-
+          Not quite. An alert is a record that something looked worth a
+          person's time. Nothing raised a hand about this line. See part one of
+          the week 1 reading.
+      - text: A ticket
+        correct: false
+        feedback: >-
+          No. A ticket is opened to track one piece of work to its close. A
+          gateway does not open a ticket for every message it scans. See part
+          one of the week 1 reading.
+      - text: An incident
+        correct: false
+        feedback: >-
+          No. An incident is a confirmed event that caused harm, or could have.
+          Nothing here caused harm. See part one of the week 1 reading.
+
+  - id: w1-q2
+    name: Question 2. Where your agent sits
+    type: multiple_choice
+    points: 2
+    section: "Week 1 reading, part one, the picture and where your agent sits"
+    outcome: "none"
+    text: |
+      <p>A user clicks Report Phish. The report becomes an alert. Where in that
+      path does the agent you are building do its work?</p>
+    answers:
+      - text: Between the alert and the ticket. It reads the facts and drafts the note.
+        correct: true
+        feedback: >-
+          Right. That is the pin on the picture. It reads the facts behind the
+          alert and drafts the note that goes into the ticket. See part one of
+          the week 1 reading.
+      - text: Before the report. It watches the mailbox and decides what to report.
+        correct: false
+        feedback: >-
+          No. A user reports the message. Your agent never picks what gets
+          reported. See part one of the week 1 reading.
+      - text: At the end. It decides whether the case is an incident and closes it.
+        correct: false
+        feedback: >-
+          No. Your agent never closes a ticket and never decides that something
+          is an incident. A person does both. See part one of the week 1
+          reading.
+      - text: After the ticket closes. It writes the monthly summary.
+        correct: false
+        feedback: >-
+          No. Your agent works on one message at a time, before the ticket is
+          judged. See part one of the week 1 reading.
+
+  - id: w1-q3
+    name: Question 3. Who receives an escalated ticket
+    type: multiple_choice
+    points: 2
+    section: "Week 1 reading, part one, the things you do about it"
+    outcome: "none"
+    text: |
+      <p>Priya reports a message and a ticket is opened. The case sits above
+      the help desk's line, so it is escalated.</p>
+      <p>At Pellgrave, who receives it?</p>
+    answers:
+      - text: Devin Crowmarden, the security analyst
+        correct: true
+        feedback: >-
+          Right. Pellgrave has one security analyst, and escalated tickets go
+          to him. See part one of the week 1 reading.
+      - text: Priya, because she reported it
+        correct: false
+        feedback: >-
+          No. Escalation hands a case to someone with more authority to act,
+          not back to the reporter. See part one of the week 1 reading.
+      - text: The mail gateway, which reruns its checks
+        correct: false
+        feedback: >-
+          No. Escalation goes to a person. A gateway is a tool, not a
+          destination. See part one of the week 1 reading.
+      - text: Nobody. Escalating a ticket closes it.
+        correct: false
+        feedback: >-
+          No. Escalation is handing a case to a person instead of closing it
+          yourself. See part one of the week 1 reading.
+
+  - id: w1-q4
+    name: Question 4. Which kind of AI is this
+    type: multiple_choice
+    points: 2
+    section: "Week 1 reading, part two, scoring AI at work"
+    outcome: "none"
+    text: |
+      <p>A tool reads every message that arrives at Pellgrave and gives each
+      one a number from 0 to 100. A high number sends the message to
+      quarantine. The tool writes nothing else.</p>
+      <p>Which kind of AI work is that?</p>
+    answers:
+      - text: Scoring AI
+        correct: true
+        feedback: >-
+          Right. It sorts or rates something and hands back a number or a
+          label. See part two of the week 1 reading.
+      - text: Generative AI
+        correct: false
+        feedback: >-
+          No. Generative AI writes new text. This tool writes a number and
+          nothing else. See part two of the week 1 reading.
+      - text: An agentic workflow
+        correct: false
+        feedback: >-
+          No. An agentic workflow picks its own next step. This tool does the
+          same thing to every message. See part two of the week 1 reading.
+      - text: None of these
+        correct: false
+        feedback: >-
+          It is one of the three. Ask what it hands back. A number or a label
+          means scoring. See part two of the week 1 reading.
+
+  - id: w1-q5
+    name: Question 5. Which kind of AI is this
+    type: multiple_choice
+    points: 2
+    section: "Week 1 reading, part two, agentic workflows at work"
+    outcome: "none"
+    text: |
+      <p>A second tool reads the Pellgrave equipment list, looks up the version
+      running on each machine, opens a ticket for every machine that is behind,
+      and stops after fifty machines.</p>
+      <p>Which kind of AI work is that?</p>
+    answers:
+      - text: An agentic workflow
+        correct: true
+        feedback: >-
+          Right. It picks its own next step, acts on it, and works inside a
+          limit somebody set. See part two of the week 1 reading.
+      - text: Scoring AI
+        correct: false
+        feedback: >-
+          No. Scoring hands back a number or a label and stops. This tool opens
+          tickets. See part two of the week 1 reading.
+      - text: Generative AI
+        correct: false
+        feedback: >-
+          No. Generative AI hands back new text. This tool hands back a
+          decision and an action. See part two of the week 1 reading.
+      - text: None of these
+        correct: false
+        feedback: >-
+          It is one of the three. Deciding a next step and then acting is the
+          third kind. See part two of the week 1 reading.
+
+  - id: w1-q6
+    name: Question 6. Where the token count comes from
+    type: multiple_choice
+    points: 2
+    section: "Week 1 lab, the token counter cell"
+    outcome: "none"
+    text: |
+      <p>Your notebook prints a running token count after every call. Where
+      does that count come from, and why is it not the length of the answer
+      text?</p>
+    answers:
+      - text: >-
+          From the usage numbers in the reply. Some models are billed for text
+          you never see.
+        correct: true
+        feedback: >-
+          Right. The reply carries its own token numbers, and the counter reads
+          those. A model can be billed for thinking you never see, so measuring
+          the visible text can under-report by about ten times. See the token
+          counter cell in the week 1 lab notebook.
+      - text: >-
+          From counting the characters in the answer and dividing by four.
+        correct: false
+        feedback: >-
+          No. That measures only the text you can see. On some models most of
+          the billed tokens never appear in the answer. See the token counter
+          cell in the week 1 lab notebook.
+      - text: >-
+          From your prompt only. The answer costs nothing.
+        correct: false
+        feedback: >-
+          No. You are billed for both sides. The reply reports the prompt
+          tokens, the answer tokens and the total. See the token counter cell
+          in the week 1 lab notebook.
+      - text: >-
+          From the notebook server, which times each call.
+        correct: false
+        feedback: >-
+          No. Time and tokens are different things. A slow call is not always
+          an expensive one. See the token counter cell in the week 1 lab
+          notebook.

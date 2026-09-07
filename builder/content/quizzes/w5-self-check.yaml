@@ -1,0 +1,327 @@
+# Week 5 self-check. Six multiple choice items, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, in the Self-Checks group, which is
+#                   8 percent of the course grade across all seven weeks.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all six.
+#   points          2. Six questions, twelve points.
+#   section         which page or which notebook cell the question comes from.
+#   outcome         "none". Self-checks report into no Canvas Outcome. The
+#                   graded evidence for CLO3 is the week 5 lab rubric,
+#                   criterion 2, which the alignment matrix records as the
+#                   primary evidence. A second reporter here would contradict
+#                   it. The key is present because the export tooling requires
+#                   one on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the section or the cell to reopen, because the attempts are unlimited and the
+# point of the quiz is to send a student back to the right paragraph.
+#
+# ITEM COVERAGE, from section 10 of the week 5 spec. Item 1 reads a trace and
+# names its stop reason. Item 2 asks what makes the stop condition explicit.
+# Item 3 asks why the cap is needed when the model repeats a tool. Item 4 asks
+# which tool is left on an email with no link. Item 5 asks where the two token
+# totals come from. Item 6 asks what the code does when the model answers
+# instead of asking.
+#
+# Every stem comes out of this week's own agent, its six emails and its own
+# notebook cells. None can be answered from general phishing knowledge.
+
+title: Week 5 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Six short questions on week 5. They take about ten minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is worth 12 points. You may take it as many times as you like,
+  and your highest score is the one that counts.</p>
+
+  <p>Every answer, right or wrong, names the section or the cell to reopen.
+  Use those names. Missing one twice is a sign to go back and read, not a
+  sign to guess again.</p>
+
+  <p>Take it after the reading and the lab. Several of these ask about runs
+  your own notebook made.</p>
+
+questions:
+
+  - id: w5-q1
+    name: Question 1. Naming the stop reason
+    type: multiple_choice
+    points: 2
+    section: "Week 5 reading, the stop condition is a rule in your code"
+    outcome: "none"
+    text: |
+      <p>Email 004 has no link in it. These are the two steps your file
+      records for that run.</p>
+      <pre><code>1. check_sender_reputation -&gt; status unknown, new domain
+      2. lookup_recipient -&gt; Accounts Payable Specialist
+      </code></pre>
+      <p>Neither result settled the case. Which of the five stop reasons
+      ended that run?</p>
+    answers:
+      - text: "tools_exhausted"
+        correct: true
+        feedback: >-
+          Right. Email 004 has no link host, so <code>check_urls</code> is
+          never usable there. Both usable tools ran. Neither settled the case,
+          so <code>out_of_room()</code> returned this reason. Week 5 reading,
+          the stop condition is a rule in your code.
+      - text: "step_cap"
+        correct: false
+        feedback: >-
+          No. That reason needs a usable tool still unused. This run spent
+          every tool it had, in two steps out of four. Week 5 reading, the
+          stop condition is a rule in your code.
+      - text: "decisive_benign"
+        correct: false
+        feedback: >-
+          No. That reason needs a trusted sender and a trusted link host
+          agreeing. This sender is unknown, and there is no link. Week 5
+          reading, the stop condition is a rule in your code.
+      - text: "internal_sender"
+        correct: false
+        feedback: >-
+          No. That reason comes back only when the reputation check reports
+          the sender as internal. Here it reported unknown. Week 5 reading,
+          the stop condition is a rule in your code.
+
+  - id: w5-q2
+    name: Question 2. What makes the stop condition explicit
+    type: multiple_choice
+    points: 2
+    section: "Week 5 reading, the stop condition is a rule in your code"
+    outcome: "none"
+    text: |
+      <p>This course calls the week 5 stop condition explicit. What makes it
+      explicit?</p>
+    answers:
+      - text: >-
+          It is a rule in your code. decisive_stop() reads a tool result and
+          names one of five reasons, or nothing.
+        correct: true
+        feedback: >-
+          Correct. The rule sits in your code, so every run ends for a reason
+          you can name. The measurement is why. With the rule in code, runs
+          ended for the right reason 136 times in 138. Week 5 reading, the
+          stop condition is a rule in your code.
+      - text: >-
+          LOOP_INSTRUCTIONS tells the model to answer once it has enough. So
+          the model ends its own run.
+        correct: false
+        feedback: >-
+          No. The model does read those instructions. But a model left to
+          decide when to stop got the whole path right only 25 times in 60.
+          Week 5 reading, the stop condition is a rule in your code.
+      - text: >-
+          MAX_STEPS is set to 4, so every run ends after four steps.
+        correct: false
+        feedback: >-
+          No. That is the cap, and the cap is a different control. Most runs
+          end well before four, because one result settled the case. Week 5
+          reading, one step is three actions.
+      - text: >-
+          The trace writes a stop reason for every run, so your file shows why
+          each one ended.
+        correct: false
+        feedback: >-
+          No. The trace records the reason. Recording it is not deciding it.
+          <code>decisive_stop()</code> decides. Week 5 reading, the stop
+          condition is a rule in your code.
+
+  - id: w5-q3
+    name: Question 3. When the model asks for a tool twice
+    type: multiple_choice
+    points: 2
+    section: "Week 5 reading, the cap is a control, and a person owns it"
+    outcome: "none"
+    text: |
+      <p>Part way through a run, the model asks for
+      <code>check_sender_reputation</code> a second time. It already ran that
+      tool at step 1.</p>
+      <p>What does your notebook do, and what ends the run?</p>
+    answers:
+      - text: >-
+          It runs the tool again and the step still counts. A run that keeps
+          repeating reaches four steps, and out_of_room() returns step_cap.
+        correct: true
+        feedback: >-
+          Right. Nothing refuses a repeat. The step is spent, and the cap is
+          what catches it. That is why the cap is a control, not a
+          convenience. Week 5 reading, the cap is a control, and a person owns
+          it.
+      - text: >-
+          It refuses the repeated call, so the step does not count and the run
+          carries on.
+        correct: false
+        feedback: >-
+          No. <code>tools_left()</code> is tested at the top of a pass, not
+          against what the model asks for. The repeat runs and the step
+          counts. Week 5 reading, the cap is a control, and a person owns it.
+      - text: >-
+          decisive_stop() returns a reason for a repeated call, so the run
+          ends on that step.
+        correct: false
+        feedback: >-
+          No. <code>decisive_stop()</code> reads the tool result. It knows
+          nothing about which tools ran before. Week 5 reading, the stop
+          condition is a rule in your code.
+      - text: >-
+          The repeat costs nothing, because the first result is already in the
+          message list.
+        correct: false
+        feedback: >-
+          No. Every request carries the whole history. A later step costs more
+          than an earlier one, not less. Week 5 reading, why a runaway loop
+          gets more expensive every pass.
+
+  - id: w5-q4
+    name: Question 4. The second tool on an email with no link
+    type: multiple_choice
+    points: 2
+    section: "Week 5 reading, a wrong second choice costs a step"
+    outcome: "none"
+    text: |
+      <p>Email 004 carries no link. Step 1 ran
+      <code>check_sender_reputation</code>. It reported the sending domain as
+      unknown and new, which settles nothing.</p>
+      <p>Which tools does <code>tools_left()</code> name now? And what happens
+      if the model asks for <code>check_urls</code> anyway?</p>
+    answers:
+      - text: >-
+          Only lookup_recipient is left. A call to check_urls gets an empty
+          result back, and the step still counts.
+        correct: true
+        feedback: >-
+          Right. A tool is left only while it still has something to look at.
+          On 004 that extra step teaches nothing and costs a request. Week 5
+          reading, a wrong second choice costs a step.
+      - text: >-
+          check_urls and lookup_recipient are both left, because a tool stays
+          left until it has run once.
+        correct: false
+        feedback: >-
+          No. <code>usable_tools()</code> leaves the link check out when an
+          email has no link host. So <code>tools_left()</code> never names it
+          here. Week 5 reading, a wrong second choice costs a step.
+      - text: >-
+          No tool is left, so the run ends on tools_exhausted after one step.
+        correct: false
+        feedback: >-
+          No. <code>lookup_recipient</code> still has an address to look up.
+          One tool is left, so the run takes a second step. Week 5 reading,
+          the agent picks its next tool from what it just read.
+      - text: >-
+          Only check_urls is left, because the loop works down TOOL_NAMES in
+          order.
+        correct: false
+        feedback: >-
+          No. <code>TOOL_NAMES</code> lists the three tools. It is not an
+          order the loop follows. Week 5 reading, the agent picks its next
+          tool from what it just read.
+
+  - id: w5-q5
+    name: Question 5. Where the two token totals come from
+    type: multiple_choice
+    points: 2
+    section: "Week 5 lab notebook, cell 15, the uncapped run"
+    outcome: "none"
+    text: |
+      <p>Cell 15 prints two numbers for email 012. One is what your capped run
+      spent. The other is what the uncapped run spent.</p>
+      <p>Where do those two numbers come from?</p>
+    answers:
+      - text: >-
+          From the token numbers each reply reports. start_run() sets that
+          count back to zero before each email.
+        correct: true
+        feedback: >-
+          Right. The counter reads the numbers the reply carries. It never
+          measures text. <code>append_turn()</code> copies the running total
+          into the trace at every step. Week 5 lab notebook, cell 15.
+      - text: >-
+          From counting the characters the traces printed and dividing by
+          four.
+        correct: false
+        feedback: >-
+          No. The counter never measures printed text. Some models are billed
+          for text you never see. Week 5 lab notebook, the token counter cell.
+      - text: >-
+          From the step count. Twenty steps cost twenty times what one step
+          costs.
+        correct: false
+        feedback: >-
+          No. Every request carries the whole history, so each pass costs more
+          than the one before. Cost grows faster than the step count. Week 5
+          reading, why a runaway loop gets more expensive every pass.
+      - text: >-
+          From the prompt side only. Tool results are read out of local files,
+          so they cost nothing.
+        correct: false
+        feedback: >-
+          No. Every tool result goes back into the message list, and the next
+          request carries it. You pay for both sides of every call. Week 5
+          reading, why a runaway loop gets more expensive every pass.
+
+  - id: w5-q6
+    name: Question 6. When the model answers instead of asking
+    type: multiple_choice
+    points: 2
+    section: "Week 5 lab notebook, cell 9, first_call()"
+    outcome: "none"
+    text: |
+      <p>On one email the model writes its answer in the JSON keys it was
+      given. It asks for no tool at all. Your loop hands
+      <code>first_call()</code> an empty list of calls.</p>
+      <p>What does <code>first_call()</code> do?</p>
+    answers:
+      - text: >-
+          It saves what the model said into the run record. Then it names the
+          first tool the run has not used yet.
+        correct: true
+        feedback: >-
+          Right. Nothing is thrown away and nothing stalls. The step still
+          runs a tool. Cell 9 holds that function, and cell 8 calls it on one
+          real pass. Week 5 lab notebook, cell 9.
+      - text: >-
+          It raises an error, because the loop needs a tool call on every
+          step.
+        correct: false
+        feedback: >-
+          No. A model that answers early is a normal condition. The notebook
+          covers it rather than failing. Read the comment inside
+          <code>first_call()</code>. Week 5 lab notebook, cell 9.
+      - text: >-
+          It ends the run there and sets the stop reason to tools_exhausted.
+        correct: false
+        feedback: >-
+          No. <code>first_call()</code> sets no stop reason. Only
+          <code>decisive_stop()</code> and <code>out_of_room()</code> write
+          that field. Week 5 lab notebook, cell 9.
+      - text: >-
+          It sends the same request again until the model asks for a tool.
+        correct: false
+        feedback: >-
+          No. Nothing in <code>run_loop()</code> sends a request twice. The
+          retry you wrote in week 2 is a different shape. Week 5 lab notebook,
+          cell 9.

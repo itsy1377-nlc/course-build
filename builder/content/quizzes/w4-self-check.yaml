@@ -1,0 +1,254 @@
+# Week 4 self-check. Five questions, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, in the Self-Checks group, which is
+#                   8 percent of the course grade across all seven weeks.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all five.
+#   points          2.4. Five questions, twelve points. The week 4 spec sets
+#                   five items and course.yaml sets twelve points, so the value
+#                   is twelve divided by five. Canvas stores a decimal here.
+#   section         which page section or notebook cell the answer comes from.
+#   outcome         "none". Self-checks report into no Canvas Outcome. The
+#                   graded evidence for CLO3 this week is the week 4 lab
+#                   rubric, criteria 2 and 3, which the alignment matrix
+#                   records as supporting evidence. A second reporter here
+#                   would contradict it, because the outcome calculation is
+#                   most recent score. The key is present because the export
+#                   tooling requires one on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the section or the cell to reopen, because the attempts are unlimited and the
+# point of the quiz is to send a student back to the right paragraph.
+#
+# ITEM COVERAGE. The week 4 spec names these five, in this order: who asks for
+# a tool and who runs it, why the arguments have to be read as text first,
+# which of the three tools answers a given question, what happens on a tool
+# name the notebook does not have, and what the code does when the model
+# answers in sentences instead. Every stem sits on this week's own material:
+# cell 8 and cell 10 of the lab notebook, the printed request in the reading,
+# and emails 017, 018 and 003.
+
+title: Week 4 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Five short questions on week 4. They take about ten minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is worth 12 points. You may take it as many times as you like,
+  and your highest score is the one that counts.</p>
+
+  <p>The options stay in the same order on every try, so you can compare a
+  second attempt to your first.</p>
+
+  <p>Every answer, right or wrong, names the section or the notebook cell to
+  reopen. Use those names. Missing one twice is a sign to go back and read, not
+  a sign to guess again.</p>
+
+  <p>Take it after the reading and the lab. It is written to check what the lab
+  taught you, not to teach it.</p>
+
+questions:
+
+  - id: w4-q1
+    name: Question 1. Who asks, and who runs it
+    type: multiple_choice
+    points: 2.4
+    section: "Week 4 reading, the model asks, your code decides"
+    outcome: "none"
+    text: |
+      <p>Cell 8 of your lab notebook makes one call on email 017, the payroll
+      notice, and prints what comes back. The reply names
+      <code>check_urls</code> and gives one link host.</p>
+      <p>What has happened at that point?</p>
+    answers:
+      - text: The model has asked for that tool. Nothing has run yet.
+        correct: true
+        feedback: >-
+          Right. A tool call is a request, not an action. Your run_tool() is
+          what runs anything, and it has not been called yet. Week 4 reading,
+          the model asks, your code decides.
+      - text: The model looked the host up and sent back what it found.
+        correct: false
+        feedback: >-
+          No. The model writes text and does nothing else. It cannot read your
+          allowlist or your blocklist. Week 4 reading, the model asks, your
+          code decides.
+      - text: The endpoint ran the tool and put the result in the reply.
+        correct: false
+        feedback: >-
+          No. The endpoint carries text both ways. The tools are Python
+          functions in your own notebook, so your code is the only thing that
+          can run one. Week 4 reading, the model asks, your code decides.
+      - text: check_urls already ran, and the model is repeating what it returned.
+        correct: false
+        feedback: >-
+          No. Cell 8 makes one call and runs no tool before it. That reply is
+          the first time the tool is named. Week 4 lab notebook, cell 8.
+
+  - id: w4-q2
+    name: Question 2. Why the arguments get loaded first
+    type: multiple_choice
+    points: 2.4
+    section: "Week 4 reading, what a request looks like"
+    outcome: "none"
+    text: |
+      <p>Here is the arguments part of the request your notebook printed.</p>
+      <pre><code>"arguments": "{\"hosts\": [\"my.fenwrightpay.example\"]}"
+      </code></pre>
+      <p>Your <code>run_tool()</code> calls <code>json.loads()</code> on that
+      value before it uses the host. Why?</p>
+    answers:
+      - text: Because the arguments arrive as text. Text that looks like a dictionary is not one until it is loaded.
+        correct: true
+        feedback: >-
+          Correct. The model writes characters, so that value is a string.
+          Loading turns it into a dictionary you can read a key out of. Week 4
+          reading, what a request looks like, and cell 9 of the lab notebook.
+      - text: Because loading checks that the host is spelled the way the email wrote it.
+        correct: false
+        feedback: >-
+          No. Loading checks nothing about the value. It only turns text into a
+          dictionary. Checking the host is what check_urls does afterward. Week
+          4 reading, what a request looks like.
+      - text: Because check_urls takes text, and loading turns the dictionary into a string.
+        correct: false
+        feedback: >-
+          No. That is the wrong way round. What arrives is the string, and the
+          tool needs the list of hosts inside it. Week 4 reading, what a
+          request looks like.
+      - text: Because the model may send the keys in a different order, and loading puts them back in order.
+        correct: false
+        feedback: >-
+          No. Order is not the problem here, and loading sorts nothing. The
+          problem is that the value is still text. Week 4 reading, what a
+          request looks like.
+
+  - id: w4-q3
+    name: Question 3. Which of the three tools answers this
+    type: multiple_choice
+    points: 2.4
+    section: "Week 4 reading, why the three tools are plain Python"
+    outcome: "none"
+    text: |
+      <p>Email 018 is a two line note from a property management customer, sent
+      from her real account. It carries one link.</p>
+      <p>You want to know whether that link host is on the blocklist. Which
+      tool answers that?</p>
+    answers:
+      - text: check_urls(hosts)
+        correct: true
+        feedback: >-
+          Right. That is the tool that reads the allowlist and the blocklist.
+          On 018 it comes back blocklisted, and that one fact flips the verdict
+          to malicious. Week 4 reading, why the three tools are plain Python.
+      - text: check_sender_reputation(sender)
+        correct: false
+        feedback: >-
+          No. That tool answers about the sender. On 018 it comes back known
+          good, because the customer is real and her account was taken over.
+          Week 4 reading, why the three tools are plain Python.
+      - text: lookup_recipient(address)
+        correct: false
+        feedback: >-
+          No. That tool answers about the person who received the message. It
+          says nothing about the link. Week 4 reading, why the three tools are
+          plain Python.
+      - text: The header checks from week 3, which already report SPF, DKIM and DMARC.
+        correct: false
+        feedback: >-
+          No. Those say whether the sender passed authentication, and on 018 all
+          three pass. A passing header check says nothing about which list a
+          host is on. Week 4 reading, why the three tools are plain Python.
+
+  - id: w4-q4
+    name: Question 4. A tool name you do not have
+    type: multiple_choice
+    points: 2.4
+    section: "Week 4 lab notebook, cell 10, TODO 1"
+    outcome: "none"
+    text: |
+      <p>Your <code>run_tool()</code> is handed the name
+      <code>check_attachment</code>. Your notebook has three tools, and that is
+      not one of them.</p>
+      <p>What should <code>run_tool()</code> do?</p>
+    answers:
+      - text: Return a plain sentence saying it has no tool by that name.
+        correct: true
+        feedback: >-
+          Right. The run keeps going, and the model is told what happened.
+          Sidebar 4b practices this exact move on a report name. Week 4 lab
+          notebook, cell 10.
+      - text: Raise an error, so the run stops and you can see the bad name.
+        correct: false
+        feedback: >-
+          No. That stops the whole run over one name. A sentence says the same
+          thing and lets the other five emails finish. Week 4 lab notebook,
+          cell 10.
+      - text: Run whichever of the three tools is closest, so the model still gets a result.
+        correct: false
+        feedback: >-
+          No. That answers a question nobody asked, and the file records a tool
+          the model never named. Say what you do not have instead. Week 4 lab
+          notebook, cell 10.
+      - text: Send the name back and ask the model to choose again.
+        correct: false
+        feedback: >-
+          No. Week 4 asks once and answers once. Choosing again from what came
+          back is week 5. Week 4 reading, what a request looks like.
+
+  - id: w4-q5
+    name: Question 5. When the model asks for no tool
+    type: multiple_choice
+    points: 2.4
+    section: "Week 4 reading, when the model answers in prose instead"
+    outcome: "none"
+    text: |
+      <p>You run email 003, the catalog mailing. The model answers in sentences
+      and asks for no tool.</p>
+      <p>What does <code>triage_with_tools()</code> do?</p>
+    answers:
+      - text: It falls back to week 2's parsing, and records in your file that the fallback ran.
+        correct: true
+        feedback: >-
+          Right. That record earns full credit, the same as a recorded tool
+          call, because the lab scores your code and not the model's choice.
+          Cell 15 shows you the path on purpose. Week 4 reading, when the model
+          answers in prose instead.
+      - text: It sends the request again with the tool definitions repeated, until a tool call comes back.
+        correct: false
+        feedback: >-
+          No. Nothing in the course endpoint can make the model ask for a tool.
+          Asking again only spends tokens. Week 4 reading, when the model
+          answers in prose instead.
+      - text: It records the email as failed, because no tool ran.
+        correct: false
+        feedback: >-
+          No. The prose path is a normal path, not a failure. Your file records
+          it and it is graded the same. Week 4 reading, when the model answers
+          in prose instead.
+      - text: It calls all three tools itself, so the email still has tool results.
+        correct: false
+        feedback: >-
+          No. Your code runs the tool the model names. When it names none,
+          there is nothing to run. Week 4 reading, when the model answers in
+          prose instead.

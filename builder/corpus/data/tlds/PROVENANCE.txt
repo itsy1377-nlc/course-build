@@ -1,0 +1,56 @@
+IANA root zone top-level domain snapshot
+========================================
+
+What this folder holds
+----------------------
+A dated, verbatim copy of the IANA list of delegated top-level domains. The
+corpus validator (builder/corpus/tools/validate_corpus.py) uses it for the
+safety net in section 10 item 9 of docs/email-header-realism.md: a token in a
+message that looks like a domain and ends in a delegated top-level domain is a
+failure, because every domain in the corpus must end in .example.
+
+The validator reads this folder and never fetches anything from the network to
+build the list. Refreshing the snapshot is a deliberate, separate step.
+
+File
+----
+iana-tlds-2026-09-04.txt
+
+Source URL
+    https://data.iana.org/TLD/tlds-alpha-by-domain.txt
+
+Retrieved
+    2026-09-04
+
+Version line (first line of the file, copied exactly)
+    # Version 2026090400, Last Updated Fri Sep  4 07:07:01 2026 UTC
+
+sha256
+    31ab708e734783b81dc913ebc136fc4f83a4dbc3c604a248ad256565eb7df39e
+
+Size
+    9536 bytes, 1439 lines: one comment line holding the version, then 1438
+    top-level domain names, one per line, uppercase, including the xn-- forms.
+
+Format notes
+------------
+Line 1 begins with "#" and carries the version stamp. Every other line is one
+top-level domain in uppercase ASCII. The validator lowercases each name and
+skips lines that begin with "#", so the file is used exactly as published with
+no edits. The reserved names example, invalid, localhost and test are not in
+the list, which is what makes the .example convention safe to check against it.
+
+Refreshing the snapshot
+-----------------------
+1. Download the file again:
+       curl -o iana-tlds-YYYY-MM-DD.txt \
+           https://data.iana.org/TLD/tlds-alpha-by-domain.txt
+2. Name it with the date in its own version line, not the day you downloaded
+   it, so the newest file by name is always the newest list.
+3. Record the source URL, the retrieval date, the version line and the sha256
+   in this file, keeping the older entries above for the record.
+4. Re-run the validator from builder/corpus and confirm it names the new
+   snapshot and still reports 0 failures.
+
+The validator picks the newest snapshot by file name, so the older files can
+stay in this folder as history.

@@ -1,0 +1,121 @@
+id: w5-walkthrough
+title: What a finished week 5 run looks like
+kind: walkthrough
+module: m05
+embed_on: builder/content/pages/w5-content.md
+blurb: A real run on an email your lab does not use. What a finished trace looks like, what stays the same between runs, and the mistake only the arguments column shows.
+explains:
+  - builder/content/pages/w5-content.md
+  - builder/content/assignments/w5-lab.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 5 walkthrough
+    heading: What a finished run looks like
+    body: One real run, on an email your lab does not use. Three steps, a stop reason, and one mistake that only the trace shows.
+    narration:
+      - This is what a finished week 5 run looks like.
+      - It runs on an email your lab does not use, so nothing here is your answer.
+      - Watch two things. The shape of a finished trace, and the one mistake only the trace shows.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The trace
+    heading: Three steps, in this order
+    items:
+      - check_sender_reputation, and the sender came back unknown
+      - check_urls, and the one link host came back unlisted
+      - lookup_recipient, and the record came back empty
+    narration:
+      - text: Your notebook prints one table per email, one row per step. Here is one of them.
+        reveal: 1
+      - text: Step one asked the sender reputation tool. The domain came back unknown. That settles nothing.
+        reveal: 1
+      - text: Step two asked the link check. The one link host came back unlisted. Still nothing.
+        reveal: 2
+      - text: Step three asked the recipient lookup, and the record came back empty.
+        reveal: 3
+      - text: Three results, and not one of them decided the case.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: How it ended
+    heading: Three steps under a cap of four, and no tool left
+    body: "Stop reason: tools_exhausted, one of the five. Three model calls, 5,642 tokens."
+    narration:
+      - Say the step count and the stop reason together. Apart, neither tells you much.
+      - Three steps under a cap of four, ended on tools exhausted.
+      - Nothing settled the case, and no usable tool was left. The cap never fired. A tool ran out before a step did.
+      - The model wrote no verdict at any step. Every reply was a request for a tool. Your own code ended this run.
+
+  - type: slide
+    layout: code
+    eyebrow: The column to read
+    heading: This is step three, as the file records it
+    body: |
+      "step": 3,
+      "tool": "lookup_recipient",
+      "arguments": {"address": "Tobias"},
+      "result": {"address": "tobias", "name": null,
+                 "role": null, "mailbox_type": "unknown",
+                 ...}
+    narration:
+      - Here is step three, as the exported file records it, with the result trimmed to four fields.
+      - Look at the arguments line. The agent asked the recipient lookup about Tobias.
+      - Tobias is the name in the greeting. It is not the address the agent was handed.
+      - That mail went to a shared payroll mailbox. The lookup holds no record under a first name, so it answered with an empty one.
+      - The step count is right. The stop reason is right. The answer is empty, and only the arguments say why.
+      - Open your file and read it. Do not trust the step count on its own.
+
+  - type: slide
+    layout: compare
+    eyebrow: What varied
+    heading: Steady between runs, climbing inside one
+    items:
+      - Nine runs of this email | Same three steps, same stop reason, same 5,642 tokens
+      - The three steps inside a run | 1,755 tokens, then 1,912, then 1,975
+    narration:
+      - text: This email was run nine times.
+        reveal: 1
+      - text: Between runs, nothing you would read off the screen. Same steps, same order, same total.
+        reveal: 1
+      - text: Which tool your agent picks second is its choice. You are not graded on picking the same one.
+        reveal: 1
+      - text: Inside the run, the cost climbed. 1,755 tokens, then 1,912, then 1,975.
+        reveal: 2
+      - text: Every request carries the whole history, so a later step pays for the earlier ones again.
+        reveal: 2
+
+  - type: slide
+    layout: numbered
+    eyebrow: Before you submit
+    heading: Three checks
+    items:
+      - All six trace tables in one picture
+      - Six runs in the file, each with a stop reason
+      - Both token totals in your written answer
+    narration:
+      - text: Three things to check before you turn it in.
+        reveal: 1
+      - text: First, the screenshot holds all six tables, with the step count and the stop reason readable, and the token total under the last one.
+        reveal: 1
+      - text: Second, your exported file holds six runs. Each one names its tools in the order they ran, a step count of four or fewer, and one of the five stop reasons.
+        reveal: 2
+      - text: Third, your written answer gives both token totals and says what the cap saved.
+        reveal: 3
+      - text: Those numbers come from your own file. A general sentence about loops earns nothing.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If it is not working
+    heading: The three you will actually hit
+    body: Every run ends at the cap. A tool runs with nothing to look at. A name is not defined.
+    narration:
+      - Three failures are worth knowing before you start.
+      - If every run of yours ends at four steps on step cap, your while line is missing a test. A step has to be left, and a usable tool has to be left. Both.
+      - If your agent asks for the link check on the email with no link, it gets an empty result and the step still counts. That is the model choosing badly, not your code failing. Name the tool your run picked and you keep the points.
+      - If a name is not defined, a cell above it never ran. Restart the kernel and run every cell from the top.
+      - If none of those is it, post on the question board. This is the hardest week in the course.

@@ -1,0 +1,111 @@
+Return-Path: <no-reply@larkseal-docs.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id dab22042-13a6-451a-82cc-c2ae2a3a2758
+  for <b.onwuka@pellgrave.example>; Wed, 15 Apr 2026 10:12:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=larkseal-docs.example;
+  dkim=pass header.d=larkseal-docs.example header.s=k1
+    header.i=@larkseal-docs.example;
+  dmarc=pass header.from=larkseal-docs.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  no-reply@larkseal-docs.example designates 203.0.113.152 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.152;
+  envelope-from="no-reply@larkseal-docs.example";
+  helo=mail.larkseal-docs.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 5.2
+X-Sentrywick-Message-UID: c55a32c8380b
+X-Sentrywick-Reported-By: b.onwuka@pellgrave.example
+Received: from mail.larkseal-docs.example
+  (mail.larkseal-docs.example [203.0.113.152])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id c55a32c8380b;
+  Wed, 15 Apr 2026 10:12:06 -0500
+Received: from app-01.larkseal-docs.example ([192.0.2.153])
+  by mail.larkseal-docs.example with ESMTPSA id cadd300f;
+  Wed, 15 Apr 2026 15:12:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=larkseal-docs.example; s=k1; t=1776265923;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=SibEscXukzHlTLCokVW64259nzJnF5nZi1FcN7ZMbsA=;
+  b=vmrZm5GDnNAJ1uLmDb589gD6x5kWpUrdKSx74dEFZDiHL+ciufU0I4P+MTdubNeBUpuOSCM0
+   DFyxp3sN1pAN1UyrezNFfpsQZEJk0L579ULN+lqWYsrwyuaJkaN9Fax4N35tQuqxN5aa1GDs
+   LwH6YtXNXwfOv3TW6Urz/EVZ2ysslBWwkIaZX8VZ1A2K7VCyFZVl+SOYPkx+Sc38ovDVYlJN
+   c8aVt4ZBfws5wh88kPZzWU3gvYzqbuvs1L8u0TTOvfJUIoONyGpSpyywsocNc2J3An/jXQhx
+   WDp45/Qud9IXMmx3DVAIQPtLJpyeUK45aq+SkSDanSOLoF2UlDLdPA==
+Date: Wed, 15 Apr 2026 10:12:00 -0500
+From: Larkseal <no-reply@larkseal-docs.example>
+To: Beatrix Onwuka <b.onwuka@pellgrave.example>
+Subject: Adaeze Whitcombe sent you a document to sign:
+ Rookmere Service Agreement 2026
+Message-ID: <20260415151200.2d8ca2d5d53c@app-01.larkseal-docs.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_2c5040766031"
+
+--=_part_2c5040766031
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Larkseal
+
+Hello Beatrix,
+
+Adaeze Whitcombe has sent you a document to sign: Rookmere Service=
+ Agreement 2026.
+
+Document: Rookmere Service Agreement 2026
+Sent by: Adaeze Whitcombe, Chief Executive Officer, Pellgrave Mechanical=
+ Group
+Reference: 3469a3821b7cbfc7
+
+Review document: https://larkseal-docs.example/sign/request/3469a3821b7cbfc7
+
+This request expires in 3 days. If the document does not open, you may=
+ need to sign in with your work email address first.
+
+Larkseal, secure signatures
+If you were not expecting this document, contact the sender before=
+ opening it.
+
+--=_part_2c5040766031
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#f2f4f6;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 20px=
+ 0;font-size:20px;font-weight:bold;color:#1b4f8a;">Larkseal</p>
+<p>Hello Beatrix,</p>
+<p>Adaeze Whitcombe has sent you a document to sign: Rookmere Service=
+ Agreement 2026.</p>
+<p style=3D"margin:0 0 16px 0;">Document: Rookmere Service Agreement=
+ 2026<br>Sent by: Adaeze Whitcombe, Chief Executive Officer, Pellgrave=
+ Mechanical Group<br>Reference: 3469a3821b7cbfc7</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://larkseal-docs.example/sign/request/3469a3821b7cbfc7"=
+ style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#1b4f8a;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Review document</a></p>
+<p>This request expires in 3 days. If the document does not open, you=
+ may need to sign in with your work email address first.</p>
+<p style=3D"margin-top:28px;padding-top:12px;border-top:1px solid=
+ #d9dee3;font-size:13px;color:#444444;">Larkseal, secure=
+ signatures<br>If you were not expecting this document, contact the=
+ sender before opening it.</p>
+</div>
+</body>
+</html>
+
+--=_part_2c5040766031--

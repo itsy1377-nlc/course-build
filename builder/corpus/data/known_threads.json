@@ -1,0 +1,37 @@
+{
+  "$comment": "Message-IDs of earlier messages that exist in the fictional mail store but not in the corpus, so In-Reply-To values can be resolved. A reply whose In-Reply-To is neither here nor a corpus Message-ID is thread:in_reply_to_unknown.",
+  "threads": [
+    {
+      "message_id": "<20260409211530.87da67add378@mail.pellgrave.example>",
+      "subject": "PO 20431 Slatemoor compressor order",
+      "date": "2026-04-09T16:15:30-05:00",
+      "from": "e.dawodu@pellgrave.example",
+      "to": "ap@pellgrave.example",
+      "note": "Parent of 011. Procurement sent the purchase order to accounts payable."
+    },
+    {
+      "message_id": "<20260413151202.4eda6158f67b@mail.pellgrave.example>",
+      "subject": "Re: PO 20431 Slatemoor compressor order",
+      "date": "2026-04-13T10:12:02-05:00",
+      "from": "ap@pellgrave.example",
+      "to": "e.dawodu@pellgrave.example",
+      "note": "AP's first reply in the PO 20431 thread; 011 replies to this message."
+    },
+    {
+      "message_id": "<20260414163344.54ccc40f4134@mail.pellgrave.example>",
+      "subject": "Re: Past due statement, account 44170: credit hold on 4/20 if unpaid",
+      "date": "2026-04-14T11:33:44-05:00",
+      "from": "ap@pellgrave.example",
+      "to": "ar@slatemoorsupply.example",
+      "note": "AP's reply to 005 promising payment on the 4/24 run; 016 replies to this message and its References list ends with it."
+    },
+    {
+      "message_id": "<20260422190115.5301729428f5@mail.pellgrave.example>",
+      "subject": "Board prep, moving to Thursday 3:00",
+      "date": "2026-04-22T14:01:15-05:00",
+      "from": "r.palomares@pellgrave.example",
+      "to": "b.onwuka@pellgrave.example",
+      "note": "Parent of 055."
+    }
+  ]
+}

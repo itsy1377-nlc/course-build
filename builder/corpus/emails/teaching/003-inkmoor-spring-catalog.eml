@@ -1,0 +1,138 @@
+Return-Path: <bounce-2231-9074-6584194ca3cab4cd@bounce.sendbarrow-mail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 69a976a6-8487-4851-9780-6ba71ebc47fc
+  for <c.hallowden@pellgrave.example>; Mon, 13 Apr 2026 06:02:13 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=bounce.sendbarrow-mail.example;
+  dkim=pass header.d=sendbarrow-mail.example header.s=s2026a
+    header.i=@sendbarrow-mail.example;
+  dmarc=none header.from=news.inkmoor-office.example
+Received-SPF: pass (mx.pellgrave.example: domain of
+  bounce-2231-9074-6584194ca3cab4cd@bounce.sendbarrow-mail.example designates
+  198.51.100.23 as permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.23;
+  envelope-from="bounce-2231-9074-6584194ca3cab4cd@bounce.sendbarrow-mail.example";
+  helo=o17.mta.sendbarrow-mail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.0/24
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 4.1
+X-Sentrywick-Message-UID: 2695706ccfe7
+X-Sentrywick-Reported-By: c.hallowden@pellgrave.example
+Received: from o17.mta.sendbarrow-mail.example
+  (o17.mta.sendbarrow-mail.example [198.51.100.23])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 2695706ccfe7;
+  Mon, 13 Apr 2026 06:02:11 -0500
+Received: from app-node-03.sendbarrow-mail.example ([192.0.2.140])
+  by o17.mta.sendbarrow-mail.example with ESMTP id 98823ac1;
+  Mon, 13 Apr 2026 11:02:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=sendbarrow-mail.example; s=s2026a; t=1776078120;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   list-unsubscribe:list-unsubscribe-post:list-id;
+  bh=1ZaNhH89d+ldWCEvtMgdF1UMH/pDemWwUrDMtZccn3Y=;
+  b=KG/ML6l80lK4K+xNQIY6gHdJLRG/uNidNLgde9EYXhWXUvg8WxKaUC1ABkI4H4Ro7d3QAf
+     vy+KoQ/q4dupIZyls9X1BkOYrgQgHSqVYHu/yPUHrA2JiMz5htARzjlUFEVp2BYR/l92Ft
+     dLwfX3gM7DgK5I0vstJDLkFjEJxlwwy86jGI3VxQ/db3tjNEy4Qa0pHGw56PGHJMwJeyeG
+     LTm4DmrnyS6xguUWmu5/2WbSUytTKZSs+UNAsbCZhiGV/YeV+83pATE5XfFYQMvgxN4iX/
+     KTPqcNRjsm56kWSpzudiUeSJfPILHnzXhTnHwN1Z0EO8JBhmb4g3SoxHwICEPw==
+From: Inkmoor Office Supply <offers@news.inkmoor-office.example>
+To: c.hallowden@pellgrave.example
+Subject: Spring catalog: 20% off breakroom and shipping supplies through 4/30
+Date: Mon, 13 Apr 2026 11:02:00 +0000
+Message-ID: <20260413110200.15b3dd938b3e@app-node-03.sendbarrow-mail.example>
+List-Unsubscribe:
+  <https://links.sendbarrow-mail.example/u/2231/9074/6584194ca3cab4cd>,
+  <mailto:unsub-2231-9074-6584194ca3cab4cd@bounce.sendbarrow-mail.example>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: Inkmoor Office Supply Offers <news.inkmoor-office.example>
+Precedence: bulk
+Feedback-ID: 2231:spring-catalog:inkmoor:sendbarrow
+X-Mailer: Sendbarrow Campaigns 3.8
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_sb_8345de670e78f7ec"
+
+--=_sb_8345de670e78f7ec
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Having trouble reading this? View it in your browser:
+https://links.sendbarrow-mail.example/v/2231/9074/6584194ca3cab4cd
+
+Spring catalog: 20% off breakroom and shipping supplies through 4/30
+
+Hello from Inkmoor Office Supply,
+
+Our spring catalog is out. Through April 30, take 20% off breakroom and
+shipping supplies on any catalog order. The discount is applied at
+checkout, so there is no code to remember.
+
+A few favorites this season:
+
+  * Corrugated shipping boxes and packing tape, sold by the case
+  * Breakroom coffee, cups, napkins and paper towels in bulk packs
+  * Stretch wrap, pallet labels and marking pens for the warehouse
+
+Shop the catalog:
+https://links.sendbarrow-mail.example/c/2231/9074/a1/6584194ca3cab4cd
+
+Standard delivery is included on catalog orders over $150. Thank you for
+shopping with us this spring.
+
+The Inkmoor Office Supply team
+
+--
+Inkmoor Office Supply, PO Box 4471
+You are receiving this message because you have ordered from Inkmoor
+Office Supply in the past.
+Unsubscribe:
+https://links.sendbarrow-mail.example/u/2231/9074/6584194ca3cab4cd
+--=_sb_8345de670e78f7ec
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f4f4f4;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:0 auto;padding:24px;background:#ffffff;
+font-family:sans-serif;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"font-size:12px;color:#777777;">Having trouble reading this?
+<a href=3D"=
+https://links.sendbarrow-mail.example/v/2231/9074/6584194ca3cab4cd"
+style=3D"color:#777777;">View it in your browser</a>.</p>
+<h2 style=3D"font-size:20px;color:#2a5d3c;">
+Spring catalog: 20% off breakroom and shipping supplies through 4/30</h2>
+<p>Hello from Inkmoor Office Supply,</p>
+<p>Our spring catalog is out. Through April 30, take 20% off breakroom and
+shipping supplies on any catalog order. The discount is applied at checkout,
+so there is no code to remember.</p>
+<p>A few favorites this season:</p>
+<ul>
+<li>Corrugated shipping boxes and packing tape, sold by the case</li>
+<li>Breakroom coffee, cups, napkins and paper towels in bulk packs</li>
+<li>Stretch wrap, pallet labels and marking pens for the warehouse</li>
+</ul>
+<p><a href=3D"=
+https://links.sendbarrow-mail.example/c/2231/9074/a1/6584194ca3cab4cd"
+style=3D"background:#2a5d3c;color:#ffffff;padding:10px 18px;
+text-decoration:none;">Shop the catalog</a></p>
+<p>Standard delivery is included on catalog orders over $150. Thank you for
+shopping with us this spring.</p>
+<p>The Inkmoor Office Supply team</p>
+<p style=3D"font-size:12px;color:#777777;">
+Inkmoor Office Supply, PO Box 4471<br>
+You are receiving this message because you have ordered from Inkmoor
+Office Supply in the past.<br>
+<a href=3D"=
+https://links.sendbarrow-mail.example/u/2231/9074/6584194ca3cab4cd"
+style=3D"color:#777777;">Unsubscribe</a></p>
+</div>
+</body>
+</html>
+--=_sb_8345de670e78f7ec--

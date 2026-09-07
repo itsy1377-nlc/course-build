@@ -1,0 +1,65 @@
+::: intro
+Week 3 is done. Your agent now sends facts about the message, not the message alone. Here is what you covered, what you built, and what comes next.
+:::
+
+::: learned | What you learned
+| Idea | What it means in your code |
+|---|---|
+| Grounding | Facts about a message, sent instead of the message alone |
+| Facts block | A short labeled list, printed in one fixed order |
+| Header | A named line above the body, such as `From:` |
+| SPF, DKIM and DMARC | Three checks your gateway ran and wrote down |
+| Display-name mismatch | A name from one domain over an address at another |
+| Link host | The part of a web address that decides where a click lands |
+| Known-good domains and the playbook | Your organization's own hosts, and the rules it triages by |
+| Data minimization | Sending only what the decision needs |
+
+Two of those carry the week. A passed check is one answered question, not a clean message. And every line you send is a line you have handed to an outside service.
+:::
+
+::: did | What you did
+- You printed every key the parser returns, and chose from that list.
+- You wrote `build_facts()`, which picks the facts a verdict needs.
+- You wrote `format_facts()`, which prints them as labeled lines in a set order.
+- You ran six emails twice, on the body alone and then with your facts.
+- You compared 005 and 025 on the same code, and read what moved.
+- You exported `week3_grounding.json` and read the file you turned in.
+
+That file holds the facts block you sent for each email, beside both verdicts. A grader reads your choices without opening your notebook.
+:::
+
+::: checkpoint | Check yourself
+Answer these six before you move on. Each answer sits under its question, with the reading section it comes from.
+
+1. Which belongs in the facts block: the link hosts, or the reporter's address?
+
+    The link hosts. The reporter's address moves no verdict and names a real person. From what you leave out is also a decision.
+
+2. A message claims your own domain and fails DMARC. What does that say?
+
+    It did not come from the domain it names. That is a fact to send, not a verdict. From what a passed check really means.
+
+3. A link host is on no list you hold. Is it clean?
+
+    No. It is unknown, which is a different answer. Week 4 gives your agent a way to look one up. From where the links point.
+
+4. Why does mail sent inside the company carry no check results?
+
+    Your gateway checks what arrives from outside. Nothing ran, so nothing was written down. Missing is not failed. From what a passed check really means.
+
+5. Suppose email 005 read as malicious on the body alone and benign with your facts. What moved it?
+
+    The three checks passed, and the name matches the supplier's own domain. Only the urgent wording was left. From two emails, and the reason for all this.
+
+6. You have a log line instead of an email. What changes?
+
+    The field names. You still drop what no judgment needs and send the rest in one steady shape. From the same move on a log line.
+:::
+
+::: next
+Take the **Week 3 self-check** if you have not yet. It is 12 points, unlimited tries, and the highest score counts.
+
+Post to the **Week 3 discussion** and reply to one classmate.
+
+Week 4 lets the model ask for a fact you did not send. It names what it wants, and your code goes and gets it. You write the part that runs it.
+:::

@@ -1,0 +1,228 @@
+# Week 8 final exam, part file: breadth topic B2, the range of AI-assisted
+# security use cases. Four items, numbers 7 to 10 in the exam blueprint's
+# section 5 coverage table.
+#
+# THE SHAPE OF THIS FILE
+#
+#   items           a list. One entry per exam question. Nothing else is at
+#                   the top level, because the assembly step reads the four
+#                   part files and builds one quiz from them.
+#
+# EVERY ITEM CARRIES
+#
+#   number          the item number from the blueprint coverage table. Never
+#                   renumbered. The assembly step orders by it.
+#   id              a short stable slug. Never reused.
+#   name            what Canvas shows as the question title.
+#   assesses        the coverage table's own words for what the item measures.
+#   level           the coverage table's level: Recall, Apply or Analyze.
+#   difficulty      easy, medium or hard, as the coverage table sets it.
+#   artifact        the reserved email or the named code the stem quotes, or
+#                   "none". No B2 item is anchored on a reserved email. The
+#                   blueprint's table of how the eleven emails are used lists
+#                   items 3, 4, 11, 12, 16 to 29; none of 7, 9 or 10 is there.
+#   needs_text_block  false on all four. A text block is used only where two or
+#                   three items share one email's header block, and no item
+#                   here shares an artifact with another item.
+#   taught_in       where in the course a student learned this.
+#   from_sample     true when section 7 of the blueprint wrote the item out in
+#                   full. Item 8 is sample C and is copied word for word,
+#                   options and feedback included.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Section 9 of
+# the blueprint binds that text: name the fact that decides the item, quote the
+# option's own words rather than a letter because answers are shuffled, forty
+# words or fewer at seventh grade or below, say what would have to be true for
+# a wrong read to hold, point back to the week that taught it, and never answer
+# another item.
+#
+# THE CANVAS FIELD IS comments. The builder writes each answer's feedback to
+# Canvas as `comments`. Canvas accepts `answer_comments`, returns HTTP 200 and
+# stores nothing, which section 9 of the blueprint records as measured on the
+# live instance.
+#
+# WHAT THE FOUR COVER. Item 7 names a use case from a described job. Item 8
+# applies the week 3 grounding rule to log review. Item 9 maps the
+# documentation use case onto the six fixed lines of the week 7 triage note.
+# Item 10 asks which fact the three course tools cannot return.
+#
+# NO ITEM QUOTES AN EMAIL. These four sit on the week 7 reading, the week 3
+# grounding rule, the six note lines and the three tool return records. Every
+# quoted return key was checked against `builder/lab/tools/triage_tools.py` and
+# section 6 of the code ledger. No option says "all of the above", "none of the
+# above", or refers to another option, because answers are shuffled.
+
+items:
+
+  - number: 7
+    id: exam-q07-b2-name-the-use-case
+    name: Question 7. Which job is this
+    assesses: "B2, name the use case"
+    level: Recall
+    difficulty: easy
+    artifact: none
+    needs_text_block: false
+    taught_in: "Week 7 reading, part three, two jobs where the tool writes a draft. Also the week 7 self-check, items 5 to 8."
+    from_sample: false
+    text: |
+      <p>Devin Crowmarden has a folder of ticket files from last quarter. He
+      wants every ticket number pulled out into one list. He will read what he
+      gets back. Then he will run it on a copy.</p>
+      <p>Which of the seven use cases from week 7 is that?</p>
+    answers:
+      - text: Scripting help
+        correct: true
+        feedback: >-
+          Right. He gets code back, reads it, then runs it on a copy. Scripting
+          help needs the shape of the data and what he wants out. Week 7
+          reading, part three.
+      - text: Documentation
+        correct: false
+        feedback: >-
+          Documentation drafts a note or a summary from facts already recorded.
+          Nothing here is being written up. Devin runs what he gets back. Week 7
+          reading, part three.
+      - text: Log review
+        correct: false
+        feedback: >-
+          Log review hands back the few lines worth a look. Devin already knows
+          what he wants out of these files. Week 7 reading, part three.
+      - text: Incident response support
+        correct: false
+        feedback: >-
+          That job drafts a timeline during an incident, from evidence already
+          collected. Nothing is open here. Week 7 reading, part three.
+
+  - number: 8
+    id: exam-q08-b2-log-review
+    name: Question 8. Moving the agent to firewall logs
+    assesses: "B2, what changes for log review"
+    level: Analyze
+    difficulty: hard
+    artifact: none
+    needs_text_block: false
+    taught_in: "Week 3 reading, the model is not a detector, and the same move on a log line. The seven jobs are week 7 reading, part three."
+    from_sample: true
+    text: |
+      <p>You want your agent to review firewall logs instead of email. Week 3
+      said the model is a judgment layer over facts you pull out first. Which
+      part of your agent changes the most?</p>
+    answers:
+      - text: The extractor that reads headers, senders and links.
+        correct: true
+        feedback: >-
+          Right. A log line has no header, no sender and no link. The extractor
+          is rebuilt first.
+      - text: The four-key output schema.
+        correct: false
+        feedback: >-
+          The four keys still fit. A log line can still carry a verdict, a
+          category, a confidence and indicators.
+      - text: The four-step cap on the loop.
+        correct: false
+        feedback: >-
+          The cap exists for cost and runaway loops. It does not care what the
+          input is.
+      - text: The confidence floor of 0.7.
+        correct: false
+        feedback: >-
+          The floor sends unsure cases to a person. That rule holds for logs
+          too.
+
+  - number: 9
+    id: exam-q09-b2-documentation
+    name: Question 9. Which note line is that job
+    assesses: "B2, the documentation use case"
+    level: Apply
+    difficulty: medium
+    artifact: none
+    needs_text_block: false
+    taught_in: "Week 7 reading, part one, why the six lines never move, and the last line is not for you. The documentation job is part three."
+    from_sample: false
+    text: |
+      <p>Week 7 called documentation a job that writes a draft from facts
+      already recorded. The ticket owner reads it first.</p>
+      <p>Your triage note holds six lines.</p>
+      <pre><code>Verdict:
+      Confidence:
+      Indicators:
+      Recommended action:
+      Escalate:
+      Summary:</code></pre>
+      <p>Which line is that job?</p>
+    answers:
+      - text: The summary, two sentences for the person who reported the mail.
+        correct: true
+        feedback: >-
+          Right. The summary is written from facts the note already holds, in
+          plain words, and a person reads it before anyone acts. Week 7 reading,
+          part one, the last line is not for you.
+      - text: The indicators, the short facts behind the verdict.
+        correct: false
+        feedback: >-
+          The indicators are the facts a write-up starts from. Documentation
+          needs facts already recorded. It does not go and find them. Week 7
+          reading, part three.
+      - text: The verdict, malicious or benign.
+        correct: false
+        feedback: >-
+          The verdict is the judgment your agent made. Documentation writes up a
+          decision that has already been made. Week 7 reading, part three.
+      - text: The recommended action, one of five set values.
+        correct: false
+        feedback: >-
+          That line holds one set value, and it has to fit the verdict. Nothing
+          is drafted there. Week 7 reading, part one, why the six lines never
+          move.
+
+  - number: 10
+    id: exam-q10-b2-tool-gap
+    name: Question 10. What no tool returns
+    assesses: "B2, what the tool set cannot supply"
+    level: Analyze
+    difficulty: hard
+    artifact: "check_sender_reputation, check_urls, lookup_recipient"
+    needs_text_block: false
+    taught_in: "Week 4 reading, why the three tools are plain Python. The vulnerability research job is week 7 reading, part three."
+    from_sample: false
+    text: |
+      <p>Pellgrave wants your agent to do vulnerability research instead of
+      phishing. Your three tools return these keys.</p>
+      <pre><code>check_sender_reputation(sender)
+          status, match_level, new_domain, first_seen, messages_90d,
+          prior_reports, last_report_verdict, last_report_date, campaign_tag,
+          notes, and domain or address
+      check_urls(hosts)
+          one entry per host: allowlisted, blocklisted, internal or unlisted
+      lookup_recipient(address)
+          address, name, role, mailbox_type, executive, handles_payments,
+          chronic_reporter, report_count_90d, true_positive_count_90d,
+          campaign_tags</code></pre>
+      <p>Which fact does that job need first that no tool here returns?</p>
+    answers:
+      - text: A list of the software Pellgrave runs, with versions.
+        correct: true
+        feedback: >-
+          Right. The answer is about your own machines, so the job needs your
+          software list and its versions. No tool here returns that. Week 7
+          reading, part three.
+      - text: The gateway's scan result for the message.
+        correct: false
+        feedback: >-
+          Half right. No tool returns that, and your extractor reads it from a
+          gateway header. But this job asks about your machines, not about one
+          message. Week 3 reading, what goes in the facts block.
+      - text: Whether a link host is on the blocklist.
+        correct: false
+        feedback: >-
+          <code>check_urls</code> returns that now. It marks every host
+          allowlisted, blocklisted, internal or unlisted. Week 4 reading, why
+          the three tools are plain Python.
+      - text: How the sender's last report closed.
+        correct: false
+        feedback: >-
+          <code>check_sender_reputation</code> returns that as
+          <code>last_report_verdict</code>. The tool set already has it. Week 4
+          reading, why the three tools are plain Python.

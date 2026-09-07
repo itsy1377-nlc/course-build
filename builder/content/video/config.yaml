@@ -1,0 +1,42 @@
+# What the video pipeline needs to know about this course.
+# Everything else in tools/video/ is course agnostic.
+
+course_code: ITSY 1377
+course_name: Agentic AI and Security Operations
+
+# Kokoro is local, offline and Apache-2.0 licensed, including the weights,
+# which is what lets the college redistribute and re-render the audio.
+voice: kokoro:af_heart
+
+# The runnable code a walkthrough records against, relative to the project
+# root. Every command typed on camera must resolve here. Recordings run in a
+# container, so this is the tree a student's notebook server also sees.
+code_dir: builder/lab
+recorder_base: mcr.microsoft.com/devcontainers/python:3.12-bookworm
+recorder_image: coursevideo/recorder:latest
+
+# Files holding work a student is supposed to produce themselves. The no
+# spoiler gate reads the captured terminal text and fails if a substantial
+# line from any of these appears on camera. The solution notebooks live in the
+# instructor package, and the reference loop implementation sits under eval,
+# because a walkthrough must never show the loop a student writes in week 5.
+#
+# THE PATHS HERE WERE WRONG AND THE GATE SAID NOTHING. `solutions/**` was
+# resolved against code_dir (builder/lab) and against the repository root.
+# The solution notebooks are in builder/instructor/solutions/, which is
+# neither, so those two patterns matched no files. One pattern did match, so
+# the gate ran, reported nothing, and checked the reference loop alone. Every
+# solution notebook was invisible to it. Measured on 4 September 2026 by
+# resolving the globs directly: one file found out of two sources.
+#
+# A pattern that matches nothing is now a gate failure rather than silence.
+# One pattern rather than one per file type, so a solution added later in any
+# form is covered without editing this file. A pattern that matches nothing is
+# a gate failure, so an aspirational pattern is worse than a general one.
+answer_globs:
+  - builder/instructor/solutions/**/*
+  - eval/week5_loop_test.py
+
+# Canvas courses default to a 500 MB storage quota, so fail here rather than
+# at the institution.
+library_budget_mb: 400

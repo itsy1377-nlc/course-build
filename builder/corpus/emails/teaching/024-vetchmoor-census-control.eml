@@ -1,0 +1,117 @@
+Return-Path: <enrollment@vetchmoor-benefits.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id ab885478-4824-46b9-b069-7dfbe76f07b2
+  for <payroll@pellgrave.example>; Mon, 20 Apr 2026 08:31:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=vetchmoor-benefits.example;
+  dkim=pass header.d=vetchmoor-benefits.example header.s=k1
+    header.i=@vetchmoor-benefits.example;
+  dmarc=pass header.from=vetchmoor-benefits.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  enrollment@vetchmoor-benefits.example designates 203.0.113.160 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.160;
+  envelope-from="enrollment@vetchmoor-benefits.example";
+  helo=mail.vetchmoor-benefits.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.8
+X-Sentrywick-Message-UID: ecbf4a9d187b
+X-Sentrywick-Reported-By: t.nkemelu@pellgrave.example
+Received: from mail.vetchmoor-benefits.example
+  (mail.vetchmoor-benefits.example [203.0.113.160])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id ecbf4a9d187b;
+  Mon, 20 Apr 2026 08:31:06 -0500
+Received: from app-01.vetchmoor-benefits.example ([192.0.2.161])
+  by mail.vetchmoor-benefits.example with ESMTPSA id f810fff9;
+  Mon, 20 Apr 2026 13:31:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=vetchmoor-benefits.example; s=k1; t=1776691863;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=LCvSo6q1dJU/gWFG7wM3dY5f5WBCIKMn4kVluVrcpz8=;
+  b=fBeAHQ7ObySfogBbmFvnu9ovu/gAe3uGy7ARAz8YNV8L/RHfSUaqgfse7OzUjfNh/qhNEXjp
+   b2cKEFzoCs8mRerkb3iJtOzEX9ht1TfOgD3kBWyX74oM2Mv0s+h2vY2Yp06W403YA9f40J/d
+   Ipyk07t0Fu8yO6k4WyxShgGTYmiTlLDppMhw54nJ8BOE+UiDG+2AuwiTl8wShs1sqJGO/8Sz
+   C9QLRfPtWv1bGpb8wy4KJRuIjP+GCcOUq6Lb2eI+WwdIacRY9Fl61XhZnkzl/cgOqRubGZiE
+   jRaTDIYXD9SdYnxOtXMc8H20dteRMSVDwBBFyHgx1BZhQ8VjvMKvXA==
+Date: Mon, 20 Apr 2026 08:31:00 -0500
+From: Vetchmoor Benefits <enrollment@vetchmoor-benefits.example>
+To: payroll@pellgrave.example
+Subject: Action needed: 2026 benefits census correction
+ for Pellgrave Mechanical Group
+Message-ID: <20260420133100.44e05afb9a24@mail.vetchmoor-benefits.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_b7f01856ef26"
+
+--=_part_b7f01856ef26
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Action needed: 2026 benefits census correction
+
+Hello Tobias,
+
+During the annual review of the 2026 employee benefits census for=
+ Pellgrave Mechanical Group, we found 14 dependent records with errors.=
+ The problems are missing dates of birth, relationship codes that do not=
+ match the enrollment forms, and two duplicate entries. Coverage for the=
+ employees tied to those records lapses on 4/30 unless the records are=
+ corrected in the broker portal before then.
+
+Please sign in to the portal and correct each flagged record. The flagged=
+ records are marked in red on the census page.
+
+Open census correction:=
+ https://vetchmoor-benefits.example/portal/census/login
+
+The correction takes about ten minutes. If you have questions about a=
+ specific record, reply to this message and a client services=
+ representative will follow up.
+
+Thank you,
+Vetchmoor Benefits, Client Services
+
+--=_part_b7f01856ef26
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#f2f4f6;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 20px=
+ 0;font-size:20px;font-weight:bold;color:#0e5a63;">Vetchmoor Benefits</p>
+<p style=3D"margin:0 0 16px 0;font-size:17px;font-weight:bold;">Action=
+ needed: 2026 benefits census correction</p>
+<p>Hello Tobias,</p>
+<p>During the annual review of the 2026 employee benefits census for=
+ Pellgrave Mechanical Group, we found 14 dependent records with errors.=
+ The problems are missing dates of birth, relationship codes that do not=
+ match the enrollment forms, and two duplicate entries. Coverage for the=
+ employees tied to those records lapses on 4/30 unless the records are=
+ corrected in the broker portal before then.</p>
+<p>Please sign in to the portal and correct each flagged record. The=
+ flagged records are marked in red on the census page.</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://vetchmoor-benefits.example/portal/census/login"=
+ style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#0e5a63;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Open census correction</a></p>
+<p>The correction takes about ten minutes. If you have questions about a=
+ specific record, reply to this message and a client services=
+ representative will follow up.</p>
+<p>Thank you,<br>Vetchmoor Benefits, Client Services</p>
+</div>
+</body>
+</html>
+
+--=_part_b7f01856ef26--

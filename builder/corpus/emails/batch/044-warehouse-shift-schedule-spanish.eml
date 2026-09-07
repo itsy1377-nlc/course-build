@@ -1,0 +1,84 @@
+Return-Path: <c.hallowden@pellgrave.example>
+Received: from mail.pellgrave.example (mail.pellgrave.example [10.20.4.25])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id fcd47de9-5122-4fb1-8221-6b0761b219b8
+  for <h.quintanilla@pellgrave.example>; Thu, 23 Apr 2026 16:20:02 -0500
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Message-UID: fa54fa81b037
+X-Sentrywick-Reported-By: h.quintanilla@pellgrave.example
+Received: from PMG-WS-2451.corp.pellgrave.example ([10.20.31.140])
+  by mail.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPSA
+  id fa54fa81b037; Thu, 23 Apr 2026 16:20:01 -0500
+Date: Thu, 23 Apr 2026 16:20:00 -0500
+From: Casimir Hallowden <c.hallowden@pellgrave.example>
+To: Warehouse Staff Distribution List <warehouse-staff@pellgrave.example>
+Subject: =?UTF-8?Q?Horario_de_turnos_de_fin_de_semana=2C_25_y_26_de_abril?=
+Message-ID: <20260423212000.35ebcf73b3c7@mail.pellgrave.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_5353639ca2de"
+
+--=_part_5353639ca2de
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+Equipo, aqu=C3=AD est=C3=A1 el horario de turnos para el s=C3=A1bado
+25 y el domingo 26 de abril. Es el mismo reparto de la semana
+pasada, con un cambio: Teodoro entra el domingo y no el s=C3=A1bado,
+porque el s=C3=A1bado tiene la revisi=C3=B3n del montacargas.
+
+S=C3=A1bado 25 de abril
+  Muelle 1    06:00 a 14:00   Nadia Quesalva, Rub=C3=A9n Barandas
+  Muelle 2    06:00 a 14:00   Ofelia Castroval
+  Muelle 1    14:00 a 22:00   Marco Delvenga, In=C3=A9s Solveira
+  Recepci=C3=B3n   07:00 a 15:00   Gaspar Verlanda
+
+Domingo 26 de abril
+  Muelle 2    08:00 a 16:00   Teodoro Milvane, Nadia Quesalva
+  Recepci=C3=B3n   08:00 a 16:00   Ofelia Castroval
+
+El cami=C3=B3n de Slatemoor llega el s=C3=A1bado sobre las 09:00 con
+catorce paletas, as=C3=AD que dejen libre el muelle 2 hasta que lo
+descarguemos. Si alguien no puede con su turno, d=C3=ADganmelo
+ma=C3=B1ana viernes y lo cambiamos entre los dos d=C3=ADas.
+
+Recuerden registrar sus horas en el portal antes del martes al
+mediod=C3=ADa. Es el mismo enlace de siempre:
+
+https://my.fenwrightpay.example/timesheets
+
+Gracias,
+
+Casimir
+Supervisor de almac=C3=A9n, ext. 4215
+--=_part_5353639ca2de
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<p>Equipo, aqu=C3=AD est=C3=A1 el horario de turnos para el s=C3=A1bado
+25 y el domingo 26 de abril. Es el mismo reparto de la semana
+pasada, con un cambio: Teodoro entra el domingo y no el s=C3=A1bado,
+porque el s=C3=A1bado tiene la revisi=C3=B3n del montacargas.</p>
+<p>S=C3=A1bado 25 de abril<br>
+  Muelle 1    06:00 a 14:00   Nadia Quesalva, Rub=C3=A9n Barandas<br>
+  Muelle 2    06:00 a 14:00   Ofelia Castroval<br>
+  Muelle 1    14:00 a 22:00   Marco Delvenga, In=C3=A9s Solveira<br>
+  Recepci=C3=B3n   07:00 a 15:00   Gaspar Verlanda</p>
+<p>Domingo 26 de abril<br>
+  Muelle 2    08:00 a 16:00   Teodoro Milvane, Nadia Quesalva<br>
+  Recepci=C3=B3n   08:00 a 16:00   Ofelia Castroval</p>
+<p>El cami=C3=B3n de Slatemoor llega el s=C3=A1bado sobre las 09:00 con
+catorce paletas, as=C3=AD que dejen libre el muelle 2 hasta que lo
+descarguemos. Si alguien no puede con su turno, d=C3=ADganmelo
+ma=C3=B1ana viernes y lo cambiamos entre los dos d=C3=ADas.</p>
+<p>Recuerden registrar sus horas en el portal antes del martes al
+mediod=C3=ADa. Es el mismo enlace de siempre:</p>
+<p><a href=3D"https://my.fenwrightpay.example/timesheets"
+  >https://my.fenwrightpay.example/timesheets</a></p>
+<p>Gracias,</p>
+<p>Casimir<br>
+Supervisor de almac=C3=A9n, ext. 4215</p>
+</body>
+</html>
+--=_part_5353639ca2de--

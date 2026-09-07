@@ -1,0 +1,147 @@
+Return-Path: <billing@marlstonefleet.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 88327999-366a-42b6-993f-b7aadd6da084
+  for <ap@pellgrave.example>; Mon, 27 Apr 2026 07:41:20 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=softfail smtp.mailfrom=marlstonefleet.example;
+  dkim=fail header.d=marlstonefleet.example header.s=mfs1
+    header.i=@marlstonefleet.example;
+  dmarc=fail header.from=marlstonefleet.example policy.dmarc=quarantine
+Received-SPF: softfail (mx.pellgrave.example: domain of transitioning
+  billing@marlstonefleet.example does not designate 203.0.113.47 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.47;
+  envelope-from="billing@marlstonefleet.example";
+  helo=relay-2.marlstonefleet.example; identity=mailfrom; mechanism=~all
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: released-from-quarantine
+X-Sentrywick-Spam-Score: 5.3
+X-Sentrywick-Message-UID: b8e60c05c2c3
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+X-Sentrywick-Removed-Attachment: filename="Marlstone_Invoice_2026-04-PMG.pdf";
+  size=52994;
+  sha256=fa25c5ce3d1f93e8e41b78a9589ad45ca17a516dcd8b3fce4a0de1caf0610ae9;
+  action=quarantined; type=application/pdf; reason=archived-to-vault
+Received: from relay-2.marlstonefleet.example
+  (relay-2.marlstonefleet.example [203.0.113.47])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id b8e60c05c2c3;
+  Fri, 24 Apr 2026 06:48:06 -0500
+Received: from MFS-BILL-04.marlstonefleet.example ([192.0.2.64])
+  by relay-2.marlstonefleet.example with ESMTPSA id cda12aaf;
+  Fri, 24 Apr 2026 11:48:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=marlstonefleet.example; s=mfs1; t=1777031282;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=AodhKJ4OYtOSkn8RjVZJlymNYX2dPGdXER1bfSPf8YU=;
+  b=2L/vMrvpeqwnfGo88/CWD0g/dQIkSNfytqTmnza075bQmqfBDK5eDAlKas2x6y+/+vPbtHEF
+   3Vlz8NdaA82zTMx8bVZNKYrbYwqQw1gAHjfXLPHIEDY9dFkEVVGoLrgi6wZl+V0tnhqtf+Y8
+   r0ss5IB61nN8Q2Hb5MMRLz+mlEHJ1ijJfX2Wj23Ny42J5mtEHlyNtrCEBLVSbsx5IcU/iOf1
+   +OO5C8pDNUxBpYnj9ZEvLhrKZaUWQw36X1m7CF69sKKSGtz5ebyVJSHIW9Xr5DR4t0/NeBjE
+   9f6Oc09ZEHOqXIb+/D+ud9wbrU3oJdR2hFfomhfMVA36TKV5IYswmA==
+Date: Fri, 24 Apr 2026 06:48:00 -0500
+From: Marlstone Fleet Services Billing <billing@marlstonefleet.example>
+To: Accounts Payable <ap@pellgrave.example>
+Subject: April lease invoice 2026-04-PMG and telematics statement
+Message-ID: <20260424114800.8cab782a61d7@relay-2.marlstonefleet.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_7ca59e1cc11d"
+
+--=_part_7ca59e1cc11d
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Marlstone Fleet Services, Billing
+
+Hello,
+
+Attached is invoice 2026-04-PMG for the April lease period on the
+eight service units, and with it the April telematics statement for
+the same units.
+
+Invoice 2026-04-PMG, issued 4/24, terms net 30
+Lease, 8 units, April: $10,760.00
+Telematics and data plan, 8 units, April: $1,180.00
+Amount due by 5/24: $11,940.00
+
+The telematics statement is a summary sheet behind the second line,
+with mileage and idle hours per unit. It carries no separate charge.
+
+View in portal: https://portal.marlstonefleet.example/invoices/2026-04-PMG
+
+Our remit-to has not moved: Kettleford Trust, account ending 6041,
+with 2026-04-PMG in the payment reference.
+
+One housekeeping note. We moved to a new outbound mail relay on 4/13,
+and a few customers have told us our mail has been landing in junk
+since. Our systems group is on it.
+
+Thanks,
+
+Ines Bramhall-Okonjo
+Billing Coordinator
+Marlstone Fleet Services
+555-0178 ext. 214
+
+This message is meant for the addressee named above. If it reached you
+in error, please delete it and tell us. Marlstone Fleet Services takes
+no responsibility for any alteration made to this message after it left
+our systems.
+
+[Sentrywick Gateway archived 1 attachment to the file vault:
+Marlstone_Invoice_2026-04-PMG.pdf (52,994 bytes).
+Details are in the message headers.]
+--=_part_7ca59e1cc11d
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f1f2f3;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:0 auto;padding:24px;
+  background:#ffffff;font-family:sans-serif;font-size:15px;
+  line-height:1.5;color:#1f1f1f;">
+<p style=3D"margin:0 0 18px 0;font-size:17px;font-weight:bold;
+  color:#1f4a5a;">Marlstone Fleet Services, Billing</p>
+<p>Hello,</p>
+<p>Attached is invoice 2026-04-PMG for the April lease period on the eight=
+ service units, and with it the April telematics statement for the same=
+ units.</p>
+<p>Invoice 2026-04-PMG, issued 4/24, terms net 30<br>
+Lease, 8 units, April: $10,760.00<br>
+Telematics and data plan, 8 units, April: $1,180.00<br>
+<b>Amount due by 5/24: $11,940.00</b></p>
+<p>The telematics statement is a summary sheet behind the second line, with=
+ mileage and idle hours per unit. It carries no separate charge.</p>
+<p><a href=3D"https://portal.marlstonefleet.example/invoices/2026-04-PMG"
+  style=3D"display:inline-block;padding:10px 22px;background:#1f4a5a;
+  color:#ffffff;text-decoration:none;border-radius:4px;"
+  >View in portal</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the button does not open,
+the address is=
+ https://portal.marlstonefleet.example/invoices/2026-04-PMG</p>
+<p>Our remit-to has not moved: Kettleford Trust, account ending 6041, with=
+ 2026-04-PMG in the payment reference.</p>
+<p>One housekeeping note. We moved to a new outbound mail relay on 4/13,=
+ and a few customers have told us our mail has been landing in junk since.=
+ Our systems group is on it.</p>
+<p>Thanks,</p>
+<p>Ines Bramhall-Okonjo<br>Billing Coordinator<br>Marlstone Fleet=
+ Services<br>555-0178 ext. 214</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">This message is meant for the=
+ addressee named above. If it reached you in error, please delete it and=
+ tell us. Marlstone Fleet Services takes no responsibility for any=
+ alteration made to this message after it left our systems.</p>
+</div>
+<p style=3D"font-size:12px;color:#6b6b6b;">[Sentrywick Gateway archived 1=
+ attachment to the file vault:
+Marlstone_Invoice_2026-04-PMG.pdf (52,994 bytes).
+Details are in the message headers.]</p>
+</body>
+</html>
+--=_part_7ca59e1cc11d--

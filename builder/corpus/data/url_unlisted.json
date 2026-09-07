@@ -1,0 +1,26 @@
+{
+  "$comment": "Every corpus link host that is deliberately on neither list and is not internal. check_urls does not read this file; it exists so that 'unlisted' is a checked state, not an accident.",
+  "hosts": [
+    "alerts.sandmarshbank.example",
+    "cottonmoor-show.example",
+    "docshare-review.example",
+    "ferncrate-secure.example",
+    "larkseal-esign.example",
+    "links.sendbarrow-mail.example",
+    "my.fenwrightpay-notices.example",
+    "my.fenwrightpay.example.secure-verify-login.example",
+    "oona-adebayo-ferris.example",
+    "peakwright-leads.example",
+    "pel1grave.example",
+    "pellgarve.example",
+    "pellgrave-benefits-portal.example",
+    "pellgrave-sso.example",
+    "portal.larkhollow-controls.example",
+    "quotes.slatemoorsupply.example",
+    "review.larkseal-review.example",
+    "secure.sandmarsh-bank-secure.example",
+    "unsub.mailer-relay-links.example",
+    "vendors.elmhollow-living.example",
+    "vetchmoor-benefits.example"
+  ]
+}

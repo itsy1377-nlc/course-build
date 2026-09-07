@@ -1,0 +1,343 @@
+# The course spine. One file naming every module, every item and every point.
+#
+# The builder at builder/canvas/build_course.py reads this, renders each page
+# from builder/content/, and creates or updates the course in Canvas. It is
+# idempotent: running it again updates in place rather than duplicating.
+#
+# An item whose source file does not exist yet is skipped with a warning, so
+# this file can carry the whole course while only part of it is built.
+
+course:
+  name: Agentic AI and Security Operations
+  code: ITSY-1377-000
+  canvas_id: 6
+  # Canvas weights the groups; points then set weight inside a group.
+  apply_group_weights: true
+  # The template sets the home page as the course front page, so default_view
+  # is wiki and content/pages/home.md is that page. build_course.py applies
+  # both, along with the description and the letter scheme below.
+  default_view: wiki
+  front_page: home
+  # The catalog description. It names the enforced prerequisite, which the
+  # build prompt requires the course description to state. It is set on the
+  # course as public_description, and the same sentences open home.md and
+  # welcome-start-here.md.
+  description: >-
+    An eight week online course in which you build a working AI agent that
+    sorts reported phishing email, one capability a week. You extract the
+    facts a model needs, get a strict answer back, add tools and a bounded
+    loop, defend the agent against prompt injection, and measure how well it
+    does. Prerequisite: the college's AI literacy course, enforced.
+  # The syllabus page. build_course.py renders it into course[syllabus_body].
+  description_page: course-policies
+  # template-conflicts item 13. The standard scheme, enabled.
+  grading_standard:
+    title: "ITSY 1377 letter grades"
+    scheme:
+      - {name: A, value: 90}
+      - {name: B, value: 80}
+      - {name: C, value: 70}
+      - {name: D, value: 60}
+      - {name: F, value: 0}
+
+# Percentages come from the build prompt. Points come from
+# docs/phase1-blueprint/grade-distribution-and-tokens.md.
+assignment_groups:
+  - {key: labs,        name: Labs,          weight: 60}
+  - {key: exam,        name: Final Exam,    weight: 20}
+  - {key: discussions, name: Discussions,   weight: 12}
+  - {key: selfchecks,  name: Self-Checks,   weight: 8}
+  - {key: orientation, name: Orientation,   weight: 0}
+
+# One Canvas Outcome per course learning objective. Text is verbatim from the
+# build prompt and must not be reworded. One mastery scale across all six.
+outcomes:
+  scale:
+    # The approved plan is most recent score, which the Canvas API calls
+    # "latest". alignment-matrix.md section 9 sets it and gives the reason:
+    # for every CLO the primary artifact is also the last one scored, so the
+    # reported result is always the primary evidence.
+    #
+    # This said "highest" and was built that way, which is the one method that
+    # document considered and rejected by name: "Highest score would let a
+    # strong week 4 mask a weak week 5, which would overstate CLO3 mastery."
+    # It does exactly that, and it overstates in the direction nobody checks.
+    calculation_method: latest
+    mastery_points: 3
+    # Four ratings, and the labels alignment-matrix.md sections 8 and 10 name.
+    # This carried five, with a 1-point "Beginning" level, and short labels.
+    # No rubric in content/ has a fifth level, so that rating was unreachable
+    # from every rubric in the course, and each weekly rubric header states the
+    # four-level scale in these words. The gap between 2 and 0 is deliberate:
+    # section 8 sets it, because 0 means the work shows nothing about the skill
+    # while 2 means the student attempted the task and got part of it right.
+    ratings:
+      - {description: Exceeds standard,    points: 4}
+      - {description: Meets standard,      points: 3}
+      - {description: Approaching standard, points: 2}
+      - {description: No evidence,         points: 0}
+  items:
+    - key: CLO1
+      title: "CLO1 Extract email facts"
+      description: "Extract the header, authentication, sender, and URL facts an AI model needs to judge a suspicious email."
+    - key: CLO2
+      title: "CLO2 Classify and validate"
+      description: "Classify a suspicious email as malicious or benign using an AI model, then validate the model's output before trusting it."
+    - key: CLO3
+      title: "CLO3 Build a bounded agent"
+      description: "Build an AI agent that selects and runs triage tools in a bounded loop to reach a verdict."
+    - key: CLO4
+      title: "CLO4 Judge guardrails"
+      description: "Judge whether an agent's guardrails reduce prompt injection risk to an acceptable level."
+    - key: CLO5
+      title: "CLO5 Document a decision"
+      description: "Document a triage decision, its indicators, and its recommended action so another analyst can act on it."
+    - key: CLO6
+      title: "CLO6 Measure accuracy"
+      description: "Measure agent triage accuracy across a batch of emails and recommend where human review stays required."
+
+# The files that go into the Canvas course, and the ones that must never.
+#
+# The build brief requires the course to carry the synthetic email corpus and
+# its supporting data files. This is that list, and it is an allowlist: the
+# builder uploads exactly what is named here and refuses anything else, because
+# one wrong path hands every student the answer key.
+#
+# WHAT IS DELIBERATELY ABSENT, AND WHY. None of these ever goes into Canvas.
+#
+#   corpus/spec/corpus-spec.json          the verdict, category, indicators,
+#                                         tool returns and expected loop for all
+#                                         56 emails. The complete answer key.
+#   corpus/ground_truth.json              the same, as graded labels.
+#   corpus/release/ground_truth_teaching.json   weeks 1 to 6 answers.
+#   corpus/release/ground_truth_exam.json       the final exam answers.
+#   corpus/spec/phase0-sample-manifest.json     carries category, verdict and
+#                                         difficulty per email.
+#   builder/instructor/**                 solutions, answer keys and the eleven
+#                                         emails reserved for the exam.
+#
+# ground_truth_batch.json IS here. Week 7 scores against it and the lab cannot
+# run without it. Nothing in this course locks, so it ships with the rest.
+#
+# The data files listed are the ones lab code actually opens: the five that
+# triage_tools.py reads, the display name table the week 3 check reads, and the
+# playbook the week 3 prompt carries. The other five files under corpus/data/
+# are build artifacts that no lab opens, so they stay out.
+student_files:
+  - {glob: "corpus/emails/teaching/*.eml", folder: "corpus/emails/teaching"}
+  - {glob: "corpus/emails/batch/*.eml",    folder: "corpus/emails/batch"}
+  - {path: "corpus/data/sender_reputation.json",   folder: "corpus/data"}
+  - {path: "corpus/data/url_allowlist.json",       folder: "corpus/data"}
+  - {path: "corpus/data/url_blocklist.json",       folder: "corpus/data"}
+  - {path: "corpus/data/known_good_domains.json",  folder: "corpus/data"}
+  - {path: "corpus/data/recipients.json",          folder: "corpus/data"}
+  - {path: "corpus/data/display_names.json",       folder: "corpus/data"}
+  - {path: "corpus/data/playbook.md",              folder: "corpus/data"}
+  - {path: "corpus/spec/enums.json",               folder: "corpus/spec"}
+  - {path: "corpus/spec/categories.json",          folder: "corpus/spec"}
+  - {path: "corpus/tools/parse_eml.py",            folder: "corpus/tools"}
+  - {path: "lab/tools/triage_tools.py",            folder: "lab/tools"}
+  # Three fields per record, not thirty-four. The full record also carries
+  # indicators, required_indicators, reference_summary and
+  # recommended_action -- which are exactly what week 7 grades the note
+  # on. never_ship is a filename check and cannot see inside a file, so
+  # this file passed it while publishing the answers.
+  - {path: "corpus/release/ground_truth_batch.json", folder: "corpus/release",
+     keys: [id, verdict, escalate_expected, label_version]}
+  - {path: "corpus/README.md",                     folder: "corpus"}
+
+# Any of these appearing anywhere in the course files is a build failure, not a
+# warning. The verifier reads the file list back from Canvas and checks it.
+never_ship:
+  - corpus-spec.json
+  - ground_truth.json
+  - ground_truth_teaching.json
+  - ground_truth_exam.json
+  - phase0-sample-manifest.json
+  - w1-lab-solution.ipynb
+  - w2-lab-solution.ipynb
+  - w3-lab-solution.ipynb
+  - w4-lab-solution.ipynb
+  - w5-lab-solution.ipynb
+  - w6-lab-solution.ipynb
+  - w7-lab-solution.ipynb
+  # Four more things that answer a lab. None is uploaded today, because
+  # student_files is an allowlist and none is on it. This list is the second
+  # control: it catches a file put into Canvas by hand, or a future edit to the
+  # allowlist that reaches too far.
+  - week5_loop_test.py
+  - week6_injection_test.py
+  - weekly-answer-keys.md
+
+modules:
+  # Module order follows the template: Orientation, Student Resources, Q & A,
+  # then the weekly modules. template-conflicts item 3.
+  - name: Orientation Module
+    published: true
+    items:
+      - {type: page, ref: welcome-start-here,      title: "Welcome. Start here"}
+      - {type: page, ref: meet-your-instructor,    title: "Meet your instructor"}
+      - {type: page, ref: course-material,         title: "Course material"}
+      - {type: page, ref: using-the-notebook-server, title: "Using the notebook server"}
+      - {type: page, ref: course-policies,         title: "Syllabus, policies and grades"}
+      # Ungraded practice quiz, no weight change. template-conflicts item 16.
+      - {type: quiz, ref: syllabus-acknowledgment, title: "Syllabus acknowledgment", ungraded: true}
+      - {type: page, ref: ai-use-policy,           title: "Using AI in this course"}
+      - {type: page, ref: course-schedule,         title: "Course schedule"}
+      - {type: page, ref: tips-for-success,        title: "Tips for success"}
+      - {type: page, ref: olrn-0001,               title: "OLRN-0001 is required for this course"}
+      - {type: page, ref: support-resources,       title: "Getting help"}
+      # The standing error card. Added item, per template-conflicts item 4 and
+      # the amendment recorded under conflict 27. It is the "what to do when a
+      # cell fails" half of the prompt's Start Here help requirement.
+      - {type: page, ref: if-something-breaks,     title: "If something breaks"}
+      # The template's tenth Orientation item. 1 point in a 0 percent group,
+      # per template-conflicts item 8 and grade-distribution section 1.1.
+      - {type: discussion, ref: introductions,      title: "Introduce yourself", group: orientation, points: 1}
+      - {type: page, ref: glossary,                title: "Glossary"}
+
+  # The template's Student Resources module. Four of its seven pages are built
+  # for this course; the other three are institution pages this build does not
+  # create. template-conflicts item 3 and item 19.
+  - name: Student Resources
+    published: true
+    items:
+      - {type: page, ref: how-to-navigate-canvas,  title: "Finding your way around"}
+      - {type: page, ref: communicating-online,    title: "Communicating online"}
+      - {type: page, ref: academic-integrity,      title: "Academic integrity"}
+      - {type: page, ref: canvas-and-tech-support, title: "Your computer and the notebook server"}
+
+  # Kept as the template ships it: ungraded and pinned. template-conflicts item 11.
+  - name: "Q & A Community"
+    published: true
+    items:
+      - {type: discussion, ref: qa-board, title: "Q and A discussion board", ungraded: true, pinned: true}
+
+  - name: "Module 0: Programming On-Ramp"
+    published: true
+    items:
+      - {type: page,     ref: week-0-overview,          title: "Week 0 overview"}
+      - {type: quiz,     ref: week0-self-assessment,    title: "Week 0 self-assessment", ungraded: true}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=week00-python-on-ramp.ipynb", title: "Week 0 notebook: Python on-ramp"}
+      - {type: page,     ref: week-0-wrap-up,            title: "Week 0 wrap-up"}
+
+  - name: "Module 1: Call the Model From Code"
+    published: true
+    items:
+      - {type: page,       ref: w1-overview,   title: "Week 1 overview"}
+      - {type: page,       ref: w1-content,    title: "Week 1 reading"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w1-sidebar.ipynb", title: "Week 1 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w1-lab.ipynb", title: "Week 1 lab notebook"}
+      - {type: assignment, ref: w1-lab,        title: "Week 1 lab: your first model call", group: labs, points: 100}
+      - {type: discussion, ref: w1-discussion, title: "Week 1 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w1-self-check, title: "Week 1 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w1-wrap-up,    title: "Week 1 wrap-up"}
+
+  - name: "Module 2: Structured Output"
+    published: true
+    items:
+      - {type: page,       ref: w2-overview,   title: "Week 2 overview"}
+      - {type: page,       ref: w2-content,    title: "Week 2 reading, part 1: why a fixed answer shape matters"}
+      - {type: page,       ref: w2-content-2,  title: "Week 2 reading, part 2: when the answer comes back wrong"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w2-sidebar.ipynb", title: "Week 2 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w2-lab.ipynb", title: "Week 2 lab notebook"}
+      - {type: assignment, ref: w2-lab,        title: "Week 2 lab: a strict answer", group: labs, points: 100}
+      - {type: discussion, ref: w2-discussion, title: "Week 2 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w2-self-check, title: "Week 2 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w2-wrap-up,    title: "Week 2 wrap-up"}
+
+  # Weeks 3 to 8 are specified in the blueprint and build in Phase 3. They are
+  # listed so the spine is complete; the builder skips an item with no source.
+  - name: "Module 3: Grounding"
+    published: true
+    phase: 3
+    items:
+      - {type: page,       ref: w3-overview,   title: "Week 3 overview"}
+      - {type: page,       ref: w3-content,    title: "Week 3 reading"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w3-sidebar.ipynb", title: "Week 3 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w3-lab.ipynb", title: "Week 3 lab notebook"}
+      - {type: assignment, ref: w3-lab,        title: "Week 3 lab: send facts, not the email", group: labs, points: 100}
+      - {type: discussion, ref: w3-discussion, title: "Week 3 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w3-self-check, title: "Week 3 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w3-wrap-up,    title: "Week 3 wrap-up"}
+
+  - name: "Module 4: Tools"
+    published: true
+    phase: 3
+    items:
+      - {type: page,       ref: w4-overview,   title: "Week 4 overview"}
+      - {type: page,       ref: w4-content,    title: "Week 4 reading"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w4-sidebar.ipynb", title: "Week 4 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w4-lab.ipynb", title: "Week 4 lab notebook"}
+      - {type: assignment, ref: w4-lab,        title: "Week 4 lab: give it three checks", group: labs, points: 100}
+      - {type: discussion, ref: w4-discussion, title: "Week 4 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w4-self-check, title: "Week 4 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w4-wrap-up,    title: "Week 4 wrap-up"}
+
+  - name: "Module 5: The Bounded Loop"
+    published: true
+    phase: 3
+    items:
+      - {type: page,       ref: w5-overview,   title: "Week 5 overview"}
+      - {type: page,       ref: w5-content,    title: "Week 5 reading"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w5-sidebar.ipynb", title: "Week 5 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w5-lab.ipynb", title: "Week 5 lab notebook"}
+      - {type: assignment, ref: w5-lab,        title: "Week 5 lab: let it choose", group: labs, points: 100}
+      - {type: discussion, ref: w5-discussion, title: "Week 5 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w5-self-check, title: "Week 5 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w5-wrap-up,    title: "Week 5 wrap-up"}
+
+  - name: "Module 6: Guardrails"
+    published: true
+    phase: 3
+    items:
+      - {type: page,       ref: w6-overview,   title: "Week 6 overview"}
+      - {type: page,       ref: w6-content,    title: "Week 6 reading, part 1: prompt injection in a triage agent"}
+      - {type: page,       ref: w6-content-2,  title: "Week 6 reading, part 2: the wider AI risk set"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w6-sidebar.ipynb", title: "Week 6 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w6-lab.ipynb", title: "Week 6 lab notebook"}
+      - {type: assignment, ref: w6-lab,        title: "Week 6 lab: an email that gives orders", group: labs, points: 100}
+      - {type: discussion, ref: w6-discussion, title: "Week 6 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w6-self-check, title: "Week 6 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w6-wrap-up,    title: "Week 6 wrap-up"}
+
+  - name: "Module 7: Usable Output and Evaluation"
+    published: true
+    phase: 3
+    items:
+      - {type: page,       ref: w7-overview,   title: "Week 7 overview"}
+      - {type: page,       ref: w7-content,    title: "Week 7 reading"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w7-sidebar.ipynb", title: "Week 7 sidebar notebook"}
+      - {type: url, url: "https://notebook.bashtion.dev/lab/index.html?path=w7-lab.ipynb", title: "Week 7 lab notebook"}
+      - {type: assignment, ref: w7-lab,        title: "Week 7 lab: a note and a score", group: labs, points: 100}
+      - {type: discussion, ref: w7-discussion, title: "Week 7 discussion", group: discussions, points: 20}
+      - {type: quiz,       ref: w7-self-check, title: "Week 7 self-check", group: selfchecks, points: 12}
+      - {type: page,       ref: w7-wrap-up,    title: "Week 7 wrap-up"}
+
+  - name: "Module 8: Final Exam"
+    published: true
+    phase: 3
+    items:
+      - {type: page, ref: w8-overview, title: "Week 8 overview"}
+      - {type: quiz, ref: final-exam,  title: "Final exam", group: exam, points: 30}
+      # Template conflict 27: Module 8 is Overview, the exam and Wrap-up. It has
+      # no Content page, because that page would sit empty or add instruction
+      # week 8 is not allowed to add. The wrap-up closes the course; it teaches
+      # nothing new and it does not review exam items.
+      - {type: page, ref: w8-wrap-up,  title: "Week 8 wrap-up"}
+
+  # ------------------------------------------------------------------
+  # A test module, added for review. It is not part of the taught course.
+  # It holds a warmer rewrite of the three week 1 pages, and the same
+  # overview script narrated by two engines so the voices can be judged
+  # side by side. Nothing here replaces module 1: every ref below is a
+  # test- page that exists only for this comparison. To remove the
+  # experiment, delete this module and the content/pages/test-w1-*.md and
+  # content/video/test-w1-*.yaml files.
+  # ------------------------------------------------------------------
+  - name: "Test: Module 1 rewritten (review only)"
+    published: true
+    items:
+      - {type: page, ref: test-w1-overview, title: "TEST Week 1 overview (warm rewrite)"}
+      - {type: page, ref: test-w1-content, title: "TEST Week 1 reading (warm rewrite)"}
+      - {type: page, ref: test-w1-wrap-up, title: "TEST Week 1 wrap-up (warm rewrite)"}

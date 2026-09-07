@@ -1,0 +1,125 @@
+Return-Path: <facilities@elmhollow-living.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 4abed7ce-4a1c-41df-bfca-383238bbbd00
+  for <h.quintanilla@pellgrave.example>; Fri, 17 Apr 2026 09:55:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=elmhollow-living.example;
+  dkim=pass header.d=elmhollow-living.example header.s=eh1
+    header.i=@elmhollow-living.example;
+  dmarc=pass header.from=elmhollow-living.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  facilities@elmhollow-living.example designates 203.0.113.101 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.101;
+  envelope-from="facilities@elmhollow-living.example";
+  helo=mail.elmhollow-living.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.6
+X-Sentrywick-Message-UID: 63cef736c020
+X-Sentrywick-Reported-By: h.quintanilla@pellgrave.example
+Received: from mail.elmhollow-living.example
+  (mail.elmhollow-living.example [203.0.113.101])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 63cef736c020;
+  Fri, 17 Apr 2026 09:55:05 -0500
+Received: from EH-FAC-0117.elmhollow-living.example ([192.0.2.201])
+  by mail.elmhollow-living.example with ESMTPSA id 665706c7;
+  Fri, 17 Apr 2026 14:55:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=elmhollow-living.example; s=eh1; t=1776437702;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=T+5S3XK9bGIcCNnuprlcrkj94Vw6DgvS9qZFw6/nIZc=;
+  b=S0Sh/w6A5w/t3T6MgiozOHEIA9pbORW4tg6aFOZdK2NnmAH3KxbcLA/p/JHuQn9TT8aOMp+/
+   RJRiOvlFxeOzr8JPpGcSlc65m0mz0w+t9bjgqSareZAxhNXUav1SWKJOvG9V3a9353w8tIea
+   wM7GgaUzH4WombUCT1oLHXiVxSCenV+ET+2HSAMFPo950WhytqqROD2lOODTs2cnU1SK60oD
+   KgUDygzGB+awmQdOKyRJMD1iI/3FTQRVLnlTHO7zpppdF6rbv1AwU6sx9rJcO6em2QXBAH59
+   b19aFJZ7nk4rbW07Xc4ZecU9baNpr9BRiogMYd+VFNUPaby8OBep0A==
+Date: Fri, 17 Apr 2026 09:55:00 -0500
+From: Elmhollow Senior Living Facilities <facilities@elmhollow-living.example>
+To: Hollis Quintanilla <h.quintanilla@pellgrave.example>
+Subject: Badge access list for your technicians: confirm by Thursday
+Message-ID: <20260417145500.13a7763f8cbf@mail.elmhollow-living.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_0f059ecbf908"
+
+--=_swk_0f059ecbf908
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hello Hollis,
+
+Elmhollow is issuing contractor badges for the summer chiller
+replacement (your quote 4712). Our security office wants the
+badge access list from every contractor on file before the crew
+starts on May 5.
+
+Could you confirm which technicians from Pellgrave will be on the
+campus for that job? We need a first and last name for each one,
+plus the truck number the technician drives, so the gate log and
+the badge agree. Please send me the names and truck numbers by
+Thursday, April 23 and the badges will be printed and waiting at
+the front desk.
+
+Our vendor portal is the easiest way to do it. Open the contractor
+page, pick Pellgrave Mechanical Group from the company list, and add a
+row for each technician:
+
+https://vendors.elmhollow-living.example/contractors
+
+A reply to this message with the same details is just as good if the
+portal gives you trouble.
+
+Thank you,
+
+Dolores Achebe-Ferrante
+Facilities Coordinator
+Elmhollow Senior Living
+555-0163
+--=_swk_0f059ecbf908
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background-color:#f4f5f7;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:20px auto;padding:22px=
+ 26px;background-color:#ffffff;border:1px solid=
+ #dcdfe3;font-family:sans-serif;font-size:15px;line-height:1.5;color:#21212=
+1;">
+<p style=3D"margin:0 0 18px=
+ 0;font-size:18px;font-weight:bold;color:#2f5d50;">Elmhollow Senior=
+ Living</p>
+<p>Hello Hollis,</p>
+<p>Elmhollow is issuing contractor badges for the summer chiller=
+ replacement (your quote 4712). Our security office wants the badge access=
+ list from every contractor on file before the crew starts on May 5.</p>
+<p>Could you confirm which technicians from Pellgrave will be on the campus=
+ for that job? We need a first and last name for each one, plus the truck=
+ number the technician drives, so the gate log and the badge agree. Please=
+ send me the names and truck numbers by Thursday, April 23 and the badges=
+ will be printed and waiting at the front desk.</p>
+<p>Our vendor portal is the easiest way to do it. Open the contractor page,=
+ pick Pellgrave Mechanical Group from the company list, and add a row for=
+ each technician.</p>
+<p style=3D"margin:22px 0;"><a=
+ href=3D"https://vendors.elmhollow-living.example/contractors"=
+ style=3D"display:inline-block;padding:11px=
+ 20px;background-color:#2f5d50;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Open the contractor page</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the button does not open, the=
+ address is https://vendors.elmhollow-living.example/contractors</p>
+<p>A reply to this message with the same details is just as good if the=
+ portal gives you trouble.</p>
+<p>Thank you,</p>
+<p>Dolores Achebe-Ferrante<br>Facilities Coordinator<br>Elmhollow Senior=
+ Living<br>555-0163</p>
+</div>
+</body>
+</html>
+--=_swk_0f059ecbf908--

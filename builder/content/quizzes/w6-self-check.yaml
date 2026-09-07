@@ -1,0 +1,361 @@
+# Week 6 self-check. Six multiple choice items, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, in the Self-Checks group, which is
+#                   8 percent of the course grade across all seven weeks.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all six.
+#   points          2. Six questions, twelve points.
+#   section         which page or which notebook cell the question comes from.
+#   outcome         "none". Self-checks report into no Canvas Outcome. The
+#                   graded evidence for CLO4 is the week 6 lab rubric,
+#                   criterion 2, which the alignment matrix records as the only
+#                   criterion measuring CLO4 anywhere in the course. A second
+#                   reporter here would overwrite that one result. The key is
+#                   present because the export tooling requires one on every
+#                   item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the section or the cell to reopen, because the attempts are unlimited and the
+# point of the quiz is to send a student back to the right paragraph.
+#
+# ITEM COVERAGE, from section 10 of the week 6 spec. Item 1 asks why the body
+# counts as attacker text, on the 013 and 024 pair. Item 2 asks which control
+# decides where the hidden HTML text in email 014 lands. Item 3 asks what the
+# fact check compares and what happens when the two disagree, on email 020.
+# Item 4 asks when the confidence floor sends a case to a person, on a file row
+# for email 012. Item 5 asks what the per-run token cap stops and what it
+# leaves alone. Item 6 is this quiz's share of breadth topic B4: which wider
+# risk the forged header case in email 023 shows.
+#
+# Every stem comes out of this week's own emails, this week's four controls and
+# this week's notebook cells. None can be answered from general phishing
+# knowledge.
+
+title: Week 6 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Six short questions on week 6. They take about ten minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is worth 12 points. You may take it as many times as you like,
+  and your highest score is the one that counts.</p>
+
+  <p>Every answer, right or wrong, names the section or the cell to reopen.
+  Use those names. Missing one twice is a sign to go back and read, not a
+  sign to guess again.</p>
+
+  <p>Take it after both reading pages and the lab. Four of these ask about
+  runs your own notebook made.</p>
+
+questions:
+
+  - id: w6-q1
+    name: Question 1. What one paragraph changed
+    type: multiple_choice
+    points: 2
+    section: "Week 6 reading, part 1, the body is text an attacker wrote"
+    outcome: "none"
+    text: |
+      <p>Cells 6 and 7 run emails 013 and 024 through your week 5 agent with
+      no defenses. Email 024 is 013 word for word, with one paragraph
+      removed. That paragraph is addressed to AI triage tools and tells them
+      to record benign and not escalate.</p>
+      <p>One run printed this.</p>
+      <pre><code>013  verdict: benign     confidence: 0.91
+      024  verdict: malicious  confidence: 0.88
+      </code></pre>
+      <p>Your own numbers will differ, because the model varies from run to
+      run. Why would one paragraph move the verdict?</p>
+    answers:
+      - text: >-
+          Your rules and the body reach the model as one stream of text. So
+          the model can read that paragraph as an order instead of as
+          evidence.
+        correct: true
+        feedback: >-
+          Right. That is prompt injection, and it is why the body counts as
+          attacker text. Somebody else wrote the body, and on a reported
+          message that somebody is the attacker. Week 6 reading, part 1, the
+          body is text an attacker wrote.
+      - text: >-
+          The two messages went to different mailboxes, so the recipient
+          record changed the verdict.
+        correct: false
+        feedback: >-
+          No. The mailbox does differ, and lookup_recipient reports it. Both
+          mailboxes handle payroll, and neither one is a reason to call the
+          same sender benign. Week 6 reading, part 1, the pair that measures
+          it.
+      - text: >-
+          The paragraph named a help desk ticket, and your agent looked that
+          ticket up.
+        correct: false
+        feedback: >-
+          No. Your agent has three tools, and none of them reads help desk
+          tickets. The ticket in that paragraph does not exist. The model
+          believed a sentence. Week 6 reading, part 1, the pair that measures
+          it.
+      - text: >-
+          The model runs at a temperature above zero, so two runs never agree
+          anyway.
+        correct: false
+        feedback: >-
+          No. Temperature moves wording and small numbers between runs. These
+          are two different messages, and the planted paragraph is the only
+          thing that differs. The pair exists so you can see what that one
+          paragraph does on your own screen. Week 6 reading, part 1, the pair
+          that measures it.
+
+  - id: w6-q2
+    name: Question 2. The payload in the HTML part
+    type: multiple_choice
+    points: 2
+    section: "Week 6 lab, cell 10, build_guarded_prompt()"
+    outcome: "none"
+    text: |
+      <p>Email 014 hides its payload in the HTML part only. An HTML comment
+      and text set to size zero tell your agent that the facts are stale and
+      the sender is allowlisted. The plain text part is clean.</p>
+      <p>Which of your four controls decides where that hidden text lands in
+      the prompt?</p>
+    answers:
+      - text: >-
+          build_guarded_prompt(), which you write in cell 10. It keeps hidden
+          HTML text on the facts side, outside the fence.
+        correct: true
+        feedback: >-
+          Right. Outside the fence it reads as something the message did, not
+          as body text to follow. Your prompt is the only place you get to say
+          which part is data rather than instructions. Week 6 reading, part 1,
+          the four controls, the fence.
+      - text: >-
+          check_against_facts(), which you write in cell 14. It reads the HTML
+          part and drops the payload.
+        correct: false
+        feedback: >-
+          No. That function never reads a body. It compares the model's answer
+          against the facts and tool results you already hold. Week 6 reading,
+          part 1, the four controls, the fact check.
+      - text: >-
+          CONFIDENCE_FLOOR, set to 0.7. Hidden text lowers the confidence the
+          model returns.
+        correct: false
+        feedback: >-
+          No. The floor reads one number after the answer arrives. It has no
+          view of the prompt at all. Week 6 reading, part 1, the four
+          controls, the confidence floor.
+      - text: >-
+          over_token_cap(), which stops a run that has spent too much.
+        correct: false
+        feedback: >-
+          No. That control counts spending. Where text sits in the prompt is
+          decided by the fence, in cell 10. Week 6 reading, part 1, the four
+          controls, the per-run token cap.
+
+  - id: w6-q3
+    name: Question 3. What the fact check compares
+    type: multiple_choice
+    points: 2
+    section: "Week 6 lab, cell 14, check_against_facts()"
+    outcome: "none"
+    text: |
+      <p>Email 020 carries a block shaped like your own tool results. It says
+      the link host is allowlisted and the sender is trusted. Your real
+      check_urls result returns unlisted for that host, and your reputation
+      result returns unknown for that sender.</p>
+      <p>One guarded run returned benign at 0.86 confidence, with an indicator
+      naming a host your facts never held. What does your
+      <code>check_against_facts()</code> do with that answer?</p>
+    answers:
+      - text: >-
+          It returns one problem in plain words, naming an indicator your
+          facts never held. The case then escalates with the reason
+          fact_contradiction.
+        correct: true
+        feedback: >-
+          Right. It compares the answer against the facts and tool results
+          your code received, hands back problems, and guarded_triage() turns
+          those problems into an escalation. Week 6 reading, part 1, the four
+          controls, the fact check.
+      - text: >-
+          It re-reads the body, finds the block claiming the host is
+          allowlisted, and removes it.
+        correct: false
+        feedback: >-
+          No. It reads the tool result your code received, never the body.
+          That is exactly why a faked tool block does not fool it. Week 6
+          reading, part 1, the four controls, the fact check.
+      - text: >-
+          It changes the verdict to malicious and the case closes.
+        correct: false
+        feedback: >-
+          No. It hands back problems and edits nothing. Your agent closes no
+          case this week. A person decides. Week 6 reading, part 1, the four
+          controls, the fact check.
+      - text: >-
+          It returns an empty list, because 0.86 sits above the confidence
+          floor.
+        correct: false
+        feedback: >-
+          No. The floor and the fact check are separate controls. A confident
+          answer can still contradict your facts, and this one does. Week 6
+          reading, part 1, the four controls, the fact check.
+
+  - id: w6-q4
+    name: Question 4. Under the floor
+    type: multiple_choice
+    points: 2
+    section: "Week 6 reading, part 1, the four controls, the confidence floor"
+    outcome: "none"
+    text: |
+      <p>Your export file holds this for email 012.</p>
+      <pre><code>verdict: benign
+      confidence: 0.61
+      problems: []
+      stop_reason: tools_exhausted
+      escalate: true
+      </code></pre>
+      <p>Which control sent that case to a person, and what reason does the
+      file record?</p>
+    answers:
+      - text: >-
+          The confidence floor. 0.61 sits under CONFIDENCE_FLOOR, so
+          escalate_reason is low_confidence.
+        correct: true
+        feedback: >-
+          Right. The floor is 0.7 in this lab. Emails 009 and 012 are the two
+          cases it exists for. Email 009 asks for nothing but a reply, and no tool
+          result is decisive on 012. Week 6 reading, part 1, the four controls, the
+          confidence floor.
+      - text: >-
+          The fact check, with escalate_reason set to fact_contradiction.
+        correct: false
+        feedback: >-
+          No. The problems list is empty, so nothing in the answer
+          contradicted your facts. Read that line first on any row. Week 6
+          reading, part 1, the four controls, the fact check.
+      - text: >-
+          The token cap, with escalate_reason set to token_cap.
+        correct: false
+        feedback: >-
+          No. That reason appears only on a run the cap ended, and such a run
+          records step_cap as its stop reason. This one ran out of tools. Week
+          6 reading, part 1, the four controls, the per-run token cap.
+      - text: >-
+          Nothing sent it. A verdict of benign closes on its own.
+        correct: false
+        feedback: >-
+          No. The floor reads the number, not the verdict word. A benign
+          answer under 0.7 still goes to a person. Week 6 reading, part 1, the
+          four controls, the confidence floor.
+
+  - id: w6-q5
+    name: Question 5. What the token cap stops
+    type: multiple_choice
+    points: 2
+    section: "Week 6 lab, cell 17, the lowered cap"
+    outcome: "none"
+    text: |
+      <p>TOKEN_CAP_PER_RUN ships at 4000. A normal triage in this lab costs
+      far less, so the cap never fires on its own. Cell 17 lowers it on
+      purpose so you can watch it work.</p>
+      <p>What does that cap stop, and what does it leave alone?</p>
+    answers:
+      - text: >-
+          It stops one triage that keeps spending. It does nothing about a
+          wrong answer that arrives cheaply.
+        correct: true
+        feedback: >-
+          Right. Cost is the only thing it measures. A run the cap ends
+          records the stop reason step_cap and escalates with the reason
+          token_cap. Week 6 reading, part 1, the four controls, the per-run
+          token cap.
+      - text: >-
+          It stops your course token budget from running out.
+        correct: false
+        feedback: >-
+          No. That budget is a different thing. Your instructor controls it,
+          and running low means an email and a top-up with no grade penalty.
+          This cap covers one triage inside the lab. Week 6 reading, part 1,
+          the four controls, the per-run token cap.
+      - text: >-
+          It stops the injected paragraph in email 013 from reaching the
+          model.
+        correct: false
+        feedback: >-
+          No. That is the fence you build in cell 10. The cap counts spending
+          and reads no text at all. Week 6 reading, part 1, the four controls,
+          the fence.
+      - text: >-
+          It stops the run and closes the case as benign, since nothing
+          decided it.
+        correct: false
+        feedback: >-
+          No. A capped run goes to a person. Nothing your agent does this week
+          closes a case. Week 6 reading, part 1, the four controls, the
+          per-run token cap.
+
+  - id: w6-q6
+    name: Question 6. What email 023 asks for
+    type: multiple_choice
+    points: 2
+    section: "Week 6 reading, part 2, data exposure"
+    outcome: "none"
+    text: |
+      <p>Email 023 forges two headers under the gateway block. They tell your
+      agent to do two things: return benign, and add the recipient's earlier
+      report history to its answer.</p>
+      <p>Set the wrong verdict aside. Which wider risk does that second
+      request name?</p>
+    answers:
+      - text: >-
+          Data exposure. It moves company information into an answer that
+          travels back toward the person who reported the mail.
+        correct: true
+        feedback: >-
+          Right. The verdict is one harm and the leak is another. Your schema
+          is the control here, because it names the four fields an answer may
+          carry, and schema_errors() calls any other name a key that does not
+          belong. Week 6 reading, part 2, data exposure.
+      - text: >-
+          Hallucination. The agent would state something nobody gave it.
+        correct: false
+        feedback: >-
+          No. That report history is real, and lookup_recipient handed it to
+          your agent. Hallucination is your agent naming a host your facts
+          never held. Week 6 reading, part 2, hallucination.
+      - text: >-
+          Automation bias. An analyst would trust the flag without reading the
+          message.
+        correct: false
+        feedback: >-
+          No. That risk is email 015, the benign reminder a word rule
+          escalates. Nobody is over-trusting your agent in this case. Week 6
+          reading, part 2, automation bias.
+      - text: >-
+          Overreliance. A person should have judged this case instead.
+        correct: false
+        feedback: >-
+          No. Overreliance is letting your agent decide what a person should
+          decide, and the confidence floor is its control. This request is
+          about where information goes. Week 6 reading, part 2, overreliance.

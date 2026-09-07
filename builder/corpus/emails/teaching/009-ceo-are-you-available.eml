@@ -1,0 +1,77 @@
+Return-Path: <adaeze.whitcombe.pmg@lanternmail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id a6866967-18c3-4502-956d-a1a813fee296
+  for <b.onwuka@pellgrave.example>; Mon, 20 Apr 2026 08:03:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=lanternmail.example;
+  dkim=pass header.d=lanternmail.example header.s=lm2026a
+  header.i=@lanternmail.example;
+  dmarc=pass header.from=lanternmail.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  adaeze.whitcombe.pmg@lanternmail.example designates 198.51.100.77 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.77;
+  envelope-from="adaeze.whitcombe.pmg@lanternmail.example";
+  helo=smtp-out-04.lanternmail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.64/26
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.0
+X-Sentrywick-Message-UID: 297590bdc623
+X-Sentrywick-Reported-By: b.onwuka@pellgrave.example
+Received: from smtp-out-04.lanternmail.example
+  (smtp-out-04.lanternmail.example [198.51.100.77])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 297590bdc623;
+  Mon, 20 Apr 2026 08:03:05 -0500
+Received: from webapp-07.lanternmail.example ([192.0.2.57])
+  by smtp-out-04.lanternmail.example (Lanternmail SMTP) with ESMTPSA
+  id e37c5ac33148; Mon, 20 Apr 2026 13:03:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lanternmail.example;
+  s=lm2026a; t=1776690182;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   x-originating-ip:x-mailer;
+  bh=7wkdAQ7JlxOQieC9hXVzTQdsqNLl9aHn2K0JgjIzpAM=;
+  b=Gtccvnf6ggp1fP4H03SzVNqp5mHuEyuAwFGr3oXmKE4VD/TDM/Y+scwsFlRA/SwROdxvY7Qs
+   4upMVxsYSfm4nMPRZEziMV+srXcSJlbyvjzLtfFtVEMzbPYiJGfiHnaOqHGa8jc0vUp/AbCe
+   65RtvuvuWJZffziwGiPIL/qu98cdKWAX9w+jlxgze+EMDfaTKH/01CHeyU0+iaCQWC0PxefB
+   oWwuRMCvLmWuk/58QDF6sVVqtPVbawtIcHynxBnjEQrgYPYT1Qy3kJdDErVfw1mWUJVpp7xI
+   RFAI+KjNK2dYuXcT8OHasobDYd7OVxJPqEFeN2BagPqsXo6GbYmPwg==
+Date: Mon, 20 Apr 2026 08:03:00 -0500
+From: Adaeze Whitcombe <adaeze.whitcombe.pmg@lanternmail.example>
+To: Beatrix Onwuka <b.onwuka@pellgrave.example>
+Subject: Are you available?
+Message-ID: <20260420130302.f99aed48e357@webapp-07.lanternmail.example>
+X-Originating-IP: [203.0.113.88]
+X-Mailer: Lanternmail Web
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_lmw_6a419fe005ce"
+
+--=_lmw_6a419fe005ce
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Beatrix, are you in the office?
+
+I need you to handle something for me quietly and I can't take calls
+between sessions. The conference wifi blocks the VPN so I'm on my
+personal mail; just reply here.
+
+A.
+--=_lmw_6a419fe005ce
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:14px;color:#222222">
+<p>Beatrix, are you in the office?</p>
+<p>I need you to handle something for me quietly and I can't take calls bet=
+ween sessions. The conference wifi blocks the VPN so I'm on my personal mai=
+l; just reply here.</p>
+<p>A.</p>
+</div>
+--=_lmw_6a419fe005ce--

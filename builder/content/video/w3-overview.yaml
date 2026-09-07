@@ -1,0 +1,123 @@
+id: w3-overview
+title: What week 3 adds
+kind: concept
+module: m03
+embed_on: builder/content/pages/w3-overview.md
+blurb: Why the body alone is not enough, what a facts block puts in front of the model, and the two emails that read backwards.
+explains:
+  - builder/content/pages/w3-overview.md
+  - builder/content/pages/w3-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 3
+    heading: Send the facts, not just the message
+    body: The body of an email is the part an attacker wrote. This week you send what your mail system already knows about it.
+    narration:
+      - Welcome to week 3.
+      - Right now your agent sends the email body and nothing else.
+      - The body is the part an attacker wrote, so your verdict is really about tone.
+      - This week you add one thing. You pull the facts out of the message and send those too.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The change
+    heading: The body is now the bottom layer
+    diagram:
+      kind: stack
+      alt: >
+        Four layers stacked into one prompt. On top, the facts block, drawn as
+        the new part. Under it the phishing playbook, then the list of the
+        organization's own domains and web hosts, then the email body at the
+        bottom. Week 2 sent that bottom layer on its own.
+      layers:
+        - label: The facts block
+          sub: who sent it, what the checks said, where links point
+          mark: true
+        - label: The playbook
+          sub: the eleven rules your team already follows
+        - label: The known good list
+          sub: your own domains and web hosts
+        - label: The email body
+          sub: all of what week 2 sent
+    narration:
+      - text: Your prompt now carries four things.
+        reveal: 1
+      - text: On top, the facts block you build.
+        reveal: 1
+      - text: Who really sent this, what the sender checks said, and where the links point.
+        reveal: 1
+      - text: Then the playbook, the eleven rules your team already follows.
+        reveal: 2
+      - text: Then a list of your own domains and web hosts, so an outside host stands out.
+        reveal: 3
+      - text: At the bottom, the email body. That last layer is all week 2 sent.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: Why it matters
+    heading: Two emails, and the truth runs the other way
+    items:
+      - Email 005 | Reads like trouble. It is a real supplier chasing a real bill.
+      - Email 025 | Reads like nothing. It is a fake sign in page behind a shared document notice.
+    narration:
+      - text: Two of this week's six emails were built for this lesson.
+        reveal: 1
+      - text: Email zero zero five says two invoices are past due. It reads like trouble.
+        reveal: 1
+      - text: Email zero two five shares a rate sheet and asks you to open it. It reads like nothing.
+        reveal: 2
+      - text: The truth runs the other way, and only the facts show it.
+        reveal: 2
+      - text: So facts are not a way to add suspicion. They move verdicts in both directions.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The surprise
+    heading: All three checks can pass on a malicious message
+    body: A pass says the message really came from the domain it names, and that somebody set that domain up properly. Sometimes that somebody is the attacker.
+    narration:
+      - Here is the part that surprises people.
+      - One of this week's emails passes all three sender checks and is malicious anyway.
+      - A pass only says the message really came from the domain it names.
+      - It also says somebody set that domain up properly. That somebody can be the attacker.
+      - So a check result is a fact, not a verdict. You send facts. The model still judges.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The other decision
+    heading: What you leave out is also a decision
+    items:
+      - Would a sound verdict change without it
+      - What does it cost if it leaves the building
+      - Name one fact you left out in your written answer
+    narration:
+      - text: The other half of this week is what you leave out.
+        reveal: 1
+      - text: The parser hands back far more than a verdict needs, so you choose.
+        reveal: 1
+      - text: Ask two questions of every line you add. Would a sound verdict change without it.
+        reveal: 1
+      - text: And what does it cost the company if it leaves the building.
+        reveal: 2
+      - text: The routing hops and the message id fail both, and neither moves a verdict.
+        reveal: 2
+      - text: Your written answer names one fact you left out. Choose it while you write the code.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do next
+    body: Sidebar notebook first, then the reading, then the lab. Two cells are yours to write. The rest arrives working.
+    narration:
+      - Start with the sidebar notebook.
+      - It builds one line per student for a class sign in sheet, in an order you choose.
+      - That is the move your second cell makes, on different names.
+      - Then the reading, then the lab. Keep the reading open beside the notebook.
+      - Two cells are yours this week, about twelve to fifteen lines. The rest arrives working.
+      - The lab is the long line, about two and three quarter hours. Give it two sittings.
+      - Watch the walkthrough video first. It shows you what a finished run looks like.

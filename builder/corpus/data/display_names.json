@@ -1,0 +1,647 @@
+{
+  "$comment": "Backs the week 3 display-name check. It answers one question about a From header: does the display name claim to be a person or an organization whose real domain differs from the sending domain? Authentication cannot answer it, because an attacker who owns a lookalike domain can publish SPF and DKIM for that domain and collect three passes while lying in the display name. Every name here is one a sender may legitimately write, with the domains that own it: the employees and shared mailboxes of the organization, and every vendor, provider, customer, marketer and small business in sender_reputation.json. Attacker brands are deliberately absent, because nothing legitimately owns them; a display name that resolves to no entry claims no known name and the check reports nothing. mismatch_indicator names the indicator code to emit when the sending domain is not an owner, and is null for the classes the week 3 vocabulary has no code for, where the check reports the owner domain and no code. Names whose notes end in decoy never appear in the corpus. unowned_display_names holds the corpus display names that deliberately resolve to no entry, so that \"claims no known name\" is a checked state and not an oversight.",
+  "corpus_clock": "2026-04-29T09:00:00-05:00",
+  "organization": "pellgrave.example",
+  "claims_values": [
+    "person",
+    "organization"
+  ],
+  "owner_classes": [
+    "organization",
+    "vendor",
+    "customer",
+    "provider",
+    "marketer",
+    "small_business",
+    "individual"
+  ],
+  "match_rule": "Lowercase the display name, decode any RFC 2047 encoded word, replace every run of characters that is not a letter, a digit or a hyphen with one space, and trim. Do the same to every display_name and alias. Keep the entries whose display_name or alias appears in the normalized display name as a whole run of words, and take the entry whose matched text is longest; ties cannot occur because no two entries share a name. Report that entry by its display_name, never by the alias that matched. With no entry, the check reports nothing. With one entry, compare the From domain, lowercased: it is the owner when it equals a string in owner_domains or ends in a dot followed by one, and the check then reports nothing. Any other From domain means the display name claims a name it does not own, and the check reports the entry's display_name, its claims value and its owner_domains, with the mismatch_indicator code when that field is not null. The suffix test is what a subdomain trick fails: a host that carries an owner name as an inner label rather than as the ending is not the owner.",
+  "names": [
+    {
+      "display_name": "Adaeze Whitcombe",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:a.whitcombe@pellgrave.example",
+      "notes": "Chief Executive Officer. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Rutger Palomares",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:r.palomares@pellgrave.example",
+      "notes": "Chief Financial Officer. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Constance Bramwell",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:c.bramwell@pellgrave.example",
+      "notes": "Vice President, Field Operations. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Beatrix Onwuka",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:b.onwuka@pellgrave.example",
+      "notes": "Executive Assistant to the CEO. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Priya Castellanos",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:p.castellanos@pellgrave.example",
+      "notes": "Accounts Payable Specialist. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Tobias Nkemelu",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:t.nkemelu@pellgrave.example",
+      "notes": "Payroll and Benefits Coordinator. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Yolanda Strickmoor",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:y.strickmoor@pellgrave.example",
+      "notes": "IT Help Desk Lead. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Hollis Quintanilla",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:h.quintanilla@pellgrave.example",
+      "notes": "Service Manager, Head Office Branch. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Emeric Dawodu",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:e.dawodu@pellgrave.example",
+      "notes": "Procurement Specialist. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Lenora Vashti",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:l.vashti@pellgrave.example",
+      "notes": "Director of Sales. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Casimir Hallowden",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:c.hallowden@pellgrave.example",
+      "notes": "Warehouse Supervisor. Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Devin Crowmarden",
+      "claims": "person",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_matches_employee",
+      "source": "recipients.json:d.crowmarden@pellgrave.example",
+      "notes": "Security Analyst (SOC). Mail in this name from any other domain is not from this employee."
+    },
+    {
+      "display_name": "Pellgrave",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "known_good_domains.json:pellgrave.example",
+      "notes": "The organization itself. Longer names below win the match, so this entry catches a claim on the company name alone."
+    },
+    {
+      "display_name": "Pellgrave Accounts Payable",
+      "aliases": [
+        "Accounts Payable"
+      ],
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:ap@pellgrave.example",
+      "notes": "Shared mailbox for the accounts payable team."
+    },
+    {
+      "display_name": "Pellgrave Payroll",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:payroll@pellgrave.example",
+      "notes": "Shared mailbox for payroll. The bare word payroll is not an alias because vendor names contain it."
+    },
+    {
+      "display_name": "Pellgrave HR",
+      "aliases": [
+        "Pellgrave Human Resources",
+        "Human Resources"
+      ],
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:hr@pellgrave.example",
+      "notes": "Shared mailbox for human resources."
+    },
+    {
+      "display_name": "Pellgrave IT Help Desk",
+      "aliases": [
+        "IT Help Desk"
+      ],
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:helpdesk@pellgrave.example",
+      "notes": "Shared mailbox for the help desk."
+    },
+    {
+      "display_name": "Pellgrave Security Operations",
+      "aliases": [
+        "Security Operations"
+      ],
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:soc@pellgrave.example",
+      "notes": "Shared mailbox for the SOC."
+    },
+    {
+      "display_name": "Pellgrave Phish Report Intake",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:phish-report@pellgrave.example",
+      "notes": "Shared mailbox that receives reported mail."
+    },
+    {
+      "display_name": "Pellgrave Ticket System",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "recipients.json:noreply@pellgrave.example",
+      "notes": "The ticket system sender."
+    },
+    {
+      "display_name": "Pellgrave Single Sign-On",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "known_good_domains.json:pellgrave.example",
+      "notes": "The organization's sign-in service. No mailbox sends under this name, so it is a claim wherever it appears."
+    },
+    {
+      "display_name": "Pellgrave Mail Administrator",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_org",
+      "source": "known_good_domains.json:pellgrave.example",
+      "notes": "A mail administrator role the organization does not staff by that title. No mailbox sends under this name."
+    },
+    {
+      "display_name": "Sentrywick Gateway",
+      "claims": "organization",
+      "owner_class": "organization",
+      "owner_domains": [
+        "pellgrave.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_internal_system",
+      "source": "recipients.json:sentrywick-digest@pellgrave.example",
+      "notes": "The mail gateway and store product the organization runs. Only its own digest sender writes this name legitimately."
+    },
+    {
+      "display_name": "Fenwright Payroll",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "fenwrightpay.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:fenwrightpay.example",
+      "notes": "Payroll vendor."
+    },
+    {
+      "display_name": "Slatemoor Industrial Supply",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "slatemoorsupply.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:slatemoorsupply.example",
+      "notes": "Parts supplier."
+    },
+    {
+      "display_name": "Marlstone Fleet Services",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "marlstonefleet.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:marlstonefleet.example",
+      "notes": "Fleet leasing and telematics vendor."
+    },
+    {
+      "display_name": "Larkseal",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "larkseal.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:larkseal.example",
+      "notes": "Electronic signature vendor."
+    },
+    {
+      "display_name": "Ferncrate",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "ferncrate.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:ferncrate.example",
+      "notes": "File sharing vendor."
+    },
+    {
+      "display_name": "Vetchmoor Benefits",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "vetchmoorbenefits.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:vetchmoorbenefits.example",
+      "notes": "Benefits broker."
+    },
+    {
+      "display_name": "Sandmarsh Community Bank",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "sandmarshbank.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:sandmarshbank.example",
+      "notes": "The company's bank."
+    },
+    {
+      "display_name": "Redcedar Safety Training",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "redcedarsafety.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:redcedarsafety.example",
+      "notes": "Safety certification vendor."
+    },
+    {
+      "display_name": "Inkmoor Office Supply",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "inkmoor-office.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:inkmoor-office.example",
+      "notes": "Office and shipping supply vendor."
+    },
+    {
+      "display_name": "Rookmere Medical Plaza",
+      "claims": "organization",
+      "owner_class": "customer",
+      "owner_domains": [
+        "rookmeremedical.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:rookmeremedical.example",
+      "notes": "Customer with a service contract."
+    },
+    {
+      "display_name": "Hollinvale Property Management",
+      "claims": "organization",
+      "owner_class": "customer",
+      "owner_domains": [
+        "hollinvalepm.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:hollinvalepm.example",
+      "notes": "Property management customer."
+    },
+    {
+      "display_name": "Elmhollow Senior Living",
+      "claims": "organization",
+      "owner_class": "customer",
+      "owner_domains": [
+        "elmhollow-living.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:elmhollow-living.example",
+      "notes": "New customer, first seen inside the corpus window."
+    },
+    {
+      "display_name": "Lanternmail",
+      "claims": "organization",
+      "owner_class": "provider",
+      "owner_domains": [
+        "lanternmail.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:lanternmail.example",
+      "notes": "Free webmail provider. The display name on mail from this domain is whatever the account holder typed, so it is the typed name that this table resolves, never the provider."
+    },
+    {
+      "display_name": "Sendbarrow Mail",
+      "claims": "organization",
+      "owner_class": "provider",
+      "owner_domains": [
+        "sendbarrow-mail.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:sendbarrow-mail.example",
+      "notes": "Bulk-mail provider. It appears in Return-Path and DKIM and never in From, so this name should never be a display name."
+    },
+    {
+      "display_name": "Peakwright",
+      "claims": "organization",
+      "owner_class": "marketer",
+      "owner_domains": [
+        "peakwright-leads.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:peakwright-leads.example",
+      "notes": "Cold outreach sender with no relationship."
+    },
+    {
+      "display_name": "Cottonmoor Facilities Show",
+      "claims": "organization",
+      "owner_class": "marketer",
+      "owner_domains": [
+        "cottonmoor-show.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:cottonmoor-show.example",
+      "notes": "Trade show organizer."
+    },
+    {
+      "display_name": "Thistlecrest Uniforms",
+      "claims": "organization",
+      "owner_class": "marketer",
+      "owner_domains": [
+        "thistlecrest-uniforms.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:thistlecrest-uniforms.example",
+      "notes": "Uniform marketer sending through the bulk provider."
+    },
+    {
+      "display_name": "Cindermill Signs",
+      "claims": "organization",
+      "owner_class": "small_business",
+      "owner_domains": [
+        "cindermill-signs.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:cindermill-signs.example",
+      "notes": "Small sign company. Its own domain is the legitimate owner even when a relay forges mail from it, so the tell in that case is authentication, not the display name."
+    },
+    {
+      "display_name": "Marisol Etxeberria",
+      "claims": "person",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "slatemoorsupply.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:slatemoorsupply.example",
+      "notes": "Named accounts receivable contact at the parts supplier."
+    },
+    {
+      "display_name": "Renata Solheim",
+      "claims": "person",
+      "owner_class": "customer",
+      "owner_domains": [
+        "hollinvalepm.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:hollinvalepm.example",
+      "notes": "Named contact at the property management customer."
+    },
+    {
+      "display_name": "Marcus at Peakwright",
+      "claims": "person",
+      "owner_class": "marketer",
+      "owner_domains": [
+        "peakwright-leads.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:peakwright-leads.example",
+      "notes": "A salesperson writing under the cold outreach domain. Listed so the name resolves to its own sender rather than to the company entry."
+    },
+    {
+      "display_name": "Oona Adebayo-Ferris",
+      "claims": "person",
+      "owner_class": "individual",
+      "owner_domains": [
+        "lanternmail.example",
+        "oona-adebayo-ferris.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:lanternmail.example",
+      "notes": "A job applicant. A private person has no company domain, so her webmail account and her portfolio domain are both legitimate."
+    },
+    {
+      "display_name": "Osmerly Fasteners",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "osmerly-fasteners.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:osmerly-fasteners.example",
+      "notes": "Fastener supplier (decoy)."
+    },
+    {
+      "display_name": "Kelfrith Title",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "kelfrith-title.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:kelfrith-title.example",
+      "notes": "Title company used for a branch lease (decoy)."
+    },
+    {
+      "display_name": "Ashvane HVAC Supply",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "ashvane-hvac-supply.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:ashvane-hvac-supply.example",
+      "notes": "Parts supplier (decoy)."
+    },
+    {
+      "display_name": "Sallowbrook Crane",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "sallowbrook-crane.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:sallowbrook-crane.example",
+      "notes": "Crane rental vendor (decoy)."
+    },
+    {
+      "display_name": "Hobbrook Safety Supply",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "hobbrook-safety-supply.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:hobbrook-safety-supply.example",
+      "notes": "Safety supply vendor (decoy)."
+    },
+    {
+      "display_name": "Norrisham Insurance",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "norrisham-insurance.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:norrisham-insurance.example",
+      "notes": "Insurance broker (decoy)."
+    },
+    {
+      "display_name": "Brackwell Recruiting",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "brackwell-recruiting.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:brackwell-recruiting.example",
+      "notes": "Recruiter (decoy)."
+    },
+    {
+      "display_name": "Pyreholt Logistics",
+      "claims": "organization",
+      "owner_class": "vendor",
+      "owner_domains": [
+        "pyreholt-logistics.example"
+      ],
+      "mismatch_indicator": "sender:display_name_claims_vendor",
+      "source": "sender_reputation.json:pyreholt-logistics.example",
+      "notes": "Freight broker (decoy)."
+    },
+    {
+      "display_name": "Quennick Tools",
+      "claims": "organization",
+      "owner_class": "marketer",
+      "owner_domains": [
+        "quennick-tools.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:quennick-tools.example",
+      "notes": "Tool marketer (decoy)."
+    },
+    {
+      "display_name": "Tallmoss Mail",
+      "claims": "organization",
+      "owner_class": "provider",
+      "owner_domains": [
+        "tallmoss-mail.example"
+      ],
+      "mismatch_indicator": null,
+      "source": "sender_reputation.json:tallmoss-mail.example",
+      "notes": "Second bulk-mail provider (decoy)."
+    }
+  ],
+  "unowned_display_names": [
+    {
+      "display_name": "Larkhollow Controls Quotes",
+      "sending_domain": "larkhollow-controls.example",
+      "reason": "The attacker's own invented brand. No legitimate sender owns this name, so it gets no owner entry and the display-name check reports nothing on it. The fact that settles this sender is its reputation record, which is known_bad."
+    }
+  ]
+}

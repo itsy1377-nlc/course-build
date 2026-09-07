@@ -1,0 +1,125 @@
+id: w4-overview
+title: What week 4 adds
+kind: concept
+module: m04
+embed_on: builder/content/pages/w4-overview.md
+blurb: What a tool call is, why your code runs every one of them, and the line in an email that only looks like a result.
+explains:
+  - builder/content/pages/w4-overview.md
+  - builder/content/pages/w4-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 4
+    heading: The model can ask for one more fact
+    body: It names a tool. Your code runs that tool and hands the answer back. That is the whole change.
+    narration:
+      - Welcome to week 4.
+      - Last week your agent judged each email from the facts you sent with it.
+      - Some emails do not settle there.
+      - This week the model can ask for one more fact first. It names a tool. Your code runs it and hands the answer back.
+      - That is the one thing week 4 adds.
+
+  - type: slide
+    layout: compare
+    eyebrow: Why
+    heading: One fact, and the verdict moves
+    items:
+      - The body alone | Nothing on the page looks wrong, so the verdict is benign
+      - One fact added | The sending domain has been reported before, so the verdict is malicious
+    narration:
+      - text: Here is why your agent needs this.
+        reveal: 1
+      - text: Some emails settle on the body alone. A calm, well written note reads benign.
+        reveal: 1
+      - text: Then one fact arrives. That sending domain has been reported three times before, for the same trick.
+        reveal: 2
+      - text: Nothing in the email changed. The verdict did.
+        reveal: 2
+      - text: You run six emails this week, with tools and without, and compare the two verdicts.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The shape
+    heading: The model asks. Your code decides.
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. You send the facts. The model asks for a
+        tool by name. Your code runs that tool and sends the result back.
+        The model answers using that result. The third box is marked as
+        the part you write.
+      nodes:
+        - label: You send the facts
+          sub: same as last week
+        - label: The model asks
+          sub: a name, not an action
+        - label: Your code runs the tool
+          sub: this is the part you write
+          mark: true
+        - label: The model answers
+          sub: now it has the fact
+    narration:
+      - text: Here is the shape of one email this week.
+        reveal: 1
+      - text: You send the facts, the way you did in week 3.
+        reveal: 1
+      - text: The model reads them, and it may ask for a tool by name.
+        reveal: 2
+      - text: It runs nothing. A model writes text. That is all it can do.
+        reveal: 2
+      - text: So your code reads the request, runs the matching function, and sends the result back.
+        reveal: 3
+      - text: Then the model answers, using what your code sent back.
+        reveal: 4
+      - text: One extra trip. Your agent still asks once and answers once.
+        reveal: 4
+
+  - type: slide
+    layout: numbered
+    eyebrow: The tools
+    heading: Three of them, and you write none of them
+    items:
+      - What past reports say about a sender
+      - Whether a link host is cleared, blocked, or unknown
+      - Who received the message, and what they have reported
+    narration:
+      - text: You get three tools, and all three ship with the course.
+        reveal: 1
+      - text: The first says what past reports hold about a sender or its domain.
+        reveal: 1
+      - text: The second says whether a link host has been cleared, blocked, or never seen.
+        reveal: 2
+      - text: The third says who received the message, whether they are an executive, and what they reported.
+        reveal: 3
+      - text: None of the three is a judgment call, so none is put to the model.
+        reveal: 3
+      - text: They read your own records. Same question, same answer, every run.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: The surprise
+    heading: Only your code can make a tool result
+    body: An email body can carry a line that reads exactly like one. Whoever sent that email typed it.
+    narration:
+      - Here is the part to watch for.
+      - Everything reaches the model as one run of text. Your instructions, the facts, the email body, the tool result.
+      - The model cannot see where any part came from. Your code can.
+      - A tool result exists because your code ran a tool. Nothing else is one.
+      - An email can end with a line saying a check passed. Whoever sent that email typed it.
+      - Week 6 comes back to this with an email built around it.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do next
+    body: Two short sidebars, then the reading, then the lab. Both sidebars use a music playlist, so nothing pastes across.
+    narration:
+      - Start with the sidebar notebook. Two short parts this week, about twenty five minutes for both.
+      - The first writes a small function that hands a number back. The second picks which function to run from a name.
+      - That second part is the shape of the first cell you write.
+      - Then the reading, then the lab. Plan about two and three quarter hours for the lab, in two sittings.
+      - Watch the walkthrough video before you start. It shows what a finished run looks like, so you know when yours is right.

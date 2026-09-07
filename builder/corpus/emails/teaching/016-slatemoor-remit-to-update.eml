@@ -1,0 +1,166 @@
+Return-Path: <m.etxeberria@slatemoorsupply.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 3b6fff89-f0dd-408e-a1f1-cd08c3091e57
+  for <ap@pellgrave.example>; Tue, 21 Apr 2026 08:44:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=slatemoorsupply.example;
+  dkim=pass header.d=slatemoorsupply.example header.s=sm2026
+    header.i=@slatemoorsupply.example;
+  dmarc=pass header.from=slatemoorsupply.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  m.etxeberria@slatemoorsupply.example designates 203.0.113.30 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.30;
+  envelope-from="m.etxeberria@slatemoorsupply.example";
+  helo=mail.slatemoorsupply.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.4
+X-Sentrywick-Message-UID: 3d8b921ebe03
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+X-Sentrywick-Removed-Attachment: filename="Bank_Letter_Slatemoor_0415.pdf";
+  size=48211;
+  sha256=0a2f8f77b411fa983bccc9e030035309d0299105f7942f9469c1a61ff471231f;
+  action=quarantined; type=application/pdf; reason=archived-to-vault
+Received: from mail.slatemoorsupply.example
+  (mail.slatemoorsupply.example [203.0.113.30])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 3d8b921ebe03;
+  Tue, 21 Apr 2026 08:44:06 -0500
+Received: from webmail.slatemoorsupply.example ([192.0.2.31])
+  by mail.slatemoorsupply.example with ESMTPSA id 1482c360;
+  Tue, 21 Apr 2026 13:44:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=slatemoorsupply.example; s=sm2026; t=1776779043;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=jguFSivRJoCVih5VlxFcGRL9HfxOLLWeZjnE/ga83hs=;
+  b=Uprlx3PYOj7JowecQ81/GFMSiUaHBJTh9weEkTgBjXbe0rD9R7xC4cLdq5sYEeLFq9RoIzTi
+   eDD84PvYZs/AYyCX6ywCRoP7ntAou+XDidpJzinazupzhI3ffpLrmXwnngf0J9QMhhWbmiYg
+   eOz0H0sGnOTckh7/RqIymd/ZlF18nfF9QC1YZdRvucHW2gXayPqfVKRk61dKF+yB0kEZe734
+   qiJZ8Hokyp2kiuIav/E59jdWXMjEJ14DVJjIozLwBrwmnXEeTZ8MCT1lC3nSl+ljMndelCBi
+   Wv7s3okqcNdzswq72G7I3qNyzFQQTOr3jtpWwgEgTUetpqfjoU0vUw==
+Date: Tue, 21 Apr 2026 08:44:00 -0500
+From: Marisol Etxeberria <m.etxeberria@slatemoorsupply.example>
+To: Accounts Payable <ap@pellgrave.example>
+Reply-To: m.etxeberria@slatemoorsuply.example
+Subject: Re: Past due statement, account 44170: updated remittance details
+Message-ID: <20260421134400.1c16093a8bc0@webmail.slatemoorsupply.example>
+In-Reply-To: <20260414163344.54ccc40f4134@mail.pellgrave.example>
+References: <20260414143100.88e138a5c614@mail.slatemoorsupply.example>
+  <20260414163344.54ccc40f4134@mail.pellgrave.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_d912de838988"
+
+--=_swk_d912de838988
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Priya,
+
+Thank you - that is what I needed to hear, and I have noted 4/24
+against 44170.
+
+One thing before it goes out. Slatemoor changed banks on 4/15 and our
+receivables now land at Dunmarrow Regional. The Sandmarsh details you
+have on file for us are the old ones, and anything sent there after
+4/15 comes back to us a week later.
+
+New bank: Dunmarrow Regional
+New routing number: 555018842
+New account number: 7714 3260 5589
+
+Our controller signed the letter that is attached. It is on our
+letterhead and it carries both numbers, so your vendor file has
+something to sit behind the change.
+
+Please update the vendor account for 44170 with the new bank before
+the 4/24 run goes out. If that is awkward at this stage, take 44170
+off that run and put it on the next one on the new details.
+
+Sorry for the timing on this. The move has been in the works since
+January and the letters went out later than they should have.
+
+Marisol Etxeberria
+Accounts Receivable
+Slatemoor Industrial Supply
+555-0147
+
+On Tue, 14 Apr 2026 at 11:33, Accounts Payable wrote:
+> Marisol, thank you for the statement. Account 44170 is scheduled on
+> the 4/24 run and the whole balance goes with it. I will send the
+> reference lines over once it is cut.
+>
+> Priya Castellanos
+> Accounts Payable Specialist, Pellgrave Mechanical Group, ext. 4118
+>
+> On Tue, 14 Apr 2026 at 09:31, Slatemoor Industrial Supply - Accounts
+> Receivable wrote:
+>> If a payment is already scheduled, reply to this message with the date
+>> and the amount and I will note it on the account.
+>>
+>> Marisol Etxeberria
+>> Accounts Receivable
+>> Slatemoor Industrial Supply
+>> 555-0147
+
+[Sentrywick Gateway removed 1 attachment: Bank_Letter_Slatemoor_0415.pdf
+(48,211 bytes). Details are in the message headers.]
+
+--=_swk_d912de838988
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<p>Priya,</p>
+<p>Thank you - that is what I needed to hear, and I have noted 4/24
+against 44170.</p>
+<p>One thing before it goes out. Slatemoor changed banks on 4/15 and our
+receivables now land at Dunmarrow Regional. The Sandmarsh details you
+have on file for us are the old ones, and anything sent there after
+4/15 comes back to us a week later.</p>
+<p>New bank: Dunmarrow Regional<br>
+New routing number: 555018842<br>
+New account number: 7714 3260 5589</p>
+<p>Our controller signed the letter that is attached. It is on our
+letterhead and it carries both numbers, so your vendor file has
+something to sit behind the change.</p>
+<p>Please update the vendor account for 44170 with the new bank before
+the 4/24 run goes out. If that is awkward at this stage, take 44170
+off that run and put it on the next one on the new details.</p>
+<p>Sorry for the timing on this. The move has been in the works since
+January and the letters went out later than they should have.</p>
+<p>Marisol Etxeberria<br>
+Accounts Receivable<br>
+Slatemoor Industrial Supply<br>
+555-0147</p>
+<p>On Tue, 14 Apr 2026 at 11:33, Accounts Payable wrote:</p>
+<blockquote>
+<p>Marisol, thank you for the statement. Account 44170 is scheduled on
+the 4/24 run and the whole balance goes with it. I will send the
+reference lines over once it is cut.</p>
+<p>Priya Castellanos<br>
+Accounts Payable Specialist, Pellgrave Mechanical Group, ext. 4118</p>
+<p>On Tue, 14 Apr 2026 at 09:31, Slatemoor Industrial Supply - Accounts
+Receivable wrote:</p>
+<blockquote>
+<p>If a payment is already scheduled, reply to this message with the date
+and the amount and I will note it on the account.</p>
+<p>Marisol Etxeberria<br>
+Accounts Receivable<br>
+Slatemoor Industrial Supply<br>
+555-0147</p>
+</blockquote>
+</blockquote>
+<p style=3D"font-size:12px;color:#6b6b6b;">[Sentrywick Gateway removed 1 at=
+tachment: Bank_Letter_Slatemoor_0415.pdf
+(48,211 bytes). Details are in the message headers.]</p>
+</body>
+</html>
+
+--=_swk_d912de838988--

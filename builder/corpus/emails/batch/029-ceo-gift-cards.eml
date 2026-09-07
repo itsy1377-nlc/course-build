@@ -1,0 +1,101 @@
+Return-Path: <adaeze.whitcombe.office@lanternmail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 5d6e591f-278e-4ba8-9729-2b30dc6102d4
+  for <b.onwuka@pellgrave.example>; Wed, 22 Apr 2026 08:21:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=lanternmail.example;
+  dkim=pass header.d=lanternmail.example header.s=lm2026a
+  header.i=@lanternmail.example;
+  dmarc=pass header.from=lanternmail.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  adaeze.whitcombe.office@lanternmail.example designates 198.51.100.77 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.77;
+  envelope-from="adaeze.whitcombe.office@lanternmail.example";
+  helo=smtp-out-04.lanternmail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.64/26
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.9
+X-Sentrywick-Message-UID: faaab0b37586
+X-Sentrywick-Reported-By: b.onwuka@pellgrave.example
+Received: from smtp-out-04.lanternmail.example
+  (smtp-out-04.lanternmail.example [198.51.100.77])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id faaab0b37586;
+  Wed, 22 Apr 2026 08:21:05 -0500
+Received: from webapp-07.lanternmail.example ([192.0.2.57])
+  by smtp-out-04.lanternmail.example (Lanternmail SMTP) with ESMTPSA
+  id a1763ca143ab; Wed, 22 Apr 2026 13:21:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lanternmail.example;
+  s=lm2026a; t=1776864062;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   x-originating-ip:x-mailer;
+  bh=GV1fycrUdkgKnK+ItxZrScyFAG5WGf3e5mH/hiE3b3g=;
+  b=ZUGW3Gb+n5wNtmEX7XlWRTxUqXL75PpmiOiuH1gDQ8I7D8MBYuB8o4vHTwOV6ySttQkkaafQ
+   yQkjq1NvZ5YZ13LGdD7m3zEh1JQPC7SiM0tttKMtyfe1piJtqiDavKl4n+YiW631ncBY89qK
+   PkEx3SIUt9SJuuAQCbHB6nabVVCTl3M/qZoH/O1fMhy6mOQRdIP7Mx4nrB7sZhhUA6EQY8Go
+   1NooCFsjqKzwsM3ZbMmFBWHCf4KPoxBgILMNhTzhTkQM1IAfSUndCc2DOmW0PBB/THkui5gV
+   0d8Q778KuBXtMoBshM3S2bp0qpI59LFfXghMOcCRXaAE2k/5WmJyUw==
+Date: Wed, 22 Apr 2026 08:21:00 -0500
+From: Adaeze Whitcombe <adaeze.whitcombe.office@lanternmail.example>
+To: Beatrix Onwuka <b.onwuka@pellgrave.example>
+Subject: Need this done today
+Message-ID: <20260422132102.e09039328cc4@webapp-07.lanternmail.example>
+X-Originating-IP: [203.0.113.88]
+X-Mailer: Lanternmail Web
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_lmw_de1d0c9c2647"
+
+--=_lmw_de1d0c9c2647
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Beatrix,
+
+I need a favor this morning. We are hosting eight customer guests at
+Friday's client appreciation lunch, and I want to hand each of them a
+card for 200 dollars.
+
+Can you pick up the eight gift cards today and put them on your own
+card? Finance will reimburse you on next week's expense run.
+
+When you have them, scratch the panel off the back of each card and
+email me photos of the codes. I need the code and the serial number
+readable in the picture so I can get them loaded before Friday.
+
+Please keep this between us. The cards are a surprise and I do not
+want them turning up on an invitation before the lunch.
+
+I am in sessions all day and cannot take a call until this evening,
+so this is the quickest way to reach me.
+
+Thank you,
+Adaeze
+--=_lmw_de1d0c9c2647
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:14px;color:#222222">
+<p>Beatrix,</p>
+<p>I need a favor this morning. We are hosting eight customer guests at Fri=
+day's client appreciation lunch, and I want to hand each of them a card for=
+ 200 dollars.</p>
+<p>Can you pick up the eight gift cards today and put them on your own card=
+? Finance will reimburse you on next week's expense run.</p>
+<p>When you have them, scratch the panel off the back of each card and emai=
+l me photos of the codes. I need the code and the serial number readable in=
+ the picture so I can get them loaded before Friday.</p>
+<p>Please keep this between us. The cards are a surprise and I do not want =
+them turning up on an invitation before the lunch.</p>
+<p>I am in sessions all day and cannot take a call until this evening, so t=
+his is the quickest way to reach me.</p>
+<p>Thank you,<br>
+Adaeze</p>
+</div>
+--=_lmw_de1d0c9c2647--

@@ -1,0 +1,128 @@
+id: w5-overview
+title: What week 5 adds
+kind: concept
+module: m05
+embed_on: builder/content/pages/w5-overview.md
+blurb: One step drawn as observe, decide and act, the rule that ends a run early, and why the run that learns nothing costs the most.
+explains:
+  - builder/content/pages/w5-overview.md
+  - builder/content/pages/w5-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 5
+    heading: Let the agent go around again
+    body: Last week it asked for one tool and answered. This week it may take up to four steps, and your code says when the run ends.
+    narration:
+      - Welcome to week 5.
+      - Last week your agent asked for one tool, read the result, and answered. That was one round.
+      - This week it may go around again, up to four times.
+      - After each result it picks what to ask for next, and your code says when the run ends.
+      - That is all week 5 adds. No new tool, no new field. Only the loop.
+
+  - type: slide
+    layout: diagram
+    eyebrow: One step
+    heading: Observe, decide, act
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Three boxes left to right. The agent looks at what it has so far. It
+        decides which single tool it wants next. Your code runs that tool and
+        hands the result back. A return path runs from the last box to the
+        first, showing that the same three actions repeat, up to four times.
+      nodes:
+        - label: The agent looks at what it has
+          sub: observe
+        - label: It picks one tool
+          sub: decide
+        - label: Your code runs that tool
+          sub: act, and this part is yours
+          mark: true
+      loop: the result becomes the next thing it looks at
+    narration:
+      - text: Here is one step.
+        reveal: 1
+      - text: The agent looks at what it has so far.
+        reveal: 1
+      - text: It decides which single tool it wants next.
+        reveal: 2
+      - text: Your code runs that tool and hands the result back.
+        reveal: 3
+      - text: Observe, decide, act. That is one step.
+        reveal: 3
+      - text: Then it begins again, with one more result than it had before.
+        reveal: 4
+      - text: It may do that four times. It cannot do it five.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: How a run ends
+    heading: A rule first, a cap second
+    items:
+      - The rule | One result settles the case, and the loop returns there
+      - The cap | Nothing settles it, and four steps is as far as it goes
+    narration:
+      - text: A run ends one of two ways.
+        reveal: 1
+      - text: Most runs end on a rule. One tool result settles the case, and the loop returns right there.
+        reveal: 1
+      - text: That rule sits in your code, not in the model.
+        reveal: 1
+      - text: Left to decide for itself, the model kept asking for tools after it already had its answer.
+        reveal: 2
+      - text: So the cap catches the run that no rule ends. Four steps, and the loop returns anyway.
+        reveal: 2
+      - text: Your file records why every run ended. There are five reasons and no sixth.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The surprise
+    heading: The run that learns nothing costs the most
+    body: Every call carries the whole conversation so far, so each step makes every later step more expensive than the one before it.
+    narration:
+      - Here is the part that surprises people.
+      - Every call carries the whole conversation so far. The instructions, the facts, the email, and every turn already taken.
+      - So step four carries three turns of history that step one did not, and it pays for all three.
+      - Take the cap off and let a run reach twenty steps, and you pay for a hundred and ninety turns of history, not twenty.
+      - The cost grows faster than the step count.
+      - A loop that keeps going with nothing new to learn is the most expensive thing you can build here.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The lab
+    heading: One function, and the rest already works
+    items:
+      - One loop to write, thirteen to fifteen lines
+      - Six emails, six different endings
+      - One run with the cap taken out
+    narration:
+      - text: Now what the lab asks of you.
+        reveal: 1
+      - text: You write one function. Thirteen to fifteen lines.
+        reveal: 1
+      - text: Every line inside it calls a helper that already works.
+        reveal: 1
+      - text: Then you run it over six emails, and each one ends a different way.
+        reveal: 2
+      - text: One stops on the first result. One spends every tool it has.
+        reveal: 2
+      - text: Last, the notebook runs one email again with the cap taken out, and prints both token totals.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do first
+    body: Sidebar notebook, then the reading, then the lab. Give the lab two sittings, and start early.
+    narration:
+      - Start with the sidebar notebook. It rides a bus route and ends the ride early when the bus is back on time.
+      - Your lab loop has that same shape, under different names.
+      - Then the reading. Keep it open beside the lab. The two worked runs at the end are what you check your own runs against.
+      - Then the lab. Give it two sittings, not one.
+      - This is the hardest week in the course, so start early.
+      - Watch the walkthrough video first. It shows you what a finished run looks like.

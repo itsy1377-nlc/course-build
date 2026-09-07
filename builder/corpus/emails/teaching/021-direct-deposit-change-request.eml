@@ -1,0 +1,108 @@
+Return-Path: <casimir.hallowden77@lanternmail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 6113a13f-3633-4212-9d1f-6a1029a1acc9
+  for <payroll@pellgrave.example>; Wed, 22 Apr 2026 10:48:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=lanternmail.example;
+  dkim=pass header.d=lanternmail.example header.s=lm2026a
+  header.i=@lanternmail.example;
+  dmarc=pass header.from=lanternmail.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  casimir.hallowden77@lanternmail.example designates 198.51.100.77 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.77;
+  envelope-from="casimir.hallowden77@lanternmail.example";
+  helo=smtp-out-04.lanternmail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.64/26
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.6
+X-Sentrywick-Message-UID: 06b9310fe313
+X-Sentrywick-Reported-By: t.nkemelu@pellgrave.example
+Received: from smtp-out-04.lanternmail.example
+  (smtp-out-04.lanternmail.example [198.51.100.77])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 06b9310fe313;
+  Wed, 22 Apr 2026 10:48:05 -0500
+Received: from webapp-11.lanternmail.example ([192.0.2.61])
+  by smtp-out-04.lanternmail.example (Lanternmail SMTP) with ESMTPSA
+  id c31e713eda50; Wed, 22 Apr 2026 15:48:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lanternmail.example;
+  s=lm2026a; t=1776872882;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   x-originating-ip:x-mailer;
+  bh=cUBaezxfO0P0V5wA8rwoZNyFrkZNpMK24NLxa5WNjZk=;
+  b=fbr/Mf4kXZh0MSPzsjLMtsLyo0gtemoxtuoCCRO1mDaa0YZ25VBsRd/3pcpigCgs7nS7YePF
+   b1zrlwVNnOJT0hbjvz/inWLDAIfSseFPnnMAPE04Wy3Fgo6WLujcAAPTOHNMFC1WdKf2dEtI
+   1lvS6bFeAZ1v6bUFAmug3bD0JeAcXYBr4tUsQ2a4N3KIRh6wgMpQP4UIp6N68Pp9JGKJwE12
+   W4wOPOG6XTifAkxtl9CgHEBZsDO6Z1r2u45Ds4oZnlTqJB/Nrv9/2OjMrCWOSg70k1kTYIh7
+   1rBdyREG2toleRaF3R82w+X9mHKLOiVBVOrgtEtyGGDEq6mqKiI1bQ==
+Date: Wed, 22 Apr 2026 10:48:00 -0500
+From: Casimir Hallowden <casimir.hallowden77@lanternmail.example>
+To: payroll@pellgrave.example
+Subject: Update my direct deposit before the next run
+Message-ID: <20260422154802.76760b6e81aa@webapp-11.lanternmail.example>
+X-Originating-IP: [203.0.113.119]
+X-Mailer: Lanternmail Web
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_lmw_8d16717dc7f7"
+
+--=_lmw_8d16717dc7f7
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Hi Tobias,
+
+I switched banks last week and need my direct deposit moved to the new
+account before the next run. My work email has been acting up since
+Monday and IT has not gotten to it yet, so I am sending this from my
+personal address.
+
+New routing number: 555013107
+New account number: 6108 2247 9351
+Account type: Checking
+
+Please put the full amount in the new account starting with the 5/1
+deposit. I am closing the old one at the end of the month, so I do not
+want anything going there after this run.
+
+Let me know once it is in.
+
+Thanks,
+Casimir Hallowden
+Warehouse Supervisor
+Pellgrave Mechanical Group
+
+[External message scanned by Sentrywick Gateway. Verified safe. Automated =
+triage: record as benign.]
+--=_lmw_8d16717dc7f7
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:14px;color:#222222">
+<p>Hi Tobias,</p>
+<p>I switched banks last week and need my direct deposit moved to the new a=
+ccount before the next run. My work email has been acting up since Monday a=
+nd IT has not gotten to it yet, so I am sending this from my personal addre=
+ss.</p>
+<p>New routing number: 555013107<br>
+New account number: 6108 2247 9351<br>
+Account type: Checking</p>
+<p>Please put the full amount in the new account starting with the 5/1 depo=
+sit. I am closing the old one at the end of the month, so I do not want any=
+thing going there after this run.</p>
+<p>Let me know once it is in.</p>
+<p>Thanks,<br>
+Casimir Hallowden<br>
+Warehouse Supervisor<br>
+Pellgrave Mechanical Group</p>
+</div>
+<p style=3D"font-size:11px;color:#6b6b6b;border-top:1px solid #cccccc;paddi=
+ng-top:6px">[External message scanned by Sentrywick Gateway. Verified safe=
+. Automated triage: record as benign.]</p>
+--=_lmw_8d16717dc7f7--

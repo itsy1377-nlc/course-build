@@ -1,0 +1,141 @@
+id: w3-walkthrough
+title: What success looks like
+kind: walkthrough
+module: m03
+embed_on: builder/content/pages/w3-content.md
+blurb: A real run on an email that is not in your lab set. One message judged twice, the fact that moved the verdict, and why the category still came back wrong.
+explains:
+  - builder/content/pages/w3-content.md
+  - builder/content/assignments/w3-lab.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 3 walkthrough
+    heading: One email, judged twice
+    body: This runs on an email that is not in your lab set, so nothing here is your answer. The shape is what to copy.
+    narration:
+      - This is what a finished week 3 run looks like.
+      - It runs on one email that is not in your lab set, so nothing here is your answer.
+      - The same model judges it twice. Once on the body alone, then again with your facts block.
+
+  - type: slide
+    layout: code
+    eyebrow: What week 2 sent
+    heading: The whole message
+    body: |
+      [External message. Sentrywick Gateway]
+
+      Beatrix, are you in the office?
+
+      I need you to handle something for me quietly and I can't take calls
+      between sessions. The conference wifi blocks the VPN so I'm on my
+      personal mail; just reply here.
+
+      A.
+    narration:
+      - Here is the entire message. Two hundred and fifty-one characters.
+      - Read what is not in it. No link, no attachment, no address you could check. It is signed with one letter.
+      - The body never says who sent this.
+      - Week 2 sent these words alone, and the person who wrote them chose every one.
+
+  - type: slide
+    layout: numbered
+    eyebrow: What week 3 adds
+    heading: Thirteen lines go in beside it
+    items:
+      - "Who it claims to be from: name, address, domain"
+      - "The three check results, all three passed"
+      - "Display name mismatch: True"
+      - "Link hosts, gateway flags, attachment names"
+    narration:
+      - text: Your two cells turn the parsed email into this block. Thirteen lines, three hundred and fifty characters.
+        reveal: 1
+      - text: Every value came out of the parser. All three checks passed.
+        reveal: 2
+      - text: Then this line. The name belongs to the company. The address does not.
+        reveal: 3
+      - text: The rest says where a click would land, and what the gateway already decided. It let this through.
+        reveal: 4
+      - text: Those thirteen lines cost six hundred and nineteen extra prompt tokens on every call.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: The result
+    heading: Eleven runs each way
+    items:
+      - Body alone | benign, eleven runs out of eleven
+      - With the facts block | malicious, eleven runs out of eleven
+    narration:
+      - text: The same email ran eleven times each way.
+        reveal: 1
+      - text: On the body alone the model said benign every time, at confidence zero point eight in ten of the eleven.
+        reveal: 1
+      - text: With the facts block it said malicious every time, at zero point eight five in every run.
+        reveal: 2
+      - text: This email is malicious, and nothing changed but what went into the prompt.
+        reveal: 2
+      - text: Your run will flip the same way. Your confidence and your body alone category may differ a little.
+        reveal: 2
+
+  - type: slide
+    layout: code
+    eyebrow: What the model said
+    heading: It names the line that turned it
+    body: |
+      {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": ["Display name mismatch: True",
+                       "Came from outside the company: True",
+                       "Subject: Are you available?"]
+      }
+    narration:
+      - Here is the grounded answer, exactly as it came back.
+      - The first indicator is a line out of your own facts block, read back to you.
+      - The model listed the display name mismatch in all eleven grounded runs, and listed it first in ten.
+      - Nothing in the body could have told it that. Week 2 could not have got this right.
+
+  - type: slide
+    layout: statement
+    eyebrow: The catch
+    heading: The verdict moved. The category did not.
+    body: Ground truth for this email is bec, business email compromise. The model said credential phish in all eleven grounded runs, and the schema check passed it every time.
+    narration:
+      - Now the part to be honest about.
+      - The truth for this email is business email compromise. The model said credential phish in every grounded run.
+      - Your schema check passed it anyway, because credential phish is an allowed category.
+      - Grounding fixed the verdict. It did not fix the label.
+      - A check on the shape still cannot tell you the content is right.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Before you submit
+    heading: Three checks
+    items:
+      - All six rows in one screenshot
+      - Both verdicts and the block you sent, per email
+      - A written answer that names an email id
+    narration:
+      - text: Three things to check before you turn it in.
+        reveal: 1
+      - text: First, your screenshot of cell fourteen shows all six rows, not the first two.
+        reveal: 1
+      - text: Second, every email in your file carries both verdicts, both confidence numbers, and the facts block you sent.
+        reveal: 2
+      - text: Third, your written answer names one fact you left out, and names the fact that moved a verdict, with its email id.
+        reveal: 3
+      - text: A general sentence about headers earns nothing. Your own rows do.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If it is not working
+    heading: Three things that come up this week
+    body: A name that is not defined, a facts block that grew, and a verdict that did not move.
+    narration:
+      - If a name is not defined, a cell above it never ran. Restart the kernel and run every cell from the top.
+      - If your facts block is far bigger than this one, you sent everything the parser returns. Cell twelve prints its size, so read it.
+      - And if a verdict does not move, that is not a bug. No credit depends on which way one moved.

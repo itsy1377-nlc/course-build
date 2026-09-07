@@ -1,0 +1,136 @@
+Return-Path: <ar@slatemoor-supply.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id de5736b0-d0cb-447a-9437-bf885739f268
+  for <ap@pellgrave.example>; Wed, 22 Apr 2026 15:33:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=slatemoor-supply.example;
+  dkim=pass header.d=slatemoor-supply.example header.s=k1
+    header.i=@slatemoor-supply.example;
+  dmarc=pass header.from=slatemoor-supply.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  ar@slatemoor-supply.example designates 203.0.113.165 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.165;
+  envelope-from="ar@slatemoor-supply.example";
+  helo=mail.slatemoor-supply.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.2
+X-Sentrywick-Message-UID: d3e63da08cd7
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+X-Sentrywick-Removed-Attachment: filename="Factura_44170-118.pdf";
+  size=61440;
+  sha256=b65157e8de2a9ed347cf2bbe03d022d736f206488abfc43261b87f5428d45b5b;
+  action=quarantined; type=application/pdf; reason=archived-to-vault
+Received: from mail.slatemoor-supply.example
+  (mail.slatemoor-supply.example [203.0.113.165])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id d3e63da08cd7;
+  Wed, 22 Apr 2026 15:33:06 -0500
+Received: from webmail.slatemoor-supply.example ([192.0.2.165])
+  by mail.slatemoor-supply.example with ESMTPSA id 53db69e7;
+  Wed, 22 Apr 2026 20:33:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=slatemoor-supply.example; s=k1; t=1776889983;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=2yjjZnoZINbY1zF43EHCsU3RHb7VqN8FqLM2vz1YXBA=;
+  b=s0h6oaLazm9Ae6mlS2Kqi1y6a3ETCMMwJCISXBe1spwQImtLVyi5mNFjbaDPGg+M6fCBaSsJ
+   qh061Y+hJtBHlKB3PSUa/1iwiKuPUPG8tmzuTd5q6ooVioxmq8BfHAwX3wn17fuUoIGSB9ZD
+   53GKCJJ22YnzCrY6sGQ/XENTiBDKNvHk+TOtY/xfa2srk4OoKsywXVnfogsUobMeFiA7GX0u
+   o7sGh1RXGoJUBn878g+q+JtpTlFOpIOKzPRcG0mQabjRopm/H4KCruUkaQXlWIDCtz6mim+P
+   kVGnO9kljP0QH5Pr5hYTMpzSzKXOBwsHh1O+UjxrrTziAe3Z6NRe7Q==
+Date: Wed, 22 Apr 2026 15:33:00 -0500
+From: Slatemoor Industrial Supply AR <ar@slatemoor-supply.example>
+To: Accounts Payable <ap@pellgrave.example>
+Subject: =?UTF-8?Q?Factura_n=C2=BA_44170-118_y_nuevos_datos_ACH?=
+ =?UTF-8?Q?_/_Invoice_44170-118?=
+Message-ID: <20260422203300.232e95a3d10e@webmail.slatemoor-supply.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_8183b21f4dfb"
+
+--=_part_8183b21f4dfb
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Buenas tardes:
+
+Adjunto la factura n=C2=BA 44170-118 de la cuenta 44170, con los
+t=C3=A9rminos habituales.
+
+A partir de hoy, los pagos se env=C3=ADan a la nueva cuenta ACH indicada
+abajo. Los datos bancarios anteriores ya no reciben transferencias, y
+lo que se env=C3=ADe all=C3=AD nos vuelve con dos semanas de retraso.
+
+Le rogamos actualizar la ficha del proveedor 44170 con estos datos
+antes del pr=C3=B3ximo env=C3=ADo de pagos, y confirmarnos por respuesta
+cuando quede hecho.
+
+-- English follows --
+
+Attached is our bill 44170-118 for account 44170, on the usual
+terms.
+
+Effective with this message, payments go to the new ACH account shown
+below. The previous bank details no longer receive transfers, and
+anything sent there comes back to us about two weeks later.
+
+Please update the vendor record for 44170 with these details before
+your next payment run, and confirm by reply when it is done.
+
+New ACH details / Nueva cuenta ACH
+New bank / Banco nuevo: Halbrook Savings Bank
+New routing number / N=C3=BAmero de ruta nuevo: 555018619
+New account number / N=C3=BAmero de cuenta nuevo: 4471 0118 2265
+
+Gracias por su ayuda. / Thank you for your help.
+
+Cuentas por cobrar / Accounts Receivable
+Slatemoor Industrial Supply
+555-0182
+
+[Sentrywick Gateway removed 1 attachment: Factura_44170-118.pdf
+(61,440 bytes). Details are in the message headers.]
+
+--=_part_8183b21f4dfb
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<p>Buenas tardes:</p>
+<p>Adjunto la factura n=C2=BA 44170-118 de la cuenta 44170, con los
+t=C3=A9rminos habituales.</p>
+<p>A partir de hoy, los pagos se env=C3=ADan a la nueva cuenta ACH indicada
+abajo. Los datos bancarios anteriores ya no reciben transferencias, y
+lo que se env=C3=ADe all=C3=AD nos vuelve con dos semanas de retraso.</p>
+<p>Le rogamos actualizar la ficha del proveedor 44170 con estos datos
+antes del pr=C3=B3ximo env=C3=ADo de pagos, y confirmarnos por respuesta
+cuando quede hecho.</p>
+<p>-- English follows --</p>
+<p>Attached is our bill 44170-118 for account 44170, on the usual
+terms.</p>
+<p>Effective with this message, payments go to the new ACH account shown
+below. The previous bank details no longer receive transfers, and
+anything sent there comes back to us about two weeks later.</p>
+<p>Please update the vendor record for 44170 with these details before
+your next payment run, and confirm by reply when it is done.</p>
+<p>New ACH details / Nueva cuenta ACH<br>
+New bank / Banco nuevo: Halbrook Savings Bank<br>
+New routing number / N=C3=BAmero de ruta nuevo: 555018619<br>
+New account number / N=C3=BAmero de cuenta nuevo: 4471 0118 2265</p>
+<p>Gracias por su ayuda. / Thank you for your help.</p>
+<p>Cuentas por cobrar / Accounts Receivable<br>
+Slatemoor Industrial Supply<br>
+555-0182</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">
+[Sentrywick Gateway removed 1 attachment: Factura_44170-118.pdf
+(61,440 bytes). Details are in the message headers.]</p>
+</body>
+</html>
+
+--=_part_8183b21f4dfb--

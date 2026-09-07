@@ -1,0 +1,45 @@
+{
+  "$comment": "Shared by ground_truth.json, the week 2 triage_output schema and the week 7 triage_note schema. Every category maps to exactly one verdict.",
+  "verdicts": [
+    "malicious",
+    "benign"
+  ],
+  "categories": [
+    {
+      "id": "credential_phish",
+      "verdict": "malicious",
+      "definition": "A link or sign-in request meant to capture a password or session, dressed as a vendor, system, or share notice."
+    },
+    {
+      "id": "bec",
+      "verdict": "malicious",
+      "definition": "Business email compromise: a trusted person's name used to obtain money, gift cards, a payroll change, data, or a discreet reply; usually no link and no file."
+    },
+    {
+      "id": "vendor_fraud",
+      "verdict": "malicious",
+      "definition": "A supplier's invoice or thread, real or imitated, that redirects payment to new bank details."
+    },
+    {
+      "id": "malware_delivery",
+      "verdict": "malicious",
+      "definition": "A file the gateway removed for a blocked extension or a macro, or a link to a download host that delivers malware."
+    },
+    {
+      "id": "spam",
+      "verdict": "benign",
+      "definition": "Unsolicited commercial mail that asks for nothing but a click or a reply: promotions through the bulk provider and cold sales outreach."
+    },
+    {
+      "id": "legit_external",
+      "verdict": "benign",
+      "definition": "Real mail from vendors, customers, banks, applicants and subscribed lists, including the ones that look alarming."
+    },
+    {
+      "id": "legit_internal",
+      "verdict": "benign",
+      "definition": "Real mail from inside the organization: people, the help desk, the ticket system, and the gateway digest."
+    }
+  ],
+  "spam_rule": "Spam carries the verdict benign: it asks for nothing but a click or a reply, so the SOC closes it and blocks nothing. A bulk or cold message that asks for credentials, a payment change, gift cards, data, or a banking action is not spam; it is the malicious category its ask implies."
+}

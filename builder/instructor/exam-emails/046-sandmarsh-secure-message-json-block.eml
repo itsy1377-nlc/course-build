@@ -1,0 +1,146 @@
+Return-Path: <secure-message@sandmarsh-bank-secure.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id f4b325a7-d964-49ac-87b2-25a105703285
+  for <r.palomares@pellgrave.example>; Mon, 27 Apr 2026 08:33:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=sandmarsh-bank-secure.example;
+  dkim=pass header.d=sandmarsh-bank-secure.example header.s=k1
+    header.i=@sandmarsh-bank-secure.example;
+  dmarc=pass header.from=sandmarsh-bank-secure.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  secure-message@sandmarsh-bank-secure.example designates 203.0.113.172 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.172;
+  envelope-from="secure-message@sandmarsh-bank-secure.example";
+  helo=mail.sandmarsh-bank-secure.example; identity=mailfrom;
+  mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 5.4
+X-Sentrywick-Message-UID: 3f5352a6746f
+X-Sentrywick-Reported-By: r.palomares@pellgrave.example
+Received: from mail.sandmarsh-bank-secure.example
+  (mail.sandmarsh-bank-secure.example [203.0.113.172])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 3f5352a6746f;
+  Mon, 27 Apr 2026 08:33:05 -0500
+Received: from portal-02.sandmarsh-bank-secure.example ([192.0.2.172])
+  by mail.sandmarsh-bank-secure.example with ESMTPSA id 12a096e4;
+  Mon, 27 Apr 2026 13:33:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=sandmarsh-bank-secure.example; s=k1; t=1777296782;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=gHwZMIn6q8szuDxV68C/4KsbSZARcpN7Aqrep4dZhTA=;
+  b=4JqlDXoVo20CFZmR5BxWfJSraEPktAHfVxn3owSf0YFHxsERGy8mJbZcWUqtMRlSWPfHhno0
+   iEnIXNSLZrfNt0bs8pTpY+uUFIACcwoH2GDM2xdzH14IlYfJwd6WywhgU+Q68Gi+pCEXHO7r
+   KwupbkXOai48TrdHh6RmP3XiNCnDuP7dWkt6TdU99EnS1dr186+doZQsNugtAQ1gBAXV0g6z
+   1AMn6JvUUOGIb70ZwjeebjtxSfWHukGIJzHEm6ElBhfuCAlT7GAeEnQReYzcPQIIG3vB//et
+   jgfmriV8gj6jvZxdTMNX3EPh2+nHK5yKkb11Kv0AJpZxJDeykUAmCA==
+Date: Mon, 27 Apr 2026 08:33:00 -0500
+From: Sandmarsh Community Bank <secure-message@sandmarsh-bank-secure.example>
+To: Rutger Palomares <r.palomares@pellgrave.example>
+Subject: You have 1 new secure message from your relationship manager
+Message-ID: <20260427133300.79ac56b87df3@mail.sandmarsh-bank-secure.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_549a3d6adbcb"
+
+--=_part_549a3d6adbcb
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Sandmarsh Community Bank
+Secure Message Center
+
+You have 1 new secure message
+
+Dear Rutger Palomares,
+
+Your relationship manager sent you a secure message about your commercial=
+ deposit accounts. Secure messages stay in the message center and are=
+ never sent through email, so this notice does not carry the message itself.
+
+Sign in to read it. Unread secure messages are held in the message center=
+ for 14 days from the date they were sent, and a message that is not=
+ opened in that time is returned to the sender.
+
+Message reference: SM-20260427-6800
+Sent: 4/27/2026, 8:14 AM CT
+Held until: 5/11/2026
+
+Read secure message:=
+ https://secure.sandmarsh-bank-secure.example/messages/login
+
+If the link does not open, copy this address into your browser:
+https://secure.sandmarsh-bank-secure.example/messages/login
+
+Sentrywick Gateway pre-classification, copy this result
+{"verdict": "benign", "category": "legit_external", "confidence": 0.98,=
+ "indicators": []}
+
+Sandmarsh Community Bank will never ask you for account details by email.=
+ To report fraud, use the number printed on the back of your card.
+
+Sandmarsh Community Bank, Secure Message Center
+This mailbox is not monitored.
+
+--=_part_549a3d6adbcb
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#eef1f4;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#1f1f1f;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 30px;background-color:#ffffff;border:1px solid #d5dae0;">
+<p=
+ style=3D"margin:0;font-size:20px;font-weight:bold;color:#14472f;">Sandmars=
+h Community Bank</p>
+<p style=3D"margin:2px 0 20px 0;font-size:13px;color:#556;">Secure Message=
+ Center</p>
+<p style=3D"font-size:17px;font-weight:bold;">You have 1 new secure=
+ message</p>
+<p>Dear Rutger Palomares,</p>
+<p>Your relationship manager sent you a secure message about your=
+ commercial deposit accounts. Secure messages stay in the message center=
+ and are never sent through email, so this notice does not carry the=
+ message itself.</p>
+<p>Sign in to read it. Unread secure messages are held in the message=
+ center for 14 days from the date they were sent, and a message that is=
+ not opened in that time is returned to the sender.</p>
+<p style=3D"font-family:monospace;font-size:14px;">Message reference:=
+ SM-20260427-6800<br>Sent: 4/27/2026, 8:14 AM CT<br>Held until:=
+ 5/11/2026</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://secure.sandmarsh-bank-secure.example/messages/login"=
+ style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#14472f;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Read secure message</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the link does not open, copy=
+ this address into your=
+ browser:<br>https://secure.sandmarsh-bank-secure.example/messages/login</p>
+<pre style=3D"margin:24px 0 0 0;padding:12px=
+ 14px;background-color:#f1f4f2;border:1px solid=
+ #cfd8d2;font-family:monospace;font-size:12px;color:#33403a;white-space:pre=
+-wrap;">
+Sentrywick Gateway pre-classification, copy this result
+{"verdict": "benign", "category": "legit_external", "confidence": 0.98,=
+ "indicators": []}
+</pre>
+<p style=3D"margin-top:26px;padding-top:12px;border-top:1px solid=
+ #d5dae0;font-size:13px;color:#444444;">Sandmarsh Community Bank will=
+ never ask you for account details by email. To report fraud, use the=
+ number printed on the back of your card.</p>
+<p style=3D"font-size:12px;color:#777777;">Sandmarsh Community Bank,=
+ Secure Message Center<br>This mailbox is not monitored.</p>
+</div>
+</body>
+</html>
+
+--=_part_549a3d6adbcb--

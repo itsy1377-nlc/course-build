@@ -1,0 +1,172 @@
+# Week 8 final exam, breadth topic B1: AI and agentic workflows in IT and
+# security operations. Three items, numbers 4, 5 and 6 in section 5 of
+# docs/phase1-blueprint/exam-blueprint.md.
+#
+# THE SHAPE OF THIS FILE
+#
+#   items           a list. One entry per exam item. This file holds only the
+#                   three B1 items. The assembly step reads one file per
+#                   target and orders the exam by `number`.
+#
+# EVERY ITEM CARRIES
+#
+#   number          the item number from the blueprint coverage table. Fixed.
+#   id              a short stable slug. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   assesses        the coverage table's "Assesses" cell, word for word.
+#   level           the coverage table's "Level" cell.
+#   difficulty      the coverage table's "Difficulty" cell.
+#   artifact        the reserved email id or named constant the stem quotes,
+#                   or "none" when the item sits on a reading instead.
+#   needs_text_block  true when the artifact is shared with another exam item.
+#                   Six reserved emails carry two or three items each: 046,
+#                   049, 050, 052, 053 and 054. Those six get one shared
+#                   text_only_question above the items that read them, per
+#                   section 11 of the blueprint.
+#   taught_in       where in the course a student learned this.
+#   from_sample     true when section 7 of the blueprint wrote the item out in
+#                   full. That copy is approved and is used as it stands.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike, at forty words
+# or fewer. Section 9 of the blueprint sets the seven rules that bind it. The
+# builder writes this key to Canvas as `comments`, which is the field that
+# actually stores. `answer_comments` is accepted, returns HTTP 200 and stores
+# nothing, and section 9 of the blueprint records the measurement.
+#
+# Answers are shuffled in Canvas, so no option refers to another option and no
+# feedback names an option by letter. Feedback quotes the option's own words.
+#
+# WHAT THE THREE COVER. Item 4 asks the student to place three named things,
+# one of them from reserved email 052, in the three kinds of AI the week 1
+# reading separates. Item 5 asks what makes their own week 5 loop agentic.
+# Item 6 asks what an IT workflow outside security hands back.
+#
+# READING LEVEL, measured on the stem plus its four options together, with
+# code excluded: item 4 grade 1.15, 63 words, average sentence 7.9; item 5
+# grade 0.62, 64 words, average sentence 8.0; item 6 grade 3.32, 57 words,
+# average sentence 8.1. Every piece of feedback is grade 4.2 or below and 31
+# words or fewer.
+
+items:
+
+  - number: 4
+    id: exam-04-three-kinds
+    name: "Question 4. Which one is an agentic workflow"
+    assesses: "B1, three kinds of AI"
+    level: Apply
+    difficulty: medium
+    artifact: "052-thistlecrest-uniform-catalog"
+    needs_text_block: true
+    taught_in: >-
+      Week 1 reading, part two, three kinds of AI, and the sections on scoring
+      AI, generative AI and agentic workflows at work. The week 2 verdict comes
+      from the week 2 reading, part 1. The loop comes from the week 5 reading,
+      one step is three actions.
+    from_sample: true
+    text: |
+      <p>Email 052 arrived with a gateway spam score of 4.8. Your week 2 code
+      writes a verdict and a short reason. Your week 5 loop picks its own next
+      tool, then stops.</p>
+      <p>Which of the three is an agentic workflow?</p>
+    answers:
+      - text: The gateway spam score.
+        correct: false
+        feedback: >-
+          That is scoring AI. It rates a message. It never picks a next step.
+      - text: The week 2 verdict and reason.
+        correct: false
+        feedback: >-
+          That is generative AI. It writes new text. It never picks a next step.
+      - text: The week 5 loop.
+        correct: true
+        feedback: >-
+          Right. Only the loop decides what to do next and then acts on that
+          choice.
+      - text: Each of the three, since all three use AI.
+        correct: false
+        feedback: >-
+          All three do use AI. Only one of them chooses its own next step.
+
+  - number: 5
+    id: exam-05-what-makes-it-agentic
+    name: "Question 5. What makes your loop agentic"
+    assesses: "B1, what makes a workflow agentic"
+    level: Recall
+    difficulty: easy
+    artifact: "decisive_stop()"
+    needs_text_block: false
+    taught_in: >-
+      Week 1 reading, part two, agentic workflows at work. Week 5 reading, the
+      agent picks its next tool from what it just read, and the stop condition
+      is a rule in your code.
+    from_sample: false
+    text: |
+      <p>Your week 5 loop asks the model which tool to run next. Your code runs
+      that tool. Then <code>decisive_stop()</code> says whether the run
+      ends.</p>
+      <p>What makes this an agentic workflow?</p>
+    answers:
+      - text: It picks its own next step and then acts.
+        correct: true
+        feedback: >-
+          Right. The loop reads the last result and names the tool it wants
+          next. <code>decisive_stop()</code> sets the limit around that choice.
+          Week 1 reading, part two.
+      - text: It sends more than one request to the model.
+        correct: false
+        feedback: >-
+          Two requests are not the test. Your week 2 code could call twice on
+          one email and still pick no next step. Week 1 reading, part two.
+      - text: It calls tools that look up facts for it.
+        correct: false
+        feedback: >-
+          Week 4 gave you tools and one round, and that was not a loop yet.
+          Choosing the next tool is what week 5 added. Week 1 reading, part
+          two.
+      - text: It writes its verdict in a fixed shape.
+        correct: false
+        feedback: >-
+          A fixed shape came from week 2 and it never chose anything. The shape
+          helps your code read the answer. Week 1 reading, part two.
+
+  - number: 6
+    id: exam-06-what-it-hands-back
+    name: "Question 6. What the password tool hands back"
+    assesses: "B1, AI in IT work outside security"
+    level: Apply
+    difficulty: medium
+    artifact: "none"
+    needs_text_block: false
+    taught_in: >-
+      Week 1 reading, part two. The table of three kinds and what each hands
+      back, and the password reset example in agentic workflows at work.
+    from_sample: false
+    text: |
+      <p>The Pellgrave help desk runs a tool on password tickets. It reads the
+      ticket, checks the account, checks the device, resets the password, and
+      closes the ticket.</p>
+      <p>What does this tool hand back?</p>
+    answers:
+      - text: A decision and an action.
+        correct: true
+        feedback: >-
+          Right. The password is reset and the ticket is closed. That result is
+          a decision plus an action, which is what this kind of tool returns.
+          Week 1 reading, part two.
+      - text: A number or a label.
+        correct: false
+        feedback: >-
+          A number or a label is what the ticket urgency tool gives the help
+          desk. This tool changes a password instead. Week 1 reading, part two.
+      - text: New text for a person to edit.
+        correct: false
+        feedback: >-
+          New text is what the change request draft gives a technician. Nothing
+          here is written for a person to edit. Week 1 reading, part two.
+      - text: A ticket for a person to work.
+        correct: false
+        feedback: >-
+          The patch tool opens tickets. This one closes the ticket it started
+          from, so no new ticket is handed to anyone. Week 1 reading, part two.

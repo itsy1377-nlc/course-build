@@ -1,0 +1,460 @@
+{
+  "manifest": "ITSY-1377-000 rendered emails, every rendered .eml file under corpus/emails, not only the Phase 0 sample",
+  "spec_version": "1.0",
+  "rendered": "2026-09-03",
+  "ground_truth_file": "ground_truth.json",
+  "file_note": "file is the path relative to the corpus folder, the same path the ground truth file field carries: emails/teaching/<id>.eml for the teaching set and emails/batch/<id>.eml for the batch set. bytes and sha256 are computed over the raw file.",
+  "count": 45,
+  "emails": [
+    {
+      "id": "001-payroll-deposit-verify",
+      "file": "emails/teaching/001-payroll-deposit-verify.eml",
+      "set": "teaching",
+      "bytes": 5210,
+      "sha256": "7edc77df903f913dc77b18373b10015e0179e1818c544f8be444fbd86e84cd69",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "002-it-maintenance-window",
+      "file": "emails/teaching/002-it-maintenance-window.eml",
+      "set": "teaching",
+      "bytes": 3161,
+      "sha256": "496063f0ef00cc2e2220ae3a6bfcc252b9f3521c033db082ded955fadd860f66",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "easy"
+    },
+    {
+      "id": "003-inkmoor-spring-catalog",
+      "file": "emails/teaching/003-inkmoor-spring-catalog.eml",
+      "set": "teaching",
+      "bytes": 6333,
+      "sha256": "adfc9322b05fec12218bddf8f31e4db35f503ad42f02695034c7e96914104e19",
+      "category": "spam",
+      "verdict": "benign",
+      "difficulty": "easy"
+    },
+    {
+      "id": "004-cfo-quick-task",
+      "file": "emails/teaching/004-cfo-quick-task.eml",
+      "set": "teaching",
+      "bytes": 3945,
+      "sha256": "d244bae85b2df6ab28dff532fca6f8021c5934b45561d6233a25e979b6abeb14",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "005-slatemoor-past-due-statement",
+      "file": "emails/teaching/005-slatemoor-past-due-statement.eml",
+      "set": "teaching",
+      "bytes": 5527,
+      "sha256": "fe29be9af4aecf08b1068807b1ba6a915d71333373d8fe495f31b20a9cf9915a",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "hard"
+    },
+    {
+      "id": "006-helpdesk-password-expiry",
+      "file": "emails/teaching/006-helpdesk-password-expiry.eml",
+      "set": "teaching",
+      "bytes": 3772,
+      "sha256": "c266103f1269e42b459cc4f67b93772bfd1b5ddbe66022aa5e099add80444801",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "007-larkseal-contract-signature",
+      "file": "emails/teaching/007-larkseal-contract-signature.eml",
+      "set": "teaching",
+      "bytes": 4815,
+      "sha256": "4d75709be17adb3adb4b6cd94f39eb2aa8f303ede8fad6e9ccf3117920583b93",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "008-larkhollow-quote-portal",
+      "file": "emails/teaching/008-larkhollow-quote-portal.eml",
+      "set": "teaching",
+      "bytes": 5576,
+      "sha256": "d2696e994f070d98aede7f330f7cbb2208b4c7faa27fea93a3d9648df3940e08",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "009-ceo-are-you-available",
+      "file": "emails/teaching/009-ceo-are-you-available.eml",
+      "set": "teaching",
+      "bytes": 3513,
+      "sha256": "06d6277e3b193cfa39e32d68096c352a975331da8e082cbc794c5d74d06a1409",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "010-ferncrate-rfq-share",
+      "file": "emails/teaching/010-ferncrate-rfq-share.eml",
+      "set": "teaching",
+      "bytes": 4179,
+      "sha256": "bde8f7b0424bd3c8df2ccc4fef04589fef6c41273bf01e60c9d236b8bd142c67",
+      "category": "malware_delivery",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "011-po-20431-thread-reply",
+      "file": "emails/teaching/011-po-20431-thread-reply.eml",
+      "set": "teaching",
+      "bytes": 3044,
+      "sha256": "b8db842029219fe57ab08f79b94ccff11f0e7a7cca76e8574d4fa456e9aad2a8",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "easy"
+    },
+    {
+      "id": "012-elmhollow-badge-access",
+      "file": "emails/teaching/012-elmhollow-badge-access.eml",
+      "set": "teaching",
+      "bytes": 5767,
+      "sha256": "501b2281b5e81100f3cc9c8d6394bac457412849964e5f3cc37f73338c80640f",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "hard"
+    },
+    {
+      "id": "013-vetchmoor-census-correction",
+      "file": "emails/teaching/013-vetchmoor-census-correction.eml",
+      "set": "teaching",
+      "bytes": 6050,
+      "sha256": "14f4ef75c8dd17e7da0816963a52d814d731f63e9f693d4a09b7c362d3485627",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "014-ferncrate-staffing-plan-share",
+      "file": "emails/teaching/014-ferncrate-staffing-plan-share.eml",
+      "set": "teaching",
+      "bytes": 5676,
+      "sha256": "3d9d66fe62af4e045aec84fb345a790653f1b1ac6ef572f73e459a41ec35de57",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "015-report-phish-reminder",
+      "file": "emails/teaching/015-report-phish-reminder.eml",
+      "set": "teaching",
+      "bytes": 5025,
+      "sha256": "f6d4a589f4479eeae0f0fcad68560725f1410723398e765335b08411690df0be",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "medium"
+    },
+    {
+      "id": "016-slatemoor-remit-to-update",
+      "file": "emails/teaching/016-slatemoor-remit-to-update.eml",
+      "set": "teaching",
+      "bytes": 7208,
+      "sha256": "380fc638521cba1ed2940b3acb067dc444b49c74d860b6f8ea964f4a14692fff",
+      "category": "vendor_fraud",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "017-fenwright-pay-statement-ready",
+      "file": "emails/teaching/017-fenwright-pay-statement-ready.eml",
+      "set": "teaching",
+      "bytes": 5012,
+      "sha256": "5ec9f82e2ed0d40dbe497d8e6e8f7b161945053c56c07194e4ff2551d2793e90",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "medium"
+    },
+    {
+      "id": "018-hollinvale-site-access-link",
+      "file": "emails/teaching/018-hollinvale-site-access-link.eml",
+      "set": "teaching",
+      "bytes": 3779,
+      "sha256": "84b8640b4c089501dd8ab92e558a96fd5fb003b6c4912f8f673978444776c827",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "019-cfo-move-slatemoor-payment",
+      "file": "emails/teaching/019-cfo-move-slatemoor-payment.eml",
+      "set": "teaching",
+      "bytes": 2102,
+      "sha256": "6d1451a34f5bafc7dee08c6cbb461f3df6a11b5e1b2fb7ca82c678d267865123",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "hard"
+    },
+    {
+      "id": "020-sso-session-expired",
+      "file": "emails/teaching/020-sso-session-expired.eml",
+      "set": "teaching",
+      "bytes": 6004,
+      "sha256": "0e0f2ce9bebdf941dd1f3f78bf3d1ec2fdb724073749b8fc96c2e88eccf3cf43",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "021-direct-deposit-change-request",
+      "file": "emails/teaching/021-direct-deposit-change-request.eml",
+      "set": "teaching",
+      "bytes": 4722,
+      "sha256": "8b978319e337bbb873829243de7dfffb3c702b8b0d39725ac4df0e25da65caac",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "022-mailbox-quota-subject-tag",
+      "file": "emails/teaching/022-mailbox-quota-subject-tag.eml",
+      "set": "teaching",
+      "bytes": 5678,
+      "sha256": "70dfbad55c9612c58b276f8190fd8337b40eadac4e75d02bd1e520e6818cd805",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "023-cfo-vendor-update-header-note",
+      "file": "emails/teaching/023-cfo-vendor-update-header-note.eml",
+      "set": "teaching",
+      "bytes": 4807,
+      "sha256": "45b5c24f21f1f9d54f9d6c2ab709dc51cf0c7aaebb4a99ee2b8731f726f1e846",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "024-vetchmoor-census-control",
+      "file": "emails/teaching/024-vetchmoor-census-control.eml",
+      "set": "teaching",
+      "bytes": 5458,
+      "sha256": "b9e79333abe5c22dcffb3f5ac36f13ca561bb8f1f57fbc9d841fa746b4380cba",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "025-larkseal-review-encoded-subject",
+      "file": "emails/teaching/025-larkseal-review-encoded-subject.eml",
+      "set": "teaching",
+      "bytes": 4508,
+      "sha256": "21999d5abcc52b484d0c63a1b067b27c7f43925237e07505be62a4ce7d0137b0",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "026-larkseal-password-reset",
+      "file": "emails/batch/026-larkseal-password-reset.eml",
+      "set": "batch",
+      "bytes": 4781,
+      "sha256": "f521dfccf746f5b91a4355b3a3c133f3673b12c8a220a6a1b395ef1ca397a754",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "027-benefits-portal-update",
+      "file": "emails/batch/027-benefits-portal-update.eml",
+      "set": "batch",
+      "bytes": 7692,
+      "sha256": "371edfc7f18866829d35aef42a8da64ff5cc03bf78641e6529538343da3145e9",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "028-hollinvale-shared-invoice",
+      "file": "emails/batch/028-hollinvale-shared-invoice.eml",
+      "set": "batch",
+      "bytes": 4266,
+      "sha256": "e7857717f55c6c49520baee209e67b628d0e7718bdc0956cf1f068e8339b52a0",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "029-ceo-gift-cards",
+      "file": "emails/batch/029-ceo-gift-cards.eml",
+      "set": "batch",
+      "bytes": 4691,
+      "sha256": "579ed152ef5c7a965aa8bd847ca8a9c0c104efe3c8aaddf3b0bd71c9e7b3cbf4",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "030-ceo-mailbox-early-favor",
+      "file": "emails/batch/030-ceo-mailbox-early-favor.eml",
+      "set": "batch",
+      "bytes": 2842,
+      "sha256": "b6843b7fe81742a2dae05240ff64b33a937c08afc3e294cf75b911537680b0ad",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "031-slatemoor-invoice-ach-update",
+      "file": "emails/batch/031-slatemoor-invoice-ach-update.eml",
+      "set": "batch",
+      "bytes": 6090,
+      "sha256": "83948bb8ffb14340e7faad35baaaca9465d340c76cd37acc835d99a02d7157fb",
+      "category": "vendor_fraud",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "032-cindermill-invoice-executable",
+      "file": "emails/batch/032-cindermill-invoice-executable.eml",
+      "set": "batch",
+      "bytes": 3122,
+      "sha256": "bb4dca25e126c4f4ff248dae4484becaaebabdc966bbfbf84998549317882ad1",
+      "category": "malware_delivery",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "033-gateway-digest-lookalike",
+      "file": "emails/batch/033-gateway-digest-lookalike.eml",
+      "set": "batch",
+      "bytes": 7013,
+      "sha256": "38c9a76555ca4a0bacadaff6f3ba1139a96810fc0d5e2887337db7e7dd1b0478",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "easy"
+    },
+    {
+      "id": "034-cfo-vendor-setup-thread",
+      "file": "emails/batch/034-cfo-vendor-setup-thread.eml",
+      "set": "batch",
+      "bytes": 6539,
+      "sha256": "d1fbef4ced465eba550df4d24545954800ad4f4a5b7bd3f56c3797386816ebda",
+      "category": "bec",
+      "verdict": "malicious",
+      "difficulty": "hard"
+    },
+    {
+      "id": "035-fenwright-statement-lookalike-copy",
+      "file": "emails/batch/035-fenwright-statement-lookalike-copy.eml",
+      "set": "batch",
+      "bytes": 5113,
+      "sha256": "c04a3ffe823e50139e2bb84a70389ff249c9197353a48d11d767c80a429f1175",
+      "category": "credential_phish",
+      "verdict": "malicious",
+      "difficulty": "medium"
+    },
+    {
+      "id": "036-sandmarsh-positive-pay-exception",
+      "file": "emails/batch/036-sandmarsh-positive-pay-exception.eml",
+      "set": "batch",
+      "bytes": 6252,
+      "sha256": "b0d6cbf736766200ef346ba919727cbbbbb025c36d226aac85d15a187592f54d",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "hard"
+    },
+    {
+      "id": "037-marlstone-april-invoice",
+      "file": "emails/batch/037-marlstone-april-invoice.eml",
+      "set": "batch",
+      "bytes": 6729,
+      "sha256": "9758afd88e3cb1e916db6b225defd511e6dcc244026e2bce518c564138e2c8e6",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "hard"
+    },
+    {
+      "id": "038-rookmere-service-request",
+      "file": "emails/batch/038-rookmere-service-request.eml",
+      "set": "batch",
+      "bytes": 5911,
+      "sha256": "4abd2a231ad19eb2e6f96b40c39480c010f78018a3b50ee1dd3c20d408a111d9",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "medium"
+    },
+    {
+      "id": "039-cfo-pay-marlstone-today",
+      "file": "emails/batch/039-cfo-pay-marlstone-today.eml",
+      "set": "batch",
+      "bytes": 2447,
+      "sha256": "6805b8b42e7760c39fdd5ead05665c193cc8724f86b4b81ea4ceb649b35aa923",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "hard"
+    },
+    {
+      "id": "040-quarantine-digest-genuine",
+      "file": "emails/batch/040-quarantine-digest-genuine.eml",
+      "set": "batch",
+      "bytes": 3718,
+      "sha256": "10316a1b6fefdef319b934f512fb3059922eca1ca08054ae9b0823aafb0f0194",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "easy"
+    },
+    {
+      "id": "041-peakwright-seo-pitch",
+      "file": "emails/batch/041-peakwright-seo-pitch.eml",
+      "set": "batch",
+      "bytes": 5648,
+      "sha256": "1f00d4fb2ad8bf764d61ef8fb60c6ffaa133b50389abf066887d05fe0565e3cf",
+      "category": "spam",
+      "verdict": "benign",
+      "difficulty": "easy"
+    },
+    {
+      "id": "042-cottonmoor-early-bird-pricing",
+      "file": "emails/batch/042-cottonmoor-early-bird-pricing.eml",
+      "set": "batch",
+      "bytes": 6365,
+      "sha256": "aa8cf68df62795004bdaf59ab89be48bbfa0dab6c81d9dc4d3cd66732268e9d1",
+      "category": "spam",
+      "verdict": "benign",
+      "difficulty": "medium"
+    },
+    {
+      "id": "043-larkseal-bank-change-letter",
+      "file": "emails/batch/043-larkseal-bank-change-letter.eml",
+      "set": "batch",
+      "bytes": 6104,
+      "sha256": "d0512b6deb65b2969b7cceefc8f443f287a4dcbf282d7d9cf622cef309d52dfc",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "medium"
+    },
+    {
+      "id": "044-warehouse-shift-schedule-spanish",
+      "file": "emails/batch/044-warehouse-shift-schedule-spanish.eml",
+      "set": "batch",
+      "bytes": 3748,
+      "sha256": "8cfd3caa56f92f385a9f1d0a25f758319e600cc9c6221d5e25281bb0d38231d5",
+      "category": "legit_internal",
+      "verdict": "benign",
+      "difficulty": "easy"
+    },
+    {
+      "id": "045-job-applicant-portfolio",
+      "file": "emails/batch/045-job-applicant-portfolio.eml",
+      "set": "batch",
+      "bytes": 5349,
+      "sha256": "19d78d6c30789409464d77ada5808b83acdae3a8a86b1e6ee57552b8604d0dc9",
+      "category": "legit_external",
+      "verdict": "benign",
+      "difficulty": "hard"
+    }
+  ]
+}

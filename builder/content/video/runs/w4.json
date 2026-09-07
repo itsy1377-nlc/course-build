@@ -1,0 +1,765 @@
+{
+  "week": 4,
+  "video": "w4-walkthrough",
+  "what_the_week_shows": "The model asks for a tool by name, your code runs it, and the verdict changes once the result comes back.",
+  "submission_artifact": "week4_tool_calls.json",
+  "recorded_on": "2026-09-05",
+  "recorded_by": "Phase 3 video build, ITSY 1377",
+  "email": {
+    "id": "005",
+    "corpus_id": "005-slatemoor-past-due-statement",
+    "file": "builder/corpus/emails/teaching/005-slatemoor-past-due-statement.eml",
+    "sha256": "fe29be9af4aecf08b1068807b1ba6a915d71333373d8fe495f31b20a9cf9915a",
+    "sha256_note": "Read before the first run and again after the last. Unchanged. This project has thrown away a measurement because inputs moved under it, so the digest is the reason this record can be trusted later.",
+    "subject": "Past due statement, account 44170: credit hold on 4/20 if unpaid",
+    "from": "Slatemoor Industrial Supply - Accounts Receivable <ar@slatemoorsupply.example>",
+    "to": "ap@pellgrave.example",
+    "url_hosts": [
+      "billing.slatemoorsupply.example"
+    ],
+    "ground_truth": {
+      "verdict": "benign",
+      "category": "legit_external",
+      "difficulty": "hard",
+      "body_only_read": "malicious",
+      "expected_loop_tools": [
+        "check_sender_reputation",
+        "check_urls"
+      ],
+      "source": "builder/corpus/ground_truth.json and builder/corpus/spec/corpus-spec.json"
+    }
+  },
+  "not_this_weeks_assignment": {
+    "week_4_lab_emails": [
+      "003",
+      "008",
+      "009",
+      "017",
+      "018",
+      "019"
+    ],
+    "every_email_the_week_4_notebook_touches": [
+      "003",
+      "008",
+      "009",
+      "017",
+      "018",
+      "019"
+    ],
+    "this_email": "005",
+    "verdict": "005 appears nowhere in the week 4 notebook. The lab list is the six above, the demo cells load 003, 008, 017 and 018, and the string 005 does not occur anywhere in the file.",
+    "exam_reserved_range_avoided": "046 to 056",
+    "earlier_walkthroughs": "Weeks 1 and 2 both used 007. This is a different email, so a student watching all seven sees a range.",
+    "later_labs": "005 is a week 3 lab email and a week 5 lab email. Week 3 comes before this video, so the student has already worked it. The same pattern was already accepted in weeks 1 and 2, which used 007, a week 5 lab email."
+  },
+  "world": {
+    "model": "granite4.2:3b",
+    "model_blob_digest": "40577dc168a3",
+    "endpoint": "http://localhost:11434/v1",
+    "serving_stack": "ollama 0.32.15, OpenAI-compatible chat completions",
+    "system_fingerprint": "fp_ollama",
+    "temperature": 0.2,
+    "max_tokens": 1024,
+    "reasoning_effort": "none",
+    "tool_definitions_sent": [
+      "check_sender_reputation",
+      "check_urls",
+      "lookup_recipient"
+    ],
+    "tool_block_characters": 1193,
+    "first_turn_message_characters": {
+      "system": 319,
+      "user": 3398
+    }
+  },
+  "how_it_was_run": {
+    "code": "The pipeline cells of builder/instructor/solutions/w4-lab-solution.ipynb, lifted verbatim into a scratch script. No notebook was edited.",
+    "cells_used": "2, 3, 4, 6, 9, 11 and the function definitions from 12",
+    "the_pair": "Each run is the no-tools comparison the lab makes (classify_grounded, the week 3 grounded prompt with no tool definitions attached) followed by the with-tools round (triage_with_tools).",
+    "model_calls_per_run": {
+      "no_tools_comparison": 1,
+      "with_tools": 2,
+      "total": 3
+    },
+    "runs": 20,
+    "batches": "Two batches of ten, both on 2026-09-05, same host, same model."
+  },
+  "canonical_run": {
+    "which": "batch B, repeat 2. Chosen because it named the tool that 18 of the 20 runs named, and its 4,242 tokens sit next to the 4,244 mean.",
+    "step_1_no_tools": {
+      "what_it_is": "The week 3 grounded prompt. Facts block, playbook and known-good hosts, no tool definitions attached.",
+      "finish_reason": "stop",
+      "tokens": {
+        "prompt": 1224,
+        "answer": 137,
+        "total": 1361
+      },
+      "raw_answer": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Came from outside the company: True\",\n    \"Link hosts: ['billing.slatemoorsupply.example']\",\n    \"Display name mismatch: False\",\n    \"Sender domain: slatemoorsupply.example\",\n    \"Subject: Past due statement, account 44170: credit hold on 4/20 if unpaid\",\n    \"The statement with copies of both invoices is on the billing portal.\"\n  ]\n}",
+      "parsed": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Came from outside the company: True",
+          "Link hosts: ['billing.slatemoorsupply.example']",
+          "Display name mismatch: False",
+          "Sender domain: slatemoorsupply.example",
+          "Subject: Past due statement, account 44170: credit hold on 4/20 if unpaid",
+          "The statement with copies of both invoices is on the billing portal."
+        ]
+      },
+      "against_ground_truth": "Wrong. Ground truth is benign, legit_external."
+    },
+    "step_2_the_model_asks": {
+      "what_it_is": "The same email, with the three tool definitions attached.",
+      "finish_reason": "tool_calls",
+      "answer_text": "",
+      "answer_text_note": "The model sent no answer text at all. A reply either answers or asks for a tool. The notebook prints a one-line notice in that empty slot, which reads: No answer text came back. The reply held no answer. The reason the model gave was: tool_calls",
+      "tokens": {
+        "prompt": 1467,
+        "answer": 39,
+        "total": 1506
+      },
+      "tool_calls_returned": 1,
+      "tool_call_as_it_arrived": {
+        "id": "PT5B4AaTNJqYY7TWHiCvrlIjYByqM17x",
+        "index": 0,
+        "type": "function",
+        "function": {
+          "name": "check_sender_reputation",
+          "arguments": "{\"sender\":\"slatemoorsupply.example\"}"
+        }
+      },
+      "name": "check_sender_reputation",
+      "arguments": "{\"sender\":\"slatemoorsupply.example\"}",
+      "arguments_note": "Arguments arrive as text, not as a dictionary. The model passed the domain rather than the full address ar@slatemoorsupply.example. The tool takes either."
+    },
+    "step_3_your_code_runs_it": {
+      "who_ran_it": "Your code. The model ran nothing.",
+      "tool": "check_sender_reputation",
+      "result": {
+        "domain": "slatemoorsupply.example",
+        "status": "trusted",
+        "first_seen": "2022-06-14",
+        "messages_90d": 96,
+        "prior_reports": 2,
+        "last_report_verdict": "benign",
+        "last_report_date": "2026-04-02",
+        "campaign_tag": null,
+        "new_domain": false,
+        "notes": "Parts supplier; allowlisted.",
+        "match_level": "domain"
+      },
+      "result_note": "The tool is deterministic and offline. This record is the one in builder/corpus/data/sender_reputation.json, and it matches the corpus tool_expectations for this email exactly.",
+      "message_sent_back": {
+        "role": "tool",
+        "tool_call_id": "PT5B4AaTNJqYY7TWHiCvrlIjYByqM17x",
+        "name": "check_sender_reputation",
+        "content": "the result above, as text"
+      },
+      "id_the_model_sent": "PT5B4AaTNJqYY7TWHiCvrlIjYByqM17x",
+      "id_your_message_carried": "PT5B4AaTNJqYY7TWHiCvrlIjYByqM17x",
+      "ids_match": true
+    },
+    "step_4_the_verdict_after": {
+      "roles_on_the_second_turn": [
+        "system",
+        "user",
+        "assistant",
+        "tool",
+        "user"
+      ],
+      "tools_attached": 0,
+      "finish_reason": "stop",
+      "tokens": {
+        "prompt": 1273,
+        "answer": 102,
+        "total": 1375
+      },
+      "raw_answer": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.95,\n  \"indicators\": [\n    \"SPF, DKIM, DMARC all pass\",\n    \"Sender domain matches billing portal host\",\n    \"Message contains legitimate account details and payment instructions\",\n    \"No suspicious links or attachments\",\n    \"Sender is a known vendor with trusted reputation\"\n  ]\n}",
+      "parsed": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.95,
+        "indicators": [
+          "SPF, DKIM, DMARC all pass",
+          "Sender domain matches billing portal host",
+          "Message contains legitimate account details and payment instructions",
+          "No suspicious links or attachments",
+          "Sender is a known vendor with trusted reputation"
+        ]
+      },
+      "against_ground_truth": "Right on both. Ground truth is benign, legit_external."
+    },
+    "row_totals": {
+      "model_calls": 3,
+      "tokens": 4242,
+      "schema_retries": 0,
+      "fallback_used": false
+    }
+  },
+  "did_it_vary": {
+    "runs": 20,
+    "the_flip_held": "20 of 20. Malicious before the tool result, benign after it, every single run.",
+    "stable_across_all_20": {
+      "verdict_without_tools": {
+        "malicious": 20
+      },
+      "confidence_without_tools": {
+        "0.85": 20
+      },
+      "indicator_count_without_tools": {
+        "6": 20
+      },
+      "first_turn_finish_reason": {
+        "tool_calls": 20
+      },
+      "first_turn_answer_text": {
+        "empty": 20
+      },
+      "tool_calls_returned_per_first_turn": {
+        "1": 20
+      },
+      "call_ids_matched": {
+        "True": 20
+      },
+      "verdict_with_tools": {
+        "benign": 20
+      },
+      "category_with_tools": {
+        "legit_external": 20
+      },
+      "confidence_with_tools": {
+        "0.95": 20
+      },
+      "second_turn_finish_reason": {
+        "stop": 20
+      },
+      "schema_retries_fired": {
+        "0": 20
+      },
+      "fallback_path_used": {
+        "false": 20
+      }
+    },
+    "what_did_vary": {
+      "tool_the_model_named": {
+        "check_sender_reputation": 18,
+        "check_urls": 2
+      },
+      "arguments_as_sent": {
+        "{\"sender\":\"slatemoorsupply.example\"}": 18,
+        "{\"hosts\":[\"billing.slatemoorsupply.example\"]}": 2
+      },
+      "category_without_tools": {
+        "credential_phish": 18,
+        "vendor_fraud": 2
+      },
+      "indicator_count_with_tools": {
+        "5": 16,
+        "6": 4
+      },
+      "indicator_wording": "Different words every run. Counted across the 20: authentication passing appears 20 times, the sender domain matching the link host 19 times, a trusted or known vendor 17 times, no attachment or no suspicious link 14 times, and the word allowlist 7 times.",
+      "note_on_the_tool": "Both tools the model named are in the corpus expected loop for this email, and both results point the same way: the sender is trusted and the one link host is allowlisted. The verdict landed on benign either way."
+    },
+    "tokens": {
+      "no_tools_call": {
+        "min": 1361,
+        "max": 1370,
+        "mean": 1362.3
+      },
+      "turn_1_total": {
+        "min": 1506,
+        "max": 1507,
+        "mean": 1506.1
+      },
+      "turn_1_answer_only": {
+        "min": 39,
+        "max": 40,
+        "mean": 39.1
+      },
+      "turn_2_total": {
+        "min": 1287,
+        "max": 1409,
+        "mean": 1375.1
+      },
+      "the_two_tool_turns_together": {
+        "min": 2794,
+        "max": 2915,
+        "mean": 2881.2
+      },
+      "whole_row_all_three_calls": {
+        "min": 4155,
+        "max": 4276,
+        "mean": 4243.6
+      }
+    },
+    "seconds": {
+      "per_call": {
+        "min": 0.76,
+        "max": 13.21,
+        "median": 5.46
+      },
+      "warning": "Do not say a time aloud. The spread is host load on the machine that recorded this, not model behaviour."
+    }
+  },
+  "per_run": [
+    {
+      "run": "A1",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1373,
+        "row_total": 4240
+      }
+    },
+    {
+      "run": "A2",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1370,
+        "turn_1": 1506,
+        "turn_2": 1383,
+        "row_total": 4259
+      }
+    },
+    {
+      "run": "A3",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1370,
+        "turn_1": 1506,
+        "turn_2": 1391,
+        "row_total": 4267
+      }
+    },
+    {
+      "run": "A4",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_urls",
+      "arguments_as_sent": "{\"hosts\":[\"billing.slatemoorsupply.example\"]}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1507,
+        "turn_2": 1287,
+        "row_total": 4155
+      }
+    },
+    {
+      "run": "A5",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1384,
+        "row_total": 4251
+      }
+    },
+    {
+      "run": "A6",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1374,
+        "row_total": 4241
+      }
+    },
+    {
+      "run": "A7",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1377,
+        "row_total": 4244
+      }
+    },
+    {
+      "run": "A8",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_urls",
+      "arguments_as_sent": "{\"hosts\":[\"billing.slatemoorsupply.example\"]}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1507,
+        "turn_2": 1287,
+        "row_total": 4155
+      }
+    },
+    {
+      "run": "A9",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1375,
+        "row_total": 4242
+      }
+    },
+    {
+      "run": "A10",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "vendor_fraud",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 6,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1384,
+        "row_total": 4251
+      }
+    },
+    {
+      "run": "B1",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1385,
+        "row_total": 4252
+      }
+    },
+    {
+      "run": "B2",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1375,
+        "row_total": 4242
+      }
+    },
+    {
+      "run": "B3",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1370,
+        "turn_1": 1506,
+        "turn_2": 1391,
+        "row_total": 4267
+      }
+    },
+    {
+      "run": "B4",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 6,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1390,
+        "row_total": 4257
+      }
+    },
+    {
+      "run": "B5",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1387,
+        "row_total": 4254
+      }
+    },
+    {
+      "run": "B6",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1403,
+        "row_total": 4270
+      }
+    },
+    {
+      "run": "B7",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "vendor_fraud",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1376,
+        "row_total": 4243
+      }
+    },
+    {
+      "run": "B8",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 6,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1409,
+        "row_total": 4276
+      }
+    },
+    {
+      "run": "B9",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 6,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1387,
+        "row_total": 4254
+      }
+    },
+    {
+      "run": "B10",
+      "verdict_without_tools": "malicious",
+      "category_without_tools": "credential_phish",
+      "confidence_without_tools": 0.85,
+      "tool_named_by_model": "check_sender_reputation",
+      "arguments_as_sent": "{\"sender\":\"slatemoorsupply.example\"}",
+      "call_ids_matched": true,
+      "verdict_with_tools": "benign",
+      "category_with_tools": "legit_external",
+      "confidence_with_tools": 0.95,
+      "indicator_count_with_tools": 5,
+      "retries_fired": 0,
+      "fallback_used": false,
+      "tokens": {
+        "no_tools_call": 1361,
+        "turn_1": 1506,
+        "turn_2": 1384,
+        "row_total": 4251
+      }
+    }
+  ],
+  "numbers_a_walkthrough_can_say_aloud": [
+    "Before the tool result: malicious, confidence 0 point 8 5. Twenty runs out of twenty.",
+    "After the tool result: benign, confidence 0 point 9 5. Twenty runs out of twenty.",
+    "The category after the tool: legit external, which is what the answer key says. Twenty out of twenty.",
+    "The first turn came back with no answer text and a stop reason of tool calls, every time.",
+    "The model named check sender reputation in eighteen runs out of twenty, and check urls in the other two.",
+    "One tool call per email. Two model calls: one to ask, one to answer.",
+    "The id the model sent and the id your message carried back matched in twenty runs out of twenty.",
+    "The two tool turns cost about 2,880 tokens together.",
+    "No retry fired. Every answer passed the week 2 check on the first try, forty answers out of forty."
+  ],
+  "the_most_interesting_honest_thing": "Week 3's own capability was not enough for this email, and week 4's was. Given the facts block, the playbook and the known-good host list, the model called this real collections notice malicious in 20 runs out of 20, at confidence 0.85. The one fact that settles it is not in the email and not in the facts block: the sender has been trusted since 2022 and its two earlier reports both closed benign. The model asked for that fact by name, the code ran the tool, and on the next turn the verdict was benign, legit_external, confidence 0.95, which matches the answer key on both fields. This is a clean success for the week's capability and a plain failure of the week before it. Nothing here is invented: the failure and the fix were both measured 20 times.",
+  "cautions_for_the_scene_list": [
+    "Never show the code. run_tool() and tool_result_message() are the two TODOs. The tool call object, the tool result and the two JSON answers are model and data output, not student work, and are safe to show.",
+    "The wording of the indicators changes on every run. Show the verdict, the category and the confidence, which do not.",
+    "Do not say a number of seconds. Timing was host load.",
+    "Do not promise the model will name check_sender_reputation. It named check_urls in 2 runs of 20. Both land on benign.",
+    "The category before the tool was credential_phish in 18 runs and vendor_fraud in 2. If a slide names the wrong category, it is the verdict that is stable, not the category."
+  ],
+  "alternate_considered_and_rejected": {
+    "email": "016-slatemoor-remit-to-update",
+    "why_it_was_attractive": "The flip runs the other way: the body reads benign and the truth is malicious vendor fraud.",
+    "runs": 5,
+    "what_happened": "Without tools it split, 3 malicious and 2 benign. With tools it answered benign in 5 runs of 5, and the truth is malicious. The model passed the lookalike display domain to the tool and got a trusted record back.",
+    "why_rejected": "A walkthrough that shows the tool making the answer worse teaches the opposite of the week, and the before column does not hold still. Recorded here because it is a real result and the week 6 build should know it."
+  },
+  "provenance": {
+    "raw_transcripts": "/private/tmp/claude-501/-Users-aaron-workspace-dev-ITSY1377/8ebfb83f-3d81-4460-8822-9754df64a237/scratchpad/w4run/",
+    "files": [
+      "raw-005-batchA.json (runs A1 to A10)",
+      "raw-005-batchB.json (runs B1 to B10, identical to raw-005.json)",
+      "merged-005.json (all 20 runs, the file this record was built from)",
+      "raw-016.json (the five rejected comparison runs)",
+      "run_w4.py and _lifted.py (the runner and the cells lifted from the solution notebook)"
+    ],
+    "note": "Scratch is session local and is not a durable store. Everything a video needs is in this file."
+  }
+}

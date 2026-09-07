@@ -1,0 +1,129 @@
+Return-Path: <quotes@larkhollow-controls.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id af73fca8-1fa6-4695-9d6b-7ea5a4494105
+  for <e.dawodu@pellgrave.example>; Wed, 15 Apr 2026 13:26:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=larkhollow-controls.example;
+  dkim=pass header.d=larkhollow-controls.example header.s=lh1
+    header.i=@larkhollow-controls.example;
+  dmarc=pass header.from=larkhollow-controls.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  quotes@larkhollow-controls.example designates 203.0.113.155 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.155;
+  envelope-from="quotes@larkhollow-controls.example";
+  helo=mail.larkhollow-controls.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.2
+X-Sentrywick-Message-UID: 1c5e3bf7b1c1
+X-Sentrywick-Reported-By: e.dawodu@pellgrave.example
+Received: from mail.larkhollow-controls.example
+  (mail.larkhollow-controls.example [203.0.113.155])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 1c5e3bf7b1c1;
+  Wed, 15 Apr 2026 13:26:06 -0500
+Received: from app-02.larkhollow-controls.example ([192.0.2.155])
+  by mail.larkhollow-controls.example with ESMTPSA id d22f69a6;
+  Wed, 15 Apr 2026 18:26:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=larkhollow-controls.example; s=lh1; t=1776277563;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=om8yoU4c6BmJkzGd+7+8MLOXe+oZ1MF8zKLyEkLUufE=;
+  b=RKWxS8A/jPPlnnWu3o4lE32hfpJjYQxmG2pPnc1Tcv3nKheRBwmD9x62wW7L5o0GM2g08Ejg
+   maBgJEZCsFeWBspjcgup4ALQnkX6snM6XP7cpsOIVsJ9PdwIBPvzS/nCUiHJkSfg/qAfXaNy
+   q9FlU16iklw5zBnuLcnQSmwFDZVtBRoj38zZmomjDj0cqMHxBFLVQpCASVxp0HJAAVaCc4H7
+   L5I0CmZU3AqJ1hxCWj5U1Uo+tX/9YupXjN+nMR7r22GoxoAcGjBGZnd815jNR8zCBR12MgeU
+   +aEOIaU/v3dIgW3X5s4aUpSBTXi2uZ0VZGFltDUyDr5os0ZSsDrWSQ==
+Date: Wed, 15 Apr 2026 13:26:00 -0500
+From: Larkhollow Controls Quotes <quotes@larkhollow-controls.example>
+To: Emeric Dawodu <e.dawodu@pellgrave.example>
+Subject: Quote Q-2291 ready: Rookmere chiller controls
+Message-ID: <20260415182600.130db8749278@app-02.larkhollow-controls.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_838b9b0cfe38"
+
+--=_part_838b9b0cfe38
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Quote Q-2291: Rookmere chiller controls package
+
+Hello Emeric,
+
+Your quote Q-2291 for the Rookmere chiller controls package is
+ready. It covers the six BAS controllers, the two differential
+pressure sensors and the panel retrofit, with commissioning labor
+priced on its own line.
+
+Quote number: Q-2291
+Prepared for: Pellgrave Mechanical Group
+Total: 42,750.00 USD
+Good for: 30 days from the date of this message
+
+Lead time on the controllers is running six to eight weeks from
+release, so the schedule in the quote assumes a release in the
+first half of May.
+
+View quote in portal: https://portal.larkhollow-controls.example/quotes/Q-2291
+
+The portal will ask you to sign in with your work email address the
+first time you open a quote. From there you can accept it, ask for
+a revision, or leave a note on any line item and it comes straight
+to me.
+
+If the counts look off against your list, reply to this message
+with what you have and I will reprice it.
+
+Dale Okorie
+Inside Sales
+Larkhollow Controls
+555-0163 ext. 218
+
+--=_part_838b9b0cfe38
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f2f2f2;">
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:0 auto;padding:24px;
+  background:#ffffff;font-family:sans-serif;font-size:15px;
+  line-height:1.5;color:#222222;">
+<p style=3D"margin:0 0 18px 0;font-size:17px;font-weight:bold;
+  color:#1b4f8a;">Quote Q-2291: Rookmere chiller controls package</p>
+<p>Hello Emeric,</p>
+<p>Your quote Q-2291 for the Rookmere chiller controls package is
+ready. It covers the six BAS controllers, the two differential
+pressure sensors and the panel retrofit, with commissioning labor
+priced on its own line.</p>
+<p>Quote number: Q-2291<br>
+Prepared for: Pellgrave Mechanical Group<br>
+<b>Total: 42,750.00 USD</b><br>
+Good for: 30 days from the date of this message</p>
+<p>Lead time on the controllers is running six to eight weeks from
+release, so the schedule in the quote assumes a release in the
+first half of May.</p>
+<p><a href=3D"https://portal.larkhollow-controls.example/quotes/Q-2291"
+  style=3D"display:inline-block;padding:10px 22px;background:#1b4f8a;
+  color:#ffffff;text-decoration:none;border-radius:4px;"
+  >View quote in portal</a></p>
+<p>The portal will ask you to sign in with your work email address the
+first time you open a quote. From there you can accept it, ask for
+a revision, or leave a note on any line item and it comes straight
+to me.</p>
+<p>If the counts look off against your list, reply to this message
+with what you have and I will reprice it.</p>
+<p>Dale Okorie<br>
+Inside Sales<br>
+Larkhollow Controls<br>
+555-0163 ext. 218</p>
+</div>
+</body>
+</html>
+
+--=_part_838b9b0cfe38--

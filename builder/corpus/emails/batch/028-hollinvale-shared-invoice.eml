@@ -1,0 +1,98 @@
+Return-Path: <r.solheim@hollinvalepm.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 52214e64-8586-4dac-a6f5-4a5f910741e2
+  for <l.vashti@pellgrave.example>; Tue, 21 Apr 2026 10:07:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=hollinvalepm.example;
+  dkim=pass header.d=hollinvalepm.example header.s=hv1
+    header.i=@hollinvalepm.example;
+  dmarc=pass header.from=hollinvalepm.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  r.solheim@hollinvalepm.example designates 203.0.113.96 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.96;
+  envelope-from="r.solheim@hollinvalepm.example";
+  helo=mail.hollinvalepm.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.3
+X-Sentrywick-Message-UID: 997bc20213e2
+X-Sentrywick-Reported-By: l.vashti@pellgrave.example
+Received: from mail.hollinvalepm.example
+  (mail.hollinvalepm.example [203.0.113.96])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 997bc20213e2;
+  Tue, 21 Apr 2026 10:07:05 -0500
+Received: from webmail.hollinvalepm.example ([192.0.2.88])
+  by mail.hollinvalepm.example with ESMTPSA id a7c6f1be;
+  Tue, 21 Apr 2026 15:07:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=hollinvalepm.example; s=hv1; t=1776784022;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=5QrqHBIOKSfIPRFbymPZHlVpl948Fch4Nei43MziMWM=;
+  b=QdQ7xfo4r2mpq/BiVmTyZmOCGG47PKru4OSDJueorxADDxnPfuRezC8wWlrPLMqjvwY00XmZ
+   1Pt/6sNOHFKPGBgzDDPkYlSIBi17ILTknQMW14729Tis14fVMuxFCCrRM3MFuPHBoVGShDRe
+   ou4KYEbO8iEbC7HKwpSN2w/mqrjEbpods1MjeqVeDcuxohh2SgRP+azb0036gKpoFvuvDYRE
+   huK10j123iOOKZMEaz4oMg6EEelC9Aa7GjKDw4DJjzirYD3uxweLEt90OMK0Jxb4p8BFQ+3p
+   Vxw9A6w+gywcq3xO4NZSqlzvnat8kyjNA0Aw+bmhkZoIo/g6TvymZQ==
+Date: Tue, 21 Apr 2026 10:07:00 -0500
+From: Renata Solheim <r.solheim@hollinvalepm.example>
+To: Lenora Vashti <l.vashti@pellgrave.example>
+Subject: Invoice review for Hollinvale properties (secure share)
+Message-ID: <20260421150700.ec4a65992b48@webmail.hollinvalepm.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_e93bd943d0e8"
+
+--=_part_e93bd943d0e8
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Lenora,
+
+The three bills from the winter service calls are ready for review and I
+need them checked before our board meeting on the 28th. Rather than send
+them as attachments, I have shared them securely.
+
+Open secure share: https://docshare-review.example/s/hollinvale-q1
+
+The share will ask you to sign in with your work email address before the
+folder opens. If the amounts match what your office has on file, send me
+a line back and I will put them in the board packet.
+
+Thanks,
+Renata
+
+Renata Solheim
+Property Manager, Hollinvale Property Management
+555-0128
+--=_part_e93bd943d0e8
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;font-family:sans-serif;font-size:15px;line-hei=
+ght:1.5;color:#1f1f1f;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"padding:16px 18px;">
+<p>Lenora,</p>
+<p>The three bills from the winter service calls are ready for review and I=
+ need them checked before our board meeting on the 28th. Rather than send=
+ them as attachments, I have shared them securely.</p>
+<p><a href=3D"https://docshare-review.example/s/hollinvale-q1">Open secure=
+ share</a></p>
+<p>The share will ask you to sign in with your work email address before=
+ the folder opens. If the amounts match what your office has on file, send=
+ me a line back and I will put them in the board packet.</p>
+<p>Thanks,<br>Renata</p>
+<p style=3D"color:#555555;">Renata Solheim<br>Property Manager, Hollinvale=
+ Property Management<br>555-0128</p>
+</div>
+</body>
+</html>
+--=_part_e93bd943d0e8--

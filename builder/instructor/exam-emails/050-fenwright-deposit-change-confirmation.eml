@@ -1,0 +1,112 @@
+Return-Path: <notifications@fenwrightpay.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 9ce661cd-4dbb-4ab9-8cae-c7f0cb66b751
+  for <c.hallowden@pellgrave.example>; Mon, 27 Apr 2026 16:14:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=fenwrightpay.example;
+  dkim=pass header.d=fenwrightpay.example header.s=fw1
+    header.i=@fenwrightpay.example;
+  dmarc=pass header.from=fenwrightpay.example policy.dmarc=reject
+Received-SPF: pass (mx.pellgrave.example: domain of
+  notifications@fenwrightpay.example designates 203.0.113.12 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.12;
+  envelope-from="notifications@fenwrightpay.example";
+  helo=smtp-out.fenwrightpay.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.4
+X-Sentrywick-Message-UID: 636db906d913
+X-Sentrywick-Reported-By: c.hallowden@pellgrave.example
+Received: from smtp-out.fenwrightpay.example
+  (smtp-out.fenwrightpay.example [203.0.113.12])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 636db906d913;
+  Mon, 27 Apr 2026 16:14:05 -0500
+Received: from portal-app-04.fenwrightpay.example ([192.0.2.13])
+  by smtp-out.fenwrightpay.example with ESMTPSA id 7a446047;
+  Mon, 27 Apr 2026 21:14:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=fenwrightpay.example; s=fw1; t=1777324442;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=HpsHnr53Hmf3K/Zp76CGJmU3Tx3cm6IB9NCGHyAUgNg=;
+  b=coG72BdSTrAdWdMyDSfNzLf0chEOMyGETwGWxAo6VUl45u0vD1wp3n6yOs1Mqq7kyUdMiY/k
+   6qbwdIyPtCdZRQzC3m315Y8bZZpIPJxGuxA48xPGp4Dj9ttjaIz1XmZ21lagkljTbY9nuSFK
+   H+eaJ2SxVIkt93OEUD8mPJoZuilRyAtTGvSaGXFbprmVx8UJ47gwdWn3HfTDOQQKZFjJaMnR
+   /bSN1iyGmKIn60Qeixv3N8HSUbI5LyuuqVLO9l+q2KmrugmgriY4v2Blpvm3J8nV3tMfv3SJ
+   H9Lj8xwmFK1sugnL934V2CsgcCskDCUf7Q3CvzFFLCcyKFClc1HZxg==
+Date: Mon, 27 Apr 2026 16:14:00 -0500
+From: Fenwright Payroll <notifications@fenwrightpay.example>
+To: Casimir Hallowden <c.hallowden@pellgrave.example>
+Subject: Your direct deposit account was changed
+Message-ID: <20260427211400.0aa222d725c7@smtp-out.fenwrightpay.example>
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_9728b65a955f"
+
+--=_part_9728b65a955f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Fenwright Payroll
+
+Hello Casimir,
+
+Your direct deposit account was changed on 4/27/2026.
+
+The change was recorded in the employee portal at 4:11 pm Central and
+applies to the deposit dated 5/1/2026. The account we hold for you now
+ends in 2210. Your confirmation number is DD-31408.
+
+If you made this change, no action is needed. If you did not, contact
+your payroll administrator immediately.
+
+To see the details we hold for you, sign in to the employee portal with
+the same employee account you use for time entry.
+
+Review your account: https://my.fenwrightpay.example/account
+
+Fenwright Payroll on behalf of Pellgrave Mechanical Group. This is an
+automated message.
+
+--=_part_9728b65a955f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#f2f4f6;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 20px=
+ 0;font-size:20px;font-weight:bold;color:#1b4f8a;">Fenwright Payroll</p>
+<p>Hello Casimir,</p>
+<p style=3D"font-size:17px;font-weight:bold;">Your direct deposit account=
+ was changed on 4/27/2026.</p>
+<p>The change was recorded in the employee portal at 4:11 pm Central and=
+ applies to the deposit dated 5/1/2026. The account we hold for you now=
+ ends in 2210. Your confirmation number is DD-31408.</p>
+<p>If you made this change, no action is needed. If you did not, contact=
+ your payroll administrator immediately.</p>
+<p>To see the details we hold for you, sign in to the employee portal with=
+ the same employee account you use for time entry.</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://my.fenwrightpay.example/account"=
+ style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#1b4f8a;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Review your account</a></p>
+<p style=3D"margin-top:28px;padding-top:12px;border-top:1px solid=
+ #d9dee3;font-size:13px;color:#444444;">Fenwright Payroll on behalf of=
+ Pellgrave Mechanical Group. This is an automated message.</p>
+</div>
+</body>
+</html>
+
+--=_part_9728b65a955f--

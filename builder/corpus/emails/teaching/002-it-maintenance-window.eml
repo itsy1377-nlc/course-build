@@ -1,0 +1,73 @@
+Return-Path: <noreply@pellgrave.example>
+Received: from mail.pellgrave.example (mail.pellgrave.example [10.20.4.25])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 8402470c-5061-4ced-943a-7853a8a0434f
+  for <c.hallowden@pellgrave.example>; Mon, 13 Apr 2026 08:15:02 -0500
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Message-UID: 8a9d3974d80c
+X-Sentrywick-Reported-By: c.hallowden@pellgrave.example
+Received: from helpdesk-app.corp.pellgrave.example ([10.20.8.15])
+  by mail.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPSA
+  id 8a9d3974d80c; Mon, 13 Apr 2026 08:15:01 -0500
+Date: Mon, 13 Apr 2026 08:15:00 -0500
+From: Pellgrave IT Help Desk <helpdesk@pellgrave.example>
+To: All Staff Distribution List <all-staff@pellgrave.example>
+Subject: Planned maintenance: portal and field app offline Saturday 4/18,
+ 6:00 to 9:00 AM
+Message-ID: <20260413131500.b7e7f56b6159@mail.pellgrave.example>
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_af4516e92466"
+
+--=_swk_af4516e92466
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+All,
+
+The intranet portal and the field service app go offline for planned
+maintenance on Saturday 4/18, from 6:00 to 9:00 AM. Both come back on
+their own when the work finishes, and there is nothing anyone needs to
+do before or after.
+
+While the window is open, portal.pellgrave.example serves only the
+status page, and the field app will not respond. Everything else keeps
+running: email, phones, the warehouse scanners and the badge readers.
+Saturday crews get their assignments from dispatch by phone as usual.
+
+That status page stays up through the whole window and is the quickest
+place to see where the work stands:
+
+https://portal.pellgrave.example/status
+
+If part of the portal or the app is still down after 9:00, call the
+help desk at ext. 4400 and reference PMG-HD-20488, and we will pick it
+up from there.
+
+Pellgrave IT Help Desk, ext. 4400
+--=_swk_af4516e92466
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body>
+<p>All,</p>
+<p>The intranet portal and the field service app go offline for planned
+maintenance on Saturday 4/18, from 6:00 to 9:00 AM. Both come back on
+their own when the work finishes, and there is nothing anyone needs to
+do before or after.</p>
+<p>While the window is open, portal.pellgrave.example serves only the
+status page, and the field app will not respond. Everything else keeps
+running: email, phones, the warehouse scanners and the badge readers.
+Saturday crews get their assignments from dispatch by phone as usual.</p>
+<p>That status page stays up through the whole window and is the quickest
+place to see where the work stands:</p>
+<p><a href="https://portal.pellgrave.example/status"
+  >https://portal.pellgrave.example/status</a></p>
+<p>If part of the portal or the app is still down after 9:00, call the
+help desk at ext. 4400 and reference PMG-HD-20488, and we will pick it
+up from there.</p>
+<p>Pellgrave IT Help Desk, ext. 4400</p>
+</body>
+</html>
+--=_swk_af4516e92466--

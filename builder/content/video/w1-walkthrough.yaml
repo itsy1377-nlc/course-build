@@ -1,0 +1,108 @@
+id: w1-walkthrough
+title: What a finished week 1 run looks like
+kind: walkthrough
+module: m01
+embed_on: builder/content/pages/w1-content.md
+blurb: A real run on a different email than the two in your lab. What the output looks like, what should vary, and the three checks to make before you submit.
+explains:
+  - builder/content/pages/w1-content.md
+  - builder/content/assignments/w1-lab.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 1 walkthrough
+    heading: What a finished run looks like
+    body: This runs on a different email than the two in your lab, so nothing here is your answer. The shape is what to copy.
+    narration:
+      - This is what a finished week 1 run looks like.
+      - It runs on a different email than the two in your lab, so nothing here is your answer.
+      - What to take from it is the shape. When your run looks like this, it worked.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The exported file
+    heading: Six sections, in this order
+    items:
+      - The model you were configured with
+      - The prompt you sent
+      - Your own first call
+      - Six answers to the same question
+      - One answer for the second email
+      - The token totals
+    narration:
+      - text: Your notebook writes one file. It has six sections and they arrive in this order.
+        reveal: 1
+      - text: The model you were configured with, then the prompt you sent.
+        reveal: 2
+      - text: Then your own first call, from the second thing you write.
+        reveal: 3
+      - text: Then six answers to that same question.
+        reveal: 4
+      - text: Then one answer for the second email, and the token totals at the end.
+        reveal: 6
+      - text: If a section is missing, a cell did not run. Run the notebook from the top.
+        reveal: 6
+
+  - type: slide
+    layout: code
+    eyebrow: A real answer
+    heading: The model says this is not phishing
+    body: |
+      temperature 0.2, 222 prompt tokens, 337 answer tokens
+
+      "No, it does not look like a phishing attempt."
+    narration:
+      - Here is a real answer, from a real run, on that other email.
+      - The model says it is not a phishing attempt.
+      - It is wrong. That email is a fake signing request from a domain the company already blocked.
+      - Nothing went wrong in the code. The model was given the body of the message and nothing else.
+      - Remember that. It is the reason week 3 exists.
+
+  - type: slide
+    layout: compare
+    eyebrow: What should vary
+    heading: Same question, same setting, two runs
+    items:
+      - Run one | 337 answer tokens
+      - Run two | 68 answer tokens
+    narration:
+      - text: Here are two runs of that same question, at the same temperature setting.
+        reveal: 1
+      - text: One answer took 337 tokens. The other took 68.
+        reveal: 2
+      - text: Same prompt, same setting, five times the length.
+        reveal: 2
+      - text: If your six answers all match exactly, look again at the temperature you passed.
+        reveal: 2
+      - text: If they vary like this, your run is working.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Before you submit
+    heading: Three checks
+    items:
+      - The token line is not zero
+      - Your six answers are actually different
+      - The screenshot shows all six
+    narration:
+      - text: Three things to check before you turn it in.
+        reveal: 1
+      - text: First, the token line at the end is not zero. A zero means no call reached the model.
+        reveal: 1
+      - text: Second, your six answers are not identical to each other.
+        reveal: 2
+      - text: Third, your screenshot shows all six answers, not just the first two.
+        reveal: 3
+      - text: That last one is the most common thing people lose points on.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If it is not working
+    heading: Two things to try first
+    body: A zero token count means the call never left. An unwritten function message means a cell above was not run.
+    narration:
+      - If the token count is zero, the call never left your notebook. Check the message the configuration cell printed.
+      - If your file says the function is not written yet, run the cells above it from the top.
+      - If neither of those is it, post in the question board. Somebody else has hit the same thing.

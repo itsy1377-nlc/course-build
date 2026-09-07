@@ -1,0 +1,82 @@
+Return-Path: <sentrywick-digest@pellgrave.example>
+Received: from mail.pellgrave.example (mail.pellgrave.example [10.20.4.25])
+  by mailstore-02.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id db7ca8ea-7799-4395-ae78-1489b7e6ee66
+  for <d.crowmarden@pellgrave.example>; Thu, 23 Apr 2026 06:00:03 -0500
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Message-UID: 9ede95101d16
+X-Sentrywick-Reported-By: d.crowmarden@pellgrave.example
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mail.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPSA
+  id 9ede95101d16; Thu, 23 Apr 2026 06:00:01 -0500
+Date: Thu, 23 Apr 2026 06:00:00 -0500
+From: Sentrywick Gateway Digest <sentrywick-digest@pellgrave.example>
+To: Devin Crowmarden <d.crowmarden@pellgrave.example>
+Subject: Quarantine digest: 2 messages held
+Message-ID: <20260423110000.9f08b434ef07@mx.pellgrave.example>
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_0758a73e004f"
+
+--=_part_0758a73e004f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Quarantine digest for d.crowmarden@pellgrave.example
+
+Two messages addressed to you were held between 6:00 AM Wednesday 4/22
+and 6:00 AM Thursday 4/23. They are not in your inbox, and nothing from
+them has been delivered to you.
+
+1. From: helpdesk@pellgrave.example
+   Subject: Mail system notice: storage review
+   Held: Wed 4/22 5:12 PM, DMARC failure, policy quarantine
+   Release: https://quarantine.pellgrave.example/release?id=800411a9b981
+
+2. From: sales@coppervane-tools.example
+   Subject: Spring clearance on hand tools and shop consumables
+   Held: Thu 4/23 3:41 AM, bulk sender, spam score 7.6
+   Release: https://quarantine.pellgrave.example/release?id=7ebf23ff1d8d
+
+Releasing a message delivers it to your inbox exactly as it arrived. The
+release pages run inside the company network, so the link is the only
+step.
+
+Held mail that is left alone stays in quarantine for 30 days and is then
+deleted, so a message you do not want needs nothing from you.
+
+Questions about a held message go to the IT help desk on ext. 4400.
+
+Sentrywick Gateway 7.4 at mx.pellgrave.example
+--=_part_0758a73e004f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body>
+<p>Quarantine digest for d.crowmarden@pellgrave.example</p>
+<p>Two messages addressed to you were held between 6:00 AM Wednesday 4/22
+and 6:00 AM Thursday 4/23. They are not in your inbox, and nothing from
+them has been delivered to you.</p>
+<p>1. From: helpdesk@pellgrave.example<br>
+Subject: Mail system notice: storage review<br>
+Held: Wed 4/22 5:12 PM, DMARC failure, policy quarantine<br>
+Release: <a
+  href="https://quarantine.pellgrave.example/release?id=800411a9b981"
+  >https://quarantine.pellgrave.example/release?id=800411a9b981</a></p>
+<p>2. From: sales@coppervane-tools.example<br>
+Subject: Spring clearance on hand tools and shop consumables<br>
+Held: Thu 4/23 3:41 AM, bulk sender, spam score 7.6<br>
+Release: <a
+  href="https://quarantine.pellgrave.example/release?id=7ebf23ff1d8d"
+  >https://quarantine.pellgrave.example/release?id=7ebf23ff1d8d</a></p>
+<p>Releasing a message delivers it to your inbox exactly as it arrived. The
+release pages run inside the company network, so the link is the only
+step.</p>
+<p>Held mail that is left alone stays in quarantine for 30 days and is then
+deleted, so a message you do not want needs nothing from you.</p>
+<p>Questions about a held message go to the IT help desk on ext. 4400.</p>
+<p>Sentrywick Gateway 7.4 at mx.pellgrave.example</p>
+</body>
+</html>
+--=_part_0758a73e004f--

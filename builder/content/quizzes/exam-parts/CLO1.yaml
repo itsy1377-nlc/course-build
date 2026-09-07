@@ -1,0 +1,344 @@
+# Week 8 final exam, CLO1 part. Six multiple choice items, numbers 16 to 21.
+#
+# CLO1 is "extract header, authentication, sender and URL facts", at the Apply
+# level. Its primary evidence is the week 3 lab. These six items are supporting
+# evidence only, per section 2 of the exam blueprint, and they report into no
+# Canvas Outcome.
+#
+# THE SHAPE OF THIS FILE
+#
+#   items            a list. One entry per exam question. Nothing else.
+#
+# EVERY ITEM CARRIES
+#
+#   number           the item number from the blueprint's section 5 coverage
+#                    table. It never changes, because the table is approved.
+#   id               a short stable slug. Never reused, never renumbered.
+#   name             what Canvas shows as the question title.
+#   assesses         what the coverage table says the item measures.
+#   level            Recognition or Analysis, from the coverage table.
+#   difficulty       easy, medium or hard, from the coverage table.
+#   artifact         the reserved email the stem quotes.
+#   needs_text_block true when the artifact is shared with another item, so the
+#                    assembly step puts the artifact in one unscored
+#                    text_only_question above the items that read it.
+#   taught_in        where in the course a student learned this.
+#   from_sample      true when section 7 of the blueprint wrote the item out in
+#                    full. Items 16 and 17 are approved copy and are reproduced
+#                    word for word, options and feedback included.
+#   text             the stem, as an HTML fragment.
+#   answers          a list of four. Exactly one is correct. Every answer
+#                    carries text, correct and feedback.
+#
+# THE FEEDBACK KEY IS `feedback`. The builder writes it to Canvas as
+# `comments`. Section 9 of the blueprint records why: Canvas accepts
+# `answer_comments`, returns HTTP 200 and stores nothing, so all of it would
+# disappear with no error. Every answer carries feedback, right and wrong
+# alike, because this exam is the last teaching any of these items will do.
+#
+# THE ELEVEN RESERVED EMAILS ARE NEW TO THE STUDENT. Nobody has run their agent
+# on one. Every stem below describes the case as if the student's agent had
+# just handled it and asks what the correct read is. The quiz directions say
+# that once at the top, so no stem repeats it and no stem assumes the student
+# has a file for the email.
+#
+# WHAT THE SIX COVER. Item 16 is a missing authentication result on internal
+# mail. Item 17 is a DMARC pass carried by one check while another fails. Item
+# 18 is three passes on a look-alike domain. Item 19 is a check that could not
+# finish. Item 20 is which of two passes aligns with the From domain. Item 21
+# is a link host on neither list.
+#
+# Header lines, tool returns and code names sit in <pre> or <code>. They are
+# technical material and the readability tool excludes them, which is the same
+# exemption the course writing standard grants everywhere else.
+
+items:
+
+  - number: 16
+    id: exam-16-internal-no-auth
+    name: Question 16. No authentication result at all
+    assesses: >-
+      CLO1. Reading a missing authentication result on an internal message, and
+      telling missing apart from failed.
+    level: Recognition
+    difficulty: medium
+    artifact: 055-board-prep-reschedule
+    needs_text_block: false
+    taught_in: >-
+      Week 3 reading, what a passed check really means, the paragraph that ends
+      "Missing is not failed". Playbook rule 11, which ships in the week 3
+      prompt. Reinforced by week 3 self-check question 4.
+    from_sample: true
+    text: |
+      <p>Email 055 is from <code>b.onwuka@pellgrave.example</code>. Your
+      extractor reports no <code>Authentication-Results</code> header, two
+      Received hops, and no external flag.</p>
+      <p>What is the correct read?</p>
+    answers:
+      - text: The checks failed, because the header is missing.
+        correct: false
+        feedback: >-
+          Missing is not failed. A failed check writes a result line. This
+          message has none to write.
+      - text: The mail never left the company, so no check was run.
+        correct: true
+        feedback: >-
+          Right. Internal mail takes two hops and skips the gateway, so there is
+          nothing to authenticate.
+      - text: The gateway removed the header, which points to forgery.
+        correct: false
+        feedback: >-
+          The gateway never removes that header. It only adds one to mail
+          arriving from outside.
+      - text: The result is unknown, so the agent has to escalate.
+        correct: false
+        feedback: >-
+          Two internal hops and no external flag are facts, not gaps. Your loop
+          stops on <code>internal_sender</code>.
+
+  - number: 17
+    id: exam-17-dmarc-pass-dkim-fail
+    name: Question 17. A DMARC pass with a failed check under it
+    assesses: >-
+      CLO1. Reading an overall DMARC result when one of the two checks under it
+      failed.
+    level: Analysis
+    difficulty: hard
+    artifact: 054-slatemoor-quote-dkim-fail
+    needs_text_block: true
+    taught_in: >-
+      Week 3 reading, what a passed check really means, the three bullets on
+      SPF, DKIM and DMARC. Playbook rule 1, which ships in the week 3 prompt.
+    from_sample: true
+    text: |
+      <p>Email 054 arrives from <code>quotes@slatemoorsupply.example</code>.
+      Your extractor reports these lines.</p>
+      <pre><code>Authentication-Results: mx.pellgrave.example;
+        spf=pass smtp.mailfrom=slatemoorsupply.example;
+        dkim=fail header.d=slatemoorsupply.example;
+        dmarc=pass (p=quarantine)</code></pre>
+      <p>What does the DMARC pass tell you?</p>
+    answers:
+      - text: Every check passed, so the mail is safe.
+        correct: false
+        feedback: >-
+          DKIM failed here, so not every check passed. Passing checks never mean
+          safe on their own.
+      - text: One check passed and matched the visible From domain.
+        correct: true
+        feedback: >-
+          Right. SPF passed and matched the From domain, so DMARC passed. The
+          vendor's footer tool broke the signature.
+      - text: DKIM failed, so DMARC cannot pass. The gateway got it wrong.
+        correct: false
+        feedback: >-
+          DMARC passes on SPF or DKIM. One failure does not stop it.
+      - text: The domain is allowlisted, so DMARC was skipped.
+        correct: false
+        feedback: >-
+          The allowlist is a separate list your tools read. It changes no
+          authentication result.
+
+  - number: 18
+    id: exam-18-lookalike-three-passes
+    name: Question 18. Three passes on a look-alike domain
+    assesses: >-
+      CLO1. Reading what three passing checks prove, when the domain they tested
+      is not the company's own and the display name says otherwise.
+    level: Analysis
+    difficulty: medium
+    artifact: 047-cfo-hold-payment-run
+    needs_text_block: false
+    taught_in: >-
+      Week 3 reading, what a passed check really means, and the name over the
+      address. Playbook rules 1 and 2, which ship in the week 3 prompt. The week
+      3 lab runs the same header shape on email 004.
+    from_sample: false
+    text: |
+      <p>Email 047 is a reply about the vendor payment run. Your extractor
+      reports these lines.</p>
+      <pre><code>From: "Rutger Palomares (CFO)" &lt;r.palomares@pellgrave-corp.example&gt;
+      Authentication-Results: mx.pellgrave.example;
+        spf=pass smtp.mailfrom=pellgrave-corp.example;
+        dkim=pass header.d=pellgrave-corp.example header.s=k1
+          header.i=@pellgrave-corp.example;
+        dmarc=pass header.from=pellgrave-corp.example policy.dmarc=none</code></pre>
+      <p>Pellgrave's own domain is <code>pellgrave.example</code>. What do the
+      three passes prove?</p>
+    answers:
+      - text: >-
+          The mail really came from <code>pellgrave-corp.example</code>. Who
+          sent it is still open.
+        correct: true
+        feedback: >-
+          Right. A pass tests the domain in the address. It never tests the name
+          over it. The playbook treats that name as fake until a phone call
+          proves otherwise. Week 3 reading, the name over the address.
+      - text: That Rutger Palomares sent it.
+        correct: false
+        feedback: >-
+          The checks read domains, never names. Anyone who owns this domain can
+          put his name on a message. Week 3 reading, the name over the address.
+      - text: That the message came from inside Pellgrave.
+        correct: false
+        feedback: >-
+          Every result line names <code>pellgrave-corp.example</code>.
+          Pellgrave's own domain is <code>pellgrave.example</code>, so this came
+          from somewhere else. Week 3 reading, the name over the address.
+      - text: That the gateway checked the name and the address together.
+        correct: false
+        feedback: >-
+          That check would be useful, and none of the three does it. Your parser
+          compares the two and reports <code>display_name_mismatch</code>. Week
+          3 reading, the name over the address.
+
+  - number: 19
+    id: exam-19-dkim-temperror
+    name: Question 19. A check that could not finish
+    assesses: >-
+      CLO1. Telling a check that could not finish apart from a check that ran
+      and failed, and from a message that was never signed.
+    level: Recognition
+    difficulty: medium
+    artifact: 052-thistlecrest-uniform-catalog
+    needs_text_block: true
+    taught_in: >-
+      Week 3 reading, what a passed check really means, where email 004 shows
+      three passes and email 006 shows fail and none. Playbook rule 1, which
+      ships in the week 3 prompt.
+    from_sample: false
+    text: |
+      <p>Email 052 is a catalog mailing. Your extractor reports these lines.</p>
+      <pre><code>Return-Path: &lt;bounce-7710-2205-c23372ccc3cd8de7@bounce.sendbarrow-mail.example&gt;
+      From: Thistlecrest Uniforms &lt;hello@promo.thistlecrest-uniforms.example&gt;
+      Authentication-Results: mx.pellgrave.example;
+        spf=pass smtp.mailfrom=bounce.sendbarrow-mail.example;
+        dkim=temperror header.d=sendbarrow-mail.example header.s=s2026a;
+        dmarc=none header.from=promo.thistlecrest-uniforms.example</code></pre>
+      <p>What should your agent record for <code>dkim=temperror</code>?</p>
+    answers:
+      - text: The check could not finish, so it proved nothing either way.
+        correct: true
+        feedback: >-
+          Right. An error is not a result. Record it as one fact and let the
+          other lines carry the read. Week 3 reading, what a passed check really
+          means.
+      - text: The signature did not match, so DKIM failed.
+        correct: false
+        feedback: >-
+          A signature that does not match comes back <code>dkim=fail</code>.
+          This line says the check stopped before it got an answer. Week 3
+          reading, what a passed check really means.
+      - text: The sender did not sign this message.
+        correct: false
+        feedback: >-
+          A message with no signature comes back <code>dkim=none</code>, the way
+          email 006 does. This one names a signing domain, so a signature is
+          there. Week 3 reading, what a passed check really means.
+      - text: The mail service broke the check by sending for another company.
+        correct: false
+        feedback: >-
+          Sending through another company's server is normal, and the header
+          shows it plainly. It does not stop a signature check. Week 3 reading,
+          what a passed check really means.
+
+  - number: 20
+    id: exam-20-dkim-alignment-bulk
+    name: Question 20. Which check made DMARC pass
+    assesses: >-
+      CLO1. Deciding which of two passing checks matches the visible From
+      domain, when the message went out through another company's mail service.
+    level: Analysis
+    difficulty: hard
+    artifact: 056-vetchmoor-quarterly-update
+    needs_text_block: false
+    taught_in: >-
+      Week 3 reading, what a passed check really means, the DMARC bullet that
+      asks whether either check passed for the domain shown in From. Playbook
+      rule 1, which ships in the week 3 prompt.
+    from_sample: false
+    text: |
+      <p>Email 056 is a newsletter the recipient signed up for. It went out
+      through another company's mail service. Your extractor reports these
+      lines.</p>
+      <pre><code>Return-Path: &lt;bounce-3304-0219-59c50b6817dd947b@bounce.sendbarrow-mail.example&gt;
+      From: Vetchmoor Benefits &lt;newsletter@vetchmoorbenefits.example&gt;
+      Authentication-Results: mx.pellgrave.example;
+        spf=pass smtp.mailfrom=bounce.sendbarrow-mail.example;
+        dkim=pass header.d=vetchmoorbenefits.example header.s=sb1
+          header.i=@vetchmoorbenefits.example;
+        dmarc=pass header.from=vetchmoorbenefits.example policy.dmarc=quarantine</code></pre>
+      <p>Which check made DMARC pass?</p>
+    answers:
+      - text: DKIM, because it passed for the domain in <code>From:</code>.
+        correct: true
+        feedback: >-
+          Right. <code>header.d</code> is
+          <code>vetchmoorbenefits.example</code>, the domain a reader sees.
+          DMARC needs a pass that matches it. Week 3 reading, what a passed
+          check really means.
+      - text: SPF, because it passed for the address in <code>Return-Path:</code>.
+        correct: false
+        feedback: >-
+          SPF did pass, on <code>bounce.sendbarrow-mail.example</code>. That is
+          the mail service's domain, not the one in <code>From:</code>. Week 3
+          reading, what a passed check really means.
+      - text: DKIM and SPF together, because both came back pass.
+        correct: false
+        feedback: >-
+          DKIM and SPF did both pass. Only a pass on the domain in
+          <code>From:</code> counts for DMARC, and one of these sits on another
+          domain. Week 3 reading, what a passed check really means.
+      - text: No check did. Mail sent by an outside service is not checked.
+        correct: false
+        feedback: >-
+          Both checks ran and both wrote a result here. The gateway checks every
+          message that arrives from outside. Week 3 reading, what a passed check
+          really means.
+
+  - number: 21
+    id: exam-21-url-unlisted
+    name: Question 21. A link host on neither list
+    assesses: >-
+      CLO1. Reading the <code>unlisted</code> return from
+      <code>check_urls</code> as unknown rather than as clean, failed or guilty.
+    level: Recognition
+    difficulty: easy
+    artifact: 046-sandmarsh-secure-message-json-block
+    needs_text_block: true
+    taught_in: >-
+      Week 3 reading, where the links point, and playbook rule 7, which ships in
+      the week 3 prompt. The return value itself comes from
+      <code>check_urls</code> in the week 4 reading and lab. Reinforced by week 3
+      self-check question 3.
+    from_sample: false
+    text: |
+      <p>Email 046 carries one link, to
+      <code>secure.sandmarsh-bank-secure.example</code>. Your agent calls
+      <code>check_urls</code> and gets this back.</p>
+      <pre><code>{"secure.sandmarsh-bank-secure.example": "unlisted"}</code></pre>
+      <p>What does that result mean?</p>
+    answers:
+      - text: The host is on neither list, so it counts as unknown.
+        correct: true
+        feedback: >-
+          Right. Both lists were searched and neither held it. The playbook
+          reads that as unknown, never as clean. Week 3 reading, where the links
+          point.
+      - text: The host is clear, because nothing has blocked it.
+        correct: false
+        feedback: >-
+          Clearing a host puts it on the allowlist. This one is on no list, so
+          nobody has looked at it. Week 3 reading, where the links point.
+      - text: The tool found no record, so the check has to run again.
+        correct: false
+        feedback: >-
+          <code>unlisted</code> is an answer, not a gap. A second run reads the
+          same two files and hands back the same word. Week 4 reading, the three
+          tools.
+      - text: The host is unknown, so the message is malicious.
+        correct: false
+        feedback: >-
+          That reads unknown as guilty. An unlisted host adds a fact, not a
+          verdict. The rest of the facts settle email 046. Week 3 reading, where
+          the links point.

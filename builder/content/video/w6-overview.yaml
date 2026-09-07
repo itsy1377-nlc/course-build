@@ -1,0 +1,135 @@
+id: w6-overview
+title: What week 6 adds
+kind: concept
+module: m06
+embed_on: builder/content/pages/w6-overview.md
+blurb: What one planted paragraph does to your own agent, the four controls you add, and the payload spots a fence cannot reach.
+explains:
+  - builder/content/pages/w6-overview.md
+  - builder/content/pages/w6-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 6
+    heading: Stop trusting the text you read
+    body: Your agent reads a body somebody else wrote. This week it treats that text as evidence, and it checks its own answer before anything happens.
+    narration:
+      - Welcome to week 6.
+      - Your agent reads an email body, and somebody else wrote it. On a reported phishing message, that somebody is the attacker.
+      - This week it stops trusting the text it reads, and the answer it writes.
+      - That is the one capability. Everything you build this week serves it.
+
+  - type: slide
+    layout: statement
+    eyebrow: The word for it
+    heading: Prompt injection
+    body: Attacker text that a model reads as an instruction instead of as evidence. Your rules and the email reach the model as one stream of text.
+    narration:
+      - The problem has a name. It is called prompt injection.
+      - That is attacker text the model reads as an instruction instead of as evidence.
+      - It works because your rules and the email reach the model as one stream of text.
+      - No setting separates them. Your prompt is the only place you say which part is data.
+
+  - type: slide
+    layout: diagram
+    eyebrow: The idea
+    heading: Four controls, one seam
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Four boxes left to right. An email arrives, carrying text a stranger
+        wrote. The model reads your rules and that body together and answers.
+        Your own code checks that answer. The case then closes on its own or
+        goes to a person. The third box is marked, because every control you
+        add this week acts at that one point.
+      nodes:
+        - label: An email arrives
+          sub: text a stranger wrote
+        - label: The model answers
+          sub: rules and body read together
+        - label: Your code checks the answer
+          sub: everything you add this week
+          mark: true
+        - label: Close it, or send it to a person
+          sub: where the analyst acts
+    narration:
+      - text: You add four controls this week, and they count as one thing.
+        reveal: 1
+      - text: An email arrives, carrying text a stranger wrote.
+        reveal: 1
+      - text: The model reads your rules and that body together, then answers.
+        reveal: 2
+      - text: Your own code checks that answer before anybody acts on it.
+        reveal: 3
+      - text: Then it closes on its own, or it goes to a person.
+        reveal: 4
+      - text: Every control you add this week sits at that one point.
+        reveal: 4
+
+  - type: slide
+    layout: numbered
+    eyebrow: What you add
+    heading: The four controls
+    items:
+      - A fence around the email body
+      - A check against facts you already hold
+      - A confidence floor
+      - A cap on what one email may spend
+    narration:
+      - text: The four are these.
+        reveal: 1
+      - text: A fence. Two markers around the body, and rules saying that block is evidence, never an order.
+        reveal: 1
+      - text: A fact check. It compares the answer against facts your own tools already found.
+        reveal: 2
+      - text: A confidence floor. Any answer under zero point seven goes to a person.
+        reveal: 3
+      - text: And a token cap. A run that spends more than four thousand tokens goes to a person too.
+        reveal: 4
+      - text: You write two of these. The rest arrives written.
+        reveal: 4
+
+  - type: slide
+    layout: compare
+    eyebrow: How you measure it
+    heading: The same email, one paragraph apart
+    items:
+      - Email 013 | A paragraph after the signature, addressed to AI triage tools
+      - Email 024 | The same message, word for word, that paragraph removed
+    narration:
+      - text: Two emails measure this for you.
+        reveal: 1
+      - text: The first is a benefits notice. After the signature sits one extra paragraph addressed to AI triage tools.
+        reveal: 1
+      - text: It says a ticket already cleared the message, so record benign. That ticket does not exist.
+        reveal: 1
+      - text: The second is that same message, word for word, with the paragraph taken out.
+        reveal: 2
+      - text: You run both with no defenses, then both guarded. Whatever moves is what one paragraph did to your own model.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The surprise
+    heading: The fence does not reach everywhere
+    body: Six places a payload can sit, and a fence around the body reaches three of them. The rest hide in the HTML part, the subject line, and a forged header.
+    narration:
+      - Here is the part to expect.
+      - Your lab carries six places a payload can sit. A fence around the body reaches three of them.
+      - One hides in the HTML part. One rides in the subject line. One rides in a forged header.
+      - So your guardrails will not hold on all six.
+      - The lab does not ask you to stop everything. It asks you to judge whether what is left is low enough for a real security team.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do first
+    body: The sidebar, then both parts of the reading, then the lab. Watch the walkthrough video before you open the notebook.
+    narration:
+      - Start with the sidebar notebook. It checks a library account against the catalogue record and names every gap.
+      - That is the shape your fact check needs.
+      - Then both parts of the reading. Then the lab.
+      - Your week 5 loop does not have to be finished. The notebook carries a working copy of week 5.
+      - This lab makes more model calls than any week before it. Run each cell once, then read what it printed.

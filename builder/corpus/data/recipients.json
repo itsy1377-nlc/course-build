@@ -1,0 +1,682 @@
+{
+  "$comment": "Backs lookup_recipient. Prior reports are closed cases dated before the corpus window; message_ref values are Message-IDs that are not in the corpus. The executive flag covers the CEO's assistant on purpose: the assistant is the person who receives the gift-card request, so the agent treats her mail with the same care. The mailstore field names the one Sentrywick Store host that delivers this mailbox: mailstore-02 holds Information Technology, the mailboxes IT works, the two system senders and the two distribution lists, and mailstore-01 holds every other mailbox. A mailbox lives on exactly one store, so the LMTP hop in a Received chain follows the recipient and never the arrival path.",
+  "corpus_clock": "2026-04-29T09:00:00-05:00",
+  "organization": "pellgrave.example",
+  "open_job_postings": [
+    {
+      "posting": "SC-0426",
+      "title": "Service Coordinator",
+      "opened": "2026-04-06",
+      "mailbox": "hr@pellgrave.example"
+    }
+  ],
+  "recipients": [
+    {
+      "address": "a.whitcombe@pellgrave.example",
+      "name": "Adaeze Whitcombe",
+      "role": "Chief Executive Officer",
+      "department": "Executive",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": true,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 2,
+      "true_positive_count_90d": 2,
+      "prior_reports": [
+        {
+          "date": "2026-02-09",
+          "message_ref": "<20260209010300.db94a65df06e@mail.pellgrave.example>",
+          "campaign_tag": "ceo-impersonation",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-24",
+          "message_ref": "<20260324010400.87c38fa4c976@mail.pellgrave.example>",
+          "campaign_tag": "ceo-impersonation",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "r.palomares@pellgrave.example",
+      "name": "Rutger Palomares",
+      "role": "Chief Financial Officer",
+      "department": "Finance",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": true,
+      "handles_payments": true,
+      "chronic_reporter": false,
+      "report_count_90d": 3,
+      "true_positive_count_90d": 2,
+      "prior_reports": [
+        {
+          "date": "2026-01-27",
+          "message_ref": "<20260127010300.10da08188894@mail.pellgrave.example>",
+          "campaign_tag": "cfo-impersonation",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-18",
+          "message_ref": "<20260218010400.6fbec947bd5a@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-11",
+          "message_ref": "<20260311010500.6ec853d9edf6@mail.pellgrave.example>",
+          "campaign_tag": "vendor-invoice-fraud",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "c.bramwell@pellgrave.example",
+      "name": "Constance Bramwell",
+      "role": "Vice President, Field Operations",
+      "department": "Field Operations",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": true,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 1,
+      "true_positive_count_90d": 1,
+      "prior_reports": [
+        {
+          "date": "2026-03-03",
+          "message_ref": "<20260303010300.c2942961676b@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "b.onwuka@pellgrave.example",
+      "name": "Beatrix Onwuka",
+      "role": "Executive Assistant to the CEO",
+      "department": "Executive",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": true,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 4,
+      "true_positive_count_90d": 3,
+      "prior_reports": [
+        {
+          "date": "2026-02-03",
+          "message_ref": "<20260203010300.7b4be2930bb5@mail.pellgrave.example>",
+          "campaign_tag": "ceo-impersonation",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-20",
+          "message_ref": "<20260220010400.931e12f99cc3@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-05",
+          "message_ref": "<20260305010500.618a362addbe@mail.pellgrave.example>",
+          "campaign_tag": "ceo-impersonation",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-31",
+          "message_ref": "<20260331010600.f44870ee1e2b@mail.pellgrave.example>",
+          "campaign_tag": "ceo-impersonation",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "p.castellanos@pellgrave.example",
+      "name": "Priya Castellanos",
+      "role": "Accounts Payable Specialist",
+      "department": "Finance",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": false,
+      "handles_payments": true,
+      "chronic_reporter": false,
+      "report_count_90d": 6,
+      "true_positive_count_90d": 4,
+      "prior_reports": [
+        {
+          "date": "2026-01-20",
+          "message_ref": "<20260120010300.b61aa4cc045f@mail.pellgrave.example>",
+          "campaign_tag": "vendor-invoice-fraud",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-03",
+          "message_ref": "<20260203010400.706aff63f5c3@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-24",
+          "message_ref": "<20260224010500.bbb41749dcf3@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-09",
+          "message_ref": "<20260309010600.0ad5e3d0a400@mail.pellgrave.example>",
+          "campaign_tag": "vendor-invoice-fraud",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-19",
+          "message_ref": "<20260319010700.7604e4893bfe@mail.pellgrave.example>",
+          "campaign_tag": "invoice-malware",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-04-02",
+          "message_ref": "<20260402010800.2d4e2d5c1410@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "t.nkemelu@pellgrave.example",
+      "name": "Tobias Nkemelu",
+      "role": "Payroll and Benefits Coordinator",
+      "department": "Human Resources",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": false,
+      "handles_payments": true,
+      "chronic_reporter": false,
+      "report_count_90d": 5,
+      "true_positive_count_90d": 3,
+      "prior_reports": [
+        {
+          "date": "2026-01-12",
+          "message_ref": "<20260112010300.51f804ed1e22@mail.pellgrave.example>",
+          "campaign_tag": "direct-deposit-change",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-11",
+          "message_ref": "<20260211010400.dcecf1792626@mail.pellgrave.example>",
+          "campaign_tag": "benefits-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-02-27",
+          "message_ref": "<20260227010500.ac2353c1337f@mail.pellgrave.example>",
+          "campaign_tag": "direct-deposit-change",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-17",
+          "message_ref": "<20260317010600.aa54e20ecc31@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-04-06",
+          "message_ref": "<20260406010700.c1f759f85996@mail.pellgrave.example>",
+          "campaign_tag": "payroll-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "y.strickmoor@pellgrave.example",
+      "name": "Yolanda Strickmoor",
+      "role": "IT Help Desk Lead",
+      "department": "Information Technology",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-02",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 8,
+      "true_positive_count_90d": 5,
+      "prior_reports": [
+        {
+          "date": "2026-01-08",
+          "message_ref": "<20260108010300.bb0739a9eb69@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-01-22",
+          "message_ref": "<20260122010400.83efcf913a8f@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-05",
+          "message_ref": "<20260205010500.c5fc65e1dd4c@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-02-19",
+          "message_ref": "<20260219010600.34f3c87d1616@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-02",
+          "message_ref": "<20260302010700.1a2a8bca3b2f@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-12",
+          "message_ref": "<20260312010800.acae41b08f8d@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-26",
+          "message_ref": "<20260326010900.bc29ef2007f2@mail.pellgrave.example>",
+          "campaign_tag": "internal-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-04-07",
+          "message_ref": "<20260407011000.4f3fe52847e7@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "h.quintanilla@pellgrave.example",
+      "name": "Hollis Quintanilla",
+      "role": "Service Manager, Head Office Branch",
+      "department": "Service",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 2,
+      "true_positive_count_90d": 1,
+      "prior_reports": [
+        {
+          "date": "2026-02-13",
+          "message_ref": "<20260213010300.a72757663566@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-20",
+          "message_ref": "<20260320010400.47649376efa2@mail.pellgrave.example>",
+          "campaign_tag": "customer-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "e.dawodu@pellgrave.example",
+      "name": "Emeric Dawodu",
+      "role": "Procurement Specialist",
+      "department": "Procurement",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 1,
+      "true_positive_count_90d": 0,
+      "prior_reports": [
+        {
+          "date": "2026-03-27",
+          "message_ref": "<20260327010300.490be4327af3@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "l.vashti@pellgrave.example",
+      "name": "Lenora Vashti",
+      "role": "Director of Sales",
+      "department": "Sales",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 3,
+      "true_positive_count_90d": 1,
+      "prior_reports": [
+        {
+          "date": "2026-01-30",
+          "message_ref": "<20260130010300.444cbafed09b@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-02-25",
+          "message_ref": "<20260225010400.dfa24232cab5@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-18",
+          "message_ref": "<20260318010500.c9b0e067e1e1@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "c.hallowden@pellgrave.example",
+      "name": "Casimir Hallowden",
+      "role": "Warehouse Supervisor",
+      "department": "Warehouse",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-01",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": true,
+      "report_count_90d": 11,
+      "true_positive_count_90d": 0,
+      "prior_reports": [
+        {
+          "date": "2026-01-06",
+          "message_ref": "<20260106010300.d9c4a5b34ab1@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-01-13",
+          "message_ref": "<20260113010400.8bf362506c27@mail.pellgrave.example>",
+          "campaign_tag": "internal-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-01-21",
+          "message_ref": "<20260121010500.cacdf56e3bd7@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-01-29",
+          "message_ref": "<20260129010600.42c95092a39e@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-02-04",
+          "message_ref": "<20260204010700.2401772148ea@mail.pellgrave.example>",
+          "campaign_tag": "internal-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-02-12",
+          "message_ref": "<20260212010800.8278e3bcc731@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-02-23",
+          "message_ref": "<20260223010900.bd5c0f4e282f@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-04",
+          "message_ref": "<20260304011000.2b7774e3ed4c@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-16",
+          "message_ref": "<20260316011100.7672b7fe2ac7@mail.pellgrave.example>",
+          "campaign_tag": "internal-notice",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-25",
+          "message_ref": "<20260325011200.ba6980f4d381@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-04-08",
+          "message_ref": "<20260408011300.1f79e0276592@mail.pellgrave.example>",
+          "campaign_tag": "vendor-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "d.crowmarden@pellgrave.example",
+      "name": "Devin Crowmarden",
+      "role": "Security Analyst (SOC)",
+      "department": "Information Technology",
+      "mailbox_type": "person",
+      "mailstore": "mailstore-02",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    },
+    {
+      "address": "ap@pellgrave.example",
+      "name": "Accounts Payable Shared Mailbox",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-01",
+      "worked_by": "p.castellanos@pellgrave.example",
+      "executive": false,
+      "handles_payments": true,
+      "chronic_reporter": false,
+      "report_count_90d": 3,
+      "true_positive_count_90d": 3,
+      "prior_reports": [
+        {
+          "date": "2026-01-20",
+          "message_ref": "<20260120010330.10628db11d9d@mail.pellgrave.example>",
+          "campaign_tag": "vendor-invoice-fraud",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-09",
+          "message_ref": "<20260309010430.4187ef17dfba@mail.pellgrave.example>",
+          "campaign_tag": "vendor-invoice-fraud",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-19",
+          "message_ref": "<20260319010530.885d603855c9@mail.pellgrave.example>",
+          "campaign_tag": "invoice-malware",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "payroll@pellgrave.example",
+      "name": "Payroll Shared Mailbox",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-01",
+      "worked_by": "t.nkemelu@pellgrave.example",
+      "executive": false,
+      "handles_payments": true,
+      "chronic_reporter": false,
+      "report_count_90d": 2,
+      "true_positive_count_90d": 2,
+      "prior_reports": [
+        {
+          "date": "2026-01-12",
+          "message_ref": "<20260112010330.b5b25d29671a@mail.pellgrave.example>",
+          "campaign_tag": "direct-deposit-change",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-27",
+          "message_ref": "<20260227010430.b72899e2d47b@mail.pellgrave.example>",
+          "campaign_tag": "direct-deposit-change",
+          "outcome": "true_positive"
+        }
+      ]
+    },
+    {
+      "address": "hr@pellgrave.example",
+      "name": "Human Resources Shared Mailbox",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-01",
+      "worked_by": "t.nkemelu@pellgrave.example",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 1,
+      "true_positive_count_90d": 0,
+      "prior_reports": [
+        {
+          "date": "2026-02-11",
+          "message_ref": "<20260211010330.0045ec23776d@mail.pellgrave.example>",
+          "campaign_tag": "benefits-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "helpdesk@pellgrave.example",
+      "name": "IT Help Desk Shared Mailbox",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-02",
+      "worked_by": "y.strickmoor@pellgrave.example",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 4,
+      "true_positive_count_90d": 2,
+      "prior_reports": [
+        {
+          "date": "2026-01-22",
+          "message_ref": "<20260122010330.b9e766a48f1a@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-02-19",
+          "message_ref": "<20260219010430.6366fe136bde@mail.pellgrave.example>",
+          "campaign_tag": "credential-phish",
+          "outcome": "true_positive"
+        },
+        {
+          "date": "2026-03-02",
+          "message_ref": "<20260302010530.e5d9328e3d4e@mail.pellgrave.example>",
+          "campaign_tag": "marketing",
+          "outcome": "benign"
+        },
+        {
+          "date": "2026-03-26",
+          "message_ref": "<20260326010630.d21b0074e38a@mail.pellgrave.example>",
+          "campaign_tag": "internal-notice",
+          "outcome": "benign"
+        }
+      ]
+    },
+    {
+      "address": "soc@pellgrave.example",
+      "name": "Security Operations Shared Mailbox",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-02",
+      "worked_by": "d.crowmarden@pellgrave.example",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    },
+    {
+      "address": "phish-report@pellgrave.example",
+      "name": "Report Phish Intake",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-02",
+      "worked_by": "d.crowmarden@pellgrave.example",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    },
+    {
+      "address": "noreply@pellgrave.example",
+      "name": "Ticket System Sender",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-02",
+      "worked_by": null,
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    },
+    {
+      "address": "sentrywick-digest@pellgrave.example",
+      "name": "Gateway Quarantine Digest Sender",
+      "role": "shared mailbox",
+      "department": null,
+      "mailbox_type": "shared",
+      "mailstore": "mailstore-02",
+      "worked_by": null,
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    },
+    {
+      "address": "all-staff@pellgrave.example",
+      "name": "All Staff Distribution List",
+      "role": "distribution list",
+      "department": null,
+      "mailbox_type": "list",
+      "mailstore": "mailstore-02",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    },
+    {
+      "address": "warehouse-staff@pellgrave.example",
+      "name": "Warehouse Staff Distribution List",
+      "role": "distribution list",
+      "department": null,
+      "mailbox_type": "list",
+      "mailstore": "mailstore-02",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "prior_reports": []
+    }
+  ]
+}

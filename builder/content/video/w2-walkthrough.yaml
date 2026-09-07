@@ -1,0 +1,97 @@
+id: w2-walkthrough
+title: What success looks like
+kind: walkthrough
+module: m02
+embed_on: builder/content/pages/w2-content.md
+blurb: A real structured answer on a different email than the four in your lab. What a passing check looks like, and why passing the check is not the same as being right.
+explains:
+  - builder/content/pages/w2-content.md
+  - builder/content/assignments/w2-lab.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 2 walkthrough
+    heading: What a strict answer looks like
+    body: Again on a different email than the ones in your lab. Watch the shape, and watch the one thing the check cannot catch.
+    narration:
+      - This is what a finished week 2 run looks like.
+      - As before, it runs on a different email than the ones in your lab.
+      - Watch two things. The shape of the answer, and the one problem the check cannot catch.
+
+  - type: slide
+    layout: code
+    eyebrow: A real reply
+    heading: This came back from the model
+    body: |
+      {
+        "verdict": "malicious",
+        "category": "vendor_fraud",
+        "confidence": 0.95,
+        "indicators": ["Rookmere Service Agreement 2026",
+                       "larkseal-docs.example"]
+      }
+    narration:
+      - Here is a real reply, from a real run.
+      - Four named values. A verdict, a category, a confidence number, and a short list of indicators.
+      - Your code turns that text into a dictionary and reads any field it wants.
+      - This one arrived clean on the first try. Yours will not always, and that is fine.
+
+  - type: slide
+    layout: compare
+    eyebrow: What changed
+    heading: The same email, two weeks apart
+    items:
+      - Week 1, plain words | The model said it was not phishing
+      - Week 2, named values | The model says malicious, confidence 0.95
+    narration:
+      - text: This is the same email you saw in the week 1 walkthrough.
+        reveal: 1
+      - text: Last week, asked in plain words, the model said it was not a phishing attempt. That was wrong.
+        reveal: 1
+      - text: This week, asked for named values, it says malicious with high confidence. That is right.
+        reveal: 2
+      - text: Asking for a fixed shape changed the answer. That is worth sitting with.
+
+  - type: slide
+    layout: statement
+    eyebrow: The catch
+    heading: The category is wrong, and the check still passes
+    body: Ground truth says this is a credential phish. The model said vendor fraud. Every field was the right type, so nothing complained.
+    narration:
+      - Now the part to watch for.
+      - The category in that answer is wrong. The email is a credential phish. The model called it vendor fraud.
+      - Your schema check passed it anyway, because every field was present and the right type.
+      - A check on the shape cannot tell you the content is right.
+      - That is the whole reason this course keeps going after week 2.
+
+  - type: slide
+    layout: numbered
+    eyebrow: Before you submit
+    heading: Three checks
+    items:
+      - Every email has an answer in the file
+      - The attempt log shows what happened
+      - Your written answer names a real field
+    narration:
+      - text: Three things to check before you turn it in.
+        reveal: 1
+      - text: First, all four emails have an answer in your exported file.
+        reveal: 1
+      - text: Second, the attempt log is there. If a retry fired, that is good, not bad. Leave it in.
+        reveal: 2
+      - text: Third, your written answer names a field from your own output and says what it said.
+        reveal: 3
+      - text: A general sentence about JSON will not earn the points. Your own numbers will.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If it is not working
+    heading: The two failures you will actually hit
+    body: Extra words around the JSON, and a missing field. Both are normal. Your retry is built for exactly these.
+    narration:
+      - Two failures are common, and your code is built for both.
+      - The model wraps the JSON in a sentence, or it leaves out a field.
+      - When that happens your code says what was wrong and asks again.
+      - Watch the attempt log show it. That is your program working.

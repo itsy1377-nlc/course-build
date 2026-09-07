@@ -1,0 +1,259 @@
+# Week 2 self-check. Six questions, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, in the Self-Checks group, which is
+#                   8 percent of the course grade across all seven weeks.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all six.
+#   points          2. Six questions, twelve points.
+#   section         which page or notebook section the question comes from.
+#   outcome         "none". Self-checks report into no Canvas Outcome. The
+#                   graded evidence for CLO2 is the week 2 lab rubric,
+#                   criterion 2, which the alignment matrix records as the
+#                   primary evidence. A second reporter here would contradict
+#                   it. The key is present because the export tooling requires
+#                   one on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the section to reopen, because the attempts are unlimited and the point of
+# the quiz is to send a student back to the right paragraph.
+#
+# ITEM COVERAGE. Items 1, 5 and 6 sit on this week's three objectives. Items 2,
+# 3 and 4 are the three failures a student is most likely to meet alone, late,
+# with nobody to ask.
+
+title: Week 2 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Six short questions on week 2. They take about ten minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is worth 12 points. You may take it as many times as you like,
+  and your highest score is the one that counts.</p>
+
+  <p>Every answer, right or wrong, tells you which section to reopen. Use
+  those names. Missing one twice is a sign to go back and read, not a sign to
+  guess again.</p>
+
+  <p>Take it after the reading and the lab. It is written to check what the
+  lab taught you, not to teach it.</p>
+
+questions:
+
+  - id: w2-q1
+    name: Question 1. The four keys
+    type: multiple_choice
+    points: 2
+    section: "Week 2 reading, part 1, why a sentence is not an answer"
+    outcome: "none"
+    text: |
+      <p>Which four key names does the course output schema require?</p>
+    answers:
+      - text: "verdict, category, confidence, indicators"
+        correct: true
+        feedback: >-
+          Correct. Those four, spelled that way, on every answer. Week 2
+          reading, why a sentence is not an answer.
+      - text: "verdict, reason, score, evidence"
+        correct: false
+        feedback: >-
+          No. Three of those names are close in meaning and wrong in text. The
+          schema checks the name, not the meaning. Week 2 reading, part 1, why a
+          sentence is not an answer.
+      - text: "subject, sender, body, links"
+        correct: false
+        feedback: >-
+          No. Those are parts of the email going in. The four keys are the
+          answer coming back. Week 2 reading, part 1, why a sentence is not an answer.
+      - text: "malicious, benign, spam, unknown"
+        correct: false
+        feedback: >-
+          No. Two of those are values the verdict key can hold. They are not
+          key names. Week 2 reading, part 1, why a sentence is not an answer.
+
+  - id: w2-q2
+    name: Question 2. A stop reason of length
+    type: multiple_choice
+    points: 2
+    section: "Week 2 reading, part 2, a wrong shape is a normal condition"
+    outcome: "none"
+    text: |
+      <p>Your call comes back with an empty answer and a stop reason of
+      <code>length</code>. What happened, and what should your code do
+      next?</p>
+    answers:
+      - text: The model ran into the token limit before it wrote the answer. Record the failed try and ask again.
+        correct: true
+        feedback: >-
+          Correct. Usually the reasoning block used the whole budget. It is a
+          normal condition, so your loop handles it. Week 2 reading, part 2, a wrong
+          shape is a normal condition.
+      - text: The email was too long to classify. Skip it and move to the next one.
+        correct: false
+        feedback: >-
+          No. The limit that ran out is on the answer, not on the email. And
+          skipping loses the record a grader needs. Week 2 reading, part 2, a wrong
+          shape is a normal condition.
+      - text: The model refused to answer. Report it to your instructor.
+        correct: false
+        feedback: >-
+          No. A refusal is text. This reply is empty because generation
+          stopped. Week 2 reading, part 2, a wrong shape is a normal condition.
+      - text: The answer is fine. An empty string still loads as JSON.
+        correct: false
+        feedback: >-
+          No. An empty string is not JSON, and the load raises an error. Week
+          2 reading, a wrong shape is a normal condition.
+
+  - id: w2-q3
+    name: Question 3. Stripping the reasoning block
+    type: multiple_choice
+    points: 2
+    section: "Week 2 reading, part 2, a wrong shape is a normal condition"
+    outcome: "none"
+    text: |
+      <p>Why does the model's reasoning block have to come off before you load
+      the answer?</p>
+    answers:
+      - text: Because the reasoning text sits around the JSON, so the load fails on it.
+        correct: true
+        feedback: >-
+          Correct. The load needs JSON and nothing else. Anything wrapped
+          around it breaks the parse. Week 2 reading, part 2, a wrong shape is a
+          normal condition.
+      - text: Because reading it would tell you the answer before the schema check runs.
+        correct: false
+        feedback: >-
+          No. Reading it is harmless. The problem is mechanical: extra
+          characters break the load. Week 2 reading, part 2, a wrong shape is a normal
+          condition.
+      - text: Because it is private and you are not allowed to see it.
+        correct: false
+        feedback: >-
+          No. Nothing here is private. It is text the model wrote to itself,
+          and it is in your way. Week 2 reading, part 2, a wrong shape is a normal
+          condition.
+      - text: Because it makes the file too large to attach.
+        correct: false
+        feedback: >-
+          No. Size is not the issue. The load is. Week 2 reading, part 2, a wrong
+          shape is a normal condition.
+
+  - id: w2-q4
+    name: Question 4. Reading the error
+    type: multiple_choice
+    points: 2
+    section: "Week 0, section 10, how to read an error message"
+    outcome: "none"
+    text: |
+      <p>Your run stopped and printed this.</p>
+      <pre><code>Traceback (most recent call last):
+        File "classify.py", line 12, in &lt;module&gt;
+          answer = json.loads(text)
+      JSONDecodeError: Expecting ',' delimiter: line 1 column 58
+      </code></pre>
+      <p>Which line names the thing that failed?</p>
+    answers:
+      - text: The last line. It names the error type and what went wrong.
+        correct: true
+        feedback: >-
+          Correct. Read the last line first, every time. Here it says the text
+          was not complete JSON. Week 0, section 10, how to read an error
+          message.
+      - text: The first line. It names the file that could not be opened.
+        correct: false
+        feedback: >-
+          No. The first line is a header. It only says a traceback follows.
+          Week 0, section 10, how to read an error message.
+      - text: The File line. It is the only line that names anything real.
+        correct: false
+        feedback: >-
+          No. That line tells you where, which is useful. The last line tells
+          you what. Week 0, section 10, how to read an error message.
+      - text: None of them. A traceback only says that something failed.
+        correct: false
+        feedback: >-
+          No. It names the error type, the failing call and the line number.
+          Week 0, section 10, how to read an error message.
+
+  - id: w2-q5
+    name: Question 5. What a retry has to add
+    type: multiple_choice
+    points: 2
+    section: "Week 2 reading, part 2, the retry"
+    outcome: "none"
+    text: |
+      <p>Your first try failed the schema check. What must the second request
+      add to be worth making?</p>
+    answers:
+      - text: The problems your check reported, in plain words.
+        correct: true
+        feedback: >-
+          Correct. That is the one rule. Without it you have sent the same
+          request twice and paid twice. Week 2 reading, part 2, the retry.
+      - text: A higher temperature, so the model answers differently.
+        correct: false
+        feedback: >-
+          No. That changes how varied the wording is. It does not tell the
+          model what was wrong. Week 2 reading, part 2, the retry.
+      - text: The same prompt again. Models often get it right on a second pass.
+        correct: false
+        feedback: >-
+          No. An unchanged request gives the model nothing new, so the same
+          mistake is as likely. Week 2 reading, part 2, the retry.
+      - text: A note asking the model to try harder this time.
+        correct: false
+        feedback: >-
+          No. That is pressure, not information. Name the problem instead.
+          Week 2 reading, part 2, the retry.
+
+  - id: w2-q6
+    name: Question 6. Loads cleanly, fails the check
+    type: multiple_choice
+    points: 2
+    section: "Week 2 reading, part 1, valid JSON can still be a wrong answer"
+    outcome: "none"
+    text: |
+      <p>An answer loads with no error and still fails the schema check. How
+      is that possible?</p>
+    answers:
+      - text: Loading only proves the text is JSON. The schema also rules on the names and the values.
+        correct: true
+        feedback: >-
+          Correct. Loading and checking ask different questions, and you need
+          both. Week 2 reading, part 1, valid JSON can still be a wrong answer.
+      - text: It is not possible. Anything that loads has passed the check already.
+        correct: false
+        feedback: >-
+          No. A category the course does not use loads perfectly well and is
+          still unusable. Week 2 reading, part 1, valid JSON can still be a wrong
+          answer.
+      - text: The check ran before the load, so it read the raw text.
+        correct: false
+        feedback: >-
+          No. The order is load first, then check. The check reads the
+          dictionary. Week 2 reading, part 1, valid JSON can still be a wrong answer.
+      - text: The answer was too short for the check to score it.
+        correct: false
+        feedback: >-
+          No. Length is not what the schema rules on. Names and values are.
+          Week 2 reading, part 1, valid JSON can still be a wrong answer.

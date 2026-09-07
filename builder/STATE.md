@@ -1,0 +1,883 @@
+# ITSY-1377-000 build state
+
+Written so a fresh session can continue without re-deriving anything. Update
+this file at every stopping point. Last update: 2026-09-04, start of Phase 3.
+
+## Where the build is
+
+**Phases 0, 1 and 2 are done. Phase 3 is in progress: build weeks 3 through
+8.** Phase 0 and Phase 1 were approved by the user on 2026-09-03 and
+2026-09-04. Phase 2 was reported complete on 2026-09-04 and the user said
+"proceed with phase 3". Nothing under `builder/` is committed to git.
+
+Phase 1 package: `builder/docs/phase1-blueprint/` holds seventeen documents,
+about 84,000 words, entry point `README.md`. The week 5 model test report is
+`builder/docs/week5-model-test.md` with its raw record beside it. Every file
+measures inside the program-manager bar (grade at or below 9.5, average
+sentence at or below 18, no sentence over 45, no paragraph over 70).
+
+Phase 0 package: `builder/docs/phase0-corpus-design.md` (the design, grade
+7.0, 12-word sentences, no paragraph over 70 words, every count recomputed
+from the manifest), the same document rendered for the program manager at
+`builder/docs/phase0-corpus-design.html` with the six sample emails as an
+appendix (publishing it as a hosted page was blocked by the permission
+classifier; open the file locally or publish it by hand), six rendered and
+verified sample emails under `builder/corpus/emails/`, `ground_truth.json`
+with six records under one labeling convention, and both corpus checkers
+passing (0 failures; one permitted fold-length warning on 003).
+
+The build prompt is saved verbatim (token redacted) at
+`builder/docs/build-prompt-v1.3.md`. Everything for this course lives under
+`builder/`. The other trees in this repository are different courses and are
+never referenced by anything that ships.
+
+## Blockers
+
+1. **Resolved.** The first token returned 401; the user supplied a working
+   one on 2026-09-03 (kept outside the repo in the session scratchpad
+   `canvas.env`; never write it into the repo). Verified: the user is the
+   site admin (user id 1), root account "Test Courses" (id 1), existing
+   courses 3 (funded) and 4 (constrained) untouched. The account has no
+   Outcomes at any level, so the six CLOs will be course-level Outcomes.
+   Classic Quizzes is enabled (a probe quiz with one question was created and
+   deleted). The course shell **ITSY-1377-000 is Canvas course id 6**,
+   unpublished, holding only `corpus/emails/` with the six sample files. The
+   download test passed (`builder/docs/phase0-download-test.json`).
+2. **Resolved.** The program manager's eight suggested outcomes were not in
+   the repository; the user supplied them on 2026-09-03 and they are saved
+   verbatim at `builder/docs/program-manager-suggested-outcomes.md`. The
+   coverage memo is written against that file.
+
+## Decisions taken (defaults, to be confirmed at the Phase 0 approval)
+
+- Course files live in `builder/` (`corpus`, `docs`; later `content`,
+  `notebooks`, `canvas`, `video`).
+- The corpus organization is Pellgrave Mechanical Group, `pellgrave.example`,
+  a Texas mechanical contractor; gateway product Sentrywick Gateway; webmail
+  provider Lanternmail; bulk provider Sendbarrow Mail. All invented; business
+  names were web-searched.
+- 56 emails: 25 teaching (weeks 1 to 6), 20 batch (week 7, 10 malicious and
+  10 benign), 11 exam-only. Seven categories map to two verdicts; spam is
+  benign. Full design: `builder/docs/phase0-corpus-design.md`, section 14
+  lists the fourteen decisions the program manager is asked to approve.
+- Every domain under `.example`; IPs from RFC 5737 or RFC 1918; no real
+  brand, company or person; attachments as a gateway-stripped stub header plus
+  a body notice; bodies 7-bit text only.
+- Serving stack for the proof of concept: Ollama 0.32.15 at
+  `http://localhost:11434/v1`, models `granite4.1:3b` and `granite4.2:3b`,
+  both pulled. Shape documented in `builder/docs/serving-stack-shape.md`:
+  4.2's reasoning arrives in a separate `message.reasoning` field (never an
+  inline think block on this stack); the only switch that turns it off is
+  `reasoning_effort: "none"`, which 4.1 rejects with HTTP 400, so the switch
+  must be gated per model; tool calls are well formed on both; at a
+  1024-token cap 4.2 in reasoning mode returns empty content two times in
+  three, so labs either raise the cap to 4096 or turn reasoning off.
+- Writing standard mirrors the two existing course trees, as numbers:
+  `builder/docs/writing-standard.md` (student pages grade about 4.4,
+  11-word sentences, prior page budgets; program-manager documents grade
+  about 9, 18 to 20 word sentences). Gate: `ITSY_CONTENT=builder/content
+  python3 -m tools.readability`.
+
+## Files on disk (Phase 0)
+
+| File | State |
+|---|---|
+| `builder/docs/email-header-realism.md` | done; every rule cited to an RFC section; placeholder-name banner added |
+| `builder/docs/nlc-template-conformance.md` | done; 32 template-versus-prompt conflicts listed (Phase 1 item 8 input) |
+| `builder/docs/serving-stack-shape.md` and `serving-stack-probe/` | done; raw JSONL of 54 probe calls kept |
+| `builder/docs/phase0-candidates/` | three candidate designs and manifests; judges scored A 124, B 122, C 117; A won with grafts from B and C |
+| `builder/docs/phase0-corpus-design.md` | done; critic's fixes applied; edited to grade 7.0 with every fact verified against the manifest |
+| `builder/docs/phase0-corpus-design.html` | the same, rendered for the program manager with the six emails as an appendix |
+| `builder/corpus/spec/` | corpus-spec.json (56 records), enums.json, categories.json, ground_truth.schema.json, phase0-sample-manifest.json |
+| `builder/corpus/data/` | all ten data files; playbook.md rewritten to grade 5.2, 249 words |
+| `builder/corpus/tools/` | parse_eml.py (the week 1 helper), validate_corpus.py, check_spec.py; both checkers pass |
+| `builder/corpus/emails/teaching/` | 003, 006, 013, 019, 021: five finished, each passed parse, realism and safety verifiers |
+| `builder/corpus/emails/batch/` | 032 (attachment stub, softfail): rendered, passed all three verifiers first time |
+| `builder/corpus/ground_truth.json` | six records, label_version phase0-1.0, one indicator convention, 0 schema errors |
+| `builder/corpus/README.md` | rewritten to grade 6.6 |
+
+## Workflows
+
+Workflow 1, run id `wf_0c7d8bdd-317`, completed 2026-09-03 (46 agents, no
+errors). Its critic said: design, counts and data files are internally
+consistent and mechanically verified; not approve-ready until (1) the blocked
+Canvas test is stated plainly, (2) the ground truth records use one labeling
+convention, (3) the promised sixth email 032 is rendered, (4) file locations
+and inventories are reconciled, (5) small prose errors are fixed.
+
+Workflow 2, run id `wf_d4587b21-294`, launched 2026-09-03 about 16:10 local,
+does exactly those five things plus a section-by-section readability edit of
+the design doc to the program-manager bar (grade at or below 9.5, sentences
+at or below 18 words, no sentence over 45, no paragraph over 70), with a
+fact-preservation verifier on every section.
+Script: `~/.claude/projects/-Users-aaron-workspace-dev-ITSY1377-builder-corpus/8ebfb83f-3d81-4460-8822-9754df64a237/workflows/scripts/itsy1377-builder-phase0-polish-wf_d4587b21-294.js`
+Journal: `~/.claude/projects/-Users-aaron-workspace-dev-ITSY1377/8ebfb83f-3d81-4460-8822-9754df64a237/subagents/workflows/wf_d4587b21-294/journal.jsonl`
+Resume from the same session: `Workflow({scriptPath, resumeFromRunId: "wf_d4587b21-294"})`.
+History: the first run was cut off by the usage limit at about 15:34 after six
+agents (design-doc fixes and split, email 032 authored and verified by all
+three lenses); every section-edit agent and the ground-truth regeneration
+failed at the API. Before resuming at about 19:15, sections caught mid-edit
+(02, 03, 05, 07) were restored from their .orig copies, the split was checked
+byte-for-byte against the fixed document, and the script got a null guard on
+the ground-truth result. The resume replays the six cached agents and runs
+the rest live under the same run id.
+If it was cut off: the design doc may be split into `builder/docs/phase0-edit-work/sec-NN-*.md`
+(with `.orig` siblings). Concatenate the edited files in name order with one
+blank line between them back into `phase0-corpus-design.md`, delete the work
+directory, then run the two corpus checkers.
+
+## Phase 1 complete
+
+All three jobs finished. The blueprint answers the nine Phase 1 items plus the
+coverage memo, and three adversarial audits found and fixed 62 defects across
+it, including seven different lab point totals, a missing grade distribution,
+seven sidebars sharing three subjects, and the week 5 lab having been described
+rather than written out as the build prompt requires.
+
+**The measured week 5 answer.** 294 agent runs, both models, four lab designs,
+recorded in `builder/docs/week5-model-test.json` and reported in the markdown
+beside it. Standardise on granite4.2:3b with reasoning off, in the design where
+the student's code owns the stop condition: 29 of 30 exact tool paths, 30 of 30
+correct stop reasons, 28 of 30 correct verdicts, 3,813 tokens and 4.1 seconds
+per triage. Set `reasoning_effort` to `none` on every request,
+for every model. It is NOT gated by model name: re-measured on 2026-09-04,
+`none` returns HTTP 200 on both models and only `low`, `medium` and `high` are
+refused by granite4.1:3b, with `"granite4.1:3b" does not support thinking`. The
+old name gate matched the text `granite4.2` and so failed silently against any
+hosted alias, leaving reasoning on for the term. granite4.1:3b is the documented
+fallback: it ends every run for the right reason but varies the tool order, so
+the rubric grades the stop reason and the trace rather than the order.
+
+Reasoning mode is out. At a 512-token answer budget it returned empty content
+18 times out of 18. At 4,096 it works and costs 83 seconds and about 7,900
+tokens for one email.
+
+Re-run each term with `python3 builder/lab/eval/week5_loop_test.py --all`.
+
+The measurement is `builder/lab/eval/week5_loop_test.py`. It waits for the six
+emails to appear and stop changing, then runs 138 agent loops: granite4.1:3b
+and granite4.2:3b (reasoning off) at five trials each on a free variant and a
+guided variant, plus granite4.2:3b in its default reasoning mode at three
+trials on the free variant. The free variant lets the model pick any of the
+three tools and decide when to stop, under a hard cap of four. The guided
+variant is the fallback week 5: the sender reputation call is run for the
+student, and the model chooses at most one more tool. It asserts the endpoint,
+the model digests and the sha256 of every email before measuring, and writes
+its JSON after every single run, so a cutoff loses one trial.
+
+Already verified: `check_tools.py` reports all three tools agree with the
+manifest on every field of all 56 records. The harness mechanics were smoke
+tested against rendered emails and correctly caught a model calling one tool
+twice.
+
+**Two earlier measurements were thrown away, and the reason matters.** The
+authoring workflow's verify-and-fix rounds regenerated four of the six week-5
+emails while the sweep was reading them, so 234 runs scored the models against
+files that no longer exist. The harness had recorded each input file's sha256
+inside its own result JSON, so one comparison proved it. Everything was
+re-measured against the final files in a single run. The digests in the final
+record still match the files on disk, checked by
+`builder/lab/eval/week5_report.py`, which refuses to report otherwise. Never
+start a sweep while any agent can still write to its inputs, and always compare
+the recorded digests before reading a number.
+
+**Corpus defect, found by measurement and now fixed everywhere:** the manifest
+gave email 012 the stop reason `step_cap`, but three tools exist under a cap of
+four, so an agent runs out of tools first. All 294 runs stopped on
+`tools_exhausted`. The manifest, that email's ground truth entry and the week 5
+spec now agree. The cap is still taught, through the deliberately uncapped run
+in the lab.
+
+**A second finding for week 7:** email 012 is the corpus's genuine false
+positive. It is a real vendor on a new domain with an unlisted link host asking
+for names, and nothing any tool returns settles it. The recommended
+configuration calls it correctly 4 times in 5; every other configuration
+measured got it right 9 times in 44, and granite4.1:3b 0 times in 20. So week 5
+awards no points for the verdict on it, and week 7 should expect it in the false
+positive column. `week5_report.py` computes that split from the data rather than
+quoting it.
+
+## Phase 2 complete, 2026-09-04
+
+Start Here, week 0 and weeks 1 and 2 are built and in Canvas (course id 6):
+6 modules, 39 items, six course-level Outcomes, both labs at 100 points with
+rubrics, every quiz answer carrying its own feedback, and four videos embedded
+and playing.
+
+**Decided in Phase 2 and still binding.** Course content is markdown using the
+`:::` block format, which `tools/blocks.py` renders to the exact Cidi Labs
+DesignPLUS classes the institutional template uses, so `tools/readability.py`
+runs on it unchanged with `ITSY_CONTENT=builder/content`. Page file stems match
+the names in that tool's budget table, so each page gets the right budget
+automatically. The authoring contract is `builder/content/AUTHORING.md`; read it
+before writing any page.
+
+**The spine and the builder.** `builder/content/course.yaml` names all twelve
+modules, 74 items, the five assignment groups summing to 100, and the six Canvas
+Outcomes with one mastery scale. `builder/canvas/build_course.py` renders and
+pushes it, is idempotent, and refuses to create an item whose source file does
+not exist, naming it instead. It reads `CANVAS_BASE` and `CANVAS_TOKEN` from the
+environment and never stores them. Three modes: `--check` (dry run), no flag
+(build), and `--verify` (read Canvas back and compare against the spine).
+
+**Six builder bugs found and fixed in Phase 2.** Each one is a trap the
+remaining weeks would hit again.
+
+1. `default_view=wiki` is refused until the front page exists, so settings are
+   applied in two passes around the front page.
+2. Outcomes need the course-scoped endpoint; the bare one returns 404.
+3. `submission_types` must be repeated parameters, never comma-joined.
+4. Canvas derives a new page's URL from its **title** and ignores the url in
+   the path. The builder now looks the url up by title.
+5. Answer feedback's key is `comments`. Canvas accepts `answer_comments`,
+   answers HTTP 200 and stores nothing.
+6. **One Outcome may align to at most one criterion per rubric.** Canvas
+   answers HTTP 200 and creates no rubric at all. Week 1's lab had three
+   criteria linked to CLO2 and therefore had no rubric while the build reported
+   success. Recorded in `docs/phase1-blueprint/alignment-matrix.md`, last
+   section. **Every week 3 to 7 rubric must obey it:** each Outcome links once,
+   on the criterion that measures it most directly; the others are declared
+   week expectations.
+
+A seventh, in the video path: a page's video block renders a Common Cartridge
+placeholder that an API build does not resolve, so every player would have
+pointed at nothing with no error anywhere. `build_course.py` now uploads each
+asset, rewrites `$IMS-CC-FILEBASE$/video/...`, and refuses to push a page
+referencing an unbuilt asset.
+
+**The verifier was strengthened** after it passed while an independent read-back
+found four real defects. It now checks that every lab has a rubric, that the
+criteria sum to the assignment points, that outcome links match the source file,
+that quiz answers carry feedback, and that no stray assignment groups exist.
+
+**Phase 2 gate results, 2026-09-04.** Canvas verify 0 problems. Video gates 4
+videos all pass. Readability 30 pages, mean grade 3.83, limit 8.0. Corpus
+validator 14 files 0 failures. check_spec 56 records all rules hold. check_tools
+agree with the manifest on every field of all 56 records.
+
+## Phase 3 in progress, from 2026-09-04
+
+Phase 3 builds weeks 3 through 8, then the risk register, the final QA report
+and the Canvas build.
+
+### Where Phase 3 actually stands, 2026-09-05
+
+There is no Phase 4. The build prompt defines phases 0 to 3 and ends at "WHAT
+DONE LOOKS LIKE", which is the acceptance list for the whole build. The
+instructor package, the risk register, the final QA report and the coverage
+memo all sit inside Phase 3.
+
+**Done and verified.**
+
+| Thing | State |
+|---|---|
+| The corpus | Finished. 56 emails, 45 student and 11 exam, build clean, byte reproducible, three release files at 25/20/11, tools agreeing on every field. |
+| The week 5 measurement | Intact. All six recorded digests still match the files on disk. |
+| Weeks 3 to 7 content | 36 files written and audited: overview, reading, wrap-up, lab, discussion, rubric and self-check per week, plus w6-content-2. |
+| Readability | 56 pages, mean grade 3.66, every page inside its budget. |
+| Rubrics | All seven sum to 100, no Outcome linked twice, every top level equals its criterion points. |
+| Self-checks | Points sum to 12, every answer carries feedback, one correct option each. |
+| Discussion prompts | 109 sentences, verbatim from the approved specs, zero deviations. |
+| The six CLOs | Verbatim from the build prompt in the spine and in the live Canvas Outcomes. |
+
+**Not done.** `build_course.py --check` reports 111 objects built and 23
+skipped, and the 23 are the work left:
+
+- ten lab and sidebar notebooks for weeks 3 to 7, and six instructor solutions
+- ten videos, two per week for weeks 3 to 7, plus rebuilding the four existing
+  ones, which the config change correctly marked stale
+- week 8: the overview page, the wrap-up page and the 30-item final exam
+- the instructor package carried to weeks 3 to 8, the risk register and the
+  final QA report
+- the Canvas build of weeks 3 to 8
+- the week 6 injection measurement, whose harness is written and which refuses
+  to start until nothing else can write to the corpus
+
+The notebooks are the critical path. The lab chain is serial because week N
+carries week N-1's working code, the instructor solutions are the only proof
+each lab is completable, and the walkthrough videos record real runs from them.
+
+**Two things still want a decision.**
+
+1. `docs/manifest-concerns.json` holds 133 self-contradictions the corpus
+   authors reported rather than silently fixing. About a third are one bug in
+   how `received_path_hint` counts hops. The triage workflow is written at
+   `<scratchpad>/phase3-manifest-triage.js`. **Do not run it while anything
+   else reads the corpus.**
+2. Week 1's rubric floors its levels at 6 where every other week floors at 0,
+   so the two map onto different ends of the mastery scale. With the
+   calculation method corrected to `latest` the practical effect is gone. The
+   inconsistency in what a grader records is a grading-policy call.
+
+### Tools built in Phase 3, and what each one stops
+
+`corpus/tools/build_corpus.py` runs every generator in id order from one
+process, writes the three ground truth release files under `corpus/release/`,
+and runs every validator. It also checks that the six emails the week 5
+measurement recorded digests for are byte identical to what was measured. That
+check is what stops a generator quietly invalidating the measurement that chose
+the model and the week 5 design.
+
+`lab/tools/run_notebook.py` executes a notebook the way a student's server
+does. `--student` proves the notebook runs top to bottom with every TODO still
+unwritten, which is the rule that matters most for a class with no programming
+background. `--solution` proves the lab is completable and that the export cell
+really wrote its artifact. All five existing notebooks pass.
+
+`lab/notebooks/AUTHORING.md` is the notebook contract, written because weeks 1
+and 2 use different unwritten-TODO placeholders and nothing recorded the rule.
+
+`docs/phase3-findings.md` is the running defect log. Six entries so far,
+including two silent Canvas failures found before they shipped. The final QA
+report and the risk register are written from it.
+
+**Stage A, the corpus.** Workflow `wf_59419446-c57` authors the 42 remaining
+emails: one agent per email writes its generator, renders it and runs both
+validators in a private scratch copy, then two independent verifiers check it,
+one for fidelity to the manifest and one for safety and realism. Only the
+generator file is written back to `builder/corpus/tools/generators/`; the
+generators are run against the real tree afterwards, in id order, by one
+process. That is deliberate: 42 agents writing `corpus-spec.json` and
+`ground_truth.json` at once would corrupt both, which is the trap recorded in
+`memory/itsy1377-measurement-traps.md`.
+
+Exam-only emails 046 to 056 render to `builder/instructor/exam-emails/`, never
+under `corpus/emails/`, so nothing a student can reach holds them before the
+exam. `validate_corpus.py --emails` points at that folder.
+
+Still to do after Stage A:
+- Split `ground_truth.json` into `ground_truth_teaching.json`,
+  `ground_truth_batch.json` and `ground_truth_exam.json`. Week 7 loads the
+  batch file; the other two ship in the instructor package.
+- Rebuild `spec/phase0-sample-manifest.json` from the rendered files.
+- Weeks 3 to 7: overview, reading, wrap-up, lab assignment, discussion, rubric,
+  self-check, sidebar notebook and lab notebook. Week 8: overview page and the
+  30-item final exam.
+- Ten videos, two per week for weeks 3 to 7.
+- Instructor package: solution notebooks for weeks 2 to 7, announcements for
+  weeks 3 to 7, and the updates to grading notes and failure modes.
+- Risk register, final QA report, Canvas build and verification.
+
+**Never re-render the existing 14 emails.** The week 5 measurement recorded the
+sha256 of 004, 005, 007, 010, 011 and 012 inside its own result file. Changing
+those bytes invalidates the measurement that chose the model and the week 5
+design.
+
+### Week 3 repair pass, 2026-09-04
+
+Three audits reported eleven findings against week 3. Seven were acted on, two
+were rejected on the evidence, and two are escalated because they cannot be
+closed inside week 3.
+
+**Fixed.**
+
+1. **Emails 017 and 025 rendered.** `gen_017_fenwright_pay_statement_ready.py`
+   and `gen_025_larkseal_review_encoded_subject.py` were run individually, not
+   through `build_corpus.py`, so none of the existing 14 emails was re-rendered
+   and the week 5 digests still hold. Ground truth is 16 records, the manifest
+   was rebuilt with `gen_sample_manifest.py`, and the three release files were
+   rewritten by calling `build_corpus.split_ground_truth()` on its own.
+   `validate_corpus.py`: 16 files, 0 failures, the one permitted 003 warning.
+   `check_spec.py`: 56 records, all rules hold. The 005/025 matched pair is now
+   real: 005 is benign with `body_only_read` malicious, 025 is malicious with
+   `body_only_read` benign, and 025's display-name check fires against
+   `larkseal.example`.
+2. **Week 3 token estimate recomputed** over all six emails, using `body_text`,
+   the key the labs send. Mean body is 737, not 706. Per-run total is about
+   9,600 rather than 9,500, and `grade-distribution-and-tokens.md` carries the
+   new row and course totals. The facts block term is still 344 from three
+   emails and cannot be remeasured until the week 3 notebook ships `FACT_ORDER`
+   and `FACT_LABELS`.
+3. **`course.yaml` outcome scale** now matches `alignment-matrix.md` sections 8,
+   9 and 10: four ratings with the standard labels. `calculation_method` had
+   already been corrected to `latest` earlier in the day; the five-level scale
+   with its unreachable 1-point "Beginning" rating had not.
+4. **The blueprint now agrees with the shipped rubric.** `alignment-matrix.md`
+   section 11 and the section 3 CLO1 row no longer claim supporting CLO1 links
+   on week 3 criteria 3 and 4, and carry a dated amendment saying CLO1's outcome
+   data comes from criterion 2 alone. `week-03-spec.md` carries the same
+   amendment in its rubric sketch and its objectives section. **The rubric was
+   not changed:** the Canvas one-link constraint is real and already recorded.
+5. **Glossary** gained a "Display-name mismatch" row, which AUTHORING section 6
+   requires. The page was at 1,594 of 1,600, so the intro's second sentence, a
+   duplicate of both the keyfacts row and the "How to use this page" section,
+   came out to make room. Now 1,596.
+6. **Two overclaims removed.** `w3-wrap-up.md` and `w3-self-check.yaml` q5 told
+   students what their own run did, as fact, while the lab and the discussion
+   hedged the same outcome and nothing in the repository measures it. Both now
+   read in the lab's register.
+7. **An unsupported model claim removed** from `w3-content.md`: it attributed
+   verdicts to week 1, which produces none, and asserted that urgent words score
+   high, which no artifact records.
+
+**Rejected, with reasons in the repair report.** The suggestion to change
+`tools/cartridge.py` to read `group["key"]`, `path.stem` and `criterion["levels"]`
+would break `content/funded` and `content/constrained`, which are what that tool
+actually serves. And the suggestion to add the continuity promise to
+`w3-overview.md` would make week 3 the only week besides week 1 to carry it on a
+page; week 2 carries it in the overview video narration and in notebook cell 1,
+which is where the code ledger puts it.
+
+**Escalated, both blocked outside week 3.**
+
+- **The two week 3 videos.** `w3-overview.yaml` and `w3-walkthrough.yaml` do not
+  exist and no w3 mp4 is built, so `w3-overview.md` and `w3-content.md` cannot be
+  pushed. This is Stage E, which waits on Stage C: a walkthrough shows a real run,
+  `builder/lab/notebooks/` holds weeks 0, 1 and 2 only, and
+  `builder/instructor/solutions/` holds `w1-lab-solution.ipynb` alone, so the no
+  spoiler gate has nothing to read. Week 3 cannot ship until Stage C runs.
+- **No rubric ladder gate runs on `builder/content`.** `tools/cartridge.py`
+  cannot load this tree at all. The ladders were checked by hand instead: all
+  seven rubrics sum to 100 and match the spine, no Outcome is linked twice, and
+  every ladder is strictly descending with a unique top equal to its criterion
+  points. Week 1 is the exception worth a decision: its four ladders floor at 6
+  rather than 0, so its lowest rating does not map onto the "No evidence 0"
+  mastery rating. Untouched, because week 1 is not this pass.
+
+### The carry-forward chain reconciled, 2026-09-05
+
+`lab/tools/check_chain.py` is new and it reported 11 drifts. Six repair agents
+fixed six weeks in parallel and each could write only its own week, which was
+the right rule, so a fix to week 2's `strip_reasoning()` never reached the copy
+of it in weeks 3 to 7. All 11 are closed, in 12 files: the six lab notebooks
+for weeks 2 to 7 and their six instructor solutions. No name, no signature and
+no cell number changed.
+
+The rule applied is that the week which first defines a function owns it, and
+every pair was read before it was propagated.
+
+| Function | Owner | What was actually different |
+|---|---|---|
+| `strip_reasoning()` | 2 | Docstring and comments only. Weeks 3 to 7 claimed it strips "any code fences"; it strips only a fence that starts the answer. Week 2's wording carried forward. |
+| `loop_prompt()` | 5 | Weeks 6 and 7 called `build_grounded_prompt()`, which sends the playbook and the body a second time (`start_messages()` already sends both) and puts the answer schema in the first turn, which is what week 4 measured as the thing that stops tool calls. Week 5's version is also the one `lab/eval/week5_loop_test.py` measured. Week 5's version carried forward. |
+| `guarded_triage()` | 6 | Week 7 had lost the recipient addresses from `hosts_extracted` and the `tokens_written` key, which is the number `TOKEN_CAP_PER_RUN` caps. Week 6's version carried forward. |
+| `hosts_named_in()` | 6 | Week 7 had lost the line that drops a scheme and a path, so a host written as a full link was missed. Week 6's version carried forward. |
+| `run_triage()` | 6 | Week 7 set a sixth stop reason, `"run_loop() is not written yet"`, on a branch that cannot run because week 7 ships `run_loop()` pre-written. Week 6's version carried forward. |
+| `schema_text()` | 2, promoted from 7 | **The one that went the other way.** Week 7's body renders any key count and a `sentences` rule, and week 7's own comment read "Two lines of this are new in week 7", which is a later week editing an earlier week's cell. Week 2 now carries `KEY_COUNT_WORDS` and both rules, and weeks 3 to 7 carry the same. On a four-key schema the rendered block is byte-identical to what week 2 printed before. |
+
+**Ledger and spec changes this asks for, and which were not made here.**
+
+1. Section 12 says "Five signatures were designed to grow". It is six.
+   `schema_text(schema)` belongs on the list: it takes the schema and now
+   renders any key count and a sentence rule, so week 7 passes
+   `OUTPUT_SCHEMA_V2` without reopening week 2's cell.
+2. Week 2's pre-written table and its cell 6 list need `KEY_COUNT_WORDS` beside
+   `OUTPUT_SCHEMA` and `schema_text()`.
+3. Week 2's table describes `strip_reasoning()` as removing "code fences". It
+   removes one that starts the answer.
+4. Week 5's table row, and `week-05-spec.md` sections 3 and 15.1, describe
+   `loop_prompt()` as joining `LOOP_INSTRUCTIONS` to "week 3's grounded
+   prompt". The shipped function joins them to `CLASSIFY_INSTRUCTIONS`, the
+   facts block and the known-good list only.
+5. Week 6's paragraph lists five keys `guarded_triage()` adds. It adds six;
+   `tokens_written` is missing.
+6. Week 6 ships `run_triage()`, `hosts_named_in()`, `fence_check()`,
+   `fenced_email()` and `guarded_facts_text()` pre-written, and the ledger's
+   week 6 table names none of them. Two of the five are functions that drifted.
+
+**Gates, 2026-09-05.** `python3 builder/lab/tools/check_chain.py`: "the chain
+holds: every function carried forward matches the week that defined it, and
+every solution matches its lab". `python3 builder/lab/tools/run_notebook.py
+builder/lab/notebooks/ --all --student`: "15 notebook(s), 0 failure(s)", weeks
+6 and 7 taking 147s and 208s of real model calls.
+
+## 2026-09-07 — the course moved onto the notebook server
+
+All fifteen student notebooks and the corpus are baked into
+notebook.bashtion.dev. Canvas no longer hands out `.ipynb` files.
+
+**Notebooks.** All fourteen lab and solution files carry the browser stack: a
+guarded `piplite.install("requests")`, a pasted key with an environment
+fallback for automated runs, `NOTEBOOK` as the one line that differs per week,
+per-request tags, `budget_left()` and `backup_my_work()`. Cell counts and every
+markdown cell are unchanged, because the Canvas assignment pages cite cell
+numbers. Seven distinct configuration cells, one helper cell byte identical
+across all fourteen, `check_chain.py` green.
+
+**The site.** `lab/tools/stage_notebook_site.py` builds what the server serves
+from `student_files` in course.yaml, never from a folder walk, and refuses to
+hand back a tree holding anything named in `never_ship`. 73 files, 1.2 MB:
+15 notebooks, 45 emails, 13 data and tool files. Solutions and
+`corpus-spec.json` return 404 from the public site, checked.
+
+**Canvas.** The fifteen File items became `ExternalUrl` items pointing straight
+at `notebook.bashtion.dev/lab/index.html?path=<name>.ipynb`. build_course.py
+gained a `url` item type for it. `--verify` reports 0 problems.
+
+### Three things that had stopped being true
+
+`canvas-and-tech-support` promised "your files stay on the server all term" and
+advised trying a different browser. Both were false and the second destroys
+work. Corrected, and the new orientation page **Using the notebook server**
+(grade 3.14, 297 words) carries backup, restore and the limits.
+
+Week 1 told students a key would be found in their environment. It is pasted
+now.
+
+Weeks 3 and 4 said "no cell in this course prints key material, so no
+screenshot of one can show any". The key is pasted into the configuration cell,
+so a screenshot of it now leaks the key. That was the most consequential of the
+three.
+
+### Two properties measured, both load bearing
+
+**A redeployed notebook never reaches a student who already opened it.** Their
+browser copy shadows it permanently: no merge, no warning. Corrections have to
+ship under a new filename. Tested with a persistent browser profile.
+
+**Student work exists only in one browser on one machine.** `?reset` destroys
+it. Hence `backup_my_work()` in every export cell, proven in a real browser to
+capture a saved edit into a downloadable zip.
+
+### A near miss worth remembering
+
+`run_notebook.py` injects `ITSY1377_API_KEY=local-run` for a local server that
+ignores keys. Once the notebooks defaulted to the live proxy, every gate run
+fired at production: 201 failed calls before the operator noticed the log. The
+gate now declares `ITSY1377_BASE_URL` itself; a full run went from 215 request
+lines on the proxy to 0. Nothing in the tooling objected to a check aiming at
+production, and nothing would today.
+
+## 2026-09-06 — lab infrastructure
+
+Two guests on remotelab, both built, both on reserved addresses after a
+duplicate-address stop (recorded below).
+
+| guest | lab ip | mac | tailnet |
+|---|---|---|---|
+| litellm | 10.171.0.40 | 52:54:00:d1:30:65 | litellm.bopp-quail.ts.net |
+| jupyterlite | 10.171.0.41 | 52:54:00:fc:7a:80 | jupyterlite.bopp-quail.ts.net |
+
+**litellm** runs LiteLLM 1.100.0 in a venv under a system user, bound to
+`127.0.0.1:4000` and nothing else, with Postgres 17 on loopback for virtual
+keys and budgets. Caddy on `127.0.0.1:8080` is the student plane: a
+default-deny allowlist that proxies only `/v1/chat/completions`,
+`/v1/completions`, `/v1/embeddings` and `/v1/models` and 404s everything
+else. Admin is `tailscale serve` on the tailnet only. Secrets are root-only
+600 files under `/etc/litellm`, and the service user cannot read them --
+systemd loads them as root before dropping privileges.
+
+**jupyterlite** runs JupyterLite 0.8.3 built to `/var/www/jupyterlite`,
+served by Caddy on `127.0.0.1:8080`.
+
+Both tunnels are up and verified against the public URLs, not from config:
+`api.bashtion.dev` -> litellm :8080, `notebook.bashtion.dev` -> jupyterlite
+:8080. Unauthenticated `/v1/models` is 401, a budgeted student key is 200,
+and `/ui`, `/key/*`, `/user/*`, `/team/*`, `/sso/*`, `/metrics` and
+`/health/liveliness` are all 404. The admin UI answers only on
+`litellm.bopp-quail.ts.net`.
+
+Outstanding: the DeepInfra key at `/etc/litellm/deepinfra.env`, confirmation
+of guest autostart, and two Cloudflare-side decisions below.
+
+**Cloudflare challenges non-browser user agents on api.bashtion.dev.** From
+the guest's datacenter IP, curl gets a 403 "Just a moment..." interstitial
+with or without a key; the same request with a browser User-Agent gets 200.
+From a residential IP curl is not challenged. Students in JupyterLite send a
+real browser UA and are fine, but every script-based path -- the week 5 and
+week 6 eval harnesses, any instructor testing, a server-side Jupyter fallback
+-- gets HTML instead of JSON. Needs a WAF skip rule for the hostname.
+
+**Pyodide is now bundled.** It was not: the first build had zero .wasm files
+in 790 and pulled its Python runtime from
+`https://cdn.jsdelivr.net/pyodide/v314.0.5/full/pyodide.mjs`, so a college
+network that blocked jsdelivr would have stopped every cell from running, and
+it would have looked like a hang rather than a network failure.
+
+Rebuilt with `jupyter lite build --pyodide pyodide-314.0.5.tar.bz2`. The site
+is 445 MB across 1210 files and serves its own runtime:
+
+    /static/pyodide/pyodide.mjs          200  17,931 bytes  text/javascript
+    /static/pyodide/pyodide.asm.wasm     200   9.6 MB       application/wasm
+    /static/pyodide/python_stdlib.zip    200   2.5 MB       application/zip
+
+`application/wasm` matters: `WebAssembly.instantiateStreaming` refuses any
+other content type, and Caddy gets it right without configuration.
+
+Two `cdn.jsdelivr.net` strings survive in the bundled JavaScript. Both are
+`||` / `??` fallbacks reached only when the configured value is missing --
+`a.pyodideUrl || "https://cdn.jsdelivr.net/..."` -- and `jupyter-lite.json`
+sets `pyodideUrl` to `./static/pyodide/pyodide.mjs`. Verified by reading the
+served config, not by assuming.
+
+**356 packages ship locally**, 379 wheels, including `micropip`, `requests`,
+`urllib3`, `pydantic` and `openai`.
+
+### What a real browser says, tested with Playwright
+
+Driving headless Chromium against the live site, executing cells in the actual
+Pyodide kernel:
+
+| step | result |
+|---|---|
+| execute anything | `42` |
+| `import requests` | **ModuleNotFoundError** |
+| `await piplite.install("requests")` | requests 2.33.1 |
+| `requests.get(".../v1/models")` | 401, JSON body read back |
+| `requests.post(".../v1/chat/completions")` | 401, LiteLLM's own auth error JSON |
+
+**The memo's work item shrinks but does not vanish.** It prices in rewriting
+`send_request()` to `pyodide.http` across fourteen byte-identical cells. That
+is not needed: `requests` works once installed, the CORS preflight passes, and
+Python reads the response body. What is needed is one
+`await piplite.install("requests")` before the import. A one-line addition, not
+a rewrite of the most carefully guarded cell in the course.
+
+No credential was used. An invalid bearer token still exercises the preflight,
+the request and the response read; a 401 carrying LiteLLM's JSON means only the
+key was wrong.
+
+### The test found a bug I had introduced
+
+The first run returned `ConnectionError('Failed to fetch')` on the GET. Cause:
+the Caddy short circuit added for issue 3 answers unauthenticated requests
+itself, and it was not setting `access-control-allow-origin`. LiteLLM sets that
+header on its own responses, so bypassing LiteLLM dropped it. A browser then
+blocks the 401 and the student sees `Failed to fetch` instead of "Missing
+Authorization header" -- an opaque failure for the commonest student mistake,
+a missing key.
+
+Fixed, and asserted in `litellm-verify` (53 checks). Every curl based check
+passed before and after; only a browser could see it.
+
+### Self contained, confirmed by a browser that fetched nothing else
+
+`comm-0.2.3` was the last external dependency: `ipykernel` ships locally but
+depends on it, so piplite fetched it from PyPI at every kernel boot. It is now
+bundled with `--piplite-wheels`, which copies the wheel into a site level
+`/pypi/` index and prepends that index to `pipliteUrls`.
+
+Final browser run, headless Chromium against the live site:
+
+| step | result |
+|---|---|
+| `await piplite.install("requests")` | requests 2.33.1, resolved locally |
+| `requests.get(".../v1/models")` | 401, clean JSON |
+| `requests.post(".../v1/chat/completions")` | 401, LiteLLM's auth error JSON |
+| **non-bashtion.dev URLs fetched** | **none** |
+
+**The doit cache is the trap, and it fails silently.** `jupyter lite build`
+caches task state in `.jupyterlite.doit.db`. On a rebuild it skipped
+`post_build:...pyodide:patch:jupyter-lite.json` as up to date, which dropped
+`pyodideUrl` from the output. The site still worked and quietly loaded the
+whole Python runtime from cdn.jsdelivr.net. Nothing in the build output said
+so; only the browser's request log did. `/usr/local/sbin/jupyterlite-rebuild`
+clears the cache and then asserts `pyodideUrl` is local and `comm` is indexed,
+refusing to swap a build that fails either.
+
+**Do not set `loadPyodideOptions.packageBaseUrl`.** It was tried and broke the
+kernel outright -- cells stopped executing with `eval_code_async` errors. It is
+also unnecessary: pyodide derives its package base from `pyodideUrl`.
+
+**Model pricing is configured, so spend is real.** DeepInfra publishes
+granite-4.2-3b at $0.03/M input and $0.12/M output, and 4.2-8b at $0.06/M and
+$0.25/M, with cached input at 25%. Both are set per deployment, and LiteLLM's
+computed spend now matches DeepInfra's own `estimated_cost` to the digit
+(3.45e-06 and 5.63e-06 on a two-call check). Asserted in `litellm-verify`,
+because without the rates LiteLLM records tokens and stores spend 0.0 while
+looking healthy.
+
+That turns the blueprint's break-even into a measurement. It could only say the
+model had to cost under $12.89 per million tokens; the real worst case is $0.25
+per million. A full pass through all seven labs is about 388,000 tokens, so
+**under ten cents per student**, and the $5 per-key budget buys about 52
+complete passes. Two consequences are recorded as deferred decisions D1 and D2
+in `docs/lab-open-issues.md`.
+
+Per-notebook attribution works: a `metadata.tags` entry set in a notebook cell
+survives browser, Cloudflare, Caddy and LiteLLM into the `request_tags` column
+with its token count and, now, its cost. Proven from a real browser cell, not
+from curl. `User-Agent` cannot carry this -- browsers forbid setting it, and
+LiteLLM already fills that slot with the student's own browser string.
+
+### LiteLLM hardening, and what each item was proven against
+
+Applied and verified by running the attack, not by reading the config:
+
+| Control | Evidence |
+|---|---|
+| `api_base` / `base_url` / `user_config` / `model_list` / `input_cost_per_token` in the request body | all rejected; `allow_client_side_credentials` is unset, which is the default that makes that hold |
+| per-key `rpm_limit` | 35 rapid requests against `rpm_limit: 30` gave 28x200 and 7x429 |
+| request size | 100K body 200, 1.5M a clean 400 from LiteLLM, 2.9M cut by Caddy's `request_body max_size 2MB` |
+| `max_request_size_mb: 2`, `max_response_size_mb: 8` | in `general_settings` |
+| proxy-wide `max_budget: 200` + `budget_duration: 30d` | backstop for a key minted without a budget |
+| `turn_off_message_logging: true` | set; keeps prompts and completions out of spend logs. Not independently verified |
+| team `itsy1377-students` | a key minted with ONLY `team_id` and no limits still inherits the model restriction and the budget -- "team not allowed to access model" |
+
+**Mint student keys against the team, so a forgotten parameter cannot widen
+access:**
+
+    POST /key/generate  {"key_alias":"<student>","team_id":"b245df2b-c11e-47d7-9e59-d869291a3358",
+                         "max_budget":5.0,"budget_duration":"30d","duration":"120d",
+                         "rpm_limit":30,"tpm_limit":40000,"max_parallel_requests":2}
+
+**A hardening change broke the proxy and the logs lied about why.** Setting
+`litellm_settings.max_budget` without `budget_duration` makes LiteLLM refuse to
+start. It crash-looped, and the log lines that survived blamed a missing prisma
+package -- which was importable the whole time. The real line was
+`Exception: budget_duration not set on Proxy`. `systemctl is-active` said
+`active` throughout, because the restart loop keeps flipping it.
+
+**Still open, and not mine to close:** a client-supplied `api_key` in the
+request body IS forwarded to the provider -- DeepInfra rejected it, but LiteLLM
+honoured it rather than refusing like the other banned params. A student could
+bill their own DeepInfra account and bypass our spend accounting. It widens
+nothing on this proxy, but it is worth knowing before someone reports it as a
+bug.
+
+**Only the two Granite models are reachable, and the list is no longer
+mutable at runtime.** `granite-3b` and `granite-8b` resolve to
+`deepinfra/ibm-granite/granite-4.2-3b` and `-8b`. Everything else is refused
+from the public URL with a scoped student key: the 30b sibling, the same
+models provider-prefixed, Llama, gpt-4o, `openai/gpt-4o`, `claude-opus-5`,
+a literal `*`.
+
+Two layers do this. A key carries a `models` list and rejects anything outside
+it; independently, the router refuses any name absent from `model_list` even
+for a key with no restriction at all.
+
+A third gap was found and closed. With `STORE_MODEL_IN_DB=True`, `/model/new`
+added a Llama-3.3-70B deployment at runtime that was immediately routable by an
+unrestricted key and appeared on the public `/v1/models`. That was demonstrated,
+not theorised. It is now `False`, the proxy model table is empty, `/model/new`
+refuses, and `config.yaml` is the single source of truth -- the model list
+cannot change without editing the file and restarting the service.
+
+**`reasoning_effort` was being silently discarded, and it is a 33x cost.**
+LiteLLM's provider table claims deepinfra does not support `reasoning_effort`.
+It does. With `drop_params: true` the parameter was dropped without a word and
+every request reasoned anyway; with `drop_params: false` the same request is a
+hard 400. Measured on "reply with exactly the word: ready", granite-3b:
+
+| path | reasoning chars | output tokens |
+|---|---|---|
+| straight at DeepInfra, `reasoning_effort: none` | 0 | 2 |
+| straight at DeepInfra, nothing sent | 441 | 100 |
+| through LiteLLM before the fix | 288 | 67 |
+| through LiteLLM after the fix | 0 | 2 |
+
+The fix is `allowed_openai_params: ["reasoning_effort"]` per model in
+`config.yaml`, alongside `reasoning_effort: none`. Both models verified at
+0 reasoning characters and 2 output tokens afterwards.
+
+This is the fourth defect of the shape the infrastructure memo names: a
+setting accepted and quietly ignored. It also defeated my own first check,
+which read `message.reasoning` and reported "reasoning is off" while the text
+was sitting in `message.reasoning_content`. Read the field the server actually
+fills.
+
+A student who sends `reasoning_effort: high` still wins -- 293 chars, 72
+tokens. The proxy sets a default, not a guard, which is what the memo's
+carve-out wanted: `lab/eval/week5_loop_test.py` can still measure reasoning
+mode by passing the parameter explicitly.
+
+CORS was checked and is fine: LiteLLM returns `access-control-allow-origin: *`
+on both the preflight and the real response, so browser calls from
+notebook.bashtion.dev to api.bashtion.dev work.
+
+### Three things worth remembering
+
+**The lease table is not identity.** Both guests came up on 10.171.0.128 at
+once: jupyterlite held it, rebooted, litellm took the lease, and jupyterlite
+kept using the address anyway. The status wrapper showed one tidy binding and
+was wrong. `scratchpad/lab.sh` resolves a guest by name and refuses to run
+unless the box that answers reports the hostname asked for; its first real
+call caught the collision. Fixed by operator DHCP reservations.
+
+**A Caddy site address is also a Host matcher.** `127.0.0.1:8080 { }` did not
+constrain the listener -- `ss` showed `*:8080` -- and it 400d every request
+whose Host was not `127.0.0.1`, which through a tunnel is all of them. The
+correct shape is `:8080` plus an explicit `bind 127.0.0.1`. Both mistakes are
+invisible in config review and obvious in `ss` and a curl with a spoofed Host.
+
+**`systemctl is-active` said `active` while the unit was crash-looping.**
+Restart=on-failure means the state flickers. The port check is what caught it.
+
+## 2026-09-06 — lab infrastructure, stopped on a duplicate address (resolved)
+
+
+Both guests are built on remotelab and running: `litellm`
+(mac 52:54:00:d1:30:65) and `jupyterlite` (mac 52:54:00:fc:7a:80), each
+2 vcpu / 4096 MB / 40 GB.
+
+Nothing is configured on either. No LiteLLM, no Caddy, no cloudflared, no
+secrets placed, no inbound port opened, and no change to any other guest or
+to the host.
+
+**Blocked:** both guests are using 10.171.0.128 at the same time. Proven by
+probing that address repeatedly and reading the answering box's own MAC:
+it comes back as jupyterlite (52:54:00:fc:7a:80) and litellm
+(52:54:00:d1:30:65) on alternating connections, each reporting
+10.171.0.128/24 on its own interface. The libvirt lease table shows only
+litellm's binding, so the wrapper's `lab ip` line is not a safe identity.
+
+Configuring by address here would be a coin flip about which guest receives
+the work, and the losing case puts the DeepInfra key and LiteLLM's admin
+plane on the guest whose tunnel has no allowlist in front of it. That is the
+one outcome the build brief calls the worst available.
+
+The operator has to add DHCP reservations for both MACs on the `lab` network;
+`virsh net-update` is not in the three-command sudo grant. Resume after that.
+
+`scratchpad/lab.sh` is the guard that caught it: it re-resolves the address
+from the guest name on every call and refuses to run unless the box that
+answers reports the hostname that was asked for.
+
+---
+
+## 2026-09-07 — narration warmth test: rewrite adopted, engine rejected
+
+**Judged.** The warm rewrite won. VoxCPM lost on listening, and every
+measurement had called the two engines equivalent — a reminder that
+faithfulness, pace and level do not add up to "sounds good".
+
+VoxCPM is fully removed. `tools/video/{tts,schema,build,config}.py` are
+byte-identical to their committed versions (`git diff` clean). The worker,
+`design_voice.py`, the voice profile, `.venv-voxcpm`, the second scene list
+and its built video are deleted.
+
+The test module now carries the warm rewrites of all three week 1 pages **and
+both week 1 videos** rendered with the existing Kokoro voice: the overview and
+the walkthrough, whose narration was rewritten in the same pass. Objectives and
+CLO tags in the rewritten pages are byte-identical to the originals, and the
+module holds pages only, so no graded artifact was touched.
+
+Still to decide: whether to promote the rewrites over the real week 1 pages,
+and whether to extend the same pass to weeks 2 through 8 (7 more readings,
+7 overviews, 7 wrap-ups, 14 more video scripts).
+
+## 2026-09-07 — narration warmth test, deployed for judgement
+
+A thirteenth module, `Test: Module 1 rewritten (review only)` (Canvas course 6,
+module id 51, published), holds warm rewrites of the three week 1 pages and the
+same overview script narrated by two engines. **No existing page, module,
+assignment, quiz or video was edited.** Verified after the push: 13 modules,
+Module 1 still has its original 8 items, both test videos resolve HTTP 200 with
+no `$IMS-CC-FILEBASE$` placeholders left, `--verify` reports 0 problems.
+
+New files: `content/pages/test-w1-{overview,content,wrap-up}.md`,
+`content/video/test-w1-overview{,-voxcpm}.yaml`,
+`docs/narration-voice-test-2026-09-07.md`.
+
+Pipeline changes are additive and the default is unchanged (`kokoro:af_heart`).
+`tools/video/` gains `VoxCPMVoice`, `voxcpm_worker.py`, `design_voice.py`, a
+per-engine voice audit in `schema.py`, and `resolve_voice_spec()` in
+`build.py`. VoxCPM lives in its own venv (`.venv-voxcpm`) because it needs
+torch 2.14 and Kokoro is pinned to 2.13. Kokoro was re-run after the edits and
+renders identically.
+
+**The finding that matters if this is adopted:** VoxCPM designs a new speaker on
+every call. Description-only mode measured 0.66 mean timbre similarity across
+six cues and 0.25 at worst, which is a different narrator between slides, and it
+paraphrased. Cloning from the committed `tools/video/voices/course-warm.wav`
+holds 0.97/0.92 and transcribes at 98.9% against the scene list, identical to
+Kokoro. The reference clip is not optional.
+
+**Nobody has listened to any of it yet.** Take 3 was promoted on measurements
+alone. `design_voice.py course-warm --description "..." --choose N` re-picks.
+
+Open, unchanged from before: `w7-walkthrough` stale against its content; the
+CLO3/5/6 exam gap; a second rubric row for CLO5/CLO6; `week6_injection_test.py`
+built and never run; `builder/` still not in git; `check_commands_resolve` is
+vacuous for this course; the Canvas token in the transcript still awaits
+rotation.

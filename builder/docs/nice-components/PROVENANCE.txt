@@ -1,0 +1,21 @@
+NICE Framework Components v2.2.0, retrieved 2026-09-03
+
+nice-framework-components-v2.2.0.json
+  Source: https://csrc.nist.gov/csrc/media/Projects/cprt/documents/nice/v2-2-0_nf_components.json
+  Linked from: https://www.nist.gov/itl/applied-cybersecurity/nice/nice-framework-resource-center/nice-framework-current-versions
+  doc_identifier: SP_800_181_2_2_0
+  name: Workforce Framework for Cybersecurity (NICE Framework) (NIST SP 800-181 Rev 1)
+  version: 2.2.0
+  website: https://csrc.nist.gov/pubs/sp/800/181/r1/final
+
+nice-framework-components-v2.2.0.xlsx
+  Source: https://www.nist.gov/document/nice-framework-components-v220
+  Resolved file: https://www.nist.gov/system/files/documents/2026/06/24/NICE%20Framework%20Components%20v2.2.0.xlsx
+
+Release: v2.2.0, April 28, 2026 (release note and change log). The Current Versions page
+heading reads "2.2.0 (April 28, 2025)", which conflicts with the release note and change
+log; treat the year on that heading as a typo on the NIST page.
+
+Revision implemented: NIST SP 800-181 Revision 1 (November 2020).
+3ad1d9d7e0d6b32895cb569f86c3bc05af2937a68e96eab4d1c9b3d9fa6e575e  nice-framework-components-v2.2.0.json
+d33f76d262c039afbfb7b4b861204326a32c1e388b5c7bc9d15a43205125199d  nice-framework-components-v2.2.0.xlsx

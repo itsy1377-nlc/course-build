@@ -1,0 +1,125 @@
+Return-Path: <accounts@redcedar-safety.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 59dd73f3-a25e-4609-a237-002e95163ac9
+  for <ap@pellgrave.example>; Tue, 28 Apr 2026 09:50:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=redcedar-safety.example;
+  dkim=pass header.d=redcedar-safety.example header.s=k1
+    header.i=@redcedar-safety.example;
+  dmarc=pass header.from=redcedar-safety.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  accounts@redcedar-safety.example designates 203.0.113.173 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.173;
+  envelope-from="accounts@redcedar-safety.example";
+  helo=mail.redcedar-safety.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.0
+X-Sentrywick-Message-UID: cbe1df7d1a01
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+X-Sentrywick-Removed-Attachment: filename="Renewal_Invoice_2026.pdf";
+  size=39120;
+  sha256=f47b897b27733118aad5ae4d02f5eeffa057050c7daf98a861e57061d15df2c3;
+  action=quarantined; type=application/pdf; reason=archived-to-vault
+Received: from mail.redcedar-safety.example
+  (mail.redcedar-safety.example [203.0.113.173])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id cbe1df7d1a01;
+  Tue, 28 Apr 2026 09:50:06 -0500
+Received: from webmail.redcedar-safety.example ([192.0.2.173])
+  by mail.redcedar-safety.example with ESMTPSA id c423cf99;
+  Tue, 28 Apr 2026 14:50:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=redcedar-safety.example; s=k1; t=1777387803;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=0vr2rPvWhezAEH/G4aw2RAtyHvWPhQiuxzEG68qws2Q=;
+  b=C/3wOSegSSr2haOlJ8B1smwMM+Yeqgy3Uon8aOm1B7q5/F+skBPsYYF70cTTfsxpvvKJJiUU
+   gx9SNPPQ6gnB0LMjcVeZy9jGXUn5oeH08jX1B4PJENOEn9Zfs7yR008cFk1gMVV8/TCBcH0h
+   /5S73QMtrrNp32sHXXfmwrD4cpgStrTm9oTb2JI4UKS3OXPOnoImU63rgiLdLRLVNLQfzegf
+   K+KiY3tZGdrpDshVyc48CmjizyGzOYYZ6ewV9x8k+VYzPp8iSGf7ieFoQyQNbNDI7CbfND9i
+   BTke8GO4RTrTv+tutdAlWwerCKkDWQDHeRqvuUioN8KzmUPQO6DMMQ==
+Date: Tue, 28 Apr 2026 09:50:00 -0500
+From: Redcedar Safety Training Accounts <accounts@redcedar-safety.example>
+To: Accounts Payable <ap@pellgrave.example>
+Subject: Annual training renewal invoice and updated ACH instructions
+Message-ID: <20260428145000.535e7d67453f@webmail.redcedar-safety.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_42e5f60435e9"
+
+--=_part_42e5f60435e9
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hello,
+
+The annual safety training renewal for Pellgrave Mechanical Group is
+ready and the invoice is attached. Renewal RC-2026-0412 covers 14
+technicians at last year's rate of $450.00 each, so the total is
+$6,300.00, net 30. The term runs 1 June 2026 through 31 May 2027.
+
+Please note our updated ACH instructions: payments now go to the
+account below.
+
+Bank: Barrowfen Savings Bank
+New routing number: 555014820
+New account number: 6300 1428 0117
+
+The previous account is closed to incoming transfers, so anything
+sent there comes back to us about ten days later.
+
+Please update the vendor record for Redcedar Safety Training with
+these details before your next payment run, and confirm by reply
+once the change is on file.
+
+If anything on the renewal does not match your purchase order, let
+me know and I will have it reissued.
+
+Thank you,
+
+Nerys Calloway
+Accounts, Redcedar Safety Training
+555-0155 ext. 118
+
+[Sentrywick Gateway removed 1 attachment: Renewal_Invoice_2026.pdf
+(39,120 bytes). Details are in the message headers.]
+
+--=_part_42e5f60435e9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<p>Hello,</p>
+<p>The annual safety training renewal for Pellgrave Mechanical Group is
+ready and the invoice is attached. Renewal RC-2026-0412 covers 14
+technicians at last year's rate of $450.00 each, so the total is
+$6,300.00, net 30. The term runs 1 June 2026 through 31 May 2027.</p>
+<p>Please note our updated ACH instructions: payments now go to the
+account below.</p>
+<p>Bank: Barrowfen Savings Bank<br>
+New routing number: 555014820<br>
+New account number: 6300 1428 0117</p>
+<p>The previous account is closed to incoming transfers, so anything
+sent there comes back to us about ten days later.</p>
+<p>Please update the vendor record for Redcedar Safety Training with
+these details before your next payment run, and confirm by reply
+once the change is on file.</p>
+<p>If anything on the renewal does not match your purchase order, let
+me know and I will have it reissued.</p>
+<p>Thank you,</p>
+<p>Nerys Calloway<br>
+Accounts, Redcedar Safety Training<br>
+555-0155 ext. 118</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">
+[Sentrywick Gateway removed 1 attachment: Renewal_Invoice_2026.pdf
+(39,120 bytes). Details are in the message headers.]</p>
+</body>
+</html>
+
+--=_part_42e5f60435e9--

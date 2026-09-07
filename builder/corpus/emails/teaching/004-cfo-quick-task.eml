@@ -1,0 +1,93 @@
+Return-Path: <r.palomares@pellgrave-corp.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id f2e16ad5-0c23-4c55-9d4f-88668e9b7f78
+  for <p.castellanos@pellgrave.example>; Tue, 14 Apr 2026 12:47:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=pellgrave-corp.example;
+  dkim=pass header.d=pellgrave-corp.example header.s=k1
+    header.i=@pellgrave-corp.example;
+  dmarc=pass header.from=pellgrave-corp.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  r.palomares@pellgrave-corp.example designates 203.0.113.151 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.151;
+  envelope-from="r.palomares@pellgrave-corp.example";
+  helo=smtp.pellgrave-corp.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.4
+X-Sentrywick-Message-UID: f62ec6c22ad7
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+Received: from smtp.pellgrave-corp.example
+  (smtp.pellgrave-corp.example [203.0.113.151])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id f62ec6c22ad7;
+  Tue, 14 Apr 2026 12:47:05 -0500
+Received: from client-04.pellgrave-corp.example ([192.0.2.62])
+  by smtp.pellgrave-corp.example with ESMTPSA id eefce3f9;
+  Tue, 14 Apr 2026 17:47:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=pellgrave-corp.example; s=k1; t=1776188822;
+  h=from:to:subject:date:message-id:mime-version:content-type:x-mailer;
+  bh=9weFaGOaWnfdo7FZkfJjA+MrJvR11ghEVTTSuW62ZxU=;
+  b=ZWa9DN+yNcRJ2rUnljjr7O6AwYkuugzXX4+WajqgH8nfAOzfomprp1TOLQIT+RYmfVmiImow
+   pT03NcvY8F6iWyodxJm0T7gPf2W8xypV6tvGV8kAFG61wVyYBmcQ6dajZIjB0tnQrShZGYUI
+   7WJcM3+1pQU7/uSq+VDgXd2oTp0tayxhhYFGhOeUPz0rSwf5sjDjPxJOkRVOG1Ch1brrDz6V
+   LMDK+CfrxdguVhgnx1X76y/EcYpgiaj1AxCD4b75uuhU2A0S4/28z8HFORThhUuJWerAYTrj
+   hNvzD/yImoSig0HEOcpbSEvn0U9PniqNDQtKn5qaCiv/kGWbPkRfEA==
+Date: Tue, 14 Apr 2026 12:47:00 -0500
+From: Rutger Palomares <r.palomares@pellgrave-corp.example>
+To: Priya Castellanos <p.castellanos@pellgrave.example>
+Subject: Quick task before my 2:00
+Message-ID: <20260414174700.e3e8b57c84c4@smtp.pellgrave-corp.example>
+X-Mailer: Marrowdale Mail 5.2
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_4c72c32e9322"
+
+--=_swk_4c72c32e9322
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Priya,
+
+Are you at your desk?
+
+I need a same-day payment set up for a new vendor on the Rookmere
+chiller project. The company is Quillbeck Controls and their
+invoice is $18,400. It has to go out before my 2:00. I will send
+the remittance details in a few minutes.
+
+I am between meetings and working from my phone, so handle this by
+email only. I can't take calls until after 3. Let me know as soon
+as you see this.
+
+Rutger
+
+Sent from my phone
+--=_swk_4c72c32e9322
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body>
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:15px;color:#222222">
+<p>Priya,</p>
+<p>Are you at your desk?</p>
+<p>I need a same-day payment set up for a new vendor on the Rookmere
+chiller project. The company is Quillbeck Controls and their invoice
+is $18,400. It has to go out before my 2:00. I will send the
+remittance details in a few minutes.</p>
+<p>I am between meetings and working from my phone, so handle this by
+email only. I can't take calls until after 3. Let me know as soon as
+you see this.</p>
+<p>Rutger</p>
+<p>Sent from my phone</p>
+</div>
+</body>
+</html>
+--=_swk_4c72c32e9322--

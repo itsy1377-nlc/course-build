@@ -1,0 +1,183 @@
+# Week 7 lab rubric. Three criteria, 100 points, four levels each.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the rubric
+#   points          the total. Every lab in this course is 100, which is what
+#                   makes the seven labs weigh equally inside the Labs group.
+#   criteria        a list. One entry per criterion, in the order a grader
+#                   reads.
+#
+# EVERY CRITERION CARRIES
+#
+#   description       the criterion name, as the week 7 spec and the alignment
+#                     matrix word it. Not reworded here.
+#   long_description  what earns full credit, in the words the assignment page
+#                     shows the student. The two must stay identical.
+#   points            the criterion total, and the top level's points.
+#   outcome           the Canvas Outcome key this criterion posts a result to,
+#                     from content/course.yaml. Present on two criteria here,
+#                     and they carry two different Outcomes. See the note below
+#                     on the Canvas limit.
+#   levels            four, highest first. The top level equals the criterion
+#                     points. The four map onto the course mastery scale:
+#                     Exceeds, Meets, Approaches, and Beginning or no evidence,
+#                     which are 4, 3, 2 and 0. Criterion 1 scales that by two,
+#                     criterion 2 by nine and criterion 3 by fourteen, so every
+#                     division is exact and no level is rounded.
+#
+# THE CANVAS LIMIT, AND HOW THIS RUBRIC OBEYS IT. Canvas allows a given Outcome
+# to align to at most one criterion in a rubric. A rubric that aligns the same
+# Outcome twice is refused, and the refusal is silent: the API answers HTTP 200
+# and creates nothing at all. Measured against the live instance on 4 September
+# 2026, one link succeeds and two or more produce no rubric. That silence
+# already cost the week 1 lab its rubric.
+#
+# The limit is one criterion per Outcome, not one link per rubric, so this week
+# carries two links on two different Outcomes and that is allowed.
+#
+# CLO5 links to criterion 2, Triage note, and to nothing else here. CLO5 asks
+# the student to document a triage decision, its indicators and its recommended
+# action so another analyst can act on it. Criterion 2 reads exactly that out of
+# the attached file: six labeled lines in a fixed order for all twenty emails,
+# indicators that name facts the code pulled out, an action that fits the
+# verdict, and a summary a reader with no security background can follow. It is
+# the primary evidence for CLO5 in this course, which is what the alignment
+# matrix records.
+#
+# CLO6 links to criterion 3, Accuracy and human review, and to nothing else
+# here. CLO6 asks the student to measure agent triage accuracy across a batch
+# and to recommend where human review stays required. Criterion 3 reads the
+# accuracy number, the two error counts kept apart and the escalation agreement
+# line off the screenshot and the file, and reads the human review
+# recommendation off the written answer. It is the primary evidence for CLO6.
+#
+# Criterion 1 carries no Outcome link. It is submission completeness, which is
+# the non-CLO expectation every week carries under section 11 of
+# docs/phase1-blueprint/alignment-matrix.md and its closing section. That is
+# recorded here rather than in the long_description, which stays word for word
+# what the assignment page shows the student.
+#
+# NO SEPARATE "OWN RESULTS USED" CRITERION. An earlier draft had one, worth 15
+# points and carrying no Outcome link. Clause 4 of the rubric link rule keeps a
+# criterion that scores a student's use of their own results inside the
+# Outcome-linked criterion, because measuring with your own numbers is CLO6
+# performance rather than a separate expectation. The requirement now sits in
+# the last sentence of criterion 3, and a submission citing no accuracy figure
+# of its own and no wrong email of its own still cannot reach that criterion's
+# top level.
+#
+# TWO SCALES ON ONE ROW. The level labels on criteria 2 and 3 are the course
+# mastery scale, so the rating the grader picks is what Canvas records against
+# the Outcome, on 4, 3, 2 and 0. The criterion points on the same row are what
+# the grade uses, on 36, 27, 18 and 0 for criterion 2 and 56, 42, 28 and 0 for
+# criterion 3. The grader picks once and both follow. The criterion points are
+# never reported as the outcome result.
+#
+# NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
+# screenshot of cell 14, the exported week7_triage_report.txt, and the written
+# answer.
+#
+# NO POINTS FOR A CORRECT VERDICT. The answer key ships with the notebook,
+# because nothing in this course locks. No level below rewards getting an email
+# right. What is graded is the quality of the note and the honesty of the
+# measurement.
+
+title: "Week 7 lab: a note and a score"
+points: 100
+
+criteria:
+
+  - description: Submission completeness
+    long_description: All three items are present and readable.
+    points: 8
+    levels:
+      - description: >-
+          Full. All three items are present and readable. The screenshot shows
+          the whole score report, with every number legible. The file is
+          attached as itself, under the name the export cell gave it. The
+          written answer is in the box.
+        points: 8
+      - description: >-
+          Nearly full. All three items are here. One is hard to read. The
+          screenshot cuts off a line of the report, or the text is small.
+        points: 6
+      - description: >-
+          Partial. One of the three items is missing. Or the screenshot cannot
+          be read at all. Or it shows a different cell.
+        points: 4
+      - description: >-
+          Missing. Two or three of the items are absent. Or a zip file, a
+          folder or a link arrived instead of the file.
+        points: 0
+
+  - description: Triage note
+    long_description: >-
+      All six lines are present, in order, for all twenty emails. Each
+      indicator names a fact your code pulled out. The recommended action fits
+      the verdict. A reader with no security background can follow the summary.
+    points: 36
+    outcome: CLO5
+    levels:
+      - description: >-
+          Exceeds standard. The file holds a note for all twenty emails. Every
+          note carries the six labeled lines in the fixed order. Every
+          indicator names a fact from the email or from a tool result. Every
+          recommended action fits the verdict on the line above it. Every
+          summary is plain enough for the person who reported the email, and
+          names no header field and no tool.
+        points: 36
+      - description: >-
+          Meets standard. All twenty notes carry the six labeled lines in
+          order. One or two notes are thin in one place: an indicator that
+          names no fact, an action that does not fit its verdict, or a summary
+          written in header terms rather than plain words.
+        points: 27
+      - description: >-
+          Approaching standard. The file holds notes and the fixed format does
+          not hold. Lines are missing, out of order or unlabeled across several
+          notes. Or fewer than twenty emails have a note. It shows notes were
+          written. It does not show a format another analyst could scan.
+        points: 18
+      - description: >-
+          No evidence. No file. Or a file holding no notes. Or notes that are
+          the unwritten placeholder rather than filled lines.
+        points: 0
+
+  - description: Accuracy and human review
+    long_description: >-
+      Your accuracy number matches the file you attached. The two kinds of
+      error are counted apart. Escalation agreement has its own line. Your
+      written answer names where a human must still review, and cites your own
+      accuracy figure and at least one of your own wrong emails.
+    points: 56
+    outcome: CLO6
+    levels:
+      - description: >-
+          Exceeds standard. The screenshot and the file report the same
+          accuracy number. False positives and false negatives are counted on
+          separate lines, and escalation agreement has its own line. The
+          written answer names one place where a human must still review and
+          says why. It cites the accuracy figure from this run and names one
+          email this run got wrong.
+        points: 56
+      - description: >-
+          Meets standard. The screenshot and the file report the same accuracy
+          number, with the two errors apart and escalation agreement on its own
+          line. The written answer names where a human must still review. It
+          cites the accuracy figure or one wrong email, but not both. Or it
+          names the place and gives no reason.
+        points: 42
+      - description: >-
+          Approaching standard. The run was scored and one central part is
+          missing. The two errors are added into one count. Or escalation
+          agreement is absent. Or the accuracy in the screenshot and the
+          accuracy in the file disagree. Or the written answer carries no
+          number of the student's own. It shows the batch ran. It does not show
+          the run was measured and read.
+        points: 28
+      - description: >-
+          No evidence. No score report, and no written answer carrying a result
+          of the student's own. Or an accuracy figure that appears nowhere in
+          the attached file.
+        points: 0

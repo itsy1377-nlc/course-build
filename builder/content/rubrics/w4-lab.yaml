@@ -1,0 +1,143 @@
+# Week 4 lab rubric. Three criteria, 100 points.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title       what Canvas calls the rubric
+#   points      the total. Every lab in this course is 100, which is what makes
+#               the seven labs weigh equally inside the Labs group.
+#   criteria    a list. One entry per criterion, in the order a grader reads.
+#
+# EVERY CRITERION CARRIES
+#
+#   description       the criterion name, as the week 4 spec and the alignment
+#                     matrix word it. Not reworded here.
+#   long_description  what earns full credit, in the words the assignment page
+#                     shows the student. A criterion with no Outcome link adds
+#                     one sentence saying which week expectation it measures.
+#   points            the criterion's share of the 100.
+#   outcome           the key of the Canvas Outcome this criterion reports
+#                     into, from content/course.yaml. Present on one criterion
+#                     only. See the note below on the Canvas limit.
+#   levels            a list, highest first. The top level equals points.
+#
+# WHY ONLY ONE CRITERION CARRIES AN OUTCOME LINK. Canvas allows a given Outcome
+# to align to at most one criterion in a rubric. A rubric that aligns the same
+# Outcome twice is refused, and the refusal is silent: the API answers HTTP 200
+# and creates nothing at all. Measured against the live instance on 4 September
+# 2026, one link succeeds and two or more produce no rubric. That silence
+# already cost the week 1 lab its rubric.
+#
+# The week 4 spec linked both criterion 2 and criterion 3 to CLO3, which is two
+# links to one Outcome and so would create no rubric at all. Criterion 2 carries
+# the link. CLO3 reads "Build an AI agent that selects and runs triage tools in
+# a bounded loop to reach a verdict", and criterion 2 is the only criterion here
+# that measures selecting a tool, running it, and carrying its result back to a
+# verdict. Criterion 3 measures whether the student reported what they saw,
+# which the alignment matrix names as a non-CLO expectation, so it is written as
+# a week expectation and says so. Criterion 1 measures submission completeness,
+# the other non-CLO expectation the matrix names.
+#
+# Week 4 stays supporting evidence for CLO3. Week 5 carries the primary result,
+# and the outcome calculation is most recent score, so week 5 replaces this one
+# in the reported roll-up.
+#
+# TWO SCALES ON ONE ROW. Criteria 2 and 3 keep the four level labels the week 4
+# spec sets, which are the course mastery scale: 4 exceeds standard, 3 meets
+# standard, 2 approaching standard, 0 no evidence. Criterion 2 is that scale
+# multiplied by ten and criterion 3 is the same scale multiplied by seven, so
+# each top level is reachable and a rating maps across with no translation step.
+# On criterion 2 the rating the grader picks is what Canvas records against the
+# Outcome, on 4, 3, 2 and 0. The criterion points are what the grade uses. The
+# criterion points are never reported as the outcome result.
+#
+# NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
+# screenshot, the exported file and the written answer.
+
+title: "Week 4 lab: give it three checks"
+points: 100
+
+criteria:
+
+  - description: Submission completeness
+    long_description: >-
+      All three items are present and readable. This is a week expectation, not
+      a course outcome: it measures whether the work arrived, so it carries no
+      Outcome link.
+    points: 32
+    levels:
+      - description: >-
+          Full. All three items are present and readable. The file is attached
+          as itself and carries the name the export cell gave it. The screenshot
+          shows all six rows and the token line under them.
+        points: 32
+      - description: >-
+          Partial. One of the three is missing. Or the file arrived as a zip or
+          a link rather than as itself. Or rows or the token line are cut off,
+          or the text is too small to read.
+        points: 21
+      - description: >-
+          Missing. Two or three of the items are absent.
+        points: 0
+
+  - description: Tool call handled end to end
+    long_description: >-
+      For each of the six emails the file records one of two things. Either the
+      tool the model asked for, its arguments, the result your code returned,
+      and a tool result message carrying the model's call id. Or the fallback
+      record, showing the prose path was handled. Recorded results match the
+      shipped tool records.
+    points: 40
+    outcome: CLO3
+    levels:
+      - description: >-
+          Exceeds standard. All six emails are recorded end to end. Each one
+          carries either a tool name, its arguments, the returned result and a
+          matching pair of call ids, or a fallback record showing the prose path
+          was handled. Every recorded result matches the shipped tool records. A
+          reader can follow what was asked for and what came back.
+        points: 40
+      - description: >-
+          Meets standard. All six emails are recorded. The tool, its arguments
+          and the result are there on every tool call. One email is missing the
+          call id its tool result message carried back, or one pair of call ids
+          does not match. Recorded results still match the shipped tool records.
+        points: 30
+      - description: >-
+          Approaching standard. The file holds records for some of the six
+          emails. Or it holds tool names with no result beside them. It shows a
+          tool was asked for. It does not show the result being carried back.
+        points: 20
+      - description: >-
+          No evidence. No file. Or a file holding no tool records and no
+          fallback records.
+        points: 0
+
+  - description: Reading your own results
+    long_description: >-
+      The written answer names one email, one tool and one returned fact, then
+      says what that fact changed. The screenshot shows the same email's two
+      verdicts. This is a week expectation, not a course outcome: it measures
+      whether you reported what you saw, so it carries no Outcome link.
+    points: 28
+    levels:
+      - description: >-
+          Exceeds standard. Three to five sentences. They name one email, the
+          tool it used and the one fact that tool returned. They say what the
+          agent decided before it had that fact. The fact matches the student's
+          own file, and the screenshot shows that email's two verdicts.
+        points: 28
+      - description: >-
+          Meets standard. Three to five sentences naming one email, its tool and
+          the fact the tool returned. What the agent decided before that fact is
+          left out. Or no verdict changed on the run and the answer names the
+          closest email without saying why.
+        points: 21
+      - description: >-
+          Approaching standard. The answer names an email or a tool but quotes
+          no fact from the file. Or it describes the run in general words, with
+          no result of the student's own in it.
+        points: 14
+      - description: >-
+          No evidence. No written answer. Or one carrying none of the student's
+          own results.
+        points: 0

@@ -1,0 +1,743 @@
+{
+  "week": 3,
+  "video": "w3-walkthrough",
+  "what_the_video_shows": "One email judged twice by the same model: once from the body alone, the way week 2 did it, and once with the thirteen line facts block the student's own build_facts() and format_facts() produce. The verdict changes, and the model names the fact that changed it.",
+  "submission_artifact": "week3_grounding.json",
+  "recorded_on": "2026-09-05",
+  "model": "granite4.2:3b",
+  "model_digest": "40577dc168a3a9ad34e9a1234e0c2570be86097fa75a236d4574ae985705d3c4",
+  "endpoint": "http://localhost:11434/v1",
+  "request_settings": {
+    "temperature": 0.2,
+    "max_tokens": 512,
+    "extra_fields": {
+      "reasoning_effort": "none"
+    },
+    "max_tries": 3,
+    "note": "The same settings the week 3 notebook sends. Nothing was tuned for the camera."
+  },
+  "email_id": "009",
+  "email_file": "corpus/emails/teaching/009-ceo-are-you-available.eml",
+  "email_sha256": "06d6277e3b193cfa39e32d68096c352a975331da8e082cbc794c5d74d06a1409",
+  "email_subject": "Are you available?",
+  "email_from": "Adaeze Whitcombe <adaeze.whitcombe.pmg@lanternmail.example>",
+  "email_to": "Beatrix Onwuka <b.onwuka@pellgrave.example>",
+  "email_link_hosts": [],
+  "ground_truth": {
+    "verdict": "malicious",
+    "category": "bec",
+    "difficulty": "medium",
+    "body_only_read": "uncertain",
+    "source": "corpus/spec/corpus-spec.json"
+  },
+  "week3_lab_emails": [
+    "001",
+    "004",
+    "005",
+    "006",
+    "017",
+    "025"
+  ],
+  "email_is_in_week3_lab": false,
+  "also_shown_in_week3_check_cells": [
+    "016"
+  ],
+  "exam_reserved_emails_avoided": "046 to 056",
+  "weeks_1_and_2_walkthrough_email": "007",
+  "why_this_email": "It is the clearest case week 3's capability can make. The body of this message never says who sent it. Three sentences, signed with the single letter A, no link and no attachment. The sender's name, the sender's domain and the display-name mismatch live in the headers, so they reach the model only when the student's facts block carries them across. Week 2's prompt could not have got this right, whatever the model did with it. 009 is not in the week 3 lab set, is not exam reserved, and is not the email weeks 1 and 2 walked through. It is a week 4 and week 6 email, which follows the precedent set when weeks 1 and 2 walked through 007, a week 5 email. It gives nothing away: week 4's lesson on this message is that only the recipient lookup settles it.",
+  "what_was_sent": {
+    "body_text": "[External message. Sentrywick Gateway]\r\n\r\nBeatrix, are you in the office?\r\n\r\nI need you to handle something for me quietly and I can't take calls\r\nbetween sessions. The conference wifi blocks the VPN so I'm on my\r\npersonal mail; just reply here.\r\n\r\nA.",
+    "body_characters": 251,
+    "facts_block": "Sender name: Adaeze Whitcombe\nSender address: adaeze.whitcombe.pmg@lanternmail.example\nSender domain: lanternmail.example\nReply address: None\nSubject: Are you available?\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: []\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []",
+    "facts_block_lines": 13,
+    "facts_block_characters": 350,
+    "prompt_characters_body_alone": 1251,
+    "prompt_characters_with_facts": 3675,
+    "also_in_the_grounded_prompt": [
+      "the eleven line triage playbook, corpus/data/playbook.md",
+      "the eleven known-good internal hosts, corpus/data/known_good_domains.json"
+    ]
+  },
+  "runs_made": 11,
+  "varied": true,
+  "what_varied": "The grounded answer did not vary at all. Malicious, credential_phish, confidence 0.85, eleven runs out of eleven. The body-alone answer varied only in ways that do not change the story. The verdict was benign eleven runs out of eleven. The category was legit_external ten times and legit_internal once. The confidence was 0.8 ten times and 0.85 once. Answer length moved between 97 and 117 tokens body alone, and between 75 and 113 tokens with the facts. A student will see the same flip. A student may see a different body-alone category and a slightly different confidence, so the walkthrough should say the verdict aloud and not promise the category.",
+  "result": {
+    "body_alone": {
+      "verdict": {
+        "benign": 11
+      },
+      "category": {
+        "legit_internal": 1,
+        "legit_external": 10
+      },
+      "confidence": {
+        "0.8": 10,
+        "0.85": 1
+      },
+      "tries_used": {
+        "1": 11
+      },
+      "stop_reason": {
+        "stop": 11
+      },
+      "prompt_tokens_every_call": [
+        318
+      ],
+      "answer_tokens": {
+        "min": 97,
+        "max": 117,
+        "values": [
+          97,
+          98,
+          99,
+          103,
+          109,
+          110,
+          110,
+          112,
+          112,
+          114,
+          117
+        ]
+      },
+      "total_tokens": {
+        "min": 415,
+        "max": 435
+      }
+    },
+    "with_facts": {
+      "verdict": {
+        "malicious": 11
+      },
+      "category": {
+        "credential_phish": 11
+      },
+      "confidence": {
+        "0.85": 11
+      },
+      "tries_used": {
+        "1": 11
+      },
+      "stop_reason": {
+        "stop": 11
+      },
+      "prompt_tokens_every_call": [
+        937
+      ],
+      "answer_tokens": {
+        "min": 75,
+        "max": 113,
+        "values": [
+          75,
+          75,
+          75,
+          75,
+          75,
+          75,
+          75,
+          75,
+          95,
+          113,
+          113
+        ]
+      },
+      "total_tokens": {
+        "min": 1012,
+        "max": 1050
+      }
+    },
+    "verdict_changed_in_every_run": true,
+    "the_one_fact": {
+      "line": "Display name mismatch: True",
+      "named_as_an_indicator": "11 of 11 grounded runs",
+      "named_first": "10 of 11 grounded runs",
+      "came_from_outside_also_named": "11 of 11 grounded runs",
+      "why_it_is_decisive": "Playbook rule 2: an employee's name over an address outside pellgrave.example is impersonation until a phone call proves otherwise. The name Adaeze Whitcombe belongs to the company. The address adaeze.whitcombe.pmg@lanternmail.example does not. Neither string appears anywhere in the body."
+    },
+    "cost_of_grounding": {
+      "prompt_tokens_body_alone": 318,
+      "prompt_tokens_with_facts": 937,
+      "extra_prompt_tokens_per_call": 619,
+      "note": "The prompt token count was identical on every call on each side."
+    },
+    "schema_and_retry": "All twenty-two calls parsed as JSON on the first try and passed the schema check, so the retry never fired. The stop reason was stop on all twenty-two. This run shows no retry, and the week 2 walkthrough is where a student sees one."
+  },
+  "raw_answer": {
+    "note": "Exactly what came back. First trial of the first five-trial session.",
+    "body_alone": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions working between sessions and using personal mail due to wifi blocking VPN\",\n    \"Asks for quiet handling and to reply here\"\n  ]\n}",
+    "with_facts": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+  },
+  "the_honest_thing": "The verdict moved from wrong to right, and the category did not move at all. Ground truth for this email is bec, business email compromise. The model said credential_phish in all eleven grounded runs, and the schema check passed it every time because credential_phish is an allowed category. Grounding fixed the verdict, not the label. That is the same shape as the week 2 walkthrough, one week further on: the check still cannot tell you the content is right.",
+  "key_numbers": [
+    "Body alone: benign, eleven runs out of eleven.",
+    "Body alone confidence: zero point eight in ten of the eleven runs.",
+    "With the facts block: malicious, eleven runs out of eleven.",
+    "With the facts block confidence: zero point eight five in every run.",
+    "The facts block is thirteen lines and three hundred and fifty characters.",
+    "The body is two hundred and fifty-one characters.",
+    "Three hundred and eighteen prompt tokens body alone. Nine hundred and thirty-seven with the facts.",
+    "The model named the display name mismatch in all eleven grounded runs, and named it first in ten.",
+    "Ground truth category is bec. The model said credential phish every run."
+  ],
+  "notes_for_the_scene_writer": [
+    "Say the verdict aloud, not the category. The verdict was benign then malicious in every run. The body-alone category moved once in eleven runs.",
+    "The line to put on screen is the model's own first indicator, which reads Display name mismatch: True. The model is quoting the student's own facts block back at them.",
+    "The body is short enough to show whole. It is worth showing, because the point is what is not in it: no name, no domain, no link.",
+    "There is no retry in this run and no tool call. Week 3 makes one call per judgment, and this email was judged twice, so two calls.",
+    "Do not show build_facts() or format_facts(). Those are the two TODO cells. Show the block they produce, which is output, not answer."
+  ],
+  "all_runs": [
+    {
+      "run": 1,
+      "session": "probe009.json",
+      "started": "2026-09-05T02:23:00.613047-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_internal",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external gateway but addresses a colleague internally",
+          "Request is for help handling something quietly, typical internal collaboration",
+          "Mentions personal mail due to wifi/VPN restrictions, which is a common office scenario",
+          "No signs of phishing, malware, or suspicious attachments"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 110,
+        "total": 428,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_internal\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external gateway but addresses a colleague internally\",\n    \"Request is for help handling something quietly, typical internal collaboration\",\n    \"Mentions personal mail due to wifi/VPN restrictions, which is a common office scenario\",\n    \"No signs of phishing, malware, or suspicious attachments\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 2,
+      "session": "w3-009-run.json",
+      "started": "2026-09-05T02:26:09.322668-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions working between sessions and using personal mail due to wifi blocking VPN",
+          "Asks for quiet handling and to reply here"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 103,
+        "total": 421,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions working between sessions and using personal mail due to wifi blocking VPN\",\n    \"Asks for quiet handling and to reply here\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 3,
+      "session": "w3-009-run.json",
+      "started": "2026-09-05T02:26:09.322668-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions handling something quietly, avoiding calls",
+          "References personal mail due to wifi/VPN restrictions",
+          "Uses a generic greeting and asks a simple question"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 110,
+        "total": 428,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions handling something quietly, avoiding calls\",\n    \"References personal mail due to wifi/VPN restrictions\",\n    \"Uses a generic greeting and asks a simple question\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?",
+          "Sender domain: lanternmail.example",
+          "Reply address: None",
+          "The email asks for handling something quietly and requests a reply without using company systems"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 113,
+        "total": 1050,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\",\n    \"Sender domain: lanternmail.example\",\n    \"Reply address: None\",\n    \"The email asks for handling something quietly and requests a reply without using company systems\"\n  ]\n}"
+    },
+    {
+      "run": 4,
+      "session": "w3-009-run.json",
+      "started": "2026-09-05T02:26:09.322668-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for help handling something quietly",
+          "Mentions being on personal mail due to wifi blocking VPN",
+          "Asks to reply here without taking calls",
+          "No indication of phishing, malware, or fraudulent activity"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 112,
+        "total": 430,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for help handling something quietly\",\n    \"Mentions being on personal mail due to wifi blocking VPN\",\n    \"Asks to reply here without taking calls\",\n    \"No indication of phishing, malware, or fraudulent activity\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Sender domain: lanternmail.example (outside company domain pellgrave.example)",
+          "Came from outside the company: True",
+          "Display name mismatch: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 95,
+        "total": 1032,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Sender domain: lanternmail.example (outside company domain pellgrave.example)\",\n    \"Came from outside the company: True\",\n    \"Display name mismatch: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 5,
+      "session": "w3-009-run.json",
+      "started": "2026-09-05T02:26:09.322668-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions being in the office and needing help quietly",
+          "Uses a professional tone and references work procedures"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 98,
+        "total": 416,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions being in the office and needing help quietly\",\n    \"Uses a professional tone and references work procedures\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 6,
+      "session": "w3-009-run.json",
+      "started": "2026-09-05T02:26:09.322668-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.85,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions being in the office and needing quiet handling",
+          "Specifies a temporary workaround due to network restrictions",
+          "Asks for a reply via personal mail, not official channels"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 114,
+        "total": 432,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions being in the office and needing quiet handling\",\n    \"Specifies a temporary workaround due to network restrictions\",\n    \"Asks for a reply via personal mail, not official channels\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 7,
+      "session": "w3-009-run2.json",
+      "started": "2026-09-05T02:28:04.061468-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for help handling something quietly",
+          "Mentions being unable to take calls and needing to work between sessions",
+          "Uses personal mail due to wifi blocking VPN",
+          "Asks to reply here without taking calls"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 112,
+        "total": 430,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for help handling something quietly\",\n    \"Mentions being unable to take calls and needing to work between sessions\",\n    \"Uses personal mail due to wifi blocking VPN\",\n    \"Asks to reply here without taking calls\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 8,
+      "session": "w3-009-run2.json",
+      "started": "2026-09-05T02:28:04.061468-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions being in the office and needing help quietly",
+          "Uses a personal mail due to wifi blocking VPN"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 99,
+        "total": 417,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions being in the office and needing help quietly\",\n    \"Uses a personal mail due to wifi blocking VPN\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?",
+          "Sender domain: lanternmail.example",
+          "Reply address: None",
+          "The email asks for handling something quietly and requests a reply without a secure channel"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 113,
+        "total": 1050,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\",\n    \"Sender domain: lanternmail.example\",\n    \"Reply address: None\",\n    \"The email asks for handling something quietly and requests a reply without a secure channel\"\n  ]\n}"
+    },
+    {
+      "run": 9,
+      "session": "w3-009-run2.json",
+      "started": "2026-09-05T02:28:04.061468-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for help handling something quietly",
+          "Mentions being in the office and needing assistance",
+          "Uses a personal email due to wifi blocking VPN"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 97,
+        "total": 415,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for help handling something quietly\",\n    \"Mentions being in the office and needing assistance\",\n    \"Uses a personal email due to wifi blocking VPN\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 10,
+      "session": "w3-009-run2.json",
+      "started": "2026-09-05T02:28:04.061468-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions working quietly and avoiding calls",
+          "References using personal mail due to wifi blocking VPN",
+          "Asks for a reply in the same context"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 109,
+        "total": 427,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions working quietly and avoiding calls\",\n    \"References using personal mail due to wifi blocking VPN\",\n    \"Asks for a reply in the same context\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    },
+    {
+      "run": 11,
+      "session": "w3-009-run2.json",
+      "started": "2026-09-05T02:28:04.061468-05:00",
+      "body_alone": {
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "Message is from an external sender (Sentrywick Gateway)",
+          "Request is for assistance in a work context",
+          "Mentions being in the office and needing help quietly",
+          "Uses a professional tone and references work procedures",
+          "Does not contain any suspicious elements like links, attachments, or requests for credentials"
+        ]
+      },
+      "body_alone_tokens": {
+        "prompt": 318,
+        "answer": 117,
+        "total": 435,
+        "calls": 1
+      },
+      "body_alone_stop_reason": [
+        "stop"
+      ],
+      "body_alone_raw": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\n    \"Message is from an external sender (Sentrywick Gateway)\",\n    \"Request is for assistance in a work context\",\n    \"Mentions being in the office and needing help quietly\",\n    \"Uses a professional tone and references work procedures\",\n    \"Does not contain any suspicious elements like links, attachments, or requests for credentials\"\n  ]\n}",
+      "with_facts": {
+        "verdict": "malicious",
+        "category": "credential_phish",
+        "confidence": 0.85,
+        "indicators": [
+          "Display name mismatch: True",
+          "Came from outside the company: True",
+          "Subject: Are you available?"
+        ]
+      },
+      "with_facts_tokens": {
+        "prompt": 937,
+        "answer": 75,
+        "total": 1012,
+        "calls": 1
+      },
+      "with_facts_stop_reason": [
+        "stop"
+      ],
+      "with_facts_raw": "{\n  \"verdict\": \"malicious\",\n  \"category\": \"credential_phish\",\n  \"confidence\": 0.85,\n  \"indicators\": [\n    \"Display name mismatch: True\",\n    \"Came from outside the company: True\",\n    \"Subject: Are you available?\"\n  ]\n}"
+    }
+  ],
+  "provenance": {
+    "how_it_was_run": "The runnable cells of builder/instructor/solutions/w3-lab-solution.ipynb were copied into a scratch script and run unchanged against the live endpoint. No notebook was edited. Same prompts, same schema, same retry, same temperature and max_tokens a student's notebook sends.",
+    "sessions": [
+      {
+        "file": "probe009.json",
+        "trials": 1,
+        "started": "2026-09-05T02:23:00.613047-05:00",
+        "finished": "2026-09-05T02:23:10.060821-05:00"
+      },
+      {
+        "file": "w3-009-run.json",
+        "trials": 5,
+        "started": "2026-09-05T02:26:09.322668-05:00",
+        "finished": "2026-09-05T02:27:51.087497-05:00"
+      },
+      {
+        "file": "w3-009-run2.json",
+        "trials": 5,
+        "started": "2026-09-05T02:28:04.061468-05:00",
+        "finished": "2026-09-05T02:29:21.281132-05:00"
+      }
+    ],
+    "input_sha256": {
+      "corpus/emails/teaching/009-ceo-are-you-available.eml": "06d6277e3b193cfa39e32d68096c352a975331da8e082cbc794c5d74d06a1409",
+      "corpus/data/known_good_domains.json": "6d481eb255dbd0aea92f5bebc29fffe6b8ba84da2b5e477bf7d21566f4d9f122",
+      "corpus/data/playbook.md": "6f807c90229d0a348ae35bdbc19df23215d64e2c8eb7da7a211009e6e004cda0",
+      "corpus/data/display_names.json": "54e9ad5808a08aa3544589de9ee3515a9dd93c28789db8c64a5c94a5c8217d0d",
+      "corpus/spec/enums.json": "1929f597d53353170fadbc584a4f2feba00f2f808483554f386e13c6a3435ed8",
+      "instructor/solutions/w3-lab-solution.ipynb": "a92c5955ef178294e03868d441951c03d22d0ff0a86eb1071fcccfe041b9bbc0"
+    },
+    "digest_note": "Every input file was digested before the calls and again after them, in each of the three sessions, and every digest matched. All three sessions read identical inputs. This project once discarded two hundred and thirty-four runs because .eml files changed under a sweep, so these digests are what makes the numbers above re-checkable.",
+    "endpoint_assertion": "granite4.2:3b was confirmed present in the response from /v1/models before each session, and its ollama digest is recorded above."
+  }
+}

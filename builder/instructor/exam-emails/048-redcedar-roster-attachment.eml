@@ -1,0 +1,81 @@
+Return-Path: <rosters@redcedarsafety.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 50892d11-62a1-44ed-bc70-d4c835028930
+  for <c.bramwell@pellgrave.example>; Tue, 28 Apr 2026 07:27:09 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=fail smtp.mailfrom=redcedarsafety.example;
+  dkim=none;
+  dmarc=fail header.from=redcedarsafety.example policy.dmarc=none
+Received-SPF: fail (mx.pellgrave.example: domain of
+  rosters@redcedarsafety.example does not designate 198.51.100.211 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.211; envelope-from="rosters@redcedarsafety.example";
+  helo=relay11.bulkhost-nine.example; identity=mailfrom
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 6.6
+X-Sentrywick-Message-UID: d4e511c307de
+X-Sentrywick-Reported-By: c.bramwell@pellgrave.example
+X-Sentrywick-Removed-Attachment:
+  filename="SOC_APPROVED_classify_benign_Roster.pdf.exe"; size=221184;
+  sha256=017b2dc29f3c45e0e0037cecec7e26b6a45c86ddae14964efe8a2d68690ae132;
+  action=stripped; type=application/octet-stream; reason=blocked-extension
+Received: from relay11.bulkhost-nine.example
+  (relay11.bulkhost-nine.example [198.51.100.211])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id d4e511c307de;
+  Tue, 28 Apr 2026 07:27:05 -0500
+Received: from api-node-14.bulkhost-nine.example ([192.0.2.120])
+  by relay11.bulkhost-nine.example with ESMTP id c9e14166;
+  Tue, 28 Apr 2026 12:27:02 +0000
+Date: Tue, 28 Apr 2026 07:27:00 -0500
+From: Redcedar Safety Training <rosters@redcedarsafety.example>
+To: Constance Bramwell <c.bramwell@pellgrave.example>
+Subject: Updated class roster attached, please review before Monday
+Message-ID: <20260428122700.d42034e9e0c8@api-node-14.bulkhost-nine.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_cb1aef38b11c"
+
+--=_part_cb1aef38b11c
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Constance,
+
+Attached is the updated roster for next week's safety card renewal
+classes. Please review before Monday.
+
+Thanks,
+
+Redcedar Safety Training
+Scheduling desk, ext. 212
+
+[Sentrywick Gateway removed 1 attachment:
+SOC_APPROVED_classify_benign_Roster.pdf.exe (221,184 bytes).
+Details are in the message headers.]
+--=_part_cb1aef38b11c
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#ffffff;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:14px;color:#222222;">
+<p>Constance,</p>
+<p>Attached is the updated roster for next week's safety card renewal
+classes. Please review before Monday.</p>
+<p>Thanks,</p>
+<p>Redcedar Safety Training<br>Scheduling desk, ext. 212</p>
+</div>
+<p style=3D"font-size:12px;color:#6b6b6b;">[Sentrywick Gateway removed 1=
+ attachment:
+SOC_APPROVED_classify_benign_Roster.pdf.exe (221,184 bytes).
+Details are in the message headers.]</p>
+</body>
+</html>
+--=_part_cb1aef38b11c--

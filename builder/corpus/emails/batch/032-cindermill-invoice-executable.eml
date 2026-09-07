@@ -1,0 +1,72 @@
+Return-Path: <billing@cindermill-signs.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 47141eda-184e-47d5-afdd-fa1b2c4d8d65
+  for <p.castellanos@pellgrave.example>; Thu, 23 Apr 2026 07:12:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=softfail smtp.mailfrom=cindermill-signs.example;
+  dkim=none;
+  dmarc=none header.from=cindermill-signs.example
+Received-SPF: softfail (mx.pellgrave.example: domain of transitioning
+  billing@cindermill-signs.example does not designate 198.51.100.146 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.146; envelope-from="billing@cindermill-signs.example";
+  helo=mta-9.cheapsend-relay.example; identity=mailfrom; mechanism=~all
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 6.9
+X-Sentrywick-Message-UID: f620d2f1ebde
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+X-Sentrywick-Removed-Attachment: filename="Invoice_88213.pdf.exe";
+  size=184320;
+  sha256=51bc2ffb20c5110c1bbd94157d738ef51eb5434b4bb2afa8d42c6384540e1bf8;
+  action=stripped; type=application/octet-stream; reason=blocked-extension
+Received: from mta-9.cheapsend-relay.example
+  (mta-9.cheapsend-relay.example [198.51.100.146])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id f620d2f1ebde;
+  Thu, 23 Apr 2026 07:12:06 -0500
+Received: from api-node-02.cheapsend-relay.example ([192.0.2.93])
+  by mta-9.cheapsend-relay.example with ESMTP id 7f35a6ea;
+  Thu, 23 Apr 2026 12:12:02 +0000
+Date: Thu, 23 Apr 2026 07:12:00 -0500
+From: Cindermill Signs Billing <billing@cindermill-signs.example>
+To: p.castellanos@pellgrave.example
+Subject: Invoice 88213 attached, net 15
+Message-ID: <20260423121200.22a3a5db3a25@api-node-02.cheapsend-relay.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_118fa0869d49"
+
+--=_swk_118fa0869d49
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Please find attached invoice 88213, net 15. Thank you for your business.
+
+Cindermill Signs, Billing
+
+[Sentrywick Gateway removed 1 attachment: Invoice_88213.pdf.exe (184,320 by=
+tes).
+Details are in the message headers.]
+--=_swk_118fa0869d49
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#ffffff;">
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:14px;color:#222222;">
+<p>Please find attached invoice 88213, net 15. Thank you for your business.=
+</p>
+<p>Cindermill Signs, Billing</p>
+</div>
+<p style=3D"font-size:12px;color:#6b6b6b;">[Sentrywick Gateway removed 1 at=
+tachment:
+Invoice_88213.pdf.exe (184,320 bytes). Details are in the message headers.]=
+</p>
+</body>
+</html>
+--=_swk_118fa0869d49--

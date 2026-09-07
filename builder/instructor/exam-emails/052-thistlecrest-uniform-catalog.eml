@@ -1,0 +1,149 @@
+Return-Path: <bounce-7710-2205-c23372ccc3cd8de7@bounce.sendbarrow-mail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 50cd2d93-2ef1-48a1-b19d-51c4383236ea
+  for <c.hallowden@pellgrave.example>; Tue, 28 Apr 2026 05:45:13 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=bounce.sendbarrow-mail.example;
+  dkim=temperror header.d=sendbarrow-mail.example header.s=s2026a;
+  dmarc=none header.from=promo.thistlecrest-uniforms.example
+Received-SPF: pass (mx.pellgrave.example: domain of
+  bounce-7710-2205-c23372ccc3cd8de7@bounce.sendbarrow-mail.example designates
+  198.51.100.23 as permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.23;
+  envelope-from="bounce-7710-2205-c23372ccc3cd8de7@bounce.sendbarrow-mail.example";
+  helo=o17.mta.sendbarrow-mail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.0/24
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 4.8
+X-Sentrywick-Message-UID: 8f74974802c9
+X-Sentrywick-Reported-By: c.hallowden@pellgrave.example
+Received: from o17.mta.sendbarrow-mail.example
+  (o17.mta.sendbarrow-mail.example [198.51.100.23])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 8f74974802c9;
+  Tue, 28 Apr 2026 05:45:11 -0500
+Received: from app-node-03.sendbarrow-mail.example ([192.0.2.140])
+  by o17.mta.sendbarrow-mail.example with ESMTP id 45582726;
+  Tue, 28 Apr 2026 10:45:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=sendbarrow-mail.example; s=s2026a; t=1777373100;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   list-unsubscribe:list-unsubscribe-post:list-id;
+  bh=N1NFJf3B5G+0o7Nb4UnfceTJMRrFtNsQcTAkQY0l/QQ=;
+  b=zx6smsLRV3U8Vjn8fcivoT5Gx1RbwzNl1X4ESW2iouabb7L34DGf4VYo/f9/vA5xrbrUuv
+     jKnOIRXwqSbMqBqMeMvqvMxgkO15Pv/QI1QENpNlZl1rWxLR9B4nxd5iFGF3+g9gJZHQkD
+     hQIaVv1YJJV26liDmCb4XM5JQPvM42iMg8XQ49x5kAa3ZMpLFVVwQht+w2q17SNyQkDa0U
+     qqhNL/zC8iDQIIbI3f7i59RDMCsHMjGP5oCp2iW4AljUJaeLY3q0VqAPcXxSZRN61EA/hw
+     ogUDqxyYNK7InHEdENvi4N/AvicKcpfylqM24Gn6RCeehRRgFvJUfBH05gxtzA==
+From: Thistlecrest Uniforms <hello@promo.thistlecrest-uniforms.example>
+To: c.hallowden@pellgrave.example
+Subject: New summer uniform catalog for warehouse teams
+Date: Tue, 28 Apr 2026 10:45:00 +0000
+Message-ID: <20260428104500.d007443cd782@app-node-03.sendbarrow-mail.example>
+List-Unsubscribe:
+  <https://links.sendbarrow-mail.example/u/7710/2205/c23372ccc3cd8de7>,
+  <mailto:unsub-7710-2205-c23372ccc3cd8de7@bounce.sendbarrow-mail.example>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: Thistlecrest Uniforms Catalog <promo.thistlecrest-uniforms.example>
+Precedence: bulk
+Feedback-ID: 7710:summer-catalog:thistlecrest:sendbarrow
+X-Mailer: Sendbarrow Campaigns 3.8
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_sb_93cf3986a78a864f"
+
+--=_sb_93cf3986a78a864f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Having trouble reading this? View it in your browser:
+https://links.sendbarrow-mail.example/v/7710/2205/c23372ccc3cd8de7
+
+New summer uniform catalog for warehouse teams
+
+Hello from Thistlecrest Uniforms,
+
+Our summer catalog is out, and this one leans on the crews who spend the
+whole shift on a concrete floor. The work shirts are cut from a lighter
+poplin this year, and the hi-vis vests hold their color through a season
+of industrial laundering.
+
+New this season:
+
+  * Short and long sleeve work shirts in a lighter summer poplin
+  * Class 2 hi-vis vests with a mesh back panel and two radio loops
+  * Cotton twill work pants cut for a boot, in three inseams
+
+Logo setup is free on any order over $500, so a company crest on the
+left chest costs nothing extra. Sizes run small through 5XL in every
+line, and we will send a fit sample in any size if a crew wants to try
+one on before ordering.
+
+See the catalog:
+https://links.sendbarrow-mail.example/c/7710/2205/c3/c23372ccc3cd8de7
+
+Thanks for taking a look. We are glad to price out a whole crew if that
+is easier than working down the list line by line.
+
+Odalys Wrenfield
+Customer Accounts, Thistlecrest Uniforms
+
+--
+Thistlecrest Uniforms, PO Box 1188
+You are receiving this message because your company is on the
+Thistlecrest Uniforms catalog mailing list.
+Unsubscribe:
+https://links.sendbarrow-mail.example/u/7710/2205/c23372ccc3cd8de7
+--=_sb_93cf3986a78a864f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f4f4f4;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:0 auto;padding:24px;background:#ffffff;
+font-family:sans-serif;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"font-size:12px;color:#777777;">Having trouble reading this?
+<a href=3D"=
+https://links.sendbarrow-mail.example/v/7710/2205/c23372ccc3cd8de7"
+style=3D"color:#777777;">View it in your browser</a>.</p>
+<h2 style=3D"font-size:20px;color:#23406b;">
+New summer uniform catalog for warehouse teams</h2>
+<p>Hello from Thistlecrest Uniforms,</p>
+<p>Our summer catalog is out, and this one leans on the crews who spend the
+whole shift on a concrete floor. The work shirts are cut from a lighter
+poplin this year, and the hi-vis vests hold their color through a season of
+industrial laundering.</p>
+<p>New this season:</p>
+<ul>
+<li>Short and long sleeve work shirts in a lighter summer poplin</li>
+<li>Class 2 hi-vis vests with a mesh back panel and two radio loops</li>
+<li>Cotton twill work pants cut for a boot, in three inseams</li>
+</ul>
+<p>Logo setup is free on any order over $500, so a company crest on the left
+chest costs nothing extra. Sizes run small through 5XL in every line, and we
+will send a fit sample in any size if a crew wants to try one on before
+ordering.</p>
+<p><a href=3D"=
+https://links.sendbarrow-mail.example/c/7710/2205/c3/c23372ccc3cd8de7"
+style=3D"background:#23406b;color:#ffffff;padding:10px 18px;
+text-decoration:none;">See the catalog</a></p>
+<p>Thanks for taking a look. We are glad to price out a whole crew if that
+is easier than working down the list line by line.</p>
+<p>Odalys Wrenfield<br>Customer Accounts, Thistlecrest Uniforms</p>
+<p style=3D"font-size:12px;color:#777777;">
+Thistlecrest Uniforms, PO Box 1188<br>
+You are receiving this message because your company is on the
+Thistlecrest Uniforms catalog mailing list.<br>
+<a href=3D"=
+https://links.sendbarrow-mail.example/u/7710/2205/c23372ccc3cd8de7"
+style=3D"color:#777777;">Unsubscribe</a></p>
+</div>
+</body>
+</html>
+--=_sb_93cf3986a78a864f--

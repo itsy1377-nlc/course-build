@@ -1,0 +1,115 @@
+Return-Path: <notifications@fenwrightpay-notices.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 207103ed-0dd3-43b0-bc4e-ca7bdc7aca1c
+  for <t.nkemelu@pellgrave.example>; Fri, 17 Apr 2026 05:52:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=fenwrightpay-notices.example;
+  dkim=pass header.d=fenwrightpay-notices.example header.s=k1
+    header.i=@fenwrightpay-notices.example;
+  dmarc=pass header.from=fenwrightpay-notices.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  notifications@fenwrightpay-notices.example designates 203.0.113.167 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.167;
+  envelope-from="notifications@fenwrightpay-notices.example";
+  helo=mail.fenwrightpay-notices.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.1
+X-Sentrywick-Message-UID: 62a52fad6da0
+X-Sentrywick-Reported-By: t.nkemelu@pellgrave.example
+Received: from mail.fenwrightpay-notices.example
+  (mail.fenwrightpay-notices.example [203.0.113.167])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 62a52fad6da0;
+  Fri, 17 Apr 2026 05:52:05 -0500
+Received: from WEB-CLIENT-4.fenwrightpay-notices.example
+  ([192.0.2.167])
+  by mail.fenwrightpay-notices.example with ESMTPSA id 7fbd2d4e;
+  Fri, 17 Apr 2026 10:52:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=fenwrightpay-notices.example; s=k1; t=1776423122;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=hm7M2mrit4IjIU7RY5um41/GwJY5YN0M2TWH80yt0Ys=;
+  b=lAg31XLjORVXSim4SnukiIx+lILwlxaOY0lG9x6zBRcWeSZ8vfkF+Vd0hiILwji4wFBcVtRV
+   tW3j4XutQKRJKMiWJDwTGGxs3JA9TUwK3m43xyj+pc42v4Zk9v1Sbw8CxqPxSyjErtLYbhjK
+   Zf/l4P/FWZN8x+HpfdE85cbLyKYt1VgscpqDbyKGj9YO9eFsPTisQ7scRetr31bgV+GYcXqT
+   mrA2kN9aqo3OJiGdngF4iuFFCIgi4yUPC4fnz0O9Iw4gIJGubEBWFwfMWWPSifvXyFHgQFCp
+   BgtRNmjm7ijuKL3He5gPCBJBWtKmAea1pB2iABswg8kgP2602MrsWg==
+Date: Fri, 17 Apr 2026 05:52:00 -0500
+From: Fenwright Payroll <notifications@fenwrightpay-notices.example>
+To: Tobias Nkemelu <t.nkemelu@pellgrave.example>
+Subject: Your pay statement for 4/17/2026 is available
+Message-ID: <20260417105200.ef4deb2b86f8@mail.fenwrightpay-notices.example>
+Auto-Submitted: auto-generated
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_304ac25c8855"
+
+--=_part_304ac25c8855
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Fenwright Payroll
+
+Hello Tobias,
+
+Your pay statement for 4/17/2026 is available.
+
+Statement 2026-08 covers the pay period from 3/29/2026 through
+4/11/2026. It is posted in the employee portal and stays there with
+your earlier statements.
+
+To open it, sign in to the portal with the same employee account you
+use for time entry.
+
+View statement: https://my.fenwrightpay-notices.example/statements
+
+Questions about a figure on the statement go to the Pellgrave payroll
+office. Fenwright keeps the records; Pellgrave sets the hours, the
+rates and the deductions.
+
+Fenwright Payroll on behalf of Pellgrave Mechanical Group. This is an
+automated message.
+
+--=_part_304ac25c8855
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#f2f4f6;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 20px=
+ 0;font-size:20px;font-weight:bold;color:#1b4f8a;">Fenwright Payroll</p>
+<p>Hello Tobias,</p>
+<p style=3D"font-size:17px;font-weight:bold;">Your pay statement for=
+ 4/17/2026 is available.</p>
+<p>Statement 2026-08 covers the pay period from 3/29/2026 through=
+ 4/11/2026. It is posted in the employee portal and stays there with your=
+ earlier statements.</p>
+<p>To open it, sign in to the portal with the same employee account you use=
+ for time entry.</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://my.fenwrightpay-notices.example/statements"=
+ style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#1b4f8a;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">View statement</a></p>
+<p>Questions about a figure on the statement go to the Pellgrave payroll=
+ office. Fenwright keeps the records; Pellgrave sets the hours, the rates=
+ and the deductions.</p>
+<p style=3D"margin-top:28px;padding-top:12px;border-top:1px solid=
+ #d9dee3;font-size:13px;color:#444444;">Fenwright Payroll on behalf of=
+ Pellgrave Mechanical Group. This is an automated message.</p>
+</div>
+</body>
+</html>
+
+--=_part_304ac25c8855--

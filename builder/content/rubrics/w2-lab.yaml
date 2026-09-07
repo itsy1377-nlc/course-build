@@ -1,0 +1,124 @@
+# Week 2 lab rubric. Four criteria, 100 points.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title       what Canvas calls the rubric
+#   points      the total. Every lab in this course is 100, which is what makes
+#               the seven labs weigh equally inside the Labs group.
+#   criteria    a list. One entry per criterion, in the order a grader reads.
+#
+# EVERY CRITERION CARRIES
+#
+#   description       the criterion name, as the week 2 spec and the alignment
+#                     matrix word it. Not reworded here.
+#   long_description  what earns full credit, in the words the assignment page
+#                     shows the student. The two must stay identical.
+#   points            the criterion's share of the 100.
+#   outcome           the key of the Canvas Outcome this criterion reports
+#                     into, from content/course.yaml. Omitted on a criterion
+#                     that measures a non-CLO expectation.
+#   levels            a list, highest first. The top level equals points.
+#
+# ONE CRITERION CARRIES AN OUTCOME. Criterion 2 is the primary evidence for
+# CLO2 in this course, which is what the alignment matrix records. Criteria 1,
+# 3 and 4 are declared non-CLO expectations and carry no Outcome link.
+#
+# TWO SCALES ON ONE ROW. Criterion 2's four level labels are the course mastery
+# scale, so the rating the grader picks is what Canvas records against the
+# Outcome, on 4, 3, 2 and 0. The criterion points on the same row are what the
+# grade uses, on 50, 35, 20 and 0. The grader picks once and both follow. The
+# criterion points are never reported as the outcome result.
+#
+# NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
+# screenshot, the exported file and the written answer.
+
+title: "Week 2 lab: a strict answer"
+points: 100
+
+criteria:
+
+  - description: Submission completeness
+    long_description: >-
+      All three items are present and readable.
+    points: 15
+    levels:
+      - description: >-
+          Full. All three items are present and readable. The file is attached
+          as itself. It carries the name the export cell gave it.
+        points: 15
+      - description: >-
+          Partial. One of the three is missing. Or the file arrived as a zip or
+          a link rather than as itself.
+        points: 10
+      - description: >-
+          Missing. Two or three of the items are absent.
+        points: 0
+
+  - description: Output validation
+    long_description: >-
+      The file carries a checked answer for all four emails. It carries
+      schema_ok and problems on every try, the accepted try included. Every
+      failed try is recorded with the problems that caused it.
+    points: 50
+    outcome: CLO2
+    levels:
+      - description: >-
+          Exceeds standard. All four emails carry a checked answer. schema_ok
+          and problems are written on every try, the accepted try included.
+          Every failed try is recorded with the problems that caused it. A
+          reader can follow why each answer was accepted.
+        points: 50
+      - description: >-
+          Meets standard. All four emails carry a checked answer. The check
+          result is recorded. One try or one email is missing its problems
+          list. Or problems is left out where the check found nothing wrong.
+        points: 35
+      - description: >-
+          Approaching standard. The file holds answers for some emails. Or it
+          holds answers with no check result. It shows the model was called. It
+          does not show that the answer was checked.
+        points: 20
+      - description: >-
+          No evidence. No file. Or a file with no answers in it.
+        points: 0
+
+  - description: Results screenshot
+    long_description: >-
+      The screenshot shows all four emails and the token line, and is readable.
+    points: 15
+    levels:
+      - description: >-
+          Full. One image shows all four rows. Each row has the email id,
+          verdict, category, confidence and tries used. The token line sits
+          under the table. The text is readable.
+        points: 15
+      - description: >-
+          Partial. Rows or the token line are cut off. Or the text is too small
+          to read.
+        points: 10
+      - description: >-
+          Missing. No screenshot. Or an image of a different cell.
+        points: 0
+
+  - description: Written answer
+    long_description: >-
+      Three to five sentences carrying your own numbers. It names the email
+      that needed more than one try. It copies the problem text your code
+      reported. For a clean run it says so and gives the lowest confidence
+      number in your own file. Either path also names one change to the
+      instructions.
+    points: 20
+    levels:
+      - description: >-
+          Full. Three to five sentences. The numbers come from the student's
+          own file. It takes either path in full. It names one change to the
+          instructions.
+        points: 20
+      - description: >-
+          Partial. Under three sentences, or a part is missing. It gives no
+          number of its own. Or it names no change to the instructions.
+        points: 10
+      - description: >-
+          Missing. No written answer. Or one carrying none of the student's own
+          results.
+        points: 0

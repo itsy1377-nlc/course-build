@@ -1,0 +1,144 @@
+Return-Path: <registration@cottonmoor-show.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 4b65e87e-612c-48e4-9677-511aaeea599a
+  for <l.vashti@pellgrave.example>; Wed, 22 Apr 2026 12:26:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=cottonmoor-show.example;
+  dkim=pass header.d=cottonmoor-show.example header.s=cm1
+    header.i=@cottonmoor-show.example;
+  dmarc=pass header.from=cottonmoor-show.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  registration@cottonmoor-show.example designates 203.0.113.171 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.171;
+  envelope-from="registration@cottonmoor-show.example";
+  helo=mail.cottonmoor-show.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 5.9
+X-Sentrywick-Message-UID: fc6b15e6d0cd
+X-Sentrywick-Reported-By: l.vashti@pellgrave.example
+Received: from mail.cottonmoor-show.example
+  (mail.cottonmoor-show.example [203.0.113.171])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id fc6b15e6d0cd;
+  Wed, 22 Apr 2026 12:26:04 -0500
+Received: from CM-SALES-0231.cottonmoor-show.example ([192.0.2.171])
+  by mail.cottonmoor-show.example with ESMTPSA id f095697c;
+  Wed, 22 Apr 2026 17:26:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=cottonmoor-show.example; s=cm1; t=1776878760;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=S/rlF+JVI4q5cnHnFzeay9X3cFkZWwgV38xumMoco+k=;
+  b=kklEbFdmR1HffUKIYdqCTXtJ581dl7OYyY/o5n0jGVznkf0ZHrwri/mBEdtiO6OSb5V1cJfY
+   wtLu1b6xDWVNByGetfXI66aDsb24aOljirj8FUla2T3K0ongnEg+I1EjaEVv048JksZfs4DY
+   +jpWDoMjCnO5KU2bPWYRglRHMfRvfg5Qvz+0a51ffP1IO8oNg8Dfy4HaxE0uP40F4YgGX4QB
+   Q8HSvudDy8UQlSjkllxAggvVfT19gS8tso1SEQdfpnb/cZW0DAcB3Nc51hw7viXsccz+c1yo
+   fFOwqIU+P63IojgW+FRXYPP4beW22YsZxtEvFDb8kGXKYtQKkbu+BQ==
+Date: Wed, 22 Apr 2026 12:26:00 -0500
+From: Cottonmoor Facilities Show <registration@cottonmoor-show.example>
+To: Lenora Vashti <l.vashti@pellgrave.example>
+Subject: Early-bird booth pricing ends in 48 hours
+Message-ID: <20260422172600.a559e7f8f5cd@mail.cottonmoor-show.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_f7dc7a503de2"
+
+--=_part_f7dc7a503de2
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hi Lenora,
+
+Early-bird booth pricing for the 2026 Cottonmoor Facilities Show
+ends in 48 hours. The standard rate sheet takes over on Friday,
+April 24, and the corner spaces on the main aisle are usually
+spoken for well before that.
+
+Pellgrave Mechanical Group had stand 214 with us last year, so you
+are on the returning exhibitor list. Returning exhibitors get first
+pick of the corner spaces before the floor plan opens to everyone
+else.
+
+Still open on the plan:
+
+  * Corner booths, 10 by 20, on the main aisle
+  * Inline booths, 10 by 10, in the mechanical services hall
+  * Two demonstration slots on the service bay stage
+
+Reserve your booth:
+https://cottonmoor-show.example/2026/exhibit
+
+The early-bird rate is the lowest we publish all year, so this is
+the last chance to take a corner space at that price.
+
+Nothing is charged at the reservation step. The show office sends
+the exhibitor paperwork once your space is confirmed.
+
+We moved the mechanical hall to the north end of the building this
+year, which I think will suit a working demonstration better than
+the old room did.
+
+If it is easier to talk it through, my extension is below. I am at
+my desk most of this week.
+
+Thanks,
+
+Ottoline Farrady
+Exhibitor Sales, Cottonmoor Facilities Show
+555-0148 ext. 231
+--=_part_f7dc7a503de2
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background-color:#f5f4f1;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:20px auto;padding:22px=
+ 26px;background-color:#ffffff;border:1px solid=
+ #ded9d0;font-family:sans-serif;font-size:15px;line-height:1.5;color:#1f1f1=
+f;">
+<p style=3D"margin:0 0 18px=
+ 0;font-size:18px;font-weight:bold;color:#8a3b12;">Cottonmoor Facilities=
+ Show 2026</p>
+<p>Hi Lenora,</p>
+<p>Early-bird booth pricing for the 2026 Cottonmoor Facilities Show ends=
+ in 48 hours. The standard rate sheet takes over on Friday, April 24, and=
+ the corner spaces on the main aisle are usually spoken for well before=
+ that.</p>
+<p>Pellgrave Mechanical Group had stand 214 with us last year, so you are=
+ on the returning exhibitor list. Returning exhibitors get first pick of=
+ the corner spaces before the floor plan opens to everyone else.</p>
+<p>Still open on the plan:</p>
+<ul>
+<li>Corner booths, 10 by 20, on the main aisle</li>
+<li>Inline booths, 10 by 10, in the mechanical services hall</li>
+<li>Two demonstration slots on the service bay stage</li>
+</ul>
+<p style=3D"margin:22px 0;"><a=
+ href=3D"https://cottonmoor-show.example/2026/exhibit"=
+ style=3D"display:inline-block;padding:11px=
+ 20px;background-color:#8a3b12;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Reserve your booth</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the button does not open,=
+ the address is https://cottonmoor-show.example/2026/exhibit</p>
+<p>The early-bird rate is the lowest we publish all year, so this is the=
+ last chance to take a corner space at that price.</p>
+<p>Nothing is charged at the reservation step. The show office sends the=
+ exhibitor paperwork once your space is confirmed.</p>
+<p>We moved the mechanical hall to the north end of the building this=
+ year, which I think will suit a working demonstration better than the old=
+ room did.</p>
+<p>If it is easier to talk it through, my extension is below. I am at my=
+ desk most of this week.</p>
+<p>Thanks,</p>
+<p>Ottoline Farrady<br>Exhibitor Sales, Cottonmoor Facilities=
+ Show<br>555-0148 ext. 231</p>
+</div>
+</body>
+</html>
+--=_part_f7dc7a503de2--

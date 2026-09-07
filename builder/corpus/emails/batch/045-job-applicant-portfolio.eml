@@ -1,0 +1,117 @@
+Return-Path: <oona.adebayo.ferris@lanternmail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 6a7728ec-b68d-4898-915e-8ca485ba86a5
+  for <hr@pellgrave.example>; Tue, 21 Apr 2026 19:48:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=lanternmail.example;
+  dkim=pass header.d=lanternmail.example header.s=lm2026a
+  header.i=@lanternmail.example;
+  dmarc=pass header.from=lanternmail.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  oona.adebayo.ferris@lanternmail.example designates 198.51.100.71 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.71;
+  envelope-from="oona.adebayo.ferris@lanternmail.example";
+  helo=smtp-out-02.lanternmail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.64/26
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.5
+X-Sentrywick-Message-UID: 2299aad62b27
+X-Sentrywick-Reported-By: t.nkemelu@pellgrave.example
+Received: from smtp-out-02.lanternmail.example
+  (smtp-out-02.lanternmail.example [198.51.100.71])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 2299aad62b27;
+  Tue, 21 Apr 2026 19:48:05 -0500
+Received: from webapp-05.lanternmail.example ([192.0.2.55])
+  by smtp-out-02.lanternmail.example (Lanternmail SMTP) with ESMTPSA
+  id 8f9d99c572cd; Wed, 22 Apr 2026 00:48:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=lanternmail.example;
+  s=lm2026a; t=1776818882;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   x-originating-ip:x-mailer;
+  bh=ghxEe+DbzPCCxxwGPWXoETM8TkoLMReTR73r2YZUNnM=;
+  b=gz08118NQNu4CT+iTCgRTX1QL0qhdMxusD0Gq+74zIdY3cwFR0CbmT6O9RmgmAHng/Byzx7l
+   NpZpSYfZzDzS6ulpvnFu1oPnuL9JcCjMcs6aGHe+VXYgtjwjZrZQClcakd0SYcocdN5pDJOt
+   ap3EY4frUfIzzAnBcGo6bHBC9NIlVwESA99NVuGBRq4HSy64phibpJQtjZitn1Ghz+8dIORW
+   EBqMEX4I0ApGvxpQ7U7SalMjPmY3pGWJlGCVVEL5Pa8zETUIPpdg+LilyfcpqN/Pa+h5qJaj
+   wPHpPqXvKiRnyNakS4hj9vgjM7fNz+vYNd4/rQFW0U4m9VobmGKKiQ==
+Date: Tue, 21 Apr 2026 19:48:00 -0500
+From: Oona Adebayo-Ferris <oona.adebayo.ferris@lanternmail.example>
+To: hr@pellgrave.example
+Subject: Application: Service Coordinator (posting SC-0426)
+Message-ID: <20260422004802.43bb4ee29edc@webapp-05.lanternmail.example>
+X-Originating-IP: [203.0.113.140]
+X-Mailer: Lanternmail Web
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_lmw_70f6513ed611"
+
+--=_lmw_70f6513ed611
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Hello,
+
+I am applying for the Service Coordinator opening, posting SC-0426. I
+saw it on your careers page earlier this month, and it lines up almost
+exactly with the work I do now.
+
+I have spent four years as the dispatcher at Thornbeck Plumbing, running
+the daily board for eleven service trucks. Intake, routing, permit
+paperwork, parts runs, and the part nobody puts in a posting, which is
+calling a customer back when a technician is going to run late and then
+making the new window stick.
+
+Rather than send an attachment I keep work samples on my own site, since
+the posting asked for a link:
+
+https://oona-adebayo-ferris.example/work
+
+Two of the dispatch boards I rebuilt are on there, a route sheet with the
+customer names taken out, and a short write up of how we brought our
+repeat visit rate down over one season.
+
+References are available on request, including my last two supervisors at
+Thornbeck. I am glad to talk any of it through at whatever time works for
+your team.
+
+Thank you for your time,
+
+Oona Adebayo-Ferris
+555-0176
+--=_lmw_70f6513ed611
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"font-family:sans-serif;font-size:14px;color:#222222">
+<p>Hello,</p>
+<p>I am applying for the Service Coordinator opening, posting SC-0426. I=
+ saw it on your careers page earlier this month, and it lines up almost=
+ exactly with the work I do now.</p>
+<p>I have spent four years as the dispatcher at Thornbeck Plumbing, running=
+ the daily board for eleven service trucks. Intake, routing, permit=
+ paperwork, parts runs, and the part nobody puts in a posting, which is=
+ calling a customer back when a technician is going to run late and then=
+ making the new window stick.</p>
+<p>Rather than send an attachment I keep work samples on my own site, since=
+ the posting asked for a link:</p>
+<p><a=
+ href=3D"https://oona-adebayo-ferris.example/work">https://oona-adebayo-fer=
+ris.example/work</a></p>
+<p>Two of the dispatch boards I rebuilt are on there, a route sheet with=
+ the customer names taken out, and a short write up of how we brought our=
+ repeat visit rate down over one season.</p>
+<p>References are available on request, including my last two supervisors=
+ at Thornbeck. I am glad to talk any of it through at whatever time works=
+ for your team.</p>
+<p>Thank you for your time,</p>
+<p>Oona Adebayo-Ferris<br>555-0176</p>
+</div>
+--=_lmw_70f6513ed611--

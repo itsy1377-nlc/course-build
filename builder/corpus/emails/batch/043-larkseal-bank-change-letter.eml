@@ -1,0 +1,140 @@
+Return-Path: <ar@larkseal.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 9d658584-eda0-4619-a137-8148389d3411
+  for <ap@pellgrave.example>; Wed, 22 Apr 2026 14:05:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=larkseal.example;
+  dkim=pass header.d=larkseal.example header.s=ls2026
+    header.i=@larkseal.example;
+  dmarc=pass header.from=larkseal.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  ar@larkseal.example designates 203.0.113.51 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.51;
+  envelope-from="ar@larkseal.example";
+  helo=mx-out.larkseal.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.8
+X-Sentrywick-Message-UID: bea48da8f668
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+X-Sentrywick-Removed-Attachment:
+  filename="Larkseal_Remittance_Change_Letter_2026-04.pdf"; size=112480;
+  sha256=946723b192aa307aa0b06f50dd42feccd6aaa021bda12c753c43c5e91096b853;
+  action=quarantined; type=application/pdf; reason=archived-to-vault
+Received: from mx-out.larkseal.example
+  (mx-out.larkseal.example [203.0.113.51])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id bea48da8f668;
+  Wed, 22 Apr 2026 14:05:06 -0500
+Received: from LS-AR-0118.larkseal.example ([192.0.2.51])
+  by mx-out.larkseal.example with ESMTPSA id 2896393a;
+  Wed, 22 Apr 2026 19:05:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=larkseal.example; s=ls2026; t=1776884703;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=98mfKLnzvyz/dLgOBeC5Hr5xZewpDs2cXWjFJnYItZE=;
+  b=bnOoIuFEDtmYVwgImWdsb6W+o6WssED5gRExfKpkUlTBKLXzvO3OCs1IKrzTbfWEd+hEq8v4
+   mkeMZnULaNrCDI1lE/DAbDJw60925PohD3h+oGeVliQSaLT88+YtaYRpHtETvToPiTr+oyij
+   7w03LdIfNWuZEkxpceoIceCQ3kh4Oc28WcTb1qDRRsGURICtUcmbEBv/Y2iXOK7VyLAJ61R+
+   jBLpddM/9iN0XyFegUm9T1kSES2Q3o3WTtUTHsBppIvdDDlYc3julIEoZqvpN5Zq8CK6bdku
+   4hhC1jSLZkjbJ4k2nc6Vv3iEC3nnS89mZiUYKruTmPfoA0av8Obztw==
+Date: Wed, 22 Apr 2026 14:05:00 -0500
+From: Larkseal Accounts Receivable <ar@larkseal.example>
+To: Accounts Payable <ap@pellgrave.example>
+Subject: Signed remittance change letter, per Tuesday's call
+Message-ID: <20260422190500.923603490d6f@mx-out.larkseal.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_755a2e4e7b4f"
+
+--=_part_755a2e4e7b4f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Priya,
+
+Thank you for the time on Tuesday. As discussed on Tuesday's call,
+Larkseal has moved its receivables to a new bank, and the change
+takes effect 5/1.
+
+The signed letter is attached. It is on our letterhead, our
+controller signed it on 4/20, and it gives the bank name, the
+routing number and the last four digits of the account it replaces.
+
+Please do not change anything on our record from this message on
+its own. Call the number on file for Larkseal, not a number out of
+this mail, ask for accounts receivable, and have someone read the
+details back to you before you update the vendor record.
+
+Nothing else about the account moves. Your terms, your billing
+contacts and the open orders stay as they are.
+
+Anything issued on the old details up to 4/30 still reaches us.
+After that the old account is closed, and a payment sent there
+comes back to your bank about a week later.
+
+Sorry to add paperwork to your week. We are doing this by telephone
+with every customer, so you are not the only one being asked to make
+a call.
+
+Thank you,
+
+Ines Halvorsen-Duque
+Accounts Receivable
+Larkseal
+Main line 555-0171
+
+[Sentrywick Gateway removed 1 attachment:
+Larkseal_Remittance_Change_Letter_2026-04.pdf (112,480 bytes).
+Details are in the message headers.]
+
+--=_part_755a2e4e7b4f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background-color:#f3f4f6;">
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:20px auto;padding:22px 26px;background=
+-color:#ffffff;border:1px solid #dcdfe3;
+  font-family:sans-serif;font-size:15px;line-height:1.5;
+  color:#222222;">
+<p style=3D"margin:0 0 18px 0;font-size:18px;font-weight:bold;color:#1b4f8a=
+;">Larkseal</p>
+<p>Priya,</p>
+<p>Thank you for the time on Tuesday. As discussed on Tuesday's call,
+Larkseal has moved its receivables to a new bank, and the change
+takes effect 5/1.</p>
+<p>The signed letter is attached. It is on our letterhead, our
+controller signed it on 4/20, and it gives the bank name, the
+routing number and the last four digits of the account it replaces.</p>
+<p>Please do not change anything on our record from this message on
+its own. Call the number on file for Larkseal, not a number out of
+this mail, ask for accounts receivable, and have someone read the
+details back to you before you update the vendor record.</p>
+<p>Nothing else about the account moves. Your terms, your billing
+contacts and the open orders stay as they are.</p>
+<p>Anything issued on the old details up to 4/30 still reaches us.
+After that the old account is closed, and a payment sent there
+comes back to your bank about a week later.</p>
+<p>Sorry to add paperwork to your week. We are doing this by telephone
+with every customer, so you are not the only one being asked to make
+a call.</p>
+<p>Thank you,</p>
+<p>Ines Halvorsen-Duque<br>
+Accounts Receivable<br>
+Larkseal<br>
+Main line 555-0171</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">[Sentrywick Gateway removed 1 at=
+tachment:
+Larkseal_Remittance_Change_Letter_2026-04.pdf (112,480 bytes).
+Details are in the message headers.]</p>
+</div>
+</body>
+</html>
+
+--=_part_755a2e4e7b4f--

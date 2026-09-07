@@ -1,0 +1,404 @@
+# Week 0 self-assessment. An ungraded practice quiz.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        true. This is a practice quiz. It changes no grade.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all ten.
+#   points          1. Ten questions, ten points, no effect on any grade.
+#   section         which week 0 notebook section the question comes from.
+#   outcome         "none". Week 0 is ungraded and maps to no course learning
+#                   objective, so no Canvas Outcome is linked. The key is here
+#                   because the export tooling requires one on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the notebook section the question came from, because the scoring rule tells
+# students to work through the sections their missed questions name.
+
+title: Week 0 self-assessment
+ungraded: true
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Ten short questions. Each one comes from one section of the week 0
+  notebook. They take about ten minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is not graded. It does not count toward anything. Take it as
+  many times as you like.</p>
+
+  <p>Each answer names the week 0 section it came from. Use those names.</p>
+
+  <p><strong>9 or 10 right.</strong> Skip week 0 and start week 1. Keep the
+  notebook handy. Open a section when you want it.</p>
+
+  <p><strong>6, 7 or 8 right.</strong> Work through the sections your missed
+  questions name. Skip the rest. That is about one to two hours.</p>
+
+  <p><strong>5 or fewer right.</strong> Work through the whole notebook, in
+  order. Plan about five hours. Most students in this course have never written
+  Python. That is what this notebook is for. Week 1 reads much better after
+  it.</p>
+
+  <p>You do not have to finish week 0 before week 1 starts. Week 0 stays open
+  all term.</p>
+
+questions:
+
+  - id: w0-q1
+    name: Question 1. Variables and strings
+    type: multiple_choice
+    points: 1
+    section: "Section 1, variables and strings"
+    outcome: "none"
+    text: |
+      <p>You run these three lines. What prints?</p>
+      <pre><code>color = "blue"
+      color = "green"
+      print(color)
+      </code></pre>
+    answers:
+      - text: blue
+        correct: false
+        feedback: >-
+          No. Line 2 put a new value in the same name. The old value is gone.
+          Section 1, variables and strings.
+      - text: green
+        correct: true
+        feedback: >-
+          Correct. A name holds the last value you gave it. Section 1,
+          variables and strings.
+      - text: blue green
+        correct: false
+        feedback: >-
+          No. The second line replaces the value. It does not join the two.
+          Section 1, variables and strings.
+      - text: An error
+        correct: false
+        feedback: >-
+          No. Giving a name a new value is normal Python. Nothing here fails.
+          Section 1, variables and strings.
+
+  - id: w0-q2
+    name: Question 2. Calling functions and using return values
+    type: multiple_choice
+    points: 1
+    section: "Section 2, calling functions and using return values"
+    outcome: "none"
+    text: |
+      <p>You run these four lines. What prints?</p>
+      <pre><code>def add_fee(price):
+          return price + 1
+
+      total = add_fee(4)
+      print(total)
+      </code></pre>
+    answers:
+      - text: "5"
+        correct: true
+        feedback: >-
+          Correct. The function adds 1 and hands 5 back. Line 4 stores it, and
+          line 5 prints it. Section 2, calling functions and using return
+          values.
+      - text: "4"
+        correct: false
+        feedback: >-
+          No. That is the value going in. The function adds 1 before it hands
+          anything back. Section 2, calling functions and using return values.
+      - text: Nothing. The function returns, so nothing reaches the screen.
+        correct: false
+        feedback: >-
+          No. A return value goes to the code that called it. Line 5 then
+          prints it. Section 2, calling functions and using return values.
+      - text: An error, because print cannot take a number.
+        correct: false
+        feedback: >-
+          No. Print handles numbers fine. Section 2, calling functions and
+          using return values.
+
+  - id: w0-q3
+    name: Question 3. Dictionaries and key access
+    type: multiple_choice
+    points: 1
+    section: "Section 3, lists, dictionaries and keys"
+    outcome: "none"
+    text: |
+      <p>You run these two lines. What prints?</p>
+      <pre><code>sizes = {"small": 8, "medium": 12, "large": 16}
+      print(sizes["medium"])
+      </code></pre>
+    answers:
+      - text: medium
+        correct: false
+        feedback: >-
+          No. The square brackets hold the key. What comes out is the value.
+          Section 3, lists, dictionaries and keys.
+      - text: "12"
+        correct: true
+        feedback: >-
+          Correct. You asked for the key and got its value. Section 3, lists,
+          dictionaries and keys.
+      - text: "1"
+        correct: false
+        feedback: >-
+          No. This is a dictionary, not a list. Nothing here counts positions.
+          Section 3, lists, dictionaries and keys.
+      - text: An error
+        correct: false
+        feedback: >-
+          No. The key is in the dictionary, so it comes back. A key that is
+          missing raises a KeyError. Section 3, lists, dictionaries and keys.
+
+  - id: w0-q4
+    name: Question 4. JSON as a dictionary in text form
+    type: multiple_choice
+    points: 1
+    section: "Section 4, JSON, a dictionary in text form"
+    outcome: "none"
+    text: |
+      <p>A program hands you this, and it is text.</p>
+      <pre><code>line = '{"city": "Austin", "high": 96}'
+      </code></pre>
+      <p>You want to read the high by name. What do you do first?</p>
+    answers:
+      - text: Nothing. You can read it by name already.
+        correct: false
+        feedback: >-
+          No. It looks like a dictionary and it is text. Convert it first.
+          Section 4, JSON, a dictionary in text form.
+      - text: Turn the text into a dictionary with json.loads().
+        correct: true
+        feedback: >-
+          Correct. That is what json.loads() is for. After it runs you can read
+          by key. Section 4, JSON, a dictionary in text form.
+      - text: Turn it into text with json.dumps().
+        correct: false
+        feedback: >-
+          No. It is already text. json.dumps() goes the other way. Section 4,
+          JSON, a dictionary in text form.
+      - text: Count the characters in it.
+        correct: false
+        feedback: >-
+          No. That measures the text. It does not open it up. Section 4, JSON,
+          a dictionary in text form.
+
+  - id: w0-q5
+    name: Question 5. f-strings
+    type: multiple_choice
+    points: 1
+    section: "Section 5, f-strings"
+    outcome: "none"
+    text: |
+      <p>You run these three lines. What prints?</p>
+      <pre><code>name = "Sam"
+      cups = 3
+      print(f"{name} drank {cups} cups.")
+      </code></pre>
+    answers:
+      - text: "{name} drank {cups} cups."
+        correct: false
+        feedback: >-
+          No. The f in front of the quote tells Python to swap each name for
+          its value. Section 5, f-strings.
+      - text: Sam drank 3 cups.
+        correct: true
+        feedback: >-
+          Correct. Each name in curly brackets is replaced by its value.
+          Section 5, f-strings.
+      - text: f Sam drank 3 cups.
+        correct: false
+        feedback: >-
+          No. The f is a marker on the quote. It never prints. Section 5,
+          f-strings.
+      - text: An error
+        correct: false
+        feedback: >-
+          No. An f-string holds text and numbers together with no extra work.
+          Section 5, f-strings.
+
+  - id: w0-q6
+    name: Question 6. Defining a function with parameters
+    type: multiple_choice
+    points: 1
+    section: "Section 6, writing your own function"
+    outcome: "none"
+    text: |
+      <p>Which line starts a function that takes two values?</p>
+    answers:
+      - text: "def area(width, height):"
+        correct: true
+        feedback: >-
+          Correct. def names it, the brackets name what it takes, and the colon
+          ends the line. Section 6, writing your own function.
+      - text: "area(width, height)"
+        correct: false
+        feedback: >-
+          No. That calls a function that already exists. It does not start one.
+          Section 6, writing your own function.
+      - text: "def area = width, height"
+        correct: false
+        feedback: >-
+          No. A def line needs brackets and a colon, not an equals sign.
+          Section 6, writing your own function.
+      - text: "function area(width, height):"
+        correct: false
+        feedback: >-
+          No. Python uses def. Some other languages use function. Section 6,
+          writing your own function.
+
+  - id: w0-q7
+    name: Question 7. if, elif and else
+    type: multiple_choice
+    points: 1
+    section: "Section 7, if, elif and else"
+    outcome: "none"
+    text: |
+      <p>A parcel desk picks a shipping class from a weight in pounds. You run
+      these lines. What prints?</p>
+      <pre><code>weight = 3
+      if weight &gt; 20:
+          print("freight")
+      elif weight &gt; 10:
+          print("ground")
+      else:
+          print("letter")
+      </code></pre>
+    answers:
+      - text: freight
+        correct: false
+        feedback: >-
+          No. 3 is not above 20, so that path is skipped. Section 7, if, elif
+          and else.
+      - text: ground
+        correct: false
+        feedback: >-
+          No. 3 is not above 10 either, so that path is skipped too. Section
+          7, if, elif and else.
+      - text: letter
+        correct: true
+        feedback: >-
+          Correct. Both tests were false, so the else path ran. Section 7, if,
+          elif and else.
+      - text: All three
+        correct: false
+        feedback: >-
+          No. Exactly one path runs. Python stops at the first true test.
+          Section 7, if, elif and else.
+
+  - id: w0-q8
+    name: Question 8. Loops
+    type: multiple_choice
+    points: 1
+    section: "Section 8, loops, in two parts"
+    outcome: "none"
+    text: |
+      <p>You run these lines. What prints?</p>
+      <pre><code>counts = [2, 5, 1]
+      total = 0
+      for c in counts:
+          total = total + c
+      print(total)
+      </code></pre>
+    answers:
+      - text: "3"
+        correct: false
+        feedback: >-
+          No. That is how many items are in the list. The loop adds their
+          values. Section 8, loops, in two parts.
+      - text: "8"
+        correct: true
+        feedback: >-
+          Correct. The loop runs three times and adds each value to the total.
+          Section 8, loops, in two parts.
+      - text: "2"
+        correct: false
+        feedback: >-
+          No. That is the first value only. The loop runs on all three.
+          Section 8, loops, in two parts.
+      - text: "251"
+        correct: false
+        feedback: >-
+          No. These are numbers, so the plus sign adds them. It joins text, not
+          numbers. Section 8, loops, in two parts.
+
+  - id: w0-q9
+    name: Question 9. try and except
+    type: multiple_choice
+    points: 1
+    section: "Section 9, try and except"
+    outcome: "none"
+    text: |
+      <p>What does a try and except block do?</p>
+    answers:
+      - text: It stops the program the moment a line fails.
+        correct: false
+        feedback: >-
+          No. That is what happens without one. try and except is how you keep
+          going. Section 9, try and except.
+      - text: It runs some code, and runs a backup plan if that code fails.
+        correct: true
+        feedback: >-
+          Correct. try holds the risky lines. except names an error type and
+          says what to do instead. Section 9, try and except.
+      - text: It makes the code run faster.
+        correct: false
+        feedback: >-
+          No. It changes what happens on a failure, not the speed. Section 9,
+          try and except.
+      - text: It repeats the code until the code works.
+        correct: false
+        feedback: >-
+          No. Repeating takes a loop and a counter around it. Section 9, try
+          and except.
+
+  - id: w0-q10
+    name: Question 10. Reading an error message
+    type: multiple_choice
+    points: 1
+    section: "Section 10, how to read an error message"
+    outcome: "none"
+    text: |
+      <p>Your code failed and printed this.</p>
+      <pre><code>Traceback (most recent call last):
+        File "shopping.py", line 7, in &lt;module&gt;
+          print(basket["pears"])
+      KeyError: 'pears'
+      </code></pre>
+      <p>Which line failed, and why?</p>
+    answers:
+      - text: Line 7. The basket has no key named pears.
+        correct: true
+        feedback: >-
+          Correct. The last line names the error and the key. The frame above
+          it names the line. Section 10, how to read an error message.
+      - text: Line 1. The file could not be opened.
+        correct: false
+        feedback: >-
+          No. Line 1 is the header. It only says a traceback follows. Section
+          10, how to read an error message.
+      - text: Line 7. The word print is spelled wrong.
+        correct: false
+        feedback: >-
+          No. A misspelled name gives a NameError. This one is a KeyError.
+          Section 10, how to read an error message.
+      - text: There is no way to tell from this message.
+        correct: false
+        feedback: >-
+          No. The message names the error type, the key and the line. Read the
+          last line first. Section 10, how to read an error message.

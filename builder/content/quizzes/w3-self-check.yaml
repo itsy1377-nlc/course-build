@@ -1,0 +1,281 @@
+# Week 3 self-check. Six multiple choice items, 12 points, low stakes.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the quiz
+#   description     HTML shown before a student starts. It carries the scoring
+#                   rule, so the student reads it before and after every attempt.
+#   ungraded        false. This one counts, in the Self-Checks group, which is
+#                   8 percent of the course grade across all seven weeks.
+#   shuffle         false. The options are read in order, so they stay in order.
+#   attempts        -1 means unlimited.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions       a list. One entry per question.
+#
+# EVERY QUESTION CARRIES
+#
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   type            multiple_choice for all six.
+#   points          2. Six questions, 12 points.
+#   section         which page or notebook cell the question comes from.
+#   outcome         "none". Self-checks report into no Canvas Outcome. The
+#                   graded evidence for CLO1 is the week 3 lab rubric,
+#                   criterion 2, which the alignment matrix records as the
+#                   primary link. A second reporter here would contradict it.
+#                   The key is present because the export tooling requires one
+#                   on every item.
+#   text            the stem, as an HTML fragment.
+#   answers         a list. Every answer carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Feedback names
+# the section or the cell to reopen, because the attempts are unlimited and the
+# point of the quiz is to send a student back to the right paragraph.
+#
+# ITEM COVERAGE. The six follow the week 3 spec. Item 1 is which facts belong
+# in a prompt and which are exposure with no payoff. Item 2 is a failed check
+# on the organization's own domain. Item 3 is a link host on no list. Item 4 is
+# internal mail carrying no results at all. Item 5 is what moved the verdict on
+# email 005. Item 6 is the same extraction step on a log line.
+#
+# Every stem sits on something this course produced: one of this week's six
+# emails, a line from the week 3 reading, or a function in the week 3 notebook.
+# None of them can be answered from general phishing knowledge.
+
+title: Week 3 self-check
+ungraded: false
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>Six short questions on week 3. They take about ten minutes.</p>
+
+  <h3>What your score means</h3>
+
+  <p>This quiz is worth 12 points. Take it as many times as you like, and
+  your highest score is the one that counts.</p>
+
+  <p>Nothing is shuffled, so the options come in the same order every time.</p>
+
+  <p>Every answer, right or wrong, names where that idea is taught. Use those
+  names. Missing one twice is a sign to go back and read, not a sign to guess
+  again.</p>
+
+  <p>Take it after the reading and the lab. Two questions ask about your own
+  comparison table, so run the notebook first.</p>
+
+questions:
+
+  - id: w3-q1
+    name: Question 1. What earns a place in the facts block
+    type: multiple_choice
+    points: 2
+    section: "Week 3 reading, what you leave out is also a decision"
+    outcome: "none"
+    text: |
+      <p>You are writing <code>build_facts()</code> for email 004. The parser
+      hands back far more than the facts block needs.</p>
+      <p>Which of these values belongs in the block?</p>
+    answers:
+      - text: "The sending domain, `pellgrave-corp.example`"
+        correct: true
+        feedback: >-
+          Correct. That domain is not Pellgrave's, and the name over it is
+          Pellgrave's chief financial officer. It is the fact the whole email
+          turns on. Week 3 reading, the name over the address.
+      - text: The list of servers the message passed through on its way in
+        correct: false
+        feedback: >-
+          No. Ask the reading's two questions. A sound verdict does not change
+          without the hops, and they describe your own systems to an outside
+          service. Week 3 reading, what you leave out is also a decision.
+      - text: The message id the sending server gave it
+        correct: false
+        feedback: >-
+          No. It names one message and nothing else, so no verdict turns on
+          it. Week 3 reading, what you leave out is also a decision.
+      - text: The address of the colleague who reported the message
+        correct: false
+        feedback: >-
+          No. The verdict is the same whoever reported it, and that address is
+          a real person. It fails both questions. Week 3 reading, what you
+          leave out is also a decision.
+
+  - id: w3-q2
+    name: Question 2. Three failed checks on your own domain
+    type: multiple_choice
+    points: 2
+    section: "Week 3 reading, what a passed check really means"
+    outcome: "none"
+    text: |
+      <p>Email 006 says it is from <code>helpdesk@pellgrave.example</code>,
+      which is Pellgrave's own domain. Your facts block shows SPF fail, DKIM
+      none and DMARC fail, and the gateway marked the message as outside
+      mail.</p>
+      <p>What do those results tell you?</p>
+    answers:
+      - text: The message claims Pellgrave's own domain and did not come from Pellgrave's mail. Somebody outside sent it under your name.
+        correct: true
+        feedback: >-
+          Correct. That is a fact, not a verdict, and it is a strong one. Send
+          it and let the model weigh it. Week 3 reading, what a passed check
+          really means.
+      - text: Pellgrave's mail system is broken, so the three results cannot be trusted here.
+        correct: false
+        feedback: >-
+          No. The checks worked. They reported that the message failed them.
+          Week 3 reading, what a passed check really means.
+      - text: The help desk really sent it, and its signing settings have lapsed.
+        correct: false
+        feedback: >-
+          No. Internal mail does not arrive through the outside gateway, and
+          this message did. Week 3 reading, what a passed check really means.
+      - text: Nothing yet. A failed check only decides whether a message lands in the junk folder.
+        correct: false
+        feedback: >-
+          No. The checks answer whether the mail came from the domain it
+          names. Where a message lands is a separate decision. Week 3 reading,
+          what a passed check really means.
+
+  - id: w3-q3
+    name: Question 3. A link host on no list
+    type: multiple_choice
+    points: 2
+    section: "Week 3 reading, where the links point"
+    outcome: "none"
+    text: |
+      <p>Email 025 says a document was shared with you. Its Open link points to
+      the host <code>review.larkseal-review.example</code>, which is not on the
+      known-good list your prompt carries.</p>
+      <p>What does being off that list tell you by itself?</p>
+    answers:
+      - text: Only that the host is unknown. The list names Pellgrave's own hosts, so nothing else follows from missing it.
+        correct: true
+        feedback: >-
+          Correct. Unknown is the honest word. What settles 025 is the rest of
+          the facts, including a vendor name over a domain that vendor does not
+          own. Week 4 adds a way to look a host up. Week 3 reading, where the
+          links point.
+      - text: That the host is clean, because a harmful host would have been listed.
+        correct: false
+        feedback: >-
+          No. The list holds Pellgrave's own hosts and no one else's. Almost
+          every safe host in the world is off it. Week 3 reading, where the
+          links point.
+      - text: That the host is malicious, because a safe host would be on the list.
+        correct: false
+        feedback: >-
+          No. That reads unknown as guilty. Grounding adds facts, not
+          suspicion. Week 3 reading, where the links point.
+      - text: That the host stays out of the facts block until somebody checks it.
+        correct: false
+        feedback: >-
+          No. An unchecked host is still a fact, and the model cannot weigh
+          what you never send. Week 3 reading, where the links point.
+
+  - id: w3-q4
+    name: Question 4. No results at all
+    type: multiple_choice
+    points: 2
+    section: "Week 3 reading, what a passed check really means"
+    outcome: "none"
+    text: |
+      <p>A colleague inside Pellgrave sends a message, and it is reported. Your
+      facts block shows no result for SPF, no result for DKIM and no result for
+      DMARC.</p>
+      <p>Why are all three missing?</p>
+    answers:
+      - text: The gateway runs the three checks on mail arriving from outside. This message never arrived from outside, so there was nothing to write down.
+        correct: true
+        feedback: >-
+          Correct. Missing is not failed. Say so in the facts block and let the
+          verdict come from the other facts. Week 3 reading, what a passed
+          check really means.
+      - text: All three failed, and a failed check is written as an empty value.
+        correct: false
+        feedback: >-
+          No. A failure is written as fail, the way email 006 shows it. Empty
+          means the check never ran. Week 3 reading, what a passed check really
+          means.
+      - text: Your `build_facts()` dropped them, because an empty value is not worth sending.
+        correct: false
+        feedback: >-
+          No. Your function reads what the parser hands it, and the parser
+          found no header to read. Week 3 lab notebook, cell 9.
+      - text: The sending mail server turns the checks off for messages inside the company.
+        correct: false
+        feedback: >-
+          No. The sender never runs these checks. The receiving gateway does.
+          Week 3 reading, what a passed check really means.
+
+  - id: w3-q5
+    name: Question 5. Why email 005 changed
+    type: multiple_choice
+    points: 2
+    section: "Week 3 lab notebook, cell 14, the comparison table"
+    outcome: "none"
+    text: |
+      <p>Suppose your comparison table shows email 005 as malicious on the
+      body alone and benign once the facts arrive. The body is a supplier chasing two
+      unpaid invoices, and it names the day the account goes on credit
+      hold.</p>
+      <p>What did the grounded run have that the first run did not?</p>
+    answers:
+      - text: All three checks passed for the supplier's own domain, and the name over the address belongs to that domain.
+        correct: true
+        feedback: >-
+          Correct. Nothing about the message got calmer. Facts arrived that the
+          body alone could not carry. Week 3 reading, two emails, and the
+          reason for all this.
+      - text: A shorter body, so the lines about the credit hold were cut.
+        correct: false
+        feedback: >-
+          No. Both runs send the same body, word for word. Only the facts block
+          is added. Week 3 lab notebook, cell 13.
+      - text: A lower temperature on the second call, so the model answered with less suspicion.
+        correct: false
+        feedback: >-
+          No. Nothing about the call changed this week. The model, the settings
+          and the schema check are exactly as week 2 left them. Week 3 lab
+          notebook, cell 13.
+      - text: A playbook rule telling the model to discount urgent wording.
+        correct: false
+        feedback: >-
+          No. The playbook holds no such rule, and a rule about wording would
+          not have moved 005, because its wording never changed. Week 3
+          reading, where the links point.
+
+  - id: w3-q6
+    name: Question 6. The same move on a log line
+    type: multiple_choice
+    points: 2
+    section: "Week 3 reading, the same move on a log line"
+    outcome: "none"
+    text: |
+      <p>The Pellgrave mail gateway writes a log line with far more fields than
+      any one judgment needs. You want the model's read on that line.</p>
+      <p>Which function in your week 3 notebook does the same job as dropping
+      the fields nobody needs?</p>
+    answers:
+      - text: "`build_facts()`"
+        correct: true
+        feedback: >-
+          Correct. It picks. Then `format_facts()` puts what is left into one
+          steady shape. Those two steps work on a log line, an alert or a
+          ticket. Week 3 reading, the same move on a log line.
+      - text: "`format_facts()`"
+        correct: false
+        feedback: >-
+          Close. That is the second step, the steady shape. Choosing what to
+          keep comes first. Week 3 reading, the same move on a log line.
+      - text: "`classify_grounded()`"
+        correct: false
+        feedback: >-
+          No. That one sends the prompt and checks the answer, which is week
+          2's work. It chooses no fields. Week 3 lab notebook, cell 13.
+      - text: "`compare_runs()`"
+        correct: false
+        feedback: >-
+          No. That one runs both paths over a list of emails and builds the
+          table. It chooses no fields either. Week 3 lab notebook, cell 13.

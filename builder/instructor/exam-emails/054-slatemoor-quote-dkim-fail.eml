@@ -1,0 +1,158 @@
+Return-Path: <quotes@slatemoorsupply.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 89f37631-60eb-4d16-a80f-4b412a4f0937
+  for <e.dawodu@pellgrave.example>; Mon, 27 Apr 2026 13:42:09 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=slatemoorsupply.example;
+  dkim=fail header.d=slatemoorsupply.example header.s=sm2026
+    header.i=@slatemoorsupply.example;
+  dmarc=pass header.from=slatemoorsupply.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  quotes@slatemoorsupply.example designates 203.0.113.30 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.30;
+  envelope-from="quotes@slatemoorsupply.example";
+  helo=mail.slatemoorsupply.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.7
+X-Sentrywick-Message-UID: 75d35351aeff
+X-Sentrywick-Reported-By: e.dawodu@pellgrave.example
+X-Sentrywick-Removed-Attachment: filename="Quote_Q-5518_Compressor_Parts.pdf";
+  size=44032;
+  sha256=58152185fa72554c4d497b25e5ee2b504e1afb6d8b59590da1b125971bf5dda1;
+  action=quarantined; type=application/pdf; reason=archived-to-vault
+Received: from mail.slatemoorsupply.example
+  (mail.slatemoorsupply.example [203.0.113.30])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 75d35351aeff;
+  Mon, 27 Apr 2026 13:42:07 -0500
+Received: from SMS-QT-05.slatemoorsupply.example ([192.0.2.32])
+  by mail.slatemoorsupply.example with ESMTPSA id 0dc67d6d;
+  Mon, 27 Apr 2026 18:42:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=slatemoorsupply.example; s=sm2026; t=1777315323;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=ajEmj01NfP6F2/RG3YfWA8ZMXf1urVh7WwEQ78UEl2o=;
+  b=SGiDyiuf71A6+S25CPt/gO1YKtY4Jce8MZXiwfMs4jvrNjCoLR1mOMOp6oYHzkC4tVd1zSnm
+   xMvGvoYrfDUVqmUZW+Mk1fe5jbtdFwT+y5bgy260HnltcKBX2ZMSYu/oRbZq70NmTZfHorMu
+   9YZ+6v7BU8h7weWM0p6Ml7xjkJ1GSxrg3w8iOrBDb9aBzCTstAcfxx6pwKFJmH5F0oaLNJPr
+   RC3WqGnvp552jso9V9/jtUsaq0wfCoWQFi/v5awOJAw6SuYb9LVj+xT/+NPS4TIh3spcBnUZ
+   x8eaP5FH0UAQOd4x9AZie+Gjl2Q1LNoMwizdo4/59sbnzhxqbZiH6g==
+Date: Mon, 27 Apr 2026 13:42:00 -0500
+From: Slatemoor Industrial Supply Quotes <quotes@slatemoorsupply.example>
+To: Emeric Dawodu <e.dawodu@pellgrave.example>
+Subject: Quote Q-5518: compressor parts for the Rookmere project
+Message-ID: <20260427184200.dea0079522d0@mail.slatemoorsupply.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_15b795486dea"
+
+--=_part_15b795486dea
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Slatemoor Industrial Supply, Quotes Desk
+
+Hello Emeric,
+
+Here is quote Q-5518 for the compressor parts on the Rookmere job,
+priced off the list you sent through on Thursday.
+
+Quote Q-5518, prepared 4/27, for the Rookmere project
+Valve plate kits, 4 sets: $3,240.00
+Discharge and suction service valves, 8 units: $2,960.00
+Gaskets, filter driers and compressor oil, one job lot: $1,120.00
+Freight, two day service to the site: $560.00
+Quote total: $7,880.00
+
+The prices hold for 30 days from the date on the quote. After that we
+price it again off the current sheet, which on compressor parts has
+been moving a little every quarter.
+
+Everything on the list is on the shelf here except the valve plate
+kits, which run a two week lead time from the maker. Order inside the
+next week and the kits still land ahead of your start date.
+
+The full quote is attached, with the part numbers and our terms on the
+back page, and the same copy sits on our quote portal.
+
+View quote: https://quotes.slatemoorsupply.example/q/5518
+
+Send a purchase order number back on this message when you are ready
+and I will release it to the warehouse that afternoon.
+
+Thanks,
+
+Wilhelmina Sarratt-Oduya
+Inside Sales, Quotes Desk
+Slatemoor Industrial Supply
+555-0154
+
+This message and anything sent with it are meant for the person named
+above. If it has reached you in error, please delete it and tell us.
+Slatemoor Industrial Supply takes no responsibility for any change made
+to this message after it left our systems.
+
+[Sentrywick Gateway archived 1 attachment to the file vault:
+Quote_Q-5518_Compressor_Parts.pdf (44,032 bytes).
+Details are in the message headers.]
+
+--=_part_15b795486dea
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f2f2f2;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:620px;margin:0 auto;padding:24px;
+  background:#ffffff;font-family:sans-serif;font-size:15px;
+  line-height:1.5;color:#1f1f1f;">
+<p style=3D"margin:0 0 18px 0;font-size:17px;font-weight:bold;
+  color:#5b3a1a;">Slatemoor Industrial Supply, Quotes Desk</p>
+<p>Hello Emeric,</p>
+<p>Here is quote Q-5518 for the compressor parts on the Rookmere job,=
+ priced off the list you sent through on Thursday.</p>
+<p>Quote Q-5518, prepared 4/27, for the Rookmere project<br>
+Valve plate kits, 4 sets: $3,240.00<br>
+Discharge and suction service valves, 8 units: $2,960.00<br>
+Gaskets, filter driers and compressor oil, one job lot: $1,120.00<br>
+Freight, two day service to the site: $560.00<br>
+<b>Quote total: $7,880.00</b></p>
+<p>The prices hold for 30 days from the date on the quote. After that we=
+ price it again off the current sheet, which on compressor parts has been=
+ moving a little every quarter.</p>
+<p>Everything on the list is on the shelf here except the valve plate kits,=
+ which run a two week lead time from the maker. Order inside the next week=
+ and the kits still land ahead of your start date.</p>
+<p>The full quote is attached, with the part numbers and our terms on the=
+ back page, and the same copy sits on our quote portal.</p>
+<p><a href=3D"https://quotes.slatemoorsupply.example/q/5518"
+  style=3D"display:inline-block;padding:10px 22px;background:#5b3a1a;
+  color:#ffffff;text-decoration:none;border-radius:4px;"
+  >View quote</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the button does not open,
+the address is https://quotes.slatemoorsupply.example/q/5518</p>
+<p>Send a purchase order number back on this message when you are ready and=
+ I will release it to the warehouse that afternoon.</p>
+<p>Thanks,</p>
+<p>Wilhelmina Sarratt-Oduya<br>Inside Sales, Quotes Desk<br>Slatemoor=
+ Industrial Supply<br>555-0154</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">This message and anything sent=
+ with it are meant for the person named above. If it has reached you in=
+ error, please delete it and tell us. Slatemoor Industrial Supply takes no=
+ responsibility for any change made to this message after it left our=
+ systems.</p>
+</div>
+<p style=3D"font-size:12px;color:#6b6b6b;">[Sentrywick Gateway archived 1=
+ attachment to the file vault:
+Quote_Q-5518_Compressor_Parts.pdf (44,032 bytes).
+Details are in the message headers.]</p>
+</body>
+</html>
+
+--=_part_15b795486dea--

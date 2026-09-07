@@ -1,0 +1,70 @@
+# Syllabus acknowledgment. An ungraded practice quiz with one item.
+#
+# THE SHAPE OF THIS FILE matches quizzes/week0-self-assessment.yaml.
+#
+#   title             what Canvas calls the quiz
+#   description       HTML shown before a student starts
+#   ungraded          true. A practice quiz sits in no assignment group and
+#                     never reaches the gradebook. template-conflicts item 16:
+#                     "an ungraded practice quiz with one item, so no weight
+#                     changes."
+#   shuffle           false. The options are read in order, so they stay in order.
+#   attempts          -1 means unlimited. A student who has not read the
+#                     syllabus yet reads it and comes back.
+#   allowed_attempts  the same number, under the name the QTI export reads.
+#   questions         one entry.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. The builder
+# refuses a quiz whose answer has none, because an answer with no feedback
+# teaches nothing on a quiz nobody is graded on.
+#
+# outcome is "none". This item maps to no course learning objective.
+
+title: Syllabus acknowledgment
+ungraded: true
+shuffle: false
+attempts: -1
+allowed_attempts: -1
+
+description: |
+  <p>One question. It records that you have read the course syllabus.</p>
+
+  <p>The syllabus is the page <strong>Syllabus, policies and grades</strong> in
+  this module. It says what the course covers, what it asks of you, and how
+  your grade is figured.</p>
+
+  <p>This quiz is not graded and does not appear in your grades. It is still
+  required. Take it as many times as you like.</p>
+
+questions:
+  - id: syl-q1
+    name: Syllabus acknowledgment
+    type: multiple_choice
+    points: 1
+    section: "Syllabus, policies and grades"
+    outcome: "none"
+    text: |
+      <p>Have you read the course syllabus, the page named
+      <strong>Syllabus, policies and grades</strong>?</p>
+    answers:
+      - text: Yes. I have read it, and I agree to follow it.
+        correct: true
+        feedback: >-
+          Thank you. Come back to that page whenever you need it. It holds the
+          grade weights, the due day, the token budget policy and the letter
+          scale.
+      - text: Not yet. I will read it now.
+        correct: false
+        feedback: >-
+          Open Syllabus, policies and grades in this module, read it, then take
+          this again. You have unlimited attempts.
+      - text: I have read part of it.
+        correct: false
+        feedback: >-
+          Read the rest before your first lab is due. The grade weights and the
+          token budget policy are the two parts students ask about most.
+      - text: I cannot find the syllabus.
+        correct: false
+        feedback: >-
+          It is the page Syllabus, policies and grades, in this module, just
+          above this quiz. Message your instructor if it will not open.

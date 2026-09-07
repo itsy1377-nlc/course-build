@@ -1,0 +1,96 @@
+Return-Path: <r.palomares@pellgrave-corp.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id ccd9955f-44e2-45df-abe4-3aba525113dd
+  for <p.castellanos@pellgrave.example>; Mon, 27 Apr 2026 11:15:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=pellgrave-corp.example;
+  dkim=pass header.d=pellgrave-corp.example header.s=k1
+    header.i=@pellgrave-corp.example;
+  dmarc=pass header.from=pellgrave-corp.example policy.dmarc=none
+Received-SPF: pass (mx.pellgrave.example: domain of
+  r.palomares@pellgrave-corp.example designates 203.0.113.151 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.151;
+  envelope-from="r.palomares@pellgrave-corp.example";
+  helo=smtp.pellgrave-corp.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.3
+X-Sentrywick-Message-UID: 75af86b5cfb0
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+Received: from smtp.pellgrave-corp.example
+  (smtp.pellgrave-corp.example [203.0.113.151])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 75af86b5cfb0;
+  Mon, 27 Apr 2026 11:15:05 -0500
+Received: from client-04.pellgrave-corp.example ([192.0.2.62])
+  by smtp.pellgrave-corp.example with ESMTPSA id 538edd08;
+  Mon, 27 Apr 2026 16:15:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=pellgrave-corp.example; s=k1; t=1777306502;
+  h=from:to:subject:date:message-id:mime-version:content-type:x-mailer;
+  bh=4A1wrZPxCQxgDLrAXjpcrm5NYohcPRwqtpMRcrqWGgQ=;
+  b=EWENkMfUNWdhv8YYXrPa8+squEbSmEvVA7URfWa4D6lsYge08L+rnWRs6pwrXwkS2S70Va38
+   3L3PwSugawoWp90/DdR6mNng+4028hW5R08AdAAwP8XGfRzwUmsQa7cb9+sldLYh0diacwbF
+   45SOqBH+sb6sKMSG02Uv5663DkPqeZT24D13jUmgCAuIRiDN6VEcgf9b0z/zmwIdpvLrUwC/
+   yXUnMFhEovkEcZo92g4sN1qUWH/dIIEryc5GCuAm7a1UFUOS0EQ5Fs6emSEADTfuOGza+maa
+   Z9nb6fc4ZKvzeEoPYXOLpsvR5uLURlqZJA+cADWqyN9KtBcAP/w9PQ==
+Date: Mon, 27 Apr 2026 11:15:00 -0500
+From: "Rutger Palomares (CFO)" <r.palomares@pellgrave-corp.example>
+To: Priya Castellanos <p.castellanos@pellgrave.example>
+Subject: Re: vendor payment run for 4/30
+Message-ID: <20260427161500.1e25d84378d5@smtp.pellgrave-corp.example>
+X-Mailer: Marrowdale Mail 5.2
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_912d1662dd4d"
+
+--=_part_912d1662dd4d
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Priya,
+
+Hold the run on Thursday until you hear from me. One of the vendor
+accounts is being corrected and I do not want the 4/30 file going out
+against it.
+
+I am out of the office the rest of the week, so before you release
+anything, reach me on my new cell, 555-0134. The desk line rolls to
+voicemail and I will not pick it up.
+
+Nothing else changes. I should have this settled by Wednesday.
+
+Rutger
+
+Rutger Palomares
+Chief Financial Officer, Pellgrave Mechanical Group, ext. 4102
+--=_part_912d1662dd4d
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background-color:#ffffff;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div=
+ style=3D"font-family:sans-serif;font-size:14px;color:#222222;padding:14px=
+ 12px;">
+<p>Priya,</p>
+<p>Hold the run on Thursday until you hear from me. One of the vendor=
+ accounts is being corrected and I do not want the 4/30 file going out=
+ against it.</p>
+<p>I am out of the office the rest of the week, so before you release=
+ anything, reach me on my new cell, 555-0134. The desk line rolls to=
+ voicemail and I will not pick it up.</p>
+<p>Nothing else changes. I should have this settled by Wednesday.</p>
+<p>Rutger</p>
+<p>Rutger Palomares<br>
+Chief Financial Officer, Pellgrave Mechanical Group, ext. 4102</p>
+</div>
+</body>
+</html>
+--=_part_912d1662dd4d--

@@ -1,0 +1,168 @@
+Return-Path: <bounce-3304-0219-59c50b6817dd947b@bounce.sendbarrow-mail.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id c455ac10-abef-4a6d-93fa-fb3361797d83
+  for <t.nkemelu@pellgrave.example>; Tue, 28 Apr 2026 08:05:13 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=bounce.sendbarrow-mail.example;
+  dkim=pass header.d=vetchmoorbenefits.example header.s=sb1
+    header.i=@vetchmoorbenefits.example;
+  dmarc=pass header.from=vetchmoorbenefits.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  bounce-3304-0219-59c50b6817dd947b@bounce.sendbarrow-mail.example designates
+  198.51.100.23 as permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.23;
+  envelope-from="bounce-3304-0219-59c50b6817dd947b@bounce.sendbarrow-mail.example";
+  helo=o17.mta.sendbarrow-mail.example; identity=mailfrom;
+  mechanism=ip4:198.51.100.0/24
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 2.3
+X-Sentrywick-Message-UID: 98e6ed06a2ea
+X-Sentrywick-Reported-By: t.nkemelu@pellgrave.example
+Received: from o17.mta.sendbarrow-mail.example
+  (o17.mta.sendbarrow-mail.example [198.51.100.23])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 98e6ed06a2ea;
+  Tue, 28 Apr 2026 08:05:11 -0500
+Received: from app-node-03.sendbarrow-mail.example ([192.0.2.140])
+  by o17.mta.sendbarrow-mail.example with ESMTP id e3840164;
+  Tue, 28 Apr 2026 13:05:06 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=vetchmoorbenefits.example; s=sb1; t=1777381500;
+  h=from:to:subject:date:message-id:mime-version:content-type:
+   list-unsubscribe:list-unsubscribe-post:list-id;
+  bh=ELdb5SvnGxd/Efled19bfUfQUBSF3eC7O2q56XfVPyY=;
+  b=SxldXrOfsSbSzUvlMo65dBgvxtbDsj605NRjRKNEQnhtC4QY1OliWYlLGTPSTcZZIa7K2+
+     Th4PysoRkIRFa60HT6prNDrmOdwjXlx/bx4MieNyUrD7hFI/oLnR0KAaLxu8tPtRCCC2C7
+     eXvzgCFJWL2uvtjlE9J3f9QquJMuCm21M6TtYVOXVELqsNrqHXJebhB8u8N48AyIsIfRj6
+     hglhPQmlDhgvWDGLWhH8XCeHeK7ez0OguANzXTDhqT5SRCUUh0/nrX/ICz3jckTT9uzfjq
+     FQXy7tU3EPX0zYIIF+Bzsre9lqfE6Cjl/Cys468aCGAptTFAyELY5GXyp+e5Zg==
+From: Vetchmoor Benefits <newsletter@vetchmoorbenefits.example>
+To: Tobias Nkemelu <t.nkemelu@pellgrave.example>
+Subject: Q2 compliance update: new dependent verification rules
+Date: Tue, 28 Apr 2026 13:05:00 +0000
+Message-ID: <20260428130500.291f4ff6660a@app-node-03.sendbarrow-mail.example>
+List-Unsubscribe:
+  <https://links.sendbarrow-mail.example/u/3304/219/59c50b6817dd947b>,
+  <mailto:unsub-3304-0219-59c50b6817dd947b@bounce.sendbarrow-mail.example>
+List-Unsubscribe-Post: List-Unsubscribe=One-Click
+List-Id: Vetchmoor Benefits Quarterly Update <vetchmoorbenefits.example>
+Precedence: bulk
+Feedback-ID: 3304:q2-compliance:vetchmoor:sendbarrow
+X-Mailer: Sendbarrow Campaigns 3.8
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_sb_75d50df13750af67"
+
+--=_sb_75d50df13750af67
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Having trouble reading this? View it in your browser:
+https://links.sendbarrow-mail.example/v/3304/219/59c50b6817dd947b
+
+Q2 compliance update: new dependent verification rules
+
+Hello Tobias,
+
+Three things changed in dependent verification this quarter. Here is the
+short version; the full write-up, with the plan language beside each
+item, is on our site.
+
+1. Proof of relationship
+   A court order or an adoption decree now stands in for a birth
+   certificate when a member adds a stepchild or a foster child. The
+   documents we took before are still good; this adds two to the list.
+
+2. Ninety days for a mid-year addition
+   A member who adds a dependent after a qualifying life event now has
+   ninety days to send the paperwork, up from sixty. The clock starts on
+   the date of the event, not the date the member tells us about it.
+
+3. Sample audits move to a yearly cycle
+   Starting this fall we review a sample of covered dependents once a
+   year rather than once every third year. Vetchmoor writes to the
+   member directly and reports what came back in your quarterly file.
+
+Read the full update:
+https://links.sendbarrow-mail.example/c/3304/219/d4/59c50b6817dd947b
+
+Or go straight to the compliance page on our site:
+https://vetchmoorbenefits.example/compliance/q2-2026
+
+Nothing here needs a reply. We will fold the new wording into the 2027
+enrollment packet, and your service team will walk through it with you
+at the July check-in.
+
+Odile Thorsby
+Compliance Director, Vetchmoor Benefits
+
+--
+Vetchmoor Benefits, PO Box 6704
+You are receiving this update because you are the benefits contact for
+Pellgrave Mechanical Group.
+Unsubscribe:
+https://links.sendbarrow-mail.example/u/3304/219/59c50b6817dd947b
+--=_sb_75d50df13750af67
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f2f5f4;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:0 auto;padding:24px;background:#ffffff;
+font-family:sans-serif;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"font-size:12px;color:#6b6b6b;">Having trouble reading this?
+<a href=3D"=
+https://links.sendbarrow-mail.example/v/3304/219/59c50b6817dd947b"
+style=3D"color:#6b6b6b;">View it in your browser</a>.</p>
+<h2 style=3D"font-size:20px;color:#1f4f5f;">
+Q2 compliance update: new dependent verification rules</h2>
+<p>Hello Tobias,</p>
+<p>Three things changed in dependent verification this quarter. Here is the
+short version; the full write-up, with the plan language beside each item,
+is on our site.</p>
+<p style=3D"margin:18px 0 4px 0;font-weight:bold;">1. Proof of=
+ relationship</p>
+<p style=3D"margin:0;">A court order or an adoption decree now stands in=
+ for a
+birth certificate when a member adds a stepchild or a foster child. The
+documents we took before are still good; this adds two to the list.</p>
+<p style=3D"margin:18px 0 4px 0;font-weight:bold;">2. Ninety days for a=
+ mid-year addition</p>
+<p style=3D"margin:0;">A member who adds a dependent after a qualifying life
+event now has ninety days to send the paperwork, up from sixty. The clock
+starts on the date of the event, not the date the member tells us about
+it.</p>
+<p style=3D"margin:18px 0 4px 0;font-weight:bold;">3. Sample audits move=
+ to a yearly cycle</p>
+<p style=3D"margin:0;">Starting this fall we review a sample of covered
+dependents once a year rather than once every third year. Vetchmoor writes
+to the member directly and reports what came back in your quarterly
+file.</p>
+<p style=3D"margin:22px 0;"><a href=3D"=
+https://links.sendbarrow-mail.example/c/3304/219/d4/59c50b6817dd947b"
+style=3D"background:#1f4f5f;color:#ffffff;padding:10px 18px;
+text-decoration:none;">Read the full update</a></p>
+<p>Or go straight to the compliance page on our site:<br>
+<a href=3D"https://vetchmoorbenefits.example/compliance/q2-2026"=
+>https://vetchmoorbenefits.example/compliance/q2-2026</a></p>
+<p>Nothing here needs a reply. We will fold the new wording into the 2027
+enrollment packet, and your service team will walk through it with you at
+the July check-in.</p>
+<p>Odile Thorsby<br>Compliance Director, Vetchmoor Benefits</p>
+<p style=3D"font-size:12px;color:#6b6b6b;">
+Vetchmoor Benefits, PO Box 6704<br>
+You are receiving this update because you are the benefits contact for
+Pellgrave Mechanical Group.<br>
+<a href=3D"=
+https://links.sendbarrow-mail.example/u/3304/219/59c50b6817dd947b"
+style=3D"color:#6b6b6b;">Unsubscribe</a></p>
+</div>
+</body>
+</html>
+--=_sb_75d50df13750af67--

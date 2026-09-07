@@ -1,0 +1,108 @@
+id: test-w1-overview
+title: Week 1 in three minutes (test)
+kind: concept
+module: m01
+embed_on: builder/content/pages/test-w1-overview.md
+blurb: What you build this week, and the one surprise to watch for when the same question gives you six different answers.
+explains:
+  - builder/content/pages/test-w1-overview.md
+  - builder/content/pages/test-w1-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 1
+    heading: Call the model from code
+    body: You write eight lines. They do one thing, and everything later sits on top of them.
+    narration:
+      - Welcome to week 1.
+      - By Sunday you'll have written a function that sends a question to an AI model and hands you back the answer.
+      - It's about eight lines, and that's the whole job this week.
+
+  - type: slide
+    layout: statement
+    eyebrow: What you are building
+    heading: One agent, one capability a week
+    body: This week it can speak. By week 7 it reads a reported email, checks the facts, and writes a note another analyst can act on.
+    narration:
+      - You're building one thing across this course.
+      - It's an assistant that sorts reported phishing email.
+      - This week it learns to speak, and each week after that adds one more ability.
+      - Nothing gets torn down and rebuilt. It works at the end of every week.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The lab
+    heading: Three things you will see
+    items:
+      - The same question gives different answers
+      - Temperature changes how much they differ
+      - Longer emails cost more tokens
+    narration:
+      - text: You'll send one email to the model six times.
+        reveal: 1
+      - text: Read the six answers side by side. Most of the time they won't match.
+        reveal: 1
+      - text: Then you change one number, called temperature, and send it again.
+        reveal: 2
+      - text: A low number keeps the answers close together, and a high one lets them wander.
+        reveal: 2
+      - text: Last, you watch the token count. A token is roughly four characters of text.
+        reveal: 3
+      - text: A longer email costs more tokens, because you pay for what you send.
+        reveal: 3
+
+  - type: slide
+    layout: diagram
+    eyebrow: The idea
+    heading: An agent is a loop around one call
+    diagram:
+      kind: flow
+      direction: right
+      alt: >
+        Three boxes left to right. You send a prompt. The model answers.
+        Your code decides what to do next. A return path runs from the last
+        box back to the first, showing that the same call repeats.
+      nodes:
+        - label: You send a prompt
+          sub: text in
+        - label: The model answers
+          sub: text out
+        - label: Your code decides
+          sub: this is the part you write
+          mark: true
+      loop: what your code decides becomes the next prompt
+    narration:
+      - text: Here's the shape of everything that follows.
+        reveal: 1
+      - text: You send a prompt. That's week 1.
+        reveal: 2
+      - text: The model answers. Still week 1.
+        reveal: 3
+      - text: Then your own code looks at the answer and decides what to ask next.
+        reveal: 3
+      - text: Do that in a loop and you've got an agent. There's nothing else to it.
+        reveal: 4
+
+  - type: slide
+    layout: statement
+    eyebrow: The surprise
+    heading: One answer is a sample, not a fact
+    body: The model picks each word from a set of likely ones. Ask twice and you can get two answers.
+    narration:
+      - Here's the part that surprises people.
+      - The model doesn't look up an answer. It picks each word from a set of likely ones.
+      - So one answer is one sample, not a fact.
+      - That sounds like a problem, but it's really the reason the rest of this course exists.
+      - Every week after this one adds a way to check what the model said.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do next
+    body: Run the sidebar notebook first. Then the reading. Then the lab. The walkthrough video shows you what a finished run looks like.
+    narration:
+      - Start with the sidebar notebook. It's short, it isn't graded, and it teaches the one piece of Python the lab needs.
+      - Then the reading, then the lab.
+      - If you haven't looked at week 0 and the lab code feels unfamiliar, go there first. It stays open all term.
+      - Watch the walkthrough video before you start. It shows you what a finished run looks like, so you'll know when yours is right.

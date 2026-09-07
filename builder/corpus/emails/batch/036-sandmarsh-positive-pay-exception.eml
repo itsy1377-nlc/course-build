@@ -1,0 +1,141 @@
+Return-Path: <alerts@alerts.sandmarshbank.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id b6d18dbe-e67a-4955-a9fe-86bc3879de5c
+  for <r.palomares@pellgrave.example>; Thu, 23 Apr 2026 09:02:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=alerts.sandmarshbank.example;
+  dkim=pass header.d=sandmarshbank.example header.s=smb1
+    header.i=@sandmarshbank.example;
+  dmarc=pass header.from=alerts.sandmarshbank.example policy.dmarc=reject
+Received-SPF: pass (mx.pellgrave.example: domain of
+  alerts@alerts.sandmarshbank.example designates 203.0.113.70 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.70;
+  envelope-from="alerts@alerts.sandmarshbank.example";
+  helo=alerts-out.sandmarshbank.example; identity=mailfrom;
+  mechanism=ip4:203.0.113.70
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.7
+X-Sentrywick-Message-UID: 2230e3960c92
+X-Sentrywick-Reported-By: r.palomares@pellgrave.example
+Received: from alerts-out.sandmarshbank.example
+  (alerts-out.sandmarshbank.example [203.0.113.70])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 2230e3960c92;
+  Thu, 23 Apr 2026 09:02:05 -0500
+Received: from presentment-03.alerts.sandmarshbank.example
+  ([192.0.2.70])
+  by alerts-out.sandmarshbank.example with ESMTPSA id 69b3e0d3;
+  Thu, 23 Apr 2026 14:02:02 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=sandmarshbank.example; s=smb1; t=1776952922;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=/Wxsi2oMxRCLfg4pTBSBMj2Q5zpmWwgXVFDpBoZV+iM=;
+  b=BDKBdy2kjwYnoL650eN5CmUp4kiM/XS/t9kKTWYB9X4X/h0/00QSRl/w95gJulrq64hoFZa+
+   yFoyP7WKjvanaA2oyvgW8eVhiT0jb/d4phVrLC5CIej5xzMFwLu17p/WxsiUUardKjW1yG7A
+   SSq1OE50dW7X4HjcB7g1dk3iDwlwQqqYL9odSjQX9hYEQ2xD63B7h3R7oHAIsG9CLB9WiEP7
+   1QCTLNUoPYOYJzzBPpZogLsMSv9s003FaSM0DQpztKFaaJAr95wsfqIFx4B4hTKeMw1Krxwk
+   VZrkUizXIhBgno/u4TnK/J4abDpGju5XeGM8eHPlADQEApWyrAN6PQ==
+Date: Thu, 23 Apr 2026 09:02:00 -0500
+From: Sandmarsh Community Bank Alerts <alerts@alerts.sandmarshbank.example>
+To: Rutger Palomares <r.palomares@pellgrave.example>
+Subject: Positive pay exception: decision required by 1:00 PM CT today
+Message-ID: <20260423140200.b8343d4d9e79@alerts-out.sandmarshbank.example>
+Auto-Submitted: auto-generated
+X-Priority: 1
+Importance: high
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_59925f4eb3ed"
+
+--=_part_59925f4eb3ed
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Sandmarsh Community Bank
+Treasury Services
+
+Positive pay exception
+
+Dear Rutger Palomares,
+
+One item presented against your operating account ending 4021 does not
+match the issued file, so it is being held as a positive pay exception.
+
+Check number: 20891
+Amount presented: $4,180.00
+Amount on the issued file: $418.00
+Presented: 4/23/2026
+Exception: the amount does not match the issued item
+Exception reference: PP-20260423-0007
+
+Decision required by 1:00 PM CT today. Open the exception and tell us
+whether to approve or return the item. If no decision is recorded by
+1:00 PM CT the item is returned unpaid and the account is not charged.
+
+Review exception: https://alerts.sandmarshbank.example/positive-pay/exceptions
+
+The same decision can be recorded in Business Online Banking under
+Positive Pay.
+
+Sandmarsh Community Bank will never ask you for account details by
+email. To report fraud, use the number printed on the back of your
+card.
+
+Sandmarsh Community Bank, Treasury Services
+This mailbox is not monitored.
+
+--=_part_59925f4eb3ed
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#eef1f4;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#1f1f1f;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 30px;background-color:#ffffff;border:1px solid #d5dae0;">
+<p=
+ style=3D"margin:0;font-size:20px;font-weight:bold;color:#14472f;">Sandmars=
+h Community Bank</p>
+<p style=3D"margin:2px 0 20px 0;font-size:13px;color:#556;">Treasury=
+ Services</p>
+<p style=3D"font-size:17px;font-weight:bold;">Positive pay exception</p>
+<p>Dear Rutger Palomares,</p>
+<p>One item presented against your operating account ending 4021 does not=
+ match the issued file, so it is being held as a positive pay exception.</p>
+<p style=3D"font-family:monospace;font-size:14px;">Check number: 20891<br>
+Amount presented: $4,180.00<br>
+Amount on the issued file: $418.00<br>
+Presented: 4/23/2026<br>
+Exception: the amount does not match the issued item<br>
+Exception reference: PP-20260423-0007</p>
+<p>Decision required by 1:00 PM CT today. Open the exception and tell us=
+ whether to approve or return the item. If no decision is recorded by 1:00=
+ PM CT the item is returned unpaid and the account is not charged.</p>
+<p style=3D"margin:24px 0;"><a=
+ href=3D"https://alerts.sandmarshbank.example/positive-pay/exceptions"=
+ style=3D"display:inline-block;padding:12px=
+ 22px;background-color:#14472f;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Review exception</a></p>
+<p style=3D"font-size:13px;color:#555555;">If the button does not open, the=
+ address is https://alerts.sandmarshbank.example/positive-pay/exceptions</p>
+<p>The same decision can be recorded in Business Online Banking under=
+ Positive Pay.</p>
+<p style=3D"margin-top:26px;padding-top:12px;border-top:1px solid=
+ #d5dae0;font-size:13px;color:#444444;">Sandmarsh Community Bank will never=
+ ask you for account details by email. To report fraud, use the number=
+ printed on the back of your card.</p>
+<p style=3D"font-size:12px;color:#777777;">Sandmarsh Community Bank,=
+ Treasury Services<br>This mailbox is not monitored.</p>
+</div>
+</body>
+</html>
+
+--=_part_59925f4eb3ed--

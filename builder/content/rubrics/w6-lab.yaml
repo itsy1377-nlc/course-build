@@ -1,0 +1,167 @@
+# Week 6 lab rubric. Three criteria, 100 points, four levels each.
+#
+# THE SHAPE OF THIS FILE
+#
+#   title           what Canvas calls the rubric
+#   points          the total. Every lab in this course is 100, which is what
+#                   makes the seven labs weigh equally inside the Labs group.
+#   criteria        a list. One entry per criterion, in the order a grader
+#                   reads.
+#
+# EVERY CRITERION CARRIES
+#
+#   description       the criterion name, as the week 6 spec and the alignment
+#                     matrix word it. Not reworded here.
+#   long_description  what earns full credit, in the words the assignment page
+#                     shows the student. The two must stay identical.
+#   points            the criterion total, and the top level's points.
+#   outcome           the Canvas Outcome key this criterion posts a result to,
+#                     from content/course.yaml. Present on one criterion only.
+#                     See the note below on the Canvas limit.
+#   levels            four, highest first. The top level equals the criterion
+#                     points. The four map onto the course mastery scale:
+#                     Exceeds, Meets, Approaches, and Beginning or no evidence,
+#                     which are 4, 3, 2 and 0. Criterion 1 scales that by two,
+#                     criterion 2 by eighteen and criterion 3 by five, so every
+#                     division is exact and no level is rounded.
+#
+# WHY ONLY ONE CRITERION CARRIES AN OUTCOME LINK. Canvas allows a given Outcome
+# to align to at most one criterion in a rubric. A rubric that aligns the same
+# Outcome twice is refused, and the refusal is silent: the API answers HTTP 200
+# and creates nothing at all. Measured against the live instance on 4 September
+# 2026, one link succeeds and two or more produce no rubric. That silence
+# already cost the week 1 lab its rubric.
+#
+# So CLO4 links to criterion 2, Guardrail judgment, and to nothing else here.
+# Criterion 2 is the one that measures the Outcome directly. CLO4 asks the
+# student to judge whether an agent's guardrails reduce prompt injection risk
+# to an acceptable level, and criterion 2 reads exactly that off the written
+# answer and the attached file: a stated judgment, the student's own numbers
+# from the guarded and unguarded runs of email 013, and one case the guardrails
+# still miss. It is the only rubric criterion measuring CLO4 anywhere in this
+# course, and the primary evidence for it, which is what the alignment matrix
+# records.
+#
+# Criteria 1 and 3 carry no Outcome link, and both say so in their
+# long_description. Criterion 1 is submission completeness, the non-CLO
+# expectation every week carries. Criterion 3 checks what the exported file
+# contains rather than how good the run was, and "the code ran" is a non-CLO
+# expectation under section 11 of docs/phase1-blueprint/alignment-matrix.md and
+# its closing section.
+#
+# NO SEPARATE "OWN NUMBERS USED" CRITERION. Clause 4 of the rubric link rule
+# keeps a criterion that scores a student's use of their own results inside the
+# Outcome-linked criterion, because judging with your own numbers is CLO4
+# performance rather than a separate expectation. The requirement sits inside
+# criterion 2, where a written answer citing a number the attached file does not
+# show cannot reach the top two levels.
+#
+# TWO SCALES ON ONE ROW. Criterion 2's four level labels are the course mastery
+# scale, so the rating the grader picks is what Canvas records against the
+# Outcome, on 4, 3, 2 and 0. The criterion points on the same row are what the
+# grade uses, on 72, 54, 36 and 0. The grader picks once and both follow. The
+# criterion points are never reported as the outcome result.
+#
+# ELEVEN ROWS, SIX PLACEMENTS AND FIVE NONES. Only six of the eleven emails
+# carry an injection: 013, 014, 020, 021, 022 and 023. The other five are 009,
+# 012, 015, 016 and 024, and the export cell writes their payload placement as
+# the word none. A correct file therefore shows six placements and five nones.
+# Criterion 3 says so, because a grader expecting eleven placements would mark a
+# correct file down on five rows.
+#
+# NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
+# screenshot of cell 16, the exported week6_guardrails.json, and the written
+# answer.
+
+title: "Week 6 lab: an email that gives orders"
+points: 100
+
+criteria:
+
+  - description: Submission completeness
+    long_description: >-
+      All three items are present and readable. This criterion is a week
+      expectation, not a course outcome: it scores whether the submission
+      arrived in a form a grader can read. CLO4 is carried by criterion 2.
+    points: 8
+    levels:
+      - description: >-
+          Full. All three items are present and readable. The screenshot shows
+          the whole comparison table, with every row and the token line
+          legible. The file is attached as itself, under the name the export
+          cell gave it. The written answer is in the box.
+        points: 8
+      - description: >-
+          Nearly full. All three items are here. One is hard to read. The
+          screenshot cuts off one row or the token line, or the text is small.
+        points: 6
+      - description: >-
+          Partial. One of the three items is missing. Or the screenshot cannot
+          be read at all. Or it shows a different cell.
+        points: 4
+      - description: >-
+          Missing. Two or three of the items are absent. Or a zip file, a
+          folder or a link arrived instead of the file.
+        points: 0
+
+  - description: Guardrail judgment
+    long_description: >-
+      Your written answer reaches a clear judgment, supports it with your own
+      before and after numbers, and names one case that still gets through and
+      the payload spot behind it.
+    points: 72
+    outcome: CLO4
+    levels:
+      - description: >-
+          Exceeds standard. Reaches a clear judgment on whether the guardrails
+          cut prompt injection risk enough for a real security team. Supports
+          it with the student's own before and after numbers, both of which the
+          attached file shows. Names one case the guardrails still miss and the
+          payload placement that causes it.
+        points: 72
+      - description: >-
+          Meets standard. Reaches a clear judgment and supports it with at
+          least one number the attached file shows.
+        points: 54
+      - description: >-
+          Approaching standard. States a judgment with no number, cites a
+          number the attached file does not show, or argues only from general
+          claims about AI risk.
+        points: 36
+      - description: >-
+          No evidence. No judgment stated, or the written answer is missing.
+        points: 0
+
+  - description: Guarded run completeness
+    long_description: >-
+      The file holds a row for all eleven emails. Each row carries a verdict on
+      both paths, an escalation reason and a token count. Placement is named
+      where the email has one and reads none where it does not. The fence
+      record for email 013 is present. This criterion is a week expectation,
+      not a course outcome: it scores what the exported file holds, not how
+      good the run was. CLO4 is carried by criterion 2.
+    points: 20
+    levels:
+      - description: >-
+          Full. The file holds a row for all eleven emails. Every row carries a
+          verdict on the undefended path and on the guarded path, an escalation
+          decision with its reason, a stop reason and a token count. Six rows
+          name a payload placement and five read none. The fence record for
+          email 013 is present with its four numbers.
+        points: 20
+      - description: >-
+          Nearly full. All eleven rows are there, and each carries both
+          verdicts and an escalation decision. One field is thin across the
+          file: a missing token count, a missing stop reason, or a placement
+          left as none on an email that carries one. The fence record is
+          present.
+        points: 15
+      - description: >-
+          Partial. The file holds rows for some of the eleven emails. Or every
+          row carries one path only. Or the fence record for email 013 is
+          absent. It shows the guarded agent ran. It does not show the
+          eleven-email comparison.
+        points: 10
+      - description: >-
+          No evidence. No file. Or a file holding no rows.
+        points: 0

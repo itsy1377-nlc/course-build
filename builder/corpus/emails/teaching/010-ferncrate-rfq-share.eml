@@ -1,0 +1,101 @@
+Return-Path: <notify@ferncrate-files.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id dcc615e7-ec50-47e1-82d5-bca389285e56
+  for <e.dawodu@pellgrave.example>; Thu, 16 Apr 2026 11:40:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=softfail smtp.mailfrom=ferncrate-files.example;
+  dkim=none;
+  dmarc=none header.from=ferncrate-files.example
+Received-SPF: softfail (mx.pellgrave.example: domain of transitioning
+  notify@ferncrate-files.example does not designate 198.51.100.140 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.140;
+  envelope-from="notify@ferncrate-files.example";
+  helo=mta-3.cheapsend-relay.example; identity=mailfrom; mechanism=~all
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 6.4
+X-Sentrywick-Message-UID: 591dea555e49
+X-Sentrywick-Reported-By: e.dawodu@pellgrave.example
+Received: from mta-3.cheapsend-relay.example
+  (mta-3.cheapsend-relay.example [198.51.100.140])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 591dea555e49;
+  Thu, 16 Apr 2026 11:40:06 -0500
+Received: from api-node-05.cheapsend-relay.example ([192.0.2.97])
+  by mta-3.cheapsend-relay.example with ESMTP id 6aebfa81;
+  Thu, 16 Apr 2026 16:40:02 +0000
+Date: Thu, 16 Apr 2026 11:40:00 -0500
+From: Ferncrate <notify@ferncrate-files.example>
+To: Emeric Dawodu <e.dawodu@pellgrave.example>
+Subject: Emeric, a file was shared with you: RFQ_Response_Q2.zip
+Message-ID: <20260416164000.e2f9d1dbdd2c@api-node-05.cheapsend-relay.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_1d8d794b5281"
+
+--=_swk_1d8d794b5281
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Slatemoor Industrial Supply shared RFQ_Response_Q2.zip with you.
+
+Hello Emeric,
+
+A file has been shared with you through Ferncrate. The note left
+with the file reads: "Response to your Q2 request for quote. Parts
+list and lead times are in the folder."
+
+File name: RFQ_Response_Q2.zip
+File size: 4.2 MB
+Shared on: 16 April 2026
+
+Download file: https://dl.quickdrop-files.example/get/rfq-q2-88213.zip
+
+The share link is good for 48 hours from the time it was sent.
+After that, the sender has to share the file again.
+
+Ferncrate
+File sharing for business teams
+You received this message because a file was shared with your
+address.
+--=_swk_1d8d794b5281
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f4f5f7;">
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:0 auto;padding:24px;
+  background:#ffffff;font-family:sans-serif;font-size:15px;
+  line-height:1.5;color:#222222;">
+<p style=3D"margin:0 0 18px 0;font-size:18px;font-weight:bold;
+  color:#1f6f6b;">Ferncrate</p>
+<p>Slatemoor Industrial Supply shared RFQ_Response_Q2.zip with
+you.</p>
+<p>Hello Emeric,</p>
+<p>A file has been shared with you through Ferncrate. The note left
+with the file reads: "Response to your Q2 request for quote. Parts
+list and lead times are in the folder."</p>
+<p>File name: RFQ_Response_Q2.zip<br>
+File size: 4.2 MB<br>
+Shared on: 16 April 2026</p>
+<p style=3D"margin:24px 0;"><a href=3D"https://dl.quickdrop-files.example/g=
+et/rfq-q2-88213.zip"
+  style=3D"display:inline-block;padding:10px 22px;background:#1f6f6b;
+  color:#ffffff;text-decoration:none;border-radius:4px;"
+  >Download file</a></p>
+<p>The share link is good for 48 hours from the time it was sent.
+After that, the sender has to share the file again.</p>
+<p style=3D"margin-top:28px;padding-top:12px;border-top:1px solid
+  #d9dee3;font-size:12px;color:#6b6b6b;">Ferncrate<br>
+File sharing for business teams<br>
+You received this message because a file was shared with your
+address.</p>
+</div>
+</body>
+</html>
+--=_swk_1d8d794b5281--

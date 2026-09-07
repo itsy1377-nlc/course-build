@@ -1,0 +1,292 @@
+# Week 8 final exam, CLO2 part. Five multiple choice items, numbers 22 to 26.
+#
+# CLO2 (Analyze): Classify a suspicious email as malicious or benign using an
+# AI model, then validate the model's output before trusting it. Primary
+# evidence is the week 2 lab rubric, criterion 2. These five items are
+# supporting evidence only, and the exam creates no Canvas Outcome result.
+# The exam blueprint, sections 2 and 5, sets both of those rules.
+#
+# THE SHAPE OF THIS FILE
+#
+#   items           a list. One entry per question. The assembly step reads
+#                   this key and nothing else.
+#
+# EVERY ITEM CARRIES
+#
+#   number          the item number from section 5 of the exam blueprint.
+#                   It never changes, because the coverage table is stated
+#                   against it.
+#   id              a short stable name. Never reused, never renumbered.
+#   name            what Canvas shows as the question title.
+#   assesses        the target from the blueprint coverage table.
+#   level           Recognition or Analysis, from the same table.
+#   difficulty      easy, medium or hard, from the same table. Item difficulty
+#                   is not the corpus difficulty tier. An easy item can sit on
+#                   a hard email, because it asks about one fact rather than
+#                   the whole call.
+#   artifact        the reserved email the stem quotes.
+#   needs_text_block  true when the artifact is shared with another item on
+#                   the exam. Six reserved emails carry two or three items
+#                   each: 046, 049, 050, 052, 053 and 054. Those six get one
+#                   unscored text block rather than the header repeated in
+#                   every stem.
+#   taught_in       where in the course a student learned this.
+#   from_sample     true when section 7 of the blueprint writes the item out in
+#                   full. Item 23 is sample E. Its options and its feedback are
+#                   approved copy and are reproduced word for word.
+#   text            the stem, as an HTML fragment.
+#   answers         a list of four. Exactly one is correct. Every answer
+#                   carries text, correct, and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. Section 9 of
+# the blueprint binds that text: name the fact that decides the item, quote the
+# option's own words rather than its letter because the answers are shuffled,
+# forty words or fewer at seventh grade or below, say what would have to be
+# true for a wrong read to hold and why it is not true here, point back to the
+# week that taught it, and never answer another item.
+#
+# THE FIELD NAME. The builder writes this feedback to Canvas as `comments` on
+# the answer object. Canvas accepts `answer_comments`, returns HTTP 200 and
+# stores nothing, so all 120 pieces of feedback on this exam would disappear
+# with no error under that name. Section 9 of the blueprint records the
+# measurement.
+#
+# ONE CONVENTION THAT BINDS EVERY STEM. These eleven emails are not in the
+# student corpus, so no student has run their agent on one. Each stem describes
+# the case as if the student's agent had just handled it and asks what the
+# correct read is. No stem assumes the student holds a file for the email. The
+# quiz directions say this once, at the top.
+#
+# WHAT THE FIVE COVER. Item 22 is authentication passing on a look-alike domain
+# that asks for a bank change. Item 23 is a trusted vendor that failed DMARC.
+# Item 24 is a real vendor notice whose wording reads like a lure. Item 25 is
+# a real internal notice that names a password. Item 26 is the spam category
+# sitting under a benign verdict.
+#
+# Quoted header lines, tool returns and code names are set in <pre> or <code>.
+# They are technical material and are exempt from the reading grade, which is
+# the exemption the course writing standard already grants.
+
+items:
+
+  - number: 22
+    id: exam-q22-049-auth-versus-ask
+    name: "Question 22. Every check passed, and the account changed"
+    assesses: "CLO2, classify an email and validate the model's output"
+    level: Analysis
+    difficulty: easy
+    artifact: "049"
+    needs_text_block: true
+    taught_in: >-
+      Week 3 reading, what SPF, DKIM and DMARC do and do not prove. Week 4 lab,
+      the record `check_sender_reputation` returns.
+    from_sample: false
+    text: |
+      <p>Email 049 comes from <code>accounts@redcedar-safety.example</code>.
+      Your headers and tools return this.</p>
+      <pre><code>Authentication-Results: spf=pass; dkim=pass; dmarc=pass (p=none)
+      check_sender_reputation -&gt; status: unknown, new_domain: true, first_seen: 2026-04-28
+      Body: "Please note our updated ACH instructions: payments now go to the account below."</code></pre>
+      <p>What should your agent report?</p>
+    answers:
+      - text: "Malicious. The passing checks say who owns the domain, not that it is Redcedar."
+        correct: true
+        feedback: >-
+          Right. The checks prove the sender controls that domain. They do not
+          prove it is Redcedar. A new domain asking for a bank change is vendor
+          fraud. Week 3 reading.
+      - text: "Benign. All three checks passed, so the message really came from Redcedar."
+        correct: false
+        feedback: >-
+          Passing checks show the domain signed its own mail. Anyone who buys a
+          domain can publish those records. They say nothing about the ask.
+          Week 3 reading.
+      - text: "Benign. The gateway scan result is clean, so the message already passed a check."
+        correct: false
+        feedback: >-
+          The gateway looks at links and files, and this message has no link. A
+          clean scan is not a ruling on a bank change. Week 3 reading.
+      - text: "Malicious, because the sending domain was first seen today."
+        correct: false
+        feedback: >-
+          First seen is one fact, not a verdict. Real vendors write for the
+          first time too. The bank change is what makes this one an attack.
+          Week 4 lab, sender reputation.
+
+  - number: 23
+    id: exam-q23-053-dmarc-fail-trusted-sender
+    name: "Question 23. A trusted vendor that failed DMARC"
+    assesses: "CLO2, classify an email and validate the model's output"
+    level: Analysis
+    difficulty: hard
+    artifact: "053"
+    needs_text_block: true
+    taught_in: >-
+      Week 3 reading, the three mail checks. Week 4 lab, the allowlist and the
+      reputation record. Week 6 reading, when a case goes to a person.
+    from_sample: true
+    text: |
+      <p>Email 053 comes from <code>plandocs@vetchmoorbenefits.example</code>.
+      Your tools and headers return this.</p>
+      <pre><code>check_sender_reputation -&gt; status: trusted, prior_reports: 1, last_report_verdict: benign
+      check_urls -&gt; vetchmoorbenefits.example: allowlisted
+      Authentication-Results: spf=softfail; dkim=none; dmarc=fail (p=quarantine)
+      X-Sentrywick-Scan-Result: released-from-quarantine</code></pre>
+      <p>What should your agent report?</p>
+    answers:
+      - text: "Malicious, block and purge."
+        correct: false
+        feedback: >-
+          The sender is trusted and the link is on the allowlist. Nothing here
+          points to an attack.
+      - text: "Benign, close it and reply to the reporter."
+        correct: false
+        feedback: >-
+          The verdict is right. DMARC failed on a trusted sender, so a person
+          verifies before the case closes.
+      - text: "Benign, escalate so a person can check with the vendor."
+        correct: true
+        feedback: >-
+          Right. Benign, and escalate for an authentication failure on a trusted
+          sender. Verify out of band, then close.
+      - text: "Benign, no escalation, because the link host is allowlisted."
+        correct: false
+        feedback: >-
+          An allowlisted link does not cancel a DMARC failure. They are two
+          separate facts.
+
+  - number: 24
+    id: exam-q24-050-notice-that-reads-like-a-lure
+    name: "Question 24. The notice that reads like a lure"
+    assesses: "CLO2, classify an email and validate the model's output"
+    level: Analysis
+    difficulty: hard
+    artifact: "050"
+    needs_text_block: true
+    taught_in: >-
+      Week 3 reading, judging on facts rather than on wording. Week 4 lab, the
+      allowlist and the reputation record. Week 5 lab, `decisive_stop()`.
+    from_sample: false
+    text: |
+      <p>Email 050 comes from <code>notifications@fenwrightpay.example</code>.
+      Your tools and the message return this.</p>
+      <pre><code>Subject: Your direct deposit account was changed
+      Authentication-Results: spf=pass; dkim=pass; dmarc=pass (p=reject)
+      check_sender_reputation -&gt; status: trusted, messages_90d: 212
+      check_urls -&gt; my.fenwrightpay.example: allowlisted
+      Body: "If you made this change, no action is needed. If you did not, contact your payroll administrator immediately."</code></pre>
+      <p>What should your agent report?</p>
+    answers:
+      - text: "Benign. Close it and reply to the reporter."
+        correct: true
+        feedback: >-
+          Right. An allowlisted sender, an allowlisted link host, and all three
+          checks passing. Your loop stops on `decisive_benign` and the reporter
+          gets an answer. Week 5 lab.
+      - text: "Malicious. Block and purge. The message tells him to act immediately."
+        correct: false
+        feedback: >-
+          A lure copies this wording because the real notice uses it. The
+          sender and the link host are both on the allowlist here. Week 4 lab.
+      - text: "Benign, but escalate, because the message is about a bank account."
+        correct: false
+        feedback: >-
+          Escalation is for a case the facts leave open. Here the sender is
+          allowlisted, the link host is allowlisted, and every check passed.
+          Week 6 reading.
+      - text: "Malicious. It sends him to a sign-in page, and a real notice would not."
+        correct: false
+        feedback: >-
+          A sign-in link is a fact to weigh, not a verdict. Your own tool put
+          `my.fenwrightpay.example` on the allowlist. Week 4 lab, the allowlist.
+
+  - number: 25
+    id: exam-q25-051-internal-password-notice
+    name: "Question 25. A password notice from inside the company"
+    assesses: "CLO2, classify an email and validate the model's output"
+    level: Recognition
+    difficulty: medium
+    artifact: "051"
+    needs_text_block: false
+    taught_in: >-
+      Week 3 reading, the known-good domain list. Week 5 lab,
+      `decisive_stop()` and the `internal_sender` stop reason.
+    from_sample: false
+    text: |
+      <p>Email 051 tells a user her password expires. Your agent listed that as
+      an indicator. Your tools return this.</p>
+      <pre><code>Subject: Your password expires in 7 days
+      check_sender_reputation -&gt; status: internal, match_level: domain
+      check_urls -&gt; portal.pellgrave.example: internal</code></pre>
+      <p>What should your agent report?</p>
+    answers:
+      - text: "Benign. Close it and reply to the reporter."
+        correct: true
+        feedback: >-
+          Right. The sender is internal and the one link host is internal too.
+          Your loop stops on `internal_sender`. The password wording is a fact,
+          not a verdict. Week 5 lab.
+      - text: "Malicious. A message that names a password is a credential phish."
+        correct: false
+        feedback: >-
+          Then every real password reminder would be an attack. Both the sender
+          and the link host sit inside the company here. Week 3 reading, the
+          known-good list.
+      - text: "Benign, but escalate, so a person can confirm the help desk sent it."
+        correct: false
+        feedback: >-
+          Escalation spends a person's time. Nothing here is in doubt: an
+          internal sender and an internal link host. Save it for a case the
+          facts leave open. Week 6 reading.
+      - text: "Malicious. Anyone can put the help desk name in the From line."
+        correct: false
+        feedback: >-
+          A forged one comes in from outside, through the gateway. This one
+          came from an inside host, and your tool returned `status: internal`.
+          Week 4 lab.
+
+  - number: 26
+    id: exam-q26-052-spam-with-a-benign-verdict
+    name: "Question 26. Spam and benign in the same answer"
+    assesses: "CLO2, classify an email and validate the model's output"
+    level: Recognition
+    difficulty: medium
+    artifact: "052"
+    needs_text_block: true
+    taught_in: >-
+      Week 2 reading, part 1, why a sentence is not an answer. Week 2 lab,
+      where email 003 is spam and benign at the same time.
+    from_sample: false
+    text: |
+      <p>Email 052 arrived with these headers.</p>
+      <pre><code>From: Thistlecrest Uniforms &lt;hello@promo.thistlecrest-uniforms.example&gt;
+      List-Id: Thistlecrest Uniforms Catalog &lt;promo.thistlecrest-uniforms.example&gt;
+      Precedence: bulk</code></pre>
+      <p>Your agent answers <code>"verdict": "benign"</code> with
+      <code>"category": "spam"</code>, and your schema check passes it. Is that
+      possible?</p>
+    answers:
+      - text: "Yes. The category names the kind of mail. The verdict says whether it attacks."
+        correct: true
+        feedback: >-
+          Right. Two keys, two questions. Nobody asked for this catalog, so the
+          category is spam. It asks for nothing back, so the verdict is benign.
+          Week 2 reading, part 1.
+      - text: "No. Spam is unwanted mail, so the verdict has to be malicious."
+        correct: false
+        feedback: >-
+          Unwanted is not the same as harmful. A catalog you did not ask for
+          still takes nothing from you. Email 003 in the week 2 lab is spam and
+          benign too.
+      - text: "No. A benign verdict only fits `legit_external` or `legit_internal`."
+        correct: false
+        feedback: >-
+          Then a spam mailing would have no valid answer at all. The category
+          names the kind of mail. It never sets the verdict. Week 2 reading,
+          part 1.
+      - text: "Yes, because the schema check reads the key names and not the values."
+        correct: false
+        feedback: >-
+          It reads the values too, and both of these are on its list. What it
+          never does is compare one key against another. Week 2 reading,
+          part 1.

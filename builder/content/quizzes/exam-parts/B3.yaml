@@ -1,0 +1,186 @@
+# Week 8 final exam, breadth topic B3 items. Three multiple choice items, one
+# point each.
+#
+# B3 is "security operations components". It carries no course learning
+# objective and no Canvas Outcome. It is taught in the week 1 reading, part
+# one, and reinforced by three of the six week 1 self-check items. Blueprint
+# section 5, coverage table rows 1, 2 and 3. This file holds those three and
+# nothing else. The assembly step merges it with the other target files and
+# builds the Classic Quiz.
+#
+# THE SHAPE OF THIS FILE
+#
+#   items             a list. One entry per question. No quiz-level keys here;
+#                     the assembly step owns the title, the description and the
+#                     settings in blueprint section 10.
+#
+# EVERY ITEM CARRIES
+#
+#   number            the item number from the blueprint coverage table. Fixed.
+#   id                a short stable slug. Never reused, never renumbered.
+#   name              what Canvas shows as the question title.
+#   assesses          what the coverage table says the item measures.
+#   level             Recall or Apply, from the coverage table.
+#   difficulty        easy, medium or hard, from the coverage table.
+#   artifact          the email id or the named constant the stem quotes.
+#                     "none" when the item sits on no artifact.
+#   needs_text_block  true when the artifact is shared with another exam item.
+#                     Emails 046, 049, 050, 052, 053 and 054 each carry two or
+#                     three items, so each gets one unscored text_only_question
+#                     above the items that read it, per blueprint section 11.
+#                     Email 049 carries items 3 and 22.
+#   taught_in         where in the course a student learned this.
+#   from_sample       true when blueprint section 7 wrote the item out in full.
+#                     Item 3 is sample A. Its text, options and feedback are
+#                     approved copy and are reproduced here word for word.
+#   text              the stem, as an HTML fragment.
+#   answers           a list. Every answer carries text, correct and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. The build writes
+# it to Canvas as `comments` on the answer object. `answer_comments` is accepted
+# by Canvas, answers HTTP 200 and stores nothing, which blueprint section 9
+# records and measured.
+#
+# Answers are shuffled, so no option refers to another option and no feedback
+# names an option by letter. Feedback quotes the option's own words instead.
+#
+# Code names, header lines and tool returns sit in <pre> or <code> in the stem
+# and are excluded from the reading grade. Option text and feedback carry those
+# names as plain words, which is the convention the seven self-check files use.
+#
+# WHERE THESE THREE GET THEIR MATERIAL. Item 1 quotes the return
+# lookup_recipient() gives on email 012, which every student ran in the week 5
+# lab, and asks which of the ten named parts it is. Item 2 sits on the labelled
+# diagram in the week 1 reading, the one that pins the agent between the alert
+# and the ticket. Item 3 sits on reserved email 049. Blueprint section 6 states
+# the honest limit these breadth items carry: a student who read the week 1
+# reading but never built the agent can answer them.
+#
+# ONE CONVENTION THESE STEMS FOLLOW. The eleven reserved emails are not in the
+# student corpus and no student has run their agent on one. A stem that names
+# one therefore describes the case as if the student's agent had just handled it
+# and asks what the correct read is. The quiz directions state this once at the
+# top.
+
+items:
+
+  - number: 1
+    id: exam-q01
+    name: Question 1. Which part of a security operations center
+    assesses: "B3. Name the part of a security operations center a tool result points at"
+    level: Recall
+    difficulty: easy
+    artifact: "012"
+    needs_text_block: false
+    taught_in: "Week 1 reading, part one, the things you protect. The tool result is the one lookup_recipient() returns on email 012, which the week 5 lab runs."
+    from_sample: false
+    text: |
+      <p>Your week 5 loop ran all three tools on email 012. One step called
+      <code>lookup_recipient</code>. What came back starts like this.</p>
+      <pre><code>"address": "h.quintanilla@pellgrave.example",
+      "name": "Hollis Quintanilla",
+      "role": "Service Manager, Head Office Branch",
+      "mailbox_type": "person"
+      </code></pre>
+      <p>The week 1 reading named ten parts of a security operations center.
+      Which one is Hollis Quintanilla?</p>
+    answers:
+      - text: A user
+        correct: true
+        feedback: >-
+          Right. A user is a person with an account at the company. The tool
+          returned one person's record. See part one of the week 1 reading, the
+          things you protect.
+      - text: An asset
+        correct: false
+        feedback: >-
+          An asset is a thing the company owns, like the payroll system. This
+          line names a person instead, and the reading calls a person a user.
+          See part one of the week 1 reading.
+      - text: An endpoint
+        correct: false
+        feedback: >-
+          An endpoint is the laptop or phone a person works on. This answer
+          names the person, not the machine she types on. See part one of the
+          week 1 reading.
+      - text: A ticket
+        correct: false
+        feedback: >-
+          A ticket is the record a team opens to track one piece of work. Your
+          tool named who got the message, not the work. See part one of the
+          week 1 reading.
+
+  - number: 2
+    id: exam-q02
+    name: Question 2. Your agent's job on the picture
+    assesses: "B3. Where this course's agent sits between the alert and the ticket"
+    level: Recall
+    difficulty: easy
+    artifact: "none"
+    needs_text_block: false
+    taught_in: "Week 1 reading, part one, the picture and where your agent sits."
+    from_sample: false
+    text: |
+      <p>In the week 1 picture, a reported email becomes an alert, then a
+      ticket. Your agent sits between those two stops.</p>
+      <p>Which job on that picture is your agent's?</p>
+    answers:
+      - text: Reading the facts behind the alert and drafting the note.
+        correct: true
+        feedback: >-
+          Right. Your agent reads the facts behind the alert and drafts the
+          note that goes into the ticket. That is all it does. See part one of
+          the week 1 reading.
+      - text: Deciding which reports are worth an alert.
+        correct: false
+        feedback: >-
+          That would be true if your agent picked which reports are worth an
+          alert. It does not. A user clicks Report Phish, and the alert exists
+          first. See part one of the week 1 reading.
+      - text: Deciding whether the case is an incident.
+        correct: false
+        feedback: >-
+          That would hold if your agent judged harm. It does not. A person
+          decides that a case is an incident, and your agent stops at the note.
+          See part one of the week 1 reading.
+      - text: Closing the ticket when nothing harmful happened.
+        correct: false
+        feedback: >-
+          That would hold if your agent owned the ticket. It does not. The
+          analyst closes it. Your agent hands over a note and stops. See part
+          one of the week 1 reading.
+
+  - number: 3
+    id: exam-q03
+    name: Question 3. What escalation does on email 049
+    assesses: "B3. What escalation does to a case, read off the week 1 picture"
+    level: Apply
+    difficulty: medium
+    artifact: "049"
+    needs_text_block: true
+    taught_in: "Week 1 reading, part one, the things you do about it, and the picture and where your agent sits."
+    from_sample: true
+    text: |
+      <p>Your agent triages email 049 and sets escalate to yes. In the picture
+      from the week 1 reading, what happens next?</p>
+    answers:
+      - text: The alert becomes a ticket, and a person works it.
+        correct: true
+        feedback: >-
+          Right. Escalate yes hands the case to a person. Your agent stops at
+          the ticket.
+      - text: The ticket closes, and the reporter gets a thank-you.
+        correct: false
+        feedback: >-
+          That is the close action for benign mail. Email 049 asks to change
+          bank details, so it escalates instead.
+      - text: The mail goes back to the gateway for a second scan.
+        correct: false
+        feedback: >-
+          The gateway scanned it once, on the way in. A second scan is not a
+          step in the week 1 picture.
+      - text: The agent runs its three tools again.
+        correct: false
+        feedback: >-
+          The loop already stopped when it ran out of tools. Escalation sends
+          the case to a person, not back to the tools.

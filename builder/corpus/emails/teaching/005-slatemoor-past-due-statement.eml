@@ -1,0 +1,129 @@
+Return-Path: <ar@slatemoorsupply.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 994c3646-5964-4143-8ba9-24f302a6ad70
+  for <ap@pellgrave.example>; Tue, 14 Apr 2026 09:31:08 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=slatemoorsupply.example;
+  dkim=pass header.d=slatemoorsupply.example header.s=sm2026
+    header.i=@slatemoorsupply.example;
+  dmarc=pass header.from=slatemoorsupply.example policy.dmarc=quarantine
+Received-SPF: pass (mx.pellgrave.example: domain of
+  ar@slatemoorsupply.example designates 203.0.113.30 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.30;
+  envelope-from="ar@slatemoorsupply.example";
+  helo=mail.slatemoorsupply.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Spam-Score: 3.1
+X-Sentrywick-Message-UID: c16bcfc08653
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+Received: from mail.slatemoorsupply.example
+  (mail.slatemoorsupply.example [203.0.113.30])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id c16bcfc08653;
+  Tue, 14 Apr 2026 09:31:06 -0500
+Received: from SMS-AR-02.slatemoorsupply.example ([192.0.2.30])
+  by mail.slatemoorsupply.example with ESMTPSA id 7f2e6773;
+  Tue, 14 Apr 2026 14:31:03 +0000
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed;
+  d=slatemoorsupply.example; s=sm2026; t=1776177063;
+  h=from:to:subject:date:message-id:mime-version:content-type;
+  bh=f4rcocsu9mcfr/hL1cMcKPhfcZWw+S3ogr3KfykwAWI=;
+  b=Ms7IApq0R90suMVNvNDFB/xtWqrd3Jyg1Iayp+GNAhnn6hIXNYJfqhyHsJa4uYQk9UntlOwl
+   dEzQUGe2ifSfDTkSG6QbbDgeZ9bca4xUx5RkY+o34rFprYmFfTXCLoQmFgAdH9lYP0brikqR
+   P8fTdguyDuKY8/VkACFm+RnoNaG8CiYr3pldFEJjd5YOby7Jj3PkrmlQc8PCivmjw0ywOKuy
+   qkatDfxajhBidytGA6HcPI5mii/QuJvRyxUyTsZQhAYYwAAxQJ+bWpZaJcGse4TZ6lqVCSLP
+   c5pyehkv13pGf21fNLFxz2xi+NU0949170Q57pF/1wc3tf6palPVbQ==
+Date: Tue, 14 Apr 2026 09:31:00 -0500
+From: Slatemoor Industrial Supply - Accounts Receivable
+ <ar@slatemoorsupply.example>
+To: Accounts Payable <ap@pellgrave.example>
+Reply-To: ar@slatemoorsupply.example
+Subject: Past due statement, account 44170: credit hold on 4/20 if unpaid
+Message-ID: <20260414143100.88e138a5c614@mail.slatemoorsupply.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_4b6b316cb7d9"
+
+--=_swk_4b6b316cb7d9
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Account 44170: past due balance
+
+Hello,
+
+Two invoices on account 44170 are unpaid, and the balance is now 45
+days past due.
+
+Invoice 44170-104, dated 1/29, due 2/28: $5,118.45
+Invoice 44170-109, dated 1/29, due 2/28: $4,194.35
+Total past due: $9,312.80
+
+The terms on this account move it to credit hold once a balance
+reaches 45 days. If the full amount does not reach us by Monday 4/20,
+account 44170 goes on credit hold that morning, and open orders will
+not ship until the balance clears.
+
+The statement with copies of both invoices is on the billing portal.
+
+View statement: https://billing.slatemoorsupply.example/statements/44170
+
+Remit to Sandmarsh Community Bank, account ending 3318, and put both
+invoice numbers in the payment reference so we can apply the funds to
+the right lines.
+
+If a payment is already scheduled, reply to this message with the date
+and the amount and I will note it on the account.
+
+Marisol Etxeberria
+Accounts Receivable
+Slatemoor Industrial Supply
+555-0147
+
+--=_swk_4b6b316cb7d9
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"margin:0;padding:0;background:#f2f2f2;">
+<p style=3D"margin:0;padding:6px 12px;background-color:#fff4d6;font-size:12=
+px;color:#5a4a00;">[External message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:0 auto;padding:24px;
+  background:#ffffff;font-family:sans-serif;font-size:15px;
+  line-height:1.5;color:#222222;">
+<p style=3D"margin:0 0 18px 0;font-size:17px;font-weight:bold;
+  color:#5b3a1a;">Account 44170: past due balance</p>
+<p>Hello,</p>
+<p>Two invoices on account 44170 are unpaid, and the balance is now 45
+days past due.</p>
+<p>Invoice 44170-104, dated 1/29, due 2/28: $5,118.45<br>
+Invoice 44170-109, dated 1/29, due 2/28: $4,194.35<br>
+<b>Total past due: $9,312.80</b></p>
+<p>The terms on this account move it to credit hold once a balance
+reaches 45 days. If the full amount does not reach us by Monday 4/20,
+account 44170 goes on credit hold that morning, and open orders will
+not ship until the balance clears.</p>
+<p>The statement with copies of both invoices is on the billing
+portal.</p>
+<p><a href=3D"https://billing.slatemoorsupply.example/statements/44170"
+  style=3D"display:inline-block;padding:10px 22px;background:#5b3a1a;
+  color:#ffffff;text-decoration:none;border-radius:4px;"
+  >View statement</a></p>
+<p>Remit to Sandmarsh Community Bank, account ending 3318, and put both
+invoice numbers in the payment reference so we can apply the funds to
+the right lines.</p>
+<p>If a payment is already scheduled, reply to this message with the date
+and the amount and I will note it on the account.</p>
+<p>Marisol Etxeberria<br>
+Accounts Receivable<br>
+Slatemoor Industrial Supply<br>
+555-0147</p>
+</div>
+</body>
+</html>
+
+--=_swk_4b6b316cb7d9--

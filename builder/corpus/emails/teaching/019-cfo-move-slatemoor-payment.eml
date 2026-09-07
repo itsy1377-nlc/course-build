@@ -1,0 +1,55 @@
+Return-Path: <r.palomares@pellgrave.example>
+Received: from mail.pellgrave.example (mail.pellgrave.example [10.20.4.25])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 55e21d17-834a-4268-a89d-1ce9370d1571
+  for <p.castellanos@pellgrave.example>; Thu, 16 Apr 2026 13:05:02 -0500
+X-Sentrywick-Scan-Result: clean
+X-Sentrywick-Message-UID: c9fabc54fffb
+X-Sentrywick-Reported-By: p.castellanos@pellgrave.example
+Received: from PMG-LT-1042.corp.pellgrave.example ([10.20.30.142])
+  by mail.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPSA
+  id c9fabc54fffb; Thu, 16 Apr 2026 13:05:01 -0500
+Date: Thu, 16 Apr 2026 13:05:00 -0500
+From: Rutger Palomares <r.palomares@pellgrave.example>
+To: Priya Castellanos <p.castellanos@pellgrave.example>
+Subject: Call me before 3, need to move the Slatemoor payment
+Message-ID: <20260416180500.6063ac848785@mail.pellgrave.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_swk_2381cbaf8c2b"
+
+--=_swk_2381cbaf8c2b
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+Priya,
+
+I need to move the payment on Slatemoor account 44170 from the 4/24
+run to tomorrow's run so the 4/20 credit hold does not bite us.
+Call me before 3 today at ext. 4102 so we can confirm the amount
+before the money goes out. I will approve it in the payment system
+myself once we have talked.
+
+Thanks,
+Rutger
+
+Rutger Palomares
+Chief Financial Officer, Pellgrave Mechanical Group, ext. 4102
+--=_swk_2381cbaf8c2b
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+<html>
+<body>
+<p>Priya,</p>
+<p>I need to move the payment on Slatemoor account 44170 from the 4/24
+run to tomorrow's run so the 4/20 credit hold does not bite us.
+Call me before 3 today at ext. 4102 so we can confirm the amount
+before the money goes out. I will approve it in the payment system
+myself once we have talked.</p>
+<p>Thanks,<br>
+Rutger</p>
+<p>Rutger Palomares<br>
+Chief Financial Officer, Pellgrave Mechanical Group, ext. 4102</p>
+</body>
+</html>
+--=_swk_2381cbaf8c2b--

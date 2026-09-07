@@ -1,0 +1,319 @@
+# Week 8 final exam, breadth topic B4 items. Five multiple choice items, one
+# point each.
+#
+# B4 is the wider AI risk set: hallucination, data exposure, privacy,
+# automation bias and overreliance. It is taught in the week 6 reading, page
+# two, "The wider AI risk set", which is content/pages/w6-content-2.md.
+# Blueprint section 5, coverage table rows 11, 12, 13, 14 and 15. This file
+# holds those five and nothing else. The assembly step merges it with the other
+# target files and builds the Classic Quiz.
+#
+# B4 carries the largest share of the breadth half, five items of fifteen,
+# because it has the thinnest assessment anywhere else in the course: one week 6
+# self-check item and part of one week 6 discussion question. Blueprint section
+# 4 and survey content plan section 6.5 both record that reason.
+#
+# THE SHAPE OF THIS FILE
+#
+#   items             a list. One entry per question. No quiz-level keys here;
+#                     the assembly step owns the title, the description and the
+#                     settings in blueprint section 10.
+#
+# EVERY ITEM CARRIES
+#
+#   number            the item number from the blueprint coverage table. Fixed.
+#   id                a short stable slug. Never reused, never renumbered.
+#   name              what Canvas shows as the question title.
+#   assesses          what the coverage table says the item measures.
+#   level             Recall, Apply or Analyze, from the coverage table.
+#   difficulty        easy, medium or hard, from the coverage table.
+#   artifact          the reserved email id or the named constant the stem
+#                     quotes. "none" when the item sits on no artifact.
+#   needs_text_block  true when the artifact is shared with another exam item.
+#                     Emails 046, 049, 050, 052, 053 and 054 each carry two or
+#                     three items, so each gets one unscored text_only_question
+#                     above the items that read it, per blueprint section 11.
+#                     Items 11 and 12 read 054 and 050, so both are true.
+#   taught_in         where in the course a student learned this.
+#   from_sample       false on all five. Blueprint section 7 writes out items 3,
+#                     4, 8, 16, 17, 23, 27 and 28, and none of those is a B4
+#                     item, so all five here are authored against the coverage
+#                     table and the week 6 reading.
+#   text              the stem, as an HTML fragment.
+#   answers           a list. Every answer carries text, correct and feedback.
+#
+# EVERY ANSWER CARRIES ITS OWN FEEDBACK, right and wrong alike. The build writes
+# it to Canvas as `comments` on the answer object. `answer_comments` is accepted
+# by Canvas, answers HTTP 200 and stores nothing, which blueprint section 9
+# records and measured.
+#
+# Answers are shuffled, so no option refers to another option and no feedback
+# names an option by letter. Feedback quotes the option's own words instead.
+#
+# Code names, header lines and tool returns sit in <pre> in the stem and are
+# excluded from the reading grade. Option text and feedback carry those names as
+# plain words, which is the convention the seven self-check files use.
+#
+# ONE CONVENTION THESE STEMS FOLLOW. The eleven reserved emails are not in the
+# student corpus and no student has run their agent on one. Each stem therefore
+# describes a case as if the student's agent had just handled it and asks what
+# the correct read is. The quiz directions state this once at the top.
+#
+# WHERE EACH FACT COMES FROM. Item 11 quotes the one link host in email 054,
+# quotes.slatemoorsupply.example, which is the only entry in that email's
+# url_hosts list in corpus/spec/corpus-spec.json and the only address printed in
+# either body part of the rendered file. Item 12 quotes the check_sender_reputation
+# and check_urls returns recorded in the tool_expectations block of email 050.
+# Item 13 lists the nine fields lookup_recipient returns, from code ledger
+# section 6. Item 15 quotes CONFIDENCE_FLOOR at 0.7, the value in week 6 lab
+# cell 15 and in lab/eval/week6_injection_test.py line 107.
+
+items:
+
+  - number: 11
+    id: exam-11-hallucinated-host
+    name: "Question 11. An indicator with no host behind it"
+    assesses: "B4, hallucination"
+    level: Apply
+    difficulty: easy
+    artifact: "054-slatemoor-quote-dkim-fail"
+    needs_text_block: true
+    taught_in: >-
+      Week 6 reading, part 2, hallucination, which is the case of an indicator
+      naming a host your facts never held. The control is check_against_facts(),
+      which you wrote in TODO 2 of the week 6 lab.
+    from_sample: false
+    text: |
+      <p>Your agent triages email 054 and returns this indicator.</p>
+      <pre>url:host_blocklisted:secure-slatemoor-quotes.example</pre>
+      <p>Your extractor found one link host in that message.</p>
+      <pre>quotes.slatemoorsupply.example</pre>
+      <p>Which risk does the answer show?</p>
+    answers:
+      - text: >-
+          Hallucination. The answer names a host that is not in the facts.
+        correct: true
+        feedback: >-
+          Right. Your facts held one host and the answer names a different one.
+          That is the model stating something nobody gave it. Week 6 reading,
+          part 2, hallucination.
+      - text: >-
+          Data exposure. A link host was written into the answer.
+        correct: false
+        feedback: >-
+          Exposure is real information going where it should not go. This host
+          is not real information. Nothing moved and nothing leaked. Week 6
+          reading, part 2, data exposure.
+      - text: >-
+          Automation bias. A person will trust the note because a tool wrote it.
+        correct: false
+        feedback: >-
+          That names the person who reads the note, not the note itself. The
+          answer here holds a host your facts never carried. Week 6 reading,
+          part 2, automation bias.
+      - text: >-
+          Overreliance. The agent settled this case instead of a person.
+        correct: false
+        feedback: >-
+          Overreliance is letting your agent decide what a person should
+          decide. Nothing here says who decided. The host it named is not in
+          your facts. Week 6 reading, part 2, overreliance.
+
+  - number: 12
+    id: exam-12-analyst-did-not-look
+    name: "Question 12. The analyst who did not open email 050"
+    assesses: "B4, automation bias"
+    level: Analyze
+    difficulty: hard
+    artifact: "050-fenwright-deposit-change-confirmation"
+    needs_text_block: true
+    taught_in: >-
+      Week 6 reading, part 2, automation bias, which is trusting an answer
+      because your agent produced it. The reading walks the same move on email
+      015 and says no code catches it.
+    from_sample: false
+    text: |
+      <p>Your agent triages email 050 and returns malicious. Your tools return
+      this.</p>
+      <pre>check_sender_reputation -> status: trusted, prior_reports: 1, last_report_verdict: benign
+      check_urls -> my.fenwrightpay.example: allowlisted</pre>
+      <p>An analyst blocks the sender and closes the case. Nobody reads the
+      mail. Which risk does the analyst show?</p>
+    answers:
+      - text: >-
+          Automation bias. The analyst trusted the answer and stopped looking.
+        correct: true
+        feedback: >-
+          Right. The agent said malicious, so the analyst stopped reading. The
+          sender is trusted and the link is allowlisted. Only a person catches
+          this one. Week 6 reading, part 2, automation bias.
+      - text: >-
+          Overreliance. A tool decided what a person should decide.
+        correct: false
+        feedback: >-
+          That fits a case a person never sees. This one reached an analyst,
+          who took the answer without opening the message. Week 6 reading, part
+          2, overreliance.
+      - text: >-
+          Hallucination. The verdict does not match the facts.
+        correct: false
+        feedback: >-
+          Hallucination is naming something your facts never held. Every fact
+          here is real, and a wrong verdict is a wrong judgment. Week 6
+          reading, part 2, hallucination.
+      - text: >-
+          Data exposure. The note repeats a bank account detail.
+        correct: false
+        feedback: >-
+          Nothing here went where it should not go. The problem is an analyst
+          who acted on the answer without checking two plain facts. Week 6
+          reading, part 2, data exposure.
+
+  - number: 13
+    id: exam-13-whole-recipient-record
+    name: "Question 13. The whole recipient record in every prompt"
+    assesses: "B4, data exposure"
+    level: Apply
+    difficulty: medium
+    artifact: "lookup_recipient"
+    needs_text_block: false
+    taught_in: >-
+      Week 3 reading, what you leave out is also a decision, which gives the
+      data minimization rule and its two questions. Week 6 reading, part 2,
+      privacy, which repeats it: what you put in a prompt is what you expose.
+    from_sample: false
+    text: |
+      <p>A teammate wants the whole recipient record in your facts block, on
+      every email.</p>
+      <pre>lookup_recipient -> name, role, mailbox_type, executive, handles_payments,
+                    chronic_reporter, report_count_90d, true_positive_count_90d,
+                    campaign_tags</pre>
+      <p>Week 3 said a prompt goes to an outside service. What should you
+      do?</p>
+    answers:
+      - text: >-
+          Leave it out. Let a tool call fetch it when a case needs it.
+        correct: true
+        feedback: >-
+          Right. The facts block carries what a verdict needs, and the tool
+          brings the record on the cases that need it. Week 3, what you leave
+          out is also a decision.
+      - text: >-
+          Add it all. More facts make a better verdict.
+        correct: false
+        feedback: >-
+          More lines also mean more information on someone else's computer. Ask
+          first whether a sound verdict changes without it. Week 3, what you
+          leave out is also a decision.
+      - text: >-
+          Add it all, and tell the model not to repeat it.
+        correct: false
+        feedback: >-
+          The record is exposed when the prompt is sent. A rule about the
+          answer comes too late to help. Week 6 reading, part 2, privacy.
+      - text: >-
+          Stop calling the tool. That record is private.
+        correct: false
+        feedback: >-
+          Then you lose facts that do change a verdict, such as whether the
+          recipient is an executive. Sending less is not sending nothing. Week
+          4 reading, why the three tools are plain Python.
+
+  - number: 14
+    id: exam-14-summary-line-privacy
+    name: "Question 14. What line six may not say"
+    assesses: "B4, privacy"
+    level: Apply
+    difficulty: medium
+    artifact: "NOTE_TEMPLATE"
+    needs_text_block: false
+    taught_in: >-
+      Week 7 reading, the last line is not for you, which says who reads the
+      plain summary. Week 6 reading, part 2, data exposure, which is the email
+      023 case of a report history riding along in the answer.
+    from_sample: false
+    text: |
+      <p>Line six of your note is the two-sentence plain summary. The
+      employee who reported the mail reads it. Your agent drafted this.</p>
+      <pre>Summary: This was a real notice from the vendor, so it is safe.
+      Our records show this is your eleventh report in 90 days, and none
+      of them was a real threat.</pre>
+      <p>What is the right fix?</p>
+    answers:
+      - text: >-
+          Cut the second sentence. A report history does not belong there.
+        correct: true
+        feedback: >-
+          Right. That line says what happened to the message and what happens
+          next. A count of someone's past reports rides along for no reason.
+          Week 7 reading, the last line is not for you.
+      - text: >-
+          Keep both. The reporter has a right to see their own record.
+        correct: false
+        feedback: >-
+          That record belongs to the company, and this line is not where it
+          goes. Line six answers one question. What happened to that message?
+          Week 6 reading, part 2, data exposure.
+      - text: >-
+          Keep both. The count came from your own tool and is accurate.
+        correct: false
+        feedback: >-
+          Accurate is not the test. Ask what the reporter needs, and what it
+          costs if this leaves the building. Week 3, what you leave out is also
+          a decision.
+      - text: >-
+          Cut the first sentence. A verdict should not go to an employee.
+        correct: false
+        feedback: >-
+          That sentence is the reason line six exists. The person who reported
+          the mail wants to know whether anything happened to them. Week 7
+          reading, the last line is not for you.
+
+  - number: 15
+    id: exam-15-floor-does-not-fix
+    name: "Question 15. What the confidence floor does not fix"
+    assesses: "B4, overreliance"
+    level: Analyze
+    difficulty: hard
+    artifact: "CONFIDENCE_FLOOR"
+    needs_text_block: false
+    taught_in: >-
+      Week 6 reading, part 2, overreliance, which says the floor says nothing
+      about how good the model is and only names the cases a person owns. The
+      constant ships in cell 15 of the week 6 lab.
+    from_sample: false
+    text: |
+      <p>Your notebook ships this guardrail. A case below it goes to a
+      person.</p>
+      <pre>CONFIDENCE_FLOOR = 0.7</pre>
+      <p>Your agent returns a wrong verdict at confidence 0.91. What does
+      this show about the floor?</p>
+    answers:
+      - text: >-
+          The floor sorts by score, not by whether the answer is right.
+        correct: true
+        feedback: >-
+          Right. The floor reads the model's own score. A wrong answer with a
+          high score never reaches it, so no person ever sees the case. Week 6
+          reading, part 2, overreliance.
+      - text: >-
+          The floor is set too low. Raise it to 0.95.
+        correct: false
+        feedback: >-
+          That catches this one case and sends many more to your one analyst.
+          Anything scored above the new number still passes. Week 6 reading,
+          part 2, overreliance.
+      - text: >-
+          The score was wrong, so the model should score itself again.
+        correct: false
+        feedback: >-
+          A second score is the model rating itself again. That is another
+          opinion, not a check. Your fact check reads the facts instead. Week 6
+          reading, part 2, overreliance.
+      - text: >-
+          The fact check will catch it, so the floor need not.
+        correct: false
+        feedback: >-
+          The fact check catches an answer that fights an extracted fact. A
+          wrong judgment that fights no fact goes straight through. Week 6 lab,
+          TODO 2.

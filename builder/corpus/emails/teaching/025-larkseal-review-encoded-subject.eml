@@ -1,0 +1,110 @@
+Return-Path: <notify@larkseal-review.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-01.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 69acd918-f1b8-485b-8805-4cb7a17a149a
+  for <l.vashti@pellgrave.example>; Wed, 15 Apr 2026 08:47:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=softfail smtp.mailfrom=larkseal-review.example;
+  dkim=none;
+  dmarc=fail header.from=larkseal-review.example policy.dmarc=none
+Received-SPF: softfail (mx.pellgrave.example: domain of
+  notify@larkseal-review.example does not designate 198.51.100.144 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=198.51.100.144;
+  envelope-from="notify@larkseal-review.example";
+  helo=mta-7.cheapsend-relay.example; identity=mailfrom; mechanism=~all
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 5.1
+X-Sentrywick-Message-UID: 985730c8e1a0
+X-Sentrywick-Reported-By: l.vashti@pellgrave.example
+Received: from mta-7.cheapsend-relay.example
+  (mta-7.cheapsend-relay.example [198.51.100.144])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 985730c8e1a0;
+  Wed, 15 Apr 2026 08:47:05 -0500
+Received: from notify-04.larkseal-review.example ([192.0.2.174])
+  by mta-7.cheapsend-relay.example with ESMTPSA id beb75195;
+  Wed, 15 Apr 2026 13:47:02 +0000
+Date: Wed, 15 Apr 2026 08:47:00 -0500
+From: Larkseal <notify@larkseal-review.example>
+To: Lenora Vashti <l.vashti@pellgrave.example>
+Subject: =?UTF-8?Q?Lenora=2C_a_document_=E2=80=9CQ2_rate_sheet=E2=80=9D?=
+ =?UTF-8?Q?_was_shared_with_you?=
+Message-ID: <20260415134700.9110f92dd133@notify-04.larkseal-review.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_474da2eb2f3f"
+
+--=_part_474da2eb2f3f
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: 7bit
+
+[External message. Sentrywick Gateway]
+
+Larkseal
+
+Hello Lenora,
+
+A document was shared with you: Q2 rate sheet.
+
+Document: Q2 rate sheet
+Reference: b4f4eafb243e4002
+Shared: Wednesday 15 April 2026
+
+Open document:
+https://review.larkseal-review.example/d/q2-rate-sheet
+
+You will be asked to sign in with your work email address before the
+document opens. The share stays in your Larkseal account, so you can
+come back to it whenever it suits you.
+
+Help:
+https://help.larkseal.example/articles/shared-documents
+
+Larkseal, secure signatures
+
+This notice went to l.vashti@pellgrave.example because a document was
+shared with that address.
+
+Unsubscribe:
+https://unsub.mailer-relay-links.example/u/7731
+--=_part_474da2eb2f3f
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body style=3D"=
+margin:0;padding:0;background-color:#f2f4f6;font-family:sans-serif;font-siz=
+e:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:600px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 20px=
+ 0;font-size:20px;font-weight:bold;color:#1b4f8a;">Larkseal</p>
+<p>Hello Lenora,</p>
+<p>A document was shared with you: Q2 rate sheet.</p>
+<p style=3D"margin:0 0 16px 0;">Document: Q2 rate sheet<br>Reference:=
+ b4f4eafb243e4002<br>Shared: Wednesday 15 April 2026</p>
+<p style=3D"margin:24px 0;"><a href=3D"=
+https://review.larkseal-review.example/d/q2-rate-sheet" style=3D"=
+display:inline-block;padding:12px=
+ 22px;background-color:#1b4f8a;color:#ffffff;text-decoration:none;font-weig=
+ht:bold;border-radius:4px;">Open document</a></p>
+<p>You will be asked to sign in with your work email address before the=
+ document opens. The share stays in your Larkseal account, so you can=
+ come back to it whenever it suits you.</p>
+<p style=3D"margin-top:28px;padding-top:12px;border-top:1px solid=
+ #d9dee3;font-size:13px;color:#444444;">Larkseal, secure=
+ signatures<br><a href=3D"=
+https://help.larkseal.example/articles/shared-documents" style=3D"=
+color:#444444;">Help</a></p>
+<p style=3D"font-size:12px;color:#777777;">This notice went to=
+ l.vashti@pellgrave.example because a document was shared with that=
+ address.<br><a href=3D"https://unsub.mailer-relay-links.example/u/7731"=
+ style=3D"color:#777777;">Unsubscribe</a></p>
+</div>
+</body>
+</html>
+--=_part_474da2eb2f3f--

@@ -1,0 +1,408 @@
+{
+  "$comment": "Every domain that appears in a From, Reply-To, Return-Path, DKIM d= or link host, with its owner class and DMARC policy (null means no record). A MAIL FROM subdomain carries its own record because SPF records do not apply to subdomains. Provider records list their tracking hosts under tracking_hosts. Backs the verifier's combination rules.",
+  "domains": [
+    {
+      "domain": "pellgrave.example",
+      "owner_class": "organization",
+      "dmarc_policy": "quarantine",
+      "spf": "ip4:203.0.113.8/29 -all",
+      "dkim_selector": "pmg2026",
+      "notes": "The organization. Monitor mode is not used; forgeries are quarantined and can be released from the daily digest."
+    },
+    {
+      "domain": "fenwrightpay.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "reject",
+      "spf": "mx -all",
+      "dkim_selector": "fw1",
+      "notes": "Payroll vendor. Portal my.fenwrightpay.example."
+    },
+    {
+      "domain": "slatemoorsupply.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "quarantine",
+      "spf": "mx ~all",
+      "dkim_selector": "sm2026",
+      "notes": "Parts supplier. Billing portal billing.slatemoorsupply.example."
+    },
+    {
+      "domain": "marlstonefleet.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "quarantine",
+      "spf": "ip4:203.0.113.44/31 ~all",
+      "dkim_selector": "mfs1",
+      "notes": "Fleet leasing and telematics. Moved to relay-2 on 2026-04-13; SPF and DKIM not yet updated."
+    },
+    {
+      "domain": "larkseal.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "quarantine",
+      "spf": "mx -all",
+      "dkim_selector": "ls2026",
+      "notes": "Electronic signature service. Hosts app., mail., help."
+    },
+    {
+      "domain": "ferncrate.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "reject",
+      "spf": "mx -all",
+      "dkim_selector": "fc1",
+      "notes": "File sharing service. Host share."
+    },
+    {
+      "domain": "vetchmoorbenefits.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "quarantine",
+      "spf": "mx ~all",
+      "dkim_selector": "vm1",
+      "notes": "Benefits broker; sends newsletters through Sendbarrow with an aligned key."
+    },
+    {
+      "domain": "sandmarshbank.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "reject",
+      "spf": "mx -all",
+      "dkim_selector": "smb1",
+      "notes": "The company's bank. business. is allowlisted, alerts. is not."
+    },
+    {
+      "domain": "alerts.sandmarshbank.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "reject",
+      "spf": "ip4:203.0.113.70 -all",
+      "dkim_selector": null,
+      "notes": "The bank's alert subdomain, the MAIL FROM on 036. Publishes its own SPF record for alerts-out.sandmarshbank.example; DKIM is signed by the parent domain and aligns under relaxed alignment, and the parent's reject policy applies. Not on the URL allowlist."
+    },
+    {
+      "domain": "redcedarsafety.example",
+      "owner_class": "vendor",
+      "dmarc_policy": "none",
+      "spf": "mx ~all",
+      "dkim_selector": "rc1",
+      "notes": "Safety certification vendor. DMARC record with policy none."
+    },
+    {
+      "domain": "inkmoor-office.example",
+      "owner_class": "vendor",
+      "dmarc_policy": null,
+      "spf": "mx include:sendbarrow-mail.example ~all",
+      "dkim_selector": null,
+      "notes": "Office and shipping supplies. No DMARC record; marketing goes through Sendbarrow."
+    },
+    {
+      "domain": "rookmeremedical.example",
+      "owner_class": "customer",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "rm1",
+      "notes": "Customer with a service contract. SPF record exceeds the DNS lookup limit, so SPF returns permerror."
+    },
+    {
+      "domain": "hollinvalepm.example",
+      "owner_class": "customer",
+      "dmarc_policy": "quarantine",
+      "spf": "mx -all",
+      "dkim_selector": "hv1",
+      "notes": "Customer; contact Renata Solheim. Mailbox compromised during the corpus window."
+    },
+    {
+      "domain": "elmhollow-living.example",
+      "owner_class": "customer",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "eh1",
+      "notes": "New customer; first mail seen 2026-04-17."
+    },
+    {
+      "domain": "lanternmail.example",
+      "owner_class": "provider",
+      "dmarc_policy": "quarantine",
+      "spf": "ip4:198.51.100.64/26 -all",
+      "dkim_selector": "lm2026a",
+      "notes": "Free webmail provider. Adds X-Originating-IP."
+    },
+    {
+      "domain": "sendbarrow-mail.example",
+      "owner_class": "provider",
+      "dmarc_policy": null,
+      "spf": "ip4:198.51.100.0/24 -all",
+      "dkim_selector": "s2026a",
+      "tracking_hosts": [
+        "links.sendbarrow-mail.example"
+      ],
+      "notes": "Bulk-mail provider. Bounce domain bounce.sendbarrow-mail.example; tracking host links.sendbarrow-mail.example. Never a From domain."
+    },
+    {
+      "domain": "bounce.sendbarrow-mail.example",
+      "owner_class": "provider",
+      "dmarc_policy": null,
+      "spf": "ip4:198.51.100.0/24 -all",
+      "dkim_selector": null,
+      "notes": "The provider's bounce domain, the MAIL FROM on every bulk_provider record. Publishes its own SPF record because SPF does not inherit from the parent; never signs and never appears in From."
+    },
+    {
+      "domain": "larkhollow-controls.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "lh1",
+      "notes": "Fake controls vendor; three prior reports tagged fake-quote-portal."
+    },
+    {
+      "domain": "peakwright-leads.example",
+      "owner_class": "marketer",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "pw1",
+      "notes": "Cold outreach sender. No relationship."
+    },
+    {
+      "domain": "cottonmoor-show.example",
+      "owner_class": "marketer",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "cm1",
+      "notes": "Trade show organizer the company exhibited with last year."
+    },
+    {
+      "domain": "thistlecrest-uniforms.example",
+      "owner_class": "marketer",
+      "dmarc_policy": null,
+      "spf": "include:sendbarrow-mail.example ~all",
+      "dkim_selector": null,
+      "notes": "Uniform supplier marketing through Sendbarrow. No DMARC record."
+    },
+    {
+      "domain": "cindermill-signs.example",
+      "owner_class": "small_business",
+      "dmarc_policy": null,
+      "spf": "mx ~all",
+      "dkim_selector": null,
+      "notes": "Small sign company whose domain is spoofed in 032; no DKIM, no DMARC record."
+    },
+    {
+      "domain": "oona-adebayo-ferris.example",
+      "owner_class": "individual",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "A job applicant's own portfolio site, linked in 045; display_names.json gives her the same owner class. A private person's site sends no mail, so it publishes no SPF record, signs nothing and has no DMARC record; URL host only."
+    },
+    {
+      "domain": "fenwright-pay.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Hyphen-insertion lookalike of the payroll vendor."
+    },
+    {
+      "domain": "pellgrave-corp.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the organization."
+    },
+    {
+      "domain": "pellgrave-secure.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the organization."
+    },
+    {
+      "domain": "pellgrave-sso.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the organization."
+    },
+    {
+      "domain": "pellgarve.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Transposition lookalike of the organization."
+    },
+    {
+      "domain": "pel1grave.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Character-swap lookalike; URL host only."
+    },
+    {
+      "domain": "larkseal-docs.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the e-signature vendor; blocklisted host."
+    },
+    {
+      "domain": "larkseal-review.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx ~all",
+      "dkim_selector": null,
+      "notes": "Added-word lookalike; publishes SPF ending ~all and a DMARC record with policy none."
+    },
+    {
+      "domain": "larkseal-esign.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Lookalike; URL host only."
+    },
+    {
+      "domain": "ferncrate-files.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": "mx ~all",
+      "dkim_selector": null,
+      "notes": "Added-word lookalike of the file-sharing vendor; SPF ends ~all, no DMARC record."
+    },
+    {
+      "domain": "ferncrate-secure.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the file-sharing vendor."
+    },
+    {
+      "domain": "vetchmoor-benefits.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Hyphen-insertion lookalike of the benefits broker."
+    },
+    {
+      "domain": "slatemoorsuply.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Dropped-letter lookalike; Reply-To only."
+    },
+    {
+      "domain": "slatemoor-supply.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Hyphen-insertion lookalike of the parts supplier."
+    },
+    {
+      "domain": "hr-benefits-update.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": "include:sendbarrow-mail.example ~all",
+      "dkim_selector": null,
+      "notes": "Generic HR lure domain sending through Sendbarrow."
+    },
+    {
+      "domain": "pellgrave-benefits-portal.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Lookalike portal host; URL host only."
+    },
+    {
+      "domain": "sentrywick-release.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": "mx ~all",
+      "dkim_selector": null,
+      "notes": "Lookalike of the gateway product; fake quarantine digest."
+    },
+    {
+      "domain": "fenwrightpay-notices.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the payroll vendor, registered four days before the window."
+    },
+    {
+      "domain": "sandmarsh-bank-secure.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Added-word lookalike of the bank."
+    },
+    {
+      "domain": "redcedar-safety.example",
+      "owner_class": "attacker",
+      "dmarc_policy": "none",
+      "spf": "mx -all",
+      "dkim_selector": "k1",
+      "notes": "Hyphen-insertion lookalike of the safety vendor."
+    },
+    {
+      "domain": "secure-verify-login.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Parent of the subdomain-trick host in 001; URL host only."
+    },
+    {
+      "domain": "secure-doc-viewer.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Credential-harvest host; blocklisted 2026-03-19."
+    },
+    {
+      "domain": "dl.quickdrop-files.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Malware download host; blocklisted 2026-03-19."
+    },
+    {
+      "domain": "docshare-review.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Credential-harvest host; not yet on any list."
+    },
+    {
+      "domain": "mailer-relay-links.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Third-party relay used for an unsubscribe link in 025; URL host only."
+    },
+    {
+      "domain": "quickdrop-files.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Parent of dl.quickdrop-files.example."
+    },
+    {
+      "domain": "bulkhost-nine.example",
+      "owner_class": "attacker",
+      "dmarc_policy": null,
+      "spf": null,
+      "dkim_selector": null,
+      "notes": "Attacker relay provider behind the three direct forgeries: relay19 (198.51.100.201) for 006, relay04 (198.51.100.205) for 026, relay11 (198.51.100.211) for 048. Received-chain infrastructure only: it appears as the HELO name, the Received from host and the Message-ID host, never as a From, Reply-To, Return-Path, DKIM d= or link domain."
+    }
+  ]
+}

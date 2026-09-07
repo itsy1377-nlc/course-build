@@ -1,0 +1,562 @@
+{
+  "week": 7,
+  "video": "w7-walkthrough",
+  "what_it_shows": "One finished six line triage note, and the score block with false positives and false negatives counted apart.",
+  "submission_artifact_this_stands_in_for": "week7_triage_report.txt",
+  "recorded_on": "2026-09-05",
+  "recorded_between": [
+    "2026-09-05T02:22:51-05:00",
+    "2026-09-05T02:39:27-05:00"
+  ],
+  "model": "granite4.2:3b",
+  "endpoint": "http://localhost:11434/v1",
+  "request_extras": {
+    "reasoning_effort": "none"
+  },
+  "temperature": 0.2,
+  "max_tokens_closing_call": 512,
+  "code_run": {
+    "source": "builder/instructor/solutions/w7-lab-solution.ipynb",
+    "method": "The pre-written cells 1, 2, 3, 4 and 5 and the two solution cells 7 and 12 were read out of the notebook JSON and executed unchanged. Nothing was retyped and no notebook was edited. The batch cell was not run; the driver walks its own list of files through the same run_batch logic.",
+    "entry_points": [
+      "guarded_triage(parsed, schema=OUTPUT_SCHEMA_V2)",
+      "write_note(note_values(row), row['facts'])",
+      "score_batch(rows, truth)",
+      "report_scores(counts, rows, truth)"
+    ]
+  },
+  "not_its_own_assignment": {
+    "week_7_lab_reads": "the twenty batch emails, 026 to 045, plus one live triage on 013 in the check cell",
+    "this_run_reads": "twenty-four of the twenty-five teaching emails, 001 to 025, with 013 left out because week 7's own check cell runs it",
+    "exam_reserved_emails_read": 0,
+    "batch_emails_read": 0
+  },
+  "runs_made": 3,
+  "inputs": {
+    "note": "Every .eml was digested at the top of every pass and the three sets were compared afterwards. They match, so no input changed under the measurement.",
+    "identical_across_passes": true,
+    "sha256": {
+      "001-payroll-deposit-verify": "7edc77df903f913dc77b18373b10015e0179e1818c544f8be444fbd86e84cd69",
+      "002-it-maintenance-window": "496063f0ef00cc2e2220ae3a6bfcc252b9f3521c033db082ded955fadd860f66",
+      "003-inkmoor-spring-catalog": "adfc9322b05fec12218bddf8f31e4db35f503ad42f02695034c7e96914104e19",
+      "004-cfo-quick-task": "d244bae85b2df6ab28dff532fca6f8021c5934b45561d6233a25e979b6abeb14",
+      "005-slatemoor-past-due-statement": "fe29be9af4aecf08b1068807b1ba6a915d71333373d8fe495f31b20a9cf9915a",
+      "006-helpdesk-password-expiry": "c266103f1269e42b459cc4f67b93772bfd1b5ddbe66022aa5e099add80444801",
+      "007-larkseal-contract-signature": "4d75709be17adb3adb4b6cd94f39eb2aa8f303ede8fad6e9ccf3117920583b93",
+      "008-larkhollow-quote-portal": "d2696e994f070d98aede7f330f7cbb2208b4c7faa27fea93a3d9648df3940e08",
+      "009-ceo-are-you-available": "06d6277e3b193cfa39e32d68096c352a975331da8e082cbc794c5d74d06a1409",
+      "010-ferncrate-rfq-share": "bde8f7b0424bd3c8df2ccc4fef04589fef6c41273bf01e60c9d236b8bd142c67",
+      "011-po-20431-thread-reply": "b8db842029219fe57ab08f79b94ccff11f0e7a7cca76e8574d4fa456e9aad2a8",
+      "012-elmhollow-badge-access": "501b2281b5e81100f3cc9c8d6394bac457412849964e5f3cc37f73338c80640f",
+      "014-ferncrate-staffing-plan-share": "3d9d66fe62af4e045aec84fb345a790653f1b1ac6ef572f73e459a41ec35de57",
+      "015-report-phish-reminder": "f6d4a589f4479eeae0f0fcad68560725f1410723398e765335b08411690df0be",
+      "016-slatemoor-remit-to-update": "380fc638521cba1ed2940b3acb067dc444b49c74d860b6f8ea964f4a14692fff",
+      "017-fenwright-pay-statement-ready": "5ec9f82e2ed0d40dbe497d8e6e8f7b161945053c56c07194e4ff2551d2793e90",
+      "018-hollinvale-site-access-link": "84b8640b4c089501dd8ab92e558a96fd5fb003b6c4912f8f673978444776c827",
+      "019-cfo-move-slatemoor-payment": "6d1451a34f5bafc7dee08c6cbb461f3df6a11b5e1b2fb7ca82c678d267865123",
+      "020-sso-session-expired": "d0adb38a3169be599be592d95bc08e8a4e0f60536dc9d2e3dcb6da46d5ab4145",
+      "021-direct-deposit-change-request": "8b978319e337bbb873829243de7dfffb3c702b8b0d39725ac4df0e25da65caac",
+      "022-mailbox-quota-subject-tag": "70dfbad55c9612c58b276f8190fd8337b40eadac4e75d02bd1e520e6818cd805",
+      "023-cfo-vendor-update-header-note": "45b5c24f21f1f9d54f9d6c2ab709dc51cf0c7aaebb4a99ee2b8731f726f1e846",
+      "024-vetchmoor-census-control": "b9e79333abe5c22dcffb3f5ac36f13ca561bb8f1f57fbc9d841fa746b4380cba",
+      "025-larkseal-review-encoded-subject": "51d30b1c5a4ed54cb2ad9fe20bb9a6f0bd08fabfdd58506644e114e19142972e"
+    }
+  },
+  "featured_email": {
+    "id": "018-hollinvale-site-access-link",
+    "path": "builder/corpus/emails/teaching/018-hollinvale-site-access-link.eml",
+    "sha256": "84b8640b4c089501dd8ab92e558a96fd5fb003b6c4912f8f673978444776c827",
+    "sender": "Renata Solheim <r.solheim@hollinvalepm.example>",
+    "recipient": "h.quintanilla@pellgrave.example",
+    "subject": "Re: Updated site access schedule for the Hollinvale properties",
+    "link_host": "secure-doc-viewer.example",
+    "answer_key": {
+      "verdict": "malicious",
+      "category": "credential_phish",
+      "difficulty": "hard",
+      "body_only_read": "benign",
+      "escalate_expected": true,
+      "escalation_reasons": [
+        "partner_account_compromise"
+      ],
+      "label_version": "phase0-1.0"
+    },
+    "why_this_one": "The lesson is visible in the note itself. The sender is a real partner mailbox with a good reputation and all three authentication checks passing, and the one link host is on the team's own blocklist. So the model has every reason to say benign and one fact that says it cannot be. It is not in the twenty the lab runs, it is not 013, and it is not email 007, which weeks 1 and 2 both used.",
+    "per_pass": [
+      {
+        "pass": "pass1",
+        "finished_at": "2026-09-05T02:32:04-05:00",
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.85,
+        "indicators": [
+          "SPF result: pass",
+          "DKIM result: pass",
+          "DMARC result: pass",
+          "Link hosts: ['secure-doc-viewer.example']",
+          "Came from outside the company: True",
+          "Gateway scan result: clean"
+        ],
+        "recommended_action": "close_benign_reply_to_reporter",
+        "summary": "The email contains a legitimate external link to a schedule review page, and the sender is outside the company but appears legitimate based on reputation checks. No malicious indicators are present.",
+        "escalate": true,
+        "escalate_reason": "fact_contradiction",
+        "fact_check_problems": [
+          "The answer says benign, and one link host in this message is on the blocklist."
+        ],
+        "stop_reason": "decisive_malicious",
+        "steps": 2,
+        "tool_calls_in_order": [
+          {
+            "step": 1,
+            "tool": "check_sender_reputation",
+            "arguments": {},
+            "result_first_80_chars": "{\"domain\": \"hollinvalepm.example\", \"status\": \"known_good\", \"first_seen\": \"2023-0"
+          },
+          {
+            "step": 2,
+            "tool": "check_urls",
+            "arguments": {
+              "hosts": [
+                "secure-doc-viewer.example"
+              ]
+            },
+            "result_first_80_chars": "{\"secure-doc-viewer.example\": \"blocklisted\"}"
+          }
+        ],
+        "model_calls": 3,
+        "tokens_per_call": [
+          {
+            "kind": "loop step",
+            "finish_reason": "stop",
+            "prompt_tokens": 1716,
+            "completion_tokens": 43,
+            "total_tokens": 1759
+          },
+          {
+            "kind": "loop step",
+            "finish_reason": "tool_calls",
+            "prompt_tokens": 1852,
+            "completion_tokens": 38,
+            "total_tokens": 1890
+          },
+          {
+            "kind": "closing call",
+            "finish_reason": "stop",
+            "prompt_tokens": 929,
+            "completion_tokens": 161,
+            "total_tokens": 1090
+          }
+        ],
+        "tokens_this_email_total": 4739,
+        "tokens_this_email_written": 242,
+        "seconds": 18.53,
+        "raw_closing_answer": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.85,\n  \"indicators\": [\"SPF result: pass\", \"DKIM result: pass\", \"DMARC result: pass\", \"Link hosts: ['secure-doc-viewer.example']\", \"Came from outside the company: True\", \"Gateway scan result: clean\"],\n  \"recommended_action\": \"close_benign_reply_to_reporter\",\n  \"escalate\": \"no\",\n  \"summary\": \"The email contains a legitimate external link to a schedule review page, and the sender is outside the company but appears legitimate based on reputation checks. No malicious indicators are present.\"\n}",
+        "note": "Verdict: benign\nConfidence: 0.85\nIndicators: SPF result: pass; DKIM result: pass; DMARC result: pass; Link hosts: ['secure-doc-viewer.example']; Came from outside the company: True; Gateway scan result: clean; sender domain hollinvalepm.example\nRecommended action: close_benign_reply_to_reporter\nEscalate: yes\nSummary: The email contains a legitimate external link to a schedule review page, and the sender is outside the company but appears legitimate based on reputation checks. No malicious indicators are present."
+      },
+      {
+        "pass": "pass2",
+        "finished_at": "2026-09-05T02:36:26-05:00",
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.8,
+        "indicators": [
+          "SPF result: pass",
+          "DKIM result: pass",
+          "DMARC result: pass",
+          "Came from outside the company: True",
+          "Gateway scan result: clean",
+          "Link hosts: ['secure-doc-viewer.example']",
+          "check_sender_reputation returned domain status: known_good",
+          "check_urls returned secure-doc-viewer.example: blocklisted"
+        ],
+        "recommended_action": "close_spam_reply_to_reporter",
+        "summary": "The email is from an external sender with valid SPF/DKIM/DMARC results and a clean gateway scan. The link host is blocklisted, but the email body is benign and non-phishing. Recommend closing as spam reply.",
+        "escalate": true,
+        "escalate_reason": "fact_contradiction",
+        "fact_check_problems": [
+          "The answer says benign, and one link host in this message is on the blocklist."
+        ],
+        "stop_reason": "decisive_malicious",
+        "steps": 2,
+        "tool_calls_in_order": [
+          {
+            "step": 1,
+            "tool": "check_sender_reputation",
+            "arguments": {},
+            "result_first_80_chars": "{\"domain\": \"hollinvalepm.example\", \"status\": \"known_good\", \"first_seen\": \"2023-0"
+          },
+          {
+            "step": 2,
+            "tool": "check_urls",
+            "arguments": {
+              "hosts": [
+                "secure-doc-viewer.example"
+              ]
+            },
+            "result_first_80_chars": "{\"secure-doc-viewer.example\": \"blocklisted\"}"
+          }
+        ],
+        "model_calls": 3,
+        "tokens_per_call": [
+          {
+            "kind": "loop step",
+            "finish_reason": "stop",
+            "prompt_tokens": 1716,
+            "completion_tokens": 43,
+            "total_tokens": 1759
+          },
+          {
+            "kind": "loop step",
+            "finish_reason": "tool_calls",
+            "prompt_tokens": 1852,
+            "completion_tokens": 38,
+            "total_tokens": 1890
+          },
+          {
+            "kind": "closing call",
+            "finish_reason": "stop",
+            "prompt_tokens": 929,
+            "completion_tokens": 205,
+            "total_tokens": 1134
+          }
+        ],
+        "tokens_this_email_total": 4783,
+        "tokens_this_email_written": 286,
+        "seconds": 11.79,
+        "raw_closing_answer": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.8,\n  \"indicators\": [\"SPF result: pass\", \"DKIM result: pass\", \"DMARC result: pass\", \"Came from outside the company: True\", \"Gateway scan result: clean\", \"Link hosts: ['secure-doc-viewer.example']\", \"check_sender_reputation returned domain status: known_good\", \"check_urls returned secure-doc-viewer.example: blocklisted\"],\n  \"recommended_action\": \"close_spam_reply_to_reporter\",\n  \"escalate\": \"no\",\n  \"summary\": \"The email is from an external sender with valid SPF/DKIM/DMARC results and a clean gateway scan. The link host is blocklisted, but the email body is benign and non-phishing. Recommend closing as spam reply.\"\n}",
+        "note": "Verdict: benign\nConfidence: 0.8\nIndicators: SPF result: pass; DKIM result: pass; DMARC result: pass; Came from outside the company: True; Gateway scan result: clean; Link hosts: ['secure-doc-viewer.example']; check_sender_reputation returned domain status: known_good; check_urls returned secure-doc-viewer.example: blocklisted; sender domain hollinvalepm.example\nRecommended action: close_spam_reply_to_reporter\nEscalate: yes\nSummary: The email is from an external sender with valid SPF/DKIM/DMARC results and a clean gateway scan. The link host is blocklisted, but the email body is benign and non-phishing. Recommend closing as spam reply."
+      },
+      {
+        "pass": "pass3",
+        "finished_at": "2026-09-05T02:39:27-05:00",
+        "verdict": "benign",
+        "category": "legit_external",
+        "confidence": 0.85,
+        "indicators": [
+          "SPF result: pass",
+          "DKIM result: pass",
+          "DMARC result: pass",
+          "Link hosts: ['secure-doc-viewer.example']",
+          "Came from outside the company: True",
+          "Gateway scan result: clean"
+        ],
+        "recommended_action": "close_benign_reply_to_reporter",
+        "summary": "The email contains a legitimate external link to a schedule review page, and all technical checks pass. No malicious content is present. Please confirm the schedule as indicated.",
+        "escalate": true,
+        "escalate_reason": "fact_contradiction",
+        "fact_check_problems": [
+          "The answer says benign, and one link host in this message is on the blocklist."
+        ],
+        "stop_reason": "decisive_malicious",
+        "steps": 2,
+        "tool_calls_in_order": [
+          {
+            "step": 1,
+            "tool": "check_sender_reputation",
+            "arguments": {},
+            "result_first_80_chars": "{\"domain\": \"hollinvalepm.example\", \"status\": \"known_good\", \"first_seen\": \"2023-0"
+          },
+          {
+            "step": 2,
+            "tool": "check_urls",
+            "arguments": {
+              "hosts": [
+                "secure-doc-viewer.example"
+              ]
+            },
+            "result_first_80_chars": "{\"secure-doc-viewer.example\": \"blocklisted\"}"
+          }
+        ],
+        "model_calls": 3,
+        "tokens_per_call": [
+          {
+            "kind": "loop step",
+            "finish_reason": "stop",
+            "prompt_tokens": 1716,
+            "completion_tokens": 43,
+            "total_tokens": 1759
+          },
+          {
+            "kind": "loop step",
+            "finish_reason": "tool_calls",
+            "prompt_tokens": 1852,
+            "completion_tokens": 38,
+            "total_tokens": 1890
+          },
+          {
+            "kind": "closing call",
+            "finish_reason": "stop",
+            "prompt_tokens": 929,
+            "completion_tokens": 159,
+            "total_tokens": 1088
+          }
+        ],
+        "tokens_this_email_total": 4737,
+        "tokens_this_email_written": 240,
+        "seconds": 6.31,
+        "raw_closing_answer": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.85,\n  \"indicators\": [\"SPF result: pass\", \"DKIM result: pass\", \"DMARC result: pass\", \"Link hosts: ['secure-doc-viewer.example']\", \"Came from outside the company: True\", \"Gateway scan result: clean\"],\n  \"recommended_action\": \"close_benign_reply_to_reporter\",\n  \"escalate\": \"no\",\n  \"summary\": \"The email contains a legitimate external link to a schedule review page, and all technical checks pass. No malicious content is present. Please confirm the schedule as indicated.\"\n}",
+        "note": "Verdict: benign\nConfidence: 0.85\nIndicators: SPF result: pass; DKIM result: pass; DMARC result: pass; Link hosts: ['secure-doc-viewer.example']; Came from outside the company: True; Gateway scan result: clean; sender domain hollinvalepm.example\nRecommended action: close_benign_reply_to_reporter\nEscalate: yes\nSummary: The email contains a legitimate external link to a schedule review page, and all technical checks pass. No malicious content is present. Please confirm the schedule as indicated."
+      }
+    ],
+    "identical_in_all_three_passes": {
+      "verdict": "benign",
+      "category": "legit_external",
+      "escalate": true,
+      "escalate_reason": "fact_contradiction",
+      "fact_check_problem": "The answer says benign, and one link host in this message is on the blocklist.",
+      "stop_reason": "decisive_malicious",
+      "steps": 2,
+      "tools_in_order": [
+        "check_sender_reputation",
+        "check_urls"
+      ],
+      "check_urls_argument": {
+        "hosts": [
+          "secure-doc-viewer.example"
+        ]
+      },
+      "check_urls_result": "secure-doc-viewer.example: blocklisted",
+      "model_calls": 3,
+      "prompt_tokens_per_call": [
+        1716,
+        1852,
+        929
+      ],
+      "model_own_escalate_answer": "no"
+    },
+    "varied_across_passes": {
+      "confidence": [
+        0.85,
+        0.8,
+        0.85
+      ],
+      "recommended_action": [
+        "close_benign_reply_to_reporter",
+        "close_spam_reply_to_reporter",
+        "close_benign_reply_to_reporter"
+      ],
+      "tokens_this_email_total": [
+        4739,
+        4783,
+        4737
+      ],
+      "completion_tokens_on_closing_call": [
+        161,
+        205,
+        159
+      ],
+      "summary_wording": "different sentences every pass, same claim: no malicious indicators are present",
+      "indicator_list_length": [
+        6,
+        8,
+        6
+      ]
+    },
+    "the_one_pass_that_said_it_out_loud": {
+      "pass": "pass2",
+      "what": "The model listed 'check_urls returned secure-doc-viewer.example: blocklisted' as one of its own indicators, wrote 'The link host is blocklisted, but the email body is benign and non-phishing' in the summary, and still recorded verdict benign.",
+      "seen_in": "one pass of three, so it is not a number to promise on camera"
+    }
+  },
+  "score_block": {
+    "scored_set": "twenty-four teaching emails, 001 to 025 without 013",
+    "answer_key": "builder/corpus/release/ground_truth_teaching.json, version phase0-1.0",
+    "set_balance": {
+      "malicious": 16,
+      "benign": 8
+    },
+    "per_pass": [
+      {
+        "pass": "pass1",
+        "finished_at": "2026-09-05T02:32:04-05:00",
+        "emails_scored": 24,
+        "correct": 16,
+        "accuracy": 0.6666666666666666,
+        "false_positives": 0,
+        "false_negatives": 8,
+        "escalation_agreement": 12,
+        "escalation_agreement_rate": 0.5,
+        "rows_with_no_verdict": 0,
+        "answer_key_version": "phase0-1.0",
+        "session_tokens": {
+          "prompt": 127115,
+          "answer": 6514,
+          "total": 133629,
+          "calls": 72
+        },
+        "seconds": 553.0
+      },
+      {
+        "pass": "pass2",
+        "finished_at": "2026-09-05T02:36:26-05:00",
+        "emails_scored": 24,
+        "correct": 16,
+        "accuracy": 0.6666666666666666,
+        "false_positives": 0,
+        "false_negatives": 8,
+        "escalation_agreement": 12,
+        "escalation_agreement_rate": 0.5,
+        "rows_with_no_verdict": 0,
+        "answer_key_version": "phase0-1.0",
+        "session_tokens": {
+          "prompt": 124973,
+          "answer": 6421,
+          "total": 131394,
+          "calls": 71
+        },
+        "seconds": 262.0
+      },
+      {
+        "pass": "pass3",
+        "finished_at": "2026-09-05T02:39:27-05:00",
+        "emails_scored": 24,
+        "correct": 16,
+        "accuracy": 0.6666666666666666,
+        "false_positives": 0,
+        "false_negatives": 8,
+        "escalation_agreement": 13,
+        "escalation_agreement_rate": 0.542,
+        "rows_with_no_verdict": 1,
+        "answer_key_version": "phase0-1.0",
+        "session_tokens": {
+          "prompt": 124674,
+          "answer": 6689,
+          "total": 131363,
+          "calls": 71
+        },
+        "seconds": 181.2
+      }
+    ],
+    "identical_in_all_three_passes": {
+      "emails_scored": 24,
+      "correct": 16,
+      "accuracy": 0.6666666666666666,
+      "accuracy_said_aloud": "two thirds",
+      "false_positives": 0,
+      "false_negatives": 8,
+      "answer_key_version": "phase0-1.0",
+      "the_same_eight_emails_missed_every_pass": true
+    },
+    "varied_across_passes": {
+      "escalation_agreement": [
+        12,
+        12,
+        13
+      ],
+      "rows_with_no_verdict": [
+        0,
+        0,
+        1
+      ],
+      "session_tokens_total": [
+        133629,
+        131394,
+        131363
+      ],
+      "model_calls": [
+        72,
+        71,
+        71
+      ],
+      "seconds": [
+        553.0,
+        262.0,
+        181.2
+      ]
+    },
+    "verbatim_pass1": "Week 7 score report\n----------------------------------------------------------\nEmails scored:         24\nCorrect calls:         16 of 24\nAccuracy:              0.6666666666666666\nFalse positives:       0  (benign emails called malicious)\nFalse negatives:       8  (malicious emails called benign)\nEscalation agreement:  12 of 24  (0.5)\nRows with no verdict:  0\nAnswer key version:    phase0-1.0\n----------------------------------------------------------\nThe three counts add up to: 24 of 24 rows\nEvery row landed in exactly one counter.\nTokens this session: 133629 total, 127115 sent, 6514 answered, over 72 calls.\n",
+    "verbatim_pass3": "Week 7 score report\n----------------------------------------------------------\nEmails scored:         24\nCorrect calls:         16 of 24\nAccuracy:              0.6666666666666666\nFalse positives:       0  (benign emails called malicious)\nFalse negatives:       8  (malicious emails called benign)\nEscalation agreement:  13 of 24  (0.542)\nRows with no verdict:  1\nAnswer key version:    phase0-1.0\n----------------------------------------------------------\nThe three counts add up to: 24 of 24 rows\nEvery row landed in exactly one counter.\nEmails that did not finish: 1. A row with no verdict cannot\nmatch the answer key, so it counts as an error above. Give\nthat number in your written answer.\nTokens this session: 131363 total, 124674 sent, 6689 answered, over 71 calls.\n"
+  },
+  "the_eight_misses": [
+    {
+      "email_id": "004-cfo-quick-task",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "016-slatemoor-remit-to-update",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "018-hollinvale-site-access-link",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "020-sso-session-expired",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "021-direct-deposit-change-request",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "022-mailbox-quota-subject-tag",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "023-cfo-vendor-update-header-note",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    },
+    {
+      "email_id": "024-vetchmoor-census-control",
+      "agent": "benign",
+      "key": "malicious",
+      "which": "false negative"
+    }
+  ],
+  "variation": {
+    "verdict_stable_on": 23,
+    "verdict_varied_on": [
+      "016-slatemoor-remit-to-update"
+    ],
+    "what_moved": "One email of twenty-four, 016-slatemoor-remit-to-update. In passes 1 and 2 it came back benign. In pass 3 the closing answer hit the 512 token ceiling part way through a nineteen item indicator list, so the JSON never closed, no verdict was read, and four of the six note lines read 'not answered'. That row's escalate flag then went to yes on the low confidence rule, which is why escalation agreement reads 13 in pass 3 and 12 in the other two. The agreement went up because an email failed, not because the agent judged better.",
+    "the_failed_row": {
+      "email_id": "016-slatemoor-remit-to-update",
+      "pass": "pass3",
+      "finish_reason": "length",
+      "completion_tokens": 512,
+      "escalate": true,
+      "escalate_reason": "low_confidence",
+      "keys_the_model_left_out": [
+        "verdict",
+        "confidence",
+        "indicators",
+        "recommended_action",
+        "summary"
+      ],
+      "note": "Verdict: not answered\nConfidence: not answered\nIndicators: the model returned no indicator; sender domain slatemoorsupply.example\nRecommended action: not answered\nEscalate: yes\nSummary: not answered"
+    },
+    "what_a_student_will_see": "The verdict, the escalate flag, the stop reason and the two tool calls on email 018 were the same in all three passes. The confidence, the recommended action and the wording of the summary were not. Say the first group on camera. Do not promise the second."
+  },
+  "headline": "The agent called a phishing message benign in all three runs, and wrote a summary telling the person who reported it that nothing is wrong. The escalate line on that same note still reads yes, because the student's own fact check set it, not the model. Over twenty-four emails the agent was right sixteen times, with zero false positives and eight false negatives: every error it made was the expensive kind.",
+  "numbers_safe_to_say_aloud": [
+    "sixteen of twenty-four correct",
+    "two thirds",
+    "zero false positives",
+    "eight false negatives",
+    "confidence zero point eight five",
+    "two tool calls",
+    "three model calls for one email",
+    "escalate yes, on a verdict of benign"
+  ],
+  "notes_for_whoever_writes_the_scene_list": [
+    "The six line note and the score block are output, not code. Neither quotes a line from write_note() or score_batch().",
+    "Nothing here shows a student what to type. The two solution cells were run, never displayed.",
+    "Email 018 is a week 6 teaching email. If week 6's walkthrough wants it too, one of the two should move.",
+    "Escalation agreement is a weak number on this set and should be said carefully or left out: the teaching set is sixteen malicious to eight benign, and the lab's twenty are ten and ten."
+  ]
+}

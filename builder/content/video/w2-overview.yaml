@@ -1,0 +1,93 @@
+id: w2-overview
+title: What week 2 adds
+kind: concept
+module: m02
+embed_on: builder/content/pages/w2-overview.md
+blurb: Why your code cannot use a paragraph, what a strict answer looks like, and why a broken answer is normal rather than a failure.
+explains:
+  - builder/content/pages/w2-overview.md
+  - builder/content/pages/w2-content.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 2
+    heading: Ask for an answer your code can use
+    body: Last week you got words back. This week you get named values, and you check them before you trust them.
+    narration:
+      - Welcome to week 2.
+      - Last week your code got words back from the model. A person can read words.
+      - Your code cannot sort them, count them, or add them up.
+      - This week you ask for something your code can actually use.
+
+  - type: slide
+    layout: compare
+    eyebrow: The change
+    heading: The same judgment, two shapes
+    items:
+      - A paragraph | This looks like a phishing attempt because the link does not match the sender.
+      - Named values | verdict, category, confidence, indicators
+    narration:
+      - text: Here is the same judgment written two ways.
+        reveal: 1
+      - text: On the left, a sentence. Useful to read, useless to a program.
+        reveal: 1
+      - text: On the right, four named values. A verdict, a category, a confidence number, and a list of indicators.
+        reveal: 2
+      - text: Your code can read the second one. It can count how often the verdict was malicious.
+        reveal: 2
+      - text: Nothing about the judgment changed. Only the shape did.
+
+  - type: slide
+    layout: statement
+    eyebrow: The word for it
+    heading: JSON is a dictionary written as text
+    body: You already used dictionaries in week 0. JSON is the same thing, spelled out so it can travel in a message.
+    narration:
+      - The shape has a name. It is called JSON.
+      - If that word is new, it is simpler than it sounds.
+      - It is a dictionary, the kind you used in week 0, written out as text so it can travel inside a message.
+      - You ask the model for JSON. Then your code turns that text back into a dictionary.
+
+  - type: slide
+    layout: numbered
+    eyebrow: The lab
+    heading: What your code does with the reply
+    items:
+      - Turn the text into a dictionary
+      - Check every field against the schema
+      - If it fails, say what was wrong and ask again
+    narration:
+      - text: Your code does three things with every reply.
+        reveal: 1
+      - text: First it turns the text into a dictionary.
+        reveal: 1
+      - text: Then it checks the fields against a schema. A schema is just the list of what has to be there.
+        reveal: 2
+      - text: Is there a verdict. Is the confidence a number between zero and one.
+        reveal: 2
+      - text: If something is wrong, your code says what was wrong and asks again.
+        reveal: 3
+
+  - type: slide
+    layout: statement
+    eyebrow: The part people get wrong
+    heading: A broken answer is normal, not a failure
+    body: The model will hand you something malformed sometimes. Handling it is the work, not a sign that you did something wrong.
+    narration:
+      - Here is the thing to hold on to this week.
+      - Sometimes the model will hand you something broken. Missing a field, or wrapped in extra text.
+      - That is normal. It is not a sign that you did something wrong.
+      - Handling it is the work. Any real system that talks to a model has this exact code in it.
+      - So when your retry fires, that is your program working, not failing.
+
+  - type: slide
+    layout: closing
+    eyebrow: This week
+    heading: What to do next
+    body: The sidebar teaches the three pieces of Python you need. The lab then does one thing with them.
+    narration:
+      - Start with the sidebar notebook. It covers dictionaries, JSON as text, and how to try something again when it fails.
+      - Then the reading, then the lab.
+      - Everything you wrote in week 1 arrives already working in this week's notebook.
+      - So if last week did not finish, you can still start this one today.

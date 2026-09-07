@@ -1,0 +1,133 @@
+id: w7-walkthrough
+title: What a finished week 7 run looks like
+kind: walkthrough
+module: m07
+embed_on: builder/content/pages/w7-content.md
+blurb: One real run on an email your lab does not use. The note it wrote, the score block, and the checks to make before you submit.
+explains:
+  - builder/content/pages/w7-content.md
+  - builder/content/assignments/w7-lab.md
+
+scenes:
+  - type: slide
+    layout: title
+    eyebrow: Week 7 walkthrough
+    heading: What a finished run looks like
+    body: One real run, on an email your lab does not use, scored against a different set. Watch what one note says, then watch what the numbers say.
+    narration:
+      - This is what a finished week 7 run looks like.
+      - It runs on an email your lab does not use, so nothing here is your answer.
+      - Watch what one note says. Then watch what the numbers say about all of them.
+
+  - type: slide
+    layout: code
+    eyebrow: A real note
+    heading: Six lines, in order
+    body: |
+      Verdict: benign
+      Confidence: 0.85
+      Indicators: SPF result: pass; DKIM result: pass;
+      DMARC result: pass; Link hosts:
+      ['secure-doc-viewer.example'] ...
+      Recommended action: close_benign_reply_to_reporter
+      Escalate: yes
+      Summary: The email contains a legitimate external
+      link to a schedule review page ... No malicious
+      indicators are present.
+    narration:
+      - Here is one note from that run.
+      - Six lines, in the order the template sets. The indicator line and the summary both run longer than this slide.
+      - Nothing about the shape is wrong. Every line your grader looks for is there.
+      - The content is another matter.
+
+  - type: slide
+    layout: compare
+    eyebrow: The problem
+    heading: The tool said one thing, the note says another
+    items:
+      - The link check returned | secure-doc-viewer.example is blocklisted
+      - The note returned | Verdict benign, no malicious indicators
+    narration:
+      - text: Two tools ran on this email, and three model calls settled it.
+        reveal: 1
+      - text: The sender came back known good. The one link came back blocklisted.
+        reveal: 1
+      - text: The verdict on the note is benign. The summary tells the person who reported it that no malicious indicators are present.
+        reveal: 2
+      - text: The answer key calls this a credential phish. The agent read the blocklist result and wrote benign anyway, in all three runs.
+        reveal: 2
+
+  - type: slide
+    layout: statement
+    eyebrow: The line that saved it
+    heading: Escalate still reads yes
+    body: The model's own answer said no. Your week 6 fact check compared the verdict against the tool result and set the flag itself.
+    narration:
+      - Now look at the fifth line. Escalate reads yes.
+      - The model did not put it there. Its own answer said no.
+      - Your week 6 fact check saw a benign verdict on a blocklisted link and set the flag itself.
+      - So the part a person reads is wrong, and the part that routes it to a person is right.
+
+  - type: slide
+    layout: code
+    eyebrow: The score block
+    heading: What the numbers said
+    body: |
+      Emails scored:         24
+      Correct calls:         16 of 24
+      Accuracy:              0.6666666666666666
+      False positives:       0  (benign emails called malicious)
+      False negatives:       8  (malicious emails called benign)
+      Escalation agreement:  12 of 24  (0.5)
+      Rows with no verdict:  0
+      Answer key version:    phase0-1.0
+    narration:
+      - This run scored twenty four teaching emails, sixteen of them malicious. Your lab scores twenty, ten and ten.
+      - Sixteen of twenty four correct. Accuracy prints as a long decimal, because two thirds does not divide evenly.
+      - Zero false positives. Eight false negatives. Every mistake was a malicious email called safe, which is the expensive kind.
+      - The three counts add up to twenty four. That is how you know the counting worked.
+
+  - type: slide
+    layout: compare
+    eyebrow: What should vary
+    heading: The same work, three times
+    items:
+      - Steady every run | verdict, escalate, the two tool calls
+      - Moved every run | confidence, recommended action, summary wording
+    narration:
+      - text: That email was run three times.
+        reveal: 1
+      - text: The verdict, the escalate flag and the two tool calls were the same every time.
+        reveal: 1
+      - text: The confidence moved between zero point eight five and zero point eight. The action and the summary wording changed.
+        reveal: 2
+      - text: Escalation agreement read twelve of twenty four twice, then thirteen. It rose because one email failed to finish, not because the agent judged better.
+        reveal: 2
+
+  - type: slide
+    layout: numbered
+    eyebrow: Before you submit
+    heading: Three checks
+    items:
+      - All twenty notes carry six lines in order
+      - Your three counts add up to twenty
+      - Your written answer uses your own numbers
+    narration:
+      - text: Three things to check before you turn it in.
+        reveal: 1
+      - text: First, open the exported file and read it. Twenty notes, six lines each, in order.
+        reveal: 1
+      - text: Second, your correct calls and your two error counts add up to twenty. If they do not, a row was missed or counted twice.
+        reveal: 2
+      - text: Third, your written answer gives your own accuracy figure and names one email your agent got wrong.
+        reveal: 3
+
+  - type: slide
+    layout: closing
+    eyebrow: If it is not working
+    heading: The three failures you will actually hit
+    body: A note line reading not answered. Counts that do not add up. A name the notebook does not know.
+    narration:
+      - A note line reading not answered means the model ran out of room before it closed its answer. That row still counts as an error, so say so in your written answer.
+      - Counts that do not add up to twenty mean a row fell out of your loop, or landed in two counters.
+      - And a name that is not defined means a cell above it never ran. Start at the top. Sidebar code pasted into the lab gives you the same error.

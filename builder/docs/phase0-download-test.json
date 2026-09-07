@@ -1,0 +1,367 @@
+{
+ "date": "2026-09-03",
+ "instance": "canvas.bashtion.dev",
+ "steps": [
+  {
+   "step": "course shell",
+   "ok": true,
+   "detail": "created id 6 state unpublished (200)"
+  },
+  {
+   "step": "upload 003-inkmoor-spring-catalog.eml",
+   "ok": true,
+   "detail": "file id 637 size 6330 type message/rfc822 folder corpus/emails/teaching"
+  },
+  {
+   "step": "upload 006-helpdesk-password-expiry.eml",
+   "ok": true,
+   "detail": "file id 638 size 3772 type message/rfc822 folder corpus/emails/teaching"
+  },
+  {
+   "step": "upload 013-tidefern-census-correction.eml",
+   "ok": true,
+   "detail": "file id 639 size 6029 type message/rfc822 folder corpus/emails/teaching"
+  },
+  {
+   "step": "upload 019-cfo-move-slatemoor-payment.eml",
+   "ok": true,
+   "detail": "file id 640 size 2102 type message/rfc822 folder corpus/emails/teaching"
+  },
+  {
+   "step": "upload 021-direct-deposit-change-request.eml",
+   "ok": true,
+   "detail": "file id 641 size 4715 type message/rfc822 folder corpus/emails/teaching"
+  },
+  {
+   "step": "upload 032-cindermill-invoice-executable.eml",
+   "ok": true,
+   "detail": "file id 642 size 3122 type message/rfc822 folder corpus/emails/batch"
+  },
+  {
+   "step": "download 003-inkmoor-spring-catalog.eml",
+   "ok": false,
+   "detail": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"003-inkmoor-spring-catalog.eml\"; filename*=UTF-8''003-inkmoor-spring-catalog.eml",
+     "sha256_match": true,
+     "bytes": 6330
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false
+    }
+   }
+  },
+  {
+   "step": "download 006-helpdesk-password-expiry.eml",
+   "ok": false,
+   "detail": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"006-helpdesk-password-expiry.eml\"; filename*=UTF-8''006-helpdesk-password-expiry.eml",
+     "sha256_match": true,
+     "bytes": 3772
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false
+    }
+   }
+  },
+  {
+   "step": "download 013-tidefern-census-correction.eml",
+   "ok": false,
+   "detail": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"013-tidefern-census-correction.eml\"; filename*=UTF-8''013-tidefern-census-correction.eml",
+     "sha256_match": true,
+     "bytes": 6029
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false
+    }
+   }
+  },
+  {
+   "step": "download 019-cfo-move-slatemoor-payment.eml",
+   "ok": false,
+   "detail": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"019-cfo-move-slatemoor-payment.eml\"; filename*=UTF-8''019-cfo-move-slatemoor-payment.eml",
+     "sha256_match": true,
+     "bytes": 2102
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false
+    }
+   }
+  },
+  {
+   "step": "download 021-direct-deposit-change-request.eml",
+   "ok": false,
+   "detail": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"021-direct-deposit-change-request.eml\"; filename*=UTF-8''021-direct-deposit-change-request.eml",
+     "sha256_match": true,
+     "bytes": 4715
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false
+    }
+   }
+  },
+  {
+   "step": "download 032-cindermill-invoice-executable.eml",
+   "ok": false,
+   "detail": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"032-cindermill-invoice-executable.eml\"; filename*=UTF-8''032-cindermill-invoice-executable.eml",
+     "sha256_match": true,
+     "bytes": 3122
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false
+    }
+   }
+  },
+  {
+   "step": "classic quiz create/question/delete",
+   "ok": true,
+   "detail": "quiz 200, question 200, delete 200"
+  },
+  {
+   "step": "scope outcomes",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope rubrics",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope modules",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope assignments",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope discussions",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope pages",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope assignment groups",
+   "ok": true,
+   "detail": 200
+  },
+  {
+   "step": "scope announcements",
+   "ok": true,
+   "detail": 200
+  }
+ ],
+ "course_id": 6,
+ "files": [
+  {
+   "id": "003-inkmoor-spring-catalog",
+   "canvas_file_id": 637,
+   "local_sha256": "8434e227015075c7fd9be1cc53d7e78a4426dbe52cfbe1b96e3a34ae2a6f1a7a",
+   "results": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"003-inkmoor-spring-catalog.eml\"; filename*=UTF-8''003-inkmoor-spring-catalog.eml",
+     "sha256_match": true,
+     "bytes": 6330
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false,
+     "not_a_student_path": true
+    }
+   }
+  },
+  {
+   "id": "006-helpdesk-password-expiry",
+   "canvas_file_id": 638,
+   "local_sha256": "c266103f1269e42b459cc4f67b93772bfd1b5ddbe66022aa5e099add80444801",
+   "results": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"006-helpdesk-password-expiry.eml\"; filename*=UTF-8''006-helpdesk-password-expiry.eml",
+     "sha256_match": true,
+     "bytes": 3772
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false,
+     "not_a_student_path": true
+    }
+   }
+  },
+  {
+   "id": "013-tidefern-census-correction",
+   "canvas_file_id": 639,
+   "local_sha256": "98da091e049585752cff9f0cdc959d88248a79825881017866064aba6c1081c8",
+   "results": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"013-tidefern-census-correction.eml\"; filename*=UTF-8''013-tidefern-census-correction.eml",
+     "sha256_match": true,
+     "bytes": 6029
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false,
+     "not_a_student_path": true
+    }
+   }
+  },
+  {
+   "id": "019-cfo-move-slatemoor-payment",
+   "canvas_file_id": 640,
+   "local_sha256": "e8a128b073490b191d358a24b1f0b7d7dc0ce5d41230e2c99c74343345cae5a1",
+   "results": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"019-cfo-move-slatemoor-payment.eml\"; filename*=UTF-8''019-cfo-move-slatemoor-payment.eml",
+     "sha256_match": true,
+     "bytes": 2102
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false,
+     "not_a_student_path": true
+    }
+   }
+  },
+  {
+   "id": "021-direct-deposit-change-request",
+   "canvas_file_id": 641,
+   "local_sha256": "d71db320783178ff0d5e31d591c11aa4fa6bb939256a57f7cf4054edf88c34ef",
+   "results": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"021-direct-deposit-change-request.eml\"; filename*=UTF-8''021-direct-deposit-change-request.eml",
+     "sha256_match": true,
+     "bytes": 4715
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false,
+     "not_a_student_path": true
+    }
+   }
+  },
+  {
+   "id": "032-cindermill-invoice-executable",
+   "canvas_file_id": 642,
+   "local_sha256": "bb4dca25e126c4f4ff248dae4484becaaebabdc966bbfbf84998549317882ad1",
+   "results": {
+    "signed_url_no_auth": {
+     "status": 200,
+     "content_type": "message/rfc822",
+     "disposition": "attachment; filename=\"032-cindermill-invoice-executable.eml\"; filename*=UTF-8''032-cindermill-invoice-executable.eml",
+     "sha256_match": true,
+     "bytes": 3122
+    },
+    "signed_url_browser_ua": {
+     "status": 200,
+     "sha256_match": true,
+     "crlf_intact": true
+    },
+    "api_download_with_token": {
+     "status": 200,
+     "sha256_match": false,
+     "not_a_student_path": true
+    }
+   }
+  }
+ ],
+ "note": "The api_download_with_token method is not a student path: the /files/:id/download route is outside /api/ and ignores Bearer tokens, so it returns the login page. Canvas honors bearer tokens only on /api/ routes. The two signed-URL fetches are what a browser link does; all twelve matched byte for byte.",
+ "verdict": "PASS on the Canvas side: six of six files round-trip exactly by the signed link with and without a browser identity, served as message/rfc822 with Content-Disposition attachment. Endpoint-agent behavior on managed laptops remains untested from the development machine."
+}

@@ -1,0 +1,504 @@
+{
+  "week": 5,
+  "video": "w5-walkthrough",
+  "what_the_video_shows": "one trace: the ordered steps, the step count, and which of the five stop reasons ended the run",
+  "submission_artifact": "week5_loop_trace.json",
+  "recorded_on": "2026-09-05",
+  "model": "granite4.2:3b",
+  "model_digest": "sha256:40577dc168a3a9ad34e9a1234e0c2570be86097fa75a236d4574ae985705d3c4",
+  "endpoint": "http://localhost:11434/v1",
+  "request_settings": {
+    "temperature": 0.2,
+    "max_tokens": 1024,
+    "reasoning_effort": "none",
+    "tools_attached": 3
+  },
+  "email_id": "024",
+  "email_file": "builder/corpus/emails/teaching/024-vetchmoor-census-control.eml",
+  "email_sha256": "b9e79333abe5c22dcffb3f5ac36f13ca561bb8f1f57fbc9d841fa746b4380cba",
+  "email_subject": "Action needed: 2026 benefits census correction for Pellgrave Mechanical Group",
+  "email_from": "enrollment@vetchmoor-benefits.example",
+  "email_to": "payroll@pellgrave.example",
+  "email_link_hosts": [
+    "vetchmoor-benefits.example"
+  ],
+  "ground_truth": {
+    "verdict": "malicious",
+    "category": "credential_phish",
+    "difficulty": "easy",
+    "expected_loop": {
+      "tools": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "stop_reason": "tools_exhausted"
+    }
+  },
+  "week5_lab_emails": [
+    "004",
+    "005",
+    "007",
+    "010",
+    "011",
+    "012"
+  ],
+  "email_is_in_week5_lab": false,
+  "exam_reserved_emails_avoided": "046 to 056",
+  "why_this_email": "Week 5 is about the trace, so the email had to be one no single tool result settles. Nothing about 024 is decisive: the sender comes back unknown, the one link host comes back unlisted, and the recipient lookup is never decisive, so the run has to spend all three tools and end on tools_exhausted. That gives a full three step trace rather than the one step trace a decisive email produces. It is not one of week 5's six lab emails and it is not exam reserved. Weeks 1 and 2 both used email 007, so this is a different email again.",
+  "loop_settings": {
+    "max_steps": 4,
+    "usable_tools": [
+      "check_sender_reputation",
+      "check_urls",
+      "lookup_recipient"
+    ],
+    "the_five_stop_reasons": [
+      "decisive_malicious",
+      "decisive_benign",
+      "internal_sender",
+      "tools_exhausted",
+      "step_cap"
+    ]
+  },
+  "runs_made": 9,
+  "varied": false,
+  "what_varied": "Nothing a student would read off the screen. All 9 runs produced the same three steps in the same order, the same arguments, the same stop reason and the same token totals, to the token. Two things did change and neither is shown: the identifier the service puts on each tool call is new every call, and the wall clock time ranged from 18.36 to 46.06 seconds.",
+  "result": {
+    "steps_used": 3,
+    "stop_reason": "tools_exhausted",
+    "step_cap": 4,
+    "model_calls": 3,
+    "tokens_total": 5642,
+    "tokens_sent": 5529,
+    "tokens_answered": 113,
+    "final_answer_from_the_model": null,
+    "tool_order": [
+      "check_sender_reputation",
+      "check_urls",
+      "lookup_recipient"
+    ]
+  },
+  "raw_answer": {
+    "note": "Every reply on every step was a tool call and nothing else. finish_reason was tool_calls all three times and the answer text was empty all three times, so the model never wrote a verdict. The strings below are exactly what came back.",
+    "steps": [
+      {
+        "step": 1,
+        "tool_the_agent_asked_for": "check_sender_reputation",
+        "arguments_the_agent_sent": "{\"sender\":\"vetchmoor-benefits.example\"}",
+        "tool_result": {
+          "domain": "vetchmoor-benefits.example",
+          "status": "unknown",
+          "first_seen": "2026-04-20",
+          "messages_90d": 2,
+          "prior_reports": 0,
+          "last_report_verdict": null,
+          "last_report_date": null,
+          "campaign_tag": null,
+          "new_domain": true,
+          "notes": "First seen inside the window.",
+          "match_level": "domain"
+        },
+        "finish_reason": "tool_calls",
+        "answer_text": "",
+        "prompt_tokens": 1714,
+        "answer_tokens": 41,
+        "call_tokens": 1755
+      },
+      {
+        "step": 2,
+        "tool_the_agent_asked_for": "check_urls",
+        "arguments_the_agent_sent": "{\"hosts\":[\"vetchmoor-benefits.example\"]}",
+        "tool_result": {
+          "vetchmoor-benefits.example": "unlisted"
+        },
+        "finish_reason": "tool_calls",
+        "answer_text": "",
+        "prompt_tokens": 1872,
+        "answer_tokens": 40,
+        "call_tokens": 1912
+      },
+      {
+        "step": 3,
+        "tool_the_agent_asked_for": "lookup_recipient",
+        "arguments_the_agent_sent": "{\"address\":\"Tobias\"}",
+        "tool_result": {
+          "address": "tobias",
+          "name": null,
+          "role": null,
+          "mailbox_type": "unknown",
+          "executive": false,
+          "handles_payments": false,
+          "chronic_reporter": false,
+          "report_count_90d": 0,
+          "true_positive_count_90d": 0,
+          "campaign_tags": []
+        },
+        "finish_reason": "tool_calls",
+        "answer_text": "",
+        "prompt_tokens": 1943,
+        "answer_tokens": 32,
+        "call_tokens": 1975
+      }
+    ]
+  },
+  "the_trace_as_the_artifact_records_it": {
+    "email_id": "024",
+    "steps": [
+      {
+        "step": 1,
+        "tool": "check_sender_reputation",
+        "arguments": {
+          "sender": "vetchmoor-benefits.example"
+        },
+        "result": "{\"domain\": \"vetchmoor-benefits.example\", \"status\": \"unknown\", \"first_seen\": \"202"
+      },
+      {
+        "step": 2,
+        "tool": "check_urls",
+        "arguments": {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        "result": "{\"vetchmoor-benefits.example\": \"unlisted\"}"
+      },
+      {
+        "step": 3,
+        "tool": "lookup_recipient",
+        "arguments": {
+          "address": "Tobias"
+        },
+        "result": "{\"address\": \"tobias\", \"name\": null, \"role\": null, \"mailbox_type\": \"unknown\", \"ex"
+      }
+    ],
+    "steps_used": 3,
+    "stop_reason": "tools_exhausted",
+    "tokens": 5642
+  },
+  "the_honest_thing": {
+    "headline": "The agent asked the recipient lookup about Tobias, the name in the email's greeting, instead of payroll@pellgrave.example, the address it was handed. The tool answered with an empty record, and only the trace shows why.",
+    "detail": "The message opens 'Hello Tobias' but it was delivered to a shared payroll mailbox. On step 3 the agent sent {\"address\":\"Tobias\"}. The tool has no record under that, so it returned mailbox_type unknown with every field null or zero. The run still ended correctly, on tools_exhausted at 3 steps, and the step count and stop reason look right. The wrong value only shows in the arguments column of the trace.",
+    "what_the_agent_would_have_learned_from_the_right_address": {
+      "address": "payroll@pellgrave.example",
+      "name": "Payroll Shared Mailbox",
+      "role": "shared mailbox",
+      "mailbox_type": "shared",
+      "handles_payments": true,
+      "report_count_90d": 2,
+      "true_positive_count_90d": 2,
+      "campaign_tags": [
+        "direct-deposit-change"
+      ]
+    },
+    "what_the_agent_got_instead": {
+      "address": "tobias",
+      "name": null,
+      "role": null,
+      "mailbox_type": "unknown",
+      "executive": false,
+      "handles_payments": false,
+      "chronic_reporter": false,
+      "report_count_90d": 0,
+      "true_positive_count_90d": 0,
+      "campaign_tags": []
+    },
+    "repeatable": "the same wrong argument in all 9 runs"
+  },
+  "key_numbers": [
+    "3 steps, out of a cap of 4",
+    "stop reason tools_exhausted, one of the five",
+    "tool order: check_sender_reputation, then check_urls, then lookup_recipient",
+    "3 model calls",
+    "5,642 tokens for the whole run",
+    "step 1 cost 1,755 tokens, step 2 cost 1,912, step 3 cost 1,975",
+    "5,529 tokens sent, 113 tokens answered",
+    "sender status unknown, link host unlisted, recipient record empty",
+    "9 runs, identical every time"
+  ],
+  "notes_for_the_scene_writer": [
+    "Say the step count and the stop reason together. 3 steps under a cap of 4, ended on tools_exhausted. Nothing settled the case, so the loop spent every usable tool and stopped itself.",
+    "The trace records what the agent passed a tool, not only which tool it picked. That is the column the Tobias mistake shows up in, and it is the reason to open the file rather than trust the step count.",
+    "Each step costs more than the one before, because the whole history goes back with every request. 1,755 then 1,912 then 1,975.",
+    "The model wrote no verdict at any step. Every reply was a tool call. The stop reason comes from the student's own code, not from the model.",
+    "Email 024 is week 6's lab email and is the control twin of 013, the injected one. Week 6 compares the two. Showing 024 here does not show the injection, but the week 6 walkthrough should pick something else."
+  ],
+  "all_runs": [
+    {
+      "run": 1,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 20.46,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 2,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 46.06,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 3,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 21.17,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 4,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 26.59,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 5,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 38.79,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 6,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 32.52,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 7,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 18.36,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 8,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 23.47,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    },
+    {
+      "run": 9,
+      "steps_used": 3,
+      "stop_reason": "tools_exhausted",
+      "tokens": 5642,
+      "seconds": 23.24,
+      "tool_order": [
+        "check_sender_reputation",
+        "check_urls",
+        "lookup_recipient"
+      ],
+      "arguments": [
+        {
+          "sender": "vetchmoor-benefits.example"
+        },
+        {
+          "hosts": [
+            "vetchmoor-benefits.example"
+          ]
+        },
+        {
+          "address": "Tobias"
+        }
+      ],
+      "per_call_tokens": [
+        1755,
+        1912,
+        1975
+      ]
+    }
+  ],
+  "provenance": {
+    "run_from": "a script under a scratch directory holding the pre-written cells of builder/instructor/solutions/w5-lab-solution.ipynb and its run_loop, copied unchanged. No notebook was edited.",
+    "trials": "9 runs in three separate processes on the same day, all nine listed under all_runs",
+    "email_sha256_checked": "before and after every run, and it did not change",
+    "gate_notes": "Email 024 is not one of week 5's lab emails, so the walkthrough does not run this week's assignment. No line of the loop a student writes appears in this record."
+  }
+}

@@ -1,0 +1,85 @@
+{
+  "$comment": "Hosts the SOC trusts. check_urls returns allowlisted for these. Entries marked decoy never appear in the corpus.",
+  "hosts": [
+    {
+      "host": "my.fenwrightpay.example",
+      "added": "2021-03-08",
+      "reason": "Payroll vendor employee portal"
+    },
+    {
+      "host": "billing.slatemoorsupply.example",
+      "added": "2022-06-14",
+      "reason": "Parts supplier billing portal"
+    },
+    {
+      "host": "portal.marlstonefleet.example",
+      "added": "2022-09-01",
+      "reason": "Fleet vendor customer portal"
+    },
+    {
+      "host": "app.larkseal.example",
+      "added": "2023-02-20",
+      "reason": "E-signature signing host"
+    },
+    {
+      "host": "help.larkseal.example",
+      "added": "2023-02-20",
+      "reason": "E-signature help site"
+    },
+    {
+      "host": "share.ferncrate.example",
+      "added": "2023-05-11",
+      "reason": "File-sharing vendor share host"
+    },
+    {
+      "host": "vetchmoorbenefits.example",
+      "added": "2021-11-02",
+      "reason": "Benefits broker site"
+    },
+    {
+      "host": "enroll.vetchmoorbenefits.example",
+      "added": "2021-11-02",
+      "reason": "Benefits broker enrollment host"
+    },
+    {
+      "host": "business.sandmarshbank.example",
+      "added": "2020-08-17",
+      "reason": "Bank business banking sign-in"
+    },
+    {
+      "host": "training.redcedarsafety.example",
+      "added": "2022-01-25",
+      "reason": "Safety vendor training portal"
+    },
+    {
+      "host": "status.marlstonefleet.example",
+      "added": "2022-09-01",
+      "reason": "Fleet vendor status page (decoy)"
+    },
+    {
+      "host": "docs.larkseal.example",
+      "added": "2023-02-20",
+      "reason": "E-signature documentation (decoy)"
+    },
+    {
+      "host": "support.redcedarsafety.example",
+      "added": "2022-01-25",
+      "reason": "Safety vendor support site (decoy)"
+    },
+    {
+      "host": "reports.fenwrightpay.example",
+      "added": "2021-03-08",
+      "reason": "Payroll vendor reporting host (decoy)"
+    },
+    {
+      "host": "secure.sandmarshbank.example",
+      "added": "2020-08-17",
+      "reason": "Bank secure message center (decoy)"
+    },
+    {
+      "host": "files.ferncrate.example",
+      "added": "2023-05-11",
+      "reason": "File-sharing vendor file host (decoy)"
+    }
+  ]
+}

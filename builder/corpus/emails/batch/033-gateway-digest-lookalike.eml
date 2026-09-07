@@ -1,0 +1,159 @@
+Return-Path: <quarantine@sentrywick-release.example>
+Received: from mx.pellgrave.example (mx.pellgrave.example [10.20.4.10])
+  by mailstore-02.pellgrave.example (Sentrywick Store 4.2) with LMTP
+  id 4efe347c-3d2b-4a87-aa6b-c20fa431639a
+  for <d.crowmarden@pellgrave.example>; Thu, 23 Apr 2026 06:15:07 -0500
+Authentication-Results: mx.pellgrave.example;
+  spf=pass smtp.mailfrom=sentrywick-release.example;
+  dkim=none;
+  dmarc=none header.from=sentrywick-release.example
+Received-SPF: pass (mx.pellgrave.example: domain of
+  quarantine@sentrywick-release.example designates 203.0.113.166 as
+  permitted sender) receiver=mx.pellgrave.example;
+  client-ip=203.0.113.166;
+  envelope-from="quarantine@sentrywick-release.example";
+  helo=mail.sentrywick-release.example; identity=mailfrom; mechanism=mx
+X-Sentrywick-External: yes
+X-Sentrywick-Scan-Result: suspect
+X-Sentrywick-Spam-Score: 6.2
+X-Sentrywick-Message-UID: 5e618dfc6004
+X-Sentrywick-Reported-By: d.crowmarden@pellgrave.example
+Received: from mail.sentrywick-release.example
+  (mail.sentrywick-release.example [203.0.113.166])
+  by mx.pellgrave.example (Sentrywick Gateway 7.4) with ESMTPS
+  (TLS1_3 TLS_AES_256_GCM_SHA384) id 5e618dfc6004;
+  Thu, 23 Apr 2026 06:15:05 -0500
+Received: from mta-01.sentrywick-release.example ([192.0.2.166])
+  by mail.sentrywick-release.example with ESMTP id 643cddf3;
+  Thu, 23 Apr 2026 11:15:03 +0000
+Date: Thu, 23 Apr 2026 06:15:00 -0500
+From: Sentrywick Gateway <quarantine@sentrywick-release.example>
+To: Devin Crowmarden <d.crowmarden@pellgrave.example>
+Subject: Quarantine digest: 3 messages held for your review
+Message-ID: <20260423111500.5e43e3f8c53d@mail.sentrywick-release.example>
+MIME-Version: 1.0
+Content-Type: multipart/alternative; boundary="=_part_3c196cb098d3"
+
+--=_part_3c196cb098d3
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+[External message. Sentrywick Gateway]
+
+Sentrywick Gateway
+Quarantine digest for d.crowmarden@pellgrave.example
+
+3 messages are held for your review. They were stopped between 18:00 on 22=
+ April and 06:00 on 23 April. Quarantined mail is kept for 14 days and=
+ then removed.
+
+1. From:    news@brimwold-tooling.example
+   Subject: Second mailing, spring tooling catalogue
+   Reason:  Bulk sender, not on the allow list
+   Release:
+     https://release.sentrywick-release.example/release?id=3Dca8cbeab8f39
+
+2. From:    dispatch@tarnfield-castings.example
+   Subject: Shipment 88214 has left the yard
+   Reason:  Sender not seen before
+   Release:
+     https://release.sentrywick-release.example/release?id=3D013d4f9d68d2
+
+3. From:    alerts@velladown-forms.example
+   Subject: A form on your site was completed
+   Reason:  Link host on the block list
+   Release:
+     https://release.sentrywick-release.example/release?id=3Da23d2a49d017
+
+Each Release link opens the release page. Sign in with your Pellgrave=
+ account and the message is delivered to your inbox. Messages you leave in=
+ quarantine need no action.
+
+Sentrywick Gateway 7.4, automated notice
+
+--=_part_3c196cb098d3
+Content-Type: text/html; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+
+<html>
+<body=
+ style=3D"margin:0;padding:0;background-color:#f2f4f6;font-family:sans-seri=
+f;font-size:15px;line-height:1.5;color:#222222;">
+<p style=3D"margin:0;padding:6px=
+ 12px;background-color:#fff4d6;font-size:12px;color:#5a4a00;">[External=
+ message. Sentrywick Gateway]</p>
+<div style=3D"max-width:640px;margin:24px auto;padding:24px=
+ 32px;background-color:#ffffff;border:1px solid #d9dee3;">
+<p style=3D"margin:0 0 2px=
+ 0;font-size:13px;letter-spacing:1px;text-transform:uppercase;color:#5b6570=
+;">Sentrywick Gateway</p>
+<p style=3D"margin:0 0 16px 0;font-size:17px;font-weight:bold;">Quarantine=
+ digest for d.crowmarden@pellgrave.example</p>
+<p>3 messages are held for your review. They were stopped between 18:00 on=
+ 22 April and 06:00 on 23 April. Quarantined mail is kept for 14 days and=
+ then removed.</p>
+<table cellpadding=3D"0" cellspacing=3D"0"=
+ style=3D"width:100%;border-collapse:collapse;font-size:14px;">
+<tr>
+<th style=3D"padding:6px 10px;border-bottom:2px solid=
+ #c8ced5;text-align:left;font-weight:bold;color:#5b6570;">Sender</th>
+<th style=3D"padding:6px 10px;border-bottom:2px solid=
+ #c8ced5;text-align:left;font-weight:bold;color:#5b6570;">Subject</th>
+<th style=3D"padding:6px 10px;border-bottom:2px solid=
+ #c8ced5;text-align:left;font-weight:bold;color:#5b6570;">Reason</th>
+<th style=3D"padding:6px 10px;border-bottom:2px solid=
+ #c8ced5;text-align:left;font-weight:bold;color:#5b6570;">&nbsp;</th>
+</tr>
+<tr>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">news@brimwold-tooling.example</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">Second mailing, spring tooling catalogue</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">Bulk sender, not on the allow list</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;"><a=
+ href=3D"https://release.sentrywick-release.example/release?id=3Dca8cbeab8f=
+39"=
+ style=3D"color:#2f5d8a;font-weight:bold;text-decoration:none;">Release</a>=
+</td>
+</tr>
+<tr>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">dispatch@tarnfield-castings.example</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">Shipment 88214 has left the yard</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">Sender not seen before</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;"><a=
+ href=3D"https://release.sentrywick-release.example/release?id=3D013d4f9d68=
+d2"=
+ style=3D"color:#2f5d8a;font-weight:bold;text-decoration:none;">Release</a>=
+</td>
+</tr>
+<tr>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">alerts@velladown-forms.example</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">A form on your site was completed</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;">Link host on the block list</td>
+<td style=3D"padding:6px 10px;border-bottom:1px solid=
+ #e3e7eb;vertical-align:top;"><a=
+ href=3D"https://release.sentrywick-release.example/release?id=3Da23d2a49d0=
+17"=
+ style=3D"color:#2f5d8a;font-weight:bold;text-decoration:none;">Release</a>=
+</td>
+</tr>
+</table>
+<p style=3D"margin-top:20px;">Each Release link opens the release page.=
+ Sign in with your Pellgrave account and the message is delivered to your=
+ inbox. Messages you leave in quarantine need no action.</p>
+<p style=3D"margin:20px 0 0 0;font-size:12px;color:#7a828b;">Sentrywick=
+ Gateway 7.4, automated notice</p>
+</div>
+</body>
+</html>
+
+--=_part_3c196cb098d3--
