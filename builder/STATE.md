@@ -881,3 +881,61 @@ CLO3/5/6 exam gap; a second rubric row for CLO5/CLO6; `week6_injection_test.py`
 built and never run; `builder/` still not in git; `check_commands_resolve` is
 vacuous for this course; the Canvas token in the transcript still awaits
 rotation.
+
+---
+
+## 2026-09-07, later — the warm pass, and week 6 measured properly
+
+**The course is warmer and the numbers in it are honest.** All on branch
+`course-warmth-rewrite`, twelve commits, nothing pushed to a remote.
+
+**Writing.** 328 lines of prose and 98 spoken cues gain contractions, applied
+by `builder/tools/warm_pass.py` and `warm_narration.py` rather than by hand.
+Both refuse to touch anything that is not prose: fenced and inline code,
+tables, headings, block directives, bare link lines, `::: sources` citations,
+and in a scene list everything except the spoken cue. Connective tissue was
+done by hand on the six weekly reading intros, because joining two sentences
+with a "so" is a judgement about the argument.
+
+Week 1's warm rewrite replaced the originals and the test module is gone. That
+closed the false claim that notebook work "stays on the notebook server for the
+whole term".
+
+**No hard numbers are quoted as fact any more.** Four places did, and one of
+them predicted the student's own score: "it scored 16 of 20 against your 19".
+A student scoring 17 would have thought they broke something. Week 1 teaches
+that one answer is a sample and not a fact, and the course was contradicting
+itself.
+
+**Week 6 is measured.** 2,156 runs under `docs/week6-measurement/`, conclusion
+in `docs/model-selection.md`. Email 013 lands 12 times in 15 undefended on
+granite-8b and 0 times in 15 guarded, which is objective 6.2 and 6.3 in one
+comparison. The reading now says the payload moves the model in most runs and
+not all, and part 2 gains a section on why a guardrail has a rate rather than a
+score, what moves that rate, and why an agent has to be built to fail in a
+direction you chose.
+
+**Four bugs were fixed in the measuring before any of it was believable**, and
+three conclusions reversed along the way. `one_run()` read payload keys that do
+not exist; there was no rate limit backoff, so a run lost 130 of 160 requests
+and still wrote a tidy summary of zeros; the known-good list omitted the
+organisation's own domain; and both eval scripts pointed at an ollama that no
+longer exists. The eval harness was also pinned at temperature 0 while the
+notebooks use 0.2, which is why its answers kept disagreeing with the lab.
+
+**Models: granite-3b everywhere, granite-8b for week 6 and the week 7
+comparison.** Qwen3-14B, Llama-3.1-8B and Gemma-3-12B were served briefly,
+measured, and removed. Gemma looked best at n=1 and worst at n=510: zero guard
+effect and 75 of 120 benign emails called malicious. The proxy is back to two
+models and `litellm-verify` passes 62 of 62.
+
+**Also closed:** the exam gap (CLO3, CLO5, CLO6 now have items; 40 items at
+0.75 points, still 30 points); `verify_content` was checking another course's
+docs; `check_commands_resolve` was vacuous two ways; `qti.py` accepted
+`outcome: "none"` as a tag; week 7's score report could not tell a swapped
+error branch from a correct one; and `builder/` is now in git.
+
+**Still open.** The week 5 measurement (294 runs, the most rigorous in the
+repo) predates the move off ollama, so its figures are not current. The Canvas
+token still awaits rotation. The `GUARD_RULES` rewrite was tried and retracted:
+it fixed neither failure and made granite-3b slightly worse.
