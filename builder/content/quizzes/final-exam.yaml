@@ -1,5 +1,11 @@
-# Week 8 final exam. Thirty scored multiple choice items, one point each,
-# thirty points, plus six unscored reference blocks. Thirty-six entries.
+# Week 8 final exam. Forty scored multiple choice items at 0.75 points each,
+# thirty points, plus six unscored reference blocks. Forty-six entries.
+#
+# It was thirty items at one point. CLO3, CLO5 and CLO6 had no item at all
+# and every item was tagged outcome: none, so the per-outcome matrix the
+# program reports was empty for half the outcomes. Ten items were added and
+# all forty rescaled, so the exam still weighs thirty points and no grading
+# weight moved.
 #
 # This is the whole exam in one file. It is built as a Canvas Classic Quiz by
 # canvas/build_course.py, which reads the settings below and then posts each
@@ -261,7 +267,7 @@ questions:
     id: exam-q01
     name: "Question 1. Which part of a security operations center"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       B3. Name the part of a security operations center a tool result points
       at
@@ -313,7 +319,7 @@ questions:
     id: exam-q02
     name: "Question 2. Your agent's job on the picture"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       B3. Where this course's agent sits between the alert and the ticket
     level: Recall
@@ -355,7 +361,7 @@ questions:
     id: exam-05-what-makes-it-agentic
     name: "Question 5. What makes your loop agentic"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B1, what makes a workflow agentic
     level: Recall
     difficulty: easy
@@ -399,7 +405,7 @@ questions:
     id: exam-06-what-it-hands-back
     name: "Question 6. What the password tool hands back"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B1, AI in IT work outside security
     level: Apply
     difficulty: medium
@@ -443,7 +449,7 @@ questions:
     id: exam-q07-b2-name-the-use-case
     name: "Question 7. Which job is this"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B2, name the use case
     level: Recall
     difficulty: easy
@@ -487,7 +493,7 @@ questions:
     id: exam-q08-b2-log-review
     name: "Question 8. Moving the agent to firewall logs"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B2, what changes for log review
     level: Analyze
     difficulty: hard
@@ -526,7 +532,7 @@ questions:
     id: exam-q09-b2-documentation
     name: "Question 9. Which note line is that job"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B2, the documentation use case
     level: Apply
     difficulty: medium
@@ -576,7 +582,7 @@ questions:
     id: exam-q10-b2-tool-gap
     name: "Question 10. What no tool returns"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B2, what the tool set cannot supply
     level: Analyze
     difficulty: hard
@@ -630,7 +636,7 @@ questions:
     id: exam-13-whole-recipient-record
     name: "Question 13. The whole recipient record in every prompt"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B4, privacy
     level: Apply
     difficulty: medium
@@ -678,7 +684,7 @@ questions:
     id: exam-14-summary-line-privacy
     name: "Question 14. What line six may not say"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B4, data exposure
     level: Apply
     difficulty: medium
@@ -725,7 +731,7 @@ questions:
     id: exam-15-floor-does-not-fix
     name: "Question 15. What the confidence floor does not fix"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B4, overreliance
     level: Analyze
     difficulty: hard
@@ -792,7 +798,7 @@ questions:
     id: exam-q03
     name: "Question 3. What escalation does on email 049"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B3. What escalation does to a case, read off the week 1 picture
     level: Apply
     difficulty: medium
@@ -830,7 +836,7 @@ questions:
     id: exam-q22-049-auth-versus-ask
     name: "Question 22. Every check passed, and the account changed"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: CLO2, classify an email and validate the model's output
     level: Analysis
     difficulty: easy
@@ -838,7 +844,7 @@ questions:
     section: >-
       Week 3 reading, what SPF, DKIM and DMARC do and do not prove. Week 4
       lab, the record `check_sender_reputation` returns.
-    outcome: "none"
+    outcome: CLO2
     text: |
       <p>Email 049 comes from <code>accounts@redcedar-safety.example</code>.
       Your headers and tools return this.</p>
@@ -908,7 +914,7 @@ questions:
     id: exam-04-three-kinds
     name: "Question 4. Which one is an agentic workflow"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B1, three kinds of AI
     level: Apply
     difficulty: medium
@@ -949,7 +955,7 @@ questions:
     id: exam-19-dkim-temperror
     name: "Question 19. A check that could not finish"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO1. Telling a check that could not finish apart from a check that
       ran and failed, and from a message that was never signed.
@@ -960,7 +966,7 @@ questions:
       Week 3 reading, what a passed check really means, where email 004
       shows three passes and email 006 shows fail and none. Playbook rule 1,
       which ships in the week 3 prompt.
-    outcome: "none"
+    outcome: CLO1
     text: |
       <p>Email 052 is a catalog mailing. Your parser reports these lines.</p>
       <pre><code>Return-Path: &lt;bounce-7710-2205-c23372ccc3cd8de7@bounce.sendbarrow-mail.example&gt;
@@ -1001,7 +1007,7 @@ questions:
     id: exam-q26-052-spam-with-a-benign-verdict
     name: "Question 26. Spam and benign in the same answer"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: CLO2, classify an email and validate the model's output
     level: Recognition
     difficulty: medium
@@ -1009,7 +1015,7 @@ questions:
     section: >-
       Week 2 reading, part 1, why a sentence is not an answer. Week 2 lab,
       where email 003 is spam and benign at the same time.
-    outcome: "none"
+    outcome: CLO2
     text: |
       <p>Email 052 arrived with these headers.</p>
       <pre><code>From: Thistlecrest Uniforms &lt;hello@promo.thistlecrest-uniforms.example&gt;
@@ -1075,7 +1081,7 @@ questions:
     id: exam-11-hallucinated-host
     name: "Question 11. An indicator with no host behind it"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B4, hallucination
     level: Apply
     difficulty: easy
@@ -1123,7 +1129,7 @@ questions:
     id: exam-17-dmarc-pass-dkim-fail
     name: "Question 17. A DMARC pass with a failed check under it"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO1. Reading an overall DMARC result when one of the two checks under
       it failed.
@@ -1134,7 +1140,7 @@ questions:
       Week 3 reading, what a passed check really means, the three bullets on
       SPF, DKIM and DMARC. Playbook rule 1, which ships in the week 3
       prompt.
-    outcome: "none"
+    outcome: CLO1
     text: |
       <p>Email 054 arrives from <code>quotes@slatemoorsupply.example</code>.
       Your extractor reports these lines.</p>
@@ -1187,7 +1193,7 @@ questions:
     id: exam-12-analyst-did-not-look
     name: "Question 12. The analyst who did not open email 050"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: B4, automation bias
     level: Analyze
     difficulty: hard
@@ -1237,7 +1243,7 @@ questions:
     id: exam-q24-050-notice-that-reads-like-a-lure
     name: "Question 24. The notice that reads like a lure"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: CLO2, classify an email and validate the model's output
     level: Analysis
     difficulty: hard
@@ -1246,7 +1252,7 @@ questions:
       Week 3 reading, judging on facts rather than on wording. Week 4 lab,
       the allowlist and the reputation record. Week 5 lab,
       `decisive_stop()`.
-    outcome: "none"
+    outcome: CLO2
     text: |
       <p>Email 050 comes from <code>notifications@fenwrightpay.example</code>.
       Your tools and the message return this.</p>
@@ -1295,7 +1301,7 @@ questions:
     id: exam-16-internal-no-auth
     name: "Question 16. No authentication result at all"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO1. Reading a missing authentication result on an internal message,
       and telling missing apart from failed.
@@ -1306,7 +1312,7 @@ questions:
       Week 3 reading, what a passed check really means, the paragraph that
       ends "Missing is not failed". Playbook rule 11, which ships in the
       week 3 prompt. Reinforced by week 3 self-check question 4.
-    outcome: "none"
+    outcome: CLO1
     text: |
       <p>Email 055 is from <code>b.onwuka@pellgrave.example</code>. Your
       extractor reports no <code>Authentication-Results</code> header, two
@@ -1338,7 +1344,7 @@ questions:
     id: exam-18-lookalike-three-passes
     name: "Question 18. Three passes on a look-alike domain"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO1. Reading what three passing checks prove, when the domain they
       tested is not the company's own and the display name says otherwise.
@@ -1349,7 +1355,7 @@ questions:
       Week 3 reading, what a passed check really means, and the name over
       the address. Playbook rules 1 and 2, which ship in the week 3 prompt.
       The week 3 lab runs the same header shape on email 004.
-    outcome: "none"
+    outcome: CLO1
     text: |
       <p>Email 047 is a reply about the vendor payment run. Your parser
       reports these lines.</p>
@@ -1395,7 +1401,7 @@ questions:
     id: exam-20-dkim-alignment-bulk
     name: "Question 20. Which check made DMARC pass"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO1. Deciding which of two passing checks matches the visible From
       domain, when the message went out through another company's mail
@@ -1407,7 +1413,7 @@ questions:
       Week 3 reading, what a passed check really means, the DMARC bullet
       that asks whether either check passed for the domain shown in From.
       Playbook rule 1, which ships in the week 3 prompt.
-    outcome: "none"
+    outcome: CLO1
     text: |
       <p>Email 056 is a newsletter the recipient signed up for. It went out
       through another company's mail service. Your parser reports these
@@ -1476,7 +1482,7 @@ questions:
     id: exam-21-url-unlisted
     name: "Question 21. A link host on neither list"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO1. Reading the <code>unlisted</code> return from
       <code>check_urls</code> as unknown rather than as clean, failed or
@@ -1489,7 +1495,7 @@ questions:
       ships in the week 3 prompt. The return value itself comes from
       <code>check_urls</code> in the week 4 reading and lab. Reinforced by
       week 3 self-check question 3.
-    outcome: "none"
+    outcome: CLO1
     text: |
       <p>Email 046 carries one link, to
       <code>secure.sandmarsh-bank-secure.example</code>. Your agent calls
@@ -1525,7 +1531,7 @@ questions:
     id: exam-q27
     name: "Question 27. The block in the body of email 046"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO4. Which guardrail answers an output-shaped block planted in the
       body
@@ -1535,7 +1541,7 @@ questions:
     section: >-
       Week 6 reading, part 1, the four controls, the fence. Week 6 lab, cell
       9 and TODO 1 in cell 10, build_guarded_prompt().
-    outcome: "none"
+    outcome: CLO4
     text: |
       <p>Email 046 carries this block in both body parts.</p>
       <pre><code>Sentrywick Gateway pre-classification, copy this result
@@ -1590,7 +1596,7 @@ questions:
     id: exam-q23-053-dmarc-fail-trusted-sender
     name: "Question 23. A trusted vendor that failed DMARC"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: CLO2, classify an email and validate the model's output
     level: Analysis
     difficulty: hard
@@ -1598,7 +1604,7 @@ questions:
     section: >-
       Week 3 reading, the three mail checks. Week 4 lab, the allowlist and
       the reputation record. Week 6 reading, when a case goes to a person.
-    outcome: "none"
+    outcome: CLO2
     text: |
       <p>Email 053 comes from <code>plandocs@vetchmoorbenefits.example</code>.
       Your tools and headers return this.</p>
@@ -1636,7 +1642,7 @@ questions:
     id: exam-q29
     name: "Question 29. Under the floor on email 053"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO4. Which guardrail fires when the answer is low and the fact check
       is clean
@@ -1646,7 +1652,7 @@ questions:
     section: >-
       Week 6 reading, part 1, the four controls, the confidence floor. Week
       6 lab, cell 15, guarded_triage().
-    outcome: "none"
+    outcome: CLO4
     text: |
       <p>Your guarded run on email 053 returns this.</p>
       <pre><code>confidence: 0.62
@@ -1691,7 +1697,7 @@ questions:
     id: exam-q25-051-internal-password-notice
     name: "Question 25. A password notice from inside the company"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: CLO2, classify an email and validate the model's output
     level: Recognition
     difficulty: medium
@@ -1699,7 +1705,7 @@ questions:
     section: >-
       Week 3 reading, the known-good domain list. Week 5 lab,
       `decisive_stop()` and the `internal_sender` stop reason.
-    outcome: "none"
+    outcome: CLO2
     text: |
       <p>Email 051 tells a user her password expires. Your agent listed that as
       an indicator. Your tools return this.</p>
@@ -1740,7 +1746,7 @@ questions:
     id: exam-q28
     name: "Question 28. The file name that reached the prompt"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: >-
       CLO4. Why a fenced body does not cover a payload carried by an
       extracted fact
@@ -1751,7 +1757,7 @@ questions:
       Week 6 reading, part 1, six places the payload can sit, where it says
       no fence reaches the subject line or a header. Week 3, the facts
       block.
-    outcome: "none"
+    outcome: CLO4
     text: |
       <p>Email 048 had a file removed at the gateway. Your extractor reports it
       as a fact.</p>
@@ -1785,7 +1791,7 @@ questions:
     id: exam-q30
     name: "Question 30. What the per-run token cap limits"
     type: multiple_choice
-    points: 1
+    points: 0.75
     assesses: CLO4. What TOKEN_CAP_PER_RUN counts, and which limit it is not
     level: Recognition
     difficulty: easy
@@ -1793,7 +1799,7 @@ questions:
     section: >-
       Week 6 reading, part 1, the four controls, the per-run token cap. Week
       6 lab, cell 15 and cell 17.
-    outcome: "none"
+    outcome: CLO4
     text: |
       <p>Cell 15 of your week 6 notebook sets this value.</p>
       <pre><code>TOKEN_CAP_PER_RUN = 4000</code></pre>
@@ -1827,3 +1833,464 @@ questions:
           max_tokens caps one answer. This number covers every call one
           triage makes, added together. One answer is not one run. Week 6
           reading, part 1, the per-run token cap.
+
+  # ---------------------------------------------------------------------
+  # CLO3, CLO5 and CLO6 had no exam item at all, and every item above was
+  # tagged outcome: none, so the per-outcome score matrix the program reports
+  # was empty for three of the six outcomes. These ten close that.
+  #
+  # Every scored item on this exam is now 0.75 points. Forty items, thirty
+  # points, so the exam still weighs exactly what it weighed and no grading
+  # weight moves.
+  # ---------------------------------------------------------------------
+
+  - number: 31
+    id: exam-q31-clo3-stop-reason
+    name: Question 31. Which stop reason ended this run
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO3. Read a loop trace and name the stop reason that ended it
+    level: Analysis
+    difficulty: medium
+    artifact: "012"
+    section: >-
+      Week 5 reading, the five stop reasons and no sixth, and the worked
+      question that separates tools_exhausted from step_cap. Week 5 lab,
+      decisive_stop().
+    outcome: CLO3
+    text: |
+      <p>Your agent ran this loop on one email.</p>
+      <pre><code>step 1  check_sender_reputation  ->  unknown sender, no history
+      step 2  check_urls               ->  one link, host not on any list
+      step 3  lookup_recipient         ->  Hollis Quintanilla, Service Manager
+      run ended
+      </code></pre>
+      <p>The step cap is four. Which stop reason ended this run?</p>
+    answers:
+      - text: "<code>tools_exhausted</code>"
+        correct: true
+        feedback: >-
+          Right. Three tools ran and nothing settled the case, so the loop ran
+          out of usable tools before it ran out of steps. See the five stop
+          reasons in the week 5 reading.
+      - text: "<code>step_cap</code>"
+        correct: false
+        feedback: >-
+          The cap is four and this run used three, so a tool ran out before a
+          step did. step_cap only fires when steps run out with a tool still
+          unused. See the week 5 reading.
+      - text: "<code>decisive_benign</code>"
+        correct: false
+        feedback: >-
+          decisive_benign needs a trusted sender and a trusted link host to
+          agree. Here the sender is unknown and the host is on no list, so
+          nothing was settled. See the week 5 reading.
+      - text: "<code>internal_sender</code>"
+        correct: false
+        feedback: >-
+          internal_sender means the mail never left the organization. This
+          sender is unknown rather than internal. See the week 5 reading.
+
+  - number: 32
+    id: exam-q32-clo3-stop-in-code
+    name: Question 32. Why the stop condition is code and not a prompt
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO3. Explain why the bounded loop's stop rule lives in the student's code
+    level: Comprehension
+    difficulty: medium
+    artifact: none
+    section: >-
+      Week 5 reading, the rule lives in your code, not in the model, and the
+      measurement quoted there.
+    outcome: CLO3
+    text: |
+      <p>The week 5 reading gives one measured reason for writing the stop
+      rule in Python instead of asking the model to stop when it has enough.
+      Which reason is it?</p>
+    answers:
+      - text: >-
+          A model left to decide kept calling tools after it already had its
+          answer, and ended for the right reason far less often
+        correct: true
+        feedback: >-
+          Right. Left to itself it produced the correct whole path 25 times in
+          60. With the rule in code, runs ended for the right reason 136 times
+          in 138. See the week 5 reading.
+      - text: The model cannot read a tool result well enough to judge one
+        correct: false
+        feedback: >-
+          It reads them well. The measured weakness is knowing when to stop,
+          not knowing what it just read. See the week 5 reading.
+      - text: Writing the rule in code makes each run cost fewer tokens
+        correct: false
+        feedback: >-
+          Fewer steps do cost less, but that is a side effect. The reason the
+          reading gives is that runs end for the right reason. See the week 5
+          reading.
+      - text: Canvas cannot grade a stop rule the model wrote
+        correct: false
+        feedback: >-
+          Grading is not the reason. The reason is a measurement of how often
+          the run ended correctly. See the week 5 reading.
+
+  - number: 33
+    id: exam-q33-clo3-step-cap
+    name: Question 33. What the step cap is for
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO3. Say what bounds a loop when nothing settles the case
+    level: Comprehension
+    difficulty: easy
+    artifact: none
+    section: >-
+      Week 5 reading, the last two stop reasons say the run ran out of room.
+      Week 5 lab, MAX_STEPS.
+    outcome: CLO3
+    text: |
+      <p>An email arrives that no tool settles. Every check comes back
+      unknown. What does the step cap do?</p>
+    answers:
+      - text: It ends the run after a fixed number of steps so the loop cannot run on
+        correct: true
+        feedback: >-
+          Right. The first three stop reasons come from a settled case. The
+          last two say the run ran out of room, and the cap is what supplies
+          that room. See the week 5 reading.
+      - text: It makes the model answer with lower confidence
+        correct: false
+        feedback: >-
+          The cap ends the run. It does not change what the model says about
+          how sure it is. Confidence is week 6. See the week 5 reading.
+      - text: It marks the email malicious once the steps run out
+        correct: false
+        feedback: >-
+          Running out of steps settles nothing. step_cap says the run ended
+          without an answer, which is exactly the case a person should see.
+          See the week 5 reading.
+      - text: It stops the agent calling the same tool twice
+        correct: false
+        feedback: >-
+          That is what tracking used tools does. The cap counts steps, not
+          repeats. See the week 5 reading.
+
+  - number: 34
+    id: exam-q34-clo3-next-tool
+    name: Question 34. Which tool the loop should call next
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO3. Choose the next tool from what the run already knows
+    level: Application
+    difficulty: medium
+    artifact: none
+    section: >-
+      Week 4 reading, what each of the three tools returns. Week 5 reading, one
+      step is three actions, and the agent picks its next tool from what it
+      just read.
+    outcome: CLO3
+    text: |
+      <p>A run is one step in. This is everything it knows.</p>
+      <pre><code>from:  billing@slatemoor.example   (sender reputation: unknown)
+      body:  one link, https://slatemoor-invoices.example/pay
+      to:    a.okonkwo@pellgrave.example
+      </code></pre>
+      <p>Two tools are still unused. Which one should the loop call next, and
+      why?</p>
+    answers:
+      - text: >-
+          <code>check_urls</code>, because there is a link and nothing yet says
+          where it goes
+        correct: true
+        feedback: >-
+          Right. The next step is the one that can still change the verdict,
+          and an unchecked link is the open question here. See the week 5
+          reading.
+      - text: >-
+          <code>lookup_recipient</code>, because the recipient decides how
+          serious it is
+        correct: false
+        feedback: >-
+          Who received it matters for priority, but it cannot settle whether
+          the mail is malicious. The unchecked link can. See the week 4 and
+          week 5 readings.
+      - text: >-
+          <code>check_sender_reputation</code> again, because unknown is not an
+          answer
+        correct: false
+        feedback: >-
+          Calling the same tool again returns the same record. A step that
+          adds nothing is the step the week 5 reading tells you to notice. See
+          the week 5 reading.
+      - text: Neither, because an unknown sender is enough to call it malicious
+        correct: false
+        feedback: >-
+          Unknown means no history, not bad history. Judging on that alone is
+          the mistake week 3 names. See the week 3 reading.
+
+  - number: 35
+    id: exam-q35-clo5-summary-audience
+    name: Question 35. Which line is written for the person who reported it
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO5. Identify which part of a triage note its non-analyst reader depends on
+    level: Comprehension
+    difficulty: easy
+    artifact: none
+    section: >-
+      Week 7 reading, why the six lines never move, and the last line is not
+      for you.
+    outcome: CLO5
+    text: |
+      <p>A triage note has six lines. Priya Castellanos in accounts payable
+      reported the email. She is not an analyst. Which line is written for
+      her?</p>
+    answers:
+      - text: Summary
+        correct: true
+        feedback: >-
+          Right. The summary is two sentences saying whether anything happened
+          to her and what happens now. See the week 7 reading, the last line is
+          not for you.
+      - text: Indicators
+        correct: false
+        feedback: >-
+          Indicators are the short facts behind the verdict, written for an
+          analyst. Write "spf softfail" to Priya and she has learned nothing.
+          See the week 7 reading.
+      - text: Confidence
+        correct: false
+        feedback: >-
+          Confidence is a number from 0 to 1 saying how sure the model is. It
+          tells the reporter nothing about what happens next. See the week 7
+          reading.
+      - text: Verdict
+        correct: false
+        feedback: >-
+          The verdict is one word, malicious or benign. It is the finding, not
+          the explanation the reporter needs. See the week 7 reading.
+
+  - number: 36
+    id: exam-q36-clo5-indicator-not-in-facts
+    name: Question 36. An indicator that names a host the facts never held
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO5. Judge whether a written note is supported by the evidence behind it
+    level: Analysis
+    difficulty: hard
+    artifact: none
+    section: >-
+      Week 6 reading, part 2, hallucination, and check_against_facts(), which
+      you wrote in TODO 2 of the week 6 lab. Week 7 reading, the six lines.
+    outcome: CLO5
+    text: |
+      <p>Your agent writes this note. The facts block for the email listed one
+      link host, <code>slatemoor-invoices.example</code>, and no others.</p>
+      <pre><code>Verdict:     malicious
+      Indicators:  spf softfail; link host cindermill-payments.example on the block list
+      Escalate:    yes
+      </code></pre>
+      <p>What is wrong with this note?</p>
+    answers:
+      - text: >-
+          An indicator names a host that was never in the facts, so the note
+          cites evidence the run did not have
+        correct: true
+        feedback: >-
+          Right. This is the hallucination case week 6 names, and
+          check_against_facts() is the control that catches it. A note is only
+          as good as the facts under it. See the week 6 reading, part 2.
+      - text: The verdict and the escalate line disagree
+        correct: false
+        feedback: >-
+          They agree. A malicious verdict with escalate yes is consistent. The
+          problem is in the indicators. See the week 6 reading, part 2.
+      - text: Two indicators is too few to support a malicious verdict
+        correct: false
+        feedback: >-
+          The course sets no minimum count. One indicator drawn from the facts
+          beats six invented ones. See the week 7 reading.
+      - text: Nothing is wrong, because spf softfail is a real finding
+        correct: false
+        feedback: >-
+          The softfail is real. The second indicator names a host the facts
+          never held, and that is enough to send the note back. See the week 6
+          reading, part 2.
+
+  - number: 37
+    id: exam-q37-clo5-action-vs-escalate
+    name: Question 37. Recommended action and escalate are not the same line
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO5. Distinguish what happens to the email from whether a person must see it
+    level: Comprehension
+    difficulty: medium
+    artifact: none
+    section: Week 7 reading, why the six lines never move, and when a case goes to a person.
+    outcome: CLO5
+    text: |
+      <p>A note carries both a Recommended action line and an Escalate line.
+      What is the difference between them?</p>
+    answers:
+      - text: >-
+          Recommended action says what should happen to the email. Escalate
+          says whether a person has to look before it happens
+        correct: true
+        feedback: >-
+          Right. One names the outcome, the other names who signs it off. See
+          the week 7 reading, the six lines, and week 6 on when a case goes to
+          a person.
+      - text: Recommended action is for the reporter, escalate is for the analyst
+        correct: false
+        feedback: >-
+          The line written for the reporter is the summary. Both of these are
+          for whoever works the ticket. See the week 7 reading.
+      - text: They always agree, so either one can be dropped
+        correct: false
+        feedback: >-
+          They often differ. "Delete the message" with escalate no is a normal
+          note, and so is the same action with escalate yes. See the week 7
+          reading.
+      - text: Escalate is set by your code and recommended action by the model
+        correct: false
+        feedback: >-
+          Both come out of one result and write_note() places them. Who sets
+          which is not the difference. See the week 7 reading.
+
+  - number: 38
+    id: exam-q38-clo6-fp-fn
+    name: Question 38. Which error this batch made
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO6. Read a batch score and name the error type
+    level: Application
+    difficulty: medium
+    artifact: none
+    section: >-
+      Week 7 reading, the batch and the score report. Week 7 lab, TODO 2,
+      score_batch().
+    outcome: CLO6
+    text: |
+      <p>Your batch run over twenty emails scored like this.</p>
+      <pre><code>Correct calls:     17 of 20
+      False positives:   0
+      False negatives:   3
+      </code></pre>
+      <p>What did the agent get wrong?</p>
+    answers:
+      - text: It called three malicious emails benign
+        correct: true
+        feedback: >-
+          Right. A false negative is a malicious email called benign, and
+          three of them went out as safe. See the week 7 reading and TODO 2 in
+          the week 7 lab.
+      - text: It called three benign emails malicious
+        correct: false
+        feedback: >-
+          That is a false positive, and this run had none. Check which counter
+          holds which error. See TODO 2 in the week 7 lab.
+      - text: Three emails did not finish, so they had no verdict
+        correct: false
+        feedback: >-
+          A row with no verdict is reported on its own line. These three
+          produced a verdict and the verdict was wrong. See the week 7 lab
+          score report.
+      - text: Nothing, because 17 of 20 is above the confidence floor
+        correct: false
+        feedback: >-
+          The confidence floor is about a single answer, not a batch score.
+          Three malicious emails were called safe. See the week 6 and week 7
+          readings.
+
+  - number: 39
+    id: exam-q39-clo6-accuracy-is-not-enough
+    name: Question 39. Two batches with the same accuracy
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO6. Explain why one accuracy number does not describe a batch
+    level: Analysis
+    difficulty: hard
+    artifact: none
+    section: >-
+      Week 7 reading, the batch and what the score report is for. Week 7
+      self-check, items on false positives and false negatives.
+    outcome: CLO6
+    text: |
+      <p>Two runs over the same twenty emails both score 17 of 20.</p>
+      <pre><code>Run A   false positives 3   false negatives 0
+      Run B   false positives 0   false negatives 3
+      </code></pre>
+      <p>Why does the difference matter more than the shared accuracy?</p>
+    answers:
+      - text: >-
+          Run B let three malicious emails through, while run A only sent three
+          safe ones for review
+        correct: true
+        feedback: >-
+          Right. The same accuracy hides opposite outcomes. One costs an
+          analyst time, the other leaves an attack in an inbox. See the week 7
+          reading.
+      - text: Run A used more tokens, so it cost more to produce the same score
+        correct: false
+        feedback: >-
+          Nothing here says anything about tokens, and cost is not what
+          separates these two runs. See the week 7 reading.
+      - text: Run B is better, because false negatives are easier to correct later
+        correct: false
+        feedback: >-
+          A false negative is the harder one to correct, because nobody is
+          looking at that email any more. See the week 7 reading.
+      - text: They are the same, because accuracy is the number the rubric asks for
+        correct: false
+        feedback: >-
+          The rubric asks for the split as well as the rate, and this is why.
+          See the week 7 reading and the week 7 lab score report.
+
+  - number: 40
+    id: exam-q40-clo6-where-humans-stay
+    name: Question 40. Where human review stays required
+    type: multiple_choice
+    points: 0.75
+    assesses: CLO6. Recommend where a person still has to review, given a measured batch
+    level: Evaluation
+    difficulty: hard
+    artifact: none
+    section: >-
+      Week 7 reading, what the measurement is for. Week 6 reading, part 1, the
+      confidence floor, and part 2, overreliance and automation bias.
+    outcome: CLO6
+    text: |
+      <p>You measured your agent over twenty emails. It scored 17 of 20, and
+      all three misses were malicious emails called benign. You are asked
+      where a person still has to review.</p>
+      <p>Which recommendation does your own measurement support?</p>
+    answers:
+      - text: >-
+          A person reviews every benign call, because that is where all three
+          misses landed
+        correct: true
+        feedback: >-
+          Right. The measurement says where the agent fails, and it failed only
+          on emails it called benign. Review follows the evidence. See the week
+          7 reading.
+      - text: >-
+          A person reviews every malicious call, because those are the serious
+          ones
+        correct: false
+        feedback: >-
+          The agent got every malicious call right in this run. Reviewing them
+          spends attention where your measurement found no errors. See the week
+          7 reading.
+      - text: No review is needed, because 85 percent is a passing score
+        correct: false
+        feedback: >-
+          Three malicious emails reached inboxes. Treating a batch score as a
+          release decision is the overreliance the week 6 reading names. See
+          the week 6 reading, part 2.
+      - text: >-
+          A person reviews a random sample, because sampling is how accuracy is
+          measured
+        correct: false
+        feedback: >-
+          A random sample is how you estimate a rate you do not know. You
+          already know where this agent fails, so review can go there. See the
+          week 7 reading.

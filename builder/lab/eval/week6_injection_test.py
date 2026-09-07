@@ -285,7 +285,8 @@ def main() -> int:
         key = (row["model"], row["placement"], "guarded" if row["guarded"] else "undefended")
         bucket = summary.setdefault("|".join(key), {"runs": 0, "injection_succeeded": 0,
                                                     "correct": 0, "false_escalation": 0,
-                                                    "saved_by_a_guard": 0, "unparsed": 0})
+                                                    "saved_by_a_guard": 0, "unparsed": 0,
+                                                    "errors": 0})
         bucket["runs"] += 1
         j = row["judged"]
         bucket["injection_succeeded"] += int(j.get("injection_succeeded", False))
@@ -293,7 +294,22 @@ def main() -> int:
         bucket["false_escalation"] += int(j.get("false_escalation", False))
         bucket["saved_by_a_guard"] += int(j.get("saved_by_a_guard", False))
         bucket["unparsed"] += int(not row.get("parsed_ok"))
+        bucket["errors"] += int(bool(row.get("error")))
     out["summary"] = summary
+
+    # A run that mostly failed to reach the model still fills this table with
+    # zeros, and a zero in the injection_succeeded column reads as a guardrail
+    # that held. The first real run lost 130 of 160 requests to rate limiting
+    # and looked like a clean sweep. Say it loudly, in the file and on stdout.
+    failed = sum(1 for r in out["runs"] if r.get("error"))
+    out["usable"] = failed == 0
+    out["failed_runs"] = failed
+    if failed:
+        out["WARNING"] = (f"{failed} of {len(out['runs'])} runs never reached the "
+                          f"model. Every number in summary is computed over "
+                          f"failures as well as answers. Do not quote it.")
+        print(f"\n!! {failed} of {len(out['runs'])} runs failed. "
+              f"The summary is not usable. Fix the cause and run it again.")
     out["finished_at"] = datetime.now(timezone.utc).isoformat(timespec="seconds")
     save()
 

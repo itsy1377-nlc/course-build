@@ -257,13 +257,36 @@ class Endpoint:
                      "User-Agent": "itsy1377-eval/week5-week6"},
             method="POST")
         started = time.monotonic()
-        try:
-            with urllib.request.urlopen(req, timeout=300) as r:
-                payload = json.loads(r.read())
-        except urllib.error.HTTPError as e:
-            return {"_error": f"HTTP {e.code}: {e.read()[:300].decode(errors='replace')}", "_seconds": round(time.monotonic() - started, 2)}
-        except Exception as e:  # noqa: BLE001
-            return {"_error": f"{type(e).__name__}: {e}", "_seconds": round(time.monotonic() - started, 2)}
+        # The proxy rate limits per key. Without a backoff the first run of
+        # this script lost 130 of 160 requests to 429 and still wrote a tidy
+        # summary table of zeros, which reads exactly like a guardrail that
+        # works. Retry the two statuses that are worth retrying and let
+        # everything else through as the error it is.
+        payload = None
+        for attempt in range(6):
+            try:
+                with urllib.request.urlopen(req, timeout=300) as r:
+                    payload = json.loads(r.read())
+                break
+            except urllib.error.HTTPError as e:
+                body = e.read()[:300].decode(errors="replace")
+                # LiteLLM names the key's hash in a 429. It is not the key,
+                # but it does not belong in a result file either.
+                body = re.sub(r"api_key: \S+", "api_key: [redacted]", body)
+                if e.code in (429, 500, 502, 503, 504) and attempt < 5:
+                    time.sleep(min(2 ** attempt, 30))
+                    continue
+                return {"_error": f"HTTP {e.code}: {body}",
+                        "_seconds": round(time.monotonic() - started, 2)}
+            except Exception as e:  # noqa: BLE001
+                if attempt < 5:
+                    time.sleep(min(2 ** attempt, 30))
+                    continue
+                return {"_error": f"{type(e).__name__}: {e}",
+                        "_seconds": round(time.monotonic() - started, 2)}
+        if payload is None:
+            return {"_error": "no reply after 6 attempts",
+                    "_seconds": round(time.monotonic() - started, 2)}
         self.calls += 1
         payload["_seconds"] = round(time.monotonic() - started, 2)
         return payload

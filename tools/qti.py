@@ -365,10 +365,23 @@ def validate(quiz: dict, ref: str, expected_points: int) -> list[str]:
 
         if question.get("type") not in CANVAS_TYPE:
             problems.append(f"{ref}/{qid}: unknown type {question.get('type')!r}")
-        if not question.get("outcome"):
+        outcome = question.get("outcome")
+        if not outcome:
             problems.append(f"{ref}/{qid}: no outcome tag. The exam export is the "
                             f"per-outcome score matrix, and it only works if every "
                             f"item is tagged.")
+        # "none" is a string, so it satisfied the check above while tagging
+        # nothing. Every item on the final exam carried it, and three of the
+        # six outcomes had no exam evidence at all with this gate reporting ok.
+        # An item is allowed to map to no outcome, but not while its own
+        # assesses line names one.
+        elif outcome == "none":
+            claims = str(question.get("assesses") or "")
+            if claims.strip().upper().startswith("CLO"):
+                problems.append(
+                    f"{ref}/{qid}: assesses says {claims.split(chr(46))[0].strip()} "
+                    f"but outcome is \"none\", so the item measures that outcome "
+                    f"everywhere except in the score matrix.")
         if not question.get("text", "").strip():
             problems.append(f"{ref}/{qid}: no question text")
 
