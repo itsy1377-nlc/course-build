@@ -151,7 +151,7 @@ PAGE_BUDGET = {
     # rather than a score. Saying which things move that rate, and that an
     # agent has to be built to fail in a direction you chose, is the honest
     # end of the week rather than an aside. It does not fit in what was left.
-    "w6-content-2":           1450,
+    "w6-content-2":           1470,
     # Funded course only. Six things the registrar-approved notice has to carry
     # (what is captured, who reads it, for how long, how a student sees their
     # own, how they ask for removal, and what the answer will be), plus the

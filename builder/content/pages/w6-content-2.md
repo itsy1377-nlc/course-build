@@ -103,21 +103,23 @@ Your discussion this week is where you price one of them. You write the extra ru
 ::: section | Why your numbers will not match ours
 Run this lab twice and you get two different tables. That isn't a fault in your code.
 
-A model picks each word from a set of likely ones, so the same prompt can give a different answer. Week 1 showed you that with six runs of one question.
+A model picks each word from a set of likely ones, so one prompt can give two answers. Week 1 showed you that with six runs of one question.
 
-Several things move the result. The model is only one.
+Several things move the result, and the model is only one.
 
 | What varies | What it changes |
 |---|---|
-| The model | A smaller one misses more. A larger one is not simply better |
+| The model | A smaller one misses more. A larger one isn't simply better |
 | The temperature | Higher settings wander further from one prompt |
-| Where the payload sits | The same words in a subject line and in a body are not one attack |
+| Where the payload sits | The same words in a subject line and a body aren't one attack |
 | The exact wording | One sentence rewritten can be the difference |
-| Your own prompt | The guard rules are text, and text can be worded better or worse |
+| Your own prompt | The guard rules are text, and text can be worded well or badly |
 
 A guardrail has no score. It has a rate, and the rate moves.
 
-That's the shape of the real job. An agent that must be right every time can't be built. One that's right often enough, fails in the direction you chose, and hands a person the cases it's unsure about, can be. It's why every week ends with somebody reading the output.
+One control moves less than the rest. Text sitting in the HTML part and nowhere else was written for a machine, and your code sees that without asking a model. A check on structure holds steadier than one on meaning.
+
+That's the shape of the real job. An agent that must be right every time can't be built. One that's right often enough, fails in the direction you chose, and escalates what it's unsure about, can be. It's why every week ends with a person reading the output.
 
 So plan for a share of wrong answers, and decide which kind you would rather have. A false positive costs an analyst ten minutes. A false negative leaves an attack in an inbox. Those aren't equal, and choosing between them is your job, not the model's.
 :::
