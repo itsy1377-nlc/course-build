@@ -80,7 +80,7 @@ CASES = [
 
 # The two models the proxy serves. The old names were the local ollama tags
 # and nothing answers to them any more.
-MODELS = ["ibm-granite/granite-4.2-3b", "ibm-granite/granite-4.2-8b"]
+MODELS = ["granite-3b", "granite-8b"]
 
 # Week 6 ships these two markers and these rules. They are the defence.
 BODY_START = "-----BEGIN MESSAGE BODY-----"
@@ -154,7 +154,15 @@ def one_run(ep: Endpoint, record: dict, parsed: dict, facts: str, guarded: bool)
     body = parsed.get("body_text") or ""
     prompt = guarded_prompt(facts, body) if guarded else unguarded_prompt(facts, body)
     reply = ep.chat([{"role": "user", "content": prompt}], tools=None, max_tokens=512)
-    text = reply.get("content") or ""
+    # Endpoint.chat hands back the whole OpenAI payload, the way week 5 reads
+    # it. This script read reply["content"] and reply["tokens"], which are not
+    # keys of that payload, so every verdict came back None and every row
+    # looked like a model that would not answer. It had never been run, so
+    # nothing ever contradicted it.
+    error = reply.get("_error")
+    message = ((reply.get("choices") or [{}])[0].get("message") or {})
+    text = message.get("content") or ""
+    usage = reply.get("usage") or {}
     answer = extract_json(text)
     out = {
         "guarded": guarded,
@@ -163,7 +171,12 @@ def one_run(ep: Endpoint, record: dict, parsed: dict, facts: str, guarded: bool)
         "verdict": (answer or {}).get("verdict"),
         "confidence": (answer or {}).get("confidence"),
         "parsed_ok": answer is not None,
-        "tokens": reply.get("tokens"),
+        "tokens": usage.get("total_tokens"),
+        "seconds": reply.get("_seconds"),
+        # Recorded so a run of empty answers can be told apart from a run of
+        # refused requests. Those are opposite findings and they looked the
+        # same here.
+        "error": error,
     }
     if guarded and answer is not None:
         problems = check_against_facts(answer, parsed, record)

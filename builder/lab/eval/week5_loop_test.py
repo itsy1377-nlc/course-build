@@ -597,33 +597,33 @@ def main() -> int:
 
     if args.smoke:
         ids = [i for i in manifest if find_eml(i)][:3]
-        configs = [{"name": "smoke", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 1}]
+        configs = [{"name": "smoke", "model": "granite-3b", "reasoning": None, "variant": "free", "trials": 1}]
     else:
         ids = WEEK5_IDS
         configs = [
-            {"name": "granite4.1-free", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "free", "trials": 5},
-            {"name": "granite4.1-guided", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "guided", "trials": 5},
-            {"name": "granite4.2-noreason-free", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "free", "trials": 5},
-            {"name": "granite4.2-noreason-guided", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "guided", "trials": 5},
-            {"name": "granite4.2-reason-free", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 3},
+            {"name": "granite4.1-free", "model": "granite-8b", "reasoning": None, "variant": "free", "trials": 5},
+            {"name": "granite4.1-guided", "model": "granite-8b", "reasoning": None, "variant": "guided", "trials": 5},
+            {"name": "granite4.2-noreason-free", "model": "granite-3b", "reasoning": "none", "variant": "free", "trials": 5},
+            {"name": "granite4.2-noreason-guided", "model": "granite-3b", "reasoning": "none", "variant": "guided", "trials": 5},
+            {"name": "granite4.2-reason-free", "model": "granite-3b", "reasoning": None, "variant": "free", "trials": 3},
         ]
     if args.all:
         ids = WEEK5_IDS
         configs = configs + [
-            {"name": "granite4.1-coded", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "coded", "trials": 5},
-            {"name": "granite4.2-noreason-coded", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "coded", "trials": 5},
-            {"name": "granite4.1-coded-anchored", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "coded_anchored", "trials": 5},
-            {"name": "granite4.2-noreason-coded-anchored", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "coded_anchored", "trials": 5},
-            {"name": "granite4.2-reason-free-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
-            {"name": "granite4.2-reason-coded-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.1-coded", "model": "granite-8b", "reasoning": None, "variant": "coded", "trials": 5},
+            {"name": "granite4.2-noreason-coded", "model": "granite-3b", "reasoning": "none", "variant": "coded", "trials": 5},
+            {"name": "granite4.1-coded-anchored", "model": "granite-8b", "reasoning": None, "variant": "coded_anchored", "trials": 5},
+            {"name": "granite4.2-noreason-coded-anchored", "model": "granite-3b", "reasoning": "none", "variant": "coded_anchored", "trials": 5},
+            {"name": "granite4.2-reason-free-4096", "model": "granite-3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.2-reason-coded-4096", "model": "granite-3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
         ]
     if args.supplement:
         ids = WEEK5_IDS
         configs = [
-            {"name": "granite4.1-coded", "model": "ibm-granite/granite-4.2-8b", "reasoning": None, "variant": "coded", "trials": 5},
-            {"name": "granite4.2-noreason-coded", "model": "ibm-granite/granite-4.2-3b", "reasoning": "none", "variant": "coded", "trials": 5},
-            {"name": "granite4.2-reason-free-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
-            {"name": "granite4.2-reason-coded-4096", "model": "ibm-granite/granite-4.2-3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.1-coded", "model": "granite-8b", "reasoning": None, "variant": "coded", "trials": 5},
+            {"name": "granite4.2-noreason-coded", "model": "granite-3b", "reasoning": "none", "variant": "coded", "trials": 5},
+            {"name": "granite4.2-reason-free-4096", "model": "granite-3b", "reasoning": None, "variant": "free", "trials": 3, "max_tokens": 4096},
+            {"name": "granite4.2-reason-coded-4096", "model": "granite-3b", "reasoning": None, "variant": "coded", "trials": 3, "max_tokens": 4096},
         ]
 
     missing = [i for i in ids if not find_eml(i)]
