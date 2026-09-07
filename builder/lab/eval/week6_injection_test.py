@@ -249,7 +249,15 @@ def main() -> int:
 
     playbook = (CORPUS / "data" / "playbook.md").read_text(encoding="utf-8")
     known_good = json.loads((CORPUS / "data" / "known_good_domains.json").read_text())
-    known_good_hosts = known_good.get("internal_hosts") or []
+    # The organisation's own domain belongs in this list. Week 5 builds it as
+    # [organization] + internal_hosts and this script used internal_hosts
+    # alone, so every facts block it produced told the model that
+    # pellgrave.example is not a known good internal domain. That is a
+    # different question from the one week 6 asks, and it changed answers:
+    # with the organisation restored, the payload flips 8b's verdict on the
+    # twin pair, and without it the pair does not move at all.
+    known_good_hosts = ([known_good["organization"]]
+                        + list(known_good.get("internal_hosts") or []))
 
     out = {"world": world, "trials": trials, "runs": []}
     outpath = Path(args.out)

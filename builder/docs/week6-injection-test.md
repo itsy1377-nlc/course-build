@@ -1,5 +1,18 @@
 # What the week 6 guardrails actually do
 
+> **SUPERSEDED, 2026-09-07. Do not quote the numbers below.**
+>
+> The run they come from used a facts block that omitted the organisation's
+> own domain from the known-good list, because this script built it as
+> `internal_hosts` alone where week 5 builds `[organization] + internal_hosts`.
+> That is a different question from the one week 6 asks, and it changed
+> answers. With the organisation restored, the twin pair moves on granite-8b
+> exactly as the week 6 reading says it should: undefended the payload turns
+> a malicious verdict benign, and the fence turns it back. The conclusion
+> below, that the fence changes nothing, is an artifact of the bug.
+>
+> A corrected write-up replaces this once the lab replication finishes.
+
 **Run:** 2026-09-07. 160 runs, 0 failed, every input hashed into the result file.
 **Data:** `docs/week6-injection-test.json`
 **How:** `lab/eval/week6_injection_test.py --trials 5`, on the litellm guest
