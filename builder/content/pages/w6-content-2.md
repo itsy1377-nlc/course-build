@@ -100,6 +100,28 @@ Two of those rows are not code. No version of your notebook will make them code.
 Your discussion this week is where you price one of them. You write the extra rule your run needed. Then you say what it costs you on email 015.
 :::
 
+::: section | Why your numbers will not match ours
+Run this lab twice and you get two different tables. That is not a fault in your code.
+
+A model picks each word from a set of likely ones, so the same prompt can give a different answer. Week 1 showed you that with six runs of one question.
+
+Several things move the result. The model is only one.
+
+| What varies | What it changes |
+|---|---|
+| The model | A smaller one misses more. A larger one is not simply better |
+| The temperature | Higher settings wander further from one prompt |
+| Where the payload sits | The same words in a subject line and in a body are not one attack |
+| The exact wording | One sentence rewritten can be the difference |
+| Your own prompt | The guard rules are text, and text can be worded better or worse |
+
+A guardrail has no score. It has a rate, and the rate moves.
+
+That is the shape of the real job. An agent that must be right every time cannot be built. One that is right often enough, fails in the direction you chose, and hands a person the cases it is unsure about, can be. It is why every week ends with somebody reading the output.
+
+So plan for a share of wrong answers, and decide which kind you would rather have. A false positive costs an analyst ten minutes. A false negative leaves an attack in an inbox. Those are not equal, and choosing between them is your job, not the model's.
+:::
+
 ::: reading | Two more of the ten risks
 This is the list you read for part 1. Read the entry named Sensitive Information Disclosure and the entry named Misinformation. Skip the rest.
 

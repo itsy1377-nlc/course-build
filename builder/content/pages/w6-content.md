@@ -25,7 +25,9 @@ Email 013 is a benefits notice with a link to a sign-in page. After the signatur
 
 Email 024 is the same message, word for word, with the paragraph removed.
 
-Cells 6 and 7 run both through your week 5 agent with no defenses and print the two verdicts together. Whatever moves between them is what one paragraph did to your own model. Your own numbers will differ, because the model varies from run to run.
+Cells 6 and 7 run both with no defenses and print the verdicts together. Whatever moves between them is what one paragraph did.
+
+In our testing the payload moved the model in most runs, not all. If your two verdicts match, the paragraph lost. That is a result, not a mistake.
 :::
 
 ::: section | Six places the payload can sit

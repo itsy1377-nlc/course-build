@@ -147,6 +147,11 @@ PAGE_BUDGET = {
     # enough that the promised 19 was never safe. Saying so honestly costs
     # words on a page that was already exactly full.
     "w7-wrap-up":              575,
+    # 1450, not 1400. Week 6 teaches a guardrail, and a guardrail has a rate
+    # rather than a score. Saying which things move that rate, and that an
+    # agent has to be built to fail in a direction you chose, is the honest
+    # end of the week rather than an aside. It does not fit in what was left.
+    "w6-content-2":           1450,
     # Funded course only. Six things the registrar-approved notice has to carry
     # (what is captured, who reads it, for how long, how a student sees their
     # own, how they ask for removal, and what the answer will be), plus the
