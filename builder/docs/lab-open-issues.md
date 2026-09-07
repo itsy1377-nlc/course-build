@@ -257,13 +257,18 @@ Now measured, and LiteLLM agrees with DeepInfra to the digit:
 | cost, likely case (3B) | $0.01 to $0.05 |
 | what $5 buys | about 52 complete passes |
 
-**The option:** lower it to roughly $1, which still allows about ten full passes
-and caps a runaway loop far sooner. **Not changed.** Nothing is exposed by
-leaving it: the proxy wide `max_budget: 200` over 30 days is the backstop, and
-`rpm_limit: 30` with `tpm_limit: 40000` bounds how fast any one key can burn.
+**Decided 2026-09-07: $2.00 per student.** That is about twenty complete
+passes through all seven labs at the measured cost, which leaves room for a
+student who reruns a lab repeatedly while still capping a runaway loop two and
+a half times sooner than $5 did.
 
-The natural moment to decide is before keys are minted for a real cohort, since
-that is when the number gets baked into thirty keys rather than one line.
+Mint with `max_budget: 2.0`. Nothing else changes: the proxy wide
+`max_budget: 200` over 30 days stays as the backstop, and `rpm_limit: 30` with
+`tpm_limit: 40000` still bounds how fast any one key can burn.
+
+**Not yet applied to any minted key.** The recipe lives on the box, not in this
+repository, so the number takes effect at the next minting. Any key already
+issued at $5.00 keeps that ceiling until it is reissued.
 
 ### D2. The auto-captured User-Agent in spend logs
 
