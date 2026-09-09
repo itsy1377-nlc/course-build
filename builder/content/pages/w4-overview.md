@@ -38,7 +38,7 @@ By the end of this module, you'll be able to:
 | Self-check and submission | 30 |
 | **Total** | **285 minutes, or 4 hours 45 minutes** |
 
-The lab is the long line. Two of its seventeen cells are yours to write, and the rest arrive working. Give it two sittings.
+The lab is the long line. Two of its eighteen cells are yours to write, and the rest arrive working. Give it two sittings.
 :::
 
 ::: next

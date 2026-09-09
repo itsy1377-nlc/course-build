@@ -1,0 +1,147 @@
+{
+ "model": "granite-3b",
+ "n": 8,
+ "records": [
+  {
+   "email": "003",
+   "truth": "benign",
+   "n": 8,
+   "A_grounded": {
+    "malicious": 8
+   },
+   "B_toolshape": {
+    "malicious": 8
+   },
+   "C_withheld": {
+    "benign": 8
+   },
+   "D_real": {
+    "benign": 8
+   },
+   "tool_asked": {
+    "check_sender_reputation": 8
+   },
+   "D_vs_D_disagree": 0,
+   "C_vs_D_disagree": 0
+  },
+  {
+   "email": "008",
+   "truth": "malicious",
+   "n": 8,
+   "A_grounded": {
+    "malicious": 8
+   },
+   "B_toolshape": {
+    "malicious": 8
+   },
+   "C_withheld": {
+    "None": 1,
+    "malicious": 7
+   },
+   "D_real": {
+    "malicious": 8
+   },
+   "tool_asked": {
+    "check_sender_reputation": 8
+   },
+   "D_vs_D_disagree": 0,
+   "C_vs_D_disagree": 0
+  },
+  {
+   "email": "009",
+   "truth": "malicious",
+   "n": 8,
+   "A_grounded": {
+    "malicious": 8
+   },
+   "B_toolshape": {
+    "malicious": 8
+   },
+   "C_withheld": {
+    "malicious": 8
+   },
+   "D_real": {
+    "malicious": 8
+   },
+   "tool_asked": {
+    "check_sender_reputation": 8
+   },
+   "D_vs_D_disagree": 0,
+   "C_vs_D_disagree": 0
+  },
+  {
+   "email": "017",
+   "truth": "benign",
+   "n": 8,
+   "A_grounded": {
+    "malicious": 8
+   },
+   "B_toolshape": {
+    "malicious": 6,
+    "benign": 2
+   },
+   "C_withheld": {
+    "malicious": 4,
+    "benign": 3,
+    "None": 1
+   },
+   "D_real": {
+    "benign": 7,
+    "None": 1
+   },
+   "tool_asked": {
+    "check_sender_reputation": 7
+   },
+   "D_vs_D_disagree": 0,
+   "C_vs_D_disagree": 3
+  },
+  {
+   "email": "018",
+   "truth": "malicious",
+   "n": 8,
+   "A_grounded": {
+    "malicious": 8
+   },
+   "B_toolshape": {
+    "malicious": 8
+   },
+   "C_withheld": {
+    "0.0": 1,
+    "malicious": 5,
+    "benign": 2
+   },
+   "D_real": {
+    "benign": 6,
+    "malicious": 2
+   },
+   "tool_asked": {
+    "check_sender_reputation": 6,
+    "check_urls": 2
+   },
+   "D_vs_D_disagree": 5,
+   "C_vs_D_disagree": 4
+  },
+  {
+   "email": "019",
+   "truth": "benign",
+   "n": 8,
+   "A_grounded": {
+    "malicious": 8
+   },
+   "B_toolshape": {
+    "malicious": 8
+   },
+   "C_withheld": {
+    "malicious": 8
+   },
+   "D_real": {
+    "malicious": 8
+   },
+   "tool_asked": {
+    "check_sender_reputation": 8
+   },
+   "D_vs_D_disagree": 0,
+   "C_vs_D_disagree": 0
+  }
+ ]
+}

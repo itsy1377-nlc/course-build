@@ -24,20 +24,20 @@ scenes:
   - type: slide
     layout: compare
     eyebrow: Why
-    heading: One fact, and the verdict moves
+    heading: Which fact you ask for decides the answer
     items:
-      - The body alone | Nothing on the page looks wrong, so the verdict is benign
-      - One fact added | The sending domain has been reported before, so the verdict is malicious
+      - Ask about the link | The host is on the blocklist, so the verdict is malicious
+      - Ask about the sender | The customer is real, so the verdict is benign
     narration:
-      - text: Here's why your agent needs this.
+      - text: Here's why your agent needs this, and why the fact it asks for matters.
         reveal: 1
-      - text: Some emails settle on the body alone. A calm, well written note reads benign.
+      - text: Take a two line note sent from a real customer's account. Your agent asks about the link host. That host is on the blocklist, so the verdict is malicious. The answer key agrees.
         reveal: 1
-      - text: Then one fact arrives. That sending domain has been reported three times before, for the same trick.
+      - text: Now the same email, and your agent asks about the sender instead. The record comes back known good, because the customer really is a customer.
         reveal: 2
-      - text: Nothing in the email changed. The verdict did.
+      - text: The verdict turns benign, and now it's wrong. One true fact moved the answer the wrong way.
         reveal: 2
-      - text: You run six emails this week, with tools and without, and compare the two verdicts.
+      - text: You run six emails this week with tools and without, and one of them four times over, a different fact each time.
 
   - type: slide
     layout: diagram

@@ -1,7 +1,8 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-08, week 2 rebuilt and pushed.
+this file at every stopping point. Last update: 2026-09-09, week 4 rebuilt; staged
+to the notebook server, Canvas push not yet run.
 
 ## Where the build is
 
@@ -480,6 +481,52 @@ holds: every function carried forward matches the week that defined it, and
 every solution matches its lab". `python3 builder/lab/tools/run_notebook.py
 builder/lab/notebooks/ --all --student`: "15 notebook(s), 0 failure(s)", weeks
 6 and 7 taking 147s and 208s of real model calls.
+
+
+## 2026-09-09 — week 4 rebuilt around a matched pair
+
+Weeks 1, 2 and 3 are done and pushed. **Week 4's code, content and videos are
+done and the notebook server is updated; the Canvas push has not been run.**
+Everything is in `docs/lab-fix-log.md` under "Week 4", with the numbers in
+`docs/week4-measurement/` (eight probes, ~1,100 calls, README plus the
+pre-registration written before results).
+
+The defect, in codex's wording: *week 4 operationalized objective 4.3 with a
+five-confound comparison and then graded a causal explanation of it.* Cell 14
+put week 3's grounded prompt against this week's two-turn tool prompt and
+called the difference the tool's doing. A control arm carrying a tool message
+that reads "no record available" moves email 003 the full distance anyway.
+
+Two pre-registered thresholds failed and both failures changed the fix. No
+email met the bar for the tool being the active ingredient under free tool
+choice. Email 017 failed confirmation and does not ship. **Email 018 passed
+twice at 8/8 on all four arms** and carries the new cell 15: the same email
+judged four times, only the tool result changing, showing a true fact about the
+sender walking a correct verdict backwards.
+
+Three things worth carrying forward:
+
+1. **Prompt length, not the playbook, collapses tool choice.** A length-matched
+   block of neutral filler concentrates the model onto
+   `check_sender_reputation` harder than the playbook does, 66 of 72 against 59
+   of 69. Do not "fix" tool diversity by editing prompt text.
+2. **Real records pin the verdict; withheld controls wobble.** Every
+   real-record arm was 8/8 and identical across two runs. Every instability was
+   in the withheld arms. A withheld arm belongs in a measurement record, never
+   printed to a student as a baseline.
+3. **`LAST_CALL["answer_was_empty"]` now exists in all 14 lab notebooks**, set
+   in `send_request()` before the empty-slot notice is substituted. It was
+   added because nothing inside a notebook could tell an empty answer from the
+   notice standing in for one. Weeks 5, 6 and 7 can use it. The edit is exactly
+   +9/-1 in every file and the chain still holds.
+
+Week 5 is next. Its logged defect is `step_cap` unreachable. Note that week 5
+inherits `TOOL_TURN`, `TOOL_INSTRUCTIONS`, `TOOL_SPECS`, `start_messages()`,
+`ask_with_tools()`, `run_tool()` and `tool_result_message()` byte-identical
+from week 4, and none of them were touched.
+
+The three `test-` models are still in `/etc/litellm/config.yaml` from the week 3
+study (backup `config.yaml.bak-w3study`). No student key can reach them.
 
 ## 2026-09-08 — week 2 rebuilt around a measured retry
 

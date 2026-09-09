@@ -21,6 +21,7 @@ Two of those carry the week. The model asks and your code decides. A line in an 
 - You wrote `run_tool()`, which picks a function from the name the model sent.
 - You wrote `tool_result_message()`, which carries that result back with the id copied across.
 - You ran six emails twice, with the tools and without, and read what moved.
+- You judged one email four times over, changing only what the tool answered, and watched a true fact move the verdict the wrong way.
 - You watched the prose fallback run once, on purpose.
 - You exported `week4_tool_calls.json` and read the file you turned in.
 

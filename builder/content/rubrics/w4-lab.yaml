@@ -114,28 +114,33 @@ criteria:
 
   - description: Reading your own results
     long_description: >-
-      The written answer names one email, one tool and one returned fact, then
-      says what that fact changed. The screenshot shows the same email's two
-      verdicts. This is a week expectation, not a course outcome: it measures
-      whether you reported what you saw, so it carries no Outcome link.
+      The written answer reads cell 15's four verdicts on email 018, names the
+      fact that moved one of them away from the answer key, and reports one row
+      of the student's own cell 14 table with its tool and fact. It says what
+      that row does and does not settle. This is a week expectation, not a
+      course outcome: it measures whether you reported what you saw, so it
+      carries no Outcome link.
     points: 28
     levels:
       - description: >-
-          Exceeds standard. Three to five sentences. They name one email, the
-          tool it used and the one fact that tool returned. They say what the
-          agent decided before it had that fact. The fact matches the student's
-          own file, and the screenshot shows that email's two verdicts.
+          Exceeds standard. Three to five sentences. They name the tool whose
+          fact moved cell 15's verdict away from the answer key, and give that
+          fact. They name one email from the student's own cell 14 table, with
+          its tool and the fact the file records. And they say what that row
+          does and does not settle, because cell 14's two runs differ in more
+          than the tool. The fact matches the student's own file.
         points: 28
       - description: >-
-          Meets standard. Three to five sentences naming one email, its tool and
-          the fact the tool returned. What the agent decided before that fact is
-          left out. Or no verdict changed on the run and the answer names the
-          closest email without saying why.
+          Meets standard. Three to five sentences. They read cell 15 correctly
+          and report one row of the student's own table with its tool and fact.
+          What that row does and does not settle is left out, or is stated as
+          though the tool alone accounts for the difference.
         points: 21
       - description: >-
           Approaching standard. The answer names an email or a tool but quotes
-          no fact from the file. Or it describes the run in general words, with
-          no result of the student's own in it.
+          no fact from the file. Or it reports only cell 14 and never reads
+          cell 15. Or it describes the run in general words, with no result of
+          the student's own in it.
         points: 14
       - description: >-
           No evidence. No written answer. Or one carrying none of the student's

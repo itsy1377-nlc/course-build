@@ -21,11 +21,92 @@ week that has been measured.
 | **1** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — measured, 1,700 calls; sidebar gap closed |
 | **2** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 0.9 reporting ceiling, measured 64/64 retries recover |
 | **3** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 3.2 reworded to indicators, passes a pre-registered 6/6 |
-| 4 | not started | not started | — | — | false claim about tool replies |
+| **4** | **fixed** | **fixed** | **rebuilt** | pending | **done** — 4.3 was confounded; a matched-pair cell demonstrates it 8/8, three runs |
 | 5 | not started | not started | — | — | `step_cap` unreachable |
 | 6 | not started | not started | — | — | verdict call has no email body |
 | 7 | not started | not started | — | — | schema never validated |
 | exam | not started | — | — | — | Q24 keys a payroll diversion "close it" |
+
+
+---
+
+## Week 4 — applied 2026-09-09
+
+Objective **4.3, "Compare each email's verdict with tools against its verdict
+without tools"**, is the at-risk one. 4.1 and 4.2 are safe and were never in
+doubt: the student writes both functions, and cells 11 and 13 check them
+against saved requests with no model involved.
+
+Codex's wording for the defect is the one to keep:
+
+> Week 4 operationalizes 4.3 with a five-confound comparison and then grades a
+> causal explanation of it.
+
+### The measurement
+
+Eight probes, about 1,100 calls, all on the shipped stack. Full record in
+`docs/week4-measurement/`, thresholds in `prereg-claude.md` written before each
+result. Two pre-registered thresholds failed, and both failures changed the fix.
+
+- **The comparison is confounded.** Cell 14 put `classify_grounded()` against
+  `triage_with_tools()`; the arms differ in five ways besides the tool. With a
+  control arm carrying a tool message that says "no record available", email
+  003 still moves malicious to benign **8 of 8**. The tool's fact is not what
+  moves it.
+- **Three tools behave like one.** 59 of 69 calls asked for
+  `check_sender_reputation`, `lookup_recipient` twice. The playbook is not the
+  cause: a length-matched block of neutral filler concentrates the choice
+  harder, 66 of 72. **Prompt length, not content**, so editing the playbook
+  would have been the wrong fix.
+- **No email met the pre-registered bar** for the tool being the active
+  ingredient under free tool choice. 018's noise floor was 5 of 8.
+- **Forcing the tool removes the wobble.** Every real-record arm is 8/8 and
+  identical across two independent runs, all six rows. Every instability lives
+  in the withheld arms. So a withheld arm must never be printed to a student as
+  a baseline.
+- **018 is the one confirmed matched pair**, twice over: same tool name, same
+  arguments, withheld malicious 8/8, real `known_good` benign 8/8. A true fact
+  about the sender walks a correct verdict backwards.
+- **017 failed confirmation** and does not ship as a demonstration. Its three
+  tool arms are stable; its baseline is a coin flip.
+- **68 of 71 replies carrying a tool call also carried answer text**, read raw
+  off the endpoint because `send_request()` overwrites empty content. The text
+  names the tool actually called, **60 agree, 0 disagree**.
+
+### What changed
+
+| file | change |
+|---|---|
+| 14 notebooks (7 labs, 7 solutions) | `LAST_CALL["answer_was_empty"]`, set in `send_request()` before the notice is substituted. Additive; the chain still holds |
+| `lab/notebooks/w4-lab.ipynb` + solution | **new cell 15**: email 018 judged four times, only the tool result changing. Four calls. Cells 8, 9 and 13 stop claiming a tool call carries no answer text and teach the sentence instead. Cell 14 passes `known_names=KNOWN_NAMES`. Cell 10 says four saved requests, not three |
+| `content/pages/w4-content.md` | new section "One tool of three is half a read" with cell 15's table; a callout disclosing that 019 is wrong in every arm; the worked example stops naming a tool; call and token counts remeasured; the redundant sidebar section dropped to stay in budget |
+| `content/assignments/w4-lab.md` | renumbered for the new cell; written answer no longer asks for a causal claim about an uncontrolled row |
+| `content/rubrics/w4-lab.yaml` | criterion 3 grades reading cell 15 plus honest reporting of one cell 14 row |
+| `content/quizzes/w4-self-check.yaml` | Q1's stem stops naming a tool cell 8 does not reliably return; Q3's "flips the verdict to malicious" corrected to holding it there, and the distractor feedback now points at cell 15 |
+| `content/discussions/w4-discussion.md` | prediction moved from 018, which is now spoiled three ways, to **009**, with the body embedded; "read it on the lab page" removed |
+| `content/pages/w4-wrap-up.md`, `w4-overview.md` | one new bullet; cell count 17 to 18 |
+| `content/video/w4-overview.yaml` | the benign-to-malicious direction the lab never produces, replaced with the measured 018 contrast. Rebuilt |
+| `content/video/w4-walkthrough.yaml` | one clause: its "no answer text, twenty of twenty" is true of its own run and yours may differ. Rebuilt |
+
+### Verified, not assumed
+
+- `check_chain.py`: the chain holds, 65 functions, 49 carried by more than one week.
+- `readability`: all 74 enforced pages inside grade, length and warmth.
+- `tools.video.check`: 14 videos, all checks pass, nothing stale.
+- `run_notebook.py --student`: 18 cells, 2 TODO, runs clean with nothing written.
+- `run_notebook.py --solution`: 18 cells, 0 TODO, artifact written, **25 calls,
+  31,412 tokens**, and cell 15 reproduced the confirmed table a third time.
+- Notebook server: all 15 notebooks live and md5-matched; solutions and both
+  answer keys still 404.
+
+### Not fixed, on purpose
+
+Codex's "do not touch" list, kept: the playbook, `TOOL_TURN`,
+`TOOL_INSTRUCTIONS`, `TOOL_SPECS`, `start_messages()`, `ask_with_tools()`,
+`run_tool()`, `tool_result_message()` — byte-identical across weeks 4 to 7, and
+week 5's measured loop behaviour rests on them. 017 is not promoted. 019's
+accuracy is not chased, only disclosed. Natural tool-choice variation is left
+alone. The lab's 165-minute estimate is left as it is.
 
 ---
 

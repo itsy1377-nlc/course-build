@@ -1,0 +1,212 @@
+{
+ "model": "granite-3b",
+ "n": 12,
+ "records": [
+  {
+   "email": "003",
+   "condition": "bare",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 8,
+    "check_urls": 4
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "003",
+   "condition": "playbook",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 10,
+    "check_urls": 2
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "003",
+   "condition": "filler",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "008",
+   "condition": "bare",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 10,
+    "check_urls": 2
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "008",
+   "condition": "playbook",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "008",
+   "condition": "filler",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "009",
+   "condition": "bare",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "009",
+   "condition": "playbook",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 10,
+    "lookup_recipient": 2
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "009",
+   "condition": "filler",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 11,
+    "lookup_recipient": 1
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "017",
+   "condition": "bare",
+   "n": 12,
+   "tools": {
+    "lookup_recipient": 9
+   },
+   "no_call": 3,
+   "text_with_call": 9,
+   "calls": 9
+  },
+  {
+   "email": "017",
+   "condition": "playbook",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 10
+   },
+   "no_call": 2,
+   "text_with_call": 10,
+   "calls": 10
+  },
+  {
+   "email": "017",
+   "condition": "filler",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "018",
+   "condition": "bare",
+   "n": 12,
+   "tools": {
+    "check_urls": 11
+   },
+   "no_call": 1,
+   "text_with_call": 11,
+   "calls": 11
+  },
+  {
+   "email": "018",
+   "condition": "playbook",
+   "n": 12,
+   "tools": {
+    "check_urls": 6,
+    "check_sender_reputation": 5
+   },
+   "no_call": 1,
+   "text_with_call": 11,
+   "calls": 11
+  },
+  {
+   "email": "018",
+   "condition": "filler",
+   "n": 12,
+   "tools": {
+    "check_urls": 5,
+    "check_sender_reputation": 7
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "019",
+   "condition": "bare",
+   "n": 12,
+   "tools": {
+    "lookup_recipient": 7,
+    "check_sender_reputation": 4
+   },
+   "no_call": 1,
+   "text_with_call": 11,
+   "calls": 11
+  },
+  {
+   "email": "019",
+   "condition": "playbook",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  },
+  {
+   "email": "019",
+   "condition": "filler",
+   "n": 12,
+   "tools": {
+    "check_sender_reputation": 12
+   },
+   "no_call": 0,
+   "text_with_call": 12,
+   "calls": 12
+  }
+ ]
+}

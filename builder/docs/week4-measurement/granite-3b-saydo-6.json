@@ -1,0 +1,108 @@
+{
+ "model": "granite-3b",
+ "n": 6,
+ "rows": [
+  {
+   "email": "003",
+   "shape": "cell 8",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "003",
+   "shape": "cell 14",
+   "agree": 5,
+   "disagree": 0,
+   "unreadable": 1,
+   "n": 6
+  },
+  {
+   "email": "008",
+   "shape": "cell 8",
+   "agree": 5,
+   "disagree": 0,
+   "unreadable": 1,
+   "n": 6
+  },
+  {
+   "email": "008",
+   "shape": "cell 14",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "009",
+   "shape": "cell 8",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "009",
+   "shape": "cell 14",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "017",
+   "shape": "cell 8",
+   "agree": 5,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "017",
+   "shape": "cell 14",
+   "agree": 3,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "018",
+   "shape": "cell 8",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "018",
+   "shape": "cell 14",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  },
+  {
+   "email": "019",
+   "shape": "cell 8",
+   "agree": 0,
+   "disagree": 0,
+   "unreadable": 6,
+   "n": 6
+  },
+  {
+   "email": "019",
+   "shape": "cell 14",
+   "agree": 6,
+   "disagree": 0,
+   "unreadable": 0,
+   "n": 6
+  }
+ ],
+ "totals": {
+  "agree": 60,
+  "disagree": 0,
+  "unreadable": 8
+ },
+ "disagreement_examples": []
+}

@@ -1,0 +1,151 @@
+{
+ "model": "granite-3b",
+ "n": 8,
+ "C1_C2": {
+  "017": {
+   "withheld": {
+    "counts": {
+     "malicious": 4,
+     "benign": 4
+    },
+    "want": "malicious",
+    "floor": 6,
+    "got": 4,
+    "pass": false
+   },
+   "reputation": {
+    "counts": {
+     "benign": 8
+    },
+    "want": "benign",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   },
+   "urls": {
+    "counts": {
+     "benign": 8
+    },
+    "want": "benign",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   },
+   "recipient": {
+    "counts": {
+     "malicious": 8
+    },
+    "want": "malicious",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   }
+  },
+  "018": {
+   "withheld": {
+    "counts": {
+     "malicious": 8
+    },
+    "want": "malicious",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   },
+   "reputation": {
+    "counts": {
+     "benign": 8
+    },
+    "want": "benign",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   },
+   "urls": {
+    "counts": {
+     "malicious": 8
+    },
+    "want": "malicious",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   },
+   "recipient": {
+    "counts": {
+     "malicious": 8
+    },
+    "want": "malicious",
+    "floor": 7,
+    "got": 8,
+    "pass": true
+   }
+  }
+ },
+ "C4": {
+  "003": {
+   "without": {
+    "benign": 8
+   },
+   "with": {
+    "benign": 8
+   },
+   "mismatch_without": false,
+   "mismatch_with": false,
+   "moved": 0
+  },
+  "008": {
+   "without": {
+    "malicious": 8
+   },
+   "with": {
+    "malicious": 8
+   },
+   "mismatch_without": false,
+   "mismatch_with": false,
+   "moved": 0
+  },
+  "009": {
+   "without": {
+    "malicious": 8
+   },
+   "with": {
+    "malicious": 8
+   },
+   "mismatch_without": false,
+   "mismatch_with": true,
+   "moved": 0
+  },
+  "017": {
+   "without": {
+    "benign": 8
+   },
+   "with": {
+    "benign": 8
+   },
+   "mismatch_without": false,
+   "mismatch_with": false,
+   "moved": 0
+  },
+  "018": {
+   "without": {
+    "benign": 8
+   },
+   "with": {
+    "benign": 8
+   },
+   "mismatch_without": false,
+   "mismatch_with": false,
+   "moved": 0
+  },
+  "019": {
+   "without": {
+    "malicious": 8
+   },
+   "with": {
+    "malicious": 8
+   },
+   "mismatch_without": false,
+   "mismatch_with": false,
+   "moved": 0
+  }
+ }
+}

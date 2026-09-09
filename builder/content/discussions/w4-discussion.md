@@ -1,17 +1,29 @@
 ::: intro
-This board has two halves, and the order matters. Half one is your prediction. Write it before you open your file.
+Two halves, and the order matters. Half one is your prediction. Write it before you open your file.
 :::
 
 ::: directions
 **Week 4 discussion: call it before you read it**
 
-This post has two halves. Do the first half before you open your file.
+Do the first half before you open your file.
 
 **Half one. Your prediction.**
 
-Take email 018. Read it on the lab page. Don't open `week4_tool_calls.json` yet.
+Here is email 009, in full. Don't open `week4_tool_calls.json` yet.
 
-Name the one tool you would have asked for on that email. Say in one sentence what you expected it to come back with.
+> **From:** Adaeze Whitcombe <adaeze.whitcombe.pmg@lanternmail.example>
+> **To:** b.onwuka@pellgrave.example
+> **Subject:** Are you available?
+>
+> Beatrix, are you in the office?
+>
+> I need you to handle something for me quietly and I can't take calls between sessions. The conference wifi blocks the VPN so I'm on my personal mail; just reply here.
+>
+> A.
+
+Adaeze Whitcombe is the CEO. Beatrix Onwuka is her assistant. There are no links in it.
+
+Name the one tool you would have asked for here. Say in one sentence what you expected it to come back with.
 
 **Half two. What your agent did.**
 
@@ -29,22 +41,20 @@ You may use AI help on this post. If you do, add one line saying what you asked 
 :::
 
 ::: section | What a good post has in it
-A good post is short and specific. It reads like a note you would leave a teammate.
+A good post is short and specific, like a note you'd leave a teammate.
 
 - It names one tool in half one, not two.
 - Its prediction says what would come back. "Something useful" says nothing.
 - Its pasted fact is one line out of your own file, word for word.
 - Its answer to who was right points at that pasted line.
 
-A wrong prediction is a fine post. Finding out you picked the other tool is the exercise.
+A wrong prediction is a fine post. Finding out you picked a different tool from your agent is the exercise.
 
-What weakens a post is a prediction rewritten after the file is open, or a fact taken from a classmate.
+What weakens a post is a prediction rewritten after the file is open.
 :::
 
 ::: section | The reply
-Read a post nobody has answered yet. Pick one whose prediction missed. Find the fact that classmate pasted, and say what it settles.
-
-Then add one line from your own file on the same email.
+Read a post nobody has answered yet. Pick one whose prediction missed. Find the fact that classmate pasted, and say what it settles. Then add one line from your own file.
 
 "Same here, good post" isn't a reply and earns no points.
 :::

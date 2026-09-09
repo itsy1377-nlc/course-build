@@ -1,0 +1,106 @@
+{
+ "model": "granite-3b",
+ "n": 6,
+ "totals": {
+  "tool_call_replies": 71,
+  "with_text": 68
+ },
+ "rows": [
+  {
+   "email": "003",
+   "shape": "cell 8",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll check the allowlist/blocklist status of the lin"
+  },
+  {
+   "email": "003",
+   "shape": "cell 14",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 4,
+   "example_first_line": "I'll start by checking the sender reputation to unde"
+  },
+  {
+   "email": "008",
+   "shape": "cell 8",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll check the sender reputation first, as it's crit"
+  },
+  {
+   "email": "008",
+   "shape": "cell 14",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll start by checking the sender's reputation to un"
+  },
+  {
+   "email": "009",
+   "shape": "cell 8",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll look up the sender's reputation to assess the r"
+  },
+  {
+   "email": "009",
+   "shape": "cell 14",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll start by looking up the sender's reputation to "
+  },
+  {
+   "email": "017",
+   "shape": "cell 8",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll check the URL host against our allowlist/blockl"
+  },
+  {
+   "email": "017",
+   "shape": "cell 14",
+   "n": 6,
+   "tool_call_replies": 5,
+   "with_text": 5,
+   "example_first_line": "I'll start by checking the sender reputation, as it'"
+  },
+  {
+   "email": "018",
+   "shape": "cell 8",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll check the allowlist/blocklist status of the lin"
+  },
+  {
+   "email": "018",
+   "shape": "cell 14",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll start by checking the sender reputation to unde"
+  },
+  {
+   "email": "019",
+   "shape": "cell 8",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 5,
+   "example_first_line": "I'll start by checking the sender's reputation to un"
+  },
+  {
+   "email": "019",
+   "shape": "cell 14",
+   "n": 6,
+   "tool_call_replies": 6,
+   "with_text": 6,
+   "example_first_line": "I'll start by checking the sender's reputation to un"
+  }
+ ]
+}

@@ -1,0 +1,318 @@
+{
+ "model": "granite-3b",
+ "n": 8,
+ "records": [
+  {
+   "email": "003",
+   "truth": "benign",
+   "n": 8,
+   "arms": {
+    "withheld": {
+     "benign": 8
+    },
+    "check_sender_reputation": {
+     "benign": 8
+    },
+    "check_urls": {
+     "malicious": 8
+    },
+    "lookup_recipient": {
+     "benign": 6,
+     "malicious": 2
+    }
+   },
+   "tool_results": {
+    "check_sender_reputation": {
+     "domain": "inkmoor-office.example",
+     "status": "known_good",
+     "first_seen": "2020-02-12",
+     "messages_90d": 22,
+     "prior_reports": 3,
+     "last_report_verdict": "benign",
+     "last_report_date": "2026-03-25",
+     "campaign_tag": "marketing",
+     "new_domain": false,
+     "notes": "Office supply vendor; marketing mail reported three times, all closed benign.",
+     "match_level": "organizational_domain"
+    },
+    "check_urls": {
+     "links.sendbarrow-mail.example": "unlisted"
+    },
+    "lookup_recipient": {
+     "address": "c.hallowden@pellgrave.example",
+     "name": "Casimir Hallowden",
+     "role": "Warehouse Supervisor",
+     "mailbox_type": "person",
+     "executive": false,
+     "handles_payments": false,
+     "chronic_reporter": true,
+     "report_count_90d": 11,
+     "true_positive_count_90d": 0,
+     "campaign_tags": [
+      "internal-notice",
+      "marketing",
+      "vendor-notice"
+     ]
+    }
+   }
+  },
+  {
+   "email": "008",
+   "truth": "malicious",
+   "n": 8,
+   "arms": {
+    "withheld": {
+     "malicious": 8
+    },
+    "check_sender_reputation": {
+     "malicious": 8
+    },
+    "check_urls": {
+     "malicious": 8
+    },
+    "lookup_recipient": {
+     "malicious": 8
+    }
+   },
+   "tool_results": {
+    "check_sender_reputation": {
+     "domain": "larkhollow-controls.example",
+     "status": "known_bad",
+     "first_seen": "2026-03-02",
+     "messages_90d": 4,
+     "prior_reports": 3,
+     "last_report_verdict": "malicious",
+     "last_report_date": "2026-03-30",
+     "campaign_tag": "fake-quote-portal",
+     "new_domain": false,
+     "notes": "Fake controls vendor; quote portal harvests credentials.",
+     "match_level": "domain"
+    },
+    "check_urls": {
+     "portal.larkhollow-controls.example": "unlisted"
+    },
+    "lookup_recipient": {
+     "address": "e.dawodu@pellgrave.example",
+     "name": "Emeric Dawodu",
+     "role": "Procurement Specialist",
+     "mailbox_type": "person",
+     "executive": false,
+     "handles_payments": false,
+     "chronic_reporter": false,
+     "report_count_90d": 1,
+     "true_positive_count_90d": 0,
+     "campaign_tags": [
+      "vendor-notice"
+     ]
+    }
+   }
+  },
+  {
+   "email": "009",
+   "truth": "malicious",
+   "n": 8,
+   "arms": {
+    "withheld": {
+     "malicious": 8
+    },
+    "check_sender_reputation": {
+     "malicious": 8
+    },
+    "check_urls": {
+     "malicious": 8
+    },
+    "lookup_recipient": {
+     "malicious": 8
+    }
+   },
+   "tool_results": {
+    "check_sender_reputation": {
+     "domain": "lanternmail.example",
+     "status": "neutral",
+     "first_seen": "2019-06-11",
+     "messages_90d": 340,
+     "prior_reports": 9,
+     "last_report_verdict": "malicious",
+     "last_report_date": "2026-03-31",
+     "campaign_tag": "ceo-impersonation",
+     "new_domain": false,
+     "notes": "Free webmail provider. Domain reputation is neutral; address records override it.",
+     "match_level": "domain"
+    },
+    "check_urls": {},
+    "lookup_recipient": {
+     "address": "b.onwuka@pellgrave.example",
+     "name": "Beatrix Onwuka",
+     "role": "Executive Assistant to the CEO",
+     "mailbox_type": "person",
+     "executive": true,
+     "handles_payments": false,
+     "chronic_reporter": false,
+     "report_count_90d": 4,
+     "true_positive_count_90d": 3,
+     "campaign_tags": [
+      "ceo-impersonation",
+      "marketing"
+     ]
+    }
+   }
+  },
+  {
+   "email": "017",
+   "truth": "benign",
+   "n": 8,
+   "arms": {
+    "withheld": {
+     "benign": 2,
+     "malicious": 6
+    },
+    "check_sender_reputation": {
+     "benign": 8
+    },
+    "check_urls": {
+     "benign": 8
+    },
+    "lookup_recipient": {
+     "malicious": 8
+    }
+   },
+   "tool_results": {
+    "check_sender_reputation": {
+     "domain": "fenwrightpay.example",
+     "status": "trusted",
+     "first_seen": "2021-03-08",
+     "messages_90d": 212,
+     "prior_reports": 1,
+     "last_report_verdict": "benign",
+     "last_report_date": "2026-02-11",
+     "campaign_tag": null,
+     "new_domain": false,
+     "notes": "Payroll vendor; allowlisted.",
+     "match_level": "domain"
+    },
+    "check_urls": {
+     "my.fenwrightpay.example": "allowlisted"
+    },
+    "lookup_recipient": {
+     "address": "h.quintanilla@pellgrave.example",
+     "name": "Hollis Quintanilla",
+     "role": "Service Manager, Head Office Branch",
+     "mailbox_type": "person",
+     "executive": false,
+     "handles_payments": false,
+     "chronic_reporter": false,
+     "report_count_90d": 2,
+     "true_positive_count_90d": 1,
+     "campaign_tags": [
+      "credential-phish",
+      "customer-notice"
+     ]
+    }
+   }
+  },
+  {
+   "email": "018",
+   "truth": "malicious",
+   "n": 8,
+   "arms": {
+    "withheld": {
+     "malicious": 8
+    },
+    "check_sender_reputation": {
+     "benign": 8
+    },
+    "check_urls": {
+     "malicious": 8
+    },
+    "lookup_recipient": {
+     "malicious": 8
+    }
+   },
+   "tool_results": {
+    "check_sender_reputation": {
+     "domain": "hollinvalepm.example",
+     "status": "known_good",
+     "first_seen": "2023-08-15",
+     "messages_90d": 14,
+     "prior_reports": 0,
+     "last_report_verdict": null,
+     "last_report_date": null,
+     "campaign_tag": null,
+     "new_domain": false,
+     "notes": "Property management customer.",
+     "match_level": "domain"
+    },
+    "check_urls": {
+     "secure-doc-viewer.example": "blocklisted"
+    },
+    "lookup_recipient": {
+     "address": "h.quintanilla@pellgrave.example",
+     "name": "Hollis Quintanilla",
+     "role": "Service Manager, Head Office Branch",
+     "mailbox_type": "person",
+     "executive": false,
+     "handles_payments": false,
+     "chronic_reporter": false,
+     "report_count_90d": 2,
+     "true_positive_count_90d": 1,
+     "campaign_tags": [
+      "credential-phish",
+      "customer-notice"
+     ]
+    }
+   }
+  },
+  {
+   "email": "019",
+   "truth": "benign",
+   "n": 8,
+   "arms": {
+    "withheld": {
+     "malicious": 8
+    },
+    "check_sender_reputation": {
+     "malicious": 8
+    },
+    "check_urls": {
+     "malicious": 8
+    },
+    "lookup_recipient": {
+     "malicious": 8
+    }
+   },
+   "tool_results": {
+    "check_sender_reputation": {
+     "domain": "pellgrave.example",
+     "status": "internal",
+     "first_seen": "2019-05-01",
+     "messages_90d": 0,
+     "prior_reports": 0,
+     "last_report_verdict": null,
+     "last_report_date": null,
+     "campaign_tag": null,
+     "new_domain": false,
+     "notes": "The organization's own domain. A From address on this domain arriving through the external gateway is a forgery unless quarantined and released.",
+     "match_level": "domain"
+    },
+    "check_urls": {},
+    "lookup_recipient": {
+     "address": "p.castellanos@pellgrave.example",
+     "name": "Priya Castellanos",
+     "role": "Accounts Payable Specialist",
+     "mailbox_type": "person",
+     "executive": false,
+     "handles_payments": true,
+     "chronic_reporter": false,
+     "report_count_90d": 6,
+     "true_positive_count_90d": 4,
+     "campaign_tags": [
+      "credential-phish",
+      "invoice-malware",
+      "vendor-invoice-fraud",
+      "vendor-notice"
+     ]
+    }
+   }
+  }
+ ]
+}

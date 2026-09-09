@@ -41,14 +41,15 @@ scenes:
     eyebrow: What came back next
     heading: The model asked for a fact
     body: |
-      stop reason: tool_calls        answer text: empty
+      stop reason: tool_calls        answer text: empty on this run
 
       name         check_sender_reputation
       arguments    {"sender":"slatemoorsupply.example"}
     narration:
       - Now the same email again, with the three tool definitions attached.
-      - This time no answer text came back at all. The stop reason was tool calls, twenty runs out of twenty.
-      - In that empty slot sits one request. A tool name, and the values to pass.
+      - On this run no answer text came back at all. The stop reason was tool calls, twenty runs out of twenty.
+      - Yours may differ there. A reply that asks for a tool often carries a sentence saying which tool it is about to ask for, and the request is the part your code reads either way.
+      - Alongside the stop reason sits one request. A tool name, and the values to pass.
       - It asked about the sender, and passed the domain rather than the whole address. The tool takes either.
       - Exactly one request came back, every time.
 

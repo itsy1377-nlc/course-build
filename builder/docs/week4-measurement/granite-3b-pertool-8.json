@@ -1,0 +1,85 @@
+{
+ "model": "granite-3b",
+ "n": 8,
+ "rows": [
+  {
+   "email": "018",
+   "truth": "malicious",
+   "tool": "check_sender_reputation",
+   "n": 8,
+   "withheld": {
+    "malicious": 8
+   },
+   "real": {
+    "benign": 8
+   },
+   "pair_differs": 8
+  },
+  {
+   "email": "018",
+   "truth": "malicious",
+   "tool": "check_urls",
+   "n": 8,
+   "withheld": {
+    "malicious": 8
+   },
+   "real": {
+    "malicious": 8
+   },
+   "pair_differs": 0
+  },
+  {
+   "email": "018",
+   "truth": "malicious",
+   "tool": "lookup_recipient",
+   "n": 8,
+   "withheld": {
+    "malicious": 8
+   },
+   "real": {
+    "malicious": 8
+   },
+   "pair_differs": 0
+  },
+  {
+   "email": "017",
+   "truth": "benign",
+   "tool": "check_sender_reputation",
+   "n": 8,
+   "withheld": {
+    "malicious": 6,
+    "benign": 2
+   },
+   "real": {
+    "benign": 8
+   },
+   "pair_differs": 6
+  },
+  {
+   "email": "017",
+   "truth": "benign",
+   "tool": "check_urls",
+   "n": 8,
+   "withheld": {
+    "malicious": 8
+   },
+   "real": {
+    "benign": 8
+   },
+   "pair_differs": 8
+  },
+  {
+   "email": "017",
+   "truth": "benign",
+   "tool": "lookup_recipient",
+   "n": 8,
+   "withheld": {
+    "malicious": 8
+   },
+   "real": {
+    "malicious": 8
+   },
+   "pair_differs": 0
+  }
+ ]
+}

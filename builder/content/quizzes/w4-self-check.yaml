@@ -77,8 +77,8 @@ questions:
     outcome: "none"
     text: |
       <p>Cell 8 of your lab notebook makes one call on email 017, the payroll
-      notice, and prints what comes back. The reply names
-      <code>check_urls</code> and gives one link host.</p>
+      notice, and prints what comes back. The reply names one of the three
+      tools and gives the value to pass it.</p>
       <p>What has happened at that point?</p>
     answers:
       - text: The model has asked for that tool. Nothing has run yet.
@@ -103,7 +103,7 @@ questions:
         correct: false
         feedback: >-
           No. Cell 8 makes one call and runs no tool before it. That reply is
-          the first time the tool is named. Week 4 lab notebook, cell 8.
+          the first time any tool is named. Week 4 lab notebook, cell 8.
 
   - id: w4-q2
     name: Question 2. Why the arguments get loaded first
@@ -159,14 +159,17 @@ questions:
         correct: true
         feedback: >-
           Right. That is the tool that reads the allowlist and the blocklist.
-          On 018 it comes back blocklisted, and that one fact flips the verdict
-          to malicious. Week 4 reading, why the three tools are plain Python.
+          On 018 it comes back blocklisted, and cell 15 shows that fact holding
+          the verdict at malicious, which is what the answer key says. Week 4
+          reading, why the three tools are plain Python.
       - text: check_sender_reputation(sender)
         correct: false
         feedback: >-
           No. That tool answers about the sender. On 018 it comes back known
-          good, because the customer is real and her account was taken over.
-          Week 4 reading, why the three tools are plain Python.
+          good, because the customer is real and somebody else is holding the
+          account. Cell 15 shows that true fact moving the verdict to benign,
+          away from the answer key. Week 4 reading, one tool of three is half a
+          read.
       - text: lookup_recipient(address)
         correct: false
         feedback: >-
