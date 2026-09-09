@@ -21,7 +21,7 @@ week that has been measured.
 | **1** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — measured, 1,700 calls; sidebar gap closed |
 | **2** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 0.9 reporting ceiling, measured 64/64 retries recover |
 | **3** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 3.2 reworded to indicators, passes a pre-registered 6/6 |
-| **4** | **fixed** | **fixed** | **rebuilt** | pending | **done** — 4.3 was confounded; a matched-pair cell demonstrates it 8/8, three runs |
+| **4** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 4.3 was confounded; a matched-pair cell demonstrates it 8/8, three runs |
 | 5 | not started | not started | — | — | `step_cap` unreachable |
 | 6 | not started | not started | — | — | verdict call has no email body |
 | 7 | not started | not started | — | — | schema never validated |

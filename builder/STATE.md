@@ -1,8 +1,8 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-09, week 4 rebuilt; staged
-to the notebook server, Canvas push not yet run.
+this file at every stopping point. Last update: 2026-09-09, week 4 rebuilt, pushed
+and verified.
 
 ## Where the build is
 
@@ -485,8 +485,8 @@ builder/lab/notebooks/ --all --student`: "15 notebook(s), 0 failure(s)", weeks
 
 ## 2026-09-09 — week 4 rebuilt around a matched pair
 
-Weeks 1, 2 and 3 are done and pushed. **Week 4's code, content and videos are
-done and the notebook server is updated; the Canvas push has not been run.**
+Weeks 1, 2, 3 and 4 are done, pushed and verified. Week 4 went out as 38
+objects in 3m32s with `--week 4`, and `--verify` reports 0 problems.
 Everything is in `docs/lab-fix-log.md` under "Week 4", with the numbers in
 `docs/week4-measurement/` (eight probes, ~1,100 calls, README plus the
 pre-registration written before results).
