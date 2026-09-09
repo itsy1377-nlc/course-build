@@ -1,0 +1,104 @@
+{
+ "n": 8,
+ "needed": 6,
+ "rows": [
+  {
+   "email": "001",
+   "P": [],
+   "G": [
+    "display_name_mismatch",
+    "subject",
+    "url_hosts"
+   ],
+   "new": [
+    "display_name_mismatch",
+    "subject",
+    "url_hosts"
+   ],
+   "D": 1.0,
+   "qualifies": true
+  },
+  {
+   "email": "004",
+   "P": [],
+   "G": [
+    "display_name_mismatch",
+    "from_domain"
+   ],
+   "new": [
+    "display_name_mismatch",
+    "from_domain"
+   ],
+   "D": 1.0,
+   "qualifies": true
+  },
+  {
+   "email": "005",
+   "P": [],
+   "G": [
+    "url_hosts"
+   ],
+   "new": [
+    "url_hosts"
+   ],
+   "D": 1.0,
+   "qualifies": true
+  },
+  {
+   "email": "006",
+   "P": [],
+   "G": [
+    "display_name_mismatch",
+    "dmarc",
+    "spf",
+    "url_hosts"
+   ],
+   "new": [
+    "display_name_mismatch",
+    "dmarc",
+    "spf",
+    "url_hosts"
+   ],
+   "D": 1.0,
+   "qualifies": true
+  },
+  {
+   "email": "017",
+   "P": [
+    "from_display"
+   ],
+   "G": [
+    "from_domain",
+    "url_hosts"
+   ],
+   "new": [
+    "from_domain",
+    "url_hosts"
+   ],
+   "D": 1.0,
+   "qualifies": true
+  },
+  {
+   "email": "025",
+   "P": [],
+   "G": [
+    "display_name_mismatch",
+    "dmarc",
+    "from_display",
+    "spf",
+    "url_hosts"
+   ],
+   "new": [
+    "display_name_mismatch",
+    "dmarc",
+    "from_display",
+    "spf",
+    "url_hosts"
+   ],
+   "D": 1.0,
+   "qualifies": true
+  }
+ ],
+ "qualifying": 6,
+ "verdict": "PASS - keep indicator-based 3.2"
+}

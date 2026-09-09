@@ -210,7 +210,7 @@ questions:
           Week 3 reading, what a passed check really means.
 
   - id: w3-q5
-    name: Question 5. Why email 005 changed
+    name: Question 5. What a grounded run has that a plain one does not
     type: multiple_choice
     points: 2
     section: "Week 3 lab notebook, cell 14, the comparison table"
@@ -226,8 +226,8 @@ questions:
         correct: true
         feedback: >-
           Correct. Nothing about the message got calmer. Facts arrived that the
-          body alone could not carry. Week 3 reading, two emails, and the
-          reason for all this.
+          body alone could not carry. Week 3 reading, what the facts
+          block can and can't do.
       - text: A shorter body, so the lines about the credit hold were cut.
         correct: false
         feedback: >-

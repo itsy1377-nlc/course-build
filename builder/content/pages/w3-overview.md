@@ -10,7 +10,7 @@ About three minutes. Why the body alone isn't enough, and what a facts block put
 By the end of this module, you'll be able to:
 
 - **3.1** Extract the sender, header, link and mail-check facts into one facts block. (CLO1)
-- **3.2** Report which verdicts changed after you added the facts block. (CLO1)
+- **3.2** Compare the model's stated indicators before and after you add the facts block, and report what changed. (CLO1)
 - **3.3** Justify which facts you left out of the prompt. (CLO1)
 :::
 

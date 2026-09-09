@@ -20,18 +20,19 @@ It reads the text you sent and hands back a judgment, so it's a judgment layer o
 Week 2 sent the body alone, so your verdict rested on wording. A confident answer isn't evidence.
 :::
 
-::: section | Two emails, and the reason for all this
-Two of this week's six emails were built for this lesson. Email 019 reads like trouble. The finance director asks for a payment to be moved today, and wants a call before three.
+::: section | What the facts block can and can't do
+Your facts block makes the sender's domain, the mail-check results and the link hosts available. That's all it does. It doesn't make the model use them, or the verdict change.
 
-Email 016 reads like ordinary business. A supplier you buy from every month sends new bank details for the next invoice.
+So how do you tell whether the facts reached the answer? Read what the model says it used. Every answer carries an `indicators` list, and that list is the model showing its work.
 
-The truth runs the other way. 019 is your own finance director, and the message never left the company. 016 is a stranger, and the address it asks you to reply to drops one letter from the supplier's own. No care with the body separates them. The facts block holds both answers.
+Measured on these six emails, the ungrounded run names none of those header facts on five of the six. It has none to name. The grounded run names the SPF result, the link host, the sender's domain. The verdict usually stays put, and the indicators are what you report.
 :::
 
 ::: section | The email that does not settle this week
-Email 005 doesn't settle this week, and that isn't your code. The two facts that clear it are that Slatemoor is an approved supplier, and that the link host is theirs. Neither is a header, so no facts block can carry them.
+Email 005 doesn't settle this week, and that isn't your code. The two facts that clear it, that Slatemoor is an approved supplier and that the link host is theirs, are not headers. No facts block can carry them.
 
 They arrive in week 5, when your agent can ask two tools for itself. Grounding isn't the last thing you add. It's the first.
+:::
 
 ::: section | What goes in the facts block
 A **header** is one named line above the body, such as `From:` or `Subject:`. Your mail gateway adds headers of its own before a message reaches a mailbox.

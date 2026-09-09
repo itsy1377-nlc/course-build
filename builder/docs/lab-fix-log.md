@@ -20,7 +20,7 @@ week that has been measured.
 |---|---|---|---|---|---|
 | **1** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — measured, 1,700 calls; sidebar gap closed |
 | **2** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 0.9 reporting ceiling, measured 64/64 retries recover |
-| **3** | *diagnosed* | *diagnosed* | — | — | facts move no verdict; lab runs weeks 4 and 6 emails |
+| **3** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 3.2 reworded to indicators, passes a pre-registered 6/6 |
 | 4 | not started | not started | — | — | false claim about tool replies |
 | 5 | not started | not started | — | — | `step_cap` unreachable |
 | 6 | not started | not started | — | — | verdict call has no email body |
@@ -611,7 +611,113 @@ negation, so clean facts read as concerns.
   own key names, so two of twenty-six keys have no label. Cell 8 then discusses
   one of them by name. A `.replace("\r", " ")` beside the existing newline one.
 
-### Open question
+### Applied 2026-09-09
+
+**Option B was disproven before it shipped and objective 3.2 was reworded.**
+The full measurement record is in `docs/week3-measurement/`, nine sections and
+about 700 calls.
+
+Option B would have added email 008 as the demonstration: genuinely malicious,
+benign 6/6 from the body, malicious 6/6 with facts. Its facts turned out to be
+nearly identical to 017's, whose truth is the opposite. The control settled it:
+**a facts block with every value replaced by "(withheld)" flips both emails to
+malicious, 6 times out of 6.** The content does nothing. 008's "correct" flip
+is the same artifact as 017's wrong one, landing on the right answer by luck.
+That is the week 1 number-probe failure again, and it was one commit from
+shipping as the week's demonstration.
+
+Section isolation found no single culprit: on 017 the facts block alone causes
+the wrong flip, on 008 the playbook alone and the known-good list alone each do.
+The shipped grounded prompt pushes granite-3b toward malicious more or less
+regardless of the email.
+
+**Five models were tested and none rescues verdict-based 3.2.** granite-3b
+flips both regardless of content; granite-8b never moves and misses the phish;
+gemma3-12b reads the facts and reaches the wrong answer; llama31-8b mostly
+ignores them; qwen3-14b cannot return schema-valid JSON on a grounded prompt,
+which would break week 2's contract too. Changing the model was rejected on
+measurement, not taste.
+
+**What shipped instead.** Objective 3.2 now reads:
+
+> **3.2** Compare the model's stated indicators before and after you add the
+> facts block, and report what changed.
+
+Codex fixed the acceptance threshold **before** seeing any indicator numbers:
+map each indicator to one of thirteen canonical fact concepts, keep concepts
+stable across 75% of replies, and qualify a row only when the grounded set adds
+a fact concept and the symmetric difference over the union is at least 0.50.
+Pass on 4 of 6. **Result: 6 of 6, D = 1.00 on every row.** On five of six
+emails the ungrounded run names no fact concept at all, because it has none to
+name; the grounded run names SPF, DMARC, the link host, the sender domain and
+the display-name check. A separate control showed two ungrounded runs are
+byte-identical, so the turnover cannot be sampling.
+
+The email set is the corpus's own 001, 004, 005, 006, 017, 025. Nothing from
+weeks 4 or 6 is loaded any more, including the attachment example, which is now
+a labelled fixture dropped into a copy of 005. `indicators` flow through
+`compare_runs` into the export, so the discussion's 5 points are earnable;
+that change is additive and was propagated to weeks 4 to 7 to keep the chain.
+Carriage returns no longer eat two key names.
+
+Every surface that promised a verdict change was rewritten: the reading, the
+assignment, the discussion, the wrap-up, the rubric's two affected criteria,
+the notebook submission cell, the self-check's framing, and both videos. The
+walkthrough keeps its best moment, the model quoting the facts block back, and
+no longer promises a student the same flip. `content/video/runs/w3.json` now
+records that email 009 does not reproduce its 2026-09-05 result.
+
+A wrap-up question was added for the one row that does move: a verdict that
+moved is not a verdict that improved, and week 7 is where accuracy is measured.
+
+**A pre-existing defect found on the way:** `w3-content.md` had an unclosed
+`::: section` block, so two sections rendered merged. Every other page in the
+course balances; this was the only one.
+
+**Not done, deliberately.** Semantic rendering in `format_facts()` and the
+shape of `build_grounded_prompt()` are both carried by weeks 4 to 7, so
+changing either changes their prompts and their measured behaviour. Both are
+logged as cross-week items.
+
+### Superseded: option B as planned
+
+**Reword 3.2 to indicators, and put email 008 into the set.** Either alone
+leaves a gap.
+
+> **3.2** Compare the model's stated indicators before and after you add the
+> facts block, and report what changed.
+
+Observable even when the answer is "nothing changed", still CLO1 (which facts
+entered the judgment), and it stops the course promising an effect the model
+does not produce. Rubric criterion 2 and its CLO1 link do not move.
+
+The set becomes **001, 004, 005, 008, 017, 025**, 008 replacing 006. Measured:
+
+| id | truth | body alone | with facts | what it shows |
+|---|---|---|---|---|
+| 001 | malicious | malicious | malicious | a control, no movement |
+| 004 | malicious | malicious | malicious | a control, no movement |
+| 005 | benign | malicious | malicious | facts did not rescue a benign email |
+| **008** | malicious | **benign 6/6** | **malicious 6/6** | **the demonstration, correct** |
+| 017 | benign | benign 8/8 | **malicious 8/8** | facts pushed it the wrong way |
+| 025 | malicious | malicious | malicious | no movement |
+
+008 is tagged week 4. Overriding that is deliberate: the tags encode design
+intent, were never validated against the shipped model, and measurement wins
+where they disagree. Week 4 uses 008 for tools rather than grounding, and the
+corpus already shares 017 across weeks 3 and 4 and 005 across 3 and 5.
+
+**017 stays in and its wrong-way flip is taught, not hidden.** Dropping it
+would be selecting the set to flatter the lesson, which is the failure this
+review keeps finding. Under the reworded objective the student compares
+indicators and reports that the facts entered the reasoning and pushed the
+wrong way, which is a real CLO1 observation.
+
+Not done, deliberately: semantic rendering in `format_facts()`. Carried by
+weeks 4 to 7, so changing it changes their grounded prompts and measured
+behaviour. Diagnosis only, logged as a cross-week item.
+
+### Superseded question
 
 Whether 3.2 should be rescued or reworded. A facts block that cannot move this
 model's verdict may mean the objective should measure what the facts changed

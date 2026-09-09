@@ -60,7 +60,7 @@
   },
   "runs_made": 11,
   "varied": true,
-  "what_varied": "The grounded answer did not vary at all. Malicious, credential_phish, confidence 0.85, eleven runs out of eleven. The body-alone answer varied only in ways that do not change the story. The verdict was benign eleven runs out of eleven. The category was legit_external ten times and legit_internal once. The confidence was 0.8 ten times and 0.85 once. Answer length moved between 97 and 117 tokens body alone, and between 75 and 113 tokens with the facts. A student will see the same flip. A student may see a different body-alone category and a slightly different confidence, so the walkthrough should say the verdict aloud and not promise the category.",
+  "what_varied": "The grounded answer did not vary at all. Malicious, credential_phish, confidence 0.85, eleven runs out of eleven. The body-alone answer varied only in ways that do not change the story. The verdict was benign eleven runs out of eleven. The category was legit_external ten times and legit_internal once. The confidence was 0.8 ten times and 0.85 once. Answer length moved between 97 and 117 tokens body alone, and between 75 and 113 tokens with the facts. A student may see a different body-alone category and a slightly different confidence, so the walkthrough should say the verdict aloud and not promise the category.",
   "result": {
     "body_alone": {
       "verdict": {
@@ -739,5 +739,6 @@
     },
     "digest_note": "Every input file was digested before the calls and again after them, in each of the three sessions, and every digest matched. All three sessions read identical inputs. This project once discarded two hundred and thirty-four runs because .eml files changed under a sweep, so these digests are what makes the numbers above re-checkable.",
     "endpoint_assertion": "granite4.2:3b was confirmed present in the response from /v1/models before each session, and its ollama digest is recorded above."
-  }
+  },
+  "reproduction_note": "2026-09-09: re-measured on the shipped model through the course proxy. Email 009 did not reproduce this flip: malicious 6/6 in both conditions, no movement. granite4.2:3b and granite-3b are the same model under a proxy alias, so the name is not the cause. The recorded counts above stand as what happened on 2026-09-05; they are not a prediction for a student run. See docs/week3-measurement/README.md sections 4 and 7. The narration no longer promises a student the same flip."
 }

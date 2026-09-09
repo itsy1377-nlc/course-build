@@ -63,20 +63,20 @@ scenes:
   - type: slide
     layout: compare
     eyebrow: The result
-    heading: Eleven runs each way
+    heading: One recorded run, eleven times each way
     items:
       - Body alone | benign, eleven runs out of eleven
       - With the facts block | malicious, eleven runs out of eleven
     narration:
-      - text: The same email ran eleven times each way.
+      - text: This email ran eleven times each way, on the day the walkthrough was recorded.
         reveal: 1
-      - text: On the body alone the model said benign every time, at confidence zero point eight in ten of the eleven.
-        reveal: 1
-      - text: With the facts block it said malicious every time, at zero point eight five in every run.
+      - text: On the body alone the model said benign every time. With the facts block it said malicious every time.
         reveal: 2
       - text: This email is malicious, and nothing changed but what went into the prompt.
         reveal: 2
-      - text: Your run will flip the same way. Your confidence and your body alone category may differ a little.
+      - text: Don't expect your own six emails to do this. Most of them keep the same verdict both ways, and that's the ordinary result.
+        reveal: 2
+      - text: What changes on every row is the list of indicators, and that's what your write up is about.
         reveal: 2
 
   - type: slide
@@ -95,8 +95,8 @@ scenes:
     narration:
       - Here's the grounded answer, exactly as it came back.
       - The first indicator is a line out of your own facts block, read back to you.
-      - The model listed the display name mismatch in all eleven grounded runs, and listed it first in ten.
-      - Nothing in the body could have told it that. Week 2 couldn't have got this right.
+      - That is the thing to look for in your own run, on every email, whether or not the verdict moved.
+      - Nothing in the body could have told it that. The body alone names no check results at all.
 
   - type: slide
     layout: statement

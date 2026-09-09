@@ -69,10 +69,11 @@ scenes:
         reveal: 1
       - text: Email zero two five shares a rate sheet and asks you to open it. It reads like nothing.
         reveal: 2
-      - text: The truth runs the other way, and only the facts show it.
+      - text: The truth runs the other way, and the body alone can't show you that.
         reveal: 2
-      - text: So facts aren't a way to add suspicion. They move verdicts in both directions.
+      - text: Your facts block puts the sender, the checks and the link hosts where the model can see them.
         reveal: 2
+      - text: Whether it uses them is a separate question, and this week you learn how to check.
 
   - type: slide
     layout: statement

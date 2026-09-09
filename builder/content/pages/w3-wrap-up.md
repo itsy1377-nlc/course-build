@@ -22,14 +22,14 @@ Two of those carry the week. A passed check is one answered question, not a clea
 - You wrote `build_facts()`, which picks the facts a verdict needs.
 - You wrote `format_facts()`, which prints them as labeled lines in a set order.
 - You ran six emails twice, on the body alone and then with your facts.
-- You compared 005 and 025 on the same code, and read what moved.
+- You compared each email's two indicator lists, and read what the facts changed.
 - You exported `week3_grounding.json` and read the file you turned in.
 
 That file holds the facts block you sent for each email, beside both verdicts. A grader reads your choices without opening your notebook.
 :::
 
 ::: checkpoint | Check yourself
-Answer these six before you move on. Each answer sits under its question, with the reading section it comes from.
+Answer these seven before you move on. Each answer sits under its question, with the reading section it comes from.
 
 1. Which belongs in the facts block: the link hosts, or the reporter's address?
 
@@ -47,11 +47,15 @@ Answer these six before you move on. Each answer sits under its question, with t
 
     Your gateway checks what arrives from outside. Nothing ran, so nothing was written down. Missing isn't failed. From what a passed check really means.
 
-5. Suppose email 005 read as malicious on the body alone and benign with your facts. What moved it?
+5. Your verdict on an email is the same before and after the facts block. How can you tell whether the model used the facts at all?
 
-    The three checks passed, and the name matches the supplier's own domain. Only the urgent wording was left. From two emails, and the reason for all this.
+    Compare the two indicator lists. The grounded run usually names things the body alone could not, such as the check results or the link host. No difference is still a result. From what the facts block can and can't do.
 
-6. You've a log line instead of an email. What changes?
+6. One of your rows did change verdict. Does that mean the facts made it right?
+
+    No. Whether it moved toward the truth is a separate question, and week 7 is where you measure that. A row that changed for the wrong reason looks exactly like one that changed for the right one.
+
+7. You've a log line instead of an email. What changes?
 
     The field names. You still drop what no judgment needs and send the rest in one steady shape. From the same move on a log line.
 :::

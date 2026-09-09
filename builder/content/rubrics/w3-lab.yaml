@@ -117,25 +117,27 @@ criteria:
           No evidence. No file. Or a file whose records carry no facts block.
         points: 0
 
-  - description: Verdict comparison
+  - description: Before and after comparison
     long_description: >-
       All six emails are in the file. Each one carries both verdicts, both
-      confidence numbers, and a changed flag that agrees with them. The same six
-      rows are readable in the screenshot. This is a week expectation, not a
-      course outcome: it measures whether you reported what you saw, so it
-      carries no Outcome link.
+      confidence numbers, both indicator lists, and a changed flag that agrees
+      with the two verdicts. The same six rows are readable in the screenshot.
+      This is a week expectation, not a course outcome: it measures whether you
+      reported what you saw, so it carries no Outcome link. A row where nothing
+      changed is a result and is graded the same as one that moved.
     points: 25
     levels:
       - description: >-
           Exceeds standard. All six emails are in the file. Each one carries the
-          verdict and confidence from the body alone, the verdict and confidence
+          verdict, confidence and indicators from the body alone, the same three
           with the facts block, and a changed flag that agrees with those two
           verdicts. The screenshot shows the same six rows and the token line.
         points: 25
       - description: >-
-          Meets standard. All six emails are in the file with both verdicts. One
-          confidence number is missing, or one changed flag disagrees with the
-          two verdicts beside it. The screenshot shows the six rows.
+          Meets standard. All six emails are in the file with both verdicts and
+          both indicator lists. One confidence number is missing, or one
+          indicator list is missing, or one changed flag disagrees with the two
+          verdicts beside it. The screenshot shows the six rows.
         points: 19
       - description: >-
           Approaching standard. The file records fewer than six emails. Or it
@@ -149,8 +151,8 @@ criteria:
   - description: Written answer
     long_description: >-
       Three to five sentences. It names one fact you left out and why a sound
-      verdict does not need it. It names the fact that moved a verdict, with the
-      email id. This is a week expectation, not a course outcome: it measures
+      verdict does not need it. It names one email id, one indicator the
+      grounded run added or dropped, and whether the verdict moved. This is a week expectation, not a course outcome: it measures
       whether you reported what you saw in your own run, so it carries no
       Outcome link.
     points: 25
@@ -158,12 +160,13 @@ criteria:
       - description: >-
           Exceeds standard. Three to five sentences. They name one fact the
           student left out and say why a sound verdict does not need it. They
-          name the fact that moved a verdict and give the email id. Both the
-          fact and the id appear in the student's own file.
+          give an email id, name an indicator the grounded run added or
+          dropped, and say whether the verdict moved. Every value appears in
+          the student's own file.
         points: 25
       - description: >-
-          Meets standard. Three to five sentences naming a fact left out and a
-          fact that moved a verdict. One part is missing. No reason is given for
+          Meets standard. Three to five sentences naming a fact left out and an
+          indicator that changed. One part is missing. No reason is given for
           leaving the fact out, or the email id is not given.
         points: 19
       - description: >-

@@ -1,9 +1,9 @@
 ::: intro
-This board is about one verdict that moved. Every part of this prompt asks for a value your own run produced, so do the lab first.
+This board is about what your facts block changed in the model's reasoning. Every part of this prompt asks for a value your own run produced, so do the lab first.
 :::
 
 ::: directions
-**Grounding changed a verdict. Which one, and on what fact?**
+**What did the model say it used, once you sent it the facts?**
 
 Post by Thursday. Reply to one classmate by Sunday at 11:59 PM Central.
 
@@ -11,12 +11,12 @@ Your notebook ran six emails twice. Once on the body alone. Once with your facts
 
 In your post, do three things.
 
-1. Name one email whose verdict changed. Give the email id. Give the verdict
-   before and the verdict after.
-2. Paste the one line from your facts block that you think changed the answer.
-   One line only.
-3. Say what your model listed as its indicators for that email. Did it name the
-   fact you pasted?
+1. Pick one email. Give its id. Quote one indicator from the body-alone run
+   and one from the grounded run.
+2. Say what changed between those two lists: something added, something
+   dropped, or nothing at all.
+3. Paste the one line from your facts block that the grounded run seems to have
+   used. One line only. Then say whether the verdict moved, and to what.
 
 Then reply to one classmate. Look at the line they pasted. Say what your own run on that same email did. Name a number or a line from your own output. A reply that only agrees doesn't count.
 
@@ -33,9 +33,9 @@ A good post is short and specific. It reads like a note you would leave a teamma
 - It quotes the indicators your model actually listed.
 - It answers the question in item 3 with a yes or a no.
 
-Open `week3_grounding.json` first. It holds both verdicts and the facts block that was sent, so the line you paste is already there.
+Open `week3_grounding.json` first. It holds both verdicts, both indicator lists and the facts block that was sent, so every line you paste is already there.
 
-If no verdict moved, say so. Then name the email whose confidence moved most and use that one instead.
+Most verdicts don't move, and that isn't a failed run. The indicator lists are where the change shows up, and a post about a verdict that held earns the same credit as one about a flip.
 :::
 
 ::: section | The reply

@@ -1,0 +1,167 @@
+[
+ {
+  "email": "007",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Larkseal\nSender address: no-reply@larkseal-docs.example\nSender domain: larkseal-docs.example\nReply address: None\nSubject: Adaeze Whitcombe sent you a document to sign: Rookmere Service Agreement 2026\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: ['larkseal-docs.example']\nCame from outside the company: True\nGateway scan result: suspect\nAttachment names: []"
+ },
+ {
+  "email": "008",
+  "truth": "malicious",
+  "body_only_read": "benign",
+  "plain": {
+   "benign": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 6,
+  "moved_toward_truth": 6,
+  "n": 6,
+  "facts_block": "Sender name: Larkhollow Controls Quotes\nSender address: quotes@larkhollow-controls.example\nSender domain: larkhollow-controls.example\nReply address: None\nSubject: Quote Q-2291 ready: Rookmere chiller controls\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: False\nLink hosts: ['portal.larkhollow-controls.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "009",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Adaeze Whitcombe\nSender address: adaeze.whitcombe.pmg@lanternmail.example\nSender domain: lanternmail.example\nReply address: None\nSubject: Are you available?\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: []\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "010",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Ferncrate\nSender address: notify@ferncrate-files.example\nSender domain: ferncrate-files.example\nReply address: None\nSubject: Emeric, a file was shared with you: RFQ_Response_Q2.zip\nSPF result: softfail\nDKIM result: none\nDMARC result: none\nDisplay name mismatch: True\nLink hosts: ['dl.quickdrop-files.example']\nCame from outside the company: True\nGateway scan result: suspect\nAttachment names: []"
+ },
+ {
+  "email": "013",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "benign": 6
+  },
+  "grounded": {
+   "benign": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Vetchmoor Benefits\nSender address: enrollment@vetchmoor-benefits.example\nSender domain: vetchmoor-benefits.example\nReply address: None\nSubject: Action needed: 2026 benefits census correction for Pellgrave Mechanical Group\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: ['vetchmoor-benefits.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "014",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Ferncrate\nSender address: no-reply@ferncrate-secure.example\nSender domain: ferncrate-secure.example\nReply address: None\nSubject: Constance Bramwell shared \"Q2 Field Staffing Plan.xlsx\" with you\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: ['ferncrate-secure.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "015",
+  "truth": "benign",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Devin Crowmarden\nSender address: d.crowmarden@pellgrave.example\nSender domain: pellgrave.example\nReply address: soc@pellgrave.example\nSubject: Reminder: how to report a suspicious email (example inside)\nSPF result: None\nDKIM result: None\nDMARC result: None\nDisplay name mismatch: False\nLink hosts: ['helpdesk.pellgrave.example']\nCame from outside the company: False\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "018",
+  "truth": "malicious",
+  "body_only_read": "benign",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Renata Solheim\nSender address: r.solheim@hollinvalepm.example\nSender domain: hollinvalepm.example\nReply address: None\nSubject: Re: Updated site access schedule for the Hollinvale properties\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: False\nLink hosts: ['secure-doc-viewer.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "021",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "benign": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 6,
+  "moved_toward_truth": 6,
+  "n": 6,
+  "facts_block": "Sender name: Casimir Hallowden\nSender address: casimir.hallowden77@lanternmail.example\nSender domain: lanternmail.example\nReply address: None\nSubject: Update my direct deposit before the next run\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: []\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "023",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Rutger Palomares (CFO)\nSender address: r.palomares@pellgrave-secure.example\nSender domain: pellgrave-secure.example\nReply address: None\nSubject: Vendor account update: approve today\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: []\nCame from outside the company: True\nGateway scan result: suspect\nAttachment names: []"
+ },
+ {
+  "email": "024",
+  "truth": "malicious",
+  "body_only_read": "uncertain",
+  "plain": {
+   "malicious": 6
+  },
+  "grounded": {
+   "malicious": 6
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 6,
+  "facts_block": "Sender name: Vetchmoor Benefits\nSender address: enrollment@vetchmoor-benefits.example\nSender domain: vetchmoor-benefits.example\nReply address: None\nSubject: Action needed: 2026 benefits census correction for Pellgrave Mechanical Group\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: ['vetchmoor-benefits.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ }
+]
