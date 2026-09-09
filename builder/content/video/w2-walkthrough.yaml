@@ -3,7 +3,7 @@ title: What success looks like
 kind: walkthrough
 module: m02
 embed_on: builder/content/pages/w2-content.md
-blurb: A real structured answer on a different email than the four in your lab. What a passing check looks like, and why passing the check is not the same as being right.
+blurb: Why your code needs named values, how one schema supplies the request and the check, and why a retry stops only after an answer is accepted.
 explains:
   - builder/content/pages/w2-content.md
   - builder/content/assignments/w2-lab.md
@@ -21,77 +21,75 @@ scenes:
 
   - type: slide
     layout: code
-    eyebrow: A real reply
-    heading: This came back from the model
+    eyebrow: A saved reply
+    heading: One field is adjusted for this lab
     body: |
       {
         "verdict": "malicious",
         "category": "vendor_fraud",
-        "confidence": 0.95,
+        "confidence": 0.85,
         "indicators": ["Rookmere Service Agreement 2026",
                        "larkseal-docs.example"]
       }
     narration:
-      - Here's a real reply, from a real run.
-      - Four named values. A verdict, a category, a confidence number, and a short list of indicators.
-      - Your code turns that text into a dictionary and reads any field it wants.
-      - This one arrived clean on the first try. Yours won't always, and that's fine.
-
+      - Here's a saved reply based on a real course run.
+      - The original reported point nine five. This slide changes that one field to point eight five so it fits the week 2 reporting rule.
+      - The verdict, category, and both indicators are unchanged.
+      - Four named values are present, and your code can read each one.
+      - Changing the reported number doesn't prove the model became less sure.
   - type: slide
     layout: compare
     eyebrow: What changed
     heading: The same email, two weeks apart
     items:
       - Week 1, plain words | The model said it was not phishing
-      - Week 2, named values | The model says malicious, confidence 0.95
+      - Week 2, named values | The saved verdict says malicious, confidence 0.85
     narration:
       - text: This is the same email you saw in the week 1 walkthrough.
         reveal: 1
-      - text: Last week, asked in plain words, the model said it wasn't a phishing attempt. That was wrong.
+      - text: Last week, asked in plain words, the model said it wasn't a phishing attempt. That verdict was wrong.
         reveal: 1
-      - text: This week, asked for named values, it says malicious with high confidence. That's right.
+      - text: The saved structured reply says malicious. That verdict is right.
         reveal: 2
-      - text: Asking for a fixed shape changed the answer. That's worth sitting with.
-
+      - text: The fixed shape lets your code read and check the answer. It isn't what makes the verdict true.
+        reveal: 2
   - type: slide
     layout: statement
     eyebrow: The catch
     heading: The category is wrong, and the check still passes
-    body: Ground truth says this is a credential phish. The model said vendor fraud. Every field was the right type, so nothing complained.
+    body: Ground truth says this is a credential phish. The saved answer says vendor fraud. Every field fits the schema, so nothing complains.
     narration:
       - Now the part to watch for.
-      - The category in that answer is wrong. The email is a credential phish. The model called it vendor fraud.
-      - Your schema check passed it anyway, because every field was present and the right type.
-      - A check on the shape can't tell you the content is right.
+      - The category in that answer is wrong. The email is a credential phish. The saved answer calls it vendor fraud.
+      - Your schema check passes it anyway, because vendor fraud is one of the allowed category values.
+      - A check on the contract can't tell you the content is right.
       - That's the whole reason this course keeps going after week 2.
-
   - type: slide
     layout: numbered
     eyebrow: Before you submit
     heading: Three checks
     items:
-      - Every email has an answer in the file
-      - The attempt log shows what happened
-      - Your written answer names a real field
+      - Every live row says ok True
+      - The saved retry demo copied every problem
+      - Your written answer uses your live result
     narration:
       - text: Three things to check before you turn it in.
         reveal: 1
-      - text: First, all four emails have an answer in your exported file.
+      - text: First, all four live rows say ok True. A verdict and a category aren't enough by themselves.
         reveal: 1
-      - text: Second, the attempt log is there. If a retry fired, that's good, not bad. Leave it in.
+      - text: Second, retry demo says every saved problem reached prompt two and the second saved answer passed.
         reveal: 2
-      - text: Third, your written answer names a field from your own output and says what it said.
+      - text: That demo checks your code. It isn't a claim about what the model just did.
+        reveal: 2
+      - text: Third, your written answer uses one of your live email records, not the saved test.
         reveal: 3
-      - text: A general sentence about JSON won't earn the points. Your own numbers will.
-        reveal: 3
-
   - type: slide
     layout: closing
-    eyebrow: If it is not working
-    heading: The two failures you will actually hit
-    body: Extra words around the JSON, and a missing field. Both are normal. Your retry is built for exactly these.
+    eyebrow: Your live run
+    heading: The split can change
+    body: Some course-test rows passed first try and some retried. Your email ids may split differently. The pass condition does not change.
     narration:
-      - Two failures are common, and your code is built for both.
-      - The model wraps the JSON in a sentence, or it leaves out a field.
-      - When that happens your code says what was wrong and asks again.
-      - Watch the attempt log show it. That's your program working.
+      - In course tests, some emails passed first try and some needed the range retry.
+      - Your split may differ. Don't force an email to match somebody else's result.
+      - A live row passes when it has at least one try and ok is True.
+      - If point nine five changes to point eight five after feedback, call that report compliance, not greater truth.

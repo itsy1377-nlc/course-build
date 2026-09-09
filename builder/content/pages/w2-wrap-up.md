@@ -7,44 +7,44 @@ Week 2 is done. Your agent now answers in a fixed shape, and your code checks th
 |---|---|
 | Structured output | You ask for named values, not a paragraph |
 | JSON as text | A reply is characters until `json.loads()` opens it |
-| Schema | The written rule for which names and which values are allowed |
+| Schema | One rule supplies both the prompt limits and the check |
+| Reporting limit | Week 2 accepts confidence from 0 to 0.9 without claiming the number is calibrated |
 | Malformed output | A normal condition to handle, not a rare bug |
-| Stop reason | The label saying why the model stopped writing |
-| Reasoning block | Text the model writes to itself, stripped before the load |
 | Retry | Asking again, with the reported problems added to the prompt |
 
-Two of those carry the whole week. Loading isn't checking. And a retry that sends the same request twice is a retry you paid for and learned nothing from.
+Three distinctions carry the week. Loading isn't checking. Accepted isn't the same as accurate. And a retry needs new information, not merely another paid call.
 :::
 
 ::: did | What you did
-- You read a raw reply and saw what the model actually sends back.
-- You wrote `extract_json()`, which strips the reasoning block and loads the text.
-- You ran it against four saved replies, one clean and three broken.
-- You wrote `classify_email()`, your first loop with a cap on it.
-- You classified four emails and recorded every try, good or bad.
+- You wrote `extract_json()`, which cleans and loads model text.
+- You tested it against four saved replies, one clean and three broken.
+- You wrote `classify_email()` with an accepted-answer sentinel and a cap.
+- You ran a saved contract test that forced four schema problems into prompt 2.
+- You classified four emails and recorded every live try, good or bad.
+- You checked every result for `schema_ok: true`.
 - You exported `week2_classification.json` and read the file you turned in.
 
-That file holds the check result on every try, including the ones that passed first time. That's the evidence a grader reads without opening your notebook.
+The saved test proves your code took the retry path. The live rows show what this model did on your run. Neither a passing schema nor a lower reported confidence proves the judgment is correct.
 :::
 
 ::: checkpoint | Check yourself
 Answer these five before you move on. The answer sits under each one.
 
-1. Your code loads a reply with no error. Is the answer safe to use?
+1. Your code loads a reply with no error. Is the answer ready to accept?
 
-    Not yet. The load only proved the text is JSON. The schema check is what says the answer is usable.
+    Not yet. Loading proves the text is JSON. The schema check decides whether it fits the contract. Even then, the verdict can still be wrong.
 
 2. What are the four names the course schema requires?
 
     `verdict`, `category`, `confidence` and `indicators`.
 
-3. The reply is empty and the stop reason is `length`. What happened?
+3. The reply is empty and the stop reason is `length`. What do you know?
 
-    The model hit the token limit before it wrote the answer. Usually it spent the budget on a reasoning block.
+    The model reached the answer limit before usable JSON arrived. Record the failed try and send the common JSON recovery action. The stop reason alone doesn't prove what the model wrote before the answer.
 
-4. Your first try failed. What must the second prompt carry?
+4. Your first try reports confidence 0.95. What must prompt 2 carry?
 
-    The problems your check reported, in plain words. Without them you're sending the same request again.
+    The exact problem from the check: confidence is 0.95, and it has to be from 0.0 to 0.9. That's a reporting correction, not proof that the model became less sure.
 
 5. All three tries failed. What does your function hand back?
 

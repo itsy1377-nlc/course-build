@@ -3,7 +3,7 @@ title: What week 2 adds
 kind: concept
 module: m02
 embed_on: builder/content/pages/w2-overview.md
-blurb: Why your code cannot use a paragraph, what a strict answer looks like, and why a broken answer is normal rather than a failure.
+blurb: Why your code needs named values, how one schema supplies the request and the check, and why a retry stops only after an answer is accepted.
 explains:
   - builder/content/pages/w2-overview.md
   - builder/content/pages/w2-content.md
@@ -54,21 +54,22 @@ scenes:
     eyebrow: The lab
     heading: What your code does with the reply
     items:
-      - Turn the text into a dictionary
+      - Turn the text into a candidate dictionary
       - Check every field against the schema
-      - If it fails, say what was wrong and ask again
+      - If it fails, add the problems and ask again
     narration:
       - text: Your code does three things with every reply.
         reveal: 1
-      - text: First it turns the text into a dictionary.
+      - text: First it turns the text into a candidate dictionary.
         reveal: 1
-      - text: Then it checks the fields against a schema. A schema is just the list of what has to be there.
+      - text: Then it checks every field against the same schema the prompt showed the model.
         reveal: 2
-      - text: Is there a verdict. Is the confidence a number between zero and one.
+      - text: This lab accepts a confidence report from zero through point nine.
         reveal: 2
-      - text: If something is wrong, your code says what was wrong and asks again.
+      - text: That's a reporting limit. It doesn't make the model less sure or make the verdict more accurate.
+        reveal: 2
+      - text: If the check finds a problem, your code adds those exact words and asks again.
         reveal: 3
-
   - type: slide
     layout: statement
     eyebrow: The part people get wrong
@@ -78,16 +79,16 @@ scenes:
       - Here's the thing to hold on to this week.
       - Sometimes the model will hand you something broken. Missing a field, or wrapped in extra text.
       - That's normal. It isn't a sign that you did something wrong.
-      - Handling it's the work. Any real system that talks to a model has this exact code in it.
+      - Handling it is the work. Any real system that talks to a model has this exact code in it.
       - So when your retry fires, that's your program working, not failing.
 
   - type: slide
     layout: closing
     eyebrow: This week
     heading: What to do next
-    body: The sidebar teaches the three pieces of Python you need. The lab then does one thing with them.
+    body: The sidebar teaches four small pieces. The lab joins them into one checked retry.
     narration:
-      - Start with the sidebar notebook. It covers dictionaries, JSON as text, and how to try something again when it fails.
-      - Then the reading, then the lab.
+      - Start with the sidebar notebook. It covers dictionaries, JSON as text, loading into a candidate, and accepting only after the problem list is empty.
+      - Then read both pages and open the lab.
       - Everything you wrote in week 1 arrives already working in this week's notebook.
       - So if last week didn't finish, you can still start this one today.

@@ -1,0 +1,7975 @@
+[
+ {
+  "email": "001",
+  "n": 0,
+  "stop_reason": "stop",
+  "raw_len": 338,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 3,
+  "ind_lens": [
+   53,
+   91,
+   64
+  ],
+  "ind_words": [
+   10,
+   14,
+   11
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 1,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 2,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 3,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 4,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 5,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 6,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 7,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 8,
+  "stop_reason": "stop",
+  "raw_len": 292,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 3,
+  "ind_lens": [
+   53,
+   60,
+   49
+  ],
+  "ind_words": [
+   10,
+   10,
+   9
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 9,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 10,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 11,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 12,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 13,
+  "stop_reason": "stop",
+  "raw_len": 572,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   138
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   13
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 14,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 15,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 16,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 17,
+  "stop_reason": "stop",
+  "raw_len": 325,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 3,
+  "ind_lens": [
+   53,
+   73,
+   69
+  ],
+  "ind_words": [
+   10,
+   12,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 18,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 19,
+  "stop_reason": "stop",
+  "raw_len": 319,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 3,
+  "ind_lens": [
+   53,
+   72,
+   64
+  ],
+  "ind_words": [
+   10,
+   8,
+   11
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 20,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 21,
+  "stop_reason": "stop",
+  "raw_len": 517,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   86,
+   138
+  ],
+  "ind_words": [
+   17,
+   8,
+   17,
+   13
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 22,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 23,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 24,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 25,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 26,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 27,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 28,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 29,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 30,
+  "stop_reason": "stop",
+  "raw_len": 167,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 1,
+  "ind_lens": [
+   53
+  ],
+  "ind_words": [
+   10
+  ],
+  "ind_has_upper": [
+   true
+  ],
+  "ind_has_punct": [
+   false
+  ],
+  "ind_in_body": [
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 31,
+  "stop_reason": "stop",
+  "raw_len": 584,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   53,
+   90,
+   74,
+   84,
+   117
+  ],
+  "ind_words": [
+   10,
+   15,
+   10,
+   15,
+   15
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 32,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 33,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 34,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 35,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 36,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 37,
+  "stop_reason": "stop",
+  "raw_len": 357,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   53,
+   69,
+   49,
+   48
+  ],
+  "ind_words": [
+   10,
+   9,
+   9,
+   7
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "001",
+  "n": 38,
+  "stop_reason": "stop",
+  "raw_len": 497,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   105,
+   50,
+   36,
+   97,
+   63
+  ],
+  "ind_words": [
+   17,
+   8,
+   7,
+   4,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ]
+ },
+ {
+  "email": "001",
+  "n": 39,
+  "stop_reason": "stop",
+  "raw_len": 521,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "credential_phish",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   105,
+   50,
+   131,
+   97
+  ],
+  "ind_words": [
+   17,
+   8,
+   25,
+   4
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   true,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 0,
+  "stop_reason": "stop",
+  "raw_len": 392,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   41,
+   63,
+   44,
+   44
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   6,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 1,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 2,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 3,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 4,
+  "stop_reason": "stop",
+  "raw_len": 385,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   48
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 5,
+  "stop_reason": "stop",
+  "raw_len": 402,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   41,
+   60,
+   44,
+   57
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   6,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 6,
+  "stop_reason": "stop",
+  "raw_len": 390,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_internal",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   60,
+   44,
+   39
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 7,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 8,
+  "stop_reason": "stop",
+  "raw_len": 426,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   49,
+   41,
+   60,
+   76
+  ],
+  "ind_words": [
+   9,
+   10,
+   8,
+   9,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 9,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   42,
+   41,
+   60,
+   53
+  ],
+  "ind_words": [
+   9,
+   8,
+   8,
+   9,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 10,
+  "stop_reason": "stop",
+  "raw_len": 422,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   70,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   9,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 11,
+  "stop_reason": "stop",
+  "raw_len": 381,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_internal",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   65,
+   39,
+   39
+  ],
+  "ind_words": [
+   8,
+   8,
+   11,
+   5,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 12,
+  "stop_reason": "stop",
+  "raw_len": 368,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   45,
+   37,
+   42,
+   44
+  ],
+  "ind_words": [
+   9,
+   6,
+   6,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 13,
+  "stop_reason": "stop",
+  "raw_len": 411,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   44,
+   69
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   12
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 14,
+  "stop_reason": "stop",
+  "raw_len": 385,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   48
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 15,
+  "stop_reason": "stop",
+  "raw_len": 414,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_internal",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   56,
+   65,
+   46
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   8,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 16,
+  "stop_reason": "stop",
+  "raw_len": 402,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   44,
+   60
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 17,
+  "stop_reason": "stop",
+  "raw_len": 404,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   49,
+   41,
+   60,
+   54
+  ],
+  "ind_words": [
+   9,
+   10,
+   8,
+   9,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 18,
+  "stop_reason": "stop",
+  "raw_len": 397,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   56,
+   39,
+   55
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 19,
+  "stop_reason": "stop",
+  "raw_len": 403,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   66
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 20,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 21,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 22,
+  "stop_reason": "stop",
+  "raw_len": 390,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_internal",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   60,
+   44,
+   39
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 23,
+  "stop_reason": "stop",
+  "raw_len": 403,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   66
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 24,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   63,
+   44,
+   51
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 25,
+  "stop_reason": "stop",
+  "raw_len": 376,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_internal",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   39
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 26,
+  "stop_reason": "stop",
+  "raw_len": 384,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   41,
+   60,
+   44,
+   39
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 27,
+  "stop_reason": "stop",
+  "raw_len": 388,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   56,
+   39,
+   55
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 28,
+  "stop_reason": "stop",
+  "raw_len": 376,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   39
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 29,
+  "stop_reason": "stop",
+  "raw_len": 397,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   56,
+   39,
+   55
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 30,
+  "stop_reason": "stop",
+  "raw_len": 376,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   39,
+   39
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   5,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 31,
+  "stop_reason": "stop",
+  "raw_len": 411,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   41,
+   60,
+   44,
+   66
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   6,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 32,
+  "stop_reason": "stop",
+  "raw_len": 397,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   56,
+   39,
+   55
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 33,
+  "stop_reason": "stop",
+  "raw_len": 397,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   56,
+   39,
+   55
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 34,
+  "stop_reason": "stop",
+  "raw_len": 395,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   65,
+   41,
+   60,
+   44,
+   44
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   6,
+   5
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 35,
+  "stop_reason": "stop",
+  "raw_len": 381,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   44,
+   39
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 36,
+  "stop_reason": "stop",
+  "raw_len": 397,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_internal",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   50,
+   56,
+   39,
+   55
+  ],
+  "ind_words": [
+   8,
+   9,
+   9,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 37,
+  "stop_reason": "stop",
+  "raw_len": 423,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   65,
+   41,
+   56,
+   65,
+   55
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   8,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 38,
+  "stop_reason": "stop",
+  "raw_len": 387,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   59,
+   41,
+   63,
+   44,
+   39
+  ],
+  "ind_words": [
+   9,
+   8,
+   9,
+   6,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "002",
+  "n": 39,
+  "stop_reason": "stop",
+  "raw_len": 411,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   56,
+   41,
+   60,
+   44,
+   69
+  ],
+  "ind_words": [
+   8,
+   8,
+   9,
+   6,
+   12
+  ],
+  "ind_has_upper": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 0,
+  "stop_reason": "stop",
+  "raw_len": 336,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   46,
+   30,
+   33,
+   61,
+   25
+  ],
+  "ind_words": [
+   6,
+   4,
+   4,
+   11,
+   3
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 1,
+  "stop_reason": "stop",
+  "raw_len": 416,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 6,
+  "ind_lens": [
+   55,
+   56,
+   49,
+   36,
+   25,
+   46
+  ],
+  "ind_words": [
+   8,
+   9,
+   7,
+   5,
+   3,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 2,
+  "stop_reason": "stop",
+  "raw_len": 368,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   66,
+   44,
+   72,
+   53
+  ],
+  "ind_words": [
+   9,
+   7,
+   10,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 3,
+  "stop_reason": "stop",
+  "raw_len": 429,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   83,
+   49,
+   53,
+   53,
+   50
+  ],
+  "ind_words": [
+   13,
+   7,
+   8,
+   9,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 4,
+  "stop_reason": "stop",
+  "raw_len": 443,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   69,
+   44,
+   36,
+   67
+  ],
+  "ind_words": [
+   9,
+   11,
+   7,
+   5,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 5,
+  "stop_reason": "stop",
+  "raw_len": 453,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   83,
+   48,
+   36,
+   65,
+   80
+  ],
+  "ind_words": [
+   13,
+   7,
+   5,
+   8,
+   14
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 6,
+  "stop_reason": "stop",
+  "raw_len": 390,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   83,
+   44,
+   63,
+   67
+  ],
+  "ind_words": [
+   13,
+   7,
+   12,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 7,
+  "stop_reason": "stop",
+  "raw_len": 388,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   76,
+   50,
+   59,
+   70
+  ],
+  "ind_words": [
+   10,
+   8,
+   9,
+   9
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 8,
+  "stop_reason": "stop",
+  "raw_len": 397,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   50,
+   57,
+   28,
+   35
+  ],
+  "ind_words": [
+   9,
+   8,
+   10,
+   4,
+   5
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 9,
+  "stop_reason": "stop",
+  "raw_len": 451,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   83,
+   47,
+   57,
+   70,
+   53
+  ],
+  "ind_words": [
+   13,
+   7,
+   10,
+   10,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 10,
+  "stop_reason": "stop",
+  "raw_len": 473,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   50,
+   73,
+   70,
+   53
+  ],
+  "ind_words": [
+   9,
+   8,
+   14,
+   9,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 11,
+  "stop_reason": "stop",
+  "raw_len": 414,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   69,
+   44,
+   36,
+   38
+  ],
+  "ind_words": [
+   9,
+   11,
+   7,
+   5,
+   5
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 12,
+  "stop_reason": "stop",
+  "raw_len": 368,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   66,
+   44,
+   72,
+   53
+  ],
+  "ind_words": [
+   9,
+   7,
+   10,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 13,
+  "stop_reason": "stop",
+  "raw_len": 527,
+  "loaded": false,
+  "schema_problems": [
+   "the answer is not a JSON object"
+  ],
+  "raw_head": "{\n  \"verdict\": \"benign\",\n  \"category\": \"legit_external\",\n  \"confidence\": 0.95,\n  \"indicators\": [\n    \"The email referenc"
+ },
+ {
+  "email": "003",
+  "n": 14,
+  "stop_reason": "stop",
+  "raw_len": 453,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   43,
+   71,
+   59,
+   53
+  ],
+  "ind_words": [
+   9,
+   7,
+   8,
+   10,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 15,
+  "stop_reason": "stop",
+  "raw_len": 428,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   50,
+   53,
+   40,
+   58
+  ],
+  "ind_words": [
+   9,
+   8,
+   10,
+   6,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 16,
+  "stop_reason": "stop",
+  "raw_len": 405,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   50,
+   42,
+   53,
+   53
+  ],
+  "ind_words": [
+   9,
+   8,
+   6,
+   9,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 17,
+  "stop_reason": "stop",
+  "raw_len": 395,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   77,
+   48,
+   36,
+   68,
+   25
+  ],
+  "ind_words": [
+   12,
+   7,
+   5,
+   13,
+   3
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 18,
+  "stop_reason": "stop",
+  "raw_len": 368,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   66,
+   44,
+   72,
+   53
+  ],
+  "ind_words": [
+   9,
+   7,
+   10,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 19,
+  "stop_reason": "stop",
+  "raw_len": 460,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   44,
+   71,
+   72,
+   46
+  ],
+  "ind_words": [
+   9,
+   7,
+   10,
+   10,
+   5
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 20,
+  "stop_reason": "stop",
+  "raw_len": 389,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   55,
+   46,
+   44,
+   36,
+   67
+  ],
+  "ind_words": [
+   8,
+   7,
+   7,
+   5,
+   9
+  ],
+  "ind_has_upper": [
+   true,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 21,
+  "stop_reason": "stop",
+  "raw_len": 460,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   69,
+   44,
+   36,
+   84
+  ],
+  "ind_words": [
+   9,
+   11,
+   7,
+   5,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 22,
+  "stop_reason": "stop",
+  "raw_len": 489,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 6,
+  "ind_lens": [
+   55,
+   63,
+   44,
+   36,
+   75,
+   67
+  ],
+  "ind_words": [
+   8,
+   9,
+   7,
+   5,
+   9,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 23,
+  "stop_reason": "stop",
+  "raw_len": 414,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   69,
+   44,
+   36,
+   38
+  ],
+  "ind_words": [
+   9,
+   11,
+   7,
+   5,
+   5
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 24,
+  "stop_reason": "stop",
+  "raw_len": 412,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   77,
+   55,
+   83,
+   64
+  ],
+  "ind_words": [
+   10,
+   8,
+   14,
+   9
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 25,
+  "stop_reason": "stop",
+  "raw_len": 461,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   52,
+   48,
+   67,
+   67
+  ],
+  "ind_words": [
+   9,
+   8,
+   7,
+   8,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 26,
+  "stop_reason": "stop",
+  "raw_len": 442,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   28,
+   53,
+   67,
+   67
+  ],
+  "ind_words": [
+   9,
+   5,
+   8,
+   8,
+   12
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 27,
+  "stop_reason": "stop",
+  "raw_len": 450,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   86,
+   78,
+   104,
+   49
+  ],
+  "ind_words": [
+   12,
+   12,
+   15,
+   7
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 28,
+  "stop_reason": "stop",
+  "raw_len": 448,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   67,
+   49,
+   74,
+   67,
+   50
+  ],
+  "ind_words": [
+   9,
+   8,
+   12,
+   8,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 29,
+  "stop_reason": "stop",
+  "raw_len": 405,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   48,
+   53,
+   42,
+   55
+  ],
+  "ind_words": [
+   9,
+   8,
+   10,
+   6,
+   7
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 30,
+  "stop_reason": "stop",
+  "raw_len": 468,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   77,
+   55,
+   61,
+   59,
+   75
+  ],
+  "ind_words": [
+   10,
+   8,
+   10,
+   8,
+   10
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 31,
+  "stop_reason": "stop",
+  "raw_len": 444,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   77,
+   49,
+   32,
+   53,
+   72
+  ],
+  "ind_words": [
+   12,
+   7,
+   4,
+   9,
+   9
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 32,
+  "stop_reason": "stop",
+  "raw_len": 403,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   66,
+   43,
+   72,
+   74
+  ],
+  "ind_words": [
+   9,
+   7,
+   10,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 33,
+  "stop_reason": "stop",
+  "raw_len": 505,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   48,
+   78,
+   102,
+   50
+  ],
+  "ind_words": [
+   9,
+   8,
+   10,
+   14,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 34,
+  "stop_reason": "stop",
+  "raw_len": 473,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   50,
+   73,
+   70,
+   53
+  ],
+  "ind_words": [
+   9,
+   8,
+   14,
+   9,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 35,
+  "stop_reason": "stop",
+  "raw_len": 393,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 4,
+  "ind_lens": [
+   72,
+   48,
+   87,
+   53
+  ],
+  "ind_words": [
+   10,
+   8,
+   14,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 36,
+  "stop_reason": "stop",
+  "raw_len": 421,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   66,
+   43,
+   42,
+   72,
+   57
+  ],
+  "ind_words": [
+   9,
+   7,
+   6,
+   8,
+   11
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 37,
+  "stop_reason": "stop",
+  "raw_len": 505,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   76,
+   79,
+   95,
+   64,
+   50
+  ],
+  "ind_words": [
+   10,
+   12,
+   16,
+   9,
+   8
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 38,
+  "stop_reason": "stop",
+  "raw_len": 409,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   76,
+   30,
+   54,
+   63,
+   25
+  ],
+  "ind_words": [
+   12,
+   5,
+   8,
+   12,
+   3
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "003",
+  "n": 39,
+  "stop_reason": "stop",
+  "raw_len": 512,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "benign",
+  "category": "legit_external",
+  "confidence": 0.95,
+  "n_indicators": 5,
+  "ind_lens": [
+   76,
+   78,
+   83,
+   59,
+   75
+  ],
+  "ind_words": [
+   11,
+   13,
+   15,
+   8,
+   9
+  ],
+  "ind_has_upper": [
+   true,
+   true,
+   true,
+   true,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 0,
+  "stop_reason": "stop",
+  "raw_len": 372,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   33,
+   59
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   6,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 1,
+  "stop_reason": "stop",
+  "raw_len": 362,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   60,
+   49,
+   44
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 2,
+  "stop_reason": "stop",
+  "raw_len": 384,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   56,
+   60
+  ],
+  "ind_words": [
+   12,
+   11,
+   10,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 3,
+  "stop_reason": "stop",
+  "raw_len": 414,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   74,
+   75,
+   56
+  ],
+  "ind_words": [
+   12,
+   14,
+   13,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 4,
+  "stop_reason": "stop",
+  "raw_len": 439,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   74,
+   60,
+   68,
+   52,
+   43
+  ],
+  "ind_words": [
+   12,
+   11,
+   11,
+   8,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 5,
+  "stop_reason": "stop",
+  "raw_len": 368,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   56,
+   44
+  ],
+  "ind_words": [
+   12,
+   11,
+   10,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 6,
+  "stop_reason": "stop",
+  "raw_len": 359,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   73,
+   74,
+   86
+  ],
+  "ind_words": [
+   12,
+   14,
+   13
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 7,
+  "stop_reason": "stop",
+  "raw_len": 346,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   75,
+   74,
+   71
+  ],
+  "ind_words": [
+   12,
+   14,
+   11
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 8,
+  "stop_reason": "stop",
+  "raw_len": 414,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   74,
+   75,
+   56
+  ],
+  "ind_words": [
+   12,
+   14,
+   13,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 9,
+  "stop_reason": "stop",
+  "raw_len": 387,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   58,
+   33,
+   67,
+   43,
+   44
+  ],
+  "ind_words": [
+   11,
+   5,
+   11,
+   8,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   true,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 10,
+  "stop_reason": "stop",
+  "raw_len": 318,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   58,
+   33,
+   60,
+   33
+  ],
+  "ind_words": [
+   11,
+   5,
+   11,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 11,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   49,
+   79
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   10
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 12,
+  "stop_reason": "stop",
+  "raw_len": 385,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   74,
+   42,
+   60
+  ],
+  "ind_words": [
+   12,
+   14,
+   6,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 13,
+  "stop_reason": "stop",
+  "raw_len": 368,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   75,
+   74,
+   93
+  ],
+  "ind_words": [
+   12,
+   14,
+   15
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 14,
+  "stop_reason": "stop",
+  "raw_len": 360,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   73,
+   60,
+   49,
+   44
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 15,
+  "stop_reason": "stop",
+  "raw_len": 365,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   43,
+   42
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   8,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 16,
+  "stop_reason": "stop",
+  "raw_len": 361,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   49,
+   44
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 17,
+  "stop_reason": "stop",
+  "raw_len": 367,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   43,
+   44
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   8,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 18,
+  "stop_reason": "stop",
+  "raw_len": 302,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.9,
+  "n_indicators": 4,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   31
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 19,
+  "stop_reason": "stop",
+  "raw_len": 379,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   60,
+   51
+  ],
+  "ind_words": [
+   12,
+   11,
+   10,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 20,
+  "stop_reason": "stop",
+  "raw_len": 305,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   33
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 21,
+  "stop_reason": "stop",
+  "raw_len": 361,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   49,
+   44
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 22,
+  "stop_reason": "stop",
+  "raw_len": 414,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   74,
+   75,
+   56
+  ],
+  "ind_words": [
+   12,
+   14,
+   13,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 23,
+  "stop_reason": "stop",
+  "raw_len": 320,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   75,
+   74,
+   45
+  ],
+  "ind_words": [
+   12,
+   14,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 24,
+  "stop_reason": "stop",
+  "raw_len": 320,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   73,
+   60,
+   61
+  ],
+  "ind_words": [
+   12,
+   11,
+   10
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 25,
+  "stop_reason": "stop",
+  "raw_len": 365,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   43,
+   42
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   8,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 26,
+  "stop_reason": "stop",
+  "raw_len": 349,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.9,
+  "n_indicators": 4,
+  "ind_lens": [
+   58,
+   47,
+   51,
+   60
+  ],
+  "ind_words": [
+   11,
+   7,
+   9,
+   11
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 27,
+  "stop_reason": "stop",
+  "raw_len": 348,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   73,
+   74,
+   75
+  ],
+  "ind_words": [
+   12,
+   14,
+   12
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 28,
+  "stop_reason": "stop",
+  "raw_len": 361,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   49,
+   44
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 29,
+  "stop_reason": "stop",
+  "raw_len": 392,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   57,
+   33,
+   60,
+   43,
+   57
+  ],
+  "ind_words": [
+   11,
+   5,
+   11,
+   8,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 30,
+  "stop_reason": "stop",
+  "raw_len": 372,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   74,
+   42,
+   47
+  ],
+  "ind_words": [
+   12,
+   14,
+   6,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 31,
+  "stop_reason": "stop",
+  "raw_len": 382,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   75,
+   74,
+   51,
+   48
+  ],
+  "ind_words": [
+   12,
+   14,
+   9,
+   8
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 32,
+  "stop_reason": "stop",
+  "raw_len": 434,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   58,
+   47,
+   51,
+   74,
+   62
+  ],
+  "ind_words": [
+   11,
+   7,
+   9,
+   14,
+   10
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 33,
+  "stop_reason": "stop",
+  "raw_len": 364,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   49,
+   47
+  ],
+  "ind_words": [
+   12,
+   11,
+   9,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 34,
+  "stop_reason": "stop",
+  "raw_len": 385,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   59,
+   46
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   10,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 35,
+  "stop_reason": "stop",
+  "raw_len": 394,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   74,
+   60,
+   67,
+   59
+  ],
+  "ind_words": [
+   12,
+   11,
+   11,
+   9
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 36,
+  "stop_reason": "stop",
+  "raw_len": 350,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 3,
+  "ind_lens": [
+   73,
+   74,
+   77
+  ],
+  "ind_words": [
+   12,
+   14,
+   13
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   true,
+   false,
+   true
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 37,
+  "stop_reason": "stop",
+  "raw_len": 396,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.9,
+  "n_indicators": 5,
+  "ind_lens": [
+   58,
+   33,
+   60,
+   59,
+   45
+  ],
+  "ind_words": [
+   11,
+   5,
+   11,
+   10,
+   7
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 38,
+  "stop_reason": "stop",
+  "raw_len": 376,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 5,
+  "ind_lens": [
+   58,
+   33,
+   60,
+   43,
+   40
+  ],
+  "ind_words": [
+   11,
+   5,
+   11,
+   8,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   true,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false,
+   false
+  ]
+ },
+ {
+  "email": "004",
+  "n": 39,
+  "stop_reason": "stop",
+  "raw_len": 305,
+  "loaded": true,
+  "schema_problems": [],
+  "keys": [
+   "category",
+   "confidence",
+   "indicators",
+   "verdict"
+  ],
+  "verdict": "malicious",
+  "category": "vendor_fraud",
+  "confidence": 0.85,
+  "n_indicators": 4,
+  "ind_lens": [
+   45,
+   33,
+   60,
+   33
+  ],
+  "ind_words": [
+   8,
+   5,
+   11,
+   6
+  ],
+  "ind_has_upper": [
+   false,
+   false,
+   false,
+   false
+  ],
+  "ind_has_punct": [
+   false,
+   true,
+   false,
+   false
+  ],
+  "ind_in_body": [
+   false,
+   false,
+   false,
+   false
+  ]
+ }
+]

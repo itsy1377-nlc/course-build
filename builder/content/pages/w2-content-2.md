@@ -4,14 +4,14 @@ Part 1 covered the shape you ask for and the check that proves you got it. This 
 Give this page 22 minutes. With part 1 that's the 42 minutes of reading this week.
 :::
 
-::: section | A wrong shape is a normal condition
-**Malformed output is an answer that doesn't match the shape you asked for.**
+::: section | A wrong answer is a normal condition
+**A failed answer is one your code can't load or one that doesn't match the schema.**
 
-It isn't a rare bug. It's a normal condition, and your code handles it like any other.
+It isn't a reason to stop the run. Your code records the problem and decides whether to try again.
 
 Nothing in the model promises you a shape. It writes one likely character after another. A schema in the prompt makes the right shape far more likely. It doesn't make it certain.
 
-Three shapes turn up, and the lab shows you all three.
+Four shapes matter in this lab.
 
 **Extra text around the answer.** The model adds a sentence, or wraps the answer in code fences.
 
@@ -20,15 +20,15 @@ Here is the classification you asked for:
 {"verdict": "benign", "category": "spam", "confidence": 0.6}
 ```
 
-Your load fails on the first word, because "Here" isn't the start of any JSON object. The answer itself was fine. It just didn't arrive alone.
+The load fails on the first word. "Here" isn't the start of a JSON object.
 
-**Cut off partway.** The answer stops in the middle, so the brackets never close.
+**Cut off partway.** The answer stops before the brackets close.
 
 ```text
 {"verdict": "malicious", "category": "credential_ph
 ```
 
-This one starts right and ends nowhere. Python reads to the end of the text, finds no closing bracket, and raises an error.
+Python reaches the end, finds no closing quote or brace, and raises an error.
 
 **Nothing at all.** The reply is empty and the stop reason is `length`.
 
@@ -36,33 +36,45 @@ This one starts right and ends nowhere. Python reads to the end of the text, fin
 content: ""      stop reason: length
 ```
 
-A **stop reason** is the short label saying why the model stopped writing. `length` means it ran into the token limit you set. A **reasoning block** is text a model writes to itself before its answer. When the model spends the whole limit on that block, the answer never starts.
+A **stop reason** says why the model stopped writing. `length` means it reached the answer limit. A **reasoning block** is text a model writes to itself before its answer. When the model spends the whole limit on that block, the answer never starts.
 
 This is measured, not imagined. In one set of course tests, at one token limit, most runs came back empty with a stop reason of `length`. Another set wouldn't give the same count. Your notebook turns the reasoning block off, so your own runs shouldn't look like that.
 
-`strip_reasoning()` arrives written for you. It takes off a leading reasoning block, a stray closing tag and any code fences. Run it before you load. It fixes the first shape outright, and it costs nothing on the other two.
+**JSON that breaks a schema rule.** This answer loads, but its confidence is over this lab's reporting limit.
+
+```json
+{"verdict": "malicious", "category": "credential_phish",
+ "confidence": 0.95, "indicators": ["lookalike sign-in page"]}
+```
+
+`strip_reasoning()` arrives written for you. It removes a leading reasoning block, a stray closing tag, or a fence that starts the answer. It doesn't rescue JSON buried after ordinary prose. `extract_json()` returns `None` when the cleaned text still won't load. The schema check catches the fourth shape after loading succeeds.
 :::
 
 ::: section | The retry, and the one rule that makes it work
-**A retry is asking again when the answer came back in the wrong shape.**
+**A retry is asking again after an answer fails to load or fails the schema.**
 
 One rule decides whether a retry is worth the call. **Send the problem back with the request.** Don't send the same request twice.
 
-An unchanged request gives the model nothing new. It's free to make the same mistake again. Adding the problems changes the prompt, so it changes the odds.
-
-Your second prompt carries the plain words your check reported. It reads something like this.
+Your live range retry carries the checker's own words:
 
 ```text
-Your last answer had these problems. Fix them.
-- category is 'phishing', and it has to be one of credential_phish, bec,
-  vendor_fraud, malware_delivery, spam, legit_external, legit_internal
+Your last answer had these problems:
+confidence is 0.95, and it has to be from 0.0 to 0.9
 ```
 
-Now the model has something to fix. It's being told what was wrong, in the same words your own code used.
+The added line does measurable work for this rule. In course tests, 24 of 24 replies changed to 0.85 and passed when the range problem was added. A bare re-ask changed none of 24; every reply stayed at 0.95.
 
-Cap the tries. Three is the cap this lab uses. A cap isn't pessimism. It's the line between a loop that ends and a loop that doesn't. Week 5 makes that idea the whole subject.
+That result is specific to the number rule. The same model usually failed when it was asked to shorten a list. Exact feedback can help without making every problem recoverable. Keep the three-try cap.
 
-A retry doesn't fix everything. It fixes shape. It doesn't make a wrong verdict right, because a well shaped answer passes the check whether or not the judgment is any good. Week 7 is where you measure that.
+A load failure can't tell the checker whether the text was cut off, empty, or wrapped in prose. Those shapes share one recovery action:
+
+```text
+The answer did not load as JSON. Return one complete JSON object with no words before or after it.
+```
+
+The attempt record keeps the raw reply so a person can inspect the original shape. The next prompt carries the common action the model can follow.
+
+A retry fixes the contract, not the judgment. Returning 0.85 instead of 0.95 doesn't prove the model became less sure. A well-shaped wrong verdict or an allowed but wrong category can still pass. Week 7 measures that.
 :::
 
 ::: section | When the tries run out
@@ -84,11 +96,11 @@ Write the failure down where a person will find it. An email your agent couldn't
 :::
 
 ::: callout note | Stop and think
-Your first try fails the check. You're about to ask again.
+Your first try reports `confidence: 0.95`. The week 2 check rejects it.
 
 What goes into the second prompt that wasn't in the first? Answer before you read the next line.
 
-The problems your check reported. Without them you've sent the same request twice and paid for it twice.
+The exact range problem from `schema_errors()`. In the controlled course test, adding that problem changed the next answer. Sending the unchanged prompt didn't.
 :::
 
 ::: section | Every retry is another paid call
@@ -107,7 +119,9 @@ Your token counter prints a line after every call. Watch it while you work.
 ::: section | Then open the lab
 The lab notebook does all of this on four saved emails. You write two functions.
 
-`extract_json()` cleans a reply and loads it. `classify_email()` checks the answer, asks again with the problems attached, and gives up after three tries.
+`extract_json()` cleans and loads a reply. `classify_email()` checks a candidate, asks again with the problems attached, and stops after an answer is accepted or three tries are used.
+
+A short saved contract test checks your code the same way every time. The four-email run is where you observe the live model. Which email retries may change.
 
 Keep both reading pages open beside the notebook.
 :::

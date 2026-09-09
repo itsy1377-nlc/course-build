@@ -27,14 +27,16 @@ This week your agent asks for four names.
 |---|---|
 | `verdict` | malicious or benign |
 | `category` | one of seven kinds of email |
-| `confidence` | a number from 0 to 1 |
+| `confidence` | a number from 0 to 0.9 in this lab |
 | `indicators` | short facts that support the verdict |
 
 A **verdict** is the agent's judgment on one email. Two values are allowed and nothing else. That's what lets your code group forty answers into two piles.
 
 A **category** is the kind of email the agent thinks this is. The seven kinds come from one file in the course corpus. In week 7 you score your agent against that same list. So the words you ask for now are the words you're measured on later.
 
-**Confidence** is a number saying how sure the model is. It runs from 0 to 1. Read it as the model's own report, not as a fact about the email. A high number on a wrong answer is still wrong. The number is good for sorting, and for picking out the ones a person should see.
+**Confidence** is the model's own report of how sure it is. It isn't a fact about the email, and a high number on a wrong answer is still wrong. Week 2 uses 0.9 as a reporting limit so you can see the contract reject and repair a number.
+
+`0.9` is a reporting limit in this lab. It doesn't make the model less sure or more accurate. When `0.95` is rejected and `0.85` comes back, the model corrected its report to fit the contract. It didn't prove that its judgment changed.
 
 An **indicator** is one short fact behind the verdict, such as a web address that imitates a real one. Ask for a few of these, not an essay. They're the part a person can check.
 :::
@@ -58,20 +60,21 @@ Week 0 section 4 covers this move. Sidebar 2B runs it again on a weather reading
 ::: section | What a schema buys you
 **A schema is the written rule saying which names an answer must carry and which values are allowed.**
 
-The course schema says four things.
+The course schema sets these rules in week 2.
 
-1. All four names have to be there.
-2. `verdict` has to be malicious or benign.
-3. `category` has to be one of the seven.
-4. `confidence` has to be a number from 0 to 1.
+1. The answer has exactly four names.
+2. `verdict` is malicious or benign.
+3. `category` is one of the seven course categories.
+4. `confidence` is a number from 0 to 0.9.
+5. `indicators` is a list with one to six text items.
 
-That rule does two jobs at once. It tells the model what to write, because your notebook puts the rule into the prompt in plain words. It also lets your code decide whether a reply is usable, before anything else touches it.
+That one rule does two jobs. The notebook writes it into the prompt in plain words. The checker reads the same rule before anything else uses the answer.
 
-One written rule doing both jobs is the part worth noticing. Change it in one place, and the request and the check move together.
+Change the high value in `OUTPUT_SCHEMA`, and the request and check move together. That single source matters: a prompt asking for 0 to 1 while a checker enforces 0 to 0.9 would be an unfair contract.
 
-Your notebook ships `schema_errors()` already written. Hand it an answer and it hands back a list of problems in plain words. An empty list means the answer is good.
+Your notebook ships `schema_errors()` already written. Hand it an answer and it hands back a list of problems in plain words. An empty list means the answer passed the contract.
 
-You never have to guess what went wrong. Part 2 shows you what to do with the list.
+Passing the contract doesn't prove the verdict or confidence is true. Part 2 shows what to do with the problem list.
 :::
 
 ::: section | Valid JSON can still be a wrong answer
@@ -92,23 +95,23 @@ You need both, in that order. Nothing can be checked until the text is a diction
 :::
 
 ::: callout note | Stop and think
-Your code loads a reply and no error comes back. Then you look at it. The `confidence` value is the word "high" instead of a number.
+Your code loads a reply and no error comes back. Its `confidence` is `0.95`.
 
-Which step catches that, the load or the schema check? Answer before you read the next line.
+Which step rejects it in this lab, the load or the schema check? Answer before you read the next line.
 
-The schema check. Text is a fine JSON value, so the load is happy. The schema is the only rule that says this field holds a number from 0 to 1.
+The schema check. `0.95` is a valid JSON number, so the load is happy. The week 2 reporting rule stops at `0.9`. Rejecting the number proves a contract mismatch, not that the model became less sure.
 :::
 
 ::: section | The sidebar
-Run the **Week 2 sidebar notebook** before you open the lab. All three parts use weather readings from a rooftop station.
+Run the **Week 2 sidebar notebook** before you open the lab. All four parts use weather readings from a rooftop station.
 
-2A reads values out of a dictionary by name. 2B turns a line of JSON text into a dictionary. 2C asks a fake gauge up to three times and stops on the first good reading.
+2A reads values out of a dictionary. 2B turns JSON text into a dictionary. 2C loads a candidate and accepts it only after a check. 2D shows why an empty problem list means the candidate passed.
 
-The lab does those same three moves on email. The names are different, so you can't paste sidebar code into the lab.
+The lab makes those same moves on email. The names are different, so you can't paste sidebar code into the lab.
 :::
 
 ::: section | Read part 2 next
-Part 2 of this week's reading is **When the answer comes back wrong**. It covers the three shapes a broken answer arrives in, and the retry that fixes most of them.
+Part 2 of this week's reading is **When the answer comes back wrong**. It covers load failures, a live range failure, and the retry that sends the exact problems back.
 
 Read it before you open the lab.
 :::

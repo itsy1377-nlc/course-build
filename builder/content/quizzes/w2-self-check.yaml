@@ -32,9 +32,9 @@
 # the section to reopen, because the attempts are unlimited and the point of
 # the quiz is to send a student back to the right paragraph.
 #
-# ITEM COVERAGE. Items 1, 5 and 6 sit on this week's three objectives. Items 2,
-# 3 and 4 are the three failures a student is most likely to meet alone, late,
-# with nobody to ask.
+# ITEM COVERAGE. Items 1, 4, 5 and 6 sit directly on this week's objectives.
+# Items 2 and 3 are the two load failures a student is most likely to meet
+# alone, late, with nobody to ask.
 
 title: Week 2 self-check
 ungraded: false
@@ -72,7 +72,7 @@ questions:
         correct: true
         feedback: >-
           Correct. Those four, spelled that way, on every answer. Week 2
-          reading, why a sentence is not an answer.
+          reading, part 1, why a sentence is not an answer.
       - text: "verdict, reason, score, evidence"
         correct: false
         feedback: >-
@@ -101,12 +101,12 @@ questions:
       <code>length</code>. What happened, and what should your code do
       next?</p>
     answers:
-      - text: The model ran into the token limit before it wrote the answer. Record the failed try and ask again.
+      - text: The model reached the answer limit before usable JSON arrived. Record the failure and ask for one complete JSON object with no words around it.
         correct: true
         feedback: >-
-          Correct. Usually the reasoning block used the whole budget. It is a
-          normal condition, so your loop handles it. Week 2 reading, part 2, a wrong
-          shape is a normal condition.
+          Correct. Record the failed try. The retry says: Return one complete
+          JSON object with no words before or after it. Week 2 reading, part 2,
+          a wrong answer is a normal condition.
       - text: The email was too long to classify. Skip it and move to the next one.
         correct: false
         feedback: >-
@@ -159,41 +159,37 @@ questions:
           shape is a normal condition.
 
   - id: w2-q4
-    name: Question 4. Reading the error
+    name: Question 4. Stop on acceptance
     type: multiple_choice
     points: 2
-    section: "Week 0, section 10, how to read an error message"
+    section: "Week 2 sidebar, parts 2C and 2D"
     outcome: "none"
     text: |
-      <p>Your run stopped and printed this.</p>
-      <pre><code>Traceback (most recent call last):
-        File "classify.py", line 12, in &lt;module&gt;
-          answer = json.loads(text)
-      JSONDecodeError: Expecting ',' delimiter: line 1 column 58
-      </code></pre>
-      <p>Which line names the thing that failed?</p>
+      <p>Your reply loaded into a dictionary, but
+      <code>schema_errors()</code> returned one problem. What keeps the retry
+      loop going?</p>
     answers:
-      - text: The last line. It names the error type and what went wrong.
+      - text: Assign the dictionary to answer as soon as json.loads() succeeds.
+        correct: false
+        feedback: >-
+          No. That stops on loading, before the schema problem can cause a
+          retry. Week 2 sidebar, part 2C, load a candidate, then accept it.
+      - text: Keep answer as None, and assign the candidate to it only when the problem list is empty.
         correct: true
         feedback: >-
-          Correct. Read the last line first, every time. Here it says the text
-          was not complete JSON. Week 0, section 10, how to read an error
-          message.
-      - text: The first line. It names the file that could not be opened.
+          Correct. The loop condition changes only after the check accepts the
+          candidate. Week 2 sidebar, parts 2C and 2D.
+      - text: Return the dictionary and let the next email repair it.
         correct: false
         feedback: >-
-          No. The first line is a header. It only says a traceback follows.
-          Week 0, section 10, how to read an error message.
-      - text: The File line. It is the only line that names anything real.
+          No. That hands back an answer the checker rejected. Week 2 lab, TODO
+          2, classify_email.
+      - text: Set answer to the problem list so the loop has something to read.
         correct: false
         feedback: >-
-          No. That line tells you where, which is useful. The last line tells
-          you what. Week 0, section 10, how to read an error message.
-      - text: None of them. A traceback only says that something failed.
-        correct: false
-        feedback: >-
-          No. It names the error type, the failing call and the line number.
-          Week 0, section 10, how to read an error message.
+          No. A nonempty list would also make answer stop being None. Keep the
+          accepted answer and the problem list in separate variables. Week 2
+          sidebar, part 2D.
 
   - id: w2-q5
     name: Question 5. What a retry has to add
@@ -208,52 +204,54 @@ questions:
       - text: The problems your check reported, in plain words.
         correct: true
         feedback: >-
-          Correct. That is the one rule. Without it you have sent the same
-          request twice and paid twice. Week 2 reading, part 2, the retry.
+          Correct. In the controlled range test, all 24 replies passed with
+          the problem added and none passed after a bare re-ask. Week 2
+          reading, part 2, the retry.
       - text: A higher temperature, so the model answers differently.
         correct: false
         feedback: >-
-          No. That changes how varied the wording is. It does not tell the
-          model what was wrong. Week 2 reading, part 2, the retry.
+          No. That changes variation. It does not tell the model what failed
+          the check. Week 2 reading, part 2, the retry.
       - text: The same prompt again. Models often get it right on a second pass.
         correct: false
         feedback: >-
-          No. An unchanged request gives the model nothing new, so the same
-          mistake is as likely. Week 2 reading, part 2, the retry.
+          No. In the course range test, every bare re-ask repeated 0.95. The
+          exact problem was the active ingredient. Week 2 reading, part 2, the
+          retry.
       - text: A note asking the model to try harder this time.
         correct: false
         feedback: >-
-          No. That is pressure, not information. Name the problem instead.
-          Week 2 reading, part 2, the retry.
+          No. That is pressure, not information. Name the exact problem
+          instead. Week 2 reading, part 2, the retry.
 
   - id: w2-q6
-    name: Question 6. Loads cleanly, fails the check
+    name: Question 6. Loads cleanly, fails the range
     type: multiple_choice
     points: 2
-    section: "Week 2 reading, part 1, valid JSON can still be a wrong answer"
+    section: "Week 2 reading, part 1, what a schema buys you"
     outcome: "none"
     text: |
-      <p>An answer loads with no error and still fails the schema check. How
-      is that possible?</p>
+      <p>An answer is valid JSON, has all four keys, and reports
+      <code>confidence: 0.95</code>. Why does it fail the week 2 check?</p>
     answers:
-      - text: Loading only proves the text is JSON. The schema also rules on the names and the values.
+      - text: JSON does not allow decimal numbers.
+        correct: false
+        feedback: >-
+          No. 0.95 is valid JSON. The load and the schema ask different
+          questions. Week 2 reading, part 1, what a schema buys you.
+      - text: The week 2 reporting rule accepts confidence only from 0.0 to 0.9.
         correct: true
         feedback: >-
-          Correct. Loading and checking ask different questions, and you need
-          both. Week 2 reading, part 1, valid JSON can still be a wrong answer.
-      - text: It is not possible. Anything that loads has passed the check already.
+          Correct. The number loads, then the range check rejects it. That
+          reports a contract mismatch, not a change in certainty. Week 2
+          reading, part 1, what a schema buys you.
+      - text: A confidence above 0.9 proves the verdict is wrong.
         correct: false
         feedback: >-
-          No. A category the course does not use loads perfectly well and is
-          still unusable. Week 2 reading, part 1, valid JSON can still be a wrong
-          answer.
-      - text: The check ran before the load, so it read the raw text.
+          No. Confidence is the model's report, not a fact about the verdict.
+          Week 2 reading, part 1, why a sentence is not an answer.
+      - text: The checker accepts only whole numbers.
         correct: false
         feedback: >-
-          No. The order is load first, then check. The check reads the
-          dictionary. Week 2 reading, part 1, valid JSON can still be a wrong answer.
-      - text: The answer was too short for the check to score it.
-        correct: false
-        feedback: >-
-          No. Length is not what the schema rules on. Names and values are.
-          Week 2 reading, part 1, valid JSON can still be a wrong answer.
+          No. Decimal numbers are allowed when they sit inside the declared
+          range. Week 2 reading, part 1, what a schema buys you.

@@ -18,7 +18,7 @@ By the end of this module, you'll be able to:
 | Task | What you turn in | Due |
 |---|---|---|
 | Watch the two short videos | Nothing | |
-| Run the **Week 2 sidebar notebook**, parts 2A, 2B and 2C | Nothing | |
+| Run the **Week 2 sidebar notebook**, parts 2A, 2B, 2C and 2D | Nothing | |
 | Read **Week 2 reading, part 1** | Nothing | |
 | Read **Week 2 reading, part 2** | Nothing | |
 | Work the **Week 2 lab notebook** | A screenshot, one file, a written answer | Day 14, Sunday 11:59 PM |
@@ -31,22 +31,22 @@ By the end of this module, you'll be able to:
 | Activity | Minutes |
 |---|---|
 | Overview video and the walkthrough video | 8 |
-| Sidebars 2A, 2B and 2C | 30 |
+| Sidebars 2A, 2B, 2C and 2D | 40 |
 | Reading, both parts | 42 |
-| Lab: read the notebook, run the pre-written cells | 30 |
+| Lab: read the notebook, run the pre-written cells | 35 |
 | Lab: TODO 1, `extract_json()` | 30 |
 | Lab: TODO 2, `classify_email()` | 60 |
 | Lab: run all four emails, fix what breaks | 40 |
 | Lab: export the file and check it | 20 |
 | Discussion, post plus one reply | 20 |
 | Self-check and submission | 30 |
-| **Total** | **310 minutes, about 5.2 hours** |
+| **Total** | **325 minutes, about 5.4 hours** |
 
 This is the first week you write a loop. Give the lab two sittings if you can.
 :::
 
 ::: next
-Start with the sidebar. Three short weather examples cover every move the lab asks for.
+Start with the sidebar. Four short weather examples cover every move the lab asks for.
 
 Then read both parts of the week 2 reading, and work the lab with them open beside it.
 

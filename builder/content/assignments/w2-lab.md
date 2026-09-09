@@ -1,48 +1,47 @@
 ::: intro
-In this lab your agent answers in a fixed shape, and your code checks that shape before it trusts the answer. Thirteen to seventeen lines of your own code, in two clearly marked TODO cells. Everything else in the notebook is written for you. Read both parts of the **Week 2 reading** first and run the sidebar. Plan about three hours.
+In this lab your agent answers in a fixed shape, and your code checks that shape before it trusts the answer. You write about 16 to 20 lines in two marked TODO cells. The saved contract test and everything else are written for you. Read both parts of the **Week 2 reading** first and run all four sidebar parts. Plan about three hours.
 :::
 
 ::: directions
 1. Open the **Week 2 lab notebook**. Run every cell from the top, in order. Stop when you reach the first TODO cell.
-2. Read the output of cell 7. It shows what the model actually sends back, including a run that fails. Look at the stop reason on that one.
-3. Fill in **TODO 1**, cell 10. Your `extract_json(text)` calls `strip_reasoning()`, tries `json.loads()`, and returns the dictionary. When the load fails it returns `None`. That's 5 to 7 lines.
-4. Run cell 11, the check cell. It feeds your function four saved replies, one clean and three broken, and prints what each one returns. Fix your function until the clean one loads and the three broken ones return `None`.
-5. Read cell 12. It defines `schema_errors()`, `ATTEMPT_LOG` and `log_attempt()`. You don't write these. You call them.
-6. Fill in **TODO 2**, cell 13. Your `classify_email(parsed, max_tries=3)` builds the prompt with `build_classify_prompt()`, calls `ask_model()`, extracts the answer, checks it with `schema_errors()`, and logs the try. When the check reports problems, it asks again with those problems added to the prompt. It returns the checked answer, or `None` when no try passed. That's 8 to 10 lines.
-7. Run cell 14, the results cell. It runs all four emails and prints one row each, then a token line under the table.
-8. Fix what breaks. Read the last line of any traceback first. It names the error type and the thing that failed.
-9. Run cell 15, the export cell. It writes `week2_classification.json` and prints the full path and the first few lines.
-10. Open that file and read it. Check that every email has a `schema_ok` field and a `problems` list, including the emails that passed on the first try.
+2. Read the output of cell 7. It shows a full model reply and a call with too little answer room.
+3. Fill in **TODO 1**, cell 10. Your `extract_json(text)` calls `strip_reasoning()`, tries `json.loads()`, and returns a dictionary or `None`. That's 5 to 7 lines.
+4. Run cell 11. The clean saved reply must load. The three broken replies must return `None`.
+5. Read cell 12. It defines `schema_errors()`, `ATTEMPT_LOG`, `log_attempt()`, and `answer_source()`. You call them; you don't rewrite them.
+6. Fill in **TODO 2**, cell 13. Use `answer` as the accepted-value sentinel. Load each reply into `data`, check it, log it, and assign `answer = data` only when the problem list is empty. Add the problems to the next prompt after a failure. Return `answer` once, after the loop. That's about 11 to 13 lines.
+7. Run cell 14, the saved contract test. It uses two answers written for that cell, not model output. It must report four first-attempt problems, an attempt 2, every problem copied into prompt 2, and a passing final answer.
+8. Run cell 15, the live results cell. It runs all four emails. Every row passes only when `tries` is at least 1 and `ok` is `True`. Which rows retry may change.
+9. Fix any row the warning names. Read the last line of a traceback first.
+10. Run cell 16, the export cell. It writes `week2_classification.json`.
+11. Open the file. Confirm that `retry_demo.problems_copied` and `retry_demo.schema_ok` are true. Confirm that all four email records have `schema_ok: true`, a `problems` list, and at least one attempt.
 :::
 
 ::: callout warning | Two things that stop this lab
-Your retry has to add the problems to the prompt. Sending the same prompt again isn't a retry, and the file will show three identical tries.
+Your retry has to add the exact problems to prompt 2. A bare re-ask isn't the mechanism objective 2.3 asks you to build.
 
-Your loop has to stop. `max_tries=3` is the cap. A loop with no cap can run until your token budget is gone.
+Your loop has to stop on an accepted answer, not merely on a dictionary that loaded. Keep `answer` as `None` until `problems` is empty, and keep the three-try cap.
 :::
 
 ::: grading | Grading Criteria
 | Criterion | Points | What earns full credit |
 |---|---|---|
 | Submission completeness | 15 | All three items are present and readable. |
-| Output validation | 50 | The file carries a checked answer for all four emails. It carries `schema_ok` and `problems` on every try, the accepted try included. Every failed try is recorded with the problems that caused it. |
-| Results screenshot | 15 | The screenshot shows all four emails and the token line, and is readable. |
-| Written answer | 20 | Three to five sentences carrying your own numbers. It names the email that needed more than one try. It copies the problem text your code reported. For a clean run it says so and gives the lowest confidence number in your own file. Either path also names one change to the instructions. |
+| Output validation | 50 | The file carries four checked live answers with `schema_ok: true`. Its saved `retry_demo` records first-attempt problems, prompt 2 contains those exact problems, and attempt 2 is recorded. |
+| Results screenshot | 15 | One readable image shows all four live rows, `ok=True` on each row, and the token line. |
+| Written answer | 20 | Three to five sentences carry results from the student's file. The answer names a retry and copies its problem, or reports a clean run and its lowest confidence. It also names one instruction change without treating a lower confidence as greater truth. |
 | **Total** | **100** | |
 
-Nothing here's graded by running your notebook. The three items you turn in carry all of it.
+Nothing here is graded by running your notebook. The three items you turn in carry all of it.
 :::
 
 ::: submit
 Three items. Nothing else. No zip file, no folder, no link to a repository.
 
-1. **A screenshot.** One image of the output of cell 14, the results cell that runs all four emails. It has to show all four rows, each with the email id, verdict, category, confidence and tries used, plus the token line printed under the table. Capture the whole output in one image.
-2. **One file.** `week2_classification.json`, attached as itself. The export cell prints its full path, so you can see exactly what to attach.
-3. **A written answer**, typed into the submission box. Three to five sentences. Answer this:
+1. **A screenshot.** One image of cell 15, the live results cell. Show all four rows, including each `ok` value, and the token line.
+2. **One file.** Attach `week2_classification.json` as itself.
+3. **A written answer.** In three to five sentences, say which email took more than one try and copy the exact problem from that failed try. If all four passed on try one, say so and give the lowest confidence in your file. Either way, name one instruction change. Don't claim that a lower confidence number means the model became less sure or more accurate.
 
-    In 3 to 5 sentences, answer this. Which of your four emails took more than one try? Copy the exact problem your code reported on that failed try. If all four passed on try one, say so instead. Then give the lowest confidence number you saw. Either way, name one change you would make to the instructions.
-
-Don't screenshot the configuration cell. Your key is pasted into it, so a picture of that cell shows your key to anyone who sees it. Screenshot only the cell this assignment names. If your key does end up in a post or an image, tell your instructor so it can be replaced.
+Don't screenshot the configuration cell. Your key is pasted into it. If your key appears in a post or image, tell your instructor so it can be replaced.
 
 Due day 14, Sunday 11:59 PM Central.
 :::

@@ -56,69 +56,71 @@ criteria:
 
   - description: Output validation
     long_description: >-
-      The file carries a checked answer for all four emails. It carries
-      schema_ok and problems on every try, the accepted try included. Every
-      failed try is recorded with the problems that caused it.
+      The file carries four checked live answers with schema_ok: true. Its
+      saved retry_demo records first-attempt problems, prompt 2 contains those
+      exact problems, and attempt 2 is recorded.
     points: 50
     outcome: CLO2
     levels:
       - description: >-
-          Exceeds standard. All four emails carry a checked answer. schema_ok
-          and problems are written on every try, the accepted try included.
-          Every failed try is recorded with the problems that caused it. A
-          reader can follow why each answer was accepted.
+          Exceeds standard. All four live emails carry a checked answer with
+          schema_ok true and at least one recorded attempt. retry_demo has a
+          nonempty first-attempt problems list, prompt 2 contains every exact
+          problem, attempt 2 is recorded, and its final schema_ok is true.
         points: 50
       - description: >-
-          Meets standard. All four emails carry a checked answer. The check
-          result is recorded. One try or one email is missing its problems
-          list. Or problems is left out where the check found nothing wrong.
+          Meets standard. All four live emails carry a checked answer. The
+          retry demo reaches attempt 2, but one prompt or problem record is
+          missing, or one accepted live try omits its empty problems list.
         points: 35
       - description: >-
-          Approaching standard. The file holds answers for some emails. Or it
-          holds answers with no check result. It shows the model was called. It
-          does not show that the answer was checked.
+          Approaching standard. The file holds answers for some emails, or it
+          holds answers with no check result. It does not show both a failed
+          check and a later attempt.
         points: 20
       - description: >-
-          No evidence. No file. Or a file with no answers in it.
+          No evidence. No file, or a file with no checked answers.
         points: 0
 
   - description: Results screenshot
     long_description: >-
-      The screenshot shows all four emails and the token line, and is readable.
+      One readable image shows all four live rows, ok=True on each row, and
+      the token line.
     points: 15
     levels:
       - description: >-
-          Full. One image shows all four rows. Each row has the email id,
-          verdict, category, confidence and tries used. The token line sits
-          under the table. The text is readable.
+          Full. One image shows all four live rows. Each row has the email id,
+          verdict, category, confidence, tries used, and ok=True. The token
+          line sits under the table and the text is readable.
         points: 15
       - description: >-
-          Partial. Rows or the token line are cut off. Or the text is too small
-          to read.
+          Partial. One or more rows do not show ok=True, rows or the token line
+          are cut off, or the text is too small to read.
         points: 10
       - description: >-
-          Missing. No screenshot. Or an image of a different cell.
+          Missing. No screenshot, or an image of a different cell.
         points: 0
 
   - description: Written answer
     long_description: >-
-      Three to five sentences carrying your own numbers. It names the email
-      that needed more than one try. It copies the problem text your code
-      reported. For a clean run it says so and gives the lowest confidence
-      number in your own file. Either path also names one change to the
-      instructions.
+      Three to five sentences carry results from the student's file. The
+      answer names a retry and copies its problem, or reports a clean run and
+      its lowest confidence. It also names one instruction change without
+      treating a lower confidence as greater truth.
     points: 20
     levels:
       - description: >-
-          Full. Three to five sentences. The numbers come from the student's
-          own file. It takes either path in full. It names one change to the
-          instructions.
+          Full. Three to five sentences use the student's live results and
+          complete either the retry or clean-run path. They name one
+          instruction change and do not treat confidence as calibrated truth.
         points: 20
       - description: >-
-          Partial. Under three sentences, or a part is missing. It gives no
-          number of its own. Or it names no change to the instructions.
+          Partial. The answer is under three sentences, omits a required
+          result, names no instruction change, or claims a lower confidence
+          proves the model became less sure or more accurate.
         points: 10
       - description: >-
-          Missing. No written answer. Or one carrying none of the student's own
-          results.
+          Missing. No written answer, or one carrying none of the student's
+          own live results.
         points: 0
+
