@@ -100,6 +100,20 @@ def slug(ref: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", ref.lower()).strip("-")
 
 
+MODULE_WEEK_RE = re.compile(r"^Module (\d+):")
+
+
+def module_week(name: str) -> str | None:
+    """Which week a module belongs to, as a string.
+
+    "Module 2: Structured Output" -> "2". Everything with no number is
+    orientation, and it answers to the name "start" so a scoped run can still
+    reach it.
+    """
+    m = MODULE_WEEK_RE.match(name)
+    return m.group(1) if m else "start"
+
+
 def page_source(ref: str) -> Path | None:
     p = CONTENT / "pages" / f"{ref}.md"
     return p if p.exists() else None
@@ -133,6 +147,50 @@ class Builder:
         self.files: dict[str, int] = {}
         self._page_urls: dict[str, str] | None = None
         self._video_links: dict[str, str] | None = None
+        # None means "every asset"; a set means a scoped build.
+        self._wanted_video_ids: set[str] | None = None
+        # None means the whole course; a set of module names means a scoped run.
+        self.only_modules: set[str] | None = None
+        self.scoped_files = False
+
+    def scope_to(self, weeks: set[str]) -> None:
+        """Limit this build to the modules for the named weeks.
+
+        A one-week change used to cost a full-course push: 154 objects and
+        86 MB of video, several minutes, every time a sentence moved. Nothing
+        about that was safe either, because the blast radius of a typo was the
+        whole course.
+
+        Scoping narrows three things together, and they have to move together
+        or the run is a lie: the modules written, the video assets uploaded,
+        and the student lab files. Course settings, assignment groups and
+        outcomes are cheap, idempotent and shared, so they still run.
+        """
+        names, wanted_ids = set(), set()
+        for mod in self.spec["modules"]:
+            if module_week(mod["name"]) in weeks:
+                names.add(mod["name"])
+                for item in mod["items"]:
+                    if item["type"] in ("page", "assignment"):
+                        src = (page_source(item["ref"]) if item["type"] == "page"
+                               else md_source("assignments", item["ref"]))
+                        if src and src.exists():
+                            wanted_ids |= set(re.findall(r"^::: video (\S+)",
+                                                         src.read_text(encoding="utf-8"),
+                                                         re.MULTILINE))
+        if not names:
+            raise CanvasError(f"no module matches week(s) {sorted(weeks)}. "
+                              f"Use --list-weeks to see the names.")
+        self.only_modules = names
+        self._wanted_video_ids = wanted_ids
+        # A lab notebook belongs to a week, but student_files is one allowlist
+        # for the whole course and the upload is cheap next to video. Send it
+        # whenever a scoped run touches a week that has a lab.
+        self.scoped_files = any(w.isdigit() for w in weeks)
+        print(f"scope: {len(names)} module(s) -- " + ", ".join(sorted(names)))
+        print(f"       {len(wanted_ids)} video(s) -- "
+              + (", ".join(sorted(wanted_ids)) if wanted_ids else "none"))
+        print(f"       student lab files: {'yes' if self.scoped_files else 'no'}\n")
 
     def say(self, line: str) -> None:
         self.report.append(line)
@@ -319,6 +377,9 @@ class Builder:
         warning. Both lists are checked again by --verify against what Canvas
         actually holds.
         """
+        if self.only_modules is not None and not self.scoped_files:
+            print("student files: skipped, this run is scoped and no lab file changed")
+            return
         entries = self.spec.get("student_files") or []
         banned = set(self.spec.get("never_ship") or [])
         planned: list[tuple[Path, str]] = []
@@ -371,6 +432,25 @@ class Builder:
         for asset in sorted(build_dir.iterdir()):
             if asset.suffix not in (".mp4", ".vtt", ".jpg"):
                 continue
+            if self._wanted_video_ids is not None:
+                # A scoped build uploads only the assets its own pages cite.
+                # Video is 86 MB across fourteen files and it dominates the
+                # push, so a one-week run that re-sent all of them would be a
+                # full build wearing a smaller name.
+                if asset.name.split(".")[0] not in self._wanted_video_ids:
+                    continue
+            # A dry run uploaded every asset for real. --check is the command
+            # you run to find out what a push would do, and it was quietly
+            # sending 86 MB and creating Canvas files while reporting "[dry]"
+            # for everything else. Map the placeholder to a name that cannot
+            # be mistaken for a URL, and touch nothing.
+            if self.dry:
+                self._video_links[f"{self.VIDEO_BASE}/{asset.name}"] = (
+                    f"[dry-run: {asset.name} would upload, "
+                    f"{asset.stat().st_size // 1024} KB]")
+                self.say(f"[dry] video asset {asset.name} "
+                         f"({asset.stat().st_size // 1024} KB)")
+                continue
             fid = self.upload_file(asset, "video")
             self._video_links[f"{self.VIDEO_BASE}/{asset.name}"] = (
                 f"/courses/{self.course_id}/files/{fid}/download?download_frd=1")
@@ -379,7 +459,14 @@ class Builder:
         # pipeline produces .transcript.md. Render each one and upload it, so a
         # student who cannot play video still reaches the words.
         for md in sorted(build_dir.glob("*.transcript.md")):
+            if (self._wanted_video_ids is not None
+                    and md.name.split(".")[0] not in self._wanted_video_ids):
+                continue
             html_path = md.with_suffix(".html")
+            if self.dry:
+                self._video_links[f"{self.VIDEO_BASE}/{html_path.name}"] = (
+                    f"[dry-run: {html_path.name} would upload]")
+                continue
             html_path.write_text(
                 "<!doctype html><meta charset=utf-8>"
                 f"<title>{md.stem}</title>"
@@ -689,6 +776,11 @@ class Builder:
     def build_modules(self) -> None:
         existing = {m["name"]: m for m in self.canvas.get(f"/courses/{self.course_id}/modules")}
         for position, mod in enumerate(self.spec["modules"], start=1):
+            # A scoped build still walks the whole spine, so `position` stays
+            # the module's real place in the course. Filtering the list instead
+            # would renumber every later module and silently reorder Canvas.
+            if self.only_modules is not None and mod["name"] not in self.only_modules:
+                continue
             built: list[tuple[str, dict]] = []
             for item in mod["items"]:
                 t = item["type"]
@@ -1031,7 +1123,21 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--check", action="store_true", help="say what would change, call nothing")
     ap.add_argument("--verify", action="store_true", help="read Canvas back and compare")
     ap.add_argument("--spec", default=str(CONTENT / "course.yaml"))
+    ap.add_argument("--week", action="append", metavar="N",
+                    help="build only this week's module. Repeatable, and a "
+                         "comma-separated list works. Use 'start' for the "
+                         "orientation modules. Course settings, assignment "
+                         "groups and outcomes still run; they are idempotent.")
+    ap.add_argument("--list-weeks", action="store_true",
+                    help="print the week each module answers to, then stop")
     args = ap.parse_args(argv)
+
+    if args.list_weeks:
+        spec = yaml.safe_load(Path(args.spec).read_text())
+        print(f"{'week':>6}  module")
+        for mod in spec["modules"]:
+            print(f"{module_week(mod['name']):>6}  {mod['name']}")
+        return 0
 
     base, token = os.environ.get("CANVAS_BASE"), os.environ.get("CANVAS_TOKEN")
     if not base or not token:
@@ -1043,6 +1149,9 @@ def main(argv: list[str] | None = None) -> int:
           f"course {spec['course']['canvas_id']}\n")
 
     b = Builder(canvas, spec, dry=args.check)
+    if args.week:
+        weeks = {w.strip() for arg in args.week for w in arg.split(",") if w.strip()}
+        b.scope_to(weeks)
     if args.verify:
         return b.verify()
     # The front page has to exist before Canvas will accept default_view=wiki,
@@ -1058,7 +1167,9 @@ def main(argv: list[str] | None = None) -> int:
         print("\nSkipped, no source yet:")
         for s in b.skipped:
             print("  " + s)
-    print(f"\n{len(b.report)} object(s) built, {len(b.skipped)} skipped")
+    scope = ("the whole course" if b.only_modules is None
+             else f"{len(b.only_modules)} module(s)")
+    print(f"\n{len(b.report)} object(s) built, {len(b.skipped)} skipped, in {scope}")
     return 0
 
 
