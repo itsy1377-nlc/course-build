@@ -1,7 +1,7 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-04, start of Phase 3.
+this file at every stopping point. Last update: 2026-09-08, week 2 rebuilt and pushed.
 
 ## Where the build is
 
@@ -481,6 +481,71 @@ every solution matches its lab". `python3 builder/lab/tools/run_notebook.py
 builder/lab/notebooks/ --all --student`: "15 notebook(s), 0 failure(s)", weeks
 6 and 7 taking 147s and 208s of real model calls.
 
+## 2026-09-08 — week 2 rebuilt around a measured retry
+
+**The defect.** Objective 2.3 is "retry a failed answer with the schema
+problems added to the new prompt", and the retry fired **once in 260**
+classifications. The blind student's clean run was not luck. Three related
+defects came with it: sidebar 2C and week 0 cell 92 both taught a loop that
+stops when a value *arrives* rather than when a check *passes* (week 0 cell 91
+called that shape "the exact shape of the week 2 retry", which was false and
+made the retry impossible); cell 13's stated success test omitted the `ok`
+column, so a schema-failing answer passed it; and every load failure collapsed
+into one unactionable sentence.
+
+**What the measurement killed.** Tightening the indicator count looked ideal
+and is dead: with the cap at 3, **42% of runs ended with no answer at all**,
+and across both caps 28 retries produced 23 give-ups. granite-3b will not
+shorten a list when told to. An under-specified prompt buys nothing over
+forced truncation — both fail at the load stage and yield the same generic
+line.
+
+**What proved the mechanism.** Every recovery measured up to that point was
+confounded, because try 2 is an ordinary call that passes anyway. An isolation
+probe settled it: with the problems appended, 24 of 24 passed and returned
+0.85; on a bare re-ask, 0 of 24 passed and every reply stayed at 0.95.
+
+**The design.** A week-2-only confidence reporting ceiling of 0.9, living once
+in `OUTPUT_SCHEMA` so `schema_text()` renders the same limit `schema_errors()`
+enforces. Measured twice, at 12 and 20 runs per email: 001 and 004 accept on
+try 1, 002 and 003 retry and recover, **128 classifications, 64 retries, 64
+recoveries, zero give-ups.** The material calls 0.9 a reporting rule and never
+a calibration improvement — the model obeying a boundary is not the model
+becoming less sure. No student-facing sentence names which email retries.
+
+**Shipped.** Week 0 cells 91-93 and 96; sidebar 2C rewritten and a new sidebar
+2D for empty-list falsiness and `isinstance()`; the lab and solution as one
+atomic unit, 16 cells to 17, with `answer_source()`, a saved contract test and
+`retry_demo` in the export; all four content pages, assignment, discussion,
+rubric, self-check, both videos. Time table 310 to 325 minutes and it adds up.
+
+**One deviation.** D4 changes the body of `schema_errors()`, which weeks 3 to 7
+carry verbatim, so the plan would have left `check_chain.py` red with five
+mismatches. The single changed string was propagated to those five labs and
+five solutions instead. No behaviour changes anywhere; it is only what a load
+failure reports.
+
+**A tool bug found on the way out.** `tools/warm_pass.py` contracts `is` onto
+whatever precedes it, including phrase subjects, and had already shipped eight
+broken sentences: "Handling it's the work", "What to take from it's the shape",
+and six of "Nothing here's graded". All eight fixed, which made six videos
+stale; all six rebuilt. **The tool is still wrong and will reintroduce them on
+the next warm pass.**
+
+**Records.** `docs/week2-measurement/` holds six scripts, the 160-answer pool
+and a README covering what each experiment killed and what to re-measure after
+any model change. `docs/lab-fix-log.md` carries the full week 2 section.
+
+**Gates.** Chain holds. Content and code agree. Readability passes, week 2 at
+grade 3.8 to 4.0 against a course mean of 3.77, every page inside budget,
+contractions at 17.4 per 1k against a course mean of 17.4. All 14 videos pass.
+Site staged at 73 files and deployed to notebook.bashtion.dev, verified file by
+file against the staged tree, solutions still 404. Canvas: 154 objects, 0
+skipped, `--verify` 0 problems, no `$IMS-CC-FILEBASE$` placeholders on any week
+2 page, six media references all 200, 14 videos present with no duplicates.
+
+Nothing is committed.
+
 ## 2026-09-07 — the course moved onto the notebook server
 
 All fifteen student notebooks and the corpus are baked into
@@ -939,3 +1004,140 @@ error branch from a correct one; and `builder/` is now in git.
 repo) predates the move off ollama, so its figures are not current. The Canvas
 token still awaits rotation. The `GUARD_RULES` rewrite was tried and retracted:
 it fixed neither failure and made granite-3b slightly worse.
+
+---
+
+## 2026-09-08 — a blind student ran the whole course
+
+**A simulated novice took the published course end to end** — Canvas pages, the
+fourteen video transcripts and notebook.bashtion.dev, no repository, no
+solutions, no looking ahead, one module per sitting. It finished everything,
+scored **39 of 40** on the final exam, spent **$0.0106 of $2.00** and took about
+31 hours. Report: `docs/student-e2e-run-2026-09-08.md`. Raw notes:
+`scratchpad/student2/FINDINGS.md` (7,008 lines) and its own `REPORT.md` (976).
+**No course file was changed because of the run.**
+
+**The finding that matters most: week 6 cannot demonstrate what week 6 teaches.**
+The undefended verdict comes from `run_triage(parsed_013, loop_prompt(parsed_013))`,
+and `loop_prompt()` is instructions + facts + known-good hosts. There is no
+`body_text` in it. The planted paragraph never reaches the call it is supposed to
+move. The guarded prompt *adds* the body, so cell 11's "the fence is the only
+thing that changed" is false five ways. **Corrected by the panel:** the
+undefended agent does see the body during the loop -- `start_messages()` pastes
+it into the user turn. Only the closing one-shot call that writes the verdict is
+bodyless, and that is where the asymmetry lands. The student's control: the guard flipped the verdict
+5 of 5 on 013 **and 5 of 5 on its clean twin 024**. The injection moved nothing in
+10 paired comparisons.
+
+**This resolves the open question from the 2026-09-07 measurement.** Those 2,156
+trials were sound; the lab was never running the comparison it describes. It is
+not "grounding defeats the payload", it is a missing variable in a prompt.
+
+**Also confirmed:** four graded criteria ask for values the export files do not
+carry (weeks 3, 5, 6, 7 — 117 points, one line each to fix); `schema_errors()`
+has no `sentences` branch so week 7's schema is never validated and would reject
+a correct answer; **every correct answer in all 43 weekly self-check questions is
+the first option and `shuffle_answers` is false** on all seven; week 1's TODO 1
+points at the wrong dictionary and nothing catches it; week 3 names its two
+teaching emails three ways across seven documents while the code runs a pair none
+of them endorses; the orientation's `budget_left()` / `restore_my_work()` /
+"run the last cell" instructions do not work in week 0.
+
+**Mechanisms taught and never demonstrated:** week 2's retry branch is never
+entered, week 5's `step_cap` cannot fire at all (proved from the loop condition),
+week 6's four controls fired 0 of 11. Weeks 5 and 6 each also contain a cell that
+demonstrates a mechanism properly — those are the pattern to copy.
+
+**Four of the student's reported defects were the harness, not the course** —
+quiz feedback, cell numbering, links, duplicated headings. All corrected mid-run
+and listed in the report. Check the pipeline before believing the reviewer.
+
+**Two housekeeping items.** The live notebook site was one revision behind the
+repo when the run started (`w7-lab.ipynb`, missing the fix from 6f7c0d4);
+fourteen of fifteen hashes matched and nothing reported the one that did not.
+There is no gate comparing the served site to the repo. And the student key
+`student-e2e-20260907c` is still live: $2.00, 30 days, team `itsy1377-students`.
+Two earlier keys were minted and revoked after I leaked them into the transcript
+from my own debug probes; both confirmed dead (401). `jlstudent.py` now redacts
+the key from everything it prints.
+
+---
+
+## 2026-09-08, later — week 1 fixed, and the temperature lesson measured
+
+**Week 1 is the first of the panel's findings to be closed.** Design was argued
+out with codex, then settled by measurement rather than by argument: about 1,700
+live calls across five models and four prompt shapes, recorded under
+`docs/week1-measurement/`.
+
+**The old demonstration had never worked.** Cell 11 sent free prose six times,
+three at 0.2 and three at 1.0, and asked the student to eyeball the difference.
+Prose saturates: twenty distinct answers out of twenty at every temperature the
+course would use. Bootstrapped at the lab's own n=3, the two group means are
+**2.87 and 2.86**, and it lands in the claimed direction **11% of the time**.
+Raising n does not rescue it.
+
+**Two candidate fixes were killed by looking at the values, not the statistic.**
+A number probe measured a perfect 100% separation and answered `0.00` -- no
+chance of phishing -- twenty times out of twenty on email 001, which is
+`malicious / credential_phish`. Four rewordings failed the same way. And
+granite-3b with a word-and-sentence probe reaches 99% but calls that phish
+*legitimate* 8 times in 20 at t=1.0, which would teach that a high temperature
+makes the model wrong. Codex's own label probe was screened and rejected too: on
+granite-3b it separates in 11% of batches at n=10.
+
+**What shipped, at the user's decision.** Week 1 now runs on **granite-8b**, with
+a one-word-plus-one-sentence probe, six calls at 0.2 and six at 1.0. Measured at
+**98%** of student-sized batches showing the effect and **zero wrong verdicts at
+either temperature**. The first live solution run produced **2 distinct answers
+at 0.2 and 6 at 1.0**, all twelve correct, in 21 seconds.
+
+The prose calls stay in TODO 2 and the email 002 cell, so week 1's hand-off to
+week 2 -- "a sentence is hard for code to use" -- is still true.
+
+**Also closed in week 1:** the `MODEL_EXTRAS` antecedent, now backed by a check
+that swaps `send_request` for a capture function behind `try/finally` and asserts
+with sentinel values that `reasoning_effort`, `temperature`, `max_tokens` and
+`model` reached the outgoing payload -- and that `reasoning_effort` is *not*
+inside the message. The missing-`return` trap now prints a message naming TODO 1
+and week 0 cell 53 instead of raising `AttributeError` inside a pre-written cell.
+`w1-content.md` teaches temperature for the first time, funded by cutting
+repetition, and the notebook's own prose now counts cells from 1 like every
+assignment page.
+
+**Gates:** `check_chain` holds, readability 59 pages within limit (w1-content
+5.43, 1383/1400 words), `verify_content` reports "the content and the code
+agree", student and solution notebook runs both pass.
+
+**Two things left open.**
+
+1. **Resolved the same day. Both week 1 videos are rebuilt** and
+   `tools/video/check.py` reports 14 videos, all checks pass. My report that the
+   build environment was gone was wrong: the venv is at `tools/video/.venv` and I
+   had searched only the repository root. Build with
+   `tools/video/.venv/bin/python -m tools.video.build`, never the system python,
+   which fails with a misleading `No module named 'soundfile'`.
+2. **`run_notebook.py` cannot test a notebook's own model.** Line 215 does
+   `os.environ.setdefault("ITSY1377_MODEL", "granite4.2:3b")`, which overrides the
+   notebook's default, so the harness proves the notebook runs against whatever
+   the harness picked. Week 1's run had to be forced to granite-8b by hand. Same
+   defect class as the checks the panel found examining zero items.
+
+**Closed, not deferred:** the confidence-instability thread. The rejected number
+probe surfaced that `confidence` is a week 2 schema field, the value week 6's
+`CONFIDENCE_FLOOR = 0.7` routes on, and a line in week 7's note. It was going to
+be carried as week 1 work until the source was checked. **The course already
+teaches the concept:** `w2-content.md` line 37 tells students to read the number
+"as the model's own report, not as a fact about the email. A high number on a
+wrong answer is still wrong", and `w6-content-2.md` line 76 says the floor "says
+nothing about how good the model is. It's a line saying which cases a person
+owns". Week 2's assignment already asks for the lowest confidence number seen
+across four emails.
+
+What is genuinely absent is any week showing *the same email* return a different
+number on a repeated run -- a narrower claim -- and that belongs beside the
+control in week 6, carried as a note in `docs/lab-fix-log.md`. It does not
+answer the SOC finding either: that objection is to the control's design, not to
+an over-claim about calibration. Four exam items reference confidence and all
+four are answerable from weeks 2 and 6 as written, so there is no assessment
+consequence. **Week 1 is complete.**
