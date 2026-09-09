@@ -20,7 +20,7 @@ week that has been measured.
 |---|---|---|---|---|---|
 | **1** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — measured, 1,700 calls; sidebar gap closed |
 | **2** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 0.9 reporting ceiling, measured 64/64 retries recover |
-| 3 | not started | not started | — | — | email named three ways |
+| **3** | *diagnosed* | *diagnosed* | — | — | facts move no verdict; lab runs weeks 4 and 6 emails |
 | 4 | not started | not started | — | — | false claim about tool replies |
 | 5 | not started | not started | — | — | `step_cap` unreachable |
 | 6 | not started | not started | — | — | verdict call has no email body |
@@ -550,6 +550,76 @@ whatever precedes it, including phrase subjects. It had already shipped eight
 broken sentences: "Handling it's the work", "What to take from it's the shape",
 and six of "Nothing here's graded". All eight fixed; six videos went stale and
 were rebuilt. **The tool is still wrong and will reintroduce them.** See Q11.
+
+## Week 3 — diagnosed, not yet fixed
+
+Objective **3.2, "Report which verdicts changed after you added the facts
+block"**, is the at-risk one, and it fails in a worse way than week 1's
+temperature or week 2's retry. 3.1 and 3.3 are sound: the student writes
+`build_facts()` and `format_facts()`, and the rubric grades their choices
+rather than the model's answers, which is exactly what week 1 lacked.
+
+Full numbers and the harness are in `docs/week3-measurement/`.
+
+### The lab runs other weeks' emails
+
+`corpus/ground_truth.json` tags every teaching email with the weeks it belongs
+to. Week 3's designed set is **001, 004, 005, 006, 017, 025**. Cell 14 runs
+**001, 004, 005, 016, 017, 019**, where 016 is tagged week 6 and 019 week 4,
+and 006 and 025 are never run.
+
+The blind run read this as the prose failing to follow a moved email set. It is
+the other way round: the wrap-up, the overview video, self-check Q3 and the
+notebook's own TODO cells all name 005 and 025, which is the corpus design.
+The assignment page, the reading and cells 7, 10, 12 and 14 drifted. Cell 10
+prints the header `email 025` over 016's values; cell 12 assigns
+`parsed_025 = load_email("016", ...)`. **The prose is right and the code is
+wrong**, which reverses the fix.
+
+### Correcting the set would not have fixed the objective
+
+128 live classifications, 8 per email per condition. **Every email designed to
+move stays put, 0 of 8, including both halves of the intended demonstration
+pair.** The only movement anywhere is email 017 flipping benign to malicious
+**8 times out of 8**, when the truth is benign and the design was uncertain to
+benign. Zero movements toward truth.
+
+So 3.2 is demonstrated only by a deterministic false positive.
+
+### Two things underneath it
+
+granite-3b reads malicious from the body alone on 7 of the 8 emails, including
+005 and 019, which are benign. It will not be talked out of malicious, so
+"facts exonerate a benign email" cannot demonstrate itself on this model and
+this corpus.
+
+And the facts block makes 017 worse, on an email whose every fact is clean.
+`format_facts()` renders values with `str()`, so booleans arrive as `False` and
+empty lists as `[]`. The blind run reported the model citing "Display name
+mismatch: False" among its reasons for calling it malicious. The untested
+hypothesis is that a small model reads the salient phrase and drops the
+negation, so clean facts read as concerns.
+
+### Also confirmed, both small
+
+- The discussion is worth 20 points and item 3 asks what the model listed as its
+  indicators, but `compare_runs()` drops `indicators` when it builds its rows,
+  so no artifact carries the value the page tells the student to paste. One key
+  in one dictionary in cell 13.
+- Cell 7 prints "every key the parser returns" as the menu the student picks
+  from, and carriage returns inside `body_text` and `body_html` overwrite their
+  own key names, so two of twenty-six keys have no label. Cell 8 then discusses
+  one of them by name. A `.replace("\r", " ")` beside the existing newline one.
+
+### Open question
+
+Whether 3.2 should be rescued or reworded. A facts block that cannot move this
+model's verdict may mean the objective should measure what the facts changed
+about the model's stated indicators or reasoning, which is still CLO1, rather
+than about its verdict. Codex is reviewing that against the alternatives before
+any more calls are spent.
+
+Nothing in week 3 has been changed.
 
 ## Carried notes for weeks not yet started
 

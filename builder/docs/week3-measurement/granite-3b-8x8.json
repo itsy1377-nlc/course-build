@@ -1,0 +1,122 @@
+[
+ {
+  "email": "001",
+  "truth": "malicious",
+  "body_only_read": "malicious",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Fenwright Payroll Support\nSender address: support@fenwright-pay.example\nSender domain: fenwright-pay.example\nReply address: None\nSubject: Action required: confirm your direct deposit before the 4/17 payroll\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: ['my.fenwrightpay.example.secure-verify-login.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "004",
+  "truth": "malicious",
+  "body_only_read": "malicious",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Rutger Palomares\nSender address: r.palomares@pellgrave-corp.example\nSender domain: pellgrave-corp.example\nReply address: None\nSubject: Quick task before my 2:00\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: []\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "005",
+  "truth": "benign",
+  "body_only_read": "malicious",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Slatemoor Industrial Supply - Accounts Receivable\nSender address: ar@slatemoorsupply.example\nSender domain: slatemoorsupply.example\nReply address: ar@slatemoorsupply.example\nSubject: Past due statement, account 44170: credit hold on 4/20 if unpaid\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: False\nLink hosts: ['billing.slatemoorsupply.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "006",
+  "truth": "malicious",
+  "body_only_read": "malicious",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Pellgrave IT Help Desk\nSender address: helpdesk@pellgrave.example\nSender domain: pellgrave.example\nReply address: None\nSubject: Your password expires in 24 hours\nSPF result: fail\nDKIM result: none\nDMARC result: fail\nDisplay name mismatch: False\nLink hosts: ['pel1grave.example']\nCame from outside the company: True\nGateway scan result: released-from-quarantine\nAttachment names: []"
+ },
+ {
+  "email": "016",
+  "truth": "malicious",
+  "body_only_read": "benign",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Marisol Etxeberria\nSender address: m.etxeberria@slatemoorsupply.example\nSender domain: slatemoorsupply.example\nReply address: m.etxeberria@slatemoorsuply.example\nSubject: Re: Past due statement, account 44170: updated remittance details\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: True\nLink hosts: []\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: ['Bank_Letter_Slatemoor_0415.pdf']"
+ },
+ {
+  "email": "017",
+  "truth": "benign",
+  "body_only_read": "uncertain",
+  "plain": {
+   "benign": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 8,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Fenwright Payroll\nSender address: notifications@fenwrightpay.example\nSender domain: fenwrightpay.example\nReply address: None\nSubject: Your pay statement for 4/17/2026 is available\nSPF result: pass\nDKIM result: pass\nDMARC result: pass\nDisplay name mismatch: False\nLink hosts: ['my.fenwrightpay.example']\nCame from outside the company: True\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "019",
+  "truth": "benign",
+  "body_only_read": "malicious",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Rutger Palomares\nSender address: r.palomares@pellgrave.example\nSender domain: pellgrave.example\nReply address: None\nSubject: Call me before 3, need to move the Slatemoor payment\nSPF result: None\nDKIM result: None\nDMARC result: None\nDisplay name mismatch: False\nLink hosts: []\nCame from outside the company: False\nGateway scan result: clean\nAttachment names: []"
+ },
+ {
+  "email": "025",
+  "truth": "malicious",
+  "body_only_read": "benign",
+  "plain": {
+   "malicious": 8
+  },
+  "grounded": {
+   "malicious": 8
+  },
+  "moved": 0,
+  "moved_toward_truth": 0,
+  "n": 8,
+  "facts_block": "Sender name: Larkseal\nSender address: notify@larkseal-review.example\nSender domain: larkseal-review.example\nReply address: None\nSubject: Lenora, a document \u201cQ2 rate sheet\u201d was shared with you\nSPF result: softfail\nDKIM result: none\nDMARC result: fail\nDisplay name mismatch: True\nLink hosts: ['review.larkseal-review.example', 'help.larkseal.example', 'unsub.mailer-relay-links.example']\nCame from outside the company: True\nGateway scan result: suspect\nAttachment names: []"
+ }
+]
