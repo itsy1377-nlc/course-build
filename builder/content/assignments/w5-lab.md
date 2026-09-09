@@ -7,15 +7,16 @@ Thirteen to fifteen lines of your own code, in one clearly marked TODO cell. Eve
 ::: directions
 1. Open the **Week 5 lab notebook**. Run every cell from the top, in order. Stop when you reach the TODO cell.
 2. Read the output of cell 8. It runs one pass of the loop with every value printed, so you see one pass before you write many.
-3. Read cell 10. It calls each new helper on its own and prints what it hands back.
+3. Read cell 9. It defines every helper your loop calls by name. Then read cell 10, which calls each one on its own and prints what it hands back.
 4. Read cell 11. It states the loop in six numbered sentences, in the order the code runs.
 5. Fill in **TODO 1**, cell 12. Your `run_loop(parsed, prompt_text, max_steps=MAX_STEPS, step_guard=None)` writes those six sentences as code. It counts the step, asks the model for a tool, runs it, and records the result. It stops when a result settles the case. When nothing settles it, `out_of_room(trace)` names why the run ended. That's 13 to 15 lines, and every line calls a helper that already works.
 6. Run cell 13, the check cell. It runs your loop on email 011 alone, the shortest case, and prints the trace. It says whether you got one step and the stop reason `internal_sender`.
 7. Run cell 14, the cell named "Run all six emails". It prints one trace table per email, then the token total under the last table. **This is the cell you screenshot.**
 8. Fix what breaks. Read the last line of any traceback first. It names the error type and the thing that failed.
-9. Run cell 15. It runs email 012 again with the cap taken out, stopping only at twenty steps, and prints both token totals. Read cell 16 next.
-10. Run cell 17, the export cell. It writes `week5_loop_trace.json` and prints the full path and the first few lines.
-11. Open that file and read it. Check that each of the six runs carries its tools in the order they ran, a step count, and a stop reason.
+9. Run cell 15. It takes the model out of the way and drives your own loop with a short script, so you watch the four-step cap end a run. It costs no model calls.
+10. Run cell 16. It runs email 012 again with the cap taken out, stopping only at twenty steps, and prints both token totals. Read cell 17 next.
+11. Run cell 18, the export cell. It writes `week5_loop_trace.json` and prints the full path and the first few lines.
+12. Open that file and read it. Check that each of the six runs carries its tools in the order they ran, a step count, and a stop reason.
 :::
 
 ::: callout warning | Two things that stop this lab

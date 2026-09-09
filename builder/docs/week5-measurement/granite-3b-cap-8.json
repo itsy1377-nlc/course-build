@@ -1,0 +1,775 @@
+{
+ "model": "granite-3b",
+ "n": 8,
+ "probe1": [
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1773,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1780,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1773,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1773,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1773,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1778,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1778,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "internal_sender",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1773,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "011"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1758,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1758,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1760,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1762,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1758,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1757,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1760,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 1,
+   "tools": [
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 1755,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "007"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3944,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3941,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3945,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3941,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3944,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3941,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3941,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_benign",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3942,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "005"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3685,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3687,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3685,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3685,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3685,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3685,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3687,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "decisive_malicious",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls"
+   ],
+   "repeat_at": null,
+   "tokens": 3685,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "010"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3535,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3535,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3535,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3530,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3530,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3530,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 3530,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 2,
+   "tools": [
+    "lookup_recipient",
+    "check_sender_reputation"
+   ],
+   "repeat_at": null,
+   "tokens": 3560,
+   "usable": [
+    "check_sender_reputation",
+    "lookup_recipient"
+   ],
+   "email": "004"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5855,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5852,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5852,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5852,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5853,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5852,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5852,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  },
+  {
+   "stop": "tools_exhausted",
+   "steps": 3,
+   "tools": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "repeat_at": null,
+   "tokens": 5856,
+   "usable": [
+    "check_sender_reputation",
+    "check_urls",
+    "lookup_recipient"
+   ],
+   "email": "012"
+  }
+ ],
+ "probe1_step_cap_hits": 0,
+ "probe1_total": 48,
+ "repeat_positions": {},
+ "probe2": {
+  "012": {
+   "stops": {
+    "step_cap": 8
+   },
+   "steps": {
+    "2": 8
+   },
+   "want": "step_cap",
+   "pass": true
+  },
+  "005": {
+   "stops": {
+    "decisive_benign": 8
+   },
+   "steps": {
+    "2": 8
+   },
+   "want": "not step_cap",
+   "pass": true
+  }
+ }
+}

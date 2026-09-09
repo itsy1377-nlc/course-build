@@ -1,0 +1,156 @@
+{
+ "model": "granite-3b",
+ "capped": {
+  "steps": 3,
+  "stop_reason": "tools_exhausted",
+  "total": 5852,
+  "calls": [
+   {
+    "prompt": 1776,
+    "answer": 57,
+    "total": 1833
+   },
+   {
+    "prompt": 1934,
+    "answer": 40,
+    "total": 1974
+   },
+   {
+    "prompt": 2005,
+    "answer": 40,
+    "total": 2045
+   }
+  ]
+ },
+ "uncapped": {
+  "steps": 20,
+  "total": 60208,
+  "calls": [
+   {
+    "prompt": 1776,
+    "answer": 57,
+    "total": 1833
+   },
+   {
+    "prompt": 1934,
+    "answer": 40,
+    "total": 1974
+   },
+   {
+    "prompt": 2005,
+    "answer": 40,
+    "total": 2045
+   },
+   {
+    "prompt": 2169,
+    "answer": 96,
+    "total": 2265
+   },
+   {
+    "prompt": 2306,
+    "answer": 40,
+    "total": 2346
+   },
+   {
+    "prompt": 2377,
+    "answer": 40,
+    "total": 2417
+   },
+   {
+    "prompt": 2541,
+    "answer": 121,
+    "total": 2662
+   },
+   {
+    "prompt": 2678,
+    "answer": 40,
+    "total": 2718
+   },
+   {
+    "prompt": 2749,
+    "answer": 40,
+    "total": 2789
+   },
+   {
+    "prompt": 2913,
+    "answer": 21,
+    "total": 2934
+   },
+   {
+    "prompt": 3050,
+    "answer": 40,
+    "total": 3090
+   },
+   {
+    "prompt": 3121,
+    "answer": 40,
+    "total": 3161
+   },
+   {
+    "prompt": 3285,
+    "answer": 21,
+    "total": 3306
+   },
+   {
+    "prompt": 3422,
+    "answer": 40,
+    "total": 3462
+   },
+   {
+    "prompt": 3493,
+    "answer": 40,
+    "total": 3533
+   },
+   {
+    "prompt": 3657,
+    "answer": 21,
+    "total": 3678
+   },
+   {
+    "prompt": 3794,
+    "answer": 40,
+    "total": 3834
+   },
+   {
+    "prompt": 3865,
+    "answer": 40,
+    "total": 3905
+   },
+   {
+    "prompt": 4029,
+    "answer": 21,
+    "total": 4050
+   },
+   {
+    "prompt": 4166,
+    "answer": 40,
+    "total": 4206
+   }
+  ],
+  "tools": [
+   "check_sender_reputation",
+   "check_urls",
+   "lookup_recipient",
+   "check_sender_reputation",
+   "check_urls",
+   "lookup_recipient",
+   "check_sender_reputation",
+   "check_urls",
+   "lookup_recipient",
+   "check_sender_reputation",
+   "check_urls",
+   "lookup_recipient",
+   "check_sender_reputation",
+   "check_urls",
+   "lookup_recipient",
+   "check_sender_reputation",
+   "check_urls",
+   "lookup_recipient",
+   "check_sender_reputation",
+   "check_urls"
+  ],
+  "repeats": 17,
+  "first_repeat_step": 4
+ },
+ "page_arithmetic": 49000
+}

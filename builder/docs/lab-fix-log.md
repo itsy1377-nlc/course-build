@@ -22,7 +22,7 @@ week that has been measured.
 | **2** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 0.9 reporting ceiling, measured 64/64 retries recover |
 | **3** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 3.2 reworded to indicators, passes a pre-registered 6/6 |
 | **4** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 4.3 was confounded; a matched-pair cell demonstrates it 8/8, three runs |
-| 5 | not started | not started | — | — | `step_cap` unreachable |
+| **5** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the cap now fires at its real value of four, with the model taken out |
 | 6 | not started | not started | — | — | verdict call has no email body |
 | 7 | not started | not started | — | — | schema never validated |
 | exam | not started | — | — | — | Q24 keys a payroll diversion "close it" |
@@ -107,6 +107,103 @@ Codex's "do not touch" list, kept: the playbook, `TOOL_TURN`,
 week 5's measured loop behaviour rests on them. 017 is not promoted. 019's
 accuracy is not chased, only disclosed. Natural tool-choice variation is left
 alone. The lab's 165-minute estimate is left as it is.
+
+
+---
+
+## Week 5 — applied 2026-09-09
+
+Objective **5.1, "Build a triage loop with a four-step cap and a stop
+condition"**, is the at-risk one. The cap is half of it and it is the week's
+headline control: one of the five stop reasons is entirely about it, the
+reading gives it a section, the quiz asks about it, and the wrap-up says it
+carries the week. 5.2 and 5.3 were checked rather than assumed and both hold.
+
+### The measurement
+
+`docs/week5-measurement/`, thresholds in `prereg-claude.md` written first.
+
+**`step_cap` fired 0 of 48 runs, and the model never repeated a tool once.**
+Every email landed on the stop reason the corpus designs for it, 8 of 8. The
+loop is not broken; the cap is out of reach. With three usable tools under a
+cap of four, `step_cap` needs four steps used **and** a tool untried, which
+takes two wasted steps, against a `LOOP_INSTRUCTIONS` line telling the model
+not to repeat. Not one of the six lab emails carries
+`expected_loop.stop_reason: "step_cap"` — the corpus never planned for it.
+
+**The cost model was estimated, never measured.**
+
+| | the page said | measured |
+|---|---|---|
+| first request | about 1,500 tokens | **1,776** |
+| each step adds | roughly another 100 | **71 to 164** |
+| twenty-step run | its arithmetic implies 49,000 | **60,208** |
+| capped run on 012 | not stated | **5,852** |
+
+Objective 5.3 asks the student to compare those two totals. Until now no number
+in the repository answered it. It is **10.3x**.
+
+### The fix I proposed, and why it was thrown away
+
+I proposed a cell running the student's own `run_loop()` at `max_steps=2` on
+012. It passed every threshold I had pre-registered, including the control.
+Codex rejected it on two grounds and both were right:
+
+1. I called it deterministic by construction. It is not. `first_call()` passes
+   the model's arguments through unvalidated and `run_tool()` honours them, so
+   a model naming a different sender could end the run decisively. 8 of 8 is an
+   empirical result and I was about to write a proof onto a page.
+2. **5.1 says a four-step cap.** Demonstrating a cap at two shows the
+   `step < max_steps` test works; it does not show the four-step cap ending a
+   run. In codex's words it *"quietly substitutes a configurable two-step cap
+   for a four-step cap"* — a redefinition of the objective, which is the exact
+   failure this process exists to catch.
+
+### What shipped
+
+Codex's design. A pre-written cell stands in for `ask_with_tools()` with a
+short script inside `try/finally`, drives the student's own `run_loop()` at its
+real `MAX_STEPS = 4`, and restores the real function. Reproduced three times:
+
+    012  steps: 4  stop: step_cap  tokens: 0
+       tools still unused:  ['check_urls', 'lookup_recipient']
+    005  steps: 1  stop: decisive_benign  tokens: 0
+
+Deterministic, because model choice is removed rather than hoped about. Zero
+model calls. The 005 control fires differently under the same script and the
+same loop, so the cell demonstrates the cap and not the script.
+
+| file | change |
+|---|---|
+| `lab/notebooks/w5-lab.ipynb` + solution | **new cell 15**, the scripted four-step cap with its control. Export cell rebuilds each step's full tool record into `result_full` |
+| `content/pages/w5-content.md` | both false cap explanations corrected; cost figures replaced with measured ones; the uncapped run's seventeen repeats connected to the cap for the first time; two redundant sections merged to stay in budget |
+| `content/pages/w5-wrap-up.md` | carried the same false arithmetic as the reading. Corrected, plus a line for the new cell |
+| `content/quizzes/w5-self-check.yaml` | Q3's stem gave one repeat while its answer generalised to many. Stem now describes a run that repeats every step, and the feedback says one repeat would not do it |
+| `content/assignments/w5-lab.md` | renumbered; the missing "read cell 9" step added |
+| `content/pages/w5-overview.md` | eighteen cells to nineteen |
+| `content/video/w5-overview.yaml`, `w5-walkthrough.yaml` | rebuilt for staleness. Neither repeated the false arithmetic, so no script changes |
+
+### Verified, not assumed
+
+Chain holds. All 74 pages inside grade, length and warmth. 14 videos, nothing
+stale. Student run clean (19 cells, 1 TODO). Solution run clean (19 cells,
+0 TODO). The export's `result_full` carries all 10 keys of a recipient record
+as valid JSON, so the discussion's 4-point item is answerable.
+
+### Not fixed, on purpose
+
+`MAX_STEPS`, `TOOL_NAMES`, `usable_tools()`, `tools_left()`, `out_of_room()`,
+`decisive_stop()`, `first_call()`, `append_turn()`, `one_line()` and
+`run_loop()`'s signature are untouched. Weeks 6 and 7 inherit them and pass
+their token guard through the same `step_guard`.
+
+**Two things logged rather than fixed.** With three tools, a cap of four can
+only bind after two wasted steps; a cap of three would bind after one. The
+number is arguably mis-set for the tool count, but 5.1 names four and the value
+is shared with two later weeks, so it is a course-level decision. And
+`run_notebook.py --expect-artifact` passes when a cell merely *prints* the file
+name — it never opens the file. The week 5 solution run reported the artifact
+written with no such file on disk afterwards.
 
 ---
 

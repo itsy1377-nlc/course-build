@@ -1,7 +1,7 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-09, week 4 rebuilt, pushed
+this file at every stopping point. Last update: 2026-09-09, week 5 rebuilt, pushed
 and verified.
 
 ## Where the build is
@@ -482,6 +482,43 @@ every solution matches its lab". `python3 builder/lab/tools/run_notebook.py
 builder/lab/notebooks/ --all --student`: "15 notebook(s), 0 failure(s)", weeks
 6 and 7 taking 147s and 208s of real model calls.
 
+
+
+## 2026-09-09, later — week 5's cap made to fire
+
+Weeks 1 to 5 are done, pushed and verified. Week 5 went out as 38 objects in
+3m14s with `--week 5`, and `--verify` reports 0 problems. Detail in
+`docs/lab-fix-log.md` under "Week 5", numbers in `docs/week5-measurement/`.
+
+`step_cap` fired **0 of 48** runs and the model never repeated a tool once.
+With three usable tools under a cap of four, the cap needs two wasted steps to
+bind, and the model is told not to repeat. The corpus never planned for it
+either: no lab email carries `expected_loop.stop_reason: "step_cap"`.
+
+Three things worth carrying forward:
+
+1. **A pre-registered pass is not a correct fix.** My `max_steps=2` cell met
+   every threshold I set, control included, and was still wrong: objective 5.1
+   says a *four*-step cap, and demonstrating one at two silently redefines it.
+   Codex caught that. Check the fix against the objective's wording, not only
+   against the thresholds.
+2. **The idiom is now consistent across three weeks.** Week 4 swaps `ask_model`
+   for a fixture to test the contract, week 5 swaps `ask_with_tools` for a
+   script to fire the step cap, week 6 cell 17 lowers the token cap on purpose.
+   Forcing a control and saying so is how this course demonstrates mechanisms.
+3. **Fixing a page is not fixing the week.** The same false cap arithmetic sat
+   in the reading, the wrap-up and the self-check. Two of the three were only
+   found because the question "does this still align?" was asked after the
+   reading was already fixed.
+
+Logged, not done: with three tools a cap of four only binds after two wasted
+steps, so the number is arguably mis-set — but 5.1 names four and weeks 6 and 7
+share the value. And `run_notebook.py --expect-artifact` passes when a cell
+merely prints the file name; it never opens the file.
+
+Week 6 is next. Its logged defect is that the verdict call has no email body.
+It inherits `run_loop()` and every week 5 helper unchanged and passes its token
+guard through `step_guard`.
 
 ## 2026-09-09 — week 4 rebuilt around a matched pair
 

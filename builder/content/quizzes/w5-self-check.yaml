@@ -156,20 +156,21 @@ questions:
     section: "Week 5 reading, the cap is a control, and a person owns it"
     outcome: "none"
     text: |
-      <p>Part way through a run, the model asks for
-      <code>check_sender_reputation</code> a second time. It already ran that
-      tool at step 1.</p>
+      <p>A run keeps asking for <code>check_sender_reputation</code>. It
+      names that same tool at every step, and never asks for the other two.</p>
       <p>What does your notebook do, and what ends the run?</p>
     answers:
       - text: >-
-          It runs the tool again and the step still counts. A run that keeps
-          repeating reaches four steps, and out_of_room() returns step_cap.
+          It runs the tool again every time and every step counts. Four
+          steps go by with two tools never tried, so out_of_room() returns
+          step_cap.
         correct: true
         feedback: >-
-          Right. Nothing refuses a repeat. The step is spent, and the cap is
-          what catches it. That is why the cap is a control, not a
-          convenience. Week 5 reading, the cap is a control, and a person owns
-          it.
+          Right. Nothing refuses a repeat. The steps are spent, two tools
+          stay untried, and only the cap is left to end it. Cell 15 runs
+          exactly this and prints step_cap. One repeat would not do it: that
+          run still tries all three tools and ends tools_exhausted. Week 5
+          reading, the cap is a control, and a person owns it.
       - text: >-
           It refuses the repeated call, so the step does not count and the run
           carries on.
@@ -244,7 +245,7 @@ questions:
     name: Question 5. Where the two token totals come from
     type: multiple_choice
     points: 2
-    section: "Week 5 lab notebook, cell 15, the uncapped run"
+    section: "Week 5 lab notebook, cell 16, the uncapped run"
     outcome: "none"
     text: |
       <p>Cell 15 prints two numbers for email 012. One is what your capped run
@@ -258,7 +259,7 @@ questions:
         feedback: >-
           Right. The counter reads the numbers the reply carries. It never
           measures text. <code>append_turn()</code> copies the running total
-          into the trace at every step. Week 5 lab notebook, cell 15.
+          into the trace at every step. Week 5 lab notebook, cell 16.
       - text: >-
           From counting the characters the traces printed and dividing by
           four.

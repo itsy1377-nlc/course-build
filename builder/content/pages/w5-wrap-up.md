@@ -9,7 +9,7 @@ Week 5 is done. Your agent takes more than one step now, and your own code decid
 | Observe, decide, act | One step: read what you have, name one tool, run it |
 | Stop condition | `decisive_stop()`, the rule that ends a run early |
 | The five stop reasons | `decisive_malicious`, `decisive_benign`, `internal_sender`, `tools_exhausted`, `step_cap` |
-| Step cap | `MAX_STEPS` is 4, and it catches the run no rule ended |
+| Step cap | `MAX_STEPS` is 4, and it catches the run that wastes steps and no rule ended |
 | Runaway loop | Every pass carries the whole history, so cost grows faster than the step count |
 
 Two of those carry the week. The rule ends the run that has its answer. The cap ends the run that never gets one.
@@ -20,6 +20,7 @@ Two of those carry the week. The rule ends the run that has its answer. The cap 
 - You read one pass of the loop written out flat, with every value printed.
 - You wrote `run_loop()`, the one cell that was yours this week.
 - You ran it on email 011 alone, then on all six emails.
+- You watched your own cap end a run, with the model taken out of the way.
 - You ran one email again with the cap removed, and read both token totals.
 - You exported `week5_loop_trace.json` and read the file you turned in.
 
@@ -39,7 +40,7 @@ Answer these six before you move on. Each answer sits under its question, with w
 
 3. The model asks again for a tool it already ran. Why is the cap needed there?
 
-    No rule ends that run, and the repeat still counts. At four steps `out_of_room()` returns `step_cap`. From the cap is a control, and a person owns it.
+    No rule ends that run, and the repeat still counts. One repeat still leaves every tool tried, so that run ends `tools_exhausted`. It takes two wasted steps before a tool goes untried and `out_of_room()` returns `step_cap`. Cell 15 shows it. From the cap is a control, and a person owns it.
 
 4. Email 004 has no link in it, and the reputation check is done. Which tool comes second?
 
