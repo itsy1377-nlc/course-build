@@ -363,7 +363,7 @@ whole course**. Spend your minutes there.
 
 ### 5.1 The exported file: what it should contain
 
-One JSON file named `week2_classification.json`, written by cell 15
+One JSON file named `week2_classification.json`, written by cell 16
 (`builder/lab/notebooks/w2-lab.ipynb`). Its shape is fixed by a pre-written
 cell:
 
@@ -379,17 +379,24 @@ sample_checks   four entries, one per saved reply, each with
 tokens          prompt, answer, total, calls
 ```
 
-For full credit on criterion 2, the `emails` list holds four records, every
-record carries `schema_ok` and `problems`, and every record's `attempts` list
-holds one entry per try with its own `schema_ok` and `problems`. `problems` is an
-empty list when the check found nothing wrong, and an empty list is correct, not
-missing.
+For full credit on criterion 2, two things have to be in the file. The `emails`
+list holds four records, every record carries `schema_ok` true, and every
+record's `attempts` list holds one entry per try with its own `schema_ok` and
+`problems`. `problems` is an empty list when the check found nothing wrong, and
+an empty list is correct, not missing. Then `retry_demo` has to say
+`used_saved_answers: true`, `stopped_correctly: true`, `problems_copied: true`
+and `schema_ok: true`.
+
+`retry_demo` is the saved contract test. Both of its answers are written into
+the notebook and neither came from the model, so it gives the same result for
+every student whose loop is right. It is the only place the file records the
+text of prompt 2, which is what objective 2.3 is about.
 
 **Three checks that settle criterion 2 in about ninety seconds.**
 
-1. Does `emails` hold four records?
+1. Does `emails` hold four records, each with `schema_ok: true`?
 2. Does every record have a non-empty `attempts` list?
-3. Does every entry inside `attempts` carry both `schema_ok` and `problems`?
+3. Does `retry_demo` say `problems_copied: true` and `stopped_correctly: true`?
 
 **Two fields that tell you instantly what was not written.**
 
@@ -397,12 +404,18 @@ missing.
 |---|---|
 | `sample_checks[0].parsed_ok` is `false` | `extract_json()` was not finished. The first sample is a clean answer with a reasoning block in front, and a working function loads it |
 | Every email shows `tries: 0` and an empty `attempts` list | `classify_email()` was not finished, or it never called `log_attempt()` |
+| `retry_demo.problems_copied` is `false` | The retry sent a summary rather than the checker's own words, or sent nothing back at all |
+| `retry_demo.stopped_correctly` is `false` | The loop counted from zero, or kept asking after an answer was accepted. `try_numbers` says which |
 
 **A null answer is not automatically a low score.** A record with `answer: null`,
 `schema_ok: false`, `tries: 3` and three `attempts` entries each carrying real
 problem text is a complete record of a validation that ran three times and never
-passed. That is full credit on criterion 2. The criterion measures whether the
-check ran and was recorded, not whether the model was right.
+passed. The model declined to comply; that is a real result and the student
+should say so in the written answer. It does not reach Exceeds, because that
+level asks for four checked answers, but it is not a failure of their code and
+the retry evidence in `retry_demo` still stands on its own. The criterion
+measures whether the check ran and was recorded, not whether the model was
+right.
 
 **Verdicts are not graded in week 2.** No criterion scores them. For your own
 reading, ground truth for the four emails is in `builder/corpus/ground_truth.json`:
@@ -412,10 +425,12 @@ independent, and students commonly call it malicious. That costs no points.
 
 ### 5.2 How to tell at a glance that it is the student's own run
 
-1. **`tokens.calls`.** A typical run is six calls, and the range is six to
-   fourteen depending on retries. Two of the six are the raw run, which calls
-   the model twice on purpose, and the other four are one try each on the four
-   emails (`builder/docs/phase1-blueprint/code-ledger.md`, section 4). `calls: 0` with
+1. **`tokens.calls`.** A typical run is eight calls, and the range is six to
+   fourteen depending on retries. Two are the raw run, which calls the model
+   twice on purpose, and the rest are the four emails: the measured split has
+   two accepting on the first try and two retrying once under the 0.9 reporting
+   rule. Which emails retry is measured, not promised, so do not treat a
+   different split as wrong (`builder/docs/phase1-blueprint/code-ledger.md`, section 4). `calls: 0` with
    four answers filled in means no model call happened in that session, which
    points to a restart between the results cell and the export cell rather than
    to anything sinister. Ask for a rerun.
@@ -434,7 +449,7 @@ independent, and students commonly call it malicious. That costs no points.
 
 ### 5.3 The screenshot
 
-One image of the output of **cell 14**, the results cell. It has to show all
+One image of the output of **cell 15**, the results cell. It has to show all
 four rows and the token line under the table.
 
 What the rows look like: a header reading `id verdict category conf tries ok`,
@@ -588,8 +603,8 @@ for it. If it is not there, that is a 10 and a message, not a 20.
 - **Criterion 2 at 20, no attempts recorded.** "Your four answers came back and
   the model clearly ran. What the file does not show is that anything was
   checked: `attempts` is empty for all four. `log_attempt()` is written for you
-  in cell 12. Call it once per try inside `classify_email()`, then run cells 14
-  and 15 again."
+  in cell 12. Call it once per try inside `classify_email()`, then run cells 14,
+  15 and 16 again, in that order."
 - **`sample_checks[0].parsed_ok` false.** "Your first sample check did not parse,
   and that one is the clean answer. It has a reasoning block in front of it, so
   `extract_json()` has to call `strip_reasoning()` before `json.loads()`. Cell 11
@@ -680,7 +695,7 @@ a rerun after an outage is dated, and say it there.
    and week 2's does.** Section 6.3 works around it by putting the sentence in
    your week 1 announcement instead. The cleaner fix is for
    `builder/lab/notebooks/w1-lab.ipynb`, cell 15, to match
-   `builder/lab/notebooks/w2-lab.ipynb`, cell 16. That is a change to the lab
+   `builder/lab/notebooks/w2-lab.ipynb`, cell 17. That is a change to the lab
    notebooks, which this package does not own.
 5. **Discussion and self-check grading is not covered here.** Discussions are 20
    points each and self-checks 12, both auto-weighted by group. The discussion

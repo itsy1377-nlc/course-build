@@ -107,7 +107,7 @@ the self-check. Post to the discussion by Thursday.
 > the TODO 1 cell in `lab/notebooks/w1-lab.ipynb`. The outage sentence is here
 > because week 1's closing cell does not carry one: `lab/notebooks/w1-lab.ipynb`
 > cell 15 tells the student the file was still written and to email you, while
-> `lab/notebooks/w2-lab.ipynb` cell 16 also tells them to attach it anyway. See
+> `lab/notebooks/w2-lab.ipynb` cell 17 also tells them to attach it anyway. See
 > `grading-notes.md` section 6.3. 272 minutes, or 4 hours 32 minutes, and 11
 > to 14 lines in two TODO cells, `docs/phase1-blueprint/week-01-spec.md` sections
 > 3 and 11. The three submission items and the due day,

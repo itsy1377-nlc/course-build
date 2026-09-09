@@ -64,14 +64,17 @@ criteria:
     levels:
       - description: >-
           Exceeds standard. All four live emails carry a checked answer with
-          schema_ok true and at least one recorded attempt. retry_demo has a
-          nonempty first-attempt problems list, prompt 2 contains every exact
-          problem, attempt 2 is recorded, and its final schema_ok is true.
+          schema_ok true and at least one recorded attempt. retry_demo says
+          used_saved_answers true and stopped_correctly true, its
+          first-attempt problems list is not empty, prompt 2 contains every
+          exact problem, and its final schema_ok is true.
         points: 50
       - description: >-
-          Meets standard. All four live emails carry a checked answer. The
-          retry demo reaches attempt 2, but one prompt or problem record is
-          missing, or one accepted live try omits its empty problems list.
+          Meets standard. All four live emails carry a checked answer and
+          every try is recorded. The retry demo reaches attempt 2, but one
+          prompt or problem record is missing, or the try numbers are not
+          exactly 1 and 2, or one accepted live try omits its empty problems
+          list.
         points: 35
       - description: >-
           Approaching standard. The file holds answers for some emails, or it

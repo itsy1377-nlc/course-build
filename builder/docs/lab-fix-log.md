@@ -354,6 +354,66 @@ Three paths were run against the live model afterwards: the correct solution
 `ask_model` mistake (clear diagnostic, honest export label), and the shipped
 notebook with both TODOs empty (no crash, accurate message).
 
+### Codex's adversarial review, and the alignment it restored
+
+Asked whether week 2 was done, codex said **not done**, kept every instructional
+decision, and found two blocking defects plus a construct-validity problem I had
+argued myself into.
+
+**The alignment problem.** Every cell in the lab maps to an objective except the
+saved contract test, and that cell had pulled five names into the notebook that
+teach nothing: `answer_source`, `TEST_ANSWER_MODE`, `TEST_ANSWERS`,
+`TEST_ANSWER_INDEX`, `PROMPT_LOG`. Worse, the rubric gated **both** top levels of
+the 50-point CLO2 criterion on the fixture, so a student whose live run
+demonstrated 2.1, 2.2 and 2.3 on real model output could still be denied Exceeds
+for not using the seam. Codex put it exactly: *"the deterministic fixture earns
+its place; requiring one particular provider function to reach it does not."*
+
+My own answer had been to delete the fixture. Codex's is better: keep it and move
+the substitution **below** `ask_model`, the name week 1 taught. The contract cell
+now swaps the global `ask_model` for one run inside `try/finally`. The student's
+loop calls `ask_model(prompt)` and needs no special code, the fixture still
+supplies the only record of prompt 2 that the file carries, and the
+construct-irrelevant gate is gone rather than diagnosed.
+
+**Blocking 1: the fixture could leak into the live run.** The old cell set test
+mode and reset it at the bottom with no `try/finally`. A normal beginner error --
+`parsed["id"]` for `parsed["email_id"]` -- raises before the reset, and the
+provider clamps an exhausted index to the last saved answer. The next cell,
+labelled the live run, would then return `GOOD` for all four emails with **no
+model call**: benign, legit_internal, 0.9, one try, `ok=True`. A fabricated pass.
+Now restored in `finally`, and the live cell puts the real `ask_model` back
+defensively before it runs. Verified: after a deliberate `KeyError` inside the
+student's function, `ask_model` is the real one again.
+
+**Blocking 2: reruns mixed old attempts into the export.** `ATTEMPT_LOG` was only
+initialised when cell 12 ran, while the displayed `tries` was a per-call delta.
+The ordinary repair workflow -- run a broken TODO, read the warning, fix it,
+rerun -- exported both runs, with try numbers restarting at 1 twice. The live
+cell now drops its own four emails from the log before it starts and keeps the
+contract test's entries.
+
+**Two silent false passes, now caught.** A `for` loop with no `break` kept asking
+after an answer was accepted, three calls per email, and every check went green.
+Try numbers counted from zero printed "Attempt 2 recorded: True" because the
+check tested list length. The contract test now records `try_numbers` and
+`calls` and requires exactly `[1, 2]` and 2, with a message naming which mistake
+it saw.
+
+Nine plausible implementations were run against the live model afterwards. The
+reference, an early-`return` `for` loop, and a pasted week 1 `ask_model` all
+pass. The 2C loop shape, a summarised retry, a missing `log_attempt`, the
+no-`break` loop and zero-based counting are each caught, and each is told
+something different.
+
+**Surfaces.** Eight instructor references still pointed at the old cell numbers,
+and `grading-notes.md` described the pre-redesign criterion, including that four
+`answer: null` records could take full credit. Repaired, along with the six-call
+claim (now eight) and the quiz's stale section label.
+
+Codex's remaining items are course-level, not week 2: screenshot mechanics before
+week 1, and category boundaries before week 7 scores against `enums.json`.
+
 ### Struck: a fifth false finding from my own harness
 
 The blind run reported that both week 2 assigned sources appear as bare domains

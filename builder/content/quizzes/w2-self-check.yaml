@@ -94,7 +94,7 @@ questions:
     name: Question 2. A stop reason of length
     type: multiple_choice
     points: 2
-    section: "Week 2 reading, part 2, a wrong shape is a normal condition"
+    section: "Week 2 reading, part 2, a wrong answer is a normal condition"
     outcome: "none"
     text: |
       <p>Your call comes back with an empty answer and a stop reason of
@@ -117,18 +117,18 @@ questions:
         correct: false
         feedback: >-
           No. A refusal is text. This reply is empty because generation
-          stopped. Week 2 reading, part 2, a wrong shape is a normal condition.
+          stopped. Week 2 reading, part 2, a wrong answer is a normal condition.
       - text: The answer is fine. An empty string still loads as JSON.
         correct: false
         feedback: >-
           No. An empty string is not JSON, and the load raises an error. Week
-          2 reading, a wrong shape is a normal condition.
+          2 reading, a wrong answer is a normal condition.
 
   - id: w2-q3
     name: Question 3. Stripping the reasoning block
     type: multiple_choice
     points: 2
-    section: "Week 2 reading, part 2, a wrong shape is a normal condition"
+    section: "Week 2 reading, part 2, a wrong answer is a normal condition"
     outcome: "none"
     text: |
       <p>Why does the model's reasoning block have to come off before you load

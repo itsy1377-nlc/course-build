@@ -71,7 +71,7 @@ already names it as the one that costs the most time
 | 1 | `PROMPT_002`, `ANSWER_002` | The export cell 14 was run before cell 12 |
 | 2 | `extract_json` | Cell 11, the check cell, was run before cell 10, TODO 1 |
 | 2 | `schema_errors`, `ATTEMPT_LOG`, `log_attempt` | Cell 12 was skipped, and cell 13 calls all three |
-| 2 | `RESULTS`, `run_sample_checks` | The export cell 15 was run before cells 14 and 11 |
+| 2 | `RESULTS`, `run_sample_checks` | The export cell 16 was run before cells 15 and 11 |
 
 One name behaves differently and is worth knowing. The week 1 export cell reads
 the student's TODO 2 result with `globals().get("answer_001", "not recorded")`,
@@ -384,7 +384,7 @@ the notebook has hung.
 prints. If the service is genuinely down, the student submits what they have and
 messages you. Week 2's closing cell tells them exactly that: attach the file
 anyway, email the instructor, "A dead endpoint is not a late assignment"
-(`builder/lab/notebooks/w2-lab.ipynb`, cell 16). Week 1's closing cell tells them
+(`builder/lab/notebooks/w2-lab.ipynb`, cell 17). Week 1's closing cell tells them
 the notebook still ran and still wrote the file, and to rerun the configuration
 cell and email you what it printed, but it does not tell them to submit
 (`builder/lab/notebooks/w1-lab.ipynb`, cell 15), so say that part yourself in the
@@ -431,7 +431,7 @@ credit on criterion 2. It costs three model calls instead of one.
 **Cause.** The export cell was never run, or it was run before the cells that
 build what it writes, which is failure mode 1.
 
-**Fix.** Run the export cell last. It is cell 14 in week 1 and cell 15 in week 2.
+**Fix.** Run the export cell last. It is cell 14 in week 1 and cell 16 in week 2.
 It prints the full path of the file it wrote and the first few lines of it, so
 the student can see exactly what to attach. Tell them to attach the file itself
 and not to paste its text into the box.
@@ -475,5 +475,5 @@ per week; these are the lines worth keeping in them.
    closing cell tells the student to submit anyway; week 1's does not. Failure
    mode 9 works around it by asking you to say so in the week 1 announcement. The
    cleaner fix is for `builder/lab/notebooks/w1-lab.ipynb`, cell 15, to match
-   `builder/lab/notebooks/w2-lab.ipynb`, cell 16, which this package does not
+   `builder/lab/notebooks/w2-lab.ipynb`, cell 17, which this package does not
    own.
