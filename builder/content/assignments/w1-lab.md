@@ -49,4 +49,7 @@ Three things, and nothing else. No folders, no zip files, no links.
 > Answer all three questions in 3 to 5 sentences. (1) How many distinct answers appeared at each temperature, and did the 1.0 group show more, the same number or fewer than the 0.2 group? (2) What happened to the token count on email 002, and why? (3) What would you check before trusting this answer in a real ticket?
 
 Due Sunday 11:59 PM Central. You may use AI help on the written answer. If you do, add one line saying what you asked it.
+
+New to screenshots? **Using the notebook server** shows how to take one on
+Windows, Mac, Chromebook and Linux, and the four ways one loses points.
 :::

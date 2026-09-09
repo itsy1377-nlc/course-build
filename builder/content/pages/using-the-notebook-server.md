@@ -1,5 +1,5 @@
 ::: intro
-You write your code at **notebook.bashtion.dev**. This page shows you how to open it, how to keep your work safe, and how to move it to another computer.
+You write your code at **notebook.bashtion.dev**. This page shows you how to open it, how to take the screenshot every lab asks for, how to keep your work safe, and how to move it to another computer.
 :::
 
 ::: keyfacts
@@ -30,6 +30,35 @@ Your instructor gives you a key. It's yours alone, and it carries your own spend
 Paste it into the first cell each week. Never put it in a discussion post, an email, or a screenshot.
 
 Any cell can tell you what is left. Run `budget_left()`.
+:::
+
+::: section | Taking the screenshot
+Every lab asks for one screenshot of one cell's output. It is worth real points, so it is worth two minutes the first time.
+
+A screenshot is a picture of part of your screen. Your computer already takes them. You don't install anything.
+
+| Your computer | Press this | Then |
+|---|---|---|
+| Windows 10 or 11 | **Windows**, **Shift** and **S** together | Drag a box around the output. It copies, and a preview appears at the bottom right. Click it, then **Save as** |
+| Mac | **Command**, **Shift** and **4** together | Drag a box around the output. The file lands on your desktop |
+| Chromebook | **Ctrl** and **Show windows** | Choose **Screenshot**, then drag a box. It saves to Downloads |
+| Linux | **Shift** and **Print Screen** | Drag a box. Most desktops save it to Pictures |
+
+If none of those work, your browser can do it: press **Ctrl** and **P**, or **Command** and **P** on a Mac, choose **Save as PDF**, and attach the PDF instead. A readable PDF earns the same points.
+:::
+
+::: callout warning | Four ways a screenshot loses points
+1. **A row is cut off.** The assignment names what has to be in the picture. Capture all of it, including the token line under the table.
+2. **The text is too small to read.** Zoom the page first with **Ctrl** and **+**, or **Command** and **+** on a Mac. A grader who cannot read it cannot credit it.
+3. **It is the wrong cell.** The assignment names the cell by number every time. Check the number before you drag the box.
+4. **Your key is in it.** Never capture the configuration cell. Your key is pasted there, and a screenshot of it hands your key to anyone who sees the image.
+:::
+
+::: steps | Attaching it in Canvas
+1. Open the assignment in Canvas and click **Start Assignment**.
+2. Click **Choose File** and pick your screenshot.
+3. Attach the other items the assignment asks for at the same time.
+4. Click **Submit Assignment**, then check the page shows your file name.
 :::
 
 ::: steps | Backing up your work

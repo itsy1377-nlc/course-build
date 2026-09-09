@@ -462,6 +462,44 @@ same `:::` block as the four-field table, and two tables in one block would
 share a caption. That is the same defect class as the duplicated headings the
 blind run found, and this time the gate refused the push.
 
+### The screenshot gap: 242 points on a skill the course never taught
+
+The blind run raised this five times, once per week it reached, and it was the
+one finding I kept deferring as "not week-specific". It is worth more than
+anything else in the queue.
+
+**Ten rubric criteria across the seven labs depend on a screenshot: 242
+points.** Not the 15 I had been quoting, which was only week 2's named
+criterion. Every week's Submission completeness criterion requires one too, and
+week 7's 56-point accuracy criterion reads one.
+
+What the course said about taking one, in full, before today:
+
+- `using-the-notebook-server.md`: never put your key in one.
+- `canvas-and-tech-support.md`: you need a real computer, because you save one.
+
+That is the whole of it. Two warnings about screenshots and no instruction for
+taking one, against 242 points.
+
+**Fixed on `using-the-notebook-server.md`**, which is where the rest of the
+environment is explained and which sits in the Orientation Module ahead of week
+1. It gains a keystroke table for Windows, Mac, Chromebook and Linux, a browser
+print-to-PDF fallback for anyone whose keys do not work, the four ways a
+screenshot loses points (a cut-off row, text too small to read, the wrong cell,
+and the configuration cell with the key in it), and the steps to attach it in
+Canvas.
+
+All seven lab assignments now point at it from the end of their submit block.
+That matters more than the page: a student in week 5 is not going to reopen
+orientation on their own.
+
+Two placement lessons on the way. The pointer first went in directly after the
+screenshot item in each numbered list, which split the list and merged with the
+items below it into an 87-word paragraph; the readability gate caught all five
+failures. And changing all seven assignments made all seven walkthrough videos
+stale, because each one fingerprints its own week's assignment page. Both
+rebuilt and green.
+
 ### Struck: a fifth false finding from my own harness
 
 The blind run reported that both week 2 assigned sources appear as bare domains

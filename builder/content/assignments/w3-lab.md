@@ -52,4 +52,7 @@ Three items. Nothing else. No zip file, no folder, no link to a repository.
 Don't screenshot the configuration cell. Your key is pasted into it, so a picture of that cell shows your key to anyone who sees it. Screenshot only the cell this assignment names. If your key does end up in a post or an image, tell your instructor so it can be replaced.
 
 Due day 21, Sunday 11:59 PM Central.
+
+New to screenshots? **Using the notebook server** shows how to take one on
+Windows, Mac, Chromebook and Linux, and the four ways one loses points.
 :::
