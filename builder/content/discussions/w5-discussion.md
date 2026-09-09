@@ -27,7 +27,7 @@ A good post is short and specific. About 150 words covers it, and about 60 cover
 - It spells the stop reason the way your file spells it, and gives the step count as a number.
 - Its answer about the last step is about your run, not about loops in general.
 
-A summary of the reading with no numbers in it's a weak post. So is a tool order taken from a classmate rather than from your own file.
+A summary of the reading with no numbers in it is a weak post. So is a tool order taken from a classmate rather than from your own file.
 :::
 
 ::: section | The reply

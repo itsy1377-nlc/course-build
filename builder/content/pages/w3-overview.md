@@ -1,5 +1,5 @@
 ::: intro
-Right now your agent sends the whole email body and nothing else. The body is the part an attacker writes, so a verdict built on it's really a verdict about tone. This week you send facts beside it: who really sent the message, whether the checks on the sender passed, and where the links point.
+Right now your agent sends the whole email body and nothing else. The body is the part an attacker writes, so a verdict built on it is really a verdict about tone. This week you send facts beside it: who really sent the message, whether the checks on the sender passed, and where the links point.
 :::
 
 ::: video w3-overview | What week 3 adds

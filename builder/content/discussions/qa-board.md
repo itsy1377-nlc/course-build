@@ -1,5 +1,5 @@
 ::: intro
-Welcome to the question and answer board. This is the place to ask about the course, and to answer each other. Nothing here's graded.
+Welcome to the question and answer board. This is the place to ask about the course, and to answer each other. Nothing here is graded.
 :::
 
 ::: directions | What to post here

@@ -36,7 +36,7 @@ The markers go around the body and nothing else. Wrap your facts block inside th
 | Guarded run completeness | 20 | The file holds a row for all eleven emails. Each row carries a verdict on both paths, an escalation reason and a token count. Placement is named where the email has one and reads `none` where it does not. The fence record for email 013 is present. |
 | **Total** | **100** | |
 
-Nothing here's graded by running your notebook. The three items you turn in carry all of it.
+Nothing here is graded by running your notebook. The three items you turn in carry all of it.
 :::
 
 ::: submit

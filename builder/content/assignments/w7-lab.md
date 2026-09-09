@@ -38,7 +38,7 @@ Keep two counters, not one. A false positive and a false negative are different 
 
 The answer key ships inside your notebook, and no points here come from a correct verdict. This lab grades the notes your agent wrote and the honesty of your own numbers.
 
-Nothing here's graded by running your notebook. The three items you turn in carry all of it.
+Nothing here is graded by running your notebook. The three items you turn in carry all of it.
 :::
 
 ::: submit

@@ -125,6 +125,7 @@ identifiers are stripped out.
 | Longest sentence | 40 words | under 25 |
 | Longest paragraph | 70 words | 30 to 50 |
 | Reading ease | none | about 80 |
+| Contractions | below 4.0 per 1,000 words | 15 to 20 per 1,000 |
 
 Reading time is priced at 200 words a minute for one pass. Anything beyond one
 pass gets its own named line and minutes. Never move the rate to make a page
@@ -146,6 +147,40 @@ fit. Cut words, or add a line.
 
 Technical vocabulary is taught, not avoided. Define each term in plain words
 the first time a page uses it, then use the same word every time.
+
+### Warmth
+
+**Content pages carry contractions. Notebooks do not.** That split is the whole
+rule, and both halves are measured.
+
+The course was rewritten in a warm pass on 2026-09-07 because it read flat.
+Contractions also lower the reading grade, so the same edit makes a page warmer
+and easier at once. A student-facing page runs about 15 to 20 contractions per
+1,000 words; the gate fails one below 4.0, which is a page written with none at
+all rather than a page that is merely restrained.
+
+Notebook markdown is the other way round. A notebook is instructions beside
+code, and the register there is plain and direct. Notebooks run about 2 per
+1,000 words and the gate fails one above 6.0. They are held to the same reading
+level as everything else.
+
+`tools/warm_pass.py` applies contractions to prose and refuses to touch code,
+tables, headings, directives, link lines or `::: sources` citations. Run it,
+then **read what it changed**. It is a pattern matcher, not a reader.
+
+One thing it must never do, and the gate now enforces this everywhere: a
+contraction of "is" is only legal when the word it attaches to is the subject
+of its clause. These are all wrong, and all four shipped before the gate
+existed:
+
+| Wrong | Right |
+|---|---|
+| Handling it's the work | Handling it is the work |
+| What to take from it's the shape | What to take from it is the shape |
+| Nothing here's graded | Nothing here is graded |
+| no numbers in it's a weak post | no numbers in it is a weak post |
+
+A screen reader cannot rescue any of them.
 
 ## 5. Rules that are not negotiable
 
@@ -216,4 +251,42 @@ kind. It fails a page over budget, a paragraph over 70 words, a sentence over
 budget, so use the stem `course.yaml` names.
 
 Drop `--file` to measure the whole course, and commit that report beside the
-content.
+content. That run covers the notebooks as well: every markdown cell under
+`lab/notebooks/` is measured for reading level and for warmth, against the
+notebook ceiling rather than the page floor. Notebooks carry no length budget,
+because a notebook is worked through rather than read straight down.
+
+The three standards travel together and the one command checks all three:
+reading level, length, and warmth. Nobody should have to remember them.
+
+## 8. Pushing one week
+
+A full push is 154 objects and 86 MB of video, several minutes, and the blast
+radius of a typo is the whole course. Scope it instead.
+
+```
+# what would change, touching nothing
+ITSY_CONTENT=builder/content python3 builder/canvas/build_course.py --check --week 2
+
+# push it
+ITSY_CONTENT=builder/content python3 builder/canvas/build_course.py --week 2
+
+# read Canvas back and compare against the spine
+ITSY_CONTENT=builder/content python3 builder/canvas/build_course.py --verify
+```
+
+`--week` takes a number, a comma list (`--week 2,3`), or `start` for the
+orientation modules, and it is repeatable. `--list-weeks` prints the week each
+module answers to.
+
+Three things narrow together, and they have to: the modules written, the video
+assets uploaded, and the student lab files. Course settings, assignment groups
+and outcomes still run every time; they are cheap, idempotent and shared.
+
+A scoped run still walks the whole spine so each module keeps its real
+position. Filtering the list instead would renumber every later module and
+silently reorder the course.
+
+`--verify` is never scoped. It reads the whole course back, which is what you
+want after changing part of it.
+

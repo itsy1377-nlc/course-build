@@ -28,7 +28,7 @@ A good post is short and specific.
 - Its rule is one sentence a teammate could use.
 - Its answer for 015 rests on a number.
 
-A summary of the reading with no numbers in it's a weak post, and so is a rule copied from a classmate.
+A summary of the reading with no numbers in it is a weak post, and so is a rule copied from a classmate.
 
 If your guardrails held on all five emails, say so. Then answer for the strictest rule you can think of adding.
 :::

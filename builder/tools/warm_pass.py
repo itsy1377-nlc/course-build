@@ -53,6 +53,39 @@ PAIRS = [
 INLINE_CODE = re.compile(r"`[^`]*`")
 
 
+# A contraction of "is" is only legal when the word it attaches to is the
+# subject of its clause. This tool matches on the word alone and cannot see
+# that, and it shipped eight broken sentences before anyone noticed:
+#
+#     Handling it is the work            -> Handling it's the work
+#     What to take from it is the shape  -> ... from it's the shape
+#     Nothing here is graded             -> Nothing here's graded
+#     no numbers in it is a weak post    -> ... in it's a weak post
+#
+# Each one reads as garbage to a screen reader. The rule that catches them:
+# when a preposition, a gerund or a quantifier sits in front, the pronoun is
+# part of a longer phrase rather than the subject, so leave it alone.
+#
+# tools/readability.py enforces the same rule on the output, so a regression
+# here fails the gate rather than reaching a student.
+NEVER_BEFORE = re.compile(
+    r"\b(?:from|of|with|about|for|in|on|at|to|into|than|"
+    r"[Nn]othing|[Ee]verything|[Ss]omething|[Aa]nything|"
+    r"\w+ing)\s+$")
+
+SUBJECT_PRONOUNS = ("it", "here", "there", "that", "It", "Here", "There", "That")
+
+
+def _guarded(pattern: str, replacement: str, line: str) -> str:
+    """Apply one contraction, skipping any match that is not a subject."""
+    def decide(match: re.Match) -> str:
+        head = match.group(0).split()[0]
+        if head in SUBJECT_PRONOUNS and NEVER_BEFORE.search(line[:match.start()]):
+            return match.group(0)
+        return replacement
+    return re.sub(pattern, decide, line)
+
+
 def warm_line(line: str) -> str:
     """Contract one line of prose, leaving inline code untouched."""
     held: list[str] = []
@@ -63,7 +96,7 @@ def warm_line(line: str) -> str:
 
     line = INLINE_CODE.sub(stash, line)
     for pattern, replacement in PAIRS:
-        line = re.sub(pattern, replacement, line)
+        line = _guarded(pattern, replacement, line)
     for index, original in enumerate(held):
         line = line.replace(f"\x00{index}\x00", original)
     return line

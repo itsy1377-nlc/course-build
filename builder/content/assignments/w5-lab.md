@@ -35,7 +35,7 @@ Leave `step_guard` empty this week, and still write the `if` line that calls `gu
 
 Which tool the model asks for second is its choice, not yours. Any second tool earns full credit when your answer names the one your run picked.
 
-Nothing here's graded by running your notebook. The three items you turn in carry all of it.
+Nothing here is graded by running your notebook. The three items you turn in carry all of it.
 :::
 
 ::: submit

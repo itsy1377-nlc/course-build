@@ -176,6 +176,56 @@ NO_BUDGET = {"framework-alignment", "instructor-notes", "where-to-go-next",
 # A paragraph longer than this is a wall, whatever its reading level.
 MAX_PARAGRAPH_WORDS = 70
 
+# ---------------------------------------------------------------- warmth
+#
+# Three standards travel together and all three are measured here, so nobody
+# has to remember them: reading level, length, and warmth.
+#
+# Warmth is contraction density. The course was rewritten in a warm pass on
+# 2026-09-07 because it read flat, and contractions also lower the grade, so
+# the same edit makes a page warmer and easier at once. Student-facing prose
+# carries them. Notebooks deliberately do not: a notebook is instructions
+# beside code, and the register there is plain and direct.
+#
+# The floor is deliberately low. It exists to catch a page written with no
+# contractions at all, not to squeeze every page toward a mean. Measured on
+# 2026-09-08 the course ran 6.7 to 39.2 per 1,000 words, mean 17.4, and
+# notebooks ran 0.0 to 5.0, mean 2.1. Both bands sit clear of their limit.
+WARM_FLOOR = 4.0        # per 1,000 words, student-facing prose
+COLD_CEILING = 6.0      # per 1,000 words, notebook markdown
+WARMTH_MIN_WORDS = 150  # below this a rate is noise
+
+CONTRACTION_RE = re.compile(r"\b\w+['\u2019](?:t|s|re|ve|ll|d|m)\b")
+
+# A contraction of "is" is wrong when the word it attaches to is not the
+# subject of the clause. tools/warm_pass.py contracts by pattern and cannot
+# see that, and it shipped eight of these before anyone noticed:
+#
+#     Handling it is the work      -> Handling it's the work
+#     What to take from it is ...  -> ... from it's the shape
+#     Nothing here is graded       -> Nothing here's graded
+#
+# All three read as garbage to a screen reader, which is the argument for
+# catching them here rather than by eye. The rule: flag it's / here's /
+# there's / that's when the token in front makes it part of a longer phrase
+# rather than the subject, which is a preposition, a gerund, or a quantifier.
+BROKEN_CONTRACTION_RE = re.compile(
+    r"\b(?:from|of|with|about|for|in|on|at|to|into|than|"
+    r"[Nn]othing|[Ee]verything|[Ss]omething|[Aa]nything|"
+    r"\w+ing)\s+(?:it|here|there|that)['\u2019]s\b")
+
+
+def contraction_rate(text: str) -> tuple[int, float]:
+    """How many contractions per 1,000 words of measurable prose."""
+    words = len(text.split())
+    found = len(CONTRACTION_RE.findall(text))
+    return found, (found / words * 1000 if words else 0.0)
+
+
+def broken_contractions(text: str) -> list[str]:
+    """Contractions of "is" onto something that is not the subject."""
+    return [m.group(0) for m in BROKEN_CONTRACTION_RE.finditer(text)]
+
 # The Rules of Engagement is the one page where misreading has consequences,
 # so it is held to a tighter bar.
 STRICTER = {"rules-of-engagement": 7.0}
@@ -226,6 +276,8 @@ class PageReport:
     problems: list[str]
     kind: str = "reference"
     body_words: int = 0
+    contractions: int = 0
+    contractions_per_1k: float = 0.0
     budget: int = 0
 
 
@@ -424,6 +476,26 @@ def label_for(path: Path) -> str:
         return str(path)
 
 
+NOTEBOOK_DIR = Path("lab/notebooks")
+
+
+def notebook_markdown(path: Path) -> str:
+    """Every markdown cell of a notebook, joined, for measurement.
+
+    Notebooks were the one body of student-facing prose nothing measured. They
+    are read as closely as a page is -- more closely, because the student is
+    stuck when they do not land -- and the standard for them is the same
+    reading level as the rest of the course with none of the warmth.
+    """
+    try:
+        nb = json.loads(path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError):
+        return ""
+    return "\n\n".join("".join(cell.get("source", []))
+                        for cell in nb.get("cells", [])
+                        if cell.get("cell_type") == "markdown")
+
+
 def check_file(path: Path) -> PageReport:
     stem = path.stem
     staff = is_staff_doc(path)
@@ -431,14 +503,15 @@ def check_file(path: Path) -> PageReport:
     enforced = stem not in EXEMPT_STEMS and stem not in VERBATIM_STEMS
     default_grade = STAFF_MAX_GRADE if staff else MAX_GRADE
     limit = STRICTER.get(stem, default_grade)
-    text = path.read_text(encoding="utf-8")
+    text = (notebook_markdown(path) if path.suffix == ".ipynb"
+            else path.read_text(encoding="utf-8"))
     report = check_text(text, label_for(path), limit, enforced, staff=staff)
 
-    kind = page_kind(path)
+    kind = "notebook" if path.suffix == ".ipynb" else page_kind(path)
     report.kind = kind or "reference"
     report.body_words = weighted_words(text)
 
-    if kind:
+    if kind and kind != "notebook":
         budget = PAGE_BUDGET.get(stem, WORD_BUDGET[kind])
         report.budget = budget
         if report.body_words > budget:
@@ -449,6 +522,35 @@ def check_file(path: Path) -> PageReport:
                 f"      Tables and lists count at 60 percent, because a table is "
                 f"scanned and a paragraph is read.")
             report.passed = False
+
+    # Warmth. Student-facing prose carries contractions; notebook markdown does
+    # not. Both directions are enforced so neither standard drifts.
+    clean, _ = strip_for_measurement(text)
+    report.contractions, report.contractions_per_1k = contraction_rate(clean)
+    rate = report.contractions_per_1k
+    if len(clean.split()) >= WARMTH_MIN_WORDS and enforced and not staff:
+        if kind == "notebook":
+            if rate > COLD_CEILING:
+                report.problems.append(
+                    f"{rate:.1f} contractions per 1,000 words, and a notebook's "
+                    f"ceiling is {COLD_CEILING}. Notebook prose is plain and "
+                    f"direct. Warmth belongs on the content pages.")
+                report.passed = False
+        elif kind and rate < WARM_FLOOR:
+            report.problems.append(
+                f"{rate:.1f} contractions per 1,000 words, and the floor for a "
+                f"student-facing page is {WARM_FLOOR}. The course reads warm. "
+                f"Run tools/warm_pass.py on it, then read what it changed.")
+            report.passed = False
+
+    # Broken contractions are wrong everywhere, including staff documents.
+    broken = broken_contractions(clean)
+    if broken:
+        report.problems.append(
+            f"{len(broken)} contraction(s) of \"is\" onto something that is not "
+            f"the subject: {', '.join(repr(b) for b in broken[:3])}. "
+            f"Write it out. A screen reader cannot rescue these.")
+        report.passed = False
 
     paragraphs = _paragraphs(text)
     long_ones = [p for p in paragraphs if len(p.split()) > MAX_PARAGRAPH_WORDS]
@@ -475,6 +577,10 @@ def main(argv: list[str] | None = None) -> int:
     else:
         paths = sorted(CONTENT.rglob("*.md"))
         paths += [ROOT / extra for extra in EXTRA_PAGES if (ROOT / extra).exists()]
+        # Notebook markdown is student-facing prose and is measured with it.
+        notebooks = CONTENT.parent / NOTEBOOK_DIR
+        if notebooks.is_dir():
+            paths += sorted(notebooks.glob("*.ipynb"))
     if not paths:
         print(f"No markdown found under {CONTENT}")
         return 2
@@ -504,13 +610,13 @@ def main(argv: list[str] | None = None) -> int:
     except ValueError:
         shown = CONTENT
     print(f"measuring: {shown}")
-    print(f"{'page':50} {'kind':12} {'grade':>6} {'words':>6} {'budget':>7}")
-    print("-" * 88)
+    print(f"{'page':50} {'kind':12} {'grade':>6} {'words':>6} {'budget':>7} {'warm':>6}")
+    print("-" * 95)
     for report in sorted(reports, key=lambda r: (r.passed, -r.body_words)):
         flag = "  " if report.passed else "!!"
         budget = f"{report.budget}" if report.budget else "-"
         print(f"{flag}{report.path:48} {report.kind:12} {report.grade:6.2f} "
-              f"{report.body_words:6d} {budget:>7}")
+              f"{report.body_words:6d} {budget:>7} {report.contractions_per_1k:6.1f}")
 
     scored = [r for r in reports if r.words >= 40 and r.enforced]
     if scored:
@@ -518,6 +624,16 @@ def main(argv: list[str] | None = None) -> int:
         print("-" * 82)
         print(f"{len(scored)} enforced pages, mean grade {mean:.2f}, "
               f"limit {MAX_GRADE}, target {TARGET_GRADE}")
+        prose = [r for r in scored if r.kind != "notebook"]
+        books = [r for r in scored if r.kind == "notebook"]
+        if prose:
+            warm = sum(r.contractions_per_1k for r in prose) / len(prose)
+            print(f"  warmth: {warm:.1f} contractions per 1k across {len(prose)} "
+                  f"prose page(s), floor {WARM_FLOOR}")
+        if books:
+            cold = sum(r.contractions_per_1k for r in books) / len(books)
+            print(f"  warmth: {cold:.1f} across {len(books)} notebook(s), "
+                  f"ceiling {COLD_CEILING}")
 
     if failures:
         print(f"\n{len(failures)} page(s) over the limit:\n")

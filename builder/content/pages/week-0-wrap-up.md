@@ -29,7 +29,7 @@ You've run every construct the TODO cells ask you to write. Pre-written cells so
 :::
 
 ::: checkpoint | Check yourself
-Can you do these five things without looking them up? If one gives you pause, open that section again. Nothing here's graded.
+Can you do these five things without looking them up? If one gives you pause, open that section again. Nothing here is graded.
 
 1. Store a value in a name, then change what it holds.
 2. Call a function and keep what it hands back.

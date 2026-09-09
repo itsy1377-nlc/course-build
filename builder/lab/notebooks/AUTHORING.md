@@ -90,6 +90,20 @@ code from week N-1's own notebook so the two cannot drift.
    The `MODEL` value is a configuration string, which is different.
 8. **Markdown cells obey the course writing standard**: second person, active
    voice, short sentences, no em dashes or en dashes, no idioms.
+9. **Notebook prose is plain, not warm.** A notebook is instructions beside
+   code. Content pages carry contractions; notebooks do not. Notebooks run
+   about 2 contractions per 1,000 words and the gate fails one above 6.0.
+   Never run `tools/warm_pass.py` on a notebook.
+10. **The reading level is the same as everywhere else.** Grade 8.0 is the
+   ceiling and 4 to 5 is where these are written. Notebooks carry no length
+   budget, because a notebook is worked through rather than read straight
+   down. Both are measured by the same command as the pages:
+
+   ```
+   ITSY_CONTENT=builder/content python3 -m tools.readability
+   ```
+
+   It reports every notebook beside every page, in one table.
 
 ## 6. How to prove it works
 

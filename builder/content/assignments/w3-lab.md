@@ -23,7 +23,7 @@ Twelve to fifteen lines of your own code, in two clearly marked TODO cells. Ever
 ::: callout warning | Two things that stop this lab
 Send the parser's values, not your own words. A fact you retype by hand is a fact you can get wrong, and the grader reads what is in the file.
 
-Don't send everything the parser returns. Cell 12 prints the size of your block. Each line in it's a line you've disclosed.
+Don't send everything the parser returns. Cell 12 prints the size of your block. Each line in it is a line you've disclosed.
 :::
 
 ::: grading | Grading Criteria
