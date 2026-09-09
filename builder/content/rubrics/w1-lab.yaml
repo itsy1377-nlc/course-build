@@ -48,13 +48,14 @@ criteria:
     points: 25
     levels:
       - description: >-
-          All three are here. The screenshot shows all six answers and is
+          All three are here. The screenshot shows both labelled temperature
+          groups, all twelve answers and both distinct-answer counts, and is
           readable. The file is attached as a file. The written answer is in
           the box.
         points: 25
       - description: >-
           All three are here, but one is hard to read. The screenshot may cut
-          off one or two of the six answers.
+          off part of a temperature group or one of its counts.
         points: 19
       - description: >-
           One of the three is missing, or the screenshot cannot be read.
@@ -66,23 +67,22 @@ criteria:
 
   - description: The call works
     long_description: >-
-      The file shows six answers for email 001. It shows one answer for email
-      002. Both show the prompt text you used.
+      The file shows both six-answer temperature groups for email 001 and one
+      prose answer for email 002. It shows the prompt text used for each.
     points: 25
     levels:
       - description: >-
-          The file shows six answers for email 001 and one answer for email
-          002. The prompt text is shown with both, and all seven answers came
-          back from the model.
+          The file shows both complete temperature groups for email 001 and
+          one prose answer for email 002. The prompt text is shown for each,
+          and every answer came back from the model.
         points: 25
       - description: >-
-          The file shows both prompts and all seven answer slots filled, but
-          one or two of the seven hold a notebook error message instead of an
-          answer from the model.
+          The file shows the prompts and both groups, but a small part holds a
+          notebook error message instead of an answer from the model.
         points: 19
       - description: >-
-          Three or more of the seven answer slots hold an error message
-          instead of an answer from the model.
+          A large part of the comparison holds error messages instead of
+          answers from the model.
         points: 13
       - description: >-
           Every answer slot holds the unwritten-function placeholder, or no
@@ -91,24 +91,24 @@ criteria:
 
   - description: Variation reported
     long_description: >-
-      The written answer names which answer differed most and at which
-      temperature.
+      The written answer gives the number of distinct answers at each
+      temperature and reports the direction of the difference.
     points: 25
     levels:
       - description: >-
-          The written answer names which of the six answers differed most, and
-          gives the temperature that produced it.
+          The written answer gives both distinct-answer counts and says the
+          higher-temperature group showed more, the same number or fewer.
+          Any honestly reported direction earns full credit.
         points: 25
       - description: >-
-          The written answer names the answer that differed most but gives no
-          temperature, or gives a temperature but names no answer.
+          The written answer gives both counts but does not compare them, or
+          compares the groups but gives only one count.
         points: 19
       - description: >-
-          The written answer says the six answers varied, but points to no
-          particular one.
+          The written answer says the groups varied but gives neither count.
         points: 13
       - description: >-
-          The written answer does not say anything about the six answers.
+          The written answer does not report anything about the two groups.
         points: 6
 
   - description: First judgment

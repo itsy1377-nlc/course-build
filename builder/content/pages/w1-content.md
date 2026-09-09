@@ -95,13 +95,7 @@ You're building the third kind, and you start this week with a plain call to the
 :::
 
 ::: section | Scoring AI at work
-Scoring AI reads something and puts a number or a label on it. It writes nothing new at all.
-
-The Pellgrave help desk rates every new ticket for urgency. A high score moves the ticket up the queue. A low score leaves it where it's. The score is a number, not a sentence.
-
-The tool on Priya's laptop scores a new file as risky or ordinary before she opens it.
-
-Both run fast, and both run on everything. Reach for scoring when you've far more items than people.
+Scoring AI puts a number or label on an item. It writes no new prose. The Pellgrave help desk rates tickets for urgency; a high score moves a ticket up the queue. Priya's laptop rates a new file as risky or ordinary before she opens it. Scoring runs fast enough to use on every item.
 :::
 
 ::: section | Generative AI at work
@@ -112,6 +106,12 @@ A Pellgrave technician asks it to draft a change request for a new firewall rule
 Yolanda pastes an unfamiliar log line into it and asks what the line means. She gets a plain sentence back.
 
 Both answers are useful, and neither is proof. Generative AI writes what reads well, and it doesn't check itself.
+:::
+
+::: section | Temperature changes the range, not the truth
+Temperature is a setting on a generative model call. It changes how freely the model can choose among likely next words. A low setting usually keeps repeated answers closer together. A high setting allows more variation.
+
+Neither setting guarantees the same pattern in a small run, and temperature does not tell you whether an answer is correct. In the lab, you will run the same triage choice at two temperatures. Record what your run shows, even if the higher setting is not more varied.
 :::
 
 ::: section | Agentic workflows at work
@@ -125,15 +125,11 @@ Neither one is magic. Each is a short run of checks with a hard stop at the end.
 :::
 
 ::: section | What stays human
-All three kinds hand their output to a person. The urgency score reorders a queue, and a person still works the ticket. A person files the drafted change request. The password workflow stops and asks whenever a check fails.
-
-That stop is escalation, the word from part one. Every tool in this course has one.
+People remain responsible for all three kinds of output. Every workflow in this course has a hard stop: when a check fails, it escalates to a person.
 :::
 
 ::: section | Practice before the lab
-Two short sidebars sit in the week 1 sidebar notebook. Sidebar 1A calls a function and keeps what it hands back, and sidebar 1B builds a sentence from values with an f-string.
-
-Both use a grocery stockroom rather than email. They take about 25 minutes together. Work them before you open the lab.
+The week 1 sidebar notebook practices calling a function, keeping its return value and building a sentence with an f-string. Work it before the lab.
 :::
 
 ::: reading | One source to open

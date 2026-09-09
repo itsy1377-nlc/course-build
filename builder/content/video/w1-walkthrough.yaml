@@ -3,7 +3,7 @@ title: What a finished week 1 run looks like
 kind: walkthrough
 module: m01
 embed_on: builder/content/pages/w1-content.md
-blurb: A real run on a different email than the two in your lab. What the output looks like, what should vary, and the three checks to make before you submit.
+blurb: The output shape, the two temperature groups, and the checks to make before you submit.
 explains:
   - builder/content/pages/w1-content.md
   - builder/content/assignments/w1-lab.md
@@ -17,7 +17,7 @@ scenes:
     narration:
       - This is what a finished week 1 run looks like.
       - It runs on a different email than the two in your lab, so nothing here's your answer.
-      - What to take from it's the shape. When your run looks like this, it's working.
+      - What to take from it is the shape. When your run looks like this, it's working.
 
   - type: slide
     layout: numbered
@@ -27,7 +27,7 @@ scenes:
       - The model you were configured with
       - The prompt you sent
       - Your own first call
-      - Six answers to the same question
+      - Twelve short answers in two groups
       - One answer for the second email
       - The token totals
     narration:
@@ -37,7 +37,7 @@ scenes:
         reveal: 2
       - text: Then your own first call, from the second thing you write.
         reveal: 3
-      - text: Then six answers to that same question.
+      - text: Then twelve short answers to a second prompt, split into two labelled temperature groups.
         reveal: 4
       - text: Then one answer for the second email, and the token totals at the end.
         reveal: 6
@@ -45,37 +45,33 @@ scenes:
         reveal: 6
 
   - type: slide
-    layout: code
-    eyebrow: A real answer
-    heading: The model says this is not phishing
-    body: |
-      temperature 0.2, 222 prompt tokens, 337 answer tokens
-
-      "No, it does not look like a phishing attempt."
+    layout: statement
+    eyebrow: The prose calls
+    heading: A sentence is hard for code to use
+    body: TODO 2 and the email 002 cell still ask for two sentences. Week 2 gives the answer a fixed shape that code can check.
     narration:
-      - Here's a real answer, from a real run, on that other email.
-      - The model says it isn't a phishing attempt.
-      - It's wrong. That email is a fake signing request from a domain the company had already blocked.
-      - Nothing went wrong in the code. The model was given the body of the message and nothing else.
-      - Remember that one. It's the reason week 3 exists.
+      - Your own first call and the call for email 002 ask the model for two sentences of prose.
+      - A person can read those sentences, but code has a hard time finding a dependable verdict inside them.
+      - That is the hand-off to week 2, where you ask for the same fields every time.
 
   - type: slide
     layout: compare
-    eyebrow: What should vary
-    heading: Same question, same setting, two runs
+    eyebrow: What to compare
+    heading: Same short prompt, two settings
     items:
-      - Run one | 337 answer tokens
-      - Run two | 68 answer tokens
+      - Temperature 0.2 | Six short answers and a distinct count
+      - Temperature 1.0 | Six short answers and a distinct count
     narration:
-      - text: Here are two runs of that same question, at the same temperature setting.
+      - text: The comparison cell asks for one verdict word and one short sentence.
         reveal: 1
-      - text: One answer took 337 tokens. The other took 68.
+      - text: It runs that prompt six times at each temperature and prints the groups separately.
         reveal: 2
-      - text: Same prompt, same setting, and five times the length.
+      - text: Under each group, it prints how many exact answers were distinct.
         reveal: 2
-      - text: If your six answers all match exactly, look again at the temperature you passed.
+      - text: The higher-temperature group may show more distinct answers, the same number or fewer.
         reveal: 2
-      - text: If they vary like this, your run's working.
+      - text: Any of those is a real result. The request check above, not this pattern, proves your code passed the setting.
+        reveal: 2
 
   - type: slide
     layout: numbered
@@ -83,16 +79,16 @@ scenes:
     heading: Three checks
     items:
       - The token line is not zero
-      - Your six answers are actually different
-      - The screenshot shows all six
+      - Both labelled groups and counts appear
+      - The screenshot shows all twelve
     narration:
       - text: Three things to check before you turn it in.
         reveal: 1
       - text: First, the token line at the end isn't zero. A zero means no call reached the model.
         reveal: 1
-      - text: Second, your six answers aren't identical to each other.
+      - text: Second, both labelled temperature groups and both distinct-answer counts appear.
         reveal: 2
-      - text: Third, your screenshot shows all six answers, not just the first two.
+      - text: Third, one screenshot shows all twelve short answers and both counts.
         reveal: 3
       - text: That last one's the most common thing people lose points on.
         reveal: 3

@@ -10,7 +10,7 @@ What you add this week, and the one thing to watch for.
 By the end of this module, you'll be able to:
 
 - **1.1** Classify one email using a model call from your own code. (CLO2)
-- **1.2** Record how the six answers to one email differ at two temperatures. (CLO2)
+- **1.2** Record and compare the answers returned by repeated model calls at two temperatures. (CLO2)
 - **1.3** Name one thing to check before trusting the model's answer. (CLO2)
 :::
 
@@ -26,7 +26,7 @@ Every later week is this same call with one thing added. By week 5 it sits insid
 | Task | What you turn in | Due |
 |---|---|---|
 | Watch the videos | Nothing | |
-| Run the **Week 1 sidebar notebook**, parts 1A and 1B | Nothing | |
+| Run the **Week 1 sidebar notebook**, parts 1A, 1B and 1C | Nothing | |
 | Read the **Week 1 reading** | Nothing | |
 | Work the **Week 1 lab notebook** | A screenshot, one file, a written answer | Day 7, Sunday 11:59 PM |
 | Post to the **Week 1 discussion** | One post and one reply | Post Thursday, reply Day 7 |
@@ -38,13 +38,13 @@ Every later week is this same call with one thing added. By week 5 it sits insid
 | Activity | Minutes |
 |---|---|
 | Overview video and walkthrough video | 10 |
-| Sidebars 1A and 1B | 25 |
+| Sidebars 1A, 1B and 1C | 40 |
 | Reading | 40 |
 | Lab | 150 |
 | Discussion, one post and one reply | 20 |
 | Self-check | 12 |
 | Screenshot and upload | 15 |
-| **Total** | **272 minutes, or 4 hours 32 minutes** |
+| **Total** | **287 minutes, or 4 hours 47 minutes** |
 :::
 
 ::: callout note | A bad week doesn't end the course
@@ -58,5 +58,5 @@ Your work lives in your browser, not on a server, so back it up each week. **Usi
 ::: next
 Week 2 makes the answer strict, so the model hands back the same fields every time and your code can check them.
 
-Start with the reading. Then work the two sidebars. Then open the lab.
+Start with the reading. Then work the three sidebar parts. Then open the lab.
 :::

@@ -3,7 +3,7 @@ title: Week 1 in three minutes
 kind: concept
 module: m01
 embed_on: builder/content/pages/w1-overview.md
-blurb: What you build this week, and the one surprise to watch for when the same question gives you six different answers.
+blurb: What you build this week, and what repeated short answers can show at two temperatures.
 explains:
   - builder/content/pages/w1-overview.md
   - builder/content/pages/w1-content.md
@@ -35,17 +35,19 @@ scenes:
     eyebrow: The lab
     heading: Three things you will see
     items:
-      - The same question gives different answers
-      - Temperature changes how much they differ
+      - The same question can give different answers
+      - Temperature can change how much they differ
       - Longer emails cost more tokens
     narration:
-      - text: You'll send one email to the model six times.
+      - text: You'll send one short question about an email six times at each of two settings.
         reveal: 1
-      - text: Read the six answers side by side. Most of the time they won't match.
+      - text: Read the twelve short answers in two groups and count the distinct answers in each.
         reveal: 1
       - text: Then you change one number, called temperature, and send it again.
         reveal: 2
-      - text: A low number keeps the answers close together, and a high one lets them wander.
+      - text: A low number usually keeps answers closer, and a high one often allows more variation.
+        reveal: 2
+      - text: A small run may show more, the same amount or less variation. Every direction is a real result.
         reveal: 2
       - text: Last, you watch the token count. A token is roughly four characters of text.
         reveal: 3

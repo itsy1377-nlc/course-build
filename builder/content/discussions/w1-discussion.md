@@ -1,5 +1,5 @@
 ::: intro
-This discussion needs your own exported file. Two students won't have the same six answers, because the model doesn't repeat itself exactly. So there's no general answer to give here.
+This discussion needs your own exported file. Two students may see different answers because a model call is a sample. So there's no general answer to give here.
 
 Plan 15 to 20 minutes for the whole thing, your post and your reply together.
 :::
@@ -13,7 +13,7 @@ Write about 150 words in your post. Write about 60 words in your reply.
 
 **Part 1. Your own results.**
 
-Open your file `week1_first_calls.txt`. Find the six answers your notebook gave to the same email. Quote one short line from one answer. Say which temperature produced it. Then name one thing that answer got right. Name one thing it got wrong or left out. Use your own file. Don't use a classmate's.
+Open your file `week1_first_calls.txt`. Find the two labelled temperature groups. Quote one short line from one answer. Say which temperature produced it. Then name one thing that answer got right. Name one thing it got wrong or left out. Use your own file. Don't use a classmate's.
 
 **Part 2. Where you've met this before.**
 
