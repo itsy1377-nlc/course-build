@@ -311,6 +311,49 @@ the two levels collapse into one. Every student lands on Exceeds by default,
 and the criterion measures submission completeness rather than output
 validation.
 
+### Found after shipping: the contract test could be bypassed silently
+
+Asked whether week 2 was good to go, the honest answer was no, and the defect
+was one I had introduced the day before.
+
+`classify_email()` has to fetch its reply through `answer_source()` for the
+saved contract test to work. A student who writes `ask_model()` instead --
+which week 1 taught, and which the previous version of this TODO named -- gets
+a function that is correct in every way the objective cares about. Their four
+live rows pass. But the contract test then talked to the live model while
+printing **"Saved input, not model output."**, reported `problems_copied:
+False`, and exported `source: "two saved test answers, not model output"` as
+the provenance of an attempt that came from the model.
+
+The rubric's Exceeds level requires `problems_copied`, so that student lost the
+top level of the 50-point criterion with nothing anywhere naming the line to
+change. A check that reports confidently while examining the wrong thing, which
+is the defect class this whole review has been cataloguing.
+
+`answer_source()` is the only thing that moves `TEST_ANSWER_INDEX`, so the cell
+now reads it before resetting and says exactly what to do:
+
+    This test did not run. Your classify_email() never called
+    answer_source(), so the saved answers were never used and this
+    cell talked to the live model instead.
+
+    In TODO 2, step 3, change the line that gets the reply to:
+        raw_text = answer_source(prompt)
+
+`retry_demo` carries `used_saved_answers`, and its `source` label now tells the
+truth in both cases. A run that used the fixture but failed to copy every
+problem gets its own line rather than a bare `False`.
+
+A second, smaller one from the same test: a notebook with the TODOs unwritten
+reported `problems: ['The answer did not load as JSON...']` on all four rows,
+which sends a student to fix JSON they have not written. A row with no tries now
+says so instead.
+
+Three paths were run against the live model afterwards: the correct solution
+(4 problems, attempt 2, every problem copied, all four rows `ok=True`), the
+`ask_model` mistake (clear diagnostic, honest export label), and the shipped
+notebook with both TODOs empty (no crash, accurate message).
+
 ### Struck: a fifth false finding from my own harness
 
 The blind run reported that both week 2 assigned sources appear as bare domains
