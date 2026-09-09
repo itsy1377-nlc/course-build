@@ -29,6 +29,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Authentication** | Checks a mail system runs to test whether a message really came from the domain it names. | 3 |
 | **Automation bias** | Trusting an answer because your agent produced it. | 6 |
 | **Batch run** | One sitting in which the agent reads many emails in a row. | 7 |
+| **Bec** | `bec`, business email compromise. A trusted person's name used to get money, gift cards, a payroll change, data or a quiet reply. Usually no link and no file. Malicious. | 2 |
 | **Blocklist** | A list of link hosts your organization has already judged bad. | 4 |
 | **Bounded loop** | A loop with a hard limit on how many times it may repeat. It always ends. | 5 |
 | **Business email compromise** | A message that imitates a manager or a supplier to get money moved. | 2 |
@@ -38,11 +39,12 @@ You don't read this page from top to bottom. You come here when a word stops you
 | Term | What it means | First used |
 |---|---|---|
 | **Call** | Running a function by writing its name with parentheses after it. | 0 |
-| **Category** | The kind of email the model reports. There are seven: credential phish (steals a password), business email compromise (imitates a manager or supplier), vendor fraud (a fake invoice or bank change), malware delivery (a harmful file), spam (bulk junk mail), legit external (a real outside message), legit internal (a real inside message). | 2 |
+| **Category** | The kind of email the model reports. Seven are allowed, and each one belongs to exactly one verdict. They are listed under their own names below, and in `corpus/spec/categories.json`. | 2 |
 | **Cell** | One block in a notebook that you run on its own. | Start |
 | **Confidence** | A number from 0 to 1 saying how sure the model is of its answer. | 2 |
 | **Confidence threshold** | A floor you set. Any answer below it goes to a person. | 6 |
 | **Counter** | A variable that holds a running total and goes up by one each time around a loop. | 0 |
+| **Credential phish** | `credential_phish`. A link or sign-in request meant to capture a password, dressed as a vendor, a system or a share notice. Malicious. | 2 |
 | **Data exposure** | Putting information somewhere it should not go. | 6 |
 | **Data minimization** | Sending only the facts a sound judgment needs, and nothing more. | 3 |
 | **Data, not instructions** | Treating text inside an email as evidence to read, never as an order to follow. | 6 |
@@ -92,6 +94,8 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Kernel** | The part of the notebook server that runs your code. Restarting it clears most stuck cells. | Start |
 | **Known-good domain** | A domain your organization owns or has already cleared. | 3 |
 | **Lab** | The graded build work each week. Each one submits three things. | Start |
+| **Legit external** | `legit_external`. Real mail from vendors, customers, banks and lists you subscribed to, including the ones that look alarming. Benign. | 2 |
+| **Legit internal** | `legit_internal`. Real mail from inside the organization: people, the help desk, the ticket system, the gateway digest. Benign. | 2 |
 | **Link host** | The site name inside a web address. It says which server you would reach. | 3 |
 | **List** | A collection that holds items in order. You read one by its position. | 0 |
 | **Log** | A record that something happened. Most log lines are ordinary. | 1 |
@@ -103,6 +107,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 |---|---|---|
 | **Malformed output** | An answer that does not match the shape you asked for. | 2 |
 | **Malicious and benign** | The two verdicts this course grades. Malicious means the message is an attack. Benign means it is safe. | 2 |
+| **Malware delivery** | `malware_delivery`. A file the gateway removed for a blocked extension or a macro, or a link to a download host. Malicious. | 2 |
 | **Model** | The AI service your code sends text to. It reads the text and writes an answer back. | 1 |
 | **Module** | One part of the course, listed under Modules in the left menu. This course has the Orientation Module, Student Resources, Q and A, and one module per week. | Start |
 | **Network** | The equipment that connects the organization's computers to each other and the internet. | 1 |
@@ -140,6 +145,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Sender reputation** | What is already known about a sender from past reports. Good, bad, or never seen. | 4 |
 | **Self-check** | A short graded quiz each week, worth 12 points, that checks whether the reading landed. | Start |
 | **Sidebar** | A short ungraded practice notebook on an everyday topic. | Start |
+| **Spam** | `spam`. Unsolicited commercial mail that asks for nothing but a click or a reply. Benign, because the team closes it and blocks nothing. A bulk message that asks for a password, a payment change, gift cards or data is not spam. | 2 |
 | **SPF** | Sender Policy Framework. It checks whether the sending server is one the sender's domain allows. | 3 |
 | **Step** | One pass through the loop: one look, one decision, one request. | 5 |
 | **Step cap** | The largest number of steps a run may take before it has to answer. | 5 |
@@ -167,6 +173,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **try and except** | Code that runs a line that might fail and says what to do if it does. | 0 |
 | **User** | A person with an account at the organization. | 1 |
 | **Variable** | A name that holds a value. You can change what it holds. | 0 |
+| **Vendor fraud** | `vendor_fraud`. A supplier's invoice or thread, real or imitated, that sends payment to new bank details. Malicious. The difference from `bec` is who is imitated: a supplier, not a person you work with. | 2 |
 | **Verdict** | The agent's judgment on one email: malicious or benign. | 2 |
 | **Week** | One numbered part of the term. This course has seven teaching weeks, an exam week, and an optional week 0 on-ramp. | Start |
 | **while loop** | Code that repeats until a stop rule is met. Always give it a cap. | 0 |

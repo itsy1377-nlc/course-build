@@ -32,13 +32,36 @@ This week your agent asks for four names.
 
 A **verdict** is the agent's judgment on one email. Two values are allowed and nothing else. That's what lets your code group forty answers into two piles.
 
-A **category** is the kind of email the agent thinks this is. The seven kinds come from one file in the course corpus. In week 7 you score your agent against that same list. So the words you ask for now are the words you're measured on later.
+A **category** is the kind of email the agent thinks this is. Seven are allowed. The next section lists them.
 
 **Confidence** is the model's own report of how sure it is. It isn't a fact about the email, and a high number on a wrong answer is still wrong. Week 2 uses 0.9 as a reporting limit so you can see the contract reject and repair a number.
 
 `0.9` is a reporting limit in this lab. It doesn't make the model less sure or more accurate. When `0.95` is rejected and `0.85` comes back, the model corrected its report to fit the contract. It didn't prove that its judgment changed.
 
 An **indicator** is one short fact behind the verdict, such as a web address that imitates a real one. Ask for a few of these, not an essay. They're the part a person can check.
+:::
+
+::: section | The seven categories
+The list ships with the course in `corpus/spec/categories.json`. Week 7 scores your agent against this same list, so the words you ask for now are the words you're measured on later.
+
+| Category | Verdict | What it means |
+|---|---|---|
+| `credential_phish` | malicious | A link or sign-in request meant to capture a password, dressed as a vendor, a system or a share notice |
+| `bec` | malicious | A trusted person's name used to get money, gift cards, a payroll change, data or a quiet reply. Usually no link and no file |
+| `vendor_fraud` | malicious | A supplier's invoice or thread, real or imitated, that sends payment to new bank details |
+| `malware_delivery` | malicious | A file the gateway removed for a blocked extension or a macro, or a link to a download host |
+| `spam` | benign | Unsolicited commercial mail that asks for nothing but a click or a reply |
+| `legit_external` | benign | Real mail from vendors, customers, banks and lists you subscribed to, including the ones that look alarming |
+| `legit_internal` | benign | Real mail from inside the organization: people, the help desk, the ticket system, the gateway digest |
+
+Every category belongs to exactly one verdict, so naming the category settles the verdict too.
+
+Two boundaries catch people.
+
+**Spam is benign.** It asks for nothing but a click, so the team closes it and blocks nothing. A bulk message that asks for a password, a payment change, gift cards or data isn't spam. It's whichever malicious category the ask implies.
+
+**`bec` and `vendor_fraud` both chase money.** The difference is who is being imitated. A person you work with is `bec`. A supplier's invoice or thread is `vendor_fraud`.
+
 :::
 
 ::: section | Text that looks like a dictionary is not one

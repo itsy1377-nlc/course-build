@@ -414,6 +414,54 @@ claim (now eight) and the quiz's stale section label.
 Codex's remaining items are course-level, not week 2: screenshot mechanics before
 week 1, and category boundaries before week 7 scores against `enums.json`.
 
+### The seven categories: they were never missing, only unreachable
+
+The blind run logged "what separates the seven categories" as taught nowhere,
+and said the glossary had no entry for `bec` or `vendor_fraud`. Both halves
+needed checking and one of them was wrong.
+
+**The definitions already existed, and already shipped.**
+`corpus/spec/categories.json` carries a one-line definition for each of the
+seven, each mapped to its verdict, plus a `spam_rule` explaining why spam is
+benign. It is listed in `student_files`, it is on the notebook server, and it
+returns HTTP 200. **Not one student-facing page, notebook or video has ever
+named it.** `course.yaml` is the only file in the course that mentions it.
+
+**The glossary did define them**, on one row under Category, run together in a
+single sentence. So the finding as written was wrong: they were defined. But a
+student who has just been handed `bec` by their own agent searches the glossary
+for `bec`, and that search fails. Defined and unfindable is close enough to
+undefined that the student's conclusion was right even though the premise was
+not.
+
+Fixed in three places:
+
+- Week 2 reading part 1 gains **The seven categories**, its own section: all
+  seven with their verdicts and what each means, sourced from
+  `categories.json` and naming that file so a student can go read it. Plus the
+  two boundaries that actually catch people. Spam is benign because it asks for
+  nothing but a click, and a bulk message that asks for a password or a payment
+  change is not spam but whichever malicious category the ask implies. And
+  `bec` and `vendor_fraud` both chase money, so the difference is who is
+  imitated: a person you work with, or a supplier's invoice.
+- The glossary gains **seven findable rows**, each keyed on the enum spelling a
+  student would search, in A-to-Z order. The Category row now points at them
+  instead of running them together.
+- The blind student's own hard case is now answerable: an executive-impersonation
+  payment request is `bec`; the same money chased through a supplier's invoice
+  is `vendor_fraud`.
+
+**The prompt was deliberately left alone.** Adding definitions to
+`CLASSIFY_INSTRUCTIONS` would probably improve the model's category accuracy,
+which would move the measured retry split and undercut the walkthrough's best
+moment, where an allowed category is wrong and the schema passes it anyway. The
+gap was the student not knowing, not the model.
+
+The builder caught a real structural error on the way: the new table sat in the
+same `:::` block as the four-field table, and two tables in one block would
+share a caption. That is the same defect class as the duplicated headings the
+blind run found, and this time the gate refused the push.
+
 ### Struck: a fifth false finding from my own harness
 
 The blind run reported that both week 2 assigned sources appear as bare domains
