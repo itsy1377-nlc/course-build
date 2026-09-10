@@ -35,7 +35,11 @@ Eleven terms carry most of the weight.
 - An **allowlist** is a list of senders and link hosts the organization has
   already cleared. A blocklist is the matching list of ones it has judged bad.
   Neither list changes an authentication result.
-- The **extractor** is the student's code that pulls facts out of an email
+- The **parser** is the student's code that pulls facts out of an email.
+  Amended 2026-09-10: this document called it the *extractor*, a word no
+  page, notebook or glossary entry a student ever sees. `w3-content.md`
+  calls it a parser and every notebook ships `parse_eml`. The four exam
+  items held as approved copy are now released to say *parser* too
   before the model sees them. Students build it in week 3.
 - The **confidence floor** is the score below which the agent hands the case to
   a person. The course sets it at 0.7.
@@ -345,14 +349,14 @@ then stops. Which of the three is an agentic workflow?
 said the model is a judgment layer over facts you pull out first. Which part of
 your agent changes the most?
 
-- A. The extractor that reads headers, senders and links. **(correct)**
+- A. The parser that reads headers, senders and links. **(correct)**
 - B. The four-key output schema.
 - C. The four-step cap on the loop.
 - D. The confidence floor of 0.7.
 
 **Feedback.**
 
-- A. Right. A log line has no header, no sender and no link. The extractor is
+- A. Right. A log line has no header, no sender and no link. The parser is
   rebuilt first.
 - B. The four keys still fit. A log line can still carry a verdict, a category, a
   confidence and indicators.
@@ -364,7 +368,7 @@ your agent changes the most?
 
 ### Sample D, item 17. CLO1 at the analysis level. Hard.
 
-**Stem.** Email 054 arrives from `quotes@slatemoorsupply.example`. Your extractor
+**Stem.** Email 054 arrives from `quotes@slatemoorsupply.example`. Your parser
 reports these lines.
 
 ```
@@ -456,7 +460,7 @@ Which guardrail is meant to stop your agent from copying it?
 
 ### Sample G, item 16. CLO1 at the recognition level. Medium.
 
-**Stem.** Email 055 is from `b.onwuka@pellgrave.example`. Your extractor reports
+**Stem.** Email 055 is from `b.onwuka@pellgrave.example`. Your parser reports
 no `Authentication-Results` header, two Received hops, and no external flag. What
 is the correct read?
 
@@ -480,7 +484,7 @@ is the correct read?
 
 ### Sample H, item 28. CLO4 at the analysis level. Hard.
 
-**Stem.** Email 048 had a file removed at the gateway. Your extractor reports it
+**Stem.** Email 048 had a file removed at the gateway. Your parser reports it
 as a fact.
 
 ```

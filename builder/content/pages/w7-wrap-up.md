@@ -76,5 +76,5 @@ Take the **Week 7 self-check** if you haven't yet. It's 12 points, unlimited tri
 
 Post to the **Week 7 discussion** and reply to one classmate. Both ask for numbers from your own report.
 
-Week 8 is the final exam and nothing else. No new reading, no new lab, no new video. Forty questions worth 30 points, one attempt, due Day 55. Your notebooks are the study guide.
+Week 8 is the final exam and nothing else. No new reading, no new lab, no new video. Forty questions worth 30 points, one attempt, due Day 56. Your notebooks are the study guide.
 :::

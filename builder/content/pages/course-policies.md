@@ -75,13 +75,15 @@ A token is a chunk of text, roughly four characters. It's the unit the AI model 
 
 Your instructor sets your budget. Every notebook shows a running count.
 
-If you run out, message your instructor through the Canvas Inbox or your ACES student email and ask for a top-up. Running out costs you no points. Waiting for a top-up costs no late penalty.
+If you run out, message your instructor through the Canvas Inbox or your ACES email and ask for a top-up. Running out costs you no points. Waiting for a top-up costs no late penalty.
 :::
 
 ::: section | Late work and resubmission
 Your instructor states the late work and resubmission policy in the first announcement of the term. Read it before your first lab is due.
 
-One thing is settled now. Nothing in this course locks except the final exam, so you can still open and submit any week's work. The exam opens on the Monday of week 8 and closes when it's due.
+One thing is settled. Nothing in this course locks except the final exam, so you can still open and submit any week's work. It opens on the Monday of week 8 and closes when it's due.
+
+**The exam gets one attempt, and a technical failure is not one of them.** If your browser closes or your connection drops, email your instructor and say what happened. One extra attempt is granted.
 :::
 
 ::: callout warning | Protect your privacy

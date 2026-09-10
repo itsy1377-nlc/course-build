@@ -48,7 +48,9 @@ Seven weeks is a narrow slice. Knowing where its edges are is part of knowing wh
 :::
 
 ::: next
-**Keep your files.** Your work sits on the notebook server until the term closes. Before the last day, download the seven export files and your notebooks, and put them somewhere you control. They're yours.
+**Keep your files, and don't wait.** Your work isn't on a college server. It's in the browser you used, on the computer you used, exactly as **Using the notebook server** has said since week 0. Clear your history, switch browsers or sit at another machine and it's gone.
+
+So download the seven export files and your notebooks now, and put them somewhere you control. They're yours, and nobody else is holding a copy.
 
 They're also evidence. If someone asks whether you've used AI on real work, hand them `week7_triage_report.txt`. It holds twenty judgments and the score behind them.
 

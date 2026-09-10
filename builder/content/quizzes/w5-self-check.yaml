@@ -122,17 +122,18 @@ questions:
         correct: true
         feedback: >-
           Correct. The rule sits in your code, so every run ends for a reason
-          you can name. The measurement is why. With the rule in code, runs
-          ended for the right reason 136 times in 138. Week 5 reading, the
-          stop condition is a rule in your code.
+          you can name. The measurement is why: with the rule in code, nearly
+          every run ended for the right reason. Week 5 reading, the stop
+          condition is a rule in your code.
       - text: >-
           LOOP_INSTRUCTIONS tells the model to answer once it has enough. So
           the model ends its own run.
         correct: false
         feedback: >-
           No. The model does read those instructions. But a model left to
-          decide when to stop got the whole path right only 25 times in 60.
-          Week 5 reading, the stop condition is a rule in your code.
+          decide when to stop got the whole path right in well under half of
+          those runs. Week 5 reading, the stop condition is a rule in your
+          code.
       - text: >-
           MAX_STEPS is set to 4, so every run ends after four steps.
         correct: false

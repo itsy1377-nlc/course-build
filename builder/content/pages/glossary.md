@@ -49,7 +49,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Data minimization** | Sending only the facts a sound judgment needs, and nothing more. | 3 |
 | **Data, not instructions** | Treating text inside an email as evidence to read, never as an order to follow. | 6 |
 | **Default** | A value a function uses for a parameter when you do not supply one. | 0 |
-| **Delimiter** | A marker placed before and after a block of text to show where it starts and ends. The pair around your email body is the fence. Your code takes both markers out of the body before it uses the body, and a message that arrived carrying one escalates with the reason `fence_broken`. | 6 |
+| **Delimiter** | A marker placed before and after a block of text to show where it starts and ends. The pair around your email body is the fence. Your code strips both from the body before using it, and a message that arrived carrying one escalates with the reason `fence_broken`. | 6 |
 | **Dictionary** | A collection that holds values by name. You read one by giving its key. | Start |
 | **Disclosure** | A short note saying where and how you used an AI tool on your work. | Start |
 | **Display name** | The name shown beside an address in your mail app. Anyone can set it to anything. | 3 |
@@ -161,6 +161,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | Term | What it means | First used |
 |---|---|---|
 | **Temperature** | A setting on the model call. A low number makes answers steadier. A high one makes them vary. | 1 |
+| **temperror** | An authentication result meaning the check couldn't finish. Not a pass, not a fail. | 3 |
 | **Ticket** | The record a team opens to track one piece of work to its close. | 1 |
 | **TODO cell** | A cell with a comment marking the lines you write. | Start |
 | **Token** | A chunk of text, roughly four characters. The model is measured and capped in tokens. | Start |

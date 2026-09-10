@@ -1,9 +1,55 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-10, week 7 rebuilt,
-measured, pushed and verified, and the notebook site redeployed. **Weeks 1 to 7
-are done.** The final exam and week 8 are next.
+this file at every stopping point. Last update: 2026-09-10, week 8 and the
+final exam audited and repaired. **Weeks 1 to 7 are done and pushed. Week 8 is
+repaired in the repository and not pushed.**
+
+## Week 8 and the exam are repaired, 2026-09-10, not pushed
+
+**Every one of the forty exam keys was audited against the corpus.** Four
+readers, ten items each. **0 wrong keys.** Sixteen items flagged for feedback,
+teaching or stem defects, all repaired. Full record in `docs/lab-fix-log.md`.
+
+**Read this before touching the exam: item 24 is not a wrong key.** Five expert
+reviews and the blind student run all say it keys a payroll diversion "close
+it" against playbook rule 5. They are wrong, and I repeated it twice before
+checking. Email 050 is the vendor's confirmation of a change the reporter made
+in the portal; rule 5 governs a *vendor's* bank details. The corpus record
+argues it out in full. Do not "fix" it.
+
+**Two items graded what the course never taught.** `temperror` is now taught in
+`w3-content.md` where the exam already points, plus a glossary entry. Item 23
+was **replaced** rather than teaching a twelfth playbook rule, because the
+playbook is a file students read as a tool result in weeks 3 to 7 and editing
+it would move every week's measured behaviour.
+
+**Item 33 described a run the loop cannot produce** — the same arithmetic
+4b27db7 stripped out of week 5 on 2026-09-09, which the exam was never swept
+for. Simulating all 81 four-step sequences against the shipped `out_of_room()`
+showed the audit's own proposed replacement was also wrong. The stem now names
+four calls to one tool with two never tried.
+
+**Three student-protection fixes:** the retake policy the blueprint decided and
+neither the exam nor the syllabus stated; `w7-wrap-up.md` saying the final is
+due Day 55 against the schedule's Day 56; and `w8-wrap-up.md` telling students
+their work "sits on the notebook server", when it is in the browser on that
+computer and they are being told to hand those files to an employer.
+
+**New gate: `lab/tools/check_exam.py`.** Run against the pre-repair file it
+reports 9 problems. It refuses to pass on fewer than 30 scored items.
+
+**Two things that look like defects and are not.** The exam's 25 outcome tags
+post nothing to Canvas because Classic Quizzes has no per-question outcome
+field — the rubrics carry the primary evidence, and the exam header now says
+so. And there are no dates anywhere: 23 assignments, 0 due dates, no course
+start or end. That is a scheduling decision for whoever runs the section.
+
+**Left:** the Canvas push for week 8. Also queued — `exam-parts/` is stale and
+still says "extractor"; the `artifact:` field is unvalidated free text in four
+formats; `check_points` and `check_quiz_points` examine zero items; and
+prefixing exam question names with their CLO, which `populate_canvas.py` and
+`qti.py` already intend.
 
 ## Week 7 is rebuilt and measured, 2026-09-10, not yet pushed
 

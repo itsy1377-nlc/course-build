@@ -25,7 +25,7 @@ Your facts block makes the sender's domain, the mail-check results and the link 
 
 So how do you tell whether the facts reached the answer? Read what the model says it used. Every answer carries an `indicators` list, and that list is the model showing its work.
 
-Measured on these six emails, the ungrounded run names none of those header facts on five of the six. It has none to name. The grounded run names the SPF result, the link host, the sender's domain. The verdict usually stays put, and the indicators are what you report.
+Measured on these six emails, the ungrounded run names none of those header facts on five of the six. It has none to name. The grounded run names the SPF result, the link host and the sender's domain. The verdict usually stays put; the indicators are what changes.
 :::
 
 ::: section | The email that does not settle this week
@@ -87,7 +87,7 @@ Authentication-Results: mx.pellgrave.example;
 
 That one claims your own help desk and fails all three. Both results are facts, and neither is a verdict.
 
-One case has no results at all. Pellgrave's gateway checks what arrives from outside, so mail sent inside the company carries no such header. Missing isn't failed.
+Two more states answer nothing. Internal mail carries no such header, because the gateway checks what arrives from outside; missing isn't failed. And `dkim=temperror` means the check couldn't finish. Not a fail either.
 :::
 
 ::: section | The name over the address
@@ -122,7 +122,7 @@ The parser hands back far more than the table above. Ask two questions of anythi
 1. Would a sound verdict change if this were missing?
 2. What does it cost the company if this leaves the building?
 
-Plenty of values fail both. The routing hops, the whole raw header list, the message id, the address of the colleague who reported it. None of those moves a verdict, and each is a real detail about a real person.
+Plenty of values fail both. The routing hops, the raw header list, the message id, the address of the colleague who reported it. None moves a verdict, and each is a real detail about a real person.
 
 Your written answer names one fact you left out and why. Choose it while you write the code, not afterwards.
 :::
@@ -130,7 +130,7 @@ Your written answer names one fact you left out and why. Choose it while you wri
 ::: section | The same move on a log line
 Nothing on this page is really about email.
 
-A log line, an alert, a ticket or a machine notice arrives with more fields than any one judgment needs. You drop the fields nobody needs, put the rest in one steady shape, and send that.
+A log line, an alert, a ticket or a machine notice arrives with more fields than one judgment needs. You drop what nobody needs, put the rest in one steady shape, and send that.
 
 Log work named those two steps long before anyone sent text to a model. Dropping unneeded fields is event reduction, and making each field consistent is normalization.
 

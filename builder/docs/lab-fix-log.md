@@ -25,8 +25,141 @@ week that has been measured.
 | **5** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the cap now fires at its real value of four, with the model taken out |
 | **6** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the fence changes no verdict in 176 runs; the real defect was the guarded prompt dropping week 3's grounding |
 | **7** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the schema check crashed on the week's own answers, and a crashed row was scored as a false negative |
-| exam | not started | — | — | — | Q24 keys a payroll diversion "close it" |
+| **exam** | **fixed** | **fixed** | — | not pushed | **audited** — all 40 keys checked against the corpus, 0 wrong; Q24 was never a wrong key |
 
+
+---
+
+## Week 8 and the final exam — applied 2026-09-10
+
+**Every one of the forty keys was audited against the corpus**, four readers
+over ten items each, checking the keyed answer against the release ground
+truth, `corpus/data/playbook.md` and the shipped code; whether any distractor
+marked wrong is true; and whether the deciding fact is taught anywhere a
+student can reach.
+
+**0 of 40 keys are wrong.** 24 items clean, 16 flagged, none for a key.
+
+### The finding that corrected me
+
+Five expert reviews and a blind student run all reported that item 24 keys a
+payroll diversion "close it" against playbook rule 5. **It does not, and I
+repeated it twice before checking.** Email 050 is the payroll vendor's
+confirmation of a change the reporter made in the portal. Rule 5 governs *a
+vendor's* bank details; Fenwright's did not change. The corpus record
+anticipates the objection in writing: *"a student who escalates a confirmation
+the reporter caused has read the playbook's callback rule onto a message that
+asks for nothing."* Acting on the reviews would have broken a correct key on a
+graded exam.
+
+Codex then corrected me twice more on the same item. The change was **three
+minutes** earlier, not three days; and *"the reporter made it himself"* lives
+only in instructor-side ground truth, so it cannot justify a graded answer.
+What actually failed the blind student was the **feedback**, which invented a
+rule — *"Escalation is for a case the facts leave open"* — and cited a week 6
+reading that states no such thing. Item 25 carried the same invented rule.
+Both rewritten from facts the stem shows.
+
+### Item 33 described a run the loop cannot produce
+
+Stem: *"An email arrives that no tool settles. Every check comes back unknown."*
+With three tools under `MAX_STEPS = 4` that run ends at three steps with
+`tools_exhausted`. **This is the arithmetic commit 4b27db7 stripped out of the
+week 5 reading, wrap-up and self-check on 2026-09-09 — the exam was not in that
+sweep**, so item 33 contradicted item 31 on the same paper.
+
+The audit proposed *"a run that keeps asking for a tool it already ran"*. Codex
+said that is under-specified, and simulating all 81 four-step sequences against
+the shipped `out_of_room()` proved it: 45 give `step_cap` and 36 give
+`tools_exhausted`, and `[urls, urls, sender, recipient]` is a repeat that still
+ends `tools_exhausted`. **The audit's fix would have shipped a second wrong
+item.** The stem now names four calls to one tool with two never tried, which
+is `step_cap` every time.
+
+### Two items graded what the course never taught
+
+`temperror` appeared in exactly two files under `content/` and `lab/` — the
+exam and its source — while all four of its feedbacks cited a week 3 section
+covering only pass, fail, none and missing. **Taught** rather than replaced: one
+sentence in `w3-content.md` where the exam already points, plus a glossary
+entry, both funded by trims. Its keyed feedback also said *"An error is not a
+result"*, which is false — `temperror` is formally a result code — and now says
+so correctly.
+
+Item 23's key required *"an authentication failure on a trusted sender
+escalates for out-of-band verification"*, a rule in none of the playbook's
+eleven, on no page, and not among the five escalation reasons week 6's code can
+record. **Replaced rather than teaching a twelfth playbook rule**, because the
+playbook is a file students read as a tool result in weeks 3 to 7 and changing
+it would ripple through every week's measured behaviour. The replacement asks
+what is wrong with an agent that read one failed check as a verdict — squarely
+CLO2's *"validate the model's output before trusting it"* — and needs no
+untaught rule. It keeps block-053, which item 29 shares.
+
+### Nine more feedback repairs
+
+Item 26's feedback contradicted the week 2 reading directly. Item 27 said a
+planted block passes the schema check, which `schema_errors()` rejects twice
+over. Item 32 quoted two figures the week 5 reading deliberately no longer
+carries — **and the week 5 self-check carried the same two**, fixed in the same
+pass. Items 22, 34 and 36 named the wrong deciding fact or a rule that does not
+exist. Item 9's stem supplied a reader test that excluded its own key.
+
+### The extractor hold, closed properly
+
+Four items called the student's parser an "extractor", a word in no page,
+notebook or glossary. The file documented the hold: *"These four cannot,
+because they are approved copy."* `exam-blueprint.md` section 1 is now amended
+with a dated note, and all four are released. The exam uses one word.
+
+### Three student-protection defects
+
+- **The retake policy did not exist.** `exam-blueprint.md:709` decided it and
+  said *"That path is stated in the quiz directions and in the syllabus."* It
+  was in neither. Now in both.
+- **`w7-wrap-up.md` said the final is due Day 55**; the schedule page and the
+  week 8 page say Day 56.
+- **`w8-wrap-up.md` told students their work "sits on the notebook server until
+  the term closes."** `using-the-notebook-server.md` has said since week 0 that
+  it is in the browser, on that computer. A student who believed the wrap-up
+  loses the seven export files the same page tells them to show an employer.
+
+### The week 8 page was pricing a different exam
+
+*"Questions | 30"* two rows above *"Points | 30, across 40 questions"*. The time
+callout was a verbatim copy of the pre-resize blueprint, so ten items were
+unbudgeted. Recomputed at the callout's own per-item rates: 27 items at 1.53
+minutes and 13 at 3.0, plus 12 to read the blocks and 10 to check, is **102
+minutes, not 90**. Both the page and the exam description now say so. The claim
+*"The questions ask what your own runs showed you"* — which the blind run
+disproved — is replaced with what the exam does.
+
+### What nothing checked, and now does
+
+`lab/tools/check_exam.py`. One key per item, every option carrying feedback,
+every item naming a week or the playbook, points arithmetic, every named email
+present in a release key, the header's own counts against the file, and a
+watchlist of terms that must not be graded unless a student can look them up.
+It refuses to pass on fewer than 30 scored items.
+
+**Run against the pre-repair file it reports 9 problems**, including the header
+drift and four items using "extractor". That is the check it should have been
+possible to run this morning.
+
+### Not fixed, and why
+
+- **The 25 outcome tags post nothing to Canvas**, and that is correct rather
+  than broken: Classic Quizzes has no per-question outcome field. The header now
+  says so, and records that the rubrics carry the primary evidence for all six
+  CLOs. Prefixing question names with the CLO, which `populate_canvas.py` and
+  `qti.py` already intend, is left as work.
+- **No dates anywhere.** 23 assignments, 0 with a due date, no course start or
+  end. That is a scheduling decision, not a defect, and inventing dates would be
+  worse than leaving them.
+- **`exam-parts/` is stale** and still says "extractor". It is documented as an
+  authoring source that has diverged; reconciling or retiring it is queued.
+- The `artifact:` field is unvalidated free text in four incompatible formats.
+- `check_points` and `check_quiz_points` still examine zero items.
 
 ---
 
