@@ -23,10 +23,108 @@ week that has been measured.
 | **3** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 3.2 reworded to indicators, passes a pre-registered 6/6 |
 | **4** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 4.3 was confounded; a matched-pair cell demonstrates it 8/8, three runs |
 | **5** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the cap now fires at its real value of four, with the model taken out |
-| 6 | not started | not started | — | — | verdict call has no email body |
+| **6** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the fence changes no verdict in 176 runs; the real defect was the guarded prompt dropping week 3's grounding |
 | 7 | not started | not started | — | — | schema never validated |
 | exam | not started | — | — | — | Q24 keys a payroll diversion "close it" |
 
+
+---
+
+## Week 6 — applied 2026-09-10
+
+Objective **6.2, "Compare your agent's verdict on the injected email with its
+clean twin"**, was the at-risk one. It could not be answered: the two verdicts
+were identical 8 of 8 in both columns, deterministically, because the call that
+writes the undefended verdict had never seen the email.
+
+### The measurement
+
+Eleven probes, about 1,400 live calls on the shipped stack, pre-registered in
+`week6-measurement/prereg-claude.md` with seven dated amendments. Numbers in
+`week6-measurement/README.md`.
+
+  - **The week as it ships.** 88 runs. The guard changed the verdict on
+    payload-FREE emails in 65% of runs and on payload-carrying ones in 37.5%.
+    The fact check found 0 problems. No confidence landed under the 0.7 floor;
+    every one was 0.80, 0.85 or 0.95. The token cap's number peaked at 289
+    against 4,000.
+  - **The body put back in the verdict call.** Injected 013 comes back benign
+    8 of 8 and injection-free 024 malicious 8 of 8. Both are ground-truth
+    malicious, so the paragraph turns a right verdict into a wrong one.
+  - **Holding the recipient still.** 32 runs. The twins go to different
+    mailboxes with different `lookup_recipient` records. Give both the same
+    address, either address, and nothing changes: 8 of 8 both ways.
+  - **The confirmatory 2x2, 144 runs.** Both week 3's classification
+    instructions and its known-good host block are needed; neither works
+    alone. A length-matched neutral placebo in the same position restores
+    nothing, so it is the block's content.
+  - **The arm nobody predicted.** Add the attacker's own domain to the
+    known-good list and the verdict goes back to benign 6 of 8. The model reads
+    that list as evidence.
+  - **The repaired week, twice.** Two runs of 88. Every email 8 of 8 identical
+    in both arms, both times. **0 verdict changes.** Accuracy 40 of 88 in both
+    arms. So the fence changes no verdict at all, and the earlier reading that
+    the guardrails cost 23 accuracy points was entirely the dropped grounding.
+
+### The method error, because it is the transferable part
+
+Fifteen teardown arms against the broken prompt all returned 0 of 8, and I read
+that as fifteen candidates cleared. It means nothing: when several elements are
+each independently sufficient, removing any one leaves the rest doing the work.
+Arm J exposed it -- adding the schema block to the working prompt cost half the
+effect while removing it from the broken one cost nothing. Building **up** from
+the prompt that works found the cause on the first pass.
+
+Four of my registered hypotheses were refuted by their own controls:
+`CLASSIFY_INSTRUCTIONS`, `LOOP_INSTRUCTIONS`, the schema block, and the
+teardown design itself.
+
+### What Codex caught, and it was the most valuable hour
+
+**My fence repair was a fail-open and was withdrawn.** `fence_check()` finds
+the fence with `rfind()`, so an attacker who writes `BODY_END` into the body
+breaks the fence and the check still reports it clean. The obvious fix is to
+find the first marker instead -- and `guarded_triage()` set
+`prompt_text = loop_prompt(parsed)` whenever the fence check failed, so an
+honest check would have handed the attacker a switch to turn the guard off.
+Reproduced at zero model calls before it was believed.
+
+What ships instead: `strip_markers()` takes both markers out of the body once,
+before the body is used anywhere, and a message that arrived carrying one
+escalates as `fence_broken`. Verified end to end after the edit.
+
+Codex also established that the 72-point CLO4 criterion asks for
+unguarded-against-guarded numbers and never for the twin comparison objective
+6.2 names; that "every guard-caused move is a false negative" belongs to the
+body-blind baseline and not to the repaired week; and that `schema_errors()` is
+not an information-flow control, because `indicators` accepts any string.
+
+### What changed
+
+| Where | What |
+|---|---|
+| `run_triage()` | the closing call carries the body exactly once, in both arms, by a membership test |
+| `build_guarded_prompt(grounding, body)` | takes week 3's grounding, through a new pre-written `grounding_text()` |
+| `strip_markers()`, `fence_check()` | markers out of the body once, first-marker fence, `markers_in_body` recorded |
+| `guarded_triage()` | fails closed as `fence_broken`, calls `schema_errors()`, records `schema_problems` |
+| `compare_guarded()` | records both confidences and the undefended token cost, read before `start_run()` zeroes them |
+| 20 content and doc files | 163 edits: every retracted claim, on every surface that carried it |
+| both videos | narration rebuilt on a re-recorded run; 29 false claims removed |
+| `content/video/runs/w6.json` | re-recorded on the shipped stack. The old one was ollama `granite4.2:3b`, retired 2026-09-07 |
+
+### Verified, not assumed
+
+15 student notebooks 0 failures; week 6 and week 7 solutions clean; the chain
+holds; 74 pages inside grade, length and warmth; 14 videos with nothing stale;
+Canvas 39 objects and `--verify` 0 problems.
+
+### Not fixed, on purpose
+
+`decisive_stop()`, `internal_sender` and `build_facts()` are wrong for real
+tradecraft, shared with weeks 4 and 5 which are pushed, and graded in four exam
+items. The token cap stays on written tokens: a total-token cap would have to
+sit between about 10,400 and 60,200 and it changes week 7 too. No corpus email
+was re-rendered.
 
 ---
 

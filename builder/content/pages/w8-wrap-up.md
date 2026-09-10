@@ -9,10 +9,10 @@ You built one agent. Each week added one capability to it, and nothing was throw
 |---|---|
 | 1 | Your code sends text to a model and reads the answer back |
 | 2 | The answer arrives in a fixed shape, your code checks it, and asks again when the shape is wrong |
-| 3 | The model judges facts you pulled out of the email, not the raw message |
-| 4 | The model may ask for three lookups, and your code runs them |
+| 3 | Facts you pulled out go in beside the body, and the answer names the ones it used |
+| 4 | The model may ask for one of three lookups, and your code runs it |
 | 5 | The agent picks its own next step, inside a cap, and stops when it has enough |
-| 6 | Four guardrails stand between a bad answer and a bad action |
+| 6 | Four guardrails wrap the model, and you measured which of them moved anything |
 | 7 | Every judgment becomes a six-line note, and twenty of them are scored |
 
 What you finished with reads a reported email and checks the facts in it. It decides what to check next. It writes a note another analyst can act on, and it carries a number saying how often it was right.
@@ -54,7 +54,7 @@ They're also evidence. If someone asks whether you've used AI on real work, hand
 
 **Where this goes in a security job.** A first analyst role is mostly four jobs. Read reported mail. Check what a header really says. Write the note that goes in the ticket. Know which cases a person has to see. You did all four this term. The tools change from one employer to the next. Those four questions don't.
 
-Four habits are worth keeping. Pull the facts before you judge. Check the shape of an answer before you read it. Ask who verified a claim before you act on it. And put a number on how often you're right.
+Five habits are worth keeping. Pull the facts before you judge. Check the shape of an answer before you read it. Ask who verified a claim before you act on it. Tell a control that works from one that only reads well. And put a number on how often you're right.
 
 Thank you for the term.
 :::

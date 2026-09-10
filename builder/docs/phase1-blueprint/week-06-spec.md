@@ -94,7 +94,7 @@ through 5.
 
 | TODO cell | Function | Lines the student fills | What it does |
 |---|---|---|---|
-| TODO 1 | `build_guarded_prompt(facts_text, body)` | 6 to 8 | Puts the rules first, wraps the body between the two markers, puts the required answer keys last, and keeps any hidden HTML text on the facts side |
+| TODO 1 | `build_guarded_prompt(grounding, body)` | 6 to 8 | Puts the rules first, then week 3's grounding whole, then the body between the two markers, then the required answer keys. Measured 2026-09-09: a guarded prompt without the grounding calls the injection-free twin benign 8 of 8 |
 | TODO 2 | `check_against_facts(result, facts)` | 6 to 8 | Returns a list of plain-language problems where the answer contradicts the extracted facts, and an empty list where it does not |
 
 That is 12 to 16 written lines. Blank lines and comments are not counted. A

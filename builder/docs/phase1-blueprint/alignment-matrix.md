@@ -75,7 +75,7 @@ matrix implements:
 | CLO1 | Extract the header, authentication, sender, and URL facts an AI model needs to judge a suspicious email. | Apply | CLO1: Extract email triage facts | T1085, Identify potential threats to network resources | T1084, Identify anomalous network activity; S0600, Skill in collecting relevant data from a variety of sources; S0712, Skill in evaluating data source quality | 3 (primary); reinforced in 4 and 6 | Week 3 lab: the exported fact set for one email, with the grounded and ungrounded verdicts for the same email side by side | Week 3 rubric, criterion 2: Fact extraction (primary), and the only Outcome-linked criterion in that rubric. See the amendment under section 11 |
 | CLO2 | Classify a suspicious email as malicious or benign using an AI model, then validate the model's output before trusting it. | Analyze | CLO2: Classify and validate an AI verdict | T1348, Distinguish between benign and potentially malicious cybersecurity attacks and intrusions | T1112, Validate network alerts; T1387, Validate intrusion detection system alerts | 1 (supporting); 2 (primary); reinforced in 6; recognition items on the week 8 final | Week 2 lab: the exported classification in strict JSON, with the schema check result and the record of any retry | Week 2 rubric, criterion 2: Output validation; week 1 rubric, criteria 2 to 4, supporting |
 | CLO3 | Build an AI agent that selects and runs triage tools in a bounded loop to reach a verdict. | Create | CLO3: Build a bounded triage agent | T0020, Develop content for cyber defense tools | T1299, Determine causes of network alerts | 5 (primary); 4 (supporting) | Week 5 lab: the exported run record for one email, showing each tool chosen, the steps used against the cap of 4, and the stop reason | Week 5 rubric, criterion 2: Bounded tool loop (primary). Week 5 rubric, criterion 3: Reading your own trace, and criterion 4: Cost of an uncapped run (both supporting). Week 4 rubric, criterion 2: Tool call handled end to end, and criterion 3: Reading your own results (both supporting) |
-| CLO4 | Judge whether an agent's guardrails reduce prompt injection risk to an acceptable level. | Evaluate | CLO4: Judge guardrails against prompt injection | T1177, Determine if security control technologies reduce identified risk to acceptable levels | T1176, Determine if cybersecurity-enabled products reduce identified risk to acceptable levels; S0509, Skill in evaluating security products; S0667, Skill in assessing security controls | 6 (primary); recognition items on the week 8 final | Week 6 lab: the exported results for the injected email and its word-for-word control, before and after the guardrails, with the student's written judgment | Week 6 rubric, criterion 2: Guardrail judgment |
+| CLO4 | Judge whether an agent's guardrails reduce prompt injection risk to an acceptable level. | Evaluate | CLO4: Judge guardrails against prompt injection | T1177, Determine if security control technologies reduce identified risk to acceptable levels | T1176, Determine if cybersecurity-enabled products reduce identified risk to acceptable levels; S0509, Skill in evaluating security products; S0667, Skill in assessing security controls | 6 (primary); recognition items on the week 8 final | Week 6 lab: the exported results for the injected email and its injection-free twin, each recorded on the undefended path and on the guarded path, with the student's written judgment | Week 6 rubric, criterion 2: Guardrail judgment |
 | CLO5 | Document a triage decision, its indicators, and its recommended action so another analyst can act on it. | Apply | CLO5: Document a triage decision | T1241, Document cybersecurity incidents | T1349, Communicate cybersecurity attacks and intrusions alerts; T1242, Escalate incidents that may cause ongoing and immediate impact to the environment; T1428, Notify designated managers, cyber incident responders, and cybersecurity service provider team members of suspected cybersecurity incidents | 7 (primary); the escalation rule it records is set in 6 | Week 7 lab: the exported triage notes in the fixed format (verdict, confidence, indicators, recommended action, escalate yes or no, plus the two-sentence plain-language summary) | Week 7 rubric, criterion 2: Triage note |
 | CLO6 | Measure agent triage accuracy across a batch of emails and recommend where human review stays required. | Evaluate | CLO6: Measure triage accuracy | T0164, Perform cyber defense trend analysis and reporting | T1020, Determine the operational and safety impacts of cybersecurity lapses; T1290, Communicate daily network event and activity reports; S0892, Skill in performing trend analysis | 7 (primary) | Week 7 lab: the exported batch evaluation report over the 20-email batch, with accuracy and with false positives and false negatives reported separately | Week 7 rubric, criterion 3: Accuracy and human review |
 
@@ -83,7 +83,7 @@ Framework citation for the matrix: NICE Framework Components v2.2.0 (NIST, April
 2026), implementing NIST SP 800-181 Rev. 1 (November 2020); work role PD-WRL-001
 Defensive Cybersecurity, Protection and Defense; retrieved 2026-09-03.
 
-Four notes on reading the table.
+Five notes on reading the table.
 
 1. Ids beginning with T are tasks. Ids beginning with S are skills, not tasks. The build
    prompt lists both under "supporting", so both appear in the supporting column.
@@ -95,6 +95,18 @@ Four notes on reading the table.
    takes criterion 3.
 4. Criterion 1 in every weekly rubric is submission completeness. It is a non-CLO
    expectation and carries no Outcome link. Section 10 states that rule.
+5. The CLO4 artifact carries two comparisons, and they answer different questions.
+   Email 013 against email 024, its injection-free twin, is the comparison week 6
+   objective 6.2 names, and it is the pair that attributes a changed verdict to the
+   injected paragraph. The undefended path against the guarded path is the comparison
+   that records what the guardrails changed. Week 6 rubric criterion 2 grades both
+   pairings in one written judgment, and criterion 3 checks that the exported file
+   carries both paths for every email, so the artifact column names both. Both emails
+   in the pair are malicious: 024 is the injection-free twin, not a benign control.
+   The two are twins in content rather than duplicates, because they go to different
+   mailboxes and 024 keeps the personal greeting 013 uses even though it is addressed
+   elsewhere. A measurement that held the recipient constant moved no verdict, 8 of 8
+   both ways, so the mailbox is not what either comparison reads.
 
 ## 4. The NICE statements behind the matrix
 

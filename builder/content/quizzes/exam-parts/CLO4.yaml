@@ -71,8 +71,8 @@ items:
       <p>Which guardrail is meant to stop your agent from copying it?</p>
     answers:
       - text: >-
-          BODY_START and BODY_END with the guard rules, which make body text
-          evidence rather than orders.
+          BODY_START and BODY_END with the guard rules, which tell the
+          model to read body text as evidence rather than orders.
         correct: true
         feedback: >-
           Right. The markers fence the body, and the guard rules say fenced
@@ -84,7 +84,8 @@ items:
       - text: The per-run token cap.
         correct: false
         feedback: >-
-          The token cap limits what a run spends. It never reads the body.
+          The token cap counts the tokens the model wrote. It never reads the
+          body.
       - text: >-
           The schema check, because the block names a category you do not use.
         correct: false
@@ -197,30 +198,32 @@ items:
       <p>What does that number limit?</p>
     answers:
       - text: >-
-          The tokens one triage may spend. over_token_cap() checks it between
-          steps.
+          The tokens the model wrote, added up across one triage.
+          over_token_cap() checks it between steps.
         correct: true
         feedback: >-
-          Right. It covers one email from start to finish. A run that passes it
-          stops with step_cap and escalates for token_cap. Week 6 reading, part
-          1, the per-run token cap.
+          Right. It counts only the tokens the model wrote, added up across
+          one triage. The whole run costs more than that, and no cap reads it.
+          A run that passes the cap stops with step_cap and escalates for
+          token_cap. Week 6 reading, part 1, the per-run token cap.
       - text: The tokens your whole course account may spend for the term.
         correct: false
         feedback: >-
           Your course token budget is a different thing. Your instructor
           controls it, and running low means an email and a top-up. This cap
-          covers one triage. Week 6 reading, part 1, the per-run token cap.
+          counts the tokens the model wrote in one triage. Week 6 reading,
+          part 1, the per-run token cap.
       - text: The number of steps your loop may take before it stops.
         correct: false
         feedback: >-
-          That is your week 5 step cap, and it counts steps. This number counts
-          tokens, which is what a run spends. Week 6 reading, part 1, the
-          per-run token cap.
+          That is your week 5 step cap, and it counts steps. This number
+          counts tokens, and only the ones the model wrote. Week 6 reading,
+          part 1, the per-run token cap.
       - text: >-
           The longest answer the model may write, which ask_model() sends as
           max_tokens.
         correct: false
         feedback: >-
-          max_tokens caps one answer. This number covers every call one triage
-          makes, added together. One answer is not one run. Week 6 reading,
-          part 1, the per-run token cap.
+          max_tokens caps one answer. This number adds up what the model
+          wrote across every call one triage makes. One answer is not one
+          run. Week 6 reading, part 1, the per-run token cap.

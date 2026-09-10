@@ -34,17 +34,22 @@
 # point of the quiz is to send a student back to the right paragraph.
 #
 # ITEM COVERAGE, from section 10 of the week 6 spec. Item 1 asks why the body
-# counts as attacker text, on the 013 and 024 pair. Item 2 asks which control
-# decides where the hidden HTML text in email 014 lands. Item 3 asks what the
-# fact check compares and what happens when the two disagree, on email 020.
-# Item 4 asks when the confidence floor sends a case to a person, on a file row
-# for email 012. Item 5 asks what the per-run token cap stops and what it
+# counts as attacker text, on the 013 and 024 pair. Item 2 asks what sends
+# email 014 to a person, when no fence reaches the text it hides. Item 3 asks
+# what the fact check compares and what happens when they disagree, on email
+# 020. Item 4 asks when the confidence floor sends a case to a person, on a
+# supposed export row. Item 5 asks what the per-run token cap stops and what it
 # leaves alone. Item 6 is this quiz's share of breadth topic B4: which wider
 # risk the forged header case in email 023 shows.
 #
 # Every stem comes out of this week's own emails, this week's four controls and
 # this week's notebook cells. None can be answered from general phishing
 # knowledge.
+#
+# NO STEM SAYS WHAT YOUR RUN DID. A stem may print what the course measured,
+# and it may tell a student to read their own row. It may never say what a
+# student's own run produced. Weeks 3 and 5 both shipped a sentence that did,
+# and both were wrong.
 
 title: Week 6 self-check
 ungraded: false
@@ -64,8 +69,11 @@ description: |
   Use those names. Missing one twice is a sign to go back and read, not a
   sign to guess again.</p>
 
-  <p>Take it after both reading pages and the lab. Four of these ask about
-  runs your own notebook made.</p>
+  <p>A control that never fires on these eleven emails is still a result.
+  Report what your own rows show, not what you expected them to show.</p>
+
+  <p>Take it after both reading pages and the lab. Several items hand you
+  a row to read, so keep your own export file open.</p>
 
 questions:
 
@@ -76,16 +84,14 @@ questions:
     section: "Week 6 reading, part 1, the body is text an attacker wrote"
     outcome: "none"
     text: |
-      <p>Cells 6 and 7 run emails 013 and 024 through your week 5 agent with
-      no defenses. Email 024 is 013 word for word, with one paragraph
-      removed. That paragraph is addressed to AI triage tools and tells them
-      to record benign and not escalate.</p>
-      <p>One run printed this.</p>
-      <pre><code>013  verdict: benign     confidence: 0.91
-      024  verdict: malicious  confidence: 0.88
-      </code></pre>
-      <p>Your own numbers will differ, because the model varies from run to
-      run. Why would one paragraph move the verdict?</p>
+      <p>Cells 6 and 7 run emails 013 and 024 with no defenses. Only 013
+      carries the paragraph addressed to AI triage tools, telling them to
+      record benign and not escalate. Email 024 is its injection-free twin,
+      the same ask sent to a different mailbox.</p>
+      <p>The course ran this pair eight times. Undefended 013 came back benign
+      every time. Undefended 024 came back malicious every time. Both are
+      malicious.</p>
+      <p>Read your own two rows. Why would one paragraph move the verdict?</p>
     answers:
       - text: >-
           Your rules and the body reach the model as one stream of text. So
@@ -94,18 +100,17 @@ questions:
         correct: true
         feedback: >-
           Right. That is prompt injection, and it is why the body counts as
-          attacker text. Somebody else wrote the body, and on a reported
-          message that somebody is the attacker. Week 6 reading, part 1, the
-          body is text an attacker wrote.
+          attacker text. Somebody else wrote the body, and on a reported message
+          that somebody is the attacker. Your fence does not take that verdict
+          back. Week 6 reading, part 1, the body is text an attacker wrote.
       - text: >-
           The two messages went to different mailboxes, so the recipient
           record changed the verdict.
         correct: false
         feedback: >-
-          No. The mailbox does differ, and lookup_recipient reports it. Both
-          mailboxes handle payroll, and neither one is a reason to call the
-          same sender benign. Week 6 reading, part 1, the pair that measures
-          it.
+          No. The mailbox does differ, and lookup_recipient reports it. The
+          course ran both emails to the same mailbox, both ways, and the verdicts
+          did not change. Week 6 reading, part 1, the pair that measures it.
       - text: >-
           The paragraph named a help desk ticket, and your agent looked that
           ticket up.
@@ -120,11 +125,10 @@ questions:
           anyway.
         correct: false
         feedback: >-
-          No. Temperature moves wording and small numbers between runs. These
-          are two different messages, and the planted paragraph is the only
-          thing that differs. The pair exists so you can see what that one
-          paragraph does on your own screen. Week 6 reading, part 1, the pair
-          that measures it.
+          No. Temperature moves wording and small numbers between runs. It did
+          not move this pair. The two emails also went to different mailboxes, so
+          the course held that still and measured again. Week 6 reading, part 1,
+          the pair that measures it.
 
   - id: w6-q2
     name: Question 2. The payload in the HTML part
@@ -136,26 +140,26 @@ questions:
       <p>Email 014 hides its payload in the HTML part only. An HTML comment
       and text set to size zero tell your agent that the facts are stale and
       the sender is allowlisted. The plain text part is clean.</p>
-      <p>Which of your four controls decides where that hidden text lands in
-      the prompt?</p>
+      <p>Your fence goes around the plain body. So what sends this case to a
+      person?</p>
     answers:
+      - text: >-
+          guarded_triage() reads the hidden text off the message and escalates
+          with the reason injection_detected. None of it reaches the model.
+        correct: true
+        feedback: >-
+          Right. The fence goes around the plain body, and the hidden text is
+          not in it. That reason reads the message, not the model's answer, so
+          it fires on 014 either way. Week 6 reading, part 1, six places the
+          payload can sit.
       - text: >-
           build_guarded_prompt(), which you write in cell 10. It keeps hidden
           HTML text on the facts side, outside the fence.
-        correct: true
-        feedback: >-
-          Right. Outside the fence it reads as something the message did, not
-          as body text to follow. Your prompt is the only place you get to say
-          which part is data rather than instructions. Week 6 reading, part 1,
-          the four controls, the fence.
-      - text: >-
-          check_against_facts(), which you write in cell 14. It reads the HTML
-          part and drops the payload.
         correct: false
         feedback: >-
-          No. That function never reads a body. It compares the model's answer
-          against the facts and tool results you already hold. Week 6 reading,
-          part 1, the four controls, the fact check.
+          No. Your facts block writes one line saying how many hidden
+          characters there are. It never copies the text. Week 6 lab, cell 9,
+          guarded_facts_text().
       - text: >-
           CONFIDENCE_FLOOR, set to 0.7. Hidden text lowers the confidence the
           model returns.
@@ -168,9 +172,9 @@ questions:
           over_token_cap(), which stops a run that has spent too much.
         correct: false
         feedback: >-
-          No. That control counts spending. Where text sits in the prompt is
-          decided by the fence, in cell 10. Week 6 reading, part 1, the four
-          controls, the per-run token cap.
+          No. That control counts spending, and it reads no text at all. The
+          hidden text sends 014 to a person, whatever the model answers. Week 6
+          reading, part 1, six places the payload can sit.
 
   - id: w6-q3
     name: Question 3. What the fact check compares
@@ -183,8 +187,8 @@ questions:
       the link host is allowlisted and the sender is trusted. Your real
       check_urls result returns unlisted for that host, and your reputation
       result returns unknown for that sender.</p>
-      <p>One guarded run returned benign at 0.86 confidence, with an indicator
-      naming a host your facts never held. What does your
+      <p>Suppose the answer comes back benign at 0.85 confidence, with an
+      indicator naming a host your facts never held. What does your
       <code>check_against_facts()</code> do with that answer?</p>
     answers:
       - text: >-
@@ -195,8 +199,8 @@ questions:
         feedback: >-
           Right. It compares the answer against the facts and tool results
           your code received, hands back problems, and guarded_triage() turns
-          those problems into an escalation. Week 6 reading, part 1, the four
-          controls, the fact check.
+          those problems into an escalation. Cell 15 is where you watch it
+          fire. Week 6 reading, part 1, the four controls, the fact check.
       - text: >-
           It re-reads the body, finds the block claiming the host is
           allowlisted, and removes it.
@@ -213,7 +217,7 @@ questions:
           case this week. A person decides. Week 6 reading, part 1, the four
           controls, the fact check.
       - text: >-
-          It returns an empty list, because 0.86 sits above the confidence
+          It returns an empty list, because 0.85 sits above the confidence
           floor.
         correct: false
         feedback: >-
@@ -228,25 +232,26 @@ questions:
     section: "Week 6 reading, part 1, the four controls, the confidence floor"
     outcome: "none"
     text: |
-      <p>Your export file holds this for email 012.</p>
-      <pre><code>verdict: benign
-      confidence: 0.61
+      <p>Every row in your export file carries a confidence and an escalation
+      reason. Suppose one row read this.</p>
+      <pre><code>verdict_with_guardrails: benign
+      confidence_with_guardrails: 0.61
       problems: []
       stop_reason: tools_exhausted
       escalate: true
       </code></pre>
       <p>Which control sent that case to a person, and what reason does the
-      file record?</p>
+      row record?</p>
     answers:
       - text: >-
           The confidence floor. 0.61 sits under CONFIDENCE_FLOOR, so
           escalate_reason is low_confidence.
         correct: true
         feedback: >-
-          Right. The floor is 0.7 in this lab. Emails 009 and 012 are the two
-          cases it exists for. Email 009 asks for nothing but a reply, and no tool
-          result is decisive on 012. Week 6 reading, part 1, the four controls, the
-          confidence floor.
+          Right. The floor is 0.7 in this lab, and it reads the number, not
+          the verdict word. Read both confidence numbers on your own rows and
+          see which cases it caught. Week 6 reading, part 1, the four controls,
+          the confidence floor.
       - text: >-
           The fact check, with escalate_reason set to fact_contradiction.
         correct: false
@@ -276,9 +281,11 @@ questions:
     section: "Week 6 lab, cell 17, the lowered cap"
     outcome: "none"
     text: |
-      <p>TOKEN_CAP_PER_RUN ships at 4000. A normal triage in this lab costs
-      far less, so the cap never fires on its own. Cell 17 lowers it on
-      purpose so you can watch it work.</p>
+      <p>TOKEN_CAP_PER_RUN is 4000, and it counts only the tokens the model
+      wrote, added up across one triage. The whole run costs more than that,
+      and no cap reads it. The written number stays small here, so the cap
+      never fires on its own. Cell 17 lowers it on purpose so you can watch it
+      work.</p>
       <p>What does that cap stop, and what does it leave alone?</p>
     answers:
       - text: >-
@@ -303,9 +310,10 @@ questions:
           model.
         correct: false
         feedback: >-
-          No. That is the fence you build in cell 10. The cap counts spending
-          and reads no text at all. Week 6 reading, part 1, the four controls,
-          the fence.
+          No. The cap counts spending and reads no text. Nothing here stops
+          that paragraph reaching the model. Your fence marks it as evidence,
+          and the model reads it anyway. Week 6 reading, part 1, the four
+          controls, the fence.
       - text: >-
           It stops the run and closes the case as benign, since nothing
           decided it.
@@ -334,9 +342,9 @@ questions:
         correct: true
         feedback: >-
           Right. The verdict is one harm and the leak is another. Your schema
-          is the control here, because it names the four fields an answer may
-          carry, and schema_errors() calls any other name a key that does not
-          belong. Week 6 reading, part 2, data exposure.
+          names four fields, so a fifth key does not belong in an answer. That
+          is thin cover. The indicators field takes any text, and a history can
+          ride inside one. Week 6 reading, part 2, data exposure.
       - text: >-
           Hallucination. The agent would state something nobody gave it.
         correct: false

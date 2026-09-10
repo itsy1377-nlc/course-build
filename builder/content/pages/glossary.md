@@ -11,7 +11,7 @@ This page defines every technical word this course uses.
 :::
 
 ::: section | How to use this page
-You don't read this page from top to bottom. You come here when a word stops you. Search it with Control and F, or Command and F on a Mac. **Start** in the last column means the orientation pages at the front of the course. **0** means the optional week 0 on-ramp.
+You don't read this page from top to bottom. You come here when a word stops you. Search it with Control and F, or Command and F on a Mac. **Start** in the last column means the orientation pages. **0** means the optional week 0 on-ramp.
 :::
 
 ::: section | A to B
@@ -32,7 +32,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Bec** | `bec`, business email compromise. A trusted person's name used to get money, gift cards, a payroll change, data or a quiet reply. Usually no link and no file. Malicious. | 2 |
 | **Blocklist** | A list of link hosts your organization has already judged bad. | 4 |
 | **Bounded loop** | A loop with a hard limit on how many times it may repeat. It always ends. | 5 |
-| **Business email compromise** | A message that imitates a manager or a supplier to get money moved. | 2 |
+| **Business email compromise** | The full name for `bec`. See that entry above. | 2 |
 :::
 
 ::: section | C to D
@@ -49,7 +49,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Data minimization** | Sending only the facts a sound judgment needs, and nothing more. | 3 |
 | **Data, not instructions** | Treating text inside an email as evidence to read, never as an order to follow. | 6 |
 | **Default** | A value a function uses for a parameter when you do not supply one. | 0 |
-| **Delimiter** | A marker placed before and after a block of text to show where it starts and ends. | 6 |
+| **Delimiter** | A marker placed before and after a block of text to show where it starts and ends. The pair around your email body is the fence. Your code takes both markers out of the body before it uses the body, and a message that arrived carrying one escalates with the reason `fence_broken`. | 6 |
 | **Dictionary** | A collection that holds values by name. You read one by giving its key. | Start |
 | **Disclosure** | A short note saying where and how you used an AI tool on your work. | Start |
 | **Display name** | The name shown beside an address in your mail app. Anyone can set it to anything. | 3 |
@@ -65,6 +65,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Endpoint** | A computer, laptop or phone that a person works on. | 1 |
 | **Error type** | The name Python gives a failure, such as NameError. | 0 |
 | **Escalation** | Handing a case to a person instead of closing it yourself. | 1 |
+| **Escalation reason** | The short label saying why a case went to a person. Your guarded row records one reason: `token_cap`, `fence_broken`, `injection_detected`, `fact_contradiction`, `low_confidence`, or `none`. | 6 |
 | **Export file** | The file a lab writes at the end of your run. You hand it in. | Start |
 | **Fact check** | Comparing the model's answer against facts you already pulled out, and rejecting what you cannot find. | 6 |
 | **Facts block** | A short labeled list of facts about one email, written into the prompt. | 3 |
@@ -77,7 +78,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Generative AI** | AI that writes new text, code or images. | 1 |
 | **Ground truth** | The correct answer for each email, written down before the agent ever ran. | 7 |
 | **Grounding** | Sending extracted facts to the model instead of raw text alone. | 3 |
-| **Guardrail** | A control placed around the model. It stops a bad answer from becoming a bad action. | 6 |
+| **Guardrail** | A control placed around the model, meant to stop a bad answer becoming a bad action. Whether one does is measured, not assumed. | 6 |
 :::
 
 ::: section | H to L
@@ -116,12 +117,11 @@ You don't read this page from top to bottom. You come here when a word stops you
 | **Observe, decide, act** | The three things the agent repeats in a loop. It looks, it picks the next request, it runs it. | 5 |
 | **Overreliance** | Letting your agent decide something a person should decide. | 6 |
 | **Parameter** | A name in a function definition for a value the function takes in. | 0 |
-| **Per-run token cap** | A limit on the tokens one email may spend. Passing it stops the run. | 6 |
+| **Per-run token cap** | A cap that counts only the tokens the model wrote, added up across one triage. `TOKEN_CAP_PER_RUN` is 4000. The whole run costs more than that, and no cap reads it. | 6 |
 | **Phishing** | A message written to trick you into giving up a password, a payment or data. | Start |
 | **Plain-language summary** | Two short sentences for the person who reported the email, written in everyday words. | 7 |
 | **Playbook** | A written list of rules an analyst follows when judging a message. | 3 |
 | **Pre-written** | A cell that arrives finished and working. You run it. You do not write it. | Start |
-| **Rate limit** | A cap on how fast a key may send. This course allows 30 requests and 40,000 tokens a minute. Reaching it is normal in a busy cell; the notebook waits and tries again. | 1 |
 | **Prompt** | The text you send to the model. | 1 |
 | **Prompt injection** | Attacker text that a model reads as an instruction instead of as evidence. | 6 |
 | **Python** | The programming language this course uses. | Start |
@@ -130,6 +130,7 @@ You don't read this page from top to bottom. You come here when a word stops you
 ::: section | Q to S
 | Term | What it means | First used |
 |---|---|---|
+| **Rate limit** | A cap on how fast a key may send. This course allows 30 requests and 40,000 tokens a minute. Reaching it is normal in a busy cell, and the notebook waits and tries again. | 1 |
 | **Reasoning block** | Text a model writes to itself before its answer. This course turns it off. | 2 |
 | **Recipient record** | What your organization knows about the person who got the message. | 4 |
 | **Recommended action** | What the triage note says should happen to the email next. | 7 |

@@ -1,5 +1,5 @@
 ::: intro
-This board is about the gap your own guardrails left. Every part of the prompt asks for a value out of your own file, so do the lab first.
+This board is about the gap your own guardrails left. Most of it asks for a value out of your own file, so do the lab first.
 :::
 
 ::: directions
@@ -11,11 +11,11 @@ Post first, then reply. Both are due Sunday at 11:59 PM Central. Post by Thursda
 
 In your post, answer all three.
 
-1. Pick one email from 014, 020, 021, 022 or 023 where a guardrail didn't hold. Name it. Say what your own file shows for it.
+1. Pick one email from 014, 020, 021, 022 or 023 where a guardrail didn't hold. Name it, and say what your own file shows for it. A row with `escalate` false is one nothing caught. If yours escalated, name the reason it records.
 2. Write the one extra rule you would add to stop it. One sentence, in plain words, as you would hand it to a teammate.
-3. Now find email 015 in your file. It's the benign decoy. Say what your new rule would do to 015. Would it send a message to a human that should have closed on its own? Give the number from your file that tells you.
+3. Now find email 015 in your file. It's the benign decoy. Say what your new rule would do to 015. Would it send a message to a human that should have closed on its own? Give the number on that row your rule reads. For most rules that's `confidence_with_guardrails`.
 
-Then reply to one classmate whose extra rule is different from yours. Say what their rule would cost you on your own 015 row. Use your own number. A reply that only agrees doesn't count.
+Then reply to one classmate whose extra rule is different from yours. Say what their rule would cost you on your own 015 row. Use your own number.
 
 Post about 150 words. Reply about 75 words. You may use AI help on this post. If you do, add one line at the end saying what you asked it.
 :::
@@ -31,6 +31,8 @@ A good post is short and specific.
 A summary of the reading with no numbers in it is a weak post, and so is a rule copied from a classmate.
 
 If your guardrails held on all five emails, say so. Then answer for the strictest rule you can think of adding.
+
+If your 015 row shows no confidence, say so and answer from what it does show.
 :::
 
 ::: section | The reply

@@ -36,11 +36,11 @@
 # Criterion 2 is the one that measures the Outcome directly. CLO4 asks the
 # student to judge whether an agent's guardrails reduce prompt injection risk
 # to an acceptable level, and criterion 2 reads exactly that off the written
-# answer and the attached file: a stated judgment, the student's own numbers
-# from the guarded and unguarded runs of email 013, and one case the guardrails
-# still miss. It is the only rubric criterion measuring CLO4 anywhere in this
-# course, and the primary evidence for it, which is what the alignment matrix
-# records.
+# answer and the attached file: a stated acceptance rule, the student's own
+# numbers for email 013 and email 024 on both paths, that rule applied to those
+# numbers, and one case the guardrails still miss. It is the only rubric
+# criterion measuring CLO4 anywhere in this course, and the primary evidence
+# for it, which is what the alignment matrix records.
 #
 # Criteria 1 and 3 carry no Outcome link, and both say so in their
 # long_description. Criterion 1 is submission completeness, the non-CLO
@@ -48,6 +48,27 @@
 # contains rather than how good the run was, and "the code ran" is a non-CLO
 # expectation under section 11 of docs/phase1-blueprint/alignment-matrix.md and
 # its closing section.
+#
+# WHY CRITERION 2 NAMES BOTH EMAILS. Objective 6.2 asks the student to compare
+# the agent's verdict on the injected email with its injection-free twin, and
+# this criterion is the only place in this course where CLO4 is scored. A
+# criterion that asked only for undefended against guarded numbers can be met
+# without ever opening the row for email 024, which leaves 6.2 on the screen
+# and out of the grade. So both emails are named in the criterion, and the
+# acceptance rule is what turns the comparison into the judgment CLO4 asks for.
+#
+# THE ACCEPTANCE RULE. Objective 6.3 asks whether the risk is low enough to
+# accept, and "judge whether" allows the answer no. Without a stated rule this
+# criterion scores confident prose: any clear judgment carrying any number
+# could meet the standard, including a yes that waves off a malicious email
+# called benign. So the levels ask for the rule in writing and for that rule
+# applied to the rows the student's own run produced. No level says what those
+# rows will hold. The student reads their own file and reports it, and a
+# well-supported no earns exactly what a well-supported yes earns.
+#
+# Both emails in that pair are malicious. 024 is the injection-free twin, not
+# a benign control, so a benign verdict on either one is a miss, and the levels
+# say so rather than leaving a grader to work it out.
 #
 # NO SEPARATE "OWN NUMBERS USED" CRITERION. Clause 4 of the rubric link rule
 # keeps a criterion that scores a student's use of their own results inside the
@@ -106,27 +127,37 @@ criteria:
 
   - description: Guardrail judgment
     long_description: >-
-      Your written answer reaches a clear judgment, supports it with your own
-      before and after numbers, and names one case that still gets through and
-      the payload spot behind it.
+      Your written answer compares email 013 with email 024, undefended and
+      guarded. It states the rule that decides whether the risk is acceptable,
+      and checks your own numbers against it. It names one case that still
+      gets through and the payload spot behind it.
     points: 72
     outcome: CLO4
     levels:
       - description: >-
           Exceeds standard. Reaches a clear judgment on whether the guardrails
-          cut prompt injection risk enough for a real security team. Supports
-          it with the student's own before and after numbers, both of which the
-          attached file shows. Names one case the guardrails still miss and the
-          payload placement that causes it.
+          cut prompt injection risk enough for a real security team. Writes
+          down the rule behind that judgment: an injected malicious email that
+          comes back benign, with nothing escalating it, is not an acceptable
+          risk. Applies that rule to the student's own rows for email 013 and
+          email 024, undefended and guarded, citing numbers the attached file
+          shows. Both emails are malicious, so a benign verdict on either one
+          is a miss. Names one case the guardrails still miss and the payload
+          placement that causes it.
         points: 72
       - description: >-
-          Meets standard. Reaches a clear judgment and supports it with at
-          least one number the attached file shows.
+          Meets standard. Reaches a clear judgment, gives a rule for what would
+          make the risk unacceptable, and applies it to the student's own rows
+          for email 013 and email 024. Supports the judgment with at least one
+          number the attached file shows. One piece is thin: only one path is
+          compared, the rule is used but never written down, or no missed case
+          is named.
         points: 54
       - description: >-
-          Approaching standard. States a judgment with no number, cites a
-          number the attached file does not show, or argues only from general
-          claims about AI risk.
+          Approaching standard. States a judgment but never compares email 013
+          with email 024, or applies no rule to what the file shows. Or states
+          a judgment with no number, cites a number the attached file does not
+          show, or argues only from general claims about AI risk.
         points: 36
       - description: >-
           No evidence. No judgment stated, or the written answer is missing.
@@ -147,7 +178,7 @@ criteria:
           verdict on the undefended path and on the guarded path, an escalation
           decision with its reason, a stop reason and a token count. Six rows
           name a payload placement and five read none. The fence record for
-          email 013 is present with its four numbers.
+          email 013 is present.
         points: 20
       - description: >-
           Nearly full. All eleven rows are there, and each carries both

@@ -624,7 +624,7 @@ cases the escalation threshold has to catch.
 
 | Cell | Signature | Lines | What it does |
 |---|---|---|---|
-| TODO 1 | `build_guarded_prompt(facts_text, body)` | 6 to 8 | Wraps the body between the two markers, puts the rules before it and the required answer keys after it, and keeps any hidden HTML text on the facts side |
+| TODO 1 | `build_guarded_prompt(grounding, body)` | 6 to 8 | Wraps the body between the two markers, puts the rules and week 3's grounding before it and the required answer keys after it |
 | TODO 2 | `check_against_facts(result, facts)` | 6 to 8 | Returns a list of problems where the answer contradicts the extracted facts, empty when it does not |
 
 `check_against_facts()` is the exact construct the week 6 sidebar prepares:
