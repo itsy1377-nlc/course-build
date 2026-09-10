@@ -24,7 +24,7 @@ week that has been measured.
 | **4** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — 4.3 was confounded; a matched-pair cell demonstrates it 8/8, three runs |
 | **5** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the cap now fires at its real value of four, with the model taken out |
 | **6** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the fence changes no verdict in 176 runs; the real defect was the guarded prompt dropping week 3's grounding |
-| **7** | **fixed** | **fixed** | **rebuilt** | not pushed | **measured** — the schema check crashed on the week's own answers, and a crashed row was scored as a false negative |
+| **7** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the schema check crashed on the week's own answers, and a crashed row was scored as a false negative |
 | exam | not started | — | — | — | Q24 keys a payroll diversion "close it" |
 
 
