@@ -1,9 +1,9 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-10, week 8 and the
-final exam audited and repaired. **Weeks 1 to 7 are done and pushed. Week 8 is
-repaired in the repository and not pushed.**
+this file at every stopping point. Last update: 2026-09-10, week 8 pushed and
+verified. **All eight weeks are built, measured, pushed and verified.** What is
+left is the queue at the end of `docs/lab-fix-log.md`, not a week.
 
 ## Week 8 and the exam are repaired, 2026-09-10, not pushed
 
@@ -45,11 +45,15 @@ field — the rubrics carry the primary evidence, and the exam header now says
 so. And there are no dates anywhere: 23 assignments, 0 due dates, no course
 start or end. That is a scheduling decision for whoever runs the section.
 
-**Left:** the Canvas push for week 8. Also queued — `exam-parts/` is stale and
-still says "extractor"; the `artifact:` field is unvalidated free text in four
-formats; `check_points` and `check_quiz_points` examine zero items; and
-prefixing exam question names with their CLO, which `populate_canvas.py` and
-`qti.py` already intend.
+**Pushed and verified 2026-09-10.** 28 objects, 0 skipped, module published,
+`--verify --week 8` reports 0 problems. Read back live: published, 30.0 points,
+40 questions plus 6 text blocks, one attempt, answers shuffled, 0 answers
+missing feedback, and both repaired items present.
+
+**Queued, not done:** `exam-parts/` is stale and still says "extractor"; the
+`artifact:` field is unvalidated free text in four formats; `check_points` and
+`check_quiz_points` examine zero items; and prefixing exam question names with
+their CLO, which `populate_canvas.py` and `qti.py` already intend.
 
 ## Week 7 is rebuilt and measured, 2026-09-10, not yet pushed
 
