@@ -692,6 +692,37 @@ this pass began because `w5-content.md` was edited ten minutes after they
 rendered and the gate ran before that edit. All four videos re-rendered; 14
 videos, nothing stale.
 
+## Blocking, and it needs a hand: the notebook site is behind
+
+**Week 6 is on Canvas and not yet in front of a student.** Canvas hands out
+`ExternalUrl` items pointing at `notebook.bashtion.dev`, and that site still
+serves the pre-repair notebook: 112,028 bytes live against 121,538 in the
+repository. Everything the week 6 pass fixed in the lab code stops at the
+Canvas link.
+
+The tree is staged and checked at 73 files, 1,108 KB, 15 notebooks, no
+`never_ship` name present and no solution file in it; `check_site_files.py`
+passes. It needs syncing to `/var/www/jupyterlite` on the jupyterlite guest.
+
+**I cannot reach that guest.** It is off the tailnet, which was deliberate and
+is the residual item in `docs/lab-open-issues.md`. No ssh host here resolves
+it. Re-stage with:
+
+    python3 builder/lab/tools/stage_notebook_site.py <dir>
+    python3 builder/lab/tools/check_site_files.py <dir>
+
+**Do it before anyone opens week 6, not after.** This repository's own
+measurement says a redeployed notebook never reaches a student who already
+opened it: the browser copy shadows it permanently, with no merge and no
+warning, and corrections have to ship under a new filename. The course is
+unpublished, so today that costs nothing.
+
+**And the gate that would have caught this does not exist.** The blind run
+found the site one revision behind the repository and nothing reported it;
+`lab-fix-log.md` carries it as queue item Q9. Two weeks running have now shipped
+against a stale site. A check comparing the served files to the staged tree is
+cheap, and it belongs before week 7 rather than after.
+
 ## Week 7 is next
 
 Its logged defect is that the schema is never validated. Note two things this
