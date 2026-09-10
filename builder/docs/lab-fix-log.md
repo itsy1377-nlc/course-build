@@ -25,7 +25,7 @@ week that has been measured.
 | **5** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the cap now fires at its real value of four, with the model taken out |
 | **6** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the fence changes no verdict in 176 runs; the real defect was the guarded prompt dropping week 3's grounding |
 | **7** | **fixed** | **fixed** | **rebuilt** | **pushed, verified** | **done** — the schema check crashed on the week's own answers, and a crashed row was scored as a false negative |
-| **exam** | **fixed** | **fixed** | — | not pushed | **audited** — all 40 keys checked against the corpus, 0 wrong; Q24 was never a wrong key |
+| **exam** | **fixed** | **fixed** | — | **pushed, verified** | **done** — all 40 keys checked against the corpus, 0 wrong; Q24 was never a wrong key |
 
 
 ---
