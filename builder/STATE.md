@@ -1,8 +1,80 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-10, week 6 rebuilt, pushed and verified.
-Weeks 1 to 6 are done. Week 7 is next.
+this file at every stopping point. Last update: 2026-09-10, week 7 rebuilt and
+measured. Weeks 1 to 7 are done in the repository. **Week 7 is not pushed to
+Canvas.** The final exam and week 8 are next.
+
+## Week 7 is rebuilt and measured, 2026-09-10, not yet pushed
+
+Everything below is committed. **The one thing left for week 7 is the Canvas
+push.**
+
+**Full record:** `docs/lab-fix-log.md` week 7 section, and
+`docs/week7-measurement/` — pre-registration written before the first model
+call, three dated amendments, twelve result files with input digests, and a
+README.
+
+**Four code repairs.** `schema_errors()` had no `sentences` branch and both
+branches of its `else` were wrong for `OUTPUT_SCHEMA_V2`; week 6's own rebuild
+had made them live three days after the reviews found them dead, so every week
+7 row carried a false problem and a `summary` returned as a list raised
+`KeyError` inside a pre-written cell. Fixed in all **12 byte-identical copies**,
+weeks 2 to 7, and proved behaviour-preserving for the earlier weeks against
+**19,445 generated inputs, zero divergences**. `score_batch()` gained a
+`no_decision` bucket, because it had been filing a crashed row as a false
+negative. Escalation was split into `policy_review()` and `review_decision()`
+in week 7's own cell 5 — never in `guarded_triage()`, which is byte-identical
+to week 6 and chain-enforced. The rubric's 36-point criterion stopped grading
+prose the model wrote.
+
+**The escalation metric had been inverted.** A run where every email failed
+scored 11 of 20; a run where everything worked scored 9. It now scores 20 for a
+perfect run and 11 for total failure.
+
+**Measured, 828 calls, twelve passes.** Holdout batch: `granite-3b` 0.567,
+`granite-8b` 0.800. Teaching set: 0.708 against 0.917. This **reverses** what
+`w7-wrap-up.md` and `docs/model-selection.md` both claimed, and both are
+corrected. **Week 7 still runs `granite-3b`**, because week 7 measures the agent
+the student built and that agent runs on 3b — not because 3b scored better. It
+did not. Amendment 3 of the pre-registration carries that reasoning.
+
+`granite-3b` calls 9 of the 10 benign batch emails malicious, 8 of them in all
+three passes, and misses no attacks at all. Neither model produces a false
+negative on the batch, so a student sees one kind of error, not two, and cell 12
+now says so.
+
+**Videos rebuilt.** `w7.json` is rewritten from the measurement and the
+superseded 2026-09-05 run is marked with its now-false headline quoted. The old
+featured email, 018, comes back malicious 3 of 3 on the repaired code — the
+repair killed the story. The new one is **022**, whose payload rides in the
+subject line and the sender display name, which week 6 already tells students no
+fence reaches. Measured: benign at 0.95 confidence in all three passes, nothing
+escalated. `ITSY_CONTENT=builder/content ... -m tools.video.check` reports 14
+videos, all checks pass.
+
+**Run the video gate as** `ITSY_CONTENT=builder/content
+tools/video/.venv/bin/python -m tools.video.check`. Without that variable it
+resolves to a root with no video directory and reports "no videos declared,
+nothing to check". Preflight now prints a visible SKIPPED line in that case.
+
+**Do not edit anything in `tools/video/*.py` casually.** `build.py` fingerprints
+every video against every `.py` in that directory, `check.py` included, so a
+one-line change there marks all 14 videos stale and forces a full re-render and
+re-push. That is why the skip warning went into `tools/preflight.py` instead.
+
+**Gates:** `check_chain` 73 functions, holds. Readability 74 pages within limit
+(`w7-content.md` 1399/1400, the assignment 700/700, the wrap-up 575/575).
+`check_tools` 56 records agree. `build_course --check` builds 30 week 7 objects.
+Student notebook run 17 cells, 2 TODO, 0 failures. `verify_content` reports 6
+problems, all in `docs/decisions-and-issues.md`, all pre-existing and untouched.
+
+**Still open, logged not fixed:** self-check q5 to q8 give a 50 percent floor by
+pairing the keyed use-case name across two options; the corpus client-IP third
+octet separates the labels (21 of 25 at one threshold) but reaches no prompt, so
+it cannot contaminate week 7; `_PIPELINE` globbing `check.py` into the render
+fingerprint.
+
 
 ## Where the build is
 
@@ -692,7 +764,41 @@ this pass began because `w5-content.md` was edited ten minutes after they
 rendered and the gate ran before that edit. All four videos re-rendered; 14
 videos, nothing stale.
 
-## Blocking, and it needs a hand: the notebook site is behind
+## The notebook site is deployed and green, 2026-09-10
+
+**Done.** The site now serves exactly what the repository would ship.
+`check_site_live.py` exits 0 against the live site, and both stale notebooks
+match byte for byte: `w6-lab.ipynb` 121,538 and `w7-lab.ipynb` 128,868.
+
+**The route, because the repository never recorded it.** The guests are reached
+through the helper the 2026-09-03 session left at
+`<8ebfb83f scratchpad>/lab.sh`, used as `bash lab.sh jupyterlite '<command>'`.
+It resolves the guest's address via `remotelab` using its own `ssh_config`
+beside it. The guest is off the tailnet, has no `rsync`, and the deploy user is
+`aaron`, so the tree went over `tar`. If that scratchpad is ever cleared, the
+route is lost again and someone has to ask.
+
+**Found on the way, and fixed:** the site was serving **84 macOS AppleDouble
+files** (`._*`, 163 bytes each of `com.apple.provenance`) left by an earlier
+copy from a Mac. No content leak, but one was `corpus/._spec`, which shadows
+the name of a directory in `never_ship`, and all 84 answered 200 publicly. They
+are deleted, and the deploy ran with `COPYFILE_DISABLE=1` and `--no-xattrs` so
+they do not come back. Only `._*` files were removed: 84 matched, 0 non-file
+matches, and the 73 real files were confirmed identical between site and staged
+tree before anything was touched.
+
+## The site gate is committed, and the site is now stale again
+
+`lab/tools/check_site_live.py` was held until it had an observed passing state,
+got one on 2026-09-10, and is committed. Queue item Q9 is closed.
+
+**It will now fail, and that is correct.** Week 7's notebooks changed today, so
+`notebook.bashtion.dev` serves an older `w7-lab.ipynb` than the repository
+holds — and weeks 2 to 6 changed too, because `schema_errors()` is shared. The
+gate is doing its job. It goes green again when the site is redeployed as part
+of the week 7 push.
+
+## The history of that blocking item, kept because it explains the gate
 
 **Week 6 is on Canvas and not yet in front of a student.** Canvas hands out
 `ExternalUrl` items pointing at `notebook.bashtion.dev`, and that site still
@@ -717,11 +823,33 @@ opened it: the browser copy shadows it permanently, with no merge and no
 warning, and corrections have to ship under a new filename. The course is
 unpublished, so today that costs nothing.
 
-**And the gate that would have caught this does not exist.** The blind run
-found the site one revision behind the repository and nothing reported it;
-`lab-fix-log.md` carries it as queue item Q9. Two weeks running have now shipped
-against a stale site. A check comparing the served files to the staged tree is
-cheap, and it belongs before week 7 rather than after.
+**The gate now exists and is deliberately uncommitted.**
+`lab/tools/check_site_live.py` compares the live site to the tree
+`stage_notebook_site.py` would ship, by sha256 rather than by length, and asks
+the site directly for every file that must never be served. It is held out of
+git until it can be run green against a deployed site, because a gate whose
+passing state has never been observed is not yet a gate. Commit it with the
+deploy, in one change.
+
+Proven in all three directions before it was set aside:
+
+    real site, stale files   exit 1, naming both
+    empty or short tree      exit 1, refuses to run
+    tree matching the site   exit 0
+
+**It found a second stale file on its first run.** `w7-lab.ipynb` is behind
+too, 125,054 served against 128,868 staged, from the shared-code edits week 6
+made to `run_triage()` and `guarded_triage()`. So the deploy carries two
+notebooks, not one.
+
+**It also caught a flaw in itself, which is why the input assertion is there.**
+An early run passed on a staged tree that a failed download had left empty, and
+reported the site correct. It now refuses to run on fewer than 50 files or
+fewer than 15 notebooks. This course has recorded seven other instances of the
+same shape: an operation fails, nothing checks, and the output still looks like
+data.
+
+This closes queue item Q9 in `lab-fix-log.md` once it is committed.
 
 ## Week 7 is next
 

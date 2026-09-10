@@ -88,9 +88,21 @@ def main(argv: list[str] | None = None) -> int:
     # course lived somewhere else, so the video gate stayed silent instead of
     # failing on pages that embed a video id no scene list produces.
     video_dir = ROOT / os.environ.get("ITSY_CONTENT", "content") / "video"
-    if (ROOT / "tools" / "video" / ".venv").exists() and any(video_dir.glob("*.yaml")):
+    have_pipeline = (ROOT / "tools" / "video" / ".venv").exists()
+    have_scenes = any(video_dir.glob("*.yaml"))
+    if have_pipeline and have_scenes:
         checks.append(("video is current, captioned, and gives nothing away",
                        [video_python, "-m", "tools.video.check"], ROOT, None))
+    elif have_pipeline:
+        # Say it out loud. A skipped gate that prints nothing reads exactly
+        # like a gate that passed, and this one skips whenever ITSY_CONTENT
+        # does not point at the tree the scene lists live in. That is how a
+        # stale video ships past a green preflight.
+        print(f"SKIPPED  video gate: no scene lists under {video_dir}")
+        print("         The pipeline is installed, so this is probably the"
+              " wrong content root.")
+        print("         Set ITSY_CONTENT to the content directory, relative to"
+              f" {ROOT}, and run again.")
 
     for label, command, cwd, env_extra in checks:
         ok, output = run(label, command, cwd, env_extra)

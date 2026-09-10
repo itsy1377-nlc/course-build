@@ -11,7 +11,7 @@ Open your week 7 report. Find three numbers: your accuracy, your false positive 
 
 Post by Thursday. Do three things.
 
-1. Give your three numbers. Name one email your agent got wrong. Say which error it was.
+1. Give your three numbers. Name one email your agent got wrong. Say which error it was. The last section of your report lists them, so you can copy the row.
 2. Pick one use case from this week's reading. Don't pick phishing. Your choices are alert triage, log review, documentation, scripting help, vulnerability research, or incident response support.
 3. Name one part of your agent you would have to change for that use case. Say what the change is. Say why it's needed.
 

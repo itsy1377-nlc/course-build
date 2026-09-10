@@ -38,12 +38,28 @@
 #
 # CLO5 links to criterion 2, Triage note, and to nothing else here. CLO5 asks
 # the student to document a triage decision, its indicators and its recommended
-# action so another analyst can act on it. Criterion 2 reads exactly that out of
-# the attached file: six labeled lines in a fixed order for all twenty emails,
-# indicators that name facts the code pulled out, an action that fits the
-# verdict, and a summary a reader with no security background can follow. It is
-# the primary evidence for CLO5 in this course, which is what the alignment
-# matrix records.
+# action so another analyst can act on it. Criterion 2 reads that in two parts:
+# the format the student built, out of the attached file, and the student's own
+# audit of one note, out of the written answer. It is the primary evidence for
+# CLO5 in this course, which is what the alignment matrix records.
+#
+# WHY THE AUDIT, AND WHAT IT REPLACED. An earlier version of this criterion
+# required, in its top band, that every indicator name a fact from the email,
+# that every recommended action fit its verdict, and that every summary be
+# plain enough for the reporter. All three are properties of what the model
+# wrote, not of what the student wrote. write_note() places result["summary"]
+# verbatim, and the lab says so itself: the joined indicator line "is the one
+# item in the note that comes from your own code and not from the model". So a
+# student whose f-string was perfect could lose nine points because a 3B model
+# wrote "spf softfail" in a summary. That is the same thing the closing note in
+# this header forbids, one criterion further down the file.
+#
+# Those three properties still matter, and they are still where the learning
+# sits. They moved from something a grader checks against model output to
+# something the student checks and reports. Reading a generated note and naming
+# the line an analyst could not act on is the documenting skill CLO5 names.
+# Writing the corrected line is what makes it documentation rather than an
+# observation.
 #
 # CLO6 links to criterion 3, Accuracy and human review, and to nothing else
 # here. CLO6 asks the student to measure agent triage accuracy across a batch
@@ -64,8 +80,13 @@
 # Outcome-linked criterion, because measuring with your own numbers is CLO6
 # performance rather than a separate expectation. The requirement now sits in
 # the last sentence of criterion 3, and a submission citing no accuracy figure
-# of its own and no wrong email of its own still cannot reach that criterion's
-# top level.
+# of its own and no email of its own still cannot reach that criterion's top
+# level.
+#
+# THE CLEAN-RUN FALLBACK. The top band of criterion 3 asks for one email this
+# run got wrong. A run that gets all twenty right has none, and the export cell
+# names the least confident call for exactly that case. The band accepts it, so
+# a student is never asked for evidence their own run could not produce.
 #
 # TWO SCALES ON ONE ROW. The level labels on criteria 2 and 3 are the course
 # mastery scale, so the rating the grader picks is what Canvas records against
@@ -80,8 +101,9 @@
 #
 # NO POINTS FOR A CORRECT VERDICT. The answer key ships with the notebook,
 # because nothing in this course locks. No level below rewards getting an email
-# right. What is graded is the quality of the note and the honesty of the
-# measurement.
+# right, and no level below rewards the model having written a good note. What
+# is graded is the note format the student built, the student's own reading of
+# one note, and the honesty of the measurement.
 
 title: "Week 7 lab: a note and a score"
 points: 100
@@ -113,31 +135,32 @@ criteria:
 
   - description: Triage note
     long_description: >-
-      All six lines are present, in order, for all twenty emails. Each
-      indicator names a fact your code pulled out. The recommended action fits
-      the verdict. A reader with no security background can follow the summary.
+      All six lines are present, in order, for all twenty emails, built by your
+      own f-string. Your written answer audits one of those notes: it names a
+      line a next-shift analyst couldn't act on, and writes that line as it
+      should read.
     points: 36
     outcome: CLO5
     levels:
       - description: >-
           Exceeds standard. The file holds a note for all twenty emails. Every
-          note carries the six labeled lines in the fixed order. Every
-          indicator names a fact from the email or from a tool result. Every
-          recommended action fits the verdict on the line above it. Every
-          summary is plain enough for the person who reported the email, and
-          names no header field and no tool.
+          note carries the six labeled lines in the fixed order, and the
+          indicator line is the one the student's own code joined. The written
+          answer names one of those notes, names one line in it a next-shift
+          analyst could not act on, and writes that line as it should read.
         points: 36
       - description: >-
           Meets standard. All twenty notes carry the six labeled lines in
-          order. One or two notes are thin in one place: an indicator that
-          names no fact, an action that does not fit its verdict, or a summary
-          written in header terms rather than plain words.
+          order. The written answer names a note and names a line that does not
+          hold up. The correction is thin: it says the line is wrong rather
+          than writing the line as it should read.
         points: 27
       - description: >-
           Approaching standard. The file holds notes and the fixed format does
           not hold. Lines are missing, out of order or unlabeled across several
-          notes. Or fewer than twenty emails have a note. It shows notes were
-          written. It does not show a format another analyst could scan.
+          notes. Or fewer than twenty emails have a note. Or the format holds
+          and the written answer audits no note at all. It shows notes were
+          written. It does not show they were read.
         points: 18
       - description: >-
           No evidence. No file. Or a file holding no notes. Or notes that are
@@ -146,31 +169,33 @@ criteria:
 
   - description: Accuracy and human review
     long_description: >-
-      Your accuracy number matches the file you attached. The two kinds of
-      error are counted apart. Escalation agreement has its own line. Your
-      written answer names where a human must still review, and cites your own
-      accuracy figure and at least one of your own wrong emails.
+      Your accuracy number matches the file you attached. The two errors are
+      counted apart, with no-verdict rows in neither. Escalation agreement has
+      its own line. Your written answer names where a human must still review,
+      and cites your own accuracy figure and one email of your own.
     points: 56
     outcome: CLO6
     levels:
       - description: >-
           Exceeds standard. The screenshot and the file report the same
           accuracy number. False positives and false negatives are counted on
-          separate lines, and escalation agreement has its own line. The
-          written answer names one place where a human must still review and
-          says why. It cites the accuracy figure from this run and names one
-          email this run got wrong.
+          separate lines, rows with no verdict sit in neither, and escalation
+          agreement has its own line. The written answer names one place where
+          a human must still review and says why. It cites the accuracy figure
+          from this run, and names one email this run got wrong or, on a run
+          with no wrong call, the one the agent was least sure about.
         points: 56
       - description: >-
           Meets standard. The screenshot and the file report the same accuracy
           number, with the two errors apart and escalation agreement on its own
           line. The written answer names where a human must still review. It
-          cites the accuracy figure or one wrong email, but not both. Or it
-          names the place and gives no reason.
+          cites the accuracy figure or one email of its own, but not both. Or
+          it names the place and gives no reason.
         points: 42
       - description: >-
           Approaching standard. The run was scored and one central part is
-          missing. The two errors are added into one count. Or escalation
+          missing. The two errors are added into one count, or a row that came
+          back with no verdict is counted as one of them. Or escalation
           agreement is absent. Or the accuracy in the screenshot and the
           accuracy in the file disagree. Or the written answer carries no
           number of the student's own. It shows the batch ran. It does not show

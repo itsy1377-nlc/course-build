@@ -11,15 +11,15 @@ About four minutes. One week 7 run: twenty emails, twenty notes, the score repor
 :::
 
 ::: section | Part one. Who reads a triage note
-A **triage note** is the short written record an analyst leaves after judging one email. It's read later, by someone who wasn't there.
+A **triage note** is the short written record an analyst leaves after judging an email. It's read later, by someone who wasn't there.
 
-The next person to open the ticket wants the judgment and the facts behind it. Five lines are for them. The person who reported the email wants to know whether she was right, and the last line is for her.
+The next person to open the ticket wants the judgment and the facts behind it. Five lines are for them. The person who reported the email wants to know whether she was right. The last line is for her.
 
 Recording what you found and did is a step in incident handling, not a courtesy.
 :::
 
 ::: section | Why the six lines never move
-A fixed format buys three things. A reader knows where to look. Twenty notes in one file can be scanned. And code can write a fixed shape. `write_note()` fills the six from one result.
+A fixed format buys three things. A reader knows where to look. Twenty notes in one file can be scanned. And code can write a fixed shape, which is what `write_note()` does.
 
 | Line | What it holds |
 |---|---|
@@ -30,9 +30,9 @@ A fixed format buys three things. A reader knows where to look. Twenty notes in 
 | Escalate | yes or no |
 | Summary | two sentences for the person who reported it |
 
-Your agent already produces four of them. The **recommended action** and the summary are new. The batch runner hands your week 6 triage a longer schema, so both arrive beside the verdict.
+Your agent already produces three of them. The **recommended action** and the summary are new, and the batch runner asks your week 6 triage for both. The Escalate line the model never writes: your code works it out.
 
-The action is one of five set values, and it has to fit the verdict. Your note prints it as the schema writes it.
+The action is one of five set values. Your note prints it as the schema writes it.
 :::
 
 ::: section | The last line is not for you
@@ -40,7 +40,7 @@ A **plain-language summary** is two short sentences for the person who reported 
 
 Priya Castellanos in accounts payable isn't an analyst. Write "spf softfail" and she has learned nothing. She wants to know whether anything happened to her, and what happens now.
 
-The model writes those two sentences itself, and `write_note()` places them. A person reads them before anyone acts, because a generated summary reads as confident whether or not it's correct.
+The model writes those two sentences, and `write_note()` places them. A person reads them before anyone acts, because a generated summary reads as confident whether or not it's right.
 :::
 
 ::: section | One finished note
@@ -57,19 +57,19 @@ PDF, and our mail gateway removed it before it reached you. Nothing ran on your
 computer, and we are checking whether anyone else got a copy.
 ```
 
-Every indicator on the third line names something your code pulled out. The summary names no header and no tool.
+Every indicator names something your code pulled out. The summary names no header and no tool.
 
-Your wording and your numbers will differ. The six lines won't.
+Your wording and numbers will differ. The six lines won't.
 :::
 
 ::: section | Part two. A judgment is not a measurement
 Your agent has judged emails for six weeks. Nothing has said how often it was right.
 
-A **batch run** is one sitting in which the agent reads many emails in a row. Yours reads twenty, numbered 026 to 045. Ten are malicious, ten are benign, and none appeared in an earlier week.
+A **batch run** is one sitting in which the agent reads many emails in a row. Yours reads twenty, numbered 026 to 045. Ten malicious, ten benign, none from an earlier week.
 
-**Ground truth** is the correct answer for each email, written down before the agent ever ran. This course also calls it the answer key.
+**Ground truth** is the correct answer for each email, written down before the agent ran. This course also calls it the answer key.
 
-**Accuracy** is the share of emails the agent judged correctly. Seventeen right out of twenty is 0.85.
+**Accuracy** is the share of emails the agent judged correctly. Divide your correct calls by the twenty.
 :::
 
 ::: section | The two errors, and what each one costs
@@ -82,26 +82,31 @@ A false positive spends his morning on a message that was fine. Enough of those 
 A false negative sends an attack back to the reporter marked safe. Priya reads that it's fine, and opens the file.
 
 So the two counts are never added together. Three wrong out of twenty tells you nothing. Two false positives with one false negative is a different problem from one with two.
+
+A third count isn't a third kind of wrong. Some emails come back with no verdict, because that run didn't finish. The model didn't answer badly. It didn't answer. Those sit in **no decision**, out of both error counts, and still lower your accuracy.
 :::
 
 ::: section | One score block
-Here's one score block. Yours won't match it.
+Here's the shape of the block.
 
 ```text
-Scored against answer key phase0-1.0
-Emails scored: 20
-Correct verdicts: 17
-Accuracy: 0.85
-False positives: 2
-False negatives: 1
-Escalation agreement: 18 of 20
+Emails scored:         20
+Correct calls:         ..
+Accuracy:              ....
+False positives:       ..
+False negatives:       ..
+No decision:           ..
+Escalation agreement:  .. of 20
+Answer key version:    phase0-1.0
 ```
 
-Those three counts add to twenty, which checks that the counting worked.
+Those four counts add to twenty, which checks that the counting worked:
 
-Escalation agreement is the share of the twenty where the agent's yes or no matched the answer key. It gets its own line because it asks a different question. Accuracy asks whether the agent judged an email correctly. This asks whether it sent the right cases to a person.
+**correct + false positives + false negatives + no decision = 20**
 
-You write `score_batch()`, which counts the verdicts and the two errors. Your own numbers will differ, because the model varies from run to run. The next cell lists the emails yours got wrong.
+Escalation agreement is the share of the twenty where your Escalate line matched the key. It asks a different question from accuracy. Accuracy asks whether the verdict was right. This asks whether the right cases reached a person.
+
+You write `score_batch()`, which fills the four counts. The next cell lists the emails yours got wrong.
 :::
 
 ::: section | Part three. Six other jobs, and yours
@@ -115,13 +120,13 @@ Alert triage. The tool needs the alert, the asset it names, and what normal look
 
 Log review. A mail gateway writes thousands of ordinary lines a day. The tool needs those lines, and what normal looks like there. You learn normal by reading part of the log daily. It hands back the few lines worth a look.
 
-Phishing analysis. The one you built. It needs the headers, the links and the sender history. It hands back a verdict and a note. A person still decides.
+Phishing analysis. The one you built. It needs the headers, links and sender history. It hands back a verdict and a note. A person still decides.
 :::
 
 ::: section | Two jobs where the tool writes a draft
 Documentation. Drafting a ticket note or an incident summary. It needs the facts already recorded, and nothing else. It hands back a draft in your team's shape. The ticket owner reads it first.
 
-Scripting help. Writing a small script to pull or reshape data. It needs the shape of the data and what you want out. It hands back code. You read that code, then run it on a copy.
+Scripting help. Writing a small script to pull or reshape data. It needs the shape of the data and what you want out. It hands back code. You read it, then run it on a copy.
 :::
 
 ::: section | Two jobs that help you decide what is next
@@ -133,13 +138,13 @@ Seven jobs, and the third answer never changed. A person checks it.
 :::
 
 ::: section | The sidebar, then the lab
-Run the **Week 7 sidebar notebook** first. It uses a bakery yield log: four bakes, with rolls planned and rolls made. 7A counts the bakes that hit their number. 7B counts the two ways a bake missed, then divides for the rate.
+Run the **Week 7 sidebar notebook** first. It uses a bakery yield log: four bakes, rolls planned and rolls made. 7A counts the bakes that hit their number. 7B counts the two ways a bake missed, then divides for the rate.
 
-Then open the lab. It runs the batch and writes `week7_triage_report.txt`. Sidebar code pasted into it fails. The name is wrong, and renaming doesn't help. The sidebar reads `planned` and `made` from one list. The lab reads a verdict from a row and checks it against the answer key.
+Then open the lab. It runs the batch and writes `week7_triage_report.txt`. Sidebar code pasted into it fails. The name is wrong, and renaming doesn't help. The sidebar reads `planned` and `made` from one list. The lab reads a verdict from a row and checks it against the key.
 :::
 
 ::: reading | One source to open
-A free framework document from a United States standards agency, on managing the risk in an AI system. Read section 3.1, Valid and Reliable. It runs two pages.
+A free framework document from a United States standards agency, on managing risk in an AI system. Read section 3.1, Valid and Reliable. It runs two pages.
 
 Ask yourself one thing while you read. What does it say every accuracy measurement should be paired with?
 
@@ -149,7 +154,7 @@ Ten minutes. Skim it, don't study it.
 :::
 
 ::: sources | Sources
-Five of these six are United States government publications, free to read and free to reuse. The sixth is a joint agency guide marked TLP:CLEAR, so anyone may share it. Only the first is assigned, so only it carries a link.
+Five of these six are United States government publications, free to read and reuse. The sixth is a joint agency guide marked TLP:CLEAR, so anyone may share it. Only the first is assigned, so only it carries a link.
 
 | Source | What it grounds here |
 |---|---|
@@ -160,5 +165,5 @@ Five of these six are United States government publications, free to read and fr
 | *Phishing Guidance: Stopping the Attack Cycle at Phase One*. CISA, NSA, FBI and MS-ISAC, October 2023 | How a real team handles the mail its own users report |
 | *Known Exploited Vulnerabilities Catalog*. CISA, catalog version 2026.09.04 | Vulnerability research, and which published weaknesses come first |
 
-Three things here come from practice, not from those documents. The six line note format is ours. So is the rule that the two error counts are never added together. And the catalog does not say you need a software list first. Every entry names a product, so you have to know what you run.
+Three things here come from practice, not from those documents. The six line note format is ours. So is the rule that the two error counts are never added together. And the catalog doesn't say you need a software list first: every entry names a product, so you have to know what you run.
 :::

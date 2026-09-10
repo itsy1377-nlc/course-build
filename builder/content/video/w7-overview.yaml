@@ -52,7 +52,7 @@ scenes:
         reveal: 2
       - text: Each one comes back as a six-line note.
         reveal: 3
-      - text: Then you score all twenty against an answer key. That part isn't a new ability. It's you measuring the agent you've.
+      - text: Then you score all twenty against an answer key. That part isn't a new ability. It's you measuring the agent you have.
         reveal: 4
 
   - type: slide

@@ -2154,11 +2154,12 @@ questions:
           They often differ. "Delete the message" with escalate no is a normal
           note, and so is the same action with escalate yes. See the week 7
           reading.
-      - text: Escalate is set by your code and recommended action by the model
+      - text: Escalate repeats the verdict, and recommended action repeats the confidence
         correct: false
         feedback: >-
-          Both come out of one result and write_note() places them. Who sets
-          which is not the difference. See the week 7 reading.
+          Neither line repeats another one. A benign email can still escalate,
+          and a malicious one can close without a person. See the week 7
+          reading and cell 12 of the week 7 lab.
 
   - number: 38
     id: exam-q38-clo6-fp-fn

@@ -11,7 +11,7 @@ the amendment before quoting the week 6 section.
 | 2, 3, 4, 5, 7 | `granite-3b` | Cheapest that does the job, and week 2 needs a model that sometimes returns malformed output |
 | 1 | `granite-8b` | `granite-3b` calls email 001 legitimate 8 times in 20 at t=1.0, so a student would read heat as error rather than as variation |
 | 6 | `granite-3b` | `granite-8b` cannot return a readable verdict on email 024 in 6 of 8 runs of the shipped code, and a twin pair needs both twins readable |
-| 7, one comparison | `granite-8b` | The measured contrast the wrap-up teaches |
+| 7, one comparison | `granite-8b` | The measured contrast the wrap-up teaches. Its direction was reversed on 2026-09-10, see the second amendment |
 
 `granite-3b` and `granite-8b` are the only models the proxy serves and the only
 two any student key may name.
@@ -108,9 +108,12 @@ and the stop condition owned by code. **Its figures predate the move from
 ollama to the proxy**, so the direction stands and the numbers should not be
 quoted as current until re-run.
 
-**Week 7** is measured on the current stack. 3B beat 8B on the batch at a third
-of the cost, which is why the course teaches that size pays for judgement on
-thin evidence and not behind a facts block.
+**Week 7 was re-measured on 2026-09-10 and this paragraph is wrong.** It read:
+*"Week 7 is measured on the current stack. 3B beat 8B on the batch at a third of
+the cost, which is why the course teaches that size pays for judgement on thin
+evidence and not behind a facts block."* Both halves are false on the code week
+7 ships. The record is `docs/week7-measurement/README.md` and the correction is
+the second amendment below.
 
 **Week 3** stays on `granite-3b`, and `docs/week3-measurement/README.md`
 settles it. This file first read week 3 as the case where 8B judges better
@@ -153,3 +156,57 @@ evidence about the assembly it was run through. The week 6 numbers in this file
 were taken on two hand-written prompts, and they decided a week whose real
 prompt is built by a loop, three tools and a schema. Run the comparison through
 the code the student runs, or do not quote it.
+
+## Second amendment, 2026-09-10: week 7, measured on the code it ships
+
+Week 7's numbers had never been taken on the stack it ships. The only record
+was `content/video/runs/w7.json`, recorded 2026-09-05 against
+`http://localhost:11434/v1`, the retired ollama endpoint, and before week 6's
+rebuild changed the prompt week 7 builds.
+
+Twelve passes on 2026-09-10, through the week 7 solution notebook's own
+pre-written cells, at the notebook's temperature, one email per request, input
+digests identical within each set. Full record in
+`docs/week7-measurement/README.md`.
+
+**The twenty batch emails, 026 to 045, three passes a model.** These appear in
+no earlier week, so no prompt in this course was tuned against them.
+
+| | `granite-3b` | `granite-8b` |
+|---|---|---|
+| Correct, of 60 | 34 | 48 |
+| Accuracy | **0.567** | **0.800** |
+| Per-pass | 0.550, 0.600, 0.550 | 0.800, 0.800, 0.800 |
+| False positives | 26 | 11 |
+| False negatives | **0** | **0** |
+| Rows with no verdict | 0 | 1 |
+| Distinct emails missed | 9 | 4 |
+
+**The 24 teaching emails, 001 to 025 without 013, three passes a model.** Same
+direction, wider gap: `granite-3b` 51/72 = 0.708, `granite-8b` 66/72 = 0.917.
+
+**What this reverses.** 8B does not score worse than 3B behind the facts block.
+It scores 23.3 points better on the holdout and 20.9 better on the teaching
+set, for about twice the price. The old claim was taken before week 6's rebuild
+and on the retired endpoint.
+
+**Week 7 still runs on `granite-3b`, and the accuracy is not why.** Week 7
+measures the agent the student built over six weeks, and that agent runs on
+`granite-3b`. A config cell naming a different model hands the student a
+different system to measure in the one week whose purpose is finding out what
+theirs does. The week 7 spec puts it plainly: *"Nothing else about the agent
+changes. The decision path built in week 6 runs untouched."*
+
+The pre-registered threshold happened to block the switch too, on a clause
+about failure rates, but that is not the reason and it is recorded in
+`docs/week7-measurement/prereg-claude.md` amendment 3 that it is not.
+
+**What `granite-3b` actually does on the batch, because a page has to say it.**
+It calls 9 of the 10 benign emails malicious, 8 of them in all three passes,
+and misses no attacks at all. Zero false negatives, 26 false positives in 60.
+That is the finding week 7 teaches from.
+
+**The caution from the first amendment still stands, and this measurement
+obeyed it.** A model comparison is only evidence about the assembly it was run
+through. These twelve passes went through the shipped solution notebook's own
+cells, not a hand-written prompt.

@@ -1,5 +1,5 @@
 ::: intro
-Week 7 is done. Your agent writes its judgment down now, and you know how often that judgment is right. Here's what you covered, what you built, and what comes next.
+Week 7 is done. Your agent writes its judgment down now, and you know how often that judgment is right.
 :::
 
 ::: learned | What you learned
@@ -10,6 +10,7 @@ Week 7 is done. Your agent writes its judgment down now, and you know how often 
 | Ground truth | The correct answer, written down before your agent ran |
 | Accuracy | The share of the twenty your agent judged correctly |
 | False positive and false negative | A benign email called malicious, and a malicious one called benign |
+| No decision | A row where no verdict came back. Not a wrong answer |
 | Escalation agreement | How often its yes or no matched the answer key |
 | Use case | One job people give an AI tool |
 
@@ -18,17 +19,17 @@ Two of those carry the week. A judgment isn't a measurement. And the two error c
 
 ::: did | What you did
 - You counted bakes in the sidebar, then divided for a rate.
-- You wrote `write_note()`, which fills the six lines from one triage result.
-- You ran the batch across all twenty emails and watched the token total climb.
-- You wrote `score_batch()`, which counts correct calls and both kinds of error.
+- You wrote `write_note()`, which fills the six lines from one result.
+- You ran the batch across all twenty emails.
+- You wrote `score_batch()`, which counts correct calls, both errors, and the rows that never answered.
 - You read the table of every email your agent got wrong, with the answer key beside it.
 - You exported `week7_triage_report.txt` and read the file you turned in.
 
-That file holds twenty notes and your score block. A grader reads both without opening your notebook.
+That file holds twenty notes, your score block, and what the run got wrong.
 :::
 
 ::: checkpoint | Check yourself
-Answer these six before you move on. Each answer sits under its question, with the reading section it comes from.
+Answer these six before you move on. Each answer names the reading section it comes from.
 
 1. A tool reads a day of log lines and hands back the few worth a look. Which job is it, and what does it need first?
 
@@ -56,15 +57,24 @@ Answer these six before you move on. Each answer sits under its question, with t
 :::
 
 ::: section | Would a bigger model have done better?
-We ran the same batch on `granite-8b`, at about three times the cost. It scored a little worse than 3B on our run. One run is one sample, so yours will differ.
+Yes. We ran your twenty emails on `granite-8b` three times, beside three runs of your `granite-3b`.
 
-It wins on a bare body. Behind your facts block and tools, it doesn't. Size pays for judgement on thin evidence. You spent four weeks making it good.
+| Over three runs | 3B | 8B |
+|---|---|---|
+| Correct, of 60 | 34 | 48 |
+| Accuracy | 0.567 | 0.800 |
+| False positives | 26 | 11 |
+| False negatives | 0 | 0 |
+
+Twice the price, fourteen more calls right. Neither missed a single attack. Both spent every error on mail that was fine.
+
+Size paid here, behind your facts block and your tools. Knowing that is worth more than a better score. You measured a system, found where it fails, and can say what a better one buys.
 :::
 
 ::: next
 Take the **Week 7 self-check** if you haven't yet. It's 12 points, unlimited tries, and the highest score counts.
 
-Post to the **Week 7 discussion** and reply to one classmate. Both parts ask for numbers out of your own report.
+Post to the **Week 7 discussion** and reply to one classmate. Both ask for numbers from your own report.
 
-Week 8 is the final exam and nothing else. No new reading, no new lab, no new video. Forty questions worth 30 points, one attempt, due Day 55. It asks about all seven weeks, so your notebooks are the study guide.
+Week 8 is the final exam and nothing else. No new reading, no new lab, no new video. Forty questions worth 30 points, one attempt, due Day 55. Your notebooks are the study guide.
 :::
