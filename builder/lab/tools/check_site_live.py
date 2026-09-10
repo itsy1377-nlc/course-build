@@ -51,9 +51,22 @@ TIMEOUT = 30
 
 def stage_temporary():
     """Build the tree this repository would ship, into a scratch directory."""
+    # The stager sits beside this file. An earlier version built the path from
+    # ROOT, which is already builder/, and asked for builder/builder/lab/...
+    # It never fired, because the one green run passed --site and skipped this
+    # branch entirely. Same shape as every other defect this round: a code path
+    # no check entered.
     out = Path(tempfile.mkdtemp(prefix="site-live-"))
-    subprocess.run([sys.executable, str(ROOT / "builder/lab/tools/stage_notebook_site.py"),
-                    str(out)], check=True, capture_output=True)
+    stager = Path(__file__).resolve().with_name("stage_notebook_site.py")
+    if not stager.exists():
+        raise SystemExit(f"cannot stage: {stager} is missing")
+    done = subprocess.run([sys.executable, str(stager), str(out)],
+                          capture_output=True, text=True)
+    if done.returncode != 0:
+        # A bare CalledProcessError hides the stager's own message, which is
+        # the one that says what is actually wrong.
+        raise SystemExit("staging the site failed:\n"
+                         + (done.stderr or done.stdout or "").strip())
     return out
 
 
