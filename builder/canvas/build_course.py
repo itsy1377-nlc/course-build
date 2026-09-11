@@ -726,9 +726,32 @@ class Builder:
         obj = (self.canvas.put(f"/courses/{self.course_id}/quizzes/{found['id']}", data=data)
                if found else self.canvas.post(f"/courses/{self.course_id}/quizzes", data=data))
         qid = obj["id"]
-        # Questions are replaced wholesale so an edited source cannot leave a stale item.
-        for q in self.canvas.get(f"/courses/{self.course_id}/quizzes/{qid}/questions"):
-            self.canvas.delete(f"/courses/{self.course_id}/quizzes/{qid}/questions/{q['id']}")
+        # Questions are replaced wholesale so an edited source cannot leave a
+        # stale item. This used to be one pass: list them, delete each, then
+        # post the new set. On 2026-09-11 a full-course push left the final
+        # exam with 67 questions against a source of 46 -- 21 items duplicated,
+        # points_possible 25.5 instead of 30, on a graded exam worth a fifth of
+        # the course. Twenty-one had survived the delete pass and were then
+        # written again beside their replacements.
+        #
+        # The cause does not have to be known to be closed: assume the delete
+        # did not take, and check rather than trust. Re-list after deleting and
+        # go again until the quiz is empty. If it will not empty, stop, because
+        # posting a new set on top of an old one is how the duplicate exam got
+        # made and a half-written exam is worse than a failed build.
+        for attempt in range(5):
+            leftover = self.canvas.get(
+                f"/courses/{self.course_id}/quizzes/{qid}/questions")
+            if not leftover:
+                break
+            for q in leftover:
+                self.canvas.delete(
+                    f"/courses/{self.course_id}/quizzes/{qid}/questions/{q['id']}")
+        else:
+            raise CanvasError(
+                f"quiz {ref}: {len(leftover)} question(s) would not delete after "
+                f"five passes. Refusing to write a new set on top of them, "
+                f"because that is what duplicated the final exam on 2026-09-11.")
         n_pts = 0
         n_scored = 0
         for i, q in enumerate(spec.get("questions", [])):

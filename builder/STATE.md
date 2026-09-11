@@ -1,8 +1,10 @@
 # ITSY-1377-000 build state
 
 Written so a fresh session can continue without re-deriving anything. Update
-this file at every stopping point. Last update: 2026-09-10, week 8 pushed and
-verified. **All eight weeks are built, measured, pushed and verified.** What is
+this file at every stopping point. Last update: 2026-09-11, the whole queue
+Q1-Q11 closed and the whole course pushed. **A full push duplicated the final
+exam and `--verify` caught it; read the top of `docs/lab-fix-log.md` before the
+next push.** **All eight weeks are built, measured, pushed and verified.** What is
 left is the queue at the end of `docs/lab-fix-log.md`, not a week.
 
 ## Week 8 and the exam are repaired, 2026-09-10, not pushed

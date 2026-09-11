@@ -30,6 +30,48 @@ week that has been measured.
 
 ---
 
+## The push that duplicated the final exam, 2026-09-11
+
+**Found by `--verify`, which is the whole reason it exists.** A full-course
+push reported 162 objects, 0 skipped, and looked clean. The read-back did not:
+
+    FAIL quiz Final exam: 59 scored question(s) in Canvas, the source has 40
+    FAIL quiz Final exam: 8 text block(s) in Canvas, the source has 6
+
+Live state at that moment, on an exam worth a fifth of the course grade:
+**67 questions against a source of 46, 21 of them duplicated, and
+`points_possible` 25.5 instead of 30.**
+
+**What happened.** `make_quiz()` replaces questions wholesale: list them,
+delete each, write the new set. Twenty-one survived the delete pass and were
+then written again beside their replacements. 46 minus 25 deleted, plus 46
+posted, is 67 — the arithmetic fits a delete pass that saw only the first
+twenty-five. The helper paginates and returns all 67 when asked now, so the
+cause is not reproducible after the fact.
+
+**It did not need to be.** The repair does not depend on knowing why the delete
+fell short: it re-lists after deleting and goes again, up to five passes, and
+**raises rather than writing a new set on top of an old one**. A failed build
+is recoverable. A duplicated graded exam that reports success is not.
+
+    for attempt in range(5):
+        leftover = ...questions
+        if not leftover: break
+        for q in leftover: delete q
+    else:
+        raise CanvasError("refusing to write a new set on top of them")
+
+**Repaired and confirmed live:** 30.0 points, 40 scored plus 6 blocks, 0
+duplicated names, published, one attempt, answers shuffled. Full-course
+`--verify`: 0 problems.
+
+**The lesson is the one this course keeps relearning.** The build said 162
+objects, 0 skipped. It was wrong, and only a read-back of the thing itself
+found it. A gate that reads what you wrote rather than what you meant to write
+is worth more than the build's own report.
+
+---
+
 ## Week 8 and the final exam — applied 2026-09-10
 
 **Every one of the forty keys was audited against the corpus**, four readers
