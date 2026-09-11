@@ -1784,3 +1784,131 @@ same rule on the output, everywhere, including staff documents. The gate found
 four more instances the original grep had missed, in `w3-lab.md`,
 `w3-overview.md`, `w5-discussion.md` and `w6-discussion.md`; all four are
 fixed.
+
+---
+
+## Still open, 2026-09-11
+
+Q1 to Q11 are closed. These are what is left, in the same shape as the queue
+above: what to do, where, and how you know it worked. Nothing here blocks the
+course running.
+
+### Q12. Lengthen the self-check distractors
+
+**The key is the longest option in 28 of 43 items.** Q4 moved the keys off
+position 1 and cannot touch this: reordering does not change length. A student
+who does not know the answer can still pick the longest one and be right two
+times in three.
+
+*Where:* `content/quizzes/w1-self-check.yaml` through `w7-self-check.yaml`.
+
+*How:* lengthen distractors rather than shortening keys. A key trimmed to match
+loses the precision that makes it the key. The assessment reviewer priced this
+at half a day and it is careful writing, not a script.
+
+**Done when** no more than about a third of items have the key as the longest
+option, and every distractor still reads as something a partially prepared
+student would pick.
+
+### Q13. Week 7's self-check asks one question four times
+
+**Verified.** `w7-q5` through `w7-q8` each describe a security job and ask which
+of the seven use cases it is. In every one the keyed use-case name occupies two
+of the four options, so a student who knows the job has a 50 percent floor
+without knowing the fact the item turns on. Three of the four
+distractor-2 feedbacks even open with the same sentence, "The job is right and
+the fact is not."
+
+That is 6 of the quiz's 12 points measuring one construct.
+
+*Where:* `content/quizzes/w7-self-check.yaml`.
+
+*How:* in two of the four, move one of the two same-name options onto a
+different use case, so the pair no longer brackets the answer.
+
+**Done when** no item offers the keyed use-case name twice.
+
+### Q14. `exam-parts/` has diverged from the exam it claims to source
+
+`final-exam.yaml:19-22` says the exam was carried from those files "word for
+word" and that the QA report cites them. They have since diverged: the
+blueprint amendment of 2026-09-11 released four items from "extractor" to
+"parser" in `final-exam.yaml`, and `exam-parts/B2.yaml`, `B4.yaml`, `CLO1.yaml`
+and `CLO4.yaml` still say extractor.
+
+The risk is a wrong repair: someone reads exam-parts, believes it is the
+source, and edits there.
+
+*How:* either regenerate them from `final-exam.yaml`, or mark them superseded
+in their own headers and correct the claim in `final-exam.yaml`.
+
+**Done when** one file is the source and says so, and the other either matches
+it or says it does not.
+
+### Q15. The exam's `artifact:` field is unvalidated free text
+
+It is the only link from an exam item to the email it grades, and it is written
+in at least four incompatible shapes: `'046'`, `'046-sandmarsh-secure-message-json-block'`,
+`'CONFIDENCE_FLOOR'`, `'decisive_stop()'`. A typo, a renamed corpus email or a
+re-keyed record would not be caught by anything.
+
+*Where:* `content/quizzes/final-exam.yaml`, and `lab/tools/check_exam.py` to
+enforce it.
+
+*How:* pick one shape for email-backed items, say the three-digit id, and give
+non-email items a value the checker knows is not an email. Then have
+`check_exam.py` assert every email-shaped artifact exists in a release key.
+
+**Done when** `check_exam.py` fails on a renamed corpus email.
+
+### Q16. Carry the CLO into the exam question names
+
+The exam's 25 outcome tags post nothing to Canvas, and that is correct: Classic
+Quizzes has no per-question outcome field. The consequence is that the per-CLO
+item analysis the 2026-09-07 resize was for cannot be produced from Canvas.
+
+*How:* prefix each scored question name with its CLO, which
+`tools/populate_canvas.py:82` and `tools/qti.py:301` already intend, then export
+item analysis and group on the prefix. Add a read-back check that every scored
+question kept it.
+
+**Done when** a per-CLO item analysis can be produced without hand-matching
+question text.
+
+### Q17. Two gates still cannot see part of what they check
+
+- **`check_site_live.py` compares `files/` and not `api/contents/*.json`.**
+  JupyterLite serves its file listing from the index, and the index carries a
+  `size` and a `hash` per file. A stale index survived two deploys because of
+  this, and was found by hand on 2026-09-10.
+- **`check_chain.py` compares only `ast.FunctionDef`.** Module-level constants
+  carried between weeks drift unguarded. Weeks 6 and 7 were checked by hand on
+  2026-09-10 and agree; nothing checks them now.
+
+**Done when** a stale index and a drifted constant each turn a gate red.
+
+### Q18. The corpus client-IP third octet separates the labels
+
+Across the 37 rendered emails carrying a `client-ip`, `198.51.100` is 10
+malicious of 12, and a threshold on `203.0.113`'s fourth octet at `>=91` scores
+21 of 25. A header rule scores about 16 of 20 on the week 7 batch, well above
+the roughly 45 percent the model measures.
+
+**It reaches no prompt, so it cannot contaminate what week 7 measures.**
+`build_facts()` sends thirteen named fields and none is the IP, and the three
+tools return reputation, URL status and recipient records. This is corpus
+hygiene and a hazard for anyone who later evaluates on this corpus, not a live
+defect.
+
+*How:* shuffle the octets, then assert the rendered prompts are byte-identical
+before and after.
+
+**Done when** no single header field separates the labels better than chance.
+
+### Not a defect: the course has no dates
+
+23 assignments, 0 due dates, no course start or end, and the final exam has no
+`unlock_at`, `due_at` or `lock_at`. Every page states days relative to a start
+the section sets. **Do not invent dates.** Whoever schedules a section sets
+them, and the week 8 page and the schedule page then have to match what they
+chose.

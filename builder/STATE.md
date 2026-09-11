@@ -7,7 +7,55 @@ exam and `--verify` caught it; read the top of `docs/lab-fix-log.md` before the
 next push.** **All eight weeks are built, measured, pushed and verified.** What is
 left is the queue at the end of `docs/lab-fix-log.md`, not a week.
 
-## Week 8 and the exam are repaired, 2026-09-10, not pushed
+## Where to pick up, 2026-09-11
+
+**The course is built, measured, pushed and verified, end to end.** Eight weeks,
+162 objects on Canvas, the notebook site serving exactly the shipped tree, and
+every gate green: `check_chain`, `readability`, `verify_content`, `check_exam`,
+`check_tools`, the 14-video library, and `check_site_live`.
+
+**Queue items Q1 to Q11 are closed. Q12 to Q18 are open and are written up at
+the end of `docs/lab-fix-log.md`**, each with what to do, where, and how you
+know it worked. None of them blocks the course running. The two that touch what
+a student is graded on are Q12, the key being the longest option in 28 of 43
+self-check items, and Q13, week 7's self-check asking one question four times.
+
+**Three things a fresh session must not undo.**
+
+1. **Exam item 24 is not a wrong key.** Five expert reviews and a blind student
+   run all say it is. All forty keys were audited against the corpus on
+   2026-09-10 and none is wrong. Queue item Q1 carries the correction. Acting on
+   the original finding would break a correct key on a graded exam.
+2. **The course has no dates on purpose.** 23 assignments, 0 due dates, no
+   course start or end. Whoever schedules a section sets them.
+3. **The exam's outcome tags post nothing to Canvas, and that is correct.**
+   Classic Quizzes has no per-question outcome field. The rubrics carry the
+   primary evidence for all six CLOs.
+
+**Before the next Canvas push, read the top of `docs/lab-fix-log.md`.** A
+full-course push on 2026-09-11 reported 162 objects, 0 skipped, and left the
+final exam with 67 questions against a source of 46. `--verify` caught it;
+the build's own report did not. `make_quiz()` now refuses to write a new set on
+top of one that would not delete. **Always run `--verify` after a push.**
+
+**How to run the gates**, because two of them read the wrong tree if you do not:
+
+    cd builder
+    python3 lab/tools/check_chain.py
+    python3 lab/tools/check_exam.py
+    python3 lab/tools/check_tools.py
+    PYTHONPATH=<repo root> python3 -m tools.readability
+    PYTHONPATH=<repo root> python3 -m tools.verify_content
+    cd <repo root>
+    python3 builder/lab/tools/check_site_live.py
+    ITSY_CONTENT=builder/content tools/video/.venv/bin/python -m tools.video.check
+
+`verify_content` and `readability` derive their tree from the course being
+checked; run them from `builder/` or they check a sibling course. The video
+gate needs `ITSY_CONTENT` or it finds no scene lists. The video build needs
+`tools/video/.venv/bin/python` and now says so by name if you forget.
+
+## Week 8 and the exam are repaired, 2026-09-10, and pushed 2026-09-11
 
 **Every one of the forty exam keys was audited against the corpus.** Four
 readers, ten items each. **0 wrong keys.** Sixteen items flagged for feedback,
@@ -57,7 +105,7 @@ missing feedback, and both repaired items present.
 `check_quiz_points` examine zero items; and prefixing exam question names with
 their CLO, which `populate_canvas.py` and `qti.py` already intend.
 
-## Week 7 is rebuilt and measured, 2026-09-10, not yet pushed
+## Week 7 is rebuilt and measured, 2026-09-10, and pushed
 
 Everything below is committed. **The one thing left for week 7 is the Canvas
 push.**
