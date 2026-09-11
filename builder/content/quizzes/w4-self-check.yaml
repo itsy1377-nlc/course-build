@@ -81,12 +81,6 @@ questions:
       tools and gives the value to pass it.</p>
       <p>What has happened at that point?</p>
     answers:
-      - text: The model has asked for that tool. Nothing has run yet.
-        correct: true
-        feedback: >-
-          Right. A tool call is a request, not an action. Your run_tool() is
-          what runs anything, and it has not been called yet. Week 4 reading,
-          the model asks, your code decides.
       - text: The model looked the host up and sent back what it found.
         correct: false
         feedback: >-
@@ -105,6 +99,12 @@ questions:
           No. Cell 8 makes one call and runs no tool before it. That reply is
           the first time any tool is named. Week 4 lab notebook, cell 8.
 
+      - text: The model has asked for that tool. Nothing has run yet.
+        correct: true
+        feedback: >-
+          Right. A tool call is a request, not an action. Your run_tool() is
+          what runs anything, and it has not been called yet. Week 4 reading,
+          the model asks, your code decides.
   - id: w4-q2
     name: Question 2. Why the arguments get loaded first
     type: multiple_choice
@@ -155,13 +155,6 @@ questions:
       <p>You want to know whether that link host is on the blocklist. Which
       tool answers that?</p>
     answers:
-      - text: check_urls(hosts)
-        correct: true
-        feedback: >-
-          Right. That is the tool that reads the allowlist and the blocklist.
-          On 018 it comes back blocklisted, and cell 15 shows that fact holding
-          the verdict at malicious, which is what the answer key says. Week 4
-          reading, why the three tools are plain Python.
       - text: check_sender_reputation(sender)
         correct: false
         feedback: >-
@@ -170,6 +163,13 @@ questions:
           account. Cell 15 shows that true fact moving the verdict to benign,
           away from the answer key. Week 4 reading, one tool of three is half a
           read.
+      - text: check_urls(hosts)
+        correct: true
+        feedback: >-
+          Right. That is the tool that reads the allowlist and the blocklist.
+          On 018 it comes back blocklisted, and cell 15 shows that fact holding
+          the verdict at malicious, which is what the answer key says. Week 4
+          reading, why the three tools are plain Python.
       - text: lookup_recipient(address)
         correct: false
         feedback: >-
@@ -195,12 +195,6 @@ questions:
       not one of them.</p>
       <p>What should <code>run_tool()</code> do?</p>
     answers:
-      - text: Return a plain sentence saying it has no tool by that name.
-        correct: true
-        feedback: >-
-          Right. The run keeps going, and the model is told what happened.
-          Sidebar 4b practices this exact move on a report name. Week 4 lab
-          notebook, cell 10.
       - text: Raise an error, so the run stops and you can see the bad name.
         correct: false
         feedback: >-
@@ -212,6 +206,12 @@ questions:
         feedback: >-
           No. That answers a question nobody asked, and the file records a tool
           the model never named. Say what you do not have instead. Week 4 lab
+          notebook, cell 10.
+      - text: Return a plain sentence saying it has no tool by that name.
+        correct: true
+        feedback: >-
+          Right. The run keeps going, and the model is told what happened.
+          Sidebar 4b practices this exact move on a report name. Week 4 lab
           notebook, cell 10.
       - text: Send the name back and ask the model to choose again.
         correct: false
@@ -230,13 +230,6 @@ questions:
       and asks for no tool.</p>
       <p>What does <code>triage_with_tools()</code> do?</p>
     answers:
-      - text: It falls back to week 2's parsing, and records in your file that the fallback ran.
-        correct: true
-        feedback: >-
-          Right. That record earns full credit, the same as a recorded tool
-          call, because the lab scores your code and not the model's choice.
-          Cell 15 shows you the path on purpose. Week 4 reading, when the model
-          answers in prose instead.
       - text: It sends the request again with the tool definitions repeated, until a tool call comes back.
         correct: false
         feedback: >-
@@ -255,3 +248,11 @@ questions:
           No. Your code runs the tool the model names. When it names none,
           there is nothing to run. Week 4 reading, when the model answers in
           prose instead.
+
+      - text: It falls back to week 2's parsing, and records in your file that the fallback ran.
+        correct: true
+        feedback: >-
+          Right. That record earns full credit, the same as a recorded tool
+          call, because the lab scores your code and not the model's choice.
+          Cell 15 shows you the path on purpose. Week 4 reading, when the model
+          answers in prose instead.

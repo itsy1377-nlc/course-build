@@ -24,7 +24,7 @@ Eleven to fourteen lines of your own code, in two marked TODO cells. Everything 
 ::: callout warning | Two things that stop this lab
 `arguments` arrives as text, not as a dictionary. Read it with `json.loads()` before you take a value out of it.
 
-An unknown tool name has to return a plain sentence. Raise an error instead, and one name you don't have ends the run for all six emails.
+An unknown tool name has to return a plain sentence. Raise an error instead and one name you don't have ends the run for all six emails.
 :::
 
 ::: grading | Grading Criteria
@@ -32,7 +32,7 @@ An unknown tool name has to return a plain sentence. Raise an error instead, and
 |---|---|---|
 | Submission completeness | 32 | All three items are present and readable. |
 | Tool call handled end to end | 40 | For each of the six emails the file records one of two things. Either the tool the model asked for, its arguments, the result your code returned, and a tool result message carrying the model's call id. Or the fallback record, showing the prose path was handled. Recorded results match the shipped tool records. |
-| Reading your own results | 28 | The written answer reads cell 15's four verdicts, names the fact that moved one off the key, and reports one row of your own cell 14 table with its tool and fact. |
+| Reading your own results | 28 | The written answer reads cell 15's four verdicts on email 018, names the fact that moved one of them off the key, and reports one row of your own cell 14 table with its tool and fact. It says what that row does and does not settle. |
 | **Total** | **100** | |
 
 Nothing here can force the model to ask for a tool. A fallback record earns the same credit as a tool call. This lab scores your code, not the model's choice.
@@ -44,7 +44,7 @@ Nothing is graded by running your notebook. The three items you turn in carry al
 Three items. Nothing else. No zip file, no folder, no link to a repository.
 
 1. **A screenshot.** One image of the output of cell 14, titled "All six emails, with tools and without". It has to show all six rows plus the token line under them. Capture the whole output in one image. If the rows don't fit, lower your browser zoom and capture again.
-2. **One file.** `week4_tool_calls.json`, attached as itself. Cell 17 prints its full path and its first few lines, so you can see exactly what you're attaching.
+2. **One file.** `week4_tool_calls.json`, attached as itself. Cell 17 prints its full path and its first few lines.
 3. **A written answer**, typed into the submission box. Three to five sentences. Answer this:
 
     Cell 15 judged email 018 four times, changing only what the tool answered. Name the tool whose fact moved the verdict off the answer key, and give that fact.

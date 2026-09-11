@@ -31,7 +31,7 @@ Don't send everything the parser returns. Cell 12 prints the size of your block.
 |---|---|---|
 | Submission completeness | 25 | All three items are present and readable. |
 | Fact extraction | 25 | Every email in the file carries the facts block you sent. Each block holds the sender facts, the three check results, the display-name mismatch, the link hosts, the gateway values and any attachment name. It uses the shipped labels and the shipped order, and its values match the parser. |
-| Before and after comparison | 25 | All six emails are in the file. Each one carries both verdicts, both confidence numbers, both indicator lists, and a changed flag that agrees with the two verdicts. The same six rows are readable in the screenshot. A row where nothing changed counts the same as one that moved. |
+| Before and after comparison | 25 | All six emails are in the file. Each one carries both verdicts, both confidence numbers, both indicator lists, and a changed flag that agrees with the two verdicts. The same six rows are readable in the screenshot. A row where nothing changed is a result and is graded the same as one that moved. |
 | Written answer | 25 | Three to five sentences. It names one fact you left out and why a sound verdict does not need it. It names one email id, one indicator the grounded run added or dropped, and whether the verdict moved. |
 | **Total** | **100** | |
 

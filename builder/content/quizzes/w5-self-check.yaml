@@ -117,15 +117,6 @@ questions:
       explicit?</p>
     answers:
       - text: >-
-          It is a rule in your code. decisive_stop() reads a tool result and
-          names one of five reasons, or nothing.
-        correct: true
-        feedback: >-
-          Correct. The rule sits in your code, so every run ends for a reason
-          you can name. The measurement is why: with the rule in code, nearly
-          every run ended for the right reason. Week 5 reading, the stop
-          condition is a rule in your code.
-      - text: >-
           LOOP_INSTRUCTIONS tells the model to answer once it has enough. So
           the model ends its own run.
         correct: false
@@ -134,6 +125,15 @@ questions:
           decide when to stop got the whole path right in well under half of
           those runs. Week 5 reading, the stop condition is a rule in your
           code.
+      - text: >-
+          It is a rule in your code. decisive_stop() reads a tool result and
+          names one of five reasons, or nothing.
+        correct: true
+        feedback: >-
+          Correct. The rule sits in your code, so every run ends for a reason
+          you can name. The measurement is why: with the rule in code, nearly
+          every run ended for the right reason. Week 5 reading, the stop
+          condition is a rule in your code.
       - text: >-
           MAX_STEPS is set to 4, so every run ends after four steps.
         correct: false
@@ -162,17 +162,6 @@ questions:
       <p>What does your notebook do, and what ends the run?</p>
     answers:
       - text: >-
-          It runs the tool again every time and every step counts. Four
-          steps go by with two tools never tried, so out_of_room() returns
-          step_cap.
-        correct: true
-        feedback: >-
-          Right. Nothing refuses a repeat. The steps are spent, two tools
-          stay untried, and only the cap is left to end it. Cell 15 runs
-          exactly this and prints step_cap. One repeat would not do it: that
-          run still tries all three tools and ends tools_exhausted. Week 5
-          reading, the cap is a control, and a person owns it.
-      - text: >-
           It refuses the repeated call, so the step does not count and the run
           carries on.
         correct: false
@@ -188,6 +177,17 @@ questions:
           No. <code>decisive_stop()</code> reads the tool result. It knows
           nothing about which tools ran before. Week 5 reading, the stop
           condition is a rule in your code.
+      - text: >-
+          It runs the tool again every time and every step counts. Four
+          steps go by with two tools never tried, so out_of_room() returns
+          step_cap.
+        correct: true
+        feedback: >-
+          Right. Nothing refuses a repeat. The steps are spent, two tools
+          stay untried, and only the cap is left to end it. Cell 15 runs
+          exactly this and prints step_cap. One repeat would not do it: that
+          run still tries all three tools and ends tools_exhausted. Week 5
+          reading, the cap is a control, and a person owns it.
       - text: >-
           The repeat costs nothing, because the first result is already in the
           message list.
@@ -210,14 +210,6 @@ questions:
       <p>Which tools does <code>tools_left()</code> name now? And what happens
       if the model asks for <code>check_urls</code> anyway?</p>
     answers:
-      - text: >-
-          Only lookup_recipient is left. A call to check_urls gets an empty
-          result back, and the step still counts.
-        correct: true
-        feedback: >-
-          Right. A tool is left only while it still has something to look at.
-          On 004 that extra step teaches nothing and costs a request. Week 5
-          reading, a wrong second choice costs a step.
       - text: >-
           check_urls and lookup_recipient are both left, because a tool stays
           left until it has run once.
@@ -242,6 +234,14 @@ questions:
           order the loop follows. Week 5 reading, the agent picks its next
           tool from what it just read.
 
+      - text: >-
+          Only lookup_recipient is left. A call to check_urls gets an empty
+          result back, and the step still counts.
+        correct: true
+        feedback: >-
+          Right. A tool is left only while it still has something to look at.
+          On 004 that extra step teaches nothing and costs a request. Week 5
+          reading, a wrong second choice costs a step.
   - id: w5-q5
     name: Question 5. Where the two token totals come from
     type: multiple_choice
@@ -298,14 +298,6 @@ questions:
       <p>What does <code>first_call()</code> do?</p>
     answers:
       - text: >-
-          It saves what the model said into the run record. Then it names the
-          first tool the run has not used yet.
-        correct: true
-        feedback: >-
-          Right. Nothing is thrown away and nothing stalls. The step still
-          runs a tool. Cell 9 holds that function, and cell 8 calls it on one
-          real pass. Week 5 lab notebook, cell 9.
-      - text: >-
           It raises an error, because the loop needs a tool call on every
           step.
         correct: false
@@ -313,6 +305,14 @@ questions:
           No. A model that answers early is a normal condition. The notebook
           covers it rather than failing. Read the comment inside
           <code>first_call()</code>. Week 5 lab notebook, cell 9.
+      - text: >-
+          It saves what the model said into the run record. Then it names the
+          first tool the run has not used yet.
+        correct: true
+        feedback: >-
+          Right. Nothing is thrown away and nothing stalls. The step still
+          runs a tool. Cell 9 holds that function, and cell 8 calls it on one
+          real pass. Week 5 lab notebook, cell 9.
       - text: >-
           It ends the run there and sets the stop reason to tools_exhausted.
         correct: false

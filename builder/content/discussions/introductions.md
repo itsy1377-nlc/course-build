@@ -6,7 +6,7 @@ This is where the class meets. Post a short introduction, then read a few others
 Write four or five sentences. Cover these four things.
 
 1. Your first name, and what you want to be called.
-2. Your program, and how far along you're.
+2. Your program, and how far along you are.
 3. What you've done with AI tools so far. No experience is a fine answer.
 4. One thing you want to be able to do by the end of this course.
 

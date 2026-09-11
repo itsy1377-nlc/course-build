@@ -1372,7 +1372,28 @@ before it starts. Not defects in themselves.
 
 These affect every week and are cheaper to do once. Ordered by value.
 
-### Q1. Re-key final exam question 24, and derive escalation
+### Q1. Derive escalation — DONE. Do NOT re-key exam question 24
+
+**Half of this entry is wrong, and acting on it would have broken a correct key
+on a graded exam. Read this before touching item 24.**
+
+**The re-key half is void.** Every one of the forty exam keys was audited
+against the corpus on 2026-09-10 and none is wrong, item 24 included. Rule 5
+governs *a vendor's* bank details. Email 050 is the payroll vendor's
+confirmation of a change the reporter made in the portal himself; Fenwright's
+details did not change and the message asks for nothing. The corpus record
+argues the objection out in full, and so does the week 8 entry above. What
+failed the blind student was the item's *feedback*, which invented a rule and
+cited a week 6 page that states no such thing. That feedback is now rewritten.
+
+**The derivation half is done.** `escalate == recommended_action in
+{escalate_incident, verify_out_of_band_then_close}` holds 56 of 56 across all
+three release keys, and week 7 now implements it as `policy_review()` inside
+`review_decision()`. Week 6's control flag was left alone rather than renamed,
+because `guarded_triage()` is byte-identical between weeks 6 and 7 and editing
+it would move week 6's measured numbers.
+
+The original finding, kept because it is what was believed on 2026-09-08:
 
 **Verified.** Email 050 is *"Your direct deposit account was changed"* from the
 real payroll vendor, reported by the employee. The keyed answer is "Benign. Close
@@ -1388,7 +1409,24 @@ verify_out_of_band_then_close}` holds 20 of 20 in the batch key. Rename week 6's
 model-set flag to `control_flag` so a control the model can change is not called
 a control. **Done when** the exam key and `playbook.md` cannot disagree.
 
-### Q2. Add the missing fields to the export cells
+### Q2. Add the missing fields to the export cells — DONE, and it was already done
+
+**Checked 2026-09-11: all four rows were closed by the weekly rebuilds and
+nobody updated this entry.** Weeks 6 and 7 were done in their own rebuilds. The
+other two were already done and I mis-read them once before checking properly:
+
+- **Week 3** `compare_runs()` writes `ungrounded_indicators` and
+  `grounded_indicators`, and the export cell copies both into
+  `week3_grounding.json`. My first check searched the wrong 900 characters.
+- **Week 5** `one_line()` does still trim to 80 characters, and that is
+  correct: it is the trace *table*, which has to fit a screen. The export cell
+  rebuilds the untrimmed record beside it as `result_full`, by re-running the
+  offline tools at no model cost, and says in its own comment why: "a
+  reputation record is about 300 characters and a recipient record about 320,
+  so the trim cuts both mid-field."
+
+Nothing to do. The original finding, below, is kept because it is what was true
+on 2026-09-08.
 
 **Three rubric criteria and three discussion items are graded on values the
 export files do not contain.** One line each, in the cell that builds the row.
@@ -1403,7 +1441,7 @@ export files do not contain.** One line each, in the cell that builds the row.
 **Done when** every value named in a rubric or discussion prompt can be found in
 the file the student attaches.
 
-### Q3. Give `schema_errors()` a `sentences` branch, and call it
+### Q3. Give `schema_errors()` a `sentences` branch, and call it — DONE 2026-09-10
 
 `OUTPUT_SCHEMA_V2` declares `summary` as `{"type": "sentences", "how_many":
 "two"}`. `schema_errors()` branches on `allowed`, then `number`, then falls
@@ -1411,21 +1449,73 @@ through to an `else` that requires a list — so it would reject a *correct* wee
 answer, and it is never called with V2 anywhere. **Done when** the 36-point note
 criterion has code behind it.
 
-### Q4. Move the self-check keys off position 1
+### Q4. Move the self-check keys off position 1 — DONE 2026-09-11
 
-All 43 scored questions in weeks 1–7 have the correct answer first, and
+**Done.** 34 keys moved, cycling the target position per item with a per-quiz
+offset so no two quizzes share a pattern. Across all 43 the key now sits at
+position 1, 2, 3 and 4 in **10, 12, 11 and 10** items. Shuffling stays off, as
+the instructional designer asked.
+
+Reordered on the raw YAML rather than by parsing and dumping, so every comment
+block survives. Verified against HEAD afterwards: every option text, every key
+and every piece of feedback still attached to the option it belongs to, in all
+seven files. The feedback that reads like a position reference — "the second
+line of the note", "the second row", "the third kind" — is about content and
+not about option order, so reordering is safe.
+
+**The second cue is still open and is a separate job.** The key is the longest
+option in **28 of 43** items. Reordering cannot touch that; it needs the
+distractors lengthened, which the assessment reviewer priced at half a day.
+
+The original finding: all 43 scored questions in weeks 1–7 had the correct answer first, and
 `shuffle_answers` is `false` on all seven quizzes in Canvas. **Do not fix this
 with shuffling** — the instructional designer says shuffling is off deliberately
 and documented, so students can compare a second attempt to their first. Move the
 keys instead. The assessment reviewer found a second cue: the key is also the
 **longest option in 27 of 43**, which shuffling would not have fixed either.
 
-### Q5. Give the discussions a Canvas rubric
+### Q5. Give the discussions a Canvas rubric — DONE 2026-09-11
 
-12% of the grade. `make_discussion()` in `build_course.py` attaches none; scoring
-lives in a prose table with no levels and no partial credit.
+12% of the grade. `make_discussion()` attached none, so scoring lived in a prose
+table on the page with no levels and no partial credit: a grader had one box and
+a number.
 
-### Q6. `run_notebook.py` cannot prove a notebook works as shipped
+**Done.** Eight rubric files, one per graded board, generated from each page's
+own grading table so the criteria are word for word what the student was shown.
+A criterion worth 3 or more carries full, half and none, because those rows are
+two or three things joined by "and" and half of them is a real state. A
+criterion worth 2 or less carries full and none, because a post is on time or it
+is not. No outcome links: every discussion page states in its own closing line
+that the board reports into no course objective.
+
+`make_discussion()` now resolves the assignment behind a graded board and calls
+the same `attach_rubric()` the labs use, which already refuses to attach a
+rubric whose criteria do not sum to the assignment's points.
+
+The introductions board got one too, at one point in a group weighted at zero
+percent, rather than being left as a permanent reported skip.
+
+Whole-course dry run afterwards: 140 objects, 0 skipped.
+
+### Q6. `run_notebook.py` cannot prove a notebook works as shipped — DONE 2026-09-11
+
+**Done.** `--as-shipped` sets neither `ITSY1377_MODEL` nor `ITSY1377_BASE_URL`,
+so each notebook's own `os.environ.get(..., default)` applies and the gate tests
+what the notebook declares. It reads those declarations out of the config cell
+and prints them before running, so the run says which model it is about to use
+rather than leaving it to be inferred.
+
+It reaches a real endpoint, which is why it is a flag rather than the default,
+and why it refuses to invent an API key: without `ITSY1377_API_KEY` it stops and
+says so. The default path keeps the localhost defaults and the 201-failed-calls
+protection they exist for, unchanged.
+
+Proven on the notebook this entry names. `w1-lab` declares `granite-8b`, which
+is the case that had to be forced by hand:
+
+    declared:  w1-lab.ipynb -> granite-8b at https://api.bashtion.dev/v1
+    ok   instructor/solutions/w1-lab-solution.ipynb  (solution, 15 cells, 0 TODO, 17.9s)
+
 
 **Verified while fixing week 1, and it affects every week's verification.**
 `lab/tools/run_notebook.py` lines 214-217:
@@ -1482,14 +1572,14 @@ passes loudly while examining the wrong thing.
 declares `granite-8b` either tests granite-8b or refuses to run — and never
 prints a model the notebook did not choose.
 
-### Q6b. Measure notebook markdown for reading level, and only for that
+### Q6b. Measure notebook markdown for reading level, and only for that — DONE 2026-09-08
 
 **Done, 2026-09-08.** `tools/readability.py` now measures every markdown cell under
 `lab/notebooks/` beside every content page, in one table. Notebooks are held to
 the same reading grade and carry no length budget, because a notebook is worked
 through rather than read straight down. 74 pages enforced, up from 59.
 
-### Q6c. `build_course.py` has no per-week scope, and its dry run is not dry
+### Q6c. `build_course.py` has no per-week scope, and its dry run is not dry — DONE 2026-09-08
 
 **Done, 2026-09-08.** `build_course.py --week N` builds one module. It takes a number,
 a comma list, `start` for orientation, and is repeatable; `--list-weeks` prints
@@ -1502,7 +1592,46 @@ The dry run was also not dry: `--check` uploaded all 42 video assets for real
 while printing `[dry]` for everything else. It now maps each placeholder to a
 `[dry-run: ...]` label and touches nothing.
 
-### Q7. Make every check report how many items it examined
+### Q7. Make every check report how many items it examined — DONE 2026-09-11
+
+**Done, and it was worse than the entry said.** Both loops were fixed to walk
+`modules[].items`, and the runner now prints a count for every check and fails
+any check that examined zero items unless inapplicability is declared the way
+`HARNESS_CHECKS` does.
+
+`check_quiz_points` went from `ok` on **0** items to `ok` on **10**.
+
+`check_points` went from `ok` on 0 items to **15 examined and nine real
+problems**, none of which anything had ever reported:
+
+- Its second half demanded that a page carrying both a rubric and a
+  hand-written `::: grading` block delete the block, "because the build
+  generates the table from the rubric". **It does not.** `tools/blocks.py`
+  renders the authored block and nothing generates a table from a rubric. That
+  rule belongs to a sibling course. It is replaced with the convention this
+  course's rubrics actually state, in every lab rubric header: long_description
+  is "what earns full credit, in the words the assignment page shows the
+  student. The two must stay identical."
+- Comparing them found **five criteria whose long_description carried authoring
+  rationale** — "This is a week expectation, not a course outcome" — in the
+  field a grader reads. Moved into the files' comment blocks, where every other
+  rubric keeps it.
+- And **two genuine divergences**. Week 3's "Before and after comparison" said
+  one thing on the page and another in the rubric. Week 4's "Reading your own
+  results" was worse: the rubric graded "the four verdicts **on email 018**",
+  "one of them **away from the answer key**", and a whole extra sentence, **"It
+  says what that row does and does not settle"**, that the page never showed.
+  28 points partly resting on a requirement a student could not read. The page
+  now carries it.
+
+The comparison ignores markdown, because the page writes `ok=True` and the
+rubric writes ok=True for Canvas, and flagging that is noise rather than drift.
+
+**A note for whoever runs this next.** `verify_content` derives its whole tree
+from the course being checked, so run it from `builder/` or set `ITSY_CONTENT`.
+From the repository root it checks a sibling course and reports that course's
+ATLAS findings, which is a trap its own docstring already describes.
+
 
 `check_points()` and `check_quiz_points()` in `tools/verify_content.py` iterate
 `course["assignments"]` and `course["quizzes"]`, but this course keeps everything
@@ -1511,7 +1640,28 @@ under `modules[].items`. **Neither loop body has ever executed**, and both print
 inapplicability is declared. Turns two green gates red today, and every future
 check inherits it.
 
-### Q8. Say which interpreter the video build needs
+### Q8. Say which interpreter the video build needs — DONE 2026-09-11
+
+**Done, and the reason it had not been done is worth keeping.** The obvious fix
+edits `tools/video/build.py`, and `_PIPELINE` globbed every `.py` in that
+directory into every video's fingerprint. So adding a guard that cannot change
+a pixel marked all fourteen videos stale and demanded a full re-render. On
+2026-09-11 that trap also cost a correct accessibility fix its first attempt.
+
+Both are fixed together. `check.py` is out of the fingerprint, because a gate
+reads artifacts and changes none, and the comment says what qualifies. The
+guard tries to import `soundfile` and, failing, names the interpreter:
+
+    This is the wrong interpreter for the video build.
+    Run it with:
+        .../tools/video/.venv/bin/python -m tools.video.build ...
+
+instead of `ModuleNotFoundError: No module named 'soundfile'`, which reads as a
+missing dependency and once produced a wrong "the build environment is gone".
+
+Changing the fingerprint formula rebuilds the library once. That is the last
+time a checker edit will.
+
 
 **Not a missing environment — a misleading error.** The venv is at
 `tools/video/.venv` (kokoro 0.9.4, soundfile, torch 2.13.0) and it is intact. Run
@@ -1540,7 +1690,42 @@ It fails again as of week 7's rebuild, correctly: the notebooks changed and the
 site has not been redeployed. It is a deploy gate, so a red gate before a deploy
 is the gate working.
 
-### Q10. Two Level A accessibility failures
+### Q10. Two Level A accessibility failures — DONE 2026-09-11
+
+Every one of the fourteen video transcripts shipped with no `lang` attribute
+(WCAG 3.1.1) and a filename as its page title (WCAG 2.4.2): a tab and a
+bookmark reading `w7-walkthrough.transcript`.
+
+**The fault was in the Canvas uploader, not the video pipeline.**
+`tools/cartridge.py` has always written `<html lang="en">` and a real title;
+`canvas/build_course.py` rendered its own four-line version and did neither.
+That matters for cost: the fix touches nothing in `tools/video/`, so it did
+**not** trip the fingerprint that would have marked all fourteen videos stale
+and forced a re-render.
+
+The title now comes from the transcript's own first heading, which is the
+video's title, so it reads `Transcript: What a finished week 7 run looks like`.
+All 14 carry `lang="en"` and none carries a filename.
+
+### Q11. Ungrammatical contractions — DONE 2026-09-11
+
+`warm_pass.py` was fixed and enforced, but the artifacts it had already damaged
+were never regenerated. **Five survived, and the first three were in the pages
+a student reads first:**
+
+| Page | Read |
+|---|---|
+| `home.md:32` | "so your instructor and your classmates know **who you're**" |
+| `introductions.md:9` | "Your program, and **how far along you're**" |
+| `welcome-start-here.md:43` | "**Submit what you've.**" |
+| `olrn-0001.md:25` | "which start date fits the week **you've**?" |
+| `w1-content.md:22` | "Security work starts with knowing what **you've**." |
+
+Expanded rather than re-contracted, on the user's instruction that contractions
+are wanted in the videos and the transcripts rather than everywhere. The video
+scene lists were scanned for the same pattern and are clean. Warmth still reads
+17.6 per 1k against a floor of 4.0, so nothing dropped below the gate.
+
 
 The fourteen shipped transcripts lost their `lang` attribute and their titles at
 the final build step — three lines to fix. There is no accommodations statement
@@ -1550,9 +1735,7 @@ commissioning remediation.
 
 ---
 
-### Q11. `warm_pass.py` produces ungrammatical contractions
-
-**Done, 2026-09-08.** `tools/warm_pass.py` now refuses to contract when a preposition,
+**How the tool was fixed, 2026-09-08.** `tools/warm_pass.py` now refuses to contract when a preposition,
 a gerund or a quantifier sits in front of the pronoun, so the pronoun is part of
 a longer phrase rather than the subject. `tools/readability.py` enforces the
 same rule on the output, everywhere, including staff documents. The gate found

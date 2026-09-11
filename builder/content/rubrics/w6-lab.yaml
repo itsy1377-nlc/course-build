@@ -93,6 +93,13 @@
 # NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
 # screenshot of cell 16, the exported week6_guardrails.json, and the written
 # answer.
+#
+# WHY THESE CRITERIA CARRY NO OUTCOME LINK, moved here 2026-09-11. The
+# sentences below used to sit inside long_description, which is the field a
+# grader reads and which has to stay word for word what the assignment page
+# shows the student. They are authoring rationale, not what earns credit:
+#   - This criterion is a week expectation, not a course outcome: it scores whether the submission arrived in a form a grader can read. CLO4 is carried by criterion 2.
+#   - This criterion is a week expectation, not a course outcome: it scores what the exported file holds, not how good the run was. CLO4 is carried by criterion 2.
 
 title: "Week 6 lab: an email that gives orders"
 points: 100
@@ -101,9 +108,7 @@ criteria:
 
   - description: Submission completeness
     long_description: >-
-      All three items are present and readable. This criterion is a week
-      expectation, not a course outcome: it scores whether the submission
-      arrived in a form a grader can read. CLO4 is carried by criterion 2.
+      All three items are present and readable.
     points: 8
     levels:
       - description: >-
@@ -168,9 +173,7 @@ criteria:
       The file holds a row for all eleven emails. Each row carries a verdict on
       both paths, an escalation reason and a token count. Placement is named
       where the email has one and reads none where it does not. The fence
-      record for email 013 is present. This criterion is a week expectation,
-      not a course outcome: it scores what the exported file holds, not how
-      good the run was. CLO4 is carried by criterion 2.
+      record for email 013 is present.
     points: 20
     levels:
       - description: >-

@@ -104,17 +104,17 @@ questions:
       <p>A user clicks Report Phish. The report becomes an alert. Where in that
       path does the agent you are building do its work?</p>
     answers:
+      - text: Before the report. It watches the mailbox and decides what to report.
+        correct: false
+        feedback: >-
+          No. A user reports the message. Your agent never picks what gets
+          reported. See part one of the week 1 reading.
       - text: Between the alert and the ticket. It reads the facts and drafts the note.
         correct: true
         feedback: >-
           Right. That is the pin on the picture. It reads the facts behind the
           alert and drafts the note that goes into the ticket. See part one of
           the week 1 reading.
-      - text: Before the report. It watches the mailbox and decides what to report.
-        correct: false
-        feedback: >-
-          No. A user reports the message. Your agent never picks what gets
-          reported. See part one of the week 1 reading.
       - text: At the end. It decides whether the case is an incident and closes it.
         correct: false
         feedback: >-
@@ -138,11 +138,6 @@ questions:
       the help desk's line, so it is escalated.</p>
       <p>At Pellgrave, who receives it?</p>
     answers:
-      - text: Devin Crowmarden, the security analyst
-        correct: true
-        feedback: >-
-          Right. Pellgrave has one security analyst, and escalated tickets go
-          to him. See part one of the week 1 reading.
       - text: Priya, because she reported it
         correct: false
         feedback: >-
@@ -153,6 +148,11 @@ questions:
         feedback: >-
           No. Escalation goes to a person. A gateway is a tool, not a
           destination. See part one of the week 1 reading.
+      - text: Devin Crowmarden, the security analyst
+        correct: true
+        feedback: >-
+          Right. Pellgrave has one security analyst, and escalated tickets go
+          to him. See part one of the week 1 reading.
       - text: Nobody. Escalating a ticket closes it.
         correct: false
         feedback: >-
@@ -171,11 +171,6 @@ questions:
       quarantine. The tool writes nothing else.</p>
       <p>Which kind of AI work is that?</p>
     answers:
-      - text: Scoring AI
-        correct: true
-        feedback: >-
-          Right. It sorts or rates something and hands back a number or a
-          label. See part two of the week 1 reading.
       - text: Generative AI
         correct: false
         feedback: >-
@@ -192,6 +187,11 @@ questions:
           It is one of the three. Ask what it hands back. A number or a label
           means scoring. See part two of the week 1 reading.
 
+      - text: Scoring AI
+        correct: true
+        feedback: >-
+          Right. It sorts or rates something and hands back a number or a
+          label. See part two of the week 1 reading.
   - id: w1-q5
     name: Question 5. Which kind of AI is this
     type: multiple_choice
@@ -237,6 +237,13 @@ questions:
       text?</p>
     answers:
       - text: >-
+          From counting the characters in the answer and dividing by four.
+        correct: false
+        feedback: >-
+          No. That measures only the text you can see. On some models most of
+          the billed tokens never appear in the answer. See the token counter
+          cell in the week 1 lab notebook.
+      - text: >-
           From the usage numbers in the reply. Some models are billed for text
           you never see.
         correct: true
@@ -245,13 +252,6 @@ questions:
           those. A model can be billed for thinking you never see, so measuring
           the visible text can under-report by about ten times. See the token
           counter cell in the week 1 lab notebook.
-      - text: >-
-          From counting the characters in the answer and dividing by four.
-        correct: false
-        feedback: >-
-          No. That measures only the text you can see. On some models most of
-          the billed tokens never appear in the answer. See the token counter
-          cell in the week 1 lab notebook.
       - text: >-
           From your prompt only. The answer costs nothing.
         correct: false

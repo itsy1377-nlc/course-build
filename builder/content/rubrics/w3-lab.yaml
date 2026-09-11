@@ -54,6 +54,14 @@
 #
 # NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
 # screenshot, the exported file and the written answer.
+#
+# WHY THESE CRITERIA CARRY NO OUTCOME LINK, moved here 2026-09-11. The
+# sentences below used to sit inside long_description, which is the field a
+# grader reads and which has to stay word for word what the assignment page
+# shows the student. They are authoring rationale, not what earns credit:
+#   - This is a week expectation, not a course outcome: it measures whether the work arrived, so it carries no Outcome link.
+#   - This is a week expectation, not a course outcome: it measures whether you reported what you saw, so it carries no Outcome link.
+#   - This is a week expectation, not a course outcome: it measures whether you reported what you saw in your own run, so it carries no Outcome link.
 
 title: "Week 3 lab: send facts, not the email"
 points: 100
@@ -62,9 +70,7 @@ criteria:
 
   - description: Submission completeness
     long_description: >-
-      All three items are present and readable. This is a week expectation, not
-      a course outcome: it measures whether the work arrived, so it carries no
-      Outcome link.
+      All three items are present and readable.
     points: 25
     levels:
       - description: >-
@@ -121,9 +127,7 @@ criteria:
     long_description: >-
       All six emails are in the file. Each one carries both verdicts, both
       confidence numbers, both indicator lists, and a changed flag that agrees
-      with the two verdicts. The same six rows are readable in the screenshot.
-      This is a week expectation, not a course outcome: it measures whether you
-      reported what you saw, so it carries no Outcome link. A row where nothing
+      with the two verdicts. The same six rows are readable in the screenshot. A row where nothing
       changed is a result and is graded the same as one that moved.
     points: 25
     levels:
@@ -152,9 +156,7 @@ criteria:
     long_description: >-
       Three to five sentences. It names one fact you left out and why a sound
       verdict does not need it. It names one email id, one indicator the
-      grounded run added or dropped, and whether the verdict moved. This is a week expectation, not a course outcome: it measures
-      whether you reported what you saw in your own run, so it carries no
-      Outcome link.
+      grounded run added or dropped, and whether the verdict moved.
     points: 25
     levels:
       - description: >-

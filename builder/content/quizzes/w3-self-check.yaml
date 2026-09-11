@@ -78,12 +78,6 @@ questions:
       hands back far more than the facts block needs.</p>
       <p>Which of these values belongs in the block?</p>
     answers:
-      - text: "The sending domain, `pellgrave-corp.example`"
-        correct: true
-        feedback: >-
-          Correct. That domain is not Pellgrave's, and the name over it is
-          Pellgrave's chief financial officer. It is the fact the whole email
-          turns on. Week 3 reading, the name over the address.
       - text: The list of servers the message passed through on its way in
         correct: false
         feedback: >-
@@ -95,6 +89,12 @@ questions:
         feedback: >-
           No. It names one message and nothing else, so no verdict turns on
           it. Week 3 reading, what you leave out is also a decision.
+      - text: "The sending domain, `pellgrave-corp.example`"
+        correct: true
+        feedback: >-
+          Correct. That domain is not Pellgrave's, and the name over it is
+          Pellgrave's chief financial officer. It is the fact the whole email
+          turns on. Week 3 reading, the name over the address.
       - text: The address of the colleague who reported the message
         correct: false
         feedback: >-
@@ -115,12 +115,6 @@ questions:
       mail.</p>
       <p>What do those results tell you?</p>
     answers:
-      - text: The message claims Pellgrave's own domain and did not come from Pellgrave's mail. Somebody outside sent it under your name.
-        correct: true
-        feedback: >-
-          Correct. That is a fact, not a verdict, and it is a strong one. Send
-          it and let the model weigh it. Week 3 reading, what a passed check
-          really means.
       - text: Pellgrave's mail system is broken, so the three results cannot be trusted here.
         correct: false
         feedback: >-
@@ -138,6 +132,12 @@ questions:
           names. Where a message lands is a separate decision. Week 3 reading,
           what a passed check really means.
 
+      - text: The message claims Pellgrave's own domain and did not come from Pellgrave's mail. Somebody outside sent it under your name.
+        correct: true
+        feedback: >-
+          Correct. That is a fact, not a verdict, and it is a strong one. Send
+          it and let the model weigh it. Week 3 reading, what a passed check
+          really means.
   - id: w3-q3
     name: Question 3. A link host on no list
     type: multiple_choice
@@ -186,18 +186,18 @@ questions:
       DMARC.</p>
       <p>Why are all three missing?</p>
     answers:
-      - text: The gateway runs the three checks on mail arriving from outside. This message never arrived from outside, so there was nothing to write down.
-        correct: true
-        feedback: >-
-          Correct. Missing is not failed. Say so in the facts block and let the
-          verdict come from the other facts. Week 3 reading, what a passed
-          check really means.
       - text: All three failed, and a failed check is written as an empty value.
         correct: false
         feedback: >-
           No. A failure is written as fail, the way email 006 shows it. Empty
           means the check never ran. Week 3 reading, what a passed check really
           means.
+      - text: The gateway runs the three checks on mail arriving from outside. This message never arrived from outside, so there was nothing to write down.
+        correct: true
+        feedback: >-
+          Correct. Missing is not failed. Say so in the facts block and let the
+          verdict come from the other facts. Week 3 reading, what a passed
+          check really means.
       - text: Your `build_facts()` dropped them, because an empty value is not worth sending.
         correct: false
         feedback: >-
@@ -222,12 +222,6 @@ questions:
       hold.</p>
       <p>What did the grounded run have that the first run did not?</p>
     answers:
-      - text: All three checks passed for the supplier's own domain, and the name over the address belongs to that domain.
-        correct: true
-        feedback: >-
-          Correct. Nothing about the message got calmer. Facts arrived that the
-          body alone could not carry. Week 3 reading, what the facts
-          block can and can't do.
       - text: A shorter body, so the lines about the credit hold were cut.
         correct: false
         feedback: >-
@@ -239,6 +233,12 @@ questions:
           No. Nothing about the call changed this week. The model, the settings
           and the schema check are exactly as week 2 left them. Week 3 lab
           notebook, cell 13.
+      - text: All three checks passed for the supplier's own domain, and the name over the address belongs to that domain.
+        correct: true
+        feedback: >-
+          Correct. Nothing about the message got calmer. Facts arrived that the
+          body alone could not carry. Week 3 reading, what the facts
+          block can and can't do.
       - text: A playbook rule telling the model to discount urgent wording.
         correct: false
         feedback: >-
@@ -258,12 +258,6 @@ questions:
       <p>Which function in your week 3 notebook does the same job as dropping
       the fields nobody needs?</p>
     answers:
-      - text: "`build_facts()`"
-        correct: true
-        feedback: >-
-          Correct. It picks. Then `format_facts()` puts what is left into one
-          steady shape. Those two steps work on a log line, an alert or a
-          ticket. Week 3 reading, the same move on a log line.
       - text: "`format_facts()`"
         correct: false
         feedback: >-
@@ -279,3 +273,10 @@ questions:
         feedback: >-
           No. That one runs both paths over a list of emails and builds the
           table. It chooses no fields either. Week 3 lab notebook, cell 13.
+
+      - text: "`build_facts()`"
+        correct: true
+        feedback: >-
+          Correct. It picks. Then `format_facts()` puts what is left into one
+          steady shape. Those two steps work on a log line, an alert or a
+          ticket. Week 3 reading, the same move on a log line.

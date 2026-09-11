@@ -40,7 +40,7 @@ The notebook server keeps your work all term. Every week's starter notebook also
 :::
 
 ::: steps | After a week that went badly
-1. Submit what you've. Every lab rubric scores several parts, so partial work still earns points.
+1. Submit what you have. Every lab rubric scores several parts, so partial work still earns points.
 2. Open the next week on time. Don't wait until you've fixed the week before.
 3. Use the starter notebook's ready-made cells for what you couldn't finish.
 4. Email your instructor. Name the week and the cell that stopped you.

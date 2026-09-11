@@ -19,7 +19,7 @@ The parts below are the same either way. A large team splits them across people,
 :::
 
 ::: section | The things you protect
-Security work starts with knowing what you've. Four words cover most of it.
+Security work starts with knowing what you have. Four words cover most of it.
 
 | Term | What it means | At Pellgrave |
 |---|---|---|

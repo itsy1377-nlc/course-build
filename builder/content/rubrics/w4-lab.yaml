@@ -52,6 +52,12 @@
 #
 # NOTHING HERE NEEDS THE STUDENT'S NOTEBOOK. Every level is decided from the
 # screenshot, the exported file and the written answer.
+#
+# WHY THESE CRITERIA CARRY NO OUTCOME LINK, moved here 2026-09-11. The
+# sentences below used to sit inside long_description, which is the field a
+# grader reads and which has to stay word for word what the assignment page
+# shows the student. They are authoring rationale, not what earns credit:
+#   - This is a week expectation, not a course outcome: it measures whether the work arrived, so it carries no Outcome link.
 
 title: "Week 4 lab: give it three checks"
 points: 100
@@ -60,9 +66,7 @@ criteria:
 
   - description: Submission completeness
     long_description: >-
-      All three items are present and readable. This is a week expectation, not
-      a course outcome: it measures whether the work arrived, so it carries no
-      Outcome link.
+      All three items are present and readable.
     points: 32
     levels:
       - description: >-
@@ -115,17 +119,15 @@ criteria:
   - description: Reading your own results
     long_description: >-
       The written answer reads cell 15's four verdicts on email 018, names the
-      fact that moved one of them away from the answer key, and reports one row
-      of the student's own cell 14 table with its tool and fact. It says what
-      that row does and does not settle. This is a week expectation, not a
-      course outcome: it measures whether you reported what you saw, so it
-      carries no Outcome link.
+      fact that moved one of them off the key, and reports one row
+      of your own cell 14 table with its tool and fact. It says what
+      that row does and does not settle.
     points: 28
     levels:
       - description: >-
           Exceeds standard. Three to five sentences. They name the tool whose
-          fact moved cell 15's verdict away from the answer key, and give that
-          fact. They name one email from the student's own cell 14 table, with
+          fact moved cell 15's verdict off the key, and give that
+          fact. They name one email from your own cell 14 table, with
           its tool and the fact the file records. And they say what that row
           does and does not settle, because cell 14's two runs differ in more
           than the tool. The fact matches the student's own file.

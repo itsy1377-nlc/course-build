@@ -39,7 +39,44 @@ CACHE = _CFG.cache_dir
 # renderer bug left every existing video reported as current, so the fix reached
 # only the videos that happened to be rebuilt for another reason. That is how a
 # slide timing bug survived in one video while being fixed in another.
-_PIPELINE = sorted(Path(__file__).parent.glob("*.py"))
+#
+# NOT EVERY .py IN THIS DIRECTORY RENDERS A FRAME. This used to glob all of
+# them, which put check.py -- the gate that *reports* staleness -- inside the
+# definition of staleness. Editing the checker therefore marked all fourteen
+# videos stale and demanded a full re-render for a change that could not alter
+# a single pixel. On 2026-09-11 that cost a correct accessibility fix its first
+# attempt, and the fix had to be moved elsewhere to avoid the re-render.
+#
+# A module belongs here when its output can change a built artifact. A gate
+# reads artifacts and changes none.
+_NOT_RENDERING = {"check.py"}
+_PIPELINE = sorted(p for p in Path(__file__).parent.glob("*.py")
+                   if p.name not in _NOT_RENDERING)
+
+
+def _require_the_build_interpreter() -> None:
+    """Fail by name when run under the wrong python.
+
+    Queue item Q8. The build needs tools/video/.venv, which carries kokoro,
+    soundfile and torch. Run under the system python and the first thing that
+    happens is `ModuleNotFoundError: No module named 'soundfile'`, which reads
+    as an uninstalled dependency rather than as the wrong interpreter. It cost
+    one session a wrong conclusion that the build environment was gone.
+    """
+    try:
+        import soundfile  # noqa: F401
+    except ImportError:
+        venv = Path(__file__).resolve().parent / ".venv" / "bin" / "python"
+        print("This is the wrong interpreter for the video build.",
+              file=sys.stderr)
+        if venv.exists():
+            print(f"Run it with:\n    {venv} -m tools.video.build ...",
+                  file=sys.stderr)
+        else:
+            print(f"Expected a virtualenv at {venv.parent.parent} and found "
+                  f"none. See docs/lab-fix-log.md, queue item Q8.",
+                  file=sys.stderr)
+        raise SystemExit(2)
 
 
 def fingerprint(video: schema.Video) -> str:
@@ -115,6 +152,7 @@ def build_one(video: schema.Video, use_docker: bool = True, keep_work: bool = Fa
 
 
 def main(argv: list[str] | None = None) -> int:
+    _require_the_build_interpreter()
     parser = argparse.ArgumentParser(description="Build the course instructional video.")
     parser.add_argument("--id", action="append", default=[], help="Build only this video id.")
     parser.add_argument("--all", action="store_true", help="Build every video.")

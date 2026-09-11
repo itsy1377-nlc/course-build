@@ -184,6 +184,31 @@ def check(path, mode, expect_artifact, timeout, kernel, save_executed):
     return problems
 
 
+def declared_config(path):
+    """What model and endpoint this notebook falls back to on its own.
+
+    Read from the config cell rather than assumed, because that cell is the
+    thing under test. A notebook whose defaults cannot be found is reported as
+    such rather than silently treated as matching.
+    """
+    import json as _json
+    import re as _re
+    try:
+        nb = _json.loads(open(path, encoding="utf-8").read())
+    except (OSError, ValueError):
+        return [("unreadable", "unreadable")]
+    for cell in nb.get("cells", []):
+        if cell.get("cell_type") != "code":
+            continue
+        src = "".join(cell.get("source", []))
+        model = _re.search(r'ITSY1377_MODEL"\s*,\s*"([^"]+)"', src)
+        base = _re.search(r'ITSY1377_BASE_URL"\s*,\s*"([^"]+)"', src)
+        if model or base:
+            return [(model.group(1) if model else "not declared",
+                     base.group(1) if base else "not declared")]
+    return [("not declared", "not declared")]
+
+
 def main(argv=None):
     parser = argparse.ArgumentParser(description="Run a lab notebook and say what broke.")
     parser.add_argument("path", help="a notebook, or a folder with --all")
@@ -193,6 +218,10 @@ def main(argv=None):
     parser.add_argument("--expect-artifact", help="the submission file name the export cell prints")
     parser.add_argument("--timeout", type=int, default=1800, help="seconds per cell")
     parser.add_argument("--kernel", default="python3")
+    parser.add_argument("--as-shipped", action="store_true",
+                        help="use each notebook's own declared model and "
+                             "endpoint instead of the gate's test ones. "
+                             "Reaches a real endpoint and needs a real key.")
     parser.add_argument("--save-executed", help="write the executed copies here")
     args = parser.parse_args(argv)
 
@@ -211,18 +240,42 @@ def main(argv=None):
     # check fires real requests at production: one run put 201 failed calls
     # into the proxy's log before this was noticed. The endpoint is declared
     # here, where the gate owns its own test environment.
-    os.environ.setdefault("ITSY1377_BASE_URL", "http://localhost:11434/v1")
-    os.environ.setdefault("ITSY1377_MODEL", "granite4.2:3b")
-    if not os.environ.get("ITSY1377_API_KEY"):
-        os.environ["ITSY1377_API_KEY"] = "local-run"
+    #
+    # Queue item Q6. Those two setdefault lines are also why this harness could
+    # not answer the question it exists to answer. A notebook reads
+    # os.environ.get("ITSY1377_MODEL", "granite-3b"); setting the variable
+    # overrides the notebook's own declaration, so a green run proved the
+    # notebook works against whatever the gate picked, not against what it
+    # ships with. Week 1's run had to be forced to granite-8b by hand to find
+    # that out.
+    #
+    # --as-shipped sets neither, so each notebook's own default applies. It
+    # reaches a real endpoint, which is exactly why it is a flag and not the
+    # default, and why it refuses to invent an API key.
+    if args.as_shipped:
+        if not os.environ.get("ITSY1377_API_KEY"):
+            print("--as-shipped runs against the endpoint the notebook declares,"
+                  " so it needs a real key.", file=sys.stderr)
+            print("Set ITSY1377_API_KEY and run again.", file=sys.stderr)
+            return 1
+        for name in ("ITSY1377_BASE_URL", "ITSY1377_MODEL"):
+            os.environ.pop(name, None)
+        for path in paths:
+            for model, endpoint in declared_config(path):
+                print(f"declared:  {os.path.basename(path)} -> {model} at {endpoint}")
+    else:
+        os.environ.setdefault("ITSY1377_BASE_URL", "http://localhost:11434/v1")
+        os.environ.setdefault("ITSY1377_MODEL", "granite4.2:3b")
+        if not os.environ.get("ITSY1377_API_KEY"):
+            os.environ["ITSY1377_API_KEY"] = "local-run"
 
     # Say where the calls are going. A run that silently pointed at the live
     # proxy put 201 failed requests into the students' endpoint before anyone
     # noticed, and nothing in the output said which endpoint was in use.
-    endpoint = os.environ["ITSY1377_BASE_URL"]
+    endpoint = os.environ.get("ITSY1377_BASE_URL", "the notebook's own default")
     print(f"endpoint:  {endpoint}")
-    print(f"model:     {os.environ['ITSY1377_MODEL']}")
-    if "localhost" not in endpoint and "127.0.0.1" not in endpoint:
+    print(f"model:     {os.environ.get('ITSY1377_MODEL', "the notebook's own default")}")
+    if args.as_shipped or ("localhost" not in endpoint and "127.0.0.1" not in endpoint):
         print("           this is NOT a local endpoint. These runs cost real")
         print("           money and count against a real key's rate limits.")
 

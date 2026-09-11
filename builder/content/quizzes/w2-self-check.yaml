@@ -68,17 +68,17 @@ questions:
     text: |
       <p>Which four key names does the course output schema require?</p>
     answers:
-      - text: "verdict, category, confidence, indicators"
-        correct: true
-        feedback: >-
-          Correct. Those four, spelled that way, on every answer. Week 2
-          reading, part 1, why a sentence is not an answer.
       - text: "verdict, reason, score, evidence"
         correct: false
         feedback: >-
           No. Three of those names are close in meaning and wrong in text. The
           schema checks the name, not the meaning. Week 2 reading, part 1, why a
           sentence is not an answer.
+      - text: "verdict, category, confidence, indicators"
+        correct: true
+        feedback: >-
+          Correct. Those four, spelled that way, on every answer. Week 2
+          reading, part 1, why a sentence is not an answer.
       - text: "subject, sender, body, links"
         correct: false
         feedback: >-
@@ -101,12 +101,6 @@ questions:
       <code>length</code>. What happened, and what should your code do
       next?</p>
     answers:
-      - text: The model reached the answer limit before usable JSON arrived. Record the failure and ask for one complete JSON object with no words around it.
-        correct: true
-        feedback: >-
-          Correct. Record the failed try. The retry says: Return one complete
-          JSON object with no words before or after it. Week 2 reading, part 2,
-          a wrong answer is a normal condition.
       - text: The email was too long to classify. Skip it and move to the next one.
         correct: false
         feedback: >-
@@ -118,6 +112,12 @@ questions:
         feedback: >-
           No. A refusal is text. This reply is empty because generation
           stopped. Week 2 reading, part 2, a wrong answer is a normal condition.
+      - text: The model reached the answer limit before usable JSON arrived. Record the failure and ask for one complete JSON object with no words around it.
+        correct: true
+        feedback: >-
+          Correct. Record the failed try. The retry says: Return one complete
+          JSON object with no words before or after it. Week 2 reading, part 2,
+          a wrong answer is a normal condition.
       - text: The answer is fine. An empty string still loads as JSON.
         correct: false
         feedback: >-
@@ -134,12 +134,6 @@ questions:
       <p>Why does the model's reasoning block have to come off before you load
       the answer?</p>
     answers:
-      - text: Because the reasoning text sits around the JSON, so the load fails on it.
-        correct: true
-        feedback: >-
-          Correct. The load needs JSON and nothing else. Anything wrapped
-          around it breaks the parse. Week 2 reading, part 2, a wrong shape is a
-          normal condition.
       - text: Because reading it would tell you the answer before the schema check runs.
         correct: false
         feedback: >-
@@ -158,6 +152,12 @@ questions:
           No. Size is not the issue. The load is. Week 2 reading, part 2, a wrong
           shape is a normal condition.
 
+      - text: Because the reasoning text sits around the JSON, so the load fails on it.
+        correct: true
+        feedback: >-
+          Correct. The load needs JSON and nothing else. Anything wrapped
+          around it breaks the parse. Week 2 reading, part 2, a wrong shape is a
+          normal condition.
   - id: w2-q4
     name: Question 4. Stop on acceptance
     type: multiple_choice
@@ -169,16 +169,16 @@ questions:
       <code>schema_errors()</code> returned one problem. What keeps the retry
       loop going?</p>
     answers:
-      - text: Assign the dictionary to answer as soon as json.loads() succeeds.
-        correct: false
-        feedback: >-
-          No. That stops on loading, before the schema problem can cause a
-          retry. Week 2 sidebar, part 2C, load a candidate, then accept it.
       - text: Keep answer as None, and assign the candidate to it only when the problem list is empty.
         correct: true
         feedback: >-
           Correct. The loop condition changes only after the check accepts the
           candidate. Week 2 sidebar, parts 2C and 2D.
+      - text: Assign the dictionary to answer as soon as json.loads() succeeds.
+        correct: false
+        feedback: >-
+          No. That stops on loading, before the schema problem can cause a
+          retry. Week 2 sidebar, part 2C, load a candidate, then accept it.
       - text: Return the dictionary and let the next email repair it.
         correct: false
         feedback: >-
@@ -201,17 +201,17 @@ questions:
       <p>Your first try failed the schema check. What must the second request
       add to be worth making?</p>
     answers:
+      - text: A higher temperature, so the model answers differently.
+        correct: false
+        feedback: >-
+          No. That changes variation. It does not tell the model what failed
+          the check. Week 2 reading, part 2, the retry.
       - text: The problems your check reported, in plain words.
         correct: true
         feedback: >-
           Correct. In the controlled range test, all 24 replies passed with
           the problem added and none passed after a bare re-ask. Week 2
           reading, part 2, the retry.
-      - text: A higher temperature, so the model answers differently.
-        correct: false
-        feedback: >-
-          No. That changes variation. It does not tell the model what failed
-          the check. Week 2 reading, part 2, the retry.
       - text: The same prompt again. Models often get it right on a second pass.
         correct: false
         feedback: >-
@@ -239,17 +239,17 @@ questions:
         feedback: >-
           No. 0.95 is valid JSON. The load and the schema ask different
           questions. Week 2 reading, part 1, what a schema buys you.
+      - text: A confidence above 0.9 proves the verdict is wrong.
+        correct: false
+        feedback: >-
+          No. Confidence is the model's report, not a fact about the verdict.
+          Week 2 reading, part 1, why a sentence is not an answer.
       - text: The week 2 reporting rule accepts confidence only from 0.0 to 0.9.
         correct: true
         feedback: >-
           Correct. The number loads, then the range check rejects it. That
           reports a contract mismatch, not a change in certainty. Week 2
           reading, part 1, what a schema buys you.
-      - text: A confidence above 0.9 proves the verdict is wrong.
-        correct: false
-        feedback: >-
-          No. Confidence is the model's report, not a fact about the verdict.
-          Week 2 reading, part 1, why a sentence is not an answer.
       - text: The checker accepts only whole numbers.
         correct: false
         feedback: >-

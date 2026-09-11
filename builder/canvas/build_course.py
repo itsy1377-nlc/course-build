@@ -467,10 +467,23 @@ class Builder:
                 self._video_links[f"{self.VIDEO_BASE}/{html_path.name}"] = (
                     f"[dry-run: {html_path.name} would upload]")
                 continue
+            # Two WCAG Level A failures lived in these four lines until
+            # 2026-09-11. There was no lang attribute, so a screen reader
+            # guessed the language (3.1.1), and the title was md.stem, which
+            # renders as "w7-walkthrough.transcript" in the tab and in a
+            # bookmark (2.4.2). tools/cartridge.py has always written both
+            # correctly; only the Canvas path regressed. The video's own title
+            # is the first heading of the transcript it is rendering.
+            source = md.read_text()
+            heading = next((line[2:].strip() for line in source.splitlines()
+                            if line.startswith("# ")), md.stem)
+            page_title = f"Transcript: {heading}"
             html_path.write_text(
-                "<!doctype html><meta charset=utf-8>"
-                f"<title>{md.stem}</title>"
-                + markdown.markdown(md.read_text(), extensions=["tables"]))
+                '<!doctype html>\n<html lang="en">\n<head>\n'
+                '<meta charset="utf-8">\n'
+                f"<title>{html.escape(page_title)}</title>\n</head>\n<body>\n"
+                + markdown.markdown(source, extensions=["tables"])
+                + "\n</body>\n</html>\n")
             fid = self.upload_file(html_path, "video")
             self._video_links[f"{self.VIDEO_BASE}/{html_path.name}"] = (
                 f"/courses/{self.course_id}/files/{fid}/download?download_frd=1")
@@ -656,6 +669,21 @@ class Builder:
         self.say(f"discussion {title}: id {obj['id']}, "
                  + ("ungraded" if ungraded else f"{points} pts")
                  + (", pinned" if pinned else ""))
+        # Queue item Q5. The boards are 12 percent of the course grade and used
+        # to reach Canvas with no rubric object at all: scoring lived in a prose
+        # table on the page, with no levels and no partial credit, so a grader
+        # had one box and a number. A graded discussion is backed by an
+        # assignment, and that assignment is what a rubric attaches to.
+        if not ungraded:
+            aid = obj.get("assignment_id")
+            if not aid:
+                self.skipped.append(
+                    f"discussion {ref}: graded, but Canvas returned no "
+                    f"assignment_id, so no rubric could be attached")
+            else:
+                assignment = self.canvas.get(
+                    f"/courses/{self.course_id}/assignments/{aid}")
+                self.attach_rubric(ref, assignment)
         return obj
 
     def make_quiz(self, ref: str, title: str, group: str | None, points: int | None,

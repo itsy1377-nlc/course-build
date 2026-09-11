@@ -537,28 +537,99 @@ def check_case_fields(findings: list[Finding]) -> None:
 # ---------------------------------------------------------------------------
 
 
-def check_points(findings: list[Finding]) -> None:
+def graded_items() -> list[dict]:
+    """Every graded thing in the course, from where course.yaml actually keeps them.
+
+    This used to read course["assignments"], course["quizzes"] and
+    course["discussions"]. None of those keys exists: everything lives under
+    modules[].items. Both loops that used them had therefore never executed a
+    single iteration, and both printed ok. That is the defect this helper
+    exists to make impossible to repeat.
+    """
     course = yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
-    by_ref = {r["ref"]: r for g in ("assignments", "quizzes", "discussions")
-              for r in course.get(g, [])}
-    for ref, row in by_ref.items():
-        if not row.get("rubric"):
+    out = []
+    for module in course.get("modules") or []:
+        for item in module.get("items") or []:
+            if item.get("type") in ("assignment", "quiz", "discussion"):
+                out.append(item)
+    return out
+
+
+def check_points(findings: list[Finding]) -> int:
+    seen = 0
+    for row in graded_items():
+        ref = row["ref"]
+        rubric_path = CONTENT / "rubrics" / f"{ref}.yaml"
+        if not rubric_path.exists():
             continue
-        rubric = yaml.safe_load(
-            (CONTENT / "rubrics" / f"{row['rubric']}.yaml").read_text(encoding="utf-8"))
-        if rubric["points"] != row["points"]:
+        seen += 1
+        rubric = yaml.safe_load(rubric_path.read_text(encoding="utf-8"))
+        if row.get("points") is not None and rubric["points"] != row["points"]:
             findings.append(Finding(
-                f"content/rubrics/{row['rubric']}.yaml",
+                f"content/rubrics/{ref}.yaml",
                 f"is worth {rubric['points']} points but {ref} is worth {row['points']}"))
-        page = CONTENT / "assignments" / f"{ref}.md"
-        if page.exists() and re.search(r"^::: grading", page.read_text(encoding="utf-8"),
-                                       re.MULTILINE):
+        total = sum(c["points"] for c in rubric.get("criteria") or [])
+        if total != rubric["points"]:
             findings.append(Finding(
-                page.relative_to(ROOT).as_posix(),
-                "has a hand-written grading block, and it has a rubric",
-                "The build generates the table from the rubric and replaces this "
-                "block. Two tables on one page drifted apart last time. Delete it "
-                "and move anything it says into the rubric's guidance field."))
+                f"content/rubrics/{ref}.yaml",
+                f"criteria add to {total} and the rubric declares {rubric['points']}"))
+        # This used to demand that a page carrying both a rubric and a
+        # hand-written ::: grading block delete the block, on the grounds that
+        # "the build generates the table from the rubric". It does not, in this
+        # course: tools/blocks.py renders the authored block and nothing
+        # generates a table from a rubric. The convention here is the opposite
+        # and every lab rubric states it -- long_description is "what earns full
+        # credit, in the words the assignment page shows the student. The two
+        # must stay identical." So check that, which is the thing that can
+        # actually drift.
+        page = CONTENT / "assignments" / f"{ref}.md"
+        if not page.exists():
+            continue
+        rows = dict(_grading_rows(page.read_text(encoding="utf-8")))
+        if not rows:
+            continue
+        for crit in rubric.get("criteria") or []:
+            shown = rows.get(crit["description"])
+            if shown is None:
+                findings.append(Finding(
+                    page.relative_to(ROOT).as_posix(),
+                    f"its grading table has no row for the rubric criterion "
+                    f"{crit['description']!r}"))
+            elif _squash(shown) != _squash(crit.get("long_description", "")):
+                findings.append(Finding(
+                    page.relative_to(ROOT).as_posix(),
+                    f"the {crit['description']!r} row does not match the rubric",
+                    "The rubric's long_description and the page's table cell are "
+                    "the same sentence shown twice. Change both or neither."))
+    return seen
+
+
+def _squash(text: str) -> str:
+    """One sentence, comparable across the two places it is written.
+
+    The page is markdown and the rubric is plain text bound for Canvas, so the
+    same sentence legitimately reads `ok=True` on one and ok=True on the other.
+    Comparing the markup would flag every page that formats a literal, which is
+    noise. Comparing the words is the convention the rubrics actually state.
+    """
+    text = re.sub(r"[`*_]", "", str(text))
+    return " ".join(text.split())
+
+
+def _grading_rows(page: str) -> list[tuple[str, str]]:
+    """The criterion and full-credit cells of a page's ::: grading table."""
+    block = re.search(r"^::: grading.*?\n(.*?)\n:::", page, re.S | re.M)
+    if not block:
+        return []
+    out = []
+    for line in block.group(1).splitlines():
+        cells = [c.strip() for c in line.strip().strip("|").split("|")]
+        if len(cells) != 3 or set(cells[0]) <= set("-: "):
+            continue
+        if cells[0].startswith("**") or cells[0] == "Criterion":
+            continue
+        out.append((cells[0], cells[2]))
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -636,9 +707,12 @@ def check_quiz_answers(findings: list[Finding]) -> None:
                 findings.append(Finding(where, f"{qid} carries no outcome tag"))
 
 
-def check_quiz_points(findings: list[Finding]) -> None:
-    course = yaml.safe_load((CONTENT / "course.yaml").read_text(encoding="utf-8"))
-    for row in course.get("quizzes", []):
+def check_quiz_points(findings: list[Finding]) -> int:
+    seen = 0
+    for row in graded_items():
+        if row.get("type") != "quiz":
+            continue
+        seen += 1
         path = CONTENT / "quizzes" / f"{row['ref']}.yaml"
         if not path.exists():
             findings.append(Finding("content/course.yaml",
@@ -646,10 +720,16 @@ def check_quiz_points(findings: list[Finding]) -> None:
             continue
         quiz = yaml.safe_load(path.read_text(encoding="utf-8"))
         total = sum(float(q.get("points", 0)) for q in quiz.get("questions") or [])
+        if row.get("points") is None:
+            # An ungraded quiz carries no points in course.yaml: the week 0
+            # self-assessment and the syllabus acknowledgment. Nothing to
+            # reconcile against.
+            continue
         if abs(total - row["points"]) > 0.01:
             findings.append(Finding(
                 path.relative_to(ROOT).as_posix(),
                 f"items add to {total:g} points, course.yaml says {row['points']}"))
+    return seen
 
 
 # Checks that only mean something for a course with the attack-run harness.
@@ -694,9 +774,30 @@ def main(argv: list[str] | None = None) -> int:
             print(f"\n{label}: skipped, this course has no lab/harness")
             continue
         findings: list[Finding] = []
-        check(findings)
+        examined = check(findings)
+        # Q7. A check that examined nothing and a check that found nothing
+        # print the same word. Three gates in this repository have shipped
+        # green while reading zero files, and two of them were in this file:
+        # they iterated course["assignments"] and course["quizzes"], keys this
+        # course has never had. A check that returns a count of 0 is now a
+        # failure. A check that returns nothing says so, so the next one
+        # written inherits the habit rather than the hole.
         status = "ok" if not findings else f"{len(findings)} problem(s)"
-        print(f"\n{label}: {status}")
+        if examined is None:
+            note = "count not reported"
+        elif examined == 0:
+            note = "EXAMINED NOTHING"
+            findings.append(Finding(
+                "tools/verify_content.py",
+                f"the check '{label}' examined 0 items",
+                "Either it is looking in the wrong place, or the thing it "
+                "checks no longer exists. Both are worth knowing. If it is "
+                "genuinely inapplicable, declare it the way HARNESS_CHECKS "
+                "does rather than letting it pass silently."))
+            status = f"{len(findings)} problem(s)"
+        else:
+            note = f"{examined} item(s) examined"
+        print(f"\n{label}: {status}, {note}")
         for finding in findings:
             print(f"  - {finding}")
         total += len(findings)

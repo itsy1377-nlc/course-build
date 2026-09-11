@@ -214,6 +214,17 @@ BROKEN_CONTRACTION_RE = re.compile(
     r"[Nn]othing|[Ee]verything|[Ss]omething|[Aa]nything|"
     r"\w+ing)\s+(?:it|here|there|that)['\u2019]s\b")
 
+# A second family the rule above never covered, found live on 2026-09-11 in
+# five pages including the three a student reads first: "know who you're.",
+# "how far along you're.", "Submit what you've." A contraction of *are* or
+# *have* onto a pronoun cannot end a clause, because both verbs need something
+# after them. The log recorded this class as closed because warm_pass stopped
+# producing them; the artifacts it had already damaged were never re-checked,
+# and this gate could not see them.
+BROKEN_TRAILING_RE = re.compile(
+    r"\b(?:you|we|they|I|who|what)['\u2019](?:re|ve|ll|d)\s*(?=[.,;:!?]|$)",
+    re.MULTILINE)
+
 
 def contraction_rate(text: str) -> tuple[int, float]:
     """How many contractions per 1,000 words of measurable prose."""
@@ -223,8 +234,9 @@ def contraction_rate(text: str) -> tuple[int, float]:
 
 
 def broken_contractions(text: str) -> list[str]:
-    """Contractions of "is" onto something that is not the subject."""
-    return [m.group(0) for m in BROKEN_CONTRACTION_RE.finditer(text)]
+    """Contractions the reader cannot expand back into a sentence."""
+    return ([m.group(0) for m in BROKEN_CONTRACTION_RE.finditer(text)]
+            + [m.group(0) for m in BROKEN_TRAILING_RE.finditer(text)])
 
 # The Rules of Engagement is the one page where misreading has consequences,
 # so it is held to a tighter bar.

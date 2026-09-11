@@ -1,0 +1,93 @@
+# Week 3 discussion rubric, generated 2026-09-11 from the grading table on
+# content/discussions/w3-discussion.md and kept identical to it.
+#
+# WHY THIS FILE EXISTS. Queue item Q5. The discussions are 12 percent of the
+# course grade and reached Canvas with no rubric object at all: make_discussion()
+# attached none, so scoring lived in a prose table on the page with no levels
+# and no partial credit. A grader had one box and a number.
+#
+# EVERY CRITERION IS A ROW OF THAT TABLE, WORD FOR WORD. The page is what the
+# student is told, so the rubric may not say something different. Change the
+# page and this file together or not at all.
+#
+# LEVELS. A criterion worth 3 or more carries full, half and none, because
+# these rows are two or three things joined by "and" and half of them is a real
+# state. A criterion worth 2 or less carries full and none: a post is on time
+# or it is not.
+#
+# NO OUTCOME LINKS. The boards report into no course learning objective, which
+# every discussion page states in its own closing line. They measure taking
+# part on time and using your own numbers, and both are course expectations
+# rather than outcomes.
+
+title: "Week 3 discussion"
+points: 20
+
+criteria:
+
+  - description: >-
+      Your post names one email, with its id and the verdict before and after
+    points: 5
+    levels:
+      - description: >-
+          Full. Your post names one email, with its id and the verdict before and after
+        points: 5
+      - description: >-
+          Partly. One part of this is here and another is missing, or a value is given without the run it came from.
+        points: 2
+      - description: >-
+          Not evident. This part is absent, or it rests on nothing the student ran.
+        points: 0
+
+  - description: >-
+      Your post pastes one line from your own facts block, one line only
+    points: 5
+    levels:
+      - description: >-
+          Full. Your post pastes one line from your own facts block, one line only
+        points: 5
+      - description: >-
+          Partly. One part of this is here and another is missing, or a value is given without the run it came from.
+        points: 2
+      - description: >-
+          Not evident. This part is absent, or it rests on nothing the student ran.
+        points: 0
+
+  - description: >-
+      Your post gives the indicators your model listed, and says whether that line is among them
+    points: 5
+    levels:
+      - description: >-
+          Full. Your post gives the indicators your model listed, and says whether that line is among them
+        points: 5
+      - description: >-
+          Partly. One part of this is here and another is missing, or a value is given without the run it came from.
+        points: 2
+      - description: >-
+          Not evident. This part is absent, or it rests on nothing the student ran.
+        points: 0
+
+  - description: >-
+      Your reply names a number or a line from your own run on the same email
+    points: 4
+    levels:
+      - description: >-
+          Full. Your reply names a number or a line from your own run on the same email
+        points: 4
+      - description: >-
+          Partly. One part of this is here and another is missing, or a value is given without the run it came from.
+        points: 2
+      - description: >-
+          Not evident. This part is absent, or it rests on nothing the student ran.
+        points: 0
+
+  - description: >-
+      Post by Thursday, reply by Sunday 11:59 PM Central
+    points: 1
+    levels:
+      - description: >-
+          Full. Post by Thursday, reply by Sunday 11:59 PM Central
+        points: 1
+      - description: >-
+          Not evident.
+        points: 0

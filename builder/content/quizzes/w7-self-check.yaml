@@ -104,17 +104,6 @@ questions:
       <p>One of the six lines is missing. Which one, and where does it
       belong?</p>
     answers:
-      - text: >-
-          The recommended action, between the indicators and the escalate
-          line.
-        correct: true
-        feedback: >-
-          Right. The note says what the email is and never says what to do
-          about it. For this one the action is
-          <code>close_spam_reply_to_reporter</code>, which closes it and
-          replies to the reporter. Cell 6 prints the fixed order and one
-          finished example. Week 7 reading, part one, why the six lines never
-          move.
       - text: The confidence, between the verdict and the indicators.
         correct: false
         feedback: >-
@@ -127,6 +116,17 @@ questions:
           No. The escalate line is there, reading no. It belongs above the
           summary, not after it. Cell 6 prints the order. Week 7
           reading, part one, why the six lines never move.
+      - text: >-
+          The recommended action, between the indicators and the escalate
+          line.
+        correct: true
+        feedback: >-
+          Right. The note says what the email is and never says what to do
+          about it. For this one the action is
+          <code>close_spam_reply_to_reporter</code>, which closes it and
+          replies to the reporter. Cell 6 prints the fixed order and one
+          finished example. Week 7 reading, part one, why the six lines never
+          move.
       - text: The indicators, between the confidence and the recommended action.
         correct: false
         feedback: >-
@@ -148,13 +148,6 @@ questions:
       </code></pre>
       <p>Take the first row. Which kind of error is it?</p>
     answers:
-      - text: A false positive, a benign email the agent called malicious.
-        correct: true
-        feedback: >-
-          Right. Email 039 is a genuine internal note about paying an invoice
-          on time. A false positive spends Devin Crowmarden's morning on a
-          message that was fine. Week 7 reading, part two, the two errors, and
-          what each one costs.
       - text: A false negative, a malicious email the agent called benign.
         correct: false
         feedback: >-
@@ -176,6 +169,13 @@ questions:
           twenty are scored the same way. Week 7 reading, part two, a judgment
           is not a measurement.
 
+      - text: A false positive, a benign email the agent called malicious.
+        correct: true
+        feedback: >-
+          Right. Email 039 is a genuine internal note about paying an invoice
+          on time. A false positive spends Devin Crowmarden's morning on a
+          message that was fine. Week 7 reading, part two, the two errors, and
+          what each one costs.
   - id: w7-q3
     name: Question 3. Naming the error, two
     type: multiple_choice
@@ -239,6 +239,14 @@ questions:
       kept apart from accuracy?</p>
     answers:
       - text: >-
+          Because only a malicious email is escalated, so accuracy already
+          covers the escalate line.
+        correct: false
+        feedback: >-
+          No. Email 043 is benign and still escalates. The verdict and the
+          escalation are two decisions. Either one can be wrong on its own.
+          Week 7 reading, part two, one score block.
+      - text: >-
           The two ask different questions. Accuracy asks whether the verdict
           was right. Escalation agreement asks whether the right cases reached
           a person.
@@ -247,14 +255,6 @@ questions:
           Right. Email 043 shows why. The playbook wants a phone call on any
           bank change, whatever the verdict. So a benign email still goes to
           a person. Week 7 reading, part two, one score block.
-      - text: >-
-          Because only a malicious email is escalated, so accuracy already
-          covers the escalate line.
-        correct: false
-        feedback: >-
-          No. Email 043 is benign and still escalates. The verdict and the
-          escalation are two decisions. Either one can be wrong on its own.
-          Week 7 reading, part two, one score block.
       - text: >-
           Because escalation is a person's judgment, so no code can score it
           against the answer key.
@@ -286,14 +286,6 @@ questions:
       first?</p>
     answers:
       - text: >-
-          Alert triage. It needs the alert, the asset the alert names, and
-          what normal looks like there.
-        correct: true
-        feedback: >-
-          Right. An order with a reason for each, and an analyst still works
-          the ticket. Week 7 reading, part three, three jobs that sort what
-          already arrived.
-      - text: >-
           Alert triage. It needs the answer key for the alerts, so it can
           learn the right order.
         correct: false
@@ -308,6 +300,14 @@ questions:
           No. Log review starts with lines nobody reads. These alerts already
           raised a hand, and the job is ordering them. Week 7 reading, part
           three, three jobs that sort what already arrived.
+      - text: >-
+          Alert triage. It needs the alert, the asset the alert names, and
+          what normal looks like there.
+        correct: true
+        feedback: >-
+          Right. An order with a reason for each, and an analyst still works
+          the ticket. Week 7 reading, part three, three jobs that sort what
+          already arrived.
       - text: >-
           Incident response support. It needs the evidence already collected.
         correct: false
@@ -328,13 +328,6 @@ questions:
       lines worth a look.</p>
       <p>Which use case is that, and what would it need first?</p>
     answers:
-      - text: >-
-          Log review. It needs those lines, and what normal looks like
-          there. You learn normal by reading part of the log daily.
-        correct: true
-        feedback: >-
-          Right. Without normal, nothing in a log is unusual. Week 7 reading,
-          part three, three jobs that sort what already arrived.
       - text: >-
           Log review. It needs one day of lines only, because normal changes
           too fast to be worth learning.
@@ -361,6 +354,13 @@ questions:
           email. This one starts from a whole day of gateway lines. Week 7
           reading, part three, three jobs that sort what already arrived.
 
+      - text: >-
+          Log review. It needs those lines, and what normal looks like
+          there. You learn normal by reading part of the log daily.
+        correct: true
+        feedback: >-
+          Right. Without normal, nothing in a log is unusual. Week 7 reading,
+          part three, three jobs that sort what already arrived.
   - id: w7-q7
     name: Question 7. Which job is this, three
     type: multiple_choice
@@ -416,14 +416,6 @@ questions:
       <p>Which use case is that, and what would it need first?</p>
     answers:
       - text: >-
-          Vulnerability research. It needs a list of the software Pellgrave
-          runs, with versions.
-        correct: true
-        feedback: >-
-          Right. The answer is about your machines, so the tool has to know
-          what you run. Weaknesses already used in attacks go first. Week 7
-          reading, part three, two jobs that help you decide what is next.
-      - text: >-
           Vulnerability research. It needs the published entry and nothing
           else, because the entry names the product.
         correct: false
@@ -431,6 +423,14 @@ questions:
           The job is right and the fact is not. Every entry names a product.
           That is exactly why you have to know what you run. Week 7 reading,
           part three, two jobs that help you decide what is next.
+      - text: >-
+          Vulnerability research. It needs a list of the software Pellgrave
+          runs, with versions.
+        correct: true
+        feedback: >-
+          Right. The answer is about your machines, so the tool has to know
+          what you run. Weaknesses already used in attacks go first. Week 7
+          reading, part three, two jobs that help you decide what is next.
       - text: >-
           Incident response support. It needs the evidence already collected.
         correct: false

@@ -29,7 +29,7 @@ The page **Meet your instructor** has the rest.
 ::: steps | Getting started
 1. Read the syllabus. It's the page **Syllabus, policies and grades**. It says what the course covers, what it asks of you, and how your grade is figured.
 2. Work down the **Orientation Module** in order. It says how a week runs and where each thing lives.
-3. Introduce yourself on the **Introduce yourself** board, so your instructor and your classmates know who you're.
+3. Introduce yourself on the **Introduce yourself** board, so your instructor and your classmates know who you are.
 4. Open **Student Resources**. It covers how Canvas works and what the college can do for you.
 5. Take the **Week 0 self-assessment**, in Module 0. Ten questions, about ten minutes. Your score says whether to work week 0 or skip it.
 :::

@@ -1,0 +1,27 @@
+# Introductions board rubric, generated 2026-09-11 from the grading table on
+# content/discussions/introductions.md and kept identical to it.
+#
+# ONE POINT, IN A GROUP WEIGHTED AT ZERO PERCENT. The page says so plainly, and
+# this rubric exists for the same reason the other seven do: queue item Q5.
+# Every graded thing in this course now reaches Canvas carrying the criteria
+# the student was shown, so a grader is never left with one box and a number.
+#
+# TWO LEVELS, BECAUSE THE PAGE HAS TWO. "One post covering the four things,
+# plus one reply" is done or it is not. Inventing a half state here would
+# invent a rule the student was never told.
+
+title: "Introductions"
+points: 1
+
+criteria:
+
+  - description: >-
+      One post covering the four things, plus one reply
+    points: 1
+    levels:
+      - description: >-
+          Full. One post covering the four things, plus one reply.
+        points: 1
+      - description: >-
+          Anything less.
+        points: 0
