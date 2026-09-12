@@ -271,9 +271,15 @@ class Builder:
         main() calls this again after the front page exists.
         """
         c = self.spec["course"]
+        # Deliberately NOT sent: course[name] and course[course_code]. The course
+        # in the spine is the master shell that every term section is copied from,
+        # and the container's name is the only thing that tells the two apart in a
+        # course list. Sending the spine's name renamed the shell to the section
+        # name on every build -- including a scoped --week run -- and the shell's
+        # own name is not recorded anywhere here, so nothing could put it back.
+        # c["name"] stays in the spine because the front page and the syllabus
+        # title fall back to it; it names the course in content, not the container.
         data: dict[str, Any] = {
-            "course[name]": c["name"],
-            "course[course_code]": c["code"],
             "course[apply_assignment_group_weights]": str(c.get("apply_group_weights", True)).lower(),
         }
         if c.get("default_view") and with_view:
@@ -931,18 +937,28 @@ class Builder:
         if c.get("default_view") and course.get("default_view") != c["default_view"]:
             problems.append(f"course default_view is {course.get('default_view')!r}, "
                             f"want {c['default_view']!r}")
-        # Canvas accepts course[public_description] on a private course and does
-        # not store it, so the catalog blurb cannot be verified here. What the
-        # build prompt actually requires is that the enforced prerequisite is
-        # stated where students read it, which is the syllabus. Verify that.
+        # The prerequisite has to be stated where students read it, which is the
+        # syllabus.
         syllabus = (self.canvas.get(f"/courses/{self.course_id}",
                                     **{"include[]": "syllabus_body"}).get("syllabus_body") or "")
         if "prerequisite" not in syllabus.lower():
             problems.append("the syllabus does not state the prerequisite, which the "
                             "build prompt requires the course description to carry")
-        if False:
-            problems.append("course has no public description, so the prerequisite "
-                            "the build prompt requires is not published")
+        # This check was dead-coded behind `if False:` on the belief that Canvas
+        # does not store public_description on a private course. It does store it
+        # -- it just omits the field from GET /courses/:id unless
+        # include[]=public_description is asked for, which the read-back above
+        # does not do. Re-enabled with the include, because this is the only
+        # automated guard on a field that has no visual cue anywhere in the
+        # Canvas UI and that course copy drops silently: a section can look
+        # complete and go live with an empty catalog description.
+        if c.get("description"):
+            blurb = (self.canvas.get(f"/courses/{self.course_id}",
+                                     **{"include[]": "public_description"})
+                     .get("public_description") or "")
+            if not blurb.strip():
+                problems.append("course has no public description, so the prerequisite "
+                                "the build prompt requires is not published")
         if c.get("grading_standard"):
             standards = self.canvas.get(f"/courses/{self.course_id}/grading_standards")
             title = c["grading_standard"]["title"]
@@ -1073,6 +1089,17 @@ class Builder:
                 problems.append(f"quiz {quiz['title']}: {blank} answer(s) carry no feedback")
             if not qs:
                 problems.append(f"quiz {quiz['title']} has no questions")
+            # Nothing here publishes a quiz on purpose: make_quiz sends
+            # quiz[published]=false so all 46 exam items can be deleted and
+            # re-posted while the quiz is hidden, and it is the module publish
+            # in build_modules that re-publishes it. That cascade is Canvas's
+            # behaviour, not ours -- measured 2026-09-12, it fires even when the
+            # module is already published -- so assert the end state instead of
+            # trusting it. A quiz left unpublished in the shell copies into every
+            # section as a hidden assessment, and no other gate reads this field.
+            if not quiz.get("published"):
+                problems.append(f"quiz {quiz['title']} is not published; every section "
+                                f"copied from this shell would ship it hidden")
             # Every scored item in the source has to be in Canvas. A dropped
             # question changes the exam's total without failing anything, and
             # a text block that lost its position no longer sits above the
@@ -1199,6 +1226,10 @@ def main(argv: list[str] | None = None) -> int:
                          "groups and outcomes still run; they are idempotent.")
     ap.add_argument("--list-weeks", action="store_true",
                     help="print the week each module answers to, then stop")
+    ap.add_argument("--allow-published", action="store_true",
+                    help="build even though the target course is published or has "
+                         "students. Only for a shell you have deliberately published; "
+                         "never for a term section copied from the shell.")
     args = ap.parse_args(argv)
 
     if args.list_weeks:
@@ -1223,6 +1254,30 @@ def main(argv: list[str] | None = None) -> int:
         b.scope_to(weeks)
     if args.verify:
         return b.verify()
+    # The course in the spine is the MASTER SHELL, and every term section is a
+    # copy of it. This builder must never be pointed at a section. build_modules
+    # deletes and recreates every module item, so module progression resets and
+    # every item id changes, which breaks any link a student or an announcement
+    # already holds; it forces modules, pages, assignments and discussions to
+    # published, including anything an instructor hid for staged release; and the
+    # spine is the only source of a module's item list, so anything added to a
+    # section by hand is deleted with nothing in the repo to restore it. All of
+    # that is harmless on an unpublished shell with no students, which is why it
+    # is written this way -- and none of it is undoable on a live course.
+    if not args.check:
+        cid = spec["course"]["canvas_id"]
+        target = canvas.get(f"/courses/{cid}")
+        students = canvas.get(f"/courses/{cid}/enrollments",
+                              **{"type[]": "StudentEnrollment", "state[]": "active"})
+        if not args.allow_published and (target.get("workflow_state") == "available"
+                                         or students):
+            sys.exit(
+                f"REFUSING to build: course {cid} ({target.get('name')!r}) is "
+                f"{target.get('workflow_state')} with {len(students)} active student(s).\n"
+                "This builder rebuilds module items destructively and publishes what it\n"
+                "touches, so it is meant for the unpublished master shell, not for a term\n"
+                "section copied from it. Point canvas_id at the shell -- or pass\n"
+                "--allow-published if this course really is the shell.")
     # The front page has to exist before Canvas will accept default_view=wiki,
     # so the course settings are applied in two passes around it.
     b.settings(with_view=False)
