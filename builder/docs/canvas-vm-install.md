@@ -222,6 +222,78 @@ remotelab repo at `infra/runbooks/course-dmz-onboarding.md`.
 
 ---
 
+## Course copy drops every quiz until the QTI converter is installed
+
+A manual install has no QTI migration tool, and nothing tells you. Copy a course and you
+get its pages, files, assignments, rubrics, outcomes, modules and syllabus; you do **not**
+get quizzes, question banks, or the assignment shells the graded quizzes own. The migration
+reports `completed`, `migration_issues_count: 0`, and the progress bar reaches 100%.
+
+Signature, in the order it is worth checking:
+
+```sh
+# the copy claims it imported everything...
+curl -s -H "Authorization: Bearer $TOK" \
+  "$BASE/api/v1/courses/<dest>/content_migrations/<id>" \
+  | jq '.audit_info.migration_settings.migration_ids_to_import.copy.all_quizzes'   # "1"
+
+# ...but no Quizzes::Quiz appears among the imported assets
+curl -s -H "Authorization: Bearer $TOK" \
+  "$BASE/api/v1/courses/<dest>/content_migrations/<id>" \
+  | jq '.audit_info.imported_assets | keys'      # no Quizzes::Quiz, no AssessmentQuestionBank
+
+# and every module is short exactly its quiz item
+curl -s -H "Authorization: Bearer $TOK" "$BASE/api/v1/courses/<dest>/modules?include[]=items" \
+  | jq -r '.[] | "\(.items|length)\t\([.items[]|select(.type=="Quiz")]|length)\t\(.name)"'
+```
+
+The export half is fine, which is worth confirming before suspecting it: the cartridge
+carries each quiz as an `assessment_qti.xml` + `assessment_meta.xml` pair, so
+`unzip -l export.imscc | grep assessment_qti` lists one per quiz. The loss is entirely on
+import.
+
+**Why.** `gems/plugins/qti_exporter` converts QTI 1.2 to 2.1 by shelling out to Instructure's
+Python tool. `Qti` looks for `RAILS_ROOT/vendor/QTIMigrationTool/migrate.py`, then
+`vendor/qti_migration_tool/migrate.py`, then `migrate.py` on `PATH`; if none is found
+`migration_executable` is `nil` and the plugin registers itself with `enabled: false`.
+Instructure's production-start notes mention this in one line, and it is easy to read as
+optional. It is not optional for course copy.
+
+**Install it.** The tool was ported to Python 3 in 2022 — the old warnings about needing
+Python 2 are stale. `lxml` is its only runtime dependency, and on Debian it comes from apt,
+not pip, because a trixie interpreter is externally managed:
+
+```sh
+apt-get install -y python3-lxml
+git clone --depth 1 https://github.com/instructure/QTIMigrationTool.git /opt/QTIMigrationTool
+chmod 0755 /opt/QTIMigrationTool/migrate.py
+ln -sfn /opt/QTIMigrationTool /var/canvas/vendor/QTIMigrationTool
+
+# Canvas execs migrate.py through its own shebang, so prove it runs as the app user
+sudo -u canvas env PATH=/usr/local/bin:/usr/bin:/bin \
+  /var/canvas/vendor/QTIMigrationTool/migrate.py --version
+
+systemctl restart canvas canvas-jobs
+```
+
+`/opt` plus a symlink rather than a clone inside the tree: `vendor/` is in Canvas's own
+`.gitignore`, so a foreign checkout there is invisible to git and a `git clean -xdf` during
+an upgrade would delete it. The symlink is also what the plugin's Readme describes doing.
+
+**The restart is load-bearing, and it is `canvas-jobs` that matters.** The probe is a
+top-level `File.exist?` in `Qti`, evaluated when the class loads, and the plugin's `enabled`
+default is computed from its result in `config.to_prepare`. A running process will never
+notice a directory that appeared after boot. The import itself runs in a delayed job, so
+restarting only the web app leaves the exact same silent failure in place.
+
+Verified end to end on 2026-09-12 by copying the course into a scratch shell: 10 of 10
+quizzes, question counts and points identical to the source (exam 40 items / 30 points, six
+self-checks at 12), every module's Quiz item back in position, and `build_course.py --verify`
+against the copy reporting one unrelated problem — the default `Assignments` group Canvas
+adds to any new course.
+
+---
+
 ## Uploaded files land in `tmp/` unless you say otherwise
 
 There is no `config/file_store.yml` after a manual install, and Canvas falls back to
