@@ -215,10 +215,13 @@ JSON. Set exactly one of the two and it exits saying so, rather than handing you
 puzzle. With both unset it behaves as it always did, so the script still works against an
 ungated instance.
 
-That gate allows a single email address, which makes it **launch-blocking** — students
-cannot reach Canvas's own login while it is on. The removal procedure, and the ordering
-that avoids an outage (route requirement off first, application second), live in the
-remotelab repo at `infra/runbooks/course-dmz-onboarding.md`.
+That gate allows a single email address and it stays that way: this instance is for
+authoring, and the course is exported into the college's Canvas for delivery, so no
+student ever reaches this hostname. What is dated is the service token — it expires
+2027-09-12, and its failure looks like the same JSON parse error. The removal procedure,
+for the day the instance becomes student-facing, and the ordering that avoids an outage
+(route requirement off first, application second), live in the remotelab repo at
+`infra/runbooks/course-dmz-onboarding.md`.
 
 ---
 

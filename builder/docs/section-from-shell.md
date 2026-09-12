@@ -65,10 +65,24 @@ own name is recorded nowhere in this repo.
    rewrites dates that already exist, so the usual "copy last term and shift the dates"
    pattern has nothing to work on. Both copies so far recorded `date_shift_options: null`.
 
-5. **Cloudflare Access.** `canvas.bashtion.dev` is gated by a single-email Allow policy for
-   the build period. Students cannot reach Canvas's own login through it. Removal procedure
-   and the ordering that avoids an outage: `infra/runbooks/course-dmz-onboarding.md` in the
-   remotelab repo.
+5. **Export to the college's Canvas.** This instance is authoring-only — students are served
+   from the college's LMS — so a section here is what you *export*, not what they use. The
+   Cloudflare Access gate on `canvas.bashtion.dev` stays as it is for that reason; see
+   `infra/runbooks/course-dmz-onboarding.md` in the remotelab repo.
+
+   **The poster attribute breaks again on that import, and it matters more there.** This
+   repo's own measurement, at `tools/populate_canvas.py:293-298`, is that a cartridge import
+   rewrites `<source src>` and `<track src>`, rewrites `<a href>` but makes it absolute, and
+   leaves `poster` holding the raw token — the same attribute the course-copy importer skips.
+   So the pages students actually see are the ones most likely to carry a broken poster, on
+   an instance where you may have no API access to repair it.
+
+   One thing makes that easier than the copy case: the cartridge leaves
+   `$IMS-CC-FILEBASE$/video/w1-overview.jpg`, which still contains the **filename**, where
+   course copy leaves an opaque migration id. A repair on the target therefore needs nothing
+   from the shell — it can resolve each poster against the target's own file list by name,
+   with only a token on that instance. `section_fixups.py` does not do this yet; it assumes
+   one host.
 
 ## What course copy does, measured
 
