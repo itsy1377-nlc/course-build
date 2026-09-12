@@ -56,6 +56,24 @@ class Canvas:
         self.session = requests.Session()
         self.session.trust_env = False
         self.session.headers["Authorization"] = f"Bearer {token}"
+        # Cloudflare Access sits in front of the host. A browser authenticates by logging
+        # in; a script cannot, so it presents a service token instead and Access exchanges
+        # it for the same JWT at the edge. Without these headers every request gets a 302
+        # to the login page, and Canvas's own Bearer token never reaches the origin --
+        # which looks like an auth failure against Canvas rather than a gate in front of it.
+        #
+        # Optional on purpose: absent the vars this behaves exactly as before, so the
+        # script still works against an ungated instance. Set them for a gated one:
+        #   export CF_ACCESS_CLIENT_ID=...    (the non-secret half)
+        #   export CF_ACCESS_CLIENT_SECRET=...
+        cf_id = os.environ.get("CF_ACCESS_CLIENT_ID")
+        cf_secret = os.environ.get("CF_ACCESS_CLIENT_SECRET")
+        if cf_id and cf_secret:
+            self.session.headers["CF-Access-Client-Id"] = cf_id
+            self.session.headers["CF-Access-Client-Secret"] = cf_secret
+        elif cf_id or cf_secret:
+            sys.exit("Set BOTH CF_ACCESS_CLIENT_ID and CF_ACCESS_CLIENT_SECRET, or neither. "
+                     "One alone is not a usable credential and fails as a login redirect.")
 
     def _call(self, method: str, path: str, **kwargs) -> Any:
         response = self.session.request(method, f"{self.url}/api/v1{path}", timeout=90, **kwargs)
